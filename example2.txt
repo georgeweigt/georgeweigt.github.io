@@ -1,0 +1,7 @@
+-- www.eigenmath.org/example2.txt
+p = sqrt(E^2 - m^2)
+beta = p/E
+A = (E^2 + m^2 + p^2 expcos(theta)) / (8 p^4)
+B = (1 - beta^2 expsin(theta/2)^2) / (4 p^2 beta^2)
+-- print 1 if A equals B
+A == B

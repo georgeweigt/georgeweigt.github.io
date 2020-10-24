@@ -1,0 +1,6 @@
+-- www.eigenmath.org/stefan-boltzmann-law.txt
+A = 6 10^(-4) meter^2
+epsilon = 0.94
+sigma = 5.67 10^(-8) watt meter^(-2) kelvin^(-4)
+T = 1000 kelvin
+A epsilon sigma T^4

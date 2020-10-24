@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+Max Planck used two experimental results to calculate $h$ and $k$ in his 1901 paper
+``On the Law of Distribution of Energy in the Normal Spectrum.''
+Although the quantum of action $h$ is well known as Planck's constant,
+the use of $k$ for Boltzmann's constant is also due to Planck.
+In addition, Planck was the first to compute a numerical value for $k$.
+
+\bigskip
+\noindent
+One of the experimental results Planck used was the difference $S_{100}-S_0$
+determined by Ferdinand Kurlbaum in 1898 where
+$S_t$ is the power radiated by a black body at $t$ degrees Celsius.
+\begin{equation*}
+S_{100}-S_0=7.31\times10^5\,\text{erg}\,\text{cm}^{-2}\,\text{s}^{-1}
+\end{equation*}
+
+\noindent
+From the radiant power formula $S_t=(t+273)^4\sigma$ we have
+\begin{equation*}
+S_{100}-S_0=(100+273)^4\sigma-(0+273)^4\sigma=(373^4-273^4)\sigma
+\end{equation*}
+
+\noindent
+Hence the Stefan-Boltzmann constant $\sigma$ can be determined from $S_{100}-S_0$.
+\begin{equation*}
+\sigma=\frac{S_{100}-S_0}{373^4-273^4}%\,\text{cm}^{-2}\,\text{s}^{-1}\text{K}^{-4}
+\end{equation*}
+
+\noindent
+The Stefan-Boltzmann law is the relation between energy density and temperature $\theta$.
+\begin{equation*}
+\text{``energy per unit volume''}=\frac{4\sigma \theta^4}{c}
+\end{equation*}
+The use of $\theta$ for temperature looks strange but that is what scientists used at the time.
+
+\bigskip
+\noindent
+Using the Stefan-Boltzmann law and Kurlbaum's measurement,
+Planck calculated energy density for temperature $\theta=1$.
+\begin{equation*}
+\frac{4}{c}\times
+\frac{S_{100}-S_0}{373^4-273^4}
+=\frac{4}{3\times10^{10}}\times\frac{7.31\times10^5}{373^4-273^4}
+=7.061\times10^{-15}\,\text{erg}\,\text{cm}^{-3}
+\end{equation*}
+
+\noindent
+Planck's 1901 paper has the following formula (Equation 12) for energy distribution
+$u$ as a function of frequency $\nu$ and temperature $\theta$.
+\begin{equation*}
+u=\frac{8\pi h\nu^3}{c^3}\,\frac{1}{e^{h\nu/k\theta}-1}
+\end{equation*}
+
+\noindent
+The integral of $u$ over all frequencies yields the total energy density $u^*$.
+\begin{equation*}
+u^{*}=\int_0^\infty u\,d\nu
+=\frac{8\pi h}{c^3}\int_0^\infty\frac{\nu^3}{e^{h\nu/k\theta}-1}\,d\nu
+\end{equation*}
+
+\noindent
+Planck used a series expansion to solve the integral for $\theta=1$.
+However, we will use the following identity.
+\begin{equation*}
+\int_0^\infty\frac{x^3}{e^x-1}\,dx=\frac{\pi^4}{15}
+\end{equation*}
+
+\noindent
+By the change of variable $x=h\nu/k$ we have
+\begin{equation*}
+u^*=\frac{8\pi h}{c^3}\left(\frac{k}{h}\right)^4\frac{\pi^4}{15}
+\end{equation*}
+
+\noindent
+Planck then set $u^*$ equal to the result from the Stefan-Bolztmann law.
+\begin{equation*}
+\frac{8\pi h}{c^3}\left(\frac{k}{h}\right)^4\frac{\pi^4}{15}=7.061\times10^{-15}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+\frac{k^4}{h^3}=7.061\times10^{-15}\times\frac{15c^3}{8\pi^5}=1.1682\times10^{15}
+\end{equation*}
+
+\bigskip
+\noindent
+The second experimental result Planck used was $\lambda_m\theta=0.294$ obtained in 1900 by
+Otto Lummer and Ernst Pringsheim.
+Symbol $\lambda_m$ is the wavelength in centimeters
+of peak radiant energy for a black body at temperature $\theta$ in Kelvin.
+
+\bigskip
+\noindent
+Planck's 1901 paper has the following formula (Equation~13)
+for energy distribution $E$ as a function of wavelength $\lambda$ and temperature $\theta$.
+\begin{equation*}
+E=\frac{8\pi ch}{\lambda^5}\,\frac{1}{e^{ch/k\lambda\theta}-1}
+\end{equation*}
+
+\noindent
+Planck solves $dE/d\lambda=0$ to obtain $\lambda_m$ which we will now do step by step.
+First, compute $dE/d\lambda$.
+\begin{equation*}
+\frac{dE}{d\lambda}
+=\frac{8\pi c^2h^2}{k\lambda^7\theta}\,\frac{e^{ch/k\lambda\theta}}{(e^{ch/k\lambda\theta}-1)^2}
+-\frac{40\pi ch}{\lambda^6}\,\frac{1}{e^{ch/k\lambda\theta}-1}
+\end{equation*}
+
+\noindent
+Set $dE/d\lambda=0$ to obtain
+\begin{equation*}
+\frac{8\pi c^2h^2}{k\lambda^7\theta}\,\frac{e^{ch/k\lambda\theta}}{(e^{ch/k\lambda\theta}-1)^2}
+=\frac{40\pi ch}{\lambda^6}\,\frac{1}{e^{ch/k\lambda\theta}-1}
+\end{equation*}
+
+\noindent
+Then by cancellation of terms
+\begin{equation*}
+\frac{ch}{5k\lambda\theta}\,\frac{e^{ch/k\lambda\theta}}{e^{ch/k\lambda\theta}-1}=1
+\end{equation*}
+
+\noindent
+Multiply both sides by $e^{ch/k\lambda\theta}-1$.
+\begin{equation*}
+\frac{ch}{5k\lambda\theta}\, e^{ch/k\lambda\theta}
+=e^{ch/k\lambda\theta}-1
+\end{equation*}
+
+\noindent
+Subtract $e^{ch/k\lambda\theta}$ from both sides.
+\begin{equation*}
+\left(\frac{ch}{5k\lambda\theta}-1\right)e^{ch/k\lambda\theta}=-1
+\end{equation*}
+
+\noindent
+Multiply both sides by $-1$ to obtain Planck's result.
+\begin{equation*}
+\left(1-\frac{ch}{5k\lambda\theta}\right)e^{ch/k\lambda\theta}=1
+\end{equation*}
+
+\noindent
+Planck then provides the following numerical solution.
+\begin{equation*}
+\frac{ch}{k\lambda\theta}=4.9651
+\end{equation*}
+
+\noindent
+Then using $c=3\times10^{10}$ and $\lambda\theta=0.294$ Planck calculates
+\begin{equation*}
+\frac{h}{k}=4.9651\times\frac{\lambda\theta}{c}=4.9651\times\frac{0.294}{3\times10^{10}}=4.866\times10^{-11}
+\end{equation*}
+
+\noindent
+Planck then solves for $k$.
+Plug $h/k=4.866\times10^{-11}$ into the formula for $k^4/h^3$ to obtain
+\begin{equation*}
+k=1.1682\times10^{15}\times\frac{h^3}{k^3}
+=1.1682\times10^{15}\times(4.866\times10^{-11})^3=1.346\times10^{-16}\,\text{erg}\,\text{K}^{-1}
+\end{equation*}
+
+\noindent
+Then calculate $h$ directly from $k$.
+\begin{equation*}
+h=k\times4.866\times10^{-11}=6.55\times10^{-27}\,\text{erg}\,\text{s}
+\end{equation*}
+
+\end{document}

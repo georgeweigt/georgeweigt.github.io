@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+The script ``schwarzchild-metric.txt'' shows that the
+Einstein tensor $G_{\mu\nu}$ vanishes for the Schwarzchild metric
+$$
+g_{\mu\nu}=
+\begin{pmatrix}
+-(1-2M/r) & 0 & 0 & 0\\
+0 & 1/(1-2M/r) & 0 & 0\\
+0 & 0 & r^2 & 0\\
+0 & 0 & 0 & r^2\sin^2\theta
+\end{pmatrix}
+$$
+
+\end{document}
+
+It turns out that the above $g_{\mu\nu}$ results in a $G_{\mu\nu}$ that is too complicated for Eigenmath to simplify so the following trick is used.
+The metric tensor is defined as
+$$
+g_{\mu\nu}=
+\begin{pmatrix}
+-F(r) & 0 & 0 & 0\\
+0 & 1/F(r) & 0 & 0\\
+0 & 0 & r^2 & 0\\
+0 & 0 & 0 & r^2\sin^2\theta
+\end{pmatrix}
+$$
+where $F(r)$ is an unspecified function of $r$.
+The result is
+$$
+G_{\mu\nu}=
+\begin{pmatrix}
+-\frac{FF'}{r}+\frac{F}{r^2}-\frac{F^2}{r^2} & 0 & 0 & 0
+\\
+0 & \frac{1}{r^2}+\frac{F'}{rF}-\frac{1}{r^2F} & 0 & 0
+\\
+0 & 0 & rF'+\frac{1}{2}r^2F'' & 0
+\\
+0 & 0 & 0 & rF'\sin^2\theta+\frac{1}{2}r^2F''\sin^2\theta
+\end{pmatrix}
+$$
+After $G_{\mu\nu}$ is computed, $F(r)$ is defined as $1-2M/r$ and $G_{\mu\nu}=0$ is obtained.
+
+\end{document}

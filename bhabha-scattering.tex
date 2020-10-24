@@ -1,0 +1,706 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{slashed}
+\usepackage{tikz}
+\usepackage{mathrsfs}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc bhabha scattering}
+\end{center}
+
+\noindent
+Bhabha scattering is the interaction between positrons and electrons.
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$e^-$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$e^+$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^+$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$e^-$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Here is the same diagram with momentum and spinor labels.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_2$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, v_1$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3, v_3$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_4$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+In a typical collider experiment the momentum vectors are
+\begin{equation*}
+p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}\qquad
+p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}\qquad
+p_3=\begin{pmatrix}
+E\\
+p\sin\theta\cos\phi\\
+p\sin\theta\sin\phi\\
+p\cos\theta
+\end{pmatrix}
+\qquad
+p_4=\begin{pmatrix}
+E\\
+-p\sin\theta\cos\phi\\
+-p\sin\theta\sin\phi\\
+-p\cos\theta
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+where $p=\sqrt{E^2-m^2}$.
+The spinors are
+\begin{gather*}
+v_{11}=\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}\quad
+u_{21}=\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}\quad
+v_{31}=\begin{pmatrix}p_3^z\\p_3^x+ip_3^y\\E+m\\0\end{pmatrix}\quad
+u_{41}=\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}
+\\
+v_{12}=\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}\quad
+u_{22}=\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}\quad
+v_{32}=\begin{pmatrix}p_3^x-ip_3^y\\-p_3^z\\0\\E+m\end{pmatrix}\quad
+u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
+\end{gather*}
+
+\noindent
+The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
+Note that the spinors are not individually normalized.
+Instead, a combined spinor normalization constant $N=(E+m)^4$
+will be used where needed.
+
+\newpage
+\noindent
+This is the probability density for Bhabha scattering.
+The formula is from Feynman diagrams.
+$$
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2=\frac{e^4}{N}
+\left|
+-\frac{1}{t}(\bar{v}_1\gamma^\mu v_3)(\bar{u}_4\gamma_\mu u_2)
++\frac{1}{s}(\bar{v}_1\gamma^\nu u_2)(\bar{u}_4\gamma_\nu v_3)
+\right|^2
+$$
+
+\noindent
+Symbol $s_j$ selects the spin (up or down) of spinor $j$.
+Symbol $e$ is electron charge.
+Symbols $s$ and $t$ are Mandelstam variables $s=(p_1+p_2)^2$ and $t=(p_1-p_3)^2$.
+
+\bigskip
+\noindent
+Let
+\begin{equation*}
+a_1=(\bar{v}_1\gamma^\mu v_3)(\bar{u}_4\gamma_\mu u_2)
+\qquad
+a_2=(\bar{v}_1\gamma^\nu u_2)(\bar{u}_4\gamma_\nu v_3)
+\end{equation*}
+
+\noindent
+Then
+\begin{align*}
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
+&=
+\frac{e^4}{N}\left|{-\frac{a_1}{t}} + \frac{a_2}{s}\right|^2\\
+&=
+\frac{e^4}{N}\left(-\frac{a_1}{t} + \frac{a_2}{s}\right)\left(-\frac{a_1}{t} + \frac{a_2}{s}\right)^*\\
+&=
+\frac{e^4}{N}
+\left(
+\frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{st} -
+\frac{a_1^*a_2}{st} + \frac{a_2a_2^*}{s^2}
+\right)
+\end{align*}
+
+\noindent
+The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed
+by summing $|\mathcal{M}|^2$ over all spin states and dividing by the number of inbound states.
+There are four inbound states.
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=
+\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2\\
+&=
+\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\frac{1}{N}
+\left(
+\frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{st} -
+\frac{a_1^*a_2}{st} + \frac{a_2a_2^*}{s^2}
+\right)
+\end{align*}
+
+\noindent
+Use the Casimir trick to replace sums over spins with matrix products.
+\begin{align*}
+f_{11}&=\frac{1}{N}\sum_\text{spins}a_1a_1^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_3-m)\gamma^\nu
+\right)
+\mathop{\rm Tr}\left(
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
+\right)
+\\
+f_{12}&=\frac{1}{N}\sum_{\rm spins}a_1a_2^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
+\right)
+\\
+f_{22}&=\frac{1}{N}\sum_\text{spins}a_2a_2^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
+\right)
+\mathop{\rm Tr}\left(
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
+\right)
+\end{align*}
+
+\noindent
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=
+\frac{e^4}{4}
+\left(
+\frac{f_{11}}{t^2} - \frac{f_{12}}{st} -
+\frac{f_{12}^*}{st} + \frac{f_{22}}{s^2}
+\right)
+\end{equation*}
+
+\noindent
+Run ``bhabha-scattering-1.txt'' to verify the Casimir trick.
+
+\newpage
+\noindent
+These formulas compute probability densities from dot products.
+\begin{align*}
+f_{11}&=
+32(p_1\cdot p_2)(p_3\cdot p_4)+32(p_1\cdot p_4)(p_2\cdot p_3)
+-32 m^2(p_1\cdot p_3)-32 m^2(p_2\cdot p_4)+64 m^4
+\\
+f_{12}&=
+-32 (p_1\cdot p_4) (p_2\cdot p_3)
+-16 m^2 (p_1\cdot p_2) + 16 m^2 (p_1\cdot p_3) - 16 m^2 (p_1\cdot p_4)\\
+&\phantom{=}\qquad
+{}- 16 m^2 (p_2\cdot p_3) + 16 m^2 (p_2\cdot p_4) - 16 m^2 (p_3\cdot p_4) - 32 m^4
+\\
+f_{22}&=
+32(p_1\cdot p_3)(p_2\cdot p_4)+32(p_1\cdot p_4)(p_2\cdot p_3)
++32 m^2(p_1\cdot p_2)+32 m^2(p_3\cdot p_4)+64 m^4
+\end{align*}
+
+\noindent
+In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, $u=(p_1-p_4)^2$ the formulas are
+\begin{align*}
+f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
+\\
+f_{12} &= -8 u^2 + 64 u m^2 - 96 m^4
+\\
+f_{22} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
+\end{align*}
+
+\noindent
+When $E\gg m$ a useful approximation is to set $m=0$ and obtain
+\begin{align*}
+f_{11}&= 8 s^2 + 8 u^2\\
+f_{12}&= -8 u^2\\
+f_{22}&= 8 t^2 + 8 u^2
+\end{align*}
+
+\noindent
+For $m=0$ the Mandelstam variables are
+\begin{align*}
+s&=4E^2
+\\
+t&=-2E^2(1-\cos\theta)=-4E^2\sin^2(\theta/2)
+\\
+u&=-2E^2(1+\cos\theta)=-4E^2\cos^2(\theta/2)
+\end{align*}
+
+\noindent
+The corresponding expected probability density is
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=
+\frac{e^4}{4}
+\left(
+\frac{8s^2+8u^2}{t^2}+\frac{16u^2}{st}+\frac{8t^2+8u^2}{s^2}
+\right)
+\\
+&=2e^4\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
+\\
+&=2e^4
+\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
+-\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
++\frac{1+\cos^2\theta}{2}
+\right)
+\end{align*}
+
+\noindent
+Run ``bhabha-scattering-2.txt'' to verify.
+
+\newpage
+\noindent
+This is the differential cross section for Bhabha scattering.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
+=\frac{\alpha^2}{8E^2}
+\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
+-\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
++\frac{1+\cos^2\theta}{2}
+\right)
+\end{equation*}
+
+\noindent
+We can integrate $d\sigma$ to obtain a cumulative distribution function.
+
+\bigskip
+\noindent
+Let
+\begin{equation*}
+I(\xi)=\int_\alpha^\xi\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
+\quad\alpha\le\xi\le\pi
+\end{equation*}
+
+\noindent
+for some $\alpha>0$.
+The support interval is restricted because $d\sigma$ is undefined for $\theta=0$.
+
+\bigskip
+\noindent
+The cumulative distribution function is
+\begin{equation*}
+F(\theta)=\frac{I(\theta)}{I(\pi)},
+\quad\alpha\le\theta\le\pi
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
+\end{equation*}
+
+\noindent
+The probability density is
+\begin{equation*}
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{1}{I(\pi)}\frac{d\sigma}{d\Omega}
+%\left(
+%\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
+%-\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
+%+\frac{1+\cos^2\theta}{2}
+%\right)
+\sin\theta,
+\quad\alpha\le\theta\le\pi
+\end{equation*}
+
+\noindent
+Run ``bhabha-scattering-3.txt'' to draw $f(\theta)$ for $\alpha=\tfrac{1}{4}\pi=45^\circ$.
+
+\begin{center}
+\includegraphics[scale=0.5]{bhabha-scattering-ss1.png}
+\end{center}
+
+\noindent
+The following table shows the corresponding probability distribution for three bins.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
+\hline
+$0^\circ$ & $45^\circ$ & -- \\
+$45^\circ$ & $90^\circ$ & 0.83 \\
+$90^\circ$ & $135^\circ$ & 0.13 \\
+$135^\circ$ & $180^\circ$ & 0.04 \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+\noindent
+The following Bhabha scattering data is adapted from SLAC-PUB-1501.
+
+\begin{center}
+\begin{tabular}{|lr|c|r|}
+\hline
+& Bin & $\cos\theta$ (interval) & Count\\
+\hline
+(Smallest $\theta$) & 1 & $0.6, 0.5$ & 4432\\
+& 2 & $0.5, 0.4$ & 2841\\
+& 3 & $0.4, 0.3$ & 2045\\
+& 4 & $0.3, 0.2$ & 1420\\
+& 5 & $0.2, 0.1$ & 1136\\
+& 6 & $0.1, 0.0$ & 852\\
+& 7 & $0.0, -0.1$ & 656\\
+& 8 & $-0.1, -0.2$ & 625\\
+& 9 & $-0.2, -0.3$ & 511\\
+& 10 & $-0.3, -0.4$ & 455\\
+& 11 & $-0.4, -0.5$ & 402\\
+(Largest $\theta$) & 12 & $-0.5, -0.6$ & 398\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+``Count'' is the number of Bhabha scattering events observed per bin.
+Let us see if the density function $\langle|\mathcal{M}|^2\rangle$ explains the distribution of counts in the table.
+Start by integrating $\langle|\mathcal{M}|^2\rangle$ over all the bins to obtain a normalization constant.
+\begin{equation*}
+\int_\text{bins}\langle|\mathcal{M}|^2\rangle\,d\Omega
+=\int_0^{2\pi}\int_{\arccos 0.6}^{\arccos -0.6}\langle|\mathcal{M}|^2\rangle\sin\theta\,d\theta\,d\phi
+=2\pi\times9.3817\times 2e^4
+\end{equation*}
+
+\noindent
+Let
+\begin{equation*}
+f(\theta)=\frac{\langle|\mathcal{M}|^2\rangle}{2\pi\times9.3817\times 2e^4}
+=\frac{1}{2\pi\times9.3817}
+\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
+-\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
++\frac{1+\cos^2\theta}{2}
+\right)
+\end{equation*}
+
+\noindent
+The probability of a scattering event occurring in an interval $\theta_1$ to $\theta_2$ is obtained
+by integrating $f(\theta)$ over that interval.
+\begin{equation*}
+P(\theta_1<\theta<\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}f(\theta)\sin\theta\,d\theta\,d\phi
+=2\pi\int_{\theta_1}^{\theta_2}f(\theta)\sin\theta\,d\theta
+\end{equation*}
+
+\noindent
+The total number of counts in the table is 15773.
+To obtain a predicted distribution,
+multiply 15773 times the probability for each bin.
+For example, for the first bin we have
+\begin{equation*}
+P(\arccos 0.6<\theta<\arccos 0.5) \times 15773=4598
+\end{equation*}
+
+\noindent
+Repeat for all bins to obtain the following predicted distribution.
+\begin{center}
+\begin{tabular}{|r|c|r|r|}
+\hline
+Bin & $\cos\theta$ (interval) & Count & Predicted\\
+\hline
+1 & $0.6, 0.5$ & 4432 & 4598\\
+2 & $0.5, 0.4$ & 2841 & 2880\\
+3 & $0.4, 0.3$ & 2045 & 1955\\
+4 & $0.3, 0.2$ & 1420 & 1410\\
+5 & $0.2, 0.1$ & 1136 & 1068\\
+6 & $0.1, 0.0$ & 852 & 843\\
+7 & $0.0, -0.1$ & 656 & 689\\
+8 & $-0.1, -0.2$ & 625 & 582\\
+9 & $-0.2, -0.3$ & 511 & 505\\
+10 & $-0.3, -0.4$ & 455 & 450\\
+11 & $-0.4, -0.5$ & 402 & 411\\
+12 & $-0.5, -0.6$ & 398 & 382\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+The coefficient of determination $R^2$ measures how well predicted values fit the real data.
+Let $y$ be observed counts per bin and let $\hat{y}$ be predicted counts per bin.
+Then
+\begin{equation*}
+R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.997
+\end{equation*}
+
+\noindent
+The result indicates that the model $\langle|\mathcal{M}|^2\rangle$ explains
+99.7\% of the variance in the data.
+
+\bigskip
+\noindent
+Run ``bhabha-scattering-4.txt'' to verify.
+
+\newpage
+\noindent
+The following table shows DESY-PETRA Bhabha scattering data obtained from
+HEP Data.\footnote{{\tt www.hepdata.net/record/ins191231} (Table 3, 14.0 GeV)}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y$\\
+\hline
+$-0.73\phantom{00}$ & 0.10115\\
+$-0.6495$ & 0.12235\\
+$-0.5495$ & 0.11258\\
+$-0.4494$ & 0.09968\\
+$-0.3493$ & 0.14749\\
+$-0.2491$ & 0.14017\\
+$-0.149\phantom{0}$ & 0.1819\phantom{0}\\
+$-0.0488$ & 0.22964\\
+$\phantom{+}0.0514$ & 0.25312\\
+$\phantom{+}0.1516$ & 0.30998\\
+$\phantom{+}0.252\phantom{0}$ & 0.40898\\
+$\phantom{+}0.3524$ & 0.62695\\
+$\phantom{+}0.4529$ & 0.91803\\
+$\phantom{+}0.5537$ & 1.51743\\
+$\phantom{+}0.6548$ & 2.56714\\
+$\phantom{+}0.7323$ & 4.30279\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+Data $x$ and $y$ have the following relationship
+with the cross section model.
+\begin{equation*}
+x=\cos\theta
+\qquad
+y=\frac{d\sigma}{d\Omega}
+\end{equation*}
+
+\noindent
+The differential cross section for Bhabha scattering is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
+=\frac{\alpha^2}{2s}
+\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
+\end{equation*}
+
+\noindent
+The predicted cross section $\hat{y}$ is computed from data $x$ and beam energy $E$ as
+\begin{equation*}
+\hat{y}
+=\frac{\alpha^2}{2s}
+\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
+\times(\hbar c)^2
+\times10^{37}
+\end{equation*}
+
+\noindent
+where
+\begin{align*}
+s&=4E^2
+\\
+t&=-2E^2(1-x)
+\\
+u&=-2E^2(1+x)
+\end{align*}
+
+\noindent
+Factor $(\hbar c)^2$ converts the result to SI and factor $10^{37}$ converts square meters to nanobarns.
+
+\bigskip
+\noindent
+The following table shows $\hat{y}$ for $E=7.0\,\text{GeV}$.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$x$ & $y$ & $\hat{y}$\\
+\hline
+$-0.73\phantom{00}$ & 0.10115 & 0.110296\\
+$-0.6495$ & 0.12235 & 0.113816\\
+$-0.5495$ & 0.11258 & 0.120101\\
+$-0.4494$ & 0.09968 & 0.129075\\
+$-0.3493$ & 0.14749 & 0.141592\\
+$-0.2491$ & 0.14017 & 0.158934\\
+$-0.149\phantom{0}$ & 0.1819\phantom{0} & 0.182976\\
+$-0.0488$ & 0.22964 & 0.216737\\
+$\phantom{+}0.0514$ & 0.25312 & 0.264989\\
+$\phantom{+}0.1516$ & 0.30998 & 0.335782\\
+$\phantom{+}0.252\phantom{0}$ & 0.40898 & 0.44363\phantom{0}\\
+$\phantom{+}0.3524$ & 0.62695 & 0.615528\\
+$\phantom{+}0.4529$ & 0.91803 & 0.9077\phantom{00}\\
+$\phantom{+}0.5537$ & 1.51743 & 1.45175\phantom{0}\\
+$\phantom{+}0.6548$ & 2.56714 & 2.60928\phantom{0}\\
+$\phantom{+}0.7323$ & 4.30279 & 4.61509\phantom{0}\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+The coefficient of determination $R^2$ measures how well predicted values fit the real data.
+\begin{equation*}
+R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.995
+\end{equation*}
+
+\noindent
+The result indicates that the model $d\sigma$ explains 99.5\% of the variance in the data.
+
+\bigskip
+\noindent
+Run ``bhabha-scattering-5.txt'' to verify.
+
+\newpage
+\noindent
+Here are a few notes about how the scripts work.
+In component notation the trace operators of the Casimir trick become sums over the repeated index $\alpha$.
+\begin{align*}
+f_{11}&=
+\left(
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_3-m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\right)
+\left(
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\right)
+\\
+f_{12}&=
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\tau
+(\slashed{p}_4+m)^\tau{}_\delta
+\gamma_\mu{}^\delta{}_\eta
+(\slashed{p}_3-m)^\eta{}_\xi
+\gamma_\nu{}^\xi{}_\alpha
+\\
+f_{22}&=
+\left(
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\right)
+\left(
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_3-m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\right)
+\end{align*}
+
+\noindent
+To convert the above formulas to Eigenmath code,
+the $\gamma$ tensors need to be transposed
+so that repeated indices are adjacent to each other.
+Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
+\begin{align*}
+\gamma^{\beta\mu}{}_\rho\quad&\rightarrow\quad
+\text{\tt gammaT = transpose(gamma)}\\
+\gamma^\beta{}_{\mu\rho}\quad&\rightarrow\quad
+\text{\tt gammaL = transpose(dot(gmunu,gamma))}
+\end{align*}
+
+\noindent
+Define the following $4\times4$ matrices.
+\begin{align*}
+(\slashed{p}_1-m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 - m I}\\
+(\slashed{p}_2+m)\quad&\rightarrow\quad\text{\tt X2 = pslash2 + m I}\\
+(\slashed{p}_3-m)\quad&\rightarrow\quad\text{\tt X3 = pslash3 - m I}\\
+(\slashed{p}_4+m)\quad&\rightarrow\quad\text{\tt X4 = pslash4 + m I}
+\end{align*}
+
+\noindent
+Then for $f_{11}$ we have the following Eigenmath code.
+The contract function sums over $\alpha$.
+\begin{align*}
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_3-m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T1 = contract(dot(X1,gammaT,X3,gammaT),1,4)}\\
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T2 = contract(dot(X4,gammaL,X2,gammaL),1,4)}
+\end{align*}
+
+\noindent
+Next, multiply then sum over repeated indices.
+The dot function sums over $\nu$ then the contract function
+sums over $\mu$. The transpose makes the $\nu$ indices adjacent
+as required by the dot function.
+$$
+f_{11}=
+\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu)
+\mathop{\rm Tr}(\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt f11 = contract(dot(T1,transpose(T2)))}
+$$
+
+\noindent
+Follow suit for $f_{22}$.
+\begin{align*}
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T1 = contract(dot(X1,gammaT,X2,gammaT),1,4)}
+\\
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_3-m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)}
+\end{align*}
+
+\noindent
+Hence
+$$
+f_{22}=
+\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu)
+\mathop{\rm Tr}(\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt f22 = contract(dot(T1,transpose(T2)))}
+$$
+
+\noindent
+The calculation of $f_{12}$ begins with
+\begin{multline*}
+(\slashed{p}_1-m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\tau
+(\slashed{p}_4+m)^\tau{}_\delta
+\gamma_\mu{}^\delta{}_\eta
+(\slashed{p}_3-m)^\eta{}_\xi
+\gamma_\nu{}^\xi{}_\alpha
+\\
+\rightarrow\quad
+\text{\tt T = contract(dot(X1,gammaT,X2,gammaT,X4,gammaL,X3,gammaL),1,6)}
+\end{multline*}
+
+\noindent
+Then sum over repeated indices $\mu$ and $\nu$.
+$$
+f_{12}=\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt f12 = contract(contract(T,1,3))}
+$$
+
+\end{document}

@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb} % \mathbb
+\usepackage{mathrsfs} % \mathscr
+\usepackage[margin=2cm]{geometry}
+
+\begin{document}
+
+\noindent
+{\bf Quantum electric field}
+
+\bigskip
+\noindent
+Consider a light wave propagating in the $z$ direction.
+For simplicity let the light be linearly polarized with electric
+field vector $\bf E$ pointing in the $x$ direction.
+\begin{equation*}
+{\bf E}(t,x,y,z)=\begin{pmatrix}E_x\cos(kz-\omega t)\\0\\0\end{pmatrix}
+\end{equation*}
+
+\noindent
+Symbol $\omega$ is angular frequency and $k$ is the wave number~$k=\omega/c$.
+
+\bigskip
+\noindent
+The corresponding wave function is
+\begin{equation*}
+\psi=A\left|n-\tfrac{1}{2}\right\rangle
++B\left|n+\tfrac{1}{2}\right\rangle
+\end{equation*}
+
+\noindent
+where $n$ is the number of photons per unit volume and
+\begin{align*}
+A&=\exp\left(-i\left(n-\tfrac{1}{2}\right)\omega t\right)\\
+B&=\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\end{align*}
+
+\noindent
+The electric field operator is
+\begin{equation*}
+\hat{\mathscr{E}}=C\hat{a}+C^*\hat{a}^\dagger
+\end{equation*}
+
+\noindent
+where $\hat{a}$ and $\hat{a}^\dagger$ are the lowering and raising operators such that
+\begin{align*}
+a\left|n+\tfrac{1}{2}\right\rangle&=\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle\\
+a^\dagger\left|n-\tfrac{1}{2}\right\rangle&=\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle
+\end{align*}
+
+\noindent
+The quantity $C$ is
+\begin{equation*}
+C=\sqrt{\frac{\hbar\omega}{2V\varepsilon_0}}\,\exp(ikz)
+\end{equation*}
+
+\noindent
+where $V$ is a unit volume.
+
+\bigskip
+\noindent
+Apply electric field operator $\hat{\mathscr{E}}$ to wave function $\psi$.
+\begin{align*}
+\hat{\mathscr{E}}\psi
+&=C\hat{a}\psi+C^*\hat{a}^\dagger\psi\\
+&=CA\sqrt{n-1}\,\left|n-\tfrac{3}{2}\right\rangle+CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
++C^*A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle+C^*B\sqrt{n+1}\,\left|n+\tfrac{3}{2}\right\rangle
+\end{align*}
+
+\noindent
+The observed electric field is the eigenvalue $\mathscr{E}$ such that $\hat{\mathscr{E}}\psi=\mathscr{E}\psi$.
+\begin{align*}
+\mathscr{E}
+&=\psi^\dagger\hat{\mathscr{E}}\psi\\
+&=\left\langle n-\tfrac{1}{2}\right|A^*CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
++\left\langle n+\tfrac{1}{2}\right|B^*C^*A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle\\
+&=\sqrt{n}\,C\exp(-i\omega t)+\sqrt{n}\,C^*\exp(i\omega t)\\
+&=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}\cos(kz-\omega t)
+\end{align*}
+
+\noindent
+Identifying $\mathscr{E}$ as the first component of $\mathbf{E}$ we have $\mathscr{E}=E_x\cos(kz-\omega t)$.
+Hence the electric field amplitude $E_x$ is proportional to the square root of photon density.
+$$
+E_x=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}
+$$
+
+\noindent
+Run ``quantum-electric-field-1.txt'' to verify.
+
+\bigskip
+\noindent
+The SI unit of electric field strength is volts per meter.
+The script ``quantum-electric-field-2.txt'' calculates the SI constant
+for converting photon density to volts per meter.
+Yellow light with wavelength $\lambda=600$ nanometers is used for
+angular frequency~$\omega$.
+The result is
+$$
+\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}
+=2.7\times10^{-4}\,\text{volt}\,\text{meter}^{-1}\times\sqrt{n}
+$$
+
+\noindent
+The symbol $V$ is a one cubic meter unit volume.
+The script also converts volts per meter to base units.
+$$
+1\,\text{volt}\,\text{meter}^{-1}
+=1\,\text{kilogram}\,\text{meter}\,\text{ampere}^{-1}\,\text{second}^{-3}
+$$
+
+\bigskip
+\noindent
+{\bf Reference}
+
+\bigskip
+\noindent
+Dommelen, Leon van. ``Quantum Mechanics for Engineers, Section A.23 Quantization of radiation.''
+\verb$http://www.eng.fsu.edu/~dommelen/quantum/style_a/qftqem.html$
+
+\end{document}

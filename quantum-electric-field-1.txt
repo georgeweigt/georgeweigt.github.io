@@ -1,0 +1,54 @@
+-- www.eigenmath.org/quantum-electric-field-1.txt
+
+-- Check EM field wave function and ladder operators.
+
+-- (1,0,0,0) = |n - 3/2>
+-- (0,1,0,0) = |n - 1/2>
+-- (0,0,1,0) = |n + 1/2>
+-- (0,0,0,1) = |n + 3/2>
+
+A = exp(-i (n - 1/2) omega t)
+B = exp(-i (n + 1/2) omega t)
+
+psiA = A (0,1,0,0)
+psiB = B (0,0,1,0)
+
+psi = psiA + psiB
+
+U = ((0,  sqrt(n - 1),        0,            0),
+     (0,            0,  sqrt(n),            0),
+     (0,            0,        0,  sqrt(n + 1)),
+     (0,            0,        0,            0))
+
+a(psi) = dot(U,psi)
+a1(psi) = dot(transpose(U),psi)
+
+"check lowering operator (1 = ok)"
+
+a((0,1,0,0)) == sqrt(n - 1) (1,0,0,0)
+a((0,0,1,0)) == sqrt(n + 0) (0,1,0,0)
+a((0,0,0,1)) == sqrt(n + 1) (0,0,1,0)
+
+"check raising operator (1 = ok)"
+
+a1((1,0,0,0)) == sqrt(n - 1) (0,1,0,0)
+a1((0,1,0,0)) == sqrt(n + 0) (0,0,1,0)
+a1((0,0,1,0)) == sqrt(n + 1) (0,0,0,1)
+
+C = sqrt(hbar omega/(2 epsilon0)) exp(i k z)
+
+Ehat(psi) = C a(psi) + conj(C) a1(psi)
+
+Efield = dot(conj(psi),Ehat(psi))
+Efield
+
+"check Efield (1 = ok)"
+
+Efield == sqrt(2 n hbar omega/epsilon0) expcos(k z - omega t)
+
+"check Hamiltonian operator (1 = ok)"
+
+H(psi) = 1/2 hbar omega (a1(a(psi)) + a(a1(psi)))
+
+H(psiA) == hbar omega (n - 1/2) psiA
+H(psiB) == hbar omega (n + 1/2) psiB

@@ -1,0 +1,31 @@
+-- www.eigenmath.org/quantum-electric-field-2.txt
+
+-- Determine constant for converting square root of photon count to electric field strength.
+
+-- base units
+
+ampere = "ampere"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+-- derived units
+
+joule = kilogram meter^2 second^(-2)
+volt = kilogram meter^2 second^(-3) ampere^(-1)
+farad = kilogram^(-1) meter^(-2) second^4 ampere^2
+
+-- physical values
+
+hbar = 1.054572 10^(-34) joule second
+epsilon0 = 8.854188 10^(-12) farad meter^(-1)
+c = 299792458 meter second^(-1)
+lambda = 600 10^(-9) meter
+omega = 2 float(pi) c / lambda
+
+-- C is the conversion constant (units are volts per meter)
+
+C = sqrt(2 hbar omega epsilon0^(-1) meter^(-3))
+C
+
+volt meter^(-1)

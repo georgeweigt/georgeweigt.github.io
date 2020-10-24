@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+Consider a system with the following eigenstates.
+\begin{align*}
+|0\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no electrons}\\
+|1\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one electron in state $\phi_1$}\\
+|2\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one electron in state $\phi_2$}\\
+|3\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two electrons, one in state $\phi_1$, one in state $\phi_2$}
+\end{align*}
+
+\noindent
+Then for the wavefunction basis
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+and for $L=10^{-9}$ meters we have
+\begin{equation*}
+\hat{E}=\begin{pmatrix}
+0&0&0&0\\
+0&0.38\,\text{eV}&0&0\\
+0&0&1.50\,\text{eV}&0\\
+0&0&0&6.55\,\text{eV}
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Let $|\xi\rangle$ be the state vector
+\begin{equation*}
+|\xi\rangle
+=\frac{1}{2}|0\rangle+\frac{1}{2}|1\rangle+\frac{1}{2}|2\rangle+\frac{1}{2}|3\rangle
+=\begin{pmatrix}1/2\\1/2\\1/2\\1/2\end{pmatrix}
+\end{equation*}
+
+\noindent
+The expected energy is
+\begin{equation*}
+\langle\xi|\hat{E}|\xi\rangle
+=\frac{0\,\text{eV}}{4}+\frac{0.38\,\text{eV}}{4}+\frac{1.50\,\text{eV}}{4}+\frac{6.55\,\text{eV}}{4}
+=2.11\,\text{eV}
+\end{equation*}
+
+\noindent
+For the system we are considering, the result of a single measurement is either
+0~eV, 0.38~eV, 1.50~eV, or 6.55~eV.
+%The probability of observing each eigenvalue is 0.25 when the system is in state $|\xi\rangle$.
+The value 2.11 eV is the expected average across multiple measurements.
+Recall that a measurement causes the system to exit state $|\xi\rangle$
+and enter an eigenstate $|0\rangle$, $|1\rangle$, $|2\rangle$, or $|3\rangle$
+corresponding to the measured eigenvalue.
+The system must be put back in state $|\xi\rangle$ before the next measurement.
+
+\bigskip
+\noindent
+To use a slot machine analogy, state $|\xi\rangle$ is like the wheels spinning.
+Observing the system makes the wheels stop.
+The stopped wheels are in an eigenstate $|0\rangle$, $|1\rangle$, $|2\rangle$, or $|3\rangle$.
+Once they are stopped the wheels don't change, they remain in the same eigenstate.
+You have to pull the lever to get the wheels spinning again.
+
+\end{document}

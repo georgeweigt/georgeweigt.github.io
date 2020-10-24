@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{parskip}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc dirac equation}
+\end{center}
+
+\noindent
+This is the Dirac equation with $c=1$ and $\hbar=1$.
+$$
+i\left(
+\gamma^0\frac{\partial}{\partial t}+
+\gamma^1\frac{\partial}{\partial x}+
+\gamma^2\frac{\partial}{\partial y}+
+\gamma^3\frac{\partial}{\partial z}
+\right)\psi
+=m\psi
+$$
+%
+%
+The following gamma matrices are the ``Dirac representation.''
+\begin{gather*}
+\gamma^0=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}\quad
+\gamma^1=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}\quad
+\gamma^2=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}\quad
+\gamma^3=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
+\end{gather*}
+%
+%
+The wave function $\psi$ has angular frequency $\omega$ equal to the energy of the particle.
+$$
+\omega=\sqrt{k_x^2+k_y^2+k_z^2+m^2}
+$$
+%
+%
+There are four positive frequency solutions that are linearly independent.
+\begin{gather*}
+\psi_1=\begin{pmatrix}\omega+m\\0\\k_z\\k_x+ik_y\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_2=\begin{pmatrix}0\\ \omega+m\\k_x-ik_y\\-k_z\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\\
+\psi_3=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega-m\\0\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_4=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega-m\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\end{gather*}
+%
+%
+There are four negative frequency solutions that are linearly independent.
+The negative frequency solutions flip the sign of $m$.
+\begin{gather*}
+\psi_5=\begin{pmatrix}\omega-m\\0\\k_z\\k_x+ik_y\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_6=\begin{pmatrix}0\\ \omega-m\\k_x-ik_y\\-k_z\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\\
+\psi_7=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega+m\\0\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_8=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega+m\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\end{gather*}
+The following solutions are used by quantum electrodynamics.
+
+\begin{center}
+\begin{tabular}{ll}
+$\psi_1$ & Fermion, spin up\\
+$\psi_2$ & Fermion, spin down\\
+\\
+$\psi_7$ & Anti-fermion, spin up\\
+$\psi_8$ & Anti-fermion, spin down
+\end{tabular}
+\end{center}
+
+\noindent
+This script verifies all of the solutions.
+%
+\VerbatimInput[formatcom=\color{blue}]{dirac-equation.txt}
+
+\end{document}

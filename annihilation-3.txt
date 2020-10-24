@@ -1,0 +1,55 @@
+-- www.eigenmath.org/annihilation-3.txt
+
+-- Compute R-squared for electron positron annihilation data.
+
+-- Data from www.hepdata.net/record/ins191231 (Table 2, 14.0 GeV)
+
+N = 8 -- number of observations
+
+-- x is cos(theta)
+
+x = (
+0.0502,
+0.1505,
+0.2509,
+0.3512,
+0.4516,
+0.5521,
+0.6526,
+0.7312)
+
+-- y is differential cross section
+
+y = (
+0.09983,
+0.10791,
+0.12026,
+0.13002,
+0.17681,
+0.1957,
+0.279,
+0.33204)
+
+-- compute yhat (predicted values)
+
+alpha = 0.0072973525693
+hbar = 6.582119569 10^(-25) -- GeV seconds
+c = 299792458 -- meters per second
+E = 7.0 -- Gev
+s = 4 E^2
+yhat = zero(N)
+
+for(k,1,N,
+  t = -2 E^2 (1 - x[k]),
+  u = -2 E^2 (1 + x[k]),
+  yhat[k] = 1/2 alpha^2 / s (u/t + t/u) (hbar c)^2 10^37
+)
+
+yhat
+
+"coefficient of determination (R-squared)"
+
+ybar = 1/N sum(k,1,N,y[k])
+SSE = sum(k,1,N,(y[k] - yhat[k])^2)
+SST = sum(k,1,N,(y[k] - ybar)^2)
+1 - SSE/SST

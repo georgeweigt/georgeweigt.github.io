@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\newcommand\BNM{B_n} % absorption
+\newcommand\BMN{B_m} % induced emission
+\newcommand\AMN{A_m} % spontaneous emission
+
+\newcommand\ABSORPTION{\substack{\phantom{0}\\ \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
+\newcommand\INDUCED{\substack{\phantom{0}\\ \text{induced emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+\newcommand\SPONTANEOUS{\substack{\phantom{0}\\ \text{spontaneous emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+
+\begin{document}
+
+\noindent
+Consider a gas at temperature $T$.
+Let $N$ be the number of molecules in the gas
+and let $N_n$ be the number of molecules with internal energy $\varepsilon_n$.
+By the Maxwell-Boltzmann distribution we have
+\begin{equation*}
+\frac{N_n}{N}=p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)
+\end{equation*}
+where $k$ is Boltzmann's constant.
+The coefficient $p_n$ is a statistical weighting factor that does not depend on $T$.
+
+\bigskip
+\noindent
+Let us now consider the processes by which a molecule transitions between energy levels.
+The processes are absorption, induced emission, and spontaneous emission.
+Let $\varepsilon_m$ be an energy level such that $\varepsilon_m>\varepsilon_n$.
+Let $\BNM$, $\BMN$, and $\AMN$ be coefficients of transition rates such that
+\begin{equation*}
+\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM\rho(\nu)N_n}
+\qquad
+\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN\rho(\nu)N_m}
+\qquad
+\underset{\SPONTANEOUS}{\frac{dN_m}{dt}=\AMN N_m}
+\end{equation*}
+Absorption and induced emission are proportional to $\rho(\nu)$
+which is the radiant energy density of the gas
+as a function of radiant frequency $\nu$.
+The $A$ and $B$ coefficients are presumed to not depend on temperature $T$.
+
+\bigskip
+\noindent
+At equilibrium, transition rates between $\varepsilon_m$ and $\varepsilon_n$ are equal.
+\begin{equation*}
+\underset{\ABSORPTION}{\BNM\rho(\nu)N_n}
+=\underset{\INDUCED}{\BMN\rho(\nu)N_m}
++\underset{\SPONTANEOUS}{\AMN N_m}
+\end{equation*}
+
+\noindent
+Divide through by $N$ to obtain
+\begin{equation*}
+\underset{\ABSORPTION}{\BNM\rho(\nu)p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
++\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\end{equation*}
+
+\noindent
+Note that for increasing $T$ we have
+\begin{equation*}
+\lim_{T\rightarrow\infty}\exp\left(-\frac{\varepsilon_n}{kT}\right)=1
+\end{equation*}
+
+\noindent
+It follows that for $T\rightarrow\infty$ the equilibrium formula is
+\begin{equation*}
+\BNM\rho(\nu)p_n
+=\BMN\rho(\nu)p_m
++\AMN p_m
+\end{equation*}
+
+\noindent
+Divide through by $\rho(\nu)$.
+\begin{equation*}
+\BNM p_n=\BMN p_m+\AMN p_m/\rho(\nu)
+\end{equation*}
+
+\noindent
+Energy density $\rho(\nu)$ increases with temperature $T$
+hence $\AMN p_m/\rho(\nu)$ vanishes for $T\rightarrow\infty$ leaving
+\begin{equation*}
+\BNM p_n=\BMN p_m
+\end{equation*}
+
+\noindent
+Einstein reasoned that the above relation is true in general based on the assumption that
+the factors involved do not depend on $T$.
+By substitution in the absorption term we now have
+\begin{equation*}
+\underset{\ABSORPTION}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
++\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\end{equation*}
+
+\noindent
+Divide through by $\BMN p_m$ and rearrange terms.
+\begin{equation*}
+\underset{\ABSORPTION}{\rho(\nu)\exp\left(-\frac{\varepsilon_n}{kT}\right)}
+-\underset{\INDUCED}{\rho(\nu)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+=\underset{\SPONTANEOUS}{(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\end{equation*}
+
+\noindent
+Solve for energy density $\rho(\nu)$.
+\begin{equation*}
+\rho(\nu)=\frac
+{\displaystyle(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+{\displaystyle\exp\left(-\frac{\varepsilon_n}{kT}\right)-\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+=\frac{\AMN/\BMN}{\displaystyle\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+\end{equation*}
+
+\noindent
+From Wien's law
+$\rho(\nu)=\alpha\nu^3\exp(-h\nu/kT)$ which is accurate for large $\nu$, we have
+\begin{equation*}
+\AMN/\BMN=\alpha\nu^3
+\end{equation*}
+and
+\begin{equation*}
+\varepsilon_m-\varepsilon_n=h\nu
+\end{equation*}
+
+\noindent
+Planck's law follows directly.
+\begin{equation*}
+\rho(\nu)=\frac{\alpha\nu^3}{\displaystyle\exp\left(\frac{h\nu}{kT}\right)-1}
+\end{equation*}
+
+\end{document}

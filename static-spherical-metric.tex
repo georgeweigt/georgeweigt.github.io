@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+The script ``static-spherical-metric.txt''
+computes the Einstein tensor $G_{\mu\nu}$ for the metric
+$$
+g_{\mu\nu}=
+\begin{pmatrix}
+-e^{2\Phi} & 0 & 0 & 0\\
+0 & e^{2\Lambda} & 0 & 0\\
+0 & 0 & r^2 & 0\\
+0 & 0 & 0 & r^2\sin^2\theta
+\end{pmatrix}
+$$
+and verifies that
+$$
+G_{\mu\nu}=\begin{pmatrix}
+G_{tt} & 0 & 0 & 0\\
+0 & G_{rr} & 0 & 0\\
+0 & 0 & G_{\theta\theta} & 0\\
+0 & 0 & 0 & G_{\phi\phi}
+\end{pmatrix}
+$$
+where
+\begin{align*}
+G_{tt}&=\frac{1}{r^2}e^{2\Phi}\frac{d}{dr}[r(1-e^{-2\Lambda})]
+\\[2ex]
+G_{rr}&=-\frac{1}{r^2}e^{2\Lambda}(1-e^{-2\Lambda})+\frac{2}{r}\Phi'
+\\[2ex]
+G_{\theta\theta}&=r^2e^{-2\Lambda}\left[\Phi''+(\Phi')^2+\Phi'/r-\Phi'\Lambda'-\Lambda'/r\right]
+\\[2ex]
+G_{\phi\phi}&=G_{\theta\theta}\sin^2\theta
+\end{align*}
+The $\Phi$ and $\Lambda$ are unspecified functions of radius $r$.
+See ``A First Course in General Relativity'' p.~255.
+
+\end{document}

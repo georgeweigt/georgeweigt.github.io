@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+<script src="eigenmath.js"></script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Draw angular distributions for Compton scattering
+
+-- eigenmath.org/compton-scattering-4.txt
+
+omegap = m omega / (m + omega (1 - cos(theta)))
+
+M = omega/omegap + omegap/omega + cos(theta)^2 - 1
+
+f = (omegap/omega)^2 M sin(theta)
+
+m = 0.511 -- MeV
+
+pie = float(pi)
+
+-- I integrates f numerically from a to b
+
+I(a,b) = (b - a)/100 sum(k,0,99,eval(f,theta,a + k (b - a)/100))
+
+xrange = (0,pie)
+yrange = (0,1)
+
+"Probability density for omega = 50 keV"
+
+omega = 0.05
+C = I(0,pie)
+draw(f/C,theta)
+
+"Probability density for omega = 500 keV"
+
+omega = 0.5
+C = I(0,pie)
+draw(f/C,theta)
+
+"Probability density for omega = 5 MeV"
+
+omega = 5.0
+C = I(0,pie)
+draw(f/C,theta)
+
+"Probability distribution for omega = m = 0.511 MeV"
+
+omega = m
+
+N = 4
+P = zero(N)
+C = I(0,pie)
+
+for(k,0,N - 1,P[k + 1] = I(k pie/N,(k + 1) pie/N)/C)
+
+P
+</textarea>
+</td>
+<td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td>
+</tr>
+</table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>

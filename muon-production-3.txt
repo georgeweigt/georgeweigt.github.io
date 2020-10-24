@@ -1,0 +1,73 @@
+-- www.eigenmath.org/muon-production-3.txt
+
+-- Compute R-squared for muon pair production data.
+
+-- Data from www.hepdata.net/record/ins216031 (Table 1, 29.0 GeV)
+
+N = 20 -- number of observations
+
+-- x is cos(theta)
+
+x = (
+-0.925,
+-0.85,
+-0.75,
+-0.65,
+-0.55,
+-0.45,
+-0.35,
+-0.25,
+-0.15,
+-0.05,
+0.05,
+0.15,
+0.25,
+0.35,
+0.45,
+0.55,
+0.65,
+0.75,
+0.85,
+0.925)
+
+-- y is (2E)^2 times differential cross section (2E = 29 GeV)
+
+y = (
+67.08,
+58.67,
+54.66,
+51.72,
+43.7,
+41.12,
+39.71,
+35.34,
+33.35,
+34.69,
+34.05,
+34.48,
+34.66,
+35.23,
+35.6,
+40.13,
+42.56,
+46.37,
+49.28,
+55.7)
+
+"predicted values"
+
+alpha = 0.0072973525693
+hbar = 6.582119569 10^(-25) -- GeV seconds
+c = 299792458 -- meters per second
+yhat = zero(N)
+
+for(k,1,N,yhat[k] = 1/2 float(pi) alpha^2 (1 + x[k]^2) (hbar c)^2 10^37)
+
+yhat
+
+"coefficient of determination (R-squared)"
+
+ybar = 1/N sum(k,1,N,y[k])
+SSE = sum(k,1,N,(y[k] - yhat[k])^2)
+SST = sum(k,1,N,(y[k] - ybar)^2)
+1 - SSE/SST

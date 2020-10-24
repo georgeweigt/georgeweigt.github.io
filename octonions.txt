@@ -1,0 +1,159 @@
+-- In this script, an octonion is a vector of 8 real numbers.
+
+-- M(x,y) returns the product of octonions x and y.
+
+-- C(x) returns the conjugate of octonion x.
+
+-- dot(x,x) returns the magnitude of octonion x as a scalar.
+
+-- M(x,C(x)) returns the magnitude of octonion x as another octonion.
+
+-- dot(x,x)*e0 and M(x,C(x)) return the same octonion.
+
+-- Use ordinary vector arithmetic to add and subtract octonions.
+
+e0 = (1,0,0,0,0,0,0,0)
+e1 = (0,1,0,0,0,0,0,0)
+e2 = (0,0,1,0,0,0,0,0)
+e3 = (0,0,0,1,0,0,0,0)
+e4 = (0,0,0,0,1,0,0,0)
+e5 = (0,0,0,0,0,1,0,0)
+e6 = (0,0,0,0,0,0,1,0)
+e7 = (0,0,0,0,0,0,0,1)
+
+-- octonion multiplication table (per Wikipedia)
+
+T = ((e0,e1,e2,e3,e4,e5,e6,e7),
+     (e1,-e0,e3,-e2,e5,-e4,-e7,e6),
+     (e2,-e3,-e0,e1,e6,e7,-e4,-e5),
+     (e3,e2,-e1,-e0,e7,-e6,e5,-e4),
+     (e4,-e5,-e6,-e7,-e0,e1,e2,e3),
+     (e5,e4,-e7,e6,-e1,-e0,-e3,e2),
+     (e6,e7,e4,-e5,-e2,e3,-e0,-e1),
+     (e7,-e6,e5,e4,-e3,-e2,e1,-e0))
+
+-- define M(x,y) for multiplying octonions x and y
+
+T = transpose(T,2,3)
+
+M(x,y) = dot(x,T,y)
+
+-- define conjugation function (flip component signs except first)
+
+C(x) = 2*dot(x,e0)*e0 - x
+
+-- define symbolic octonions
+
+x = (x0,x1,x2,x3,x4,x5,x6,x7)
+y = (y0,y1,y2,y3,y4,y5,y6,y7)
+z = (z0,z1,z2,z3,z4,z5,z6,z7)
+
+"Is octonion multiplication commutative?"
+
+test(M(x,y)=M(y,x),"yes","no")
+
+"Is octonion multiplication associative?"
+
+test(M(M(x,y),z)=M(x,M(y,z)),"yes","no")
+
+"Is octonion multiplication alternative?"
+
+test(and(M(M(x,x),y)=M(x,M(x,y)),
+         M(M(y,x),x)=M(y,M(x,x))),"yes","no")
+
+"Checking product of normed octonions is normed."
+
+w = M(x,y)
+
+test(dot(w,w)=dot(x,x)*dot(y,y),"pass","fail")
+
+"Checking product of an octonion and its conjugate is real."
+
+test(M(x,C(x))=dot(x,x)*e0,"pass","fail")
+
+"Checking octonion multiplication table."
+
+check(M(e0,e0)=e0)
+check(M(e0,e1)=e1)
+check(M(e0,e2)=e2)
+check(M(e0,e3)=e3)
+check(M(e0,e4)=e4)
+check(M(e0,e5)=e5)
+check(M(e0,e6)=e6)
+check(M(e0,e7)=e7)
+
+check(M(e1,e0)=e1)
+check(M(e1,e1)=-e0)
+check(M(e1,e2)=e3)
+check(M(e1,e3)=-e2)
+check(M(e1,e4)=e5)
+check(M(e1,e5)=-e4)
+check(M(e1,e6)=-e7)
+check(M(e1,e7)=e6)
+
+check(M(e2,e0)=e2)
+check(M(e2,e1)=-e3)
+check(M(e2,e2)=-e0)
+check(M(e2,e3)=e1)
+check(M(e2,e4)=e6)
+check(M(e2,e5)=e7)
+check(M(e2,e6)=-e4)
+check(M(e2,e7)=-e5)
+
+check(M(e3,e0)=e3)
+check(M(e3,e1)=e2)
+check(M(e3,e2)=-e1)
+check(M(e3,e3)=-e0)
+check(M(e3,e4)=e7)
+check(M(e3,e5)=-e6)
+check(M(e3,e6)=e5)
+check(M(e3,e7)=-e4)
+
+check(M(e4,e0)=e4)
+check(M(e4,e1)=-e5)
+check(M(e4,e2)=-e6)
+check(M(e4,e3)=-e7)
+check(M(e4,e4)=-e0)
+check(M(e4,e5)=e1)
+check(M(e4,e6)=e2)
+check(M(e4,e7)=e3)
+
+check(M(e5,e0)=e5)
+check(M(e5,e1)=e4)
+check(M(e5,e2)=-e7)
+check(M(e5,e3)=e6)
+check(M(e5,e4)=-e1)
+check(M(e5,e5)=-e0)
+check(M(e5,e6)=-e3)
+check(M(e5,e7)=e2)
+
+check(M(e6,e0)=e6)
+check(M(e6,e1)=e7)
+check(M(e6,e2)=e4)
+check(M(e6,e3)=-e5)
+check(M(e6,e4)=-e2)
+check(M(e6,e5)=e3)
+check(M(e6,e6)=-e0)
+check(M(e6,e7)=-e1)
+
+check(M(e7,e0)=e7)
+check(M(e7,e1)=-e6)
+check(M(e7,e2)=e5)
+check(M(e7,e3)=e4)
+check(M(e7,e4)=-e3)
+check(M(e7,e5)=-e2)
+check(M(e7,e6)=e1)
+check(M(e7,e7)=-e0)
+
+"pass"
+
+-- this is T after transpose
+
+U = ((e0,e1,e2,e3,e4,e5,e6,e7),
+     (-e1,e0,-e3,e2,-e5,e4,e7,-e6),
+     (-e2,e3,e0,-e1,-e6,-e7,e4,e5),
+     (-e3,-e2,e1,e0,-e7,e6,-e5,e4),
+     (-e4,e5,e6,e7,e0,-e1,-e2,-e3),
+     (-e5,-e4,e7,-e6,e1,e0,e3,-e2),
+     (-e6,-e7,-e4,e5,e2,-e3,e0,e1),
+     (-e7,e6,-e5,-e4,e3,e2,-e1,e0))

@@ -1,0 +1,109 @@
+-- www.eigenmath.org/annihilation-2.txt
+
+-- Verify momentum formulas for electron positron annihilation.
+
+p = sqrt(E^2 - m^2)
+
+p1 = (E, 0, 0, p)
+p2 = (E, 0, 0, -p)
+
+p3 = (E,
+      E expsin(theta) expcos(phi),
+      E expsin(theta) expsin(phi),
+      E expcos(theta))
+
+p4 = (E,
+      -E expsin(theta) expcos(phi),
+      -E expsin(theta) expsin(phi),
+      -E expcos(theta))
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+"computing probability density"
+
+q1 = p1 - p3
+q2 = p1 - p4
+
+qslash1 = dot(q1,gmunu,gamma)
+qslash2 = dot(q2,gmunu,gamma)
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+
+P1 = pslash1 + m I
+P2 = pslash2 - m I
+
+Q1 = qslash1 + m I
+Q2 = qslash2 + m I
+
+T = dot(P1,gammaT,Q1,gammaT,P2,gammaL,Q1,gammaL)
+f11 = contract(contract(contract(T,3,4),2,3))
+
+T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q1,gammaL)
+f12 = contract(contract(contract(T,3,5),2,3))
+
+T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
+f22 = contract(contract(contract(T,3,4),2,3))
+
+"checking momentum formulas (1=ok)"
+
+f11 == 16 dot(p1,gmunu,p1) dot(p1,gmunu,p2) -
+       32 dot(p1,gmunu,p1) dot(p2,gmunu,p3) -
+       16 dot(p1,gmunu,p2) dot(p3,gmunu,p3) +
+       32 dot(p1,gmunu,p3) dot(p2,gmunu,p3) -
+       48 m^2 dot(p1,gmunu,p2) +
+       64 m^2 dot(p1,gmunu,p3) +
+       64 m^2 dot(p2,gmunu,p3) -
+       64 m^2 dot(p3,gmunu,p3) - 64 m^4
+
+f12 == -32 dot(p1,gmunu,p1) dot(p1,gmunu,p2) +
+        32 dot(p1,gmunu,p2) dot(p1,gmunu,p3) +
+        32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) -
+        32 dot(p1,gmunu,p2) dot(p3,gmunu,p4) -
+        48 m^2 dot(p1,gmunu,p1) +
+        48 m^2 dot(p1,gmunu,p2) +
+        32 m^2 dot(p1,gmunu,p3) +
+        32 m^2 dot(p1,gmunu,p4) -
+        16 m^2 dot(p2,gmunu,p3) -
+        16 m^2 dot(p2,gmunu,p4) -
+        16 m^2 dot(p3,gmunu,p4) + 32 m^4
+
+f22 == 16 dot(p1,gmunu,p1) dot(p1,gmunu,p2) -
+       32 dot(p1,gmunu,p1) dot(p2,gmunu,p4) -
+       16 dot(p1,gmunu,p2) dot(p4,gmunu,p4) +
+       32 dot(p1,gmunu,p4) dot(p2,gmunu,p4) -
+       48 m^2 dot(p1,gmunu,p2) +
+       64 m^2 dot(p1,gmunu,p4) +
+       64 m^2 dot(p2,gmunu,p4) -
+       64 m^2 dot(p4,gmunu,p4) - 64 m^4
+
+"checking Mandelstam formulas (1=ok)"
+
+s = dot(p1 + p2,gmunu,p1 + p2)
+t = dot(p1 - p3,gmunu,p1 - p3)
+u = dot(p1 - p4,gmunu,p1 - p4)
+
+f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
+f12 == 8 s m^2 - 32 m^4
+f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
+
+m = 0
+
+s == 4 E^2
+t == -2 E^2 (1 - expcos(theta))
+u == -2 E^2 (1 + expcos(theta))
+
+t == -4 E^2 expsin(theta/2)^2
+u == -4 E^2 expcos(theta/2)^2

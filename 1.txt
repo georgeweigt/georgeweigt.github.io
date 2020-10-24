@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+<script src="eigenmath.js"></script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">

@@ -1,0 +1,38 @@
+-- Y returns a spherical harmonic eigenfunction
+
+Y(l,m) = (-1)^m sqrt((2l + 1)/(4pi) (l - m)!/(l + m)!) *
+         P(expcos(theta),l,m) exp(i m phi)
+
+-- P returns an associated Lengendre function
+
+P(f,n,m) = eval(1/(2^n n!) (1 - x^2)^(m/2) *
+           d((x^2 - 1)^n,x,n + m),x,f)
+
+"Eigenfunctions"
+
+Y(0,0)
+Y(1,0)
+Y(1,1)
+Y(1,-1)
+Y(2,0)
+Y(2,1)
+Y(2,2)
+Y(2,-1)
+Y(2,-2)
+
+"Verify (1=ok)"
+
+S(l,m) = -Lap(Y(l,m)) == l (l + 1) Y(l,m)
+
+Lap(f) = 1/expsin(theta) d(expsin(theta) d(f,theta),theta) +
+         1/expsin(theta)^2 d(f,phi,2)
+
+S(0,0)
+S(1,0)
+S(1,1)
+S(1,-1)
+S(2,0)
+S(2,1)
+S(2,2)
+S(2,-1)
+S(2,-2)

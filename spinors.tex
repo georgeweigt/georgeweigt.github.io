@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{parskip}
+\usepackage{slashed}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc spinors}
+\end{center}
+
+\noindent
+Recall that the following wave functions are solutions to the Dirac equation.
+\begin{gather*}
+\psi_1=\begin{pmatrix}\omega+m\\0\\k_z\\k_x+ik_y\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_7=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega+m\\0\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\\
+\psi_2=\begin{pmatrix}0\\ \omega+m\\k_x-ik_y\\-k_z\end{pmatrix}
+\exp[i(k_xx+k_yy+k_zz-\omega t)]
+\quad
+\psi_8=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega+m\end{pmatrix}
+\exp[-i(k_xx+k_yy+k_zz-\omega t)]
+\end{gather*}
+%
+A spinor is the vector part of a Dirac wave function.
+The following eight spinors are used for scattering calculations.
+The $u$ spinors are fermions from $\psi_1$ and $\psi_2$.
+The $v$ spinors are anti-fermions from $\psi_7$ and $\psi_8$.
+The last digit of the $u$ or $v$ subscript is 1 for spin up and 2 for spin down.
+\begin{gather*}
+u_{11}=\begin{pmatrix}E_1+m_1\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}\quad
+v_{21}=\begin{pmatrix}p_{2z}\\p_{2x}+ip_{2y}\\E_2+m_2\\0\end{pmatrix}\quad
+u_{31}=\begin{pmatrix}E_3+m_3\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}\quad
+v_{41}=\begin{pmatrix}p_{4z}\\p_{4x}+ip_{4y}\\E_4+m_4\\0\end{pmatrix}\\
+u_{12}=\begin{pmatrix}0\\E_1+m_1\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}\quad
+v_{22}=\begin{pmatrix}p_{2x}-ip_{2y}\\-p_{2z}\\0\\E_2+m_2\end{pmatrix}\quad
+u_{32}=\begin{pmatrix}0\\E_3+m_3\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}\quad
+v_{42}=\begin{pmatrix}p_{4x}-ip_{4y}\\-p_{4z}\\0\\E_4+m_4\end{pmatrix}
+\end{gather*}
+%
+These are the associated momentum vectors.
+$$
+p_1=\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\quad
+p_2=\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\quad
+p_3=\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}\quad
+p_4=\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}
+$$
+Spinors are solutions to the following momentum-space Dirac equation with
+$\slashed{p}=p\cdot(\gamma^0,\gamma^1,\gamma^2,\gamma^3)$.
+$$
+(\slashed{p}-m)u=0\qquad(\slashed{p}+m)v=0
+$$
+Up and down spinors have the following ``completeness property.''
+$$
+u_{11}\bar{u}_{11}+u_{12}\bar{u}_{12}=(E_1+m_1)(\slashed{p}_1+m_1)\qquad
+v_{21}\bar{v}_{21}+v_{22}\bar{v}_{22}=(E_2+m_2)(\slashed{p}_2-m_2)
+$$
+The adjoint of a spinor is $\bar{u}=u^\dag\gamma^0$.
+The adjoint is a row vector hence $u\bar{u}$ is an outer product.
+
+\newpage
+\noindent
+This script verifies all eight spinors.
+\VerbatimInput[formatcom=\color{blue}]{spinors.txt}
+
+\end{document}

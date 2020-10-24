@@ -1,0 +1,26 @@
+-- www.eigenmath.org/quantum-harmonic-oscillator-2.txt
+omega = sqrt(k/m)
+sigma = sqrt(hbar/(2*m*omega))
+W = 1/sqrt(2*pi*sigma^2) * exp(-x^2/(2*sigma^2))
+psi(k,n) = sqrt(W) * 1/sqrt(2^n*n!) * hermite(x/(sqrt(2)*sigma),n)
+-- define creation operator
+a1(k,psi) = x / (2*sigma) * psi - sigma * d(psi,x)
+-- define demo energy levels
+n1 = 1
+n2 = 2
+n3 = 3
+-- compute A
+A = sqrt(n1!*n2!*n3!) * (psi(1,n1), psi(2,n2), psi(3,n3)) / sqrt(3)
+-- compute B
+B = (psi(1,0), psi(2,0), psi(3,0)) / sqrt(3)
+for(n,1,n3, B[3]=a1(3,B[3])/sqrt(n), B=sqrt(n)*B)
+for(n,1,n2, B[2]=a1(2,B[2])/sqrt(n), B=sqrt(n)*B)
+for(n,1,n1, B[1]=a1(1,B[1])/sqrt(n), B=sqrt(n)*B)
+-- compare A and B
+A - B
+-- check normalization
+P(f,a,b) = 1/10 * sum(h,10*a,10*b-1,float(eval(f,x,h/10)))
+m = 1
+hbar = 1
+f = dot(conj(A),A) / (n1!*n2!*n3!)
+P(f,-10,10)

@@ -1,0 +1,34 @@
+-- www.eigenmath.org/annihilation-4.txt
+
+-- Draw a probability density for electron positron annihilation.
+
+M = (1 + cos(theta))/(1 - cos(theta)) +
+    (1 - cos(theta))/(1 + cos(theta))
+
+f(theta) = M sin(theta)
+
+pie = float(pi)
+alpha = pie/180
+dtheta = (pie - 2 alpha)/100
+C = sum(k,1,100,f(alpha + (k - 0.5) dtheta)) dtheta
+
+f(theta) = M sin(theta)/C
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(f,theta)
+
+N = 9
+P = zero(N)
+
+I(a,b) = sum(k,1,100,f(a + (k - 0.5) (b - a)/100)) (b - a)/100
+
+for(k,1,N - 2,
+  a = k pie/N,
+  b = (k + 1) pie/N,
+  P[k + 1] = I(a,b)
+)
+
+P = P/sum(k,1,N,P[k])
+
+P

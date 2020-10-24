@@ -1,0 +1,9 @@
+-- www.eigenmath.org/example1.txt
+"Product method"
+p = product(k,1,23,(365-k+1)/365)
+float(p)
+"Factorial method"
+p = 365! / (365 - 23)! / 365^23
+float(p)
+"Probability of at least one shared birthday"
+1.0 - p

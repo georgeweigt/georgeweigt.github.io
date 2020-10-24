@@ -1,0 +1,81 @@
+-- www.eigenmath.org/casimir-trick.txt
+
+-- Verify Casimir trick for u1 v2 -> u3 v4
+
+E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
+E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
+E3 = sqrt(p3x^2 + p3y^2 + p3z^2 + m3^2)
+E4 = sqrt(p4x^2 + p4y^2 + p4z^2 + m4^2)
+
+p1 = (E1, p1x, p1y, p1z)
+p2 = (E2, p2x, p2y, p2z)
+p3 = (E3, p3x, p3y, p3z)
+p4 = (E4, p4x, p4y, p4z)
+
+u11 = (E1 + m1, 0, p1z, p1x + i p1y)
+u12 = (0, E1 + m1, p1x - i p1y, -p1z)
+
+v21 = (p2z, p2x + i p2y, E2 + m2, 0)
+v22 = (p2x - i p2y, -p2z, 0, E2 + m2)
+
+u31 = (E3 + m3, 0, p3z, p3x + i p3y)
+u32 = (0, E3 + m3, p3x - i p3y, -p3z)
+
+v41 = (p4z, p4x + i p4y, E4 + m4, 0)
+v42 = (p4x - i p4y, -p4z, 0, E4 + m4)
+
+u1 = (u11,u12)
+v2 = (v21,v22)
+u3 = (u31,u32)
+v4 = (v41,v42)
+
+N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4) -- normalization
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+v2bar = dot(conj(v2),gamma0) -- adjoint of v2
+u3bar = dot(conj(u3),gamma0) -- adjoint of u3
+
+"summing over spin states"
+
+S = 0
+
+for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
+  X34 = dot(u3bar[s3],gammaT,v4[s4]),
+  X21 = dot(v2bar[s2],gammaL,u1[s1]),
+  a = dot(X34,X21), -- amplitude
+  f = a conj(a), -- probability density function
+  S = S + f
+))))
+
+"computing Casimir trick"
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+pslash3 = dot(p3,gmunu,gamma)
+pslash4 = dot(p4,gmunu,gamma)
+
+X1 = pslash1 + m1 I
+X2 = pslash2 - m2 I
+X3 = pslash3 + m3 I
+X4 = pslash4 - m4 I
+
+T1 = contract(dot(X3,gammaT,X4,gammaT),1,4)
+T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)
+T = contract(dot(T1,transpose(T2)))
+
+"checking Casimir trick (1=ok)"
+
+S == N T

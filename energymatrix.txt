@@ -1,0 +1,75 @@
+-- Energy matrix (10 seconds)
+
+ket0 = (1,0,0,0)
+ket1 = (0,1,0,0)
+ket2 = (0,0,1,0)
+ket3 = (0,0,0,1)
+
+phi(n,x) = sqrt(2 / L) sin(n pi x / L)
+
+-- numerical integrator
+
+N = 100
+
+S(f) = (L/N)^2 sum(j,1,N,sum(k,1,N,
+       test(j == k,0,eval(f,x,(j - 0.5) L/N,y,(k - 0.5) L/N))))
+
+-- base units
+
+ampere = "ampere"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+-- derived units
+
+coulomb = ampere second
+farad = ampere^2 kilogram^(-1) meter^(-2) second^4
+joule = kilogram meter^2 second^(-2)
+volt = ampere^(-1) kilogram meter^2 second^(-3)
+
+-- physical constants
+
+hbar = 1.054572 10^(-34) joule second      -- Planck's constant
+epsilon0 = 8.854188 10^(-12) farad / meter -- electric constant
+e = 1.602176 10^(-19) coulomb              -- elementary charge
+me = 9.109382 10^(-31) kilogram            -- mass of electron
+mp = 1.672622 10^(-27) kilogram            -- mass of proton
+
+eV = 1/e coulomb "eV" / joule -- conversion constant
+
+pi = float(pi) -- use numerical value of pi
+
+"Length"
+
+L = 1.0 10^(-9) meter
+L
+
+"Kinetic energy"
+
+E(n) = n^2 pi^2 hbar^2 / (2 me L^2) eV
+
+Khat = E(1) outer(ket1,ket1) +
+       E(2) outer(ket2,ket2) +
+       (E(1) + E(2)) outer(ket3,ket3)
+Khat
+
+"Potential energy"
+
+psi = sqrt(1/2) (phi(1,x) phi(2,y) - phi(1,y) phi(2,x))
+
+C = e^2 / (4 pi epsilon0)
+
+D = abs((x - y) / meter) meter -- trick to handle abs of meter
+
+f = conj(psi) psi / D
+
+V = C S(f) eV
+
+Vhat = V outer(ket3,ket3)
+Vhat
+
+"Energy matrix"
+
+Ehat = Khat + Vhat
+Ehat

@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+Consider the following eigenstates of a hypothetical quantum system.
+\begin{align*}
+|000\rangle&=(\text{1 0 0 0 0 0 0})^\dag\qquad\text{no fermions}\\
+|100\rangle&=(\text{0 1 0 0 0 0 0})^\dag\qquad\text{one fermion in state $\phi_1$}\\
+|010\rangle&=(\text{0 0 1 0 0 0 0})^\dag\qquad\text{one fermion in state $\phi_2$}\\
+|001\rangle&=(\text{0 0 0 1 0 0 0})^\dag\qquad\text{one fermion in state $\phi_3$}\\
+|110\rangle&=(\text{0 0 0 0 1 0 0})^\dag\qquad\text{two fermions, one in state $\phi_1$, one in state $\phi_2$}\\
+|101\rangle&=(\text{0 0 0 0 0 1 0})^\dag\qquad\text{two fermions, one in state $\phi_1$, one in state $\phi_3$}\\
+|011\rangle&=(\text{0 0 0 0 0 0 1})^\dag\qquad\text{two fermions, one in state $\phi_2$, one in state $\phi_3$}
+\end{align*}
+
+\noindent
+Let fermion states $\phi_n$ be modeled by a one dimensional box of length $L$.
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+Fermion creation operators are formed from outer products of state vectors.
+Sign changes make the operators antisymmetric.
+\begin{align*}
+\hat{b}_1^\dag&=|100\rangle\langle000|-|110\rangle\langle010|-|101\rangle\langle001|
+\qquad\text{Create one fermion in state $\phi_1$}\\
+\hat{b}_2^\dag&=|010\rangle\langle000|+|110\rangle\langle100|-|011\rangle\langle001|
+\qquad\text{Create one fermion in state $\phi_2$}\\
+\hat{b}_3^\dag&=|001\rangle\langle000|+|101\rangle\langle100|+|011\rangle\langle010|
+\qquad\text{Create one fermion in state $\phi_3$}
+\end{align*}
+
+\noindent
+Fermion annihilation operators are the adjoint of creation operators.
+\begin{align*}
+\hat{b}_1&=(\hat{b}_1^\dag)^\dag\qquad\text{Annihilate one fermion in state $\phi_1$}\\
+\hat{b}_2&=(\hat{b}_2^\dag)^\dag\qquad\text{Annihilate one fermion in state $\phi_2$}\\
+\hat{b}_3&=(\hat{b}_3^\dag)^\dag\qquad\text{Annihilate one fermion in state $\phi_3$}
+\end{align*}
+
+\noindent
+Given the wavefunction operator
+\begin{equation*}
+\hat{\psi}=\frac{1}{\sqrt{2}}\sum_{n,m}\phi_n(x)\phi_m(y)\hat{b}_n\hat{b}_m
+\end{equation*}
+
+\noindent
+show that
+\begin{align*}
+\hat{\psi}|110\rangle=\frac{1}{\sqrt{2}}\big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)|000\rangle
+\\[2ex]
+\hat{\psi}|101\rangle=\frac{1}{\sqrt{2}}\big(\phi_1(x)\phi_3(y)-\phi_1(y)\phi_3(x)\big)|000\rangle
+\\[2ex]
+\hat{\psi}|011\rangle=\frac{1}{\sqrt{2}}\big(\phi_2(x)\phi_3(y)-\phi_2(y)\phi_3(x)\big)|000\rangle
+\end{align*}
+
+\end{document}

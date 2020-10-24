@@ -1,0 +1,500 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{slashed}
+\usepackage{tikz}
+\usepackage{mathrsfs}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc moller scattering}
+\end{center}
+
+\noindent
+Moller scattering is the interaction of two electrons.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$e^-$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$e^-$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^-$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$e^-$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+Here is the same diagram with momentum and spinor labels.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_2$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, u_1$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3, u_3$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_4$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+In center of mass coordinates the momentum vectors are
+$$
+p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}\quad
+p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}\quad
+p_3=\begin{pmatrix}
+E\\
+p\sin\theta\cos\phi\\
+p\sin\theta\sin\phi\\
+p\cos\theta
+\end{pmatrix}
+\quad
+p_4=\begin{pmatrix}
+E\\
+-p\sin\theta\cos\phi\\
+-p\sin\theta\sin\phi\\
+-p\cos\theta
+\end{pmatrix}
+$$
+
+\noindent
+where $p=\sqrt{E^2-m^2}$.
+The spinors are
+\begin{gather*}
+u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}\quad
+u_{21}=\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}\quad
+u_{31}=\begin{pmatrix}E+m\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}\quad
+u_{41}=\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}
+\\
+u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}\quad
+u_{22}=\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}\quad
+u_{32}=\begin{pmatrix}0\\E+m\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}\quad
+u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
+\end{gather*}
+
+\noindent
+The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
+Note that the spinors are not individually normalized.
+Instead, a combined spinor normalization constant
+$N=(E+m)^4$ will be used where needed.
+
+\newpage
+\noindent
+This is the probability density for Moller scattering.
+The formula is from Feynman diagrams.
+$$
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2=\frac{e^4}{N}
+\left|
+\frac{1}{t}(\bar{u}_3\gamma^\mu u_1)(\bar{u}_4\gamma_\mu u_2)
+-\frac{1}{u}(\bar{u}_4\gamma^\nu u_1)(\bar{u}_3\gamma_\nu u_2)
+\right|^2
+$$
+
+\noindent
+Symbol $s_j$ selects the spin (up or down) of spinor $j$.
+Symbol $e$ is electron charge.
+Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2$ and $u=(p_1-p_4)^2$.
+
+\bigskip
+\noindent
+Let
+\begin{equation*}
+a_1=(\bar{u}_3\gamma^\mu u_1)(\bar{u}_4\gamma_\mu u_2)
+\qquad
+a_2=(\bar{u}_4\gamma^\nu u_1)(\bar{u}_3\gamma_\nu u_2)
+\end{equation*}
+
+\noindent
+Then
+\begin{align*}
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
+&=
+\frac{e^4}{N}
+\left|\frac{a_1}{t} - \frac{a_2}{u}\right|^2\\
+&=
+\frac{e^4}{N}
+\left(\frac{a_1}{t} - \frac{a_2}{u}\right)\left(\frac{a_1}{t} - \frac{a_2}{u}\right)^*\\
+&=
+\frac{e^4}{N}
+\left(
+\frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{tu} -
+\frac{a_1^*a_2}{tu} + \frac{a_2a_2^*}{u^2}
+\right)
+\end{align*}
+
+\noindent
+The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed by
+summing $|\mathcal{M}|^2$ over all spin states and dividing by the number
+of inbound states.
+There are four inbound states.
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=
+\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+|\mathcal{M}(s_1,s_2,s_3,s_4)|^2\\
+&=
+\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\frac{1}{N}\left(
+\frac{a_1a_1^*}{t^2}-\frac{a_1a_2^*}{tu}-\frac{a_1^*a_2}{tu}+\frac{a_2a_2^*}{u^2}
+\right)
+\end{align*}
+
+\noindent
+Use the Casimir trick to replace sums over spins with matrix products.
+\begin{align*}
+f_{11}&=\frac{1}{N}\sum_{\rm spins}a_1a_1^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_3+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
+\right)
+\mathop{\rm Tr}\left(
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
+\right)
+\\
+f_{12}&=\frac{1}{N}\sum_{\rm spins}a_1a_2^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_3+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
+\right)
+\\
+f_{22}&=\frac{1}{N}\sum_{\rm spins}a_2a_2^*=
+\mathop{\rm Tr}\left(
+(\slashed{p}_4+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
+\right)
+\mathop{\rm Tr}\left(
+(\slashed{p}_3+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
+\right)
+\end{align*}
+
+\noindent
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
+\left(
+\frac{f_{11}}{t^2}-\frac{f_{12}}{tu}-\frac{f_{12}^*}{tu}+\frac{f_{22}}{u^2}
+\right)
+\end{equation*}
+
+\noindent
+Run ``moller-scattering-1.txt'' to verify the Casimir trick.
+
+\newpage
+\noindent
+These formulas compute probability densities from dot products.
+Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$.
+\begin{align*}
+f_{11}&=
+32 (p_1\cdot p_2) (p_3\cdot p_4) +
+32 (p_1\cdot p_4) (p_2\cdot p_3) -
+32 m^2 (p_1\cdot p_3) -
+32 m^2 (p_2\cdot p_4) +
+64 m^4
+\\
+f_{12}&=
+-32 (p_1\cdot p_2) (p_3\cdot p_4)
++ 16 m^2 (p_1\cdot p_2) + 16 m^2 (p_1\cdot p_3) + 16 m^2 (p_1\cdot p_4) \\
+&\phantom{=}\qquad{} + 16 m^2 (p_2\cdot p_3) + 16 m^2 (p_2\cdot p_4) + 16 m^2 (p_3\cdot p_4) - 32 m^4
+\\
+f_{22}&=
+32 (p_1\cdot p_2) (p_3\cdot p_4) +
+32 (p_1\cdot p_3) (p_2\cdot p_4) -
+32 m^2 (p_1\cdot p_4) -
+32 m^2 (p_2\cdot p_3) +
+64 m^4
+\end{align*}
+
+\noindent
+In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, $u=(p_1-p_4)^2$ the formulas are
+\begin{align*}
+f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
+\\
+f_{12} &= -8 s^2 + 64 s m^2 - 96 m^4
+\\
+f_{22} &= 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
+\end{align*}
+
+\noindent
+When $E\gg m$ a useful approximation is to set $m=0$ and obtain
+\begin{align*}
+f_{11}&=8s^2+8u^2\\
+f_{12}&=-8s^2\\
+f_{22}&=8s^2+8t^2
+\end{align*}
+
+\noindent
+For $m=0$ the Mandelstam variables are
+\begin{align*}
+s&=4E^2
+\\
+t&=-2E^2(1-\cos\theta)=-4E^2\sin^2(\theta/2)
+\\
+u&=-2E^2(1+\cos\theta)=-4E^2\cos^2(\theta/2)
+\end{align*}
+
+\noindent
+The corresponding expected probability density is
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=\frac{e^4}{4}
+\left(
+\frac{8s^2+8u^2}{t^2}+\frac{16s^2}{tu}+\frac{8s^2+8t^2}{u^2}
+\right)
+\\
+&=2e^4
+\left(
+\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
+\right)
+\\
+&=2e^4
+\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
++\frac{8}{\sin^2\theta}
++\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
+\right)
+\end{align*}
+
+\noindent
+Run ``moller-scattering-2.txt'' to verify the formulas on this page.
+
+\newpage
+\noindent
+In the center of mass frame the differential cross section is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
+=\frac{\alpha^2}{8E^2}
+\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
++\frac{8}{\sin^2\theta}
++\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
+\right)
+\end{equation*}
+
+\noindent
+We can integrate $d\sigma$ to obtain a normalized probability density function.
+
+\bigskip
+\noindent
+Let
+\begin{equation*}
+I(\xi)=2\pi\int_\alpha^\xi\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
+\qquad\alpha\le\xi\le\pi-\alpha
+\end{equation*}
+
+\noindent
+for some $\alpha>0$.
+The support region is restricted because $d\sigma$ is undefined for $\theta=0$ and $\theta=\pi$.
+
+\bigskip
+\noindent
+The cumulative distribution function is
+\begin{equation*}
+F(\theta)=\frac{I(\theta)}{I(\pi-\alpha)},\qquad\alpha\le\theta\le\pi-\alpha
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
+\end{equation*}
+
+\noindent
+The probability density is
+\begin{equation*}
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{2\pi}{I(\pi-\alpha)}
+\left(\frac{d\sigma}{d\Omega}\right)
+\sin\theta,\quad\alpha\le\theta\le\pi-\alpha
+\end{equation*}
+
+\noindent
+Run ``moller-scattering-3.txt'' to draw a graph of $f(\theta)$ for $\alpha=\pi/180$.
+
+\begin{center}
+\includegraphics[scale=0.5]{moller-scattering-ss1.png}
+\end{center}
+
+\noindent
+Here is a probability distribution for $20^\circ$ bins with $\alpha=20^\circ$.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
+\hline
+$0^\circ$ & $20^\circ$ & -- \\
+$20^\circ$ & $40^\circ$ & 0.38 \\
+$40^\circ$ & $60^\circ$ & 0.07 \\
+$60^\circ$ & $80^\circ$ & 0.03 \\
+$80^\circ$ & $100^\circ$ & 0.02 \\
+$100^\circ$ & $120^\circ$ & 0.03 \\
+$120^\circ$ & $140^\circ$ & 0.07 \\
+$140^\circ$ & $160^\circ$ & 0.38 \\
+$160^\circ$ & $180^\circ$ & -- \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+\noindent
+Here are a few notes about how the scripts work.
+
+\bigskip
+\noindent
+In component notation, the trace operators of the Casimir trick become sums over
+a repeated index, in this case $\alpha$.
+\begin{align*}
+f_{11}&=
+\left(
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\right)
+\left(
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\right)
+\\
+f_{12}&=
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\tau
+(\slashed{p}_4+m)^\tau{}_\delta
+\gamma_\mu{}^\delta{}_\eta
+(\slashed{p}_2+m)^\eta{}_\xi
+\gamma_\nu{}^\xi{}_\alpha
+\\
+f_{22}&=
+\left(
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\right)
+\left(
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\right)
+\end{align*}
+
+\noindent
+To convert the above formulas to Eigenmath code,
+the $\gamma$ tensors need to be transposed
+so that repeated indices are adjacent to each other.
+Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
+\begin{align*}
+\gamma^{\beta\mu}{}_\rho\quad&\rightarrow\quad
+\text{\tt gammaT = transpose(gamma)}\\
+\gamma^\beta{}_{\mu\rho}\quad&\rightarrow\quad
+\text{\tt gammaL = transpose(dot(gmunu,gamma))}
+\end{align*}
+
+\noindent
+Define the following $4\times4$ matrices.
+\begin{align*}
+(\slashed{p}_1+m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 + m I}\\
+(\slashed{p}_2+m)\quad&\rightarrow\quad\text{\tt X2 = pslash2 + m I}\\
+(\slashed{p}_3+m)\quad&\rightarrow\quad\text{\tt X3 = pslash3 + m I}\\
+(\slashed{p}_4+m)\quad&\rightarrow\quad\text{\tt X4 = pslash4 + m I}
+\end{align*}
+
+\noindent
+Then for $f_{11}$ we have the following Eigenmath code.
+The contract function sums over $\alpha$.
+\begin{align*}
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T1 = contract(dot(X3,gammaT,X1,gammaT),1,4)}
+\\
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T2 = contract(dot(X4,gammaL,X2,gammaL),1,4)}
+\end{align*}
+
+\noindent
+Next, multiply then sum over repeated indices.
+The dot function sums over $\nu$ then the contract function
+sums over $\mu$. The transpose makes the $\nu$ indices adjacent
+as required by the dot function.
+$$
+f_{11}=
+\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu)
+\mathop{\rm Tr}(\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt contract(dot(T1,transpose(T2)))}
+$$
+
+\noindent
+Follow suit for $f_{22}$.
+\begin{align*}
+(\slashed{p}_4+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T1 = contract(dot(X4,gammaT,X1,gammaT),1,4)}
+\\
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_2+m)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T2 = contract(dot(X3,gammaL,X2,gammaL),1,4)}
+\end{align*}
+
+\noindent
+Then
+$$
+f_{22}=
+\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu)
+\mathop{\rm Tr}(\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt contract(dot(T1,transpose(T2)))}
+$$
+
+\noindent
+The calculation of $f_{12}$ begins with
+\begin{multline*}
+(\slashed{p}_3+m)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_1+m)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\tau
+(\slashed{p}_4+m)^\tau{}_\delta
+\gamma_\mu{}^\delta{}_\eta
+(\slashed{p}_2+m)^\eta{}_\xi
+\gamma_\nu{}^\xi{}_\alpha
+\\
+\rightarrow\quad
+\text{\tt T = contract(dot(X3,gammaT,X1,gammaT,X4,gammaL,X2,gammaL),1,6)}
+\end{multline*}
+
+\noindent
+Then sum over repeated indices $\mu$ and $\nu$.
+$$
+f_{12}=\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu\cdots\gamma_\mu\cdots\gamma_\nu)
+\quad\rightarrow\quad
+\text{\tt contract(contract(T,1,3))}
+$$
+
+\end{document}

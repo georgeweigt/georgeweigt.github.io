@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{parskip}
+\usepackage{slashed}
+\usepackage{mathrsfs}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc casimir trick}
+\end{center}
+
+\noindent
+The Casimir trick is an efficient way to compute probability densities summed over spin states.
+The trick is to replace sums of products with matrix products.
+In the following example, it is faster to compute the probability density $\langle|\mathcal{M}|^2\rangle$
+by evaluating products of matrices $\slashed{p}+m$.
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=
+\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\big|(\bar{u}_3\gamma^\mu v_4)(\bar{v}_2\gamma_\mu u_1)\big|^2\\
+&=
+\frac{e^4}{4}
+\mathop{\rm Tr}\left[(\slashed{p}_3+m_3)\gamma^\mu(\slashed{p}_4-m_4)\gamma^\nu\right]
+\mathop{\rm Tr}\left[(\slashed{p}_2-m_2)\gamma_\mu(\slashed{p}_1+m_1)\gamma_\nu\right]
+\end{align*}
+Index $s_j$ selects the spin of $u_j$ or $v_j$.
+The spinors are
+\begin{gather*}
+u_{11}=\begin{pmatrix}E_1+m_1\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}\quad
+v_{21}=\begin{pmatrix}p_{2z}\\p_{2x}+ip_{2y}\\E_2+m_2\\0\end{pmatrix}\quad
+u_{31}=\begin{pmatrix}E_3+m_3\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}\quad
+v_{41}=\begin{pmatrix}p_{4z}\\p_{4x}+ip_{4y}\\E_4+m_4\\0\end{pmatrix}\\
+u_{12}=\begin{pmatrix}0\\E_1+m_1\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}\quad
+v_{22}=\begin{pmatrix}p_{2x}-ip_{2y}\\-p_{2z}\\0\\E_2+m_2\end{pmatrix}\quad
+u_{32}=\begin{pmatrix}0\\E_3+m_3\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}\quad
+v_{42}=\begin{pmatrix}p_{4x}-ip_{4y}\\-p_{4z}\\0\\E_4+m_4\end{pmatrix}
+\end{gather*}
+where the second digit of the subscript is the spin state (1 up, 2 down).
+The momentum vectors are
+$$
+p_1=\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\quad
+p_2=\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\quad
+p_3=\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}\quad
+p_4=\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}
+$$
+%
+Run ``casimir-trick.txt'' to verify the Casimir trick for the process shown above.
+Here are a few details about how the script works.
+In component notation the spin state amplitude is
+$$
+\mathcal{M}
+=
+(\bar{u}_3\gamma^\mu v_4)(\bar{v}_2\gamma_\mu u_1)
+=
+\big(\bar{u}_3{}_\alpha\gamma^{\mu\alpha}{}_\beta v_4{}^\beta\big)
+\big(\bar{v}_2{}_\rho\gamma_\mu{}^\rho{}_\sigma u_1{}^\sigma\big)
+$$
+%
+To convert this to Eigenmath code,
+the $\gamma$ tensors need to be transposed
+so that repeated indices are adjacent to each other.
+Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
+\begin{align*}
+\gamma^{\alpha\mu}{}_\beta\quad&\rightarrow\quad
+\text{\tt gammaT = transpose(gamma)}\\
+\gamma^\rho{}_\mu{}_\sigma\quad&\rightarrow\quad
+\text{\tt gammaL = transpose(dot(gmunu,gamma))}
+\end{align*}
+%
+Then
+\begin{align*}
+\bar{u}_3{}_\alpha\gamma^{\mu\alpha}{}_\beta v_4{}^\beta
+\quad&\rightarrow\quad
+\text{\tt X34 = dot(u3bar[s3],gammaT,v4[s4])}
+\\
+\bar{v}_2{}_\rho\gamma_\mu{}^\rho{}_\sigma u_1{}^\sigma
+\quad&\rightarrow\quad
+\text{\tt X21 = dot(v2bar[s2],gammaL,u1[s1])}
+\end{align*}
+Hence
+$$
+\mathcal{M}=(\cdots\gamma^\mu\cdots)(\cdots\gamma_\mu\cdots)
+\quad\rightarrow\quad
+\text{\tt dot(X34,X21)}
+$$
+%
+In component notation the traces become sums over the repeated index $\alpha$.
+\begin{align*}
+\mathop{\rm Tr}\left[(\slashed{p}_3+m_3)\gamma^\mu(\slashed{p}_4-m_4)\gamma^\nu\right]
+&=
+(\slashed{p}_3+m_3)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_4-m_4)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\\
+\mathop{\rm Tr}\left[(\slashed{p}_2-m_2)\gamma_\mu(\slashed{p}_1+m_1)\gamma_\nu\right]
+&=
+(\slashed{p}_2-m_2)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_1+m_1)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\end{align*}
+%
+Define the following $4\times4$ matrices.
+\begin{align*}
+(\slashed{p}_1+m_1)\quad&\rightarrow\quad\text{\tt X1 = pslash1 + m1 I}\\
+(\slashed{p}_2-m_2)\quad&\rightarrow\quad\text{\tt X2 = pslash2 - m2 I}\\
+(\slashed{p}_3+m_3)\quad&\rightarrow\quad\text{\tt X3 = pslash3 + m3 I}\\
+(\slashed{p}_4-m_4)\quad&\rightarrow\quad\text{\tt X4 = pslash4 - m4 I}
+\end{align*}
+%
+Then
+\begin{align*}
+(\slashed{p}_3+m_3)^\alpha{}_\beta
+\gamma^{\mu\beta}{}_\rho
+(\slashed{p}_4-m_4)^\rho{}_\sigma
+\gamma^{\nu\sigma}{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T1 = contract(dot(X3,gammaT,X4,gammaT),1,4)}
+\\
+(\slashed{p}_2-m_2)^\alpha{}_\beta
+\gamma_\mu{}^\beta{}_\rho
+(\slashed{p}_1+m_1)^\rho{}_\sigma
+\gamma_\nu{}^\sigma{}_\alpha
+\quad&\rightarrow\quad
+\text{\tt T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)}
+\end{align*}
+Next, multiply the matrices and sum over repeated indices.
+The dot function sums over $\nu$ then the contract function
+sums over $\mu$. The transpose makes the $\nu$ indices adjacent
+as required by the dot function.
+$$
+\mathop{\rm Tr}[\cdots\gamma^\mu\cdots\gamma^\nu]\mathop{\rm Tr}[\cdots\gamma_\mu\cdots\gamma_\nu]
+\quad\rightarrow\quad
+\text{\tt contract(dot(T1,transpose(T2)))}
+$$
+
+\end{document}

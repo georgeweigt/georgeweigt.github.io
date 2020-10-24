@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb} % \mathbb
+
+\begin{document}
+
+\noindent
+Electron spin state $s$ is a unit vector in $\mathbb{C}^2$.
+\begin{equation*}
+s=\begin{pmatrix}c_1\\c_2\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+s^\dag s=\bar{c}_1c_1+\bar{c}_2c_2=1
+\end{equation*}
+
+\noindent
+These are the spin operators.
+\begin{equation*}
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\qquad
+\sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\qquad
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\end{equation*}
+
+\noindent
+The expectation value of a spin operator is a projection of $s$ onto Euclidean space.
+\begin{equation*}
+\langle x\rangle=s^\dag\sigma_xs
+\qquad
+\langle y\rangle=s^\dag\sigma_ys
+\qquad
+\langle z\rangle=s^\dag\sigma_zs
+\end{equation*}
+
+\noindent
+Let
+\begin{equation*}
+\sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
+\end{equation*}
+
+\noindent
+Then the spin polarization vector $P$ is
+\begin{equation*}
+P=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
+=s^\dag\sigma s
+\end{equation*}
+
+\noindent
+In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ and
+\begin{equation*}
+P^\alpha=\bar s_\beta\sigma^{\alpha\beta}{}_\gamma s^\gamma
+\end{equation*}
+
+\noindent
+In Eigenmath a transpose is needed to swap $\alpha$ and $\beta$ so that summed-over indices are adjacent.
+\begin{equation*}
+P^\alpha=\bar s_\beta\sigma^{\beta\alpha}{}_\gamma s^\gamma
+\end{equation*}
+
+\noindent
+Hence the code is
+\begin{equation*}
+\text{\tt P = dot(conj(s),transpose(sigma),s)}
+\end{equation*}
+
+\noindent
+Let $\theta$ and $\phi$ be polar and azimuth angles such that
+\begin{equation*}
+P=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
+\end{equation*}
+
+\noindent
+The corresponding spin state is
+\begin{equation*}
+s=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+\end{document}

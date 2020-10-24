@@ -1,0 +1,95 @@
+-- In this script, a quaternion is a vector of 4 real numbers.
+
+-- M(x,y) returns the product of quaternions x and y.
+
+-- C(x) returns the conjugate of quaternion x.
+
+-- dot(x,x) returns the magnitude of quaternion x as a scalar.
+
+-- M(x,C(x)) returns the magnitude of quaternion x as another quaternion.
+
+-- dot(x,x)*e0 and M(x,C(x)) return the same quaternion.
+
+-- Use ordinary vector arithmetic to add and subtract quaternions.
+
+e0 = (1,0,0,0)
+e1 = (0,1,0,0)
+e2 = (0,0,1,0)
+e3 = (0,0,0,1)
+
+-- quaternion multiplication table (per Wikipedia)
+
+T = ((e0,e1,e2,e3),
+     (e1,-e0,e3,-e2),
+     (e2,-e3,-e0,e1),
+     (e3,e2,-e1,-e0))
+
+-- define M(x,y) for multiplying quaternions x and y
+
+T = transpose(T,2,3)
+
+M(x,y) = dot(x,T,y)
+
+-- define conjugation function (flip component signs except first)
+
+C(x) = 2*dot(x,e0)*e0 - x
+
+-- define symbolic quaternions
+
+x = (x0,x1,x2,x3)
+y = (y0,y1,y2,y3)
+z = (z0,z1,z2,z3)
+
+"Is quaternion multiplication commutative?"
+
+test(M(x,y)=M(y,x),"yes","no")
+
+"Is quaternion multiplication associative?"
+
+test(M(M(x,y),z)=M(x,M(y,z)),"yes","no")
+
+"Is quaternion multiplication alternative?"
+
+test(and(M(M(x,x),y)=M(x,M(x,y)),
+         M(M(y,x),x)=M(y,M(x,x))),"yes","no")
+
+"Checking product of normed quaternions is normed."
+
+w = M(x,y)
+
+test(dot(w,w)=dot(x,x)*dot(y,y),"pass","fail")
+
+"Checking product of a quaternion and its conjugate is real."
+
+test(M(x,C(x))=dot(x,x)*e0,"pass","fail")
+
+"Checking quaternion multiplication table."
+
+check(M(e0,e0)=e0)
+check(M(e0,e1)=e1)
+check(M(e0,e2)=e2)
+check(M(e0,e3)=e3)
+
+check(M(e1,e0)=e1)
+check(M(e1,e1)=-e0)
+check(M(e1,e2)=e3)
+check(M(e1,e3)=-e2)
+
+check(M(e2,e0)=e2)
+check(M(e2,e1)=-e3)
+check(M(e2,e2)=-e0)
+check(M(e2,e3)=e1)
+
+check(M(e3,e0)=e3)
+check(M(e3,e1)=e2)
+check(M(e3,e2)=-e1)
+check(M(e3,e3)=-e0)
+
+"pass"
+
+-- this is T after transpose
+
+U = ((e0,e1,e2,e3),
+     (-e1,e0,-e3,e2),
+     (-e2,e3,e0,-e1),
+     (-e3,-e2,e1,e0))

@@ -1,0 +1,22 @@
+-- www.eigenmath.org/muon-production-5.txt
+
+-- Derive a normalized probability density for muon production
+
+-- M is an unnormalized probability density from QED theory
+M = (1 + cos(theta)^2) sin(theta)
+
+-- I is the integral of M from 0 to y
+I(y) = 2 pi defint(M,theta,0,y)
+
+-- F is the cumulative distribution function
+F = I(theta) / I(pi)
+F
+
+-- f is the probability density function
+f = d(F,theta)
+f
+
+-- Draw the pdf
+xrange = (0,pi)
+yrange = (0,1)
+draw(f,theta)

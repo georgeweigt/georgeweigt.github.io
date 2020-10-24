@@ -1,0 +1,35 @@
+Lx(f) = -i hbar (y d(f,z) - z d(f,y))
+Ly(f) = -i hbar (z d(f,x) - x d(f,z))
+Lz(f) = -i hbar (x d(f,y) - y d(f,x))
+
+f = psi(x,y,z)
+
+"Angular momentum operators"
+
+Lx(f)
+Ly(f)
+Lz(f)
+
+"Verify commutation relations (1=ok)"
+
+Lx(Ly(f)) - Ly(Lx(f)) == i hbar Lz(f)
+Ly(Lz(f)) - Lz(Ly(f)) == i hbar Lx(f)
+Lz(Lx(f)) - Lx(Lz(f)) == i hbar Ly(f)
+
+-- angular momentum operators in spherical coordinates
+
+Lx(f) = i hbar expsin(phi) d(f,theta) +
+        i hbar expcos(theta) / expsin(theta) expcos(phi) d(f,phi)
+
+Ly(f) = -i hbar expcos(phi) d(f,theta) +
+         i hbar expcos(theta) / expsin(theta) expsin(phi) d(f,phi)
+
+Lz(f) = -i hbar d(f,phi)
+
+"Verify commutation relations in spherical coordinates (1=ok)"
+
+f = psi(r,theta,phi)
+
+Lx(Ly(f)) - Ly(Lx(f)) == i hbar Lz(f)
+Ly(Lz(f)) - Lz(Ly(f)) == i hbar Lx(f)
+Lz(Lx(f)) - Lx(Lz(f)) == i hbar Ly(f)

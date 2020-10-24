@@ -1,0 +1,27 @@
+phi(n,x) = sqrt(2 / L) sin(n pi x / L)
+
+ket00 = (1,0,0,0)
+ket10 = (0,1,0,0)
+ket01 = (0,0,1,0)
+ket11 = (0,0,0,1)
+
+b1 = outer(ket00,ket10) - outer(ket01,ket11)
+b2 = outer(ket00,ket01) + outer(ket10,ket11)
+
+b1dag = transpose(b1)
+b2dag = transpose(b2)
+
+-- psihat is the wavefunction operator
+
+psihat(x,y) = sqrt(1/2) phi(1,x) phi(1,y) dot(b1,b1) +
+              sqrt(1/2) phi(1,x) phi(2,y) dot(b1,b2) +
+              sqrt(1/2) phi(2,x) phi(1,y) dot(b2,b1) +
+              sqrt(1/2) phi(2,x) phi(2,y) dot(b2,b2)
+
+"Wavefunction operator"
+
+psihat
+
+"Verify operator (1=ok)"
+
+dot(psihat(x,y),ket11) == sqrt(1/2) (phi(1,x) phi(2,y) - phi(1,y) phi(2,x)) ket00

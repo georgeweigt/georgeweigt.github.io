@@ -1,0 +1,19 @@
+-- spin operators for z representation
+
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+sigmaz = ((1,0),(0,-1))
+
+sigmax
+sigmay
+sigmaz
+
+"Verify spin commutation relations (1=ok)"
+
+dot(sigmax,sigmay) - dot(sigmay,sigmax) == 2 i sigmaz
+dot(sigmay,sigmaz) - dot(sigmaz,sigmay) == 2 i sigmax
+dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay
+
+"Compute sigma squared"
+
+dot(sigmax,sigmax) + dot(sigmay,sigmay) + dot(sigmaz,sigmaz)

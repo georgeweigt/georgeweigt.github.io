@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{parskip}
+\usepackage{slashed}
+\usepackage{tikz}
+\usepackage{mathrsfs}
+
+% change margins
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+
+\hyphenpenalty=10000
+
+\begin{document}
+
+\begin{center}
+{\sc muon decay}
+\end{center}
+
+\noindent
+Consider the following muon decay process.
+$$
+\mu^-\rightarrow\nu_\mu+\bar{\nu}_e+e^-
+$$
+
+\noindent
+Define momentum and spinor vectors for each particle.
+
+\bigskip
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Particle & Symbol & Momentum & Spinor (up) & Spinor (down)\\
+\hline
+Muon & $\mu^-$ & $p_1$ & $u_{11}$ & $u_{12}$\\
+Muon neutrino & $\nu_\mu$ & $p_2$ & $u_{21}$ & $u_{22}$\\
+Electron antineutrino & $\bar{\nu}_e$ & $p_3$ & $v_{31}$ & $v_{32}$\\
+Electron & $e^-$ & $p_4$ & $u_{41}$ & $u_{42}$\\
+\hline
+\end{tabular}
+\end{center}
+%
+$$
+p_1=\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\qquad
+p_2=\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\qquad
+p_3=\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}\qquad
+p_4=\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}
+$$
+%
+\begin{gather*}
+u_{11}=\begin{pmatrix}E_1+m_1\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}\quad
+u_{21}=\begin{pmatrix}E_2+m_2\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}\quad
+v_{31}=\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E_3+m_3\\0\end{pmatrix}\quad
+u_{41}=\begin{pmatrix}E_4+m_4\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}\\
+%
+u_{12}=\begin{pmatrix}0\\E_1+m_1\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}\quad
+u_{22}=\begin{pmatrix}0\\E_2+m_2\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}\quad
+v_{32}=\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E_3+m_3\end{pmatrix}\quad
+u_{42}=\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}
+\end{gather*}
+
+\bigskip
+\noindent
+The spin averaged probability density for the process is
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=
+\frac{G^2}{4N}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\left|
+\left(\bar{u}_4\gamma^\mu(1-\gamma^5)v_3\right)
+\left(\bar{u}_2\gamma_\mu(1-\gamma^5)u_1\right)
+\right|^2\\
+&=\frac{G^2}{4}
+\mathop{\text{Tr}}
+\left[\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right]
+\mathop{\text{Tr}}
+\left[\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right]\\
+&=64G^2(p_1\cdot p_3)(p_2\cdot p_4)
+\end{align*}
+where $s_j$ selects up or down and $N$ is the following spinor normalization constant.
+$$
+N=(E_1+m_1)(E_2+m_2)(E_3+m_3)(E_4+m_4)
+$$
+
+\bigskip
+\noindent
+Run ``muon-decay-1.txt'' to verify that
+\begin{multline*}
+\frac{1}{N}
+\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\left|
+\left(\bar{u}_4\gamma^\mu(1-\gamma^5)v_3\right)
+\left(\bar{u}_2\gamma_\mu(1-\gamma^5)u_1\right)
+\right|^2
+\\=
+\mathop{\text{Tr}}
+\left[\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right]
+\mathop{\text{Tr}}
+\left[\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right]
+\end{multline*}
+
+\noindent
+Run ``muon-decay-2.txt'' to verify that
+$$
+\frac{1}{4}
+\mathop{\text{Tr}}
+\left[\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right]
+\mathop{\text{Tr}}
+\left[\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right]\\
+=64(p_1\cdot p_3)(p_2\cdot p_4)
+$$
+
+\end{document}
