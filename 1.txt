@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>Eigenmath Demo</title>
-<script src="eigenmath.js"></script>
 </head>
+<script src="eigenmath.js"></script>
+<button onclick="run()" style="font-size:20pt">Run</button>
+<p>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">

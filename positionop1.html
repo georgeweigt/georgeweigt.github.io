@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>Eigenmath Demo</title>
-<script src="eigenmath.js"></script>
 </head>
+<script src="eigenmath.js"></script>
+<button onclick="run()" style="font-size:20pt">Run</button>
+<p>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 ket00 = (1,0,0,0)
 ket10 = (0,1,0,0)
@@ -39,8 +41,6 @@ dot(ket10,rhat,ket01) == r(1,2)
 dot(ket01,rhat,ket10) == r(2,1)
 dot(ket01,rhat,ket01) == r(2,2)
 </textarea>
-<p>
-<button onclick="run()" style="font-size:20pt">Run</button>
 <p>
 <div id="stdout"></div>
 </body>
