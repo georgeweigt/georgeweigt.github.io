@@ -5,8 +5,6 @@
 <title>Eigenmath Demo</title>
 </head>
 <script src="eigenmath.js"></script>
-<button onclick="run()" style="font-size:20pt">Run</button>
-<p>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 ket00 = (1,0,0,0)
 ket10 = (0,1,0,0)
@@ -49,6 +47,7 @@ dot(b1dag,b2) + dot(b2,b1dag) == 0
 dot(b2dag,b1) + dot(b1,b2dag) == 0
 dot(b2dag,b2) + dot(b2,b2dag) == I
 </textarea>
+<button onclick="run()" style="font-size:20pt">Run</button>
 <p>
 <div id="stdout"></div>
 </body>
