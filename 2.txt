@@ -1,5 +1,4 @@
 </textarea>
-<button onclick="run()" style="font-size:20pt">Run</button>
 <p>
 <div id="stdout"></div>
 </body>

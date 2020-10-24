@@ -5,6 +5,9 @@
 <title>Eigenmath Demo</title>
 </head>
 <script src="eigenmath.js"></script>
+<p>
+<button onclick="run()" style="font-size:20pt">Run</button>
+<p>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Compute R-squared for Bhabha scattering data from SLAC-PUB-1501
 
@@ -82,7 +85,6 @@ SST = sum(k,1,N,(y[k] - ybar)^2)
 
 1 - SSE/SST
 </textarea>
-<button onclick="run()" style="font-size:20pt">Run</button>
 <p>
 <div id="stdout"></div>
 </body>

@@ -5,6 +5,9 @@
 <title>Eigenmath Demo</title>
 </head>
 <script src="eigenmath.js"></script>
+<p>
+<button onclick="run()" style="font-size:20pt">Run</button>
+<p>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 phi(n,x) = sqrt(2 / L) sin(n pi x / L)
 
@@ -54,7 +57,6 @@ dot(psihat(x,y),ket101) == sqrt(1/2) (phi(1,x) phi(3,y) - phi(1,y) phi(3,x)) ket
 
 dot(psihat(x,y),ket011) == sqrt(1/2) (phi(2,x) phi(3,y) - phi(2,y) phi(3,x)) ket000
 </textarea>
-<button onclick="run()" style="font-size:20pt">Run</button>
 <p>
 <div id="stdout"></div>
 </body>
