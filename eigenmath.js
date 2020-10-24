@@ -3,19 +3,12 @@
 <html>
 <body>
 <script src="https://eigenmath.github.io/eigenmath.js"></script>
-<table>
-<tr>
-<td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Eigenmath script goes here, for example:
 draw(sin(x))
 </textarea>
-</td>
-<td>
+<p>
 <button onclick="run()" style="font-size:20pt">Run</button>
-</td>
-</tr>
-</table>
 <p>
 <div id="stdout"></div>
 </body>
@@ -2613,6 +2606,8 @@ draw(F, X)
 	draw_pass1(F, X);
 	draw_pass2(F, X);
 
+//	outbuf += "<rect " + h + w + "style='fill:none;stroke:black;stroke-width:1'/>\n";
+
 	outbuf += "</svg></p>\n";
 
 	stdout.innerHTML += outbuf;
@@ -2785,7 +2780,7 @@ const DRAW_LEFT_PAD = 200;
 const DRAW_RIGHT_PAD = 100;
 
 const DRAW_TOP_PAD = 20;
-const DRAW_BOTTOM_PAD = 40;
+const DRAW_BOTTOM_PAD = 50;
 
 var xmin;
 var xmax;

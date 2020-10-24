@@ -5,10 +5,6 @@
 <title>Eigenmath Demo</title>
 <script src="eigenmath.js"></script>
 </head>
-<body>
-<table>
-<tr>
-<td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- spin operators for z representation
 
@@ -30,15 +26,9 @@ dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay
 
 dot(sigmax,sigmax) + dot(sigmay,sigmay) + dot(sigmaz,sigmaz)
 </textarea>
-</td>
-<td>
+<p>
 <button onclick="run()" style="font-size:20pt">Run</button>
-</td>
-</tr>
-</table>
-
 <p>
 <div id="stdout"></div>
-
 </body>
 </html>
