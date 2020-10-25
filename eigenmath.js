@@ -3125,12 +3125,9 @@ const TABLE = 7;
 const FONT_SIZE = 20
 const SMALL_FONT_SIZE = 14;
 
-const HEIGHT_RATIO = 1.0;
-const DEPTH_RATIO = 0.3;
+const HEIGHT_RATIO = 1.2375;
+const DEPTH_RATIO = 0.4;
 const WIDTH_RATIO = 1 / 720;
-
-const X_HEIGHT_RATIO = 0.3;
-const V_SPACE_RATIO = 0.2;
 
 const FONT_HEIGHT = HEIGHT_RATIO * FONT_SIZE;
 const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
@@ -3138,11 +3135,9 @@ const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
 const FONT_DEPTH = DEPTH_RATIO * FONT_SIZE;
 const SMALL_FONT_DEPTH = DEPTH_RATIO * SMALL_FONT_SIZE;
 
+const X_HEIGHT_RATIO = 0.425;
 const X_HEIGHT = X_HEIGHT_RATIO * FONT_SIZE;
 const SMALL_X_HEIGHT = X_HEIGHT_RATIO * SMALL_FONT_SIZE;
-
-const VSPACE = V_SPACE_RATIO * FONT_SIZE;
-const SMALL_VSPACE = V_SPACE_RATIO * SMALL_FONT_SIZE;
 
 const TABLE_HSPACE = 0.6 * FONT_SIZE;
 const TABLE_VSPACE = 0.2 * FONT_SIZE;
@@ -3931,17 +3926,21 @@ emit_svg(p, x, y)
 
 	case FRACTION:
 
+		// numerator
+
 		dx = (p.width - p.num.width) / 2;
 
 		if (dx < 0)
 			dx = 0;
 
 		if (p.small_font)
-			dy = -SMALL_X_HEIGHT - SMALL_VSPACE - p.num.depth;
+			dy = p.num.depth + SMALL_X_HEIGHT;
 		else
-			dy = -X_HEIGHT - VSPACE - p.num.depth;
+			dy = p.num.depth + X_HEIGHT;
 
-		emit_svg(p.num, x + dx, y + dy);
+		emit_svg(p.num, x + dx, y - dy);
+
+		// denominator
 
 		dx = (p.width - p.den.width) / 2;
 
@@ -3949,25 +3948,28 @@ emit_svg(p, x, y)
 			dx = 0;
 
 		if (p.small_font)
-			dy = -SMALL_X_HEIGHT + SMALL_VSPACE + p.den.height;
+			dy = p.den.height - SMALL_X_HEIGHT;
 		else
-			dy = -X_HEIGHT + VSPACE + p.den.height;
+			dy = p.den.height - X_HEIGHT;
 
 		emit_svg(p.den, x + dx, y + dy);
 
-		if (p.small_font)
+		// line
+
+		if (p.small_font) {
 			size = SMALL_FONT_SIZE;
-		else
+			y -= SMALL_X_HEIGHT;
+		} else {
 			size = FONT_SIZE;
+			y -= X_HEIGHT
+		}
 
 		w = 1/8 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 		x1 = x + w;
 		x2 = x + p.width - w;
 
-		y = y - X_HEIGHT_RATIO * size;
-
-		emit_svg_line(x1, y, x2, y, 1);
+		emit_svg_line(x1, y, x2, y, 1.5);
 
 		break;
 
@@ -4012,8 +4014,8 @@ emit_svg_ldelim(p, x, y)
 	var x1 = x + w / 2;
 	var x2 = x + w;
 
-	var y1 = y - p.height + t;
-	var y2 = y + p.depth - t;
+	var y1 = y - p.height + 2 * t;
+	var y2 = y + p.depth - 2 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4070,8 +4072,8 @@ emit_svg_rdelim(p, x, y)
 	var x1 = x + p.width - w / 2;
 	var x2 = x + p.width - w;
 
-	var y1 = y - p.height + t;
-	var y2 = y + p.depth - t;
+	var y1 = y - p.height + 2 * t;
+	var y2 = y + p.depth - 2 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4110,8 +4112,6 @@ emit_svg_table(p, x, y)
 function
 emit_svg_text(p, x, y)
 {
-//if (p.s != " ") emit_svg_line(x + p.width, y + p.depth, x + p.width, y - p.height, 1); // for checking char widths
-
 	var s, t;
 
 	s = p.s;
@@ -4128,7 +4128,7 @@ emit_svg_text(p, x, y)
 	x = "x='" + x + "'";
 	y = "y='" + y + "'";
 
-	t = "<text style='text-anchor:middle;font-family:times;";
+	t = "<text style='text-anchor:middle;font-family:\"Times New Roman\";";
 
 	if (p.small_font)
 		t += "font-size:14pt;";
@@ -4340,18 +4340,21 @@ emit_update(u)
 function
 emit_update_fraction(u)
 {
-	var w = roman_width['n'.charCodeAt(0)];
+	var w = roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
+
+	u.height = u.num.height + u.num.depth;
+	u.depth = u.den.height + u.den.depth;
 
 	u.width = Math.max(u.num.width, u.den.width);
 
 	if (u.small_font) {
-		u.height = SMALL_X_HEIGHT + SMALL_VSPACE + u.num.height + u.num.depth;
-		u.depth = -SMALL_X_HEIGHT + SMALL_VSPACE + u.den.height + u.den.depth;
-		u.width += w * WIDTH_RATIO * SMALL_FONT_SIZE; // extra
+		u.height += SMALL_X_HEIGHT;
+		u.depth -= SMALL_X_HEIGHT;
+		u.width += w * SMALL_FONT_SIZE;
 	} else {
-		u.height = X_HEIGHT + VSPACE + u.num.height + u.num.depth;
-		u.depth = -X_HEIGHT + VSPACE + u.den.height + u.den.depth;
-		u.width += w * WIDTH_RATIO * FONT_SIZE; // extra
+		u.height += X_HEIGHT;
+		u.depth -= X_HEIGHT;
+		u.width += w * FONT_SIZE;
 	}
 }
 function
