@@ -3135,10 +3135,13 @@ const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
 const FONT_DEPTH = DEPTH_RATIO * FONT_SIZE;
 const SMALL_FONT_DEPTH = DEPTH_RATIO * SMALL_FONT_SIZE;
 
-const X_HEIGHT_RATIO = 0.425;
+const X_HEIGHT_RATIO = 0.42;
 const X_HEIGHT = X_HEIGHT_RATIO * FONT_SIZE;
 const SMALL_X_HEIGHT = X_HEIGHT_RATIO * SMALL_FONT_SIZE;
 
+const SMALL_STROKE_WIDTH = 1;
+const STROKE_WIDTH = 1.5;
+ 
 const TABLE_HSPACE = 0.6 * FONT_SIZE;
 const TABLE_VSPACE = 0.2 * FONT_SIZE;
 
@@ -3861,7 +3864,7 @@ emit_subexpr(u, p, small_font)
 function
 emit_svg(p, x, y)
 {
-	var dx, dy, i, n, size, w, x1, x2;
+	var dx, i, n, size, w, x1, x2;
 
 	switch (p.type) {
 
@@ -3933,12 +3936,7 @@ emit_svg(p, x, y)
 		if (dx < 0)
 			dx = 0;
 
-		if (p.small_font)
-			dy = p.num.depth + SMALL_X_HEIGHT;
-		else
-			dy = p.num.depth + X_HEIGHT;
-
-		emit_svg(p.num, x + dx, y - dy);
+		emit_svg(p.num, x + dx, y - p.height + p.num.height);
 
 		// denominator
 
@@ -3947,29 +3945,27 @@ emit_svg(p, x, y)
 		if (dx < 0)
 			dx = 0;
 
-		if (p.small_font)
-			dy = p.den.height - SMALL_X_HEIGHT;
-		else
-			dy = p.den.height - X_HEIGHT;
-
-		emit_svg(p.den, x + dx, y + dy);
+		emit_svg(p.den, x + dx, y + p.depth - p.den.depth);
 
 		// line
 
-		if (p.small_font) {
+		if (p.small_font)
 			size = SMALL_FONT_SIZE;
-			y -= SMALL_X_HEIGHT;
-		} else {
+		else
 			size = FONT_SIZE;
-			y -= X_HEIGHT
-		}
 
 		w = 1/8 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 		x1 = x + w;
 		x2 = x + p.width - w;
 
-		emit_svg_line(x1, y, x2, y, 1.5);
+		if (p.small_font) {
+			y -= SMALL_X_HEIGHT;
+			emit_svg_line(x1, y, x2, y, SMALL_STROKE_WIDTH);
+		} else {
+			y -= X_HEIGHT;
+			emit_svg_line(x1, y, x2, y, STROKE_WIDTH);
+		}
 
 		break;
 
@@ -4340,22 +4336,23 @@ emit_update(u)
 function
 emit_update_fraction(u)
 {
-	var w = roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
+	var d, h, w;
 
-	u.height = u.num.height + u.num.depth;
-	u.depth = u.den.height + u.den.depth;
-
-	u.width = Math.max(u.num.width, u.den.width);
+	w = roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		u.height += SMALL_X_HEIGHT;
-		u.depth -= SMALL_X_HEIGHT;
-		u.width += w * SMALL_FONT_SIZE;
+		h = SMALL_X_HEIGHT + SMALL_STROKE_WIDTH / 2;
+		d = -SMALL_X_HEIGHT + SMALL_STROKE_WIDTH / 2;
+		w = w * SMALL_FONT_SIZE;
 	} else {
-		u.height += X_HEIGHT;
-		u.depth -= X_HEIGHT;
-		u.width += w * FONT_SIZE;
+		h = X_HEIGHT + STROKE_WIDTH / 2;
+		d = -X_HEIGHT + STROKE_WIDTH / 2;
+		w = w * FONT_SIZE;
 	}
+
+	u.height = u.num.height + u.num.depth + h;
+	u.depth = u.den.height + u.den.depth + d;
+	u.width = Math.max(u.num.width, u.den.width) + w;
 }
 function
 emit_update_superscript(u, h) // h is height of neighbor
