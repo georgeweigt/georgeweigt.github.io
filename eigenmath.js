@@ -3101,10 +3101,7 @@ emit_args(u, p, small_font)
 
 	emit_update(v);
 
-	if (small_font)
-		v.width += 2 * SMALL_DELIM_WIDTH;
-	else
-		v.width += 2 * DELIM_WIDTH;
+	v.width += 2 * emit_delim_width(small_font);
 
 	u.a.push(v);
 }
@@ -3130,13 +3127,10 @@ const SMALL_FONT_SIZE = 14;
 
 const HEIGHT_RATIO = 1.0;
 const DEPTH_RATIO = 0.3;
-const WIDTH_RATIO = 0.7;
+const WIDTH_RATIO = 1 / 720;
 
 const X_HEIGHT_RATIO = 0.3;
 const V_SPACE_RATIO = 0.2;
-
-const THIN_SPACE_RATIO = 1/3 * WIDTH_RATIO;
-const MEDIUM_SPACE_RATIO = 2/3 * WIDTH_RATIO;
 
 const FONT_HEIGHT = HEIGHT_RATIO * FONT_SIZE;
 const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
@@ -3150,61 +3144,45 @@ const SMALL_X_HEIGHT = X_HEIGHT_RATIO * SMALL_FONT_SIZE;
 const VSPACE = V_SPACE_RATIO * FONT_SIZE;
 const SMALL_VSPACE = V_SPACE_RATIO * SMALL_FONT_SIZE;
 
-const MEDIUM_SPACE = MEDIUM_SPACE_RATIO * FONT_SIZE;
-const SMALL_MEDIUM_SPACE = MEDIUM_SPACE_RATIO * SMALL_FONT_SIZE;
-
-const DWR = 0.7; // delimiter width ratio
-
-const DELIM_WIDTH = DWR * WIDTH_RATIO * FONT_SIZE;
-const SMALL_DELIM_WIDTH = DWR * WIDTH_RATIO * SMALL_FONT_SIZE;
-
 const TABLE_HSPACE = 0.6 * FONT_SIZE;
 const TABLE_VSPACE = 0.2 * FONT_SIZE;
 
-const emit_wtab = [
-	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,
+const roman_width_tab = [
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+250,333,408,503,500,833,778,180,
+333,333,500,565,250,333,250,301,
+500,500,500,500,500,500,500,500,
+500,500,278,278,565,566,564,444,
+921,732,667,667,722,611,556,729,
+723,333,404,751,611,889,729,722,
+556,722,697,556,611,732,731,957,
+731,729,611,333,301,333,472,530,
+333,463,500,444,523,444,456,503,
+515,278,278,527,278,794,517,500,
+500,521,360,389,300,520,512,734,
+509,515,449,480,200,480,563,778,
+];
 
-	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,
-
-	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,
-
-	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,
-
-//	space	!	"	#	$	%	&	'
-	0.7,	0.6,	0.6,	1.0,	1.0,	1.0,	1.0,	0.6,
-
-//	(	)	*	+	,	-	.	/
-	DWR,	DWR,	0.8,	1.1,	0.6,	0.6,	0.6,	1.0,
-
-//	0	1	2	3	4	5	6	7
-	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,	1.0,
-
-//	8	9	:	;	<	=	>	?
-	1.0,	1.0,	0.6,	0.6,	1.2,	1.2,	1.2,	0.8,
-
-//	@	A	B	C	D	E	F	G
-	1.0,	1.5,	1.3,	1.4,	1.5,	1.3,	1.3,	1.5,
-
-//	H	I	J	K	L	M	N	O
-	1.5,	0.8,	0.9,	1.4,	1.3,	1.8,	1.3,	1.3,
-
-//	P	Q	R	S	T	U	V	W
-	1.3,	1.3,	1.3,	1.1,	1.3,	1.3,	1.3,	1.7,
-
-//	X	Y	Z	[	\	]	^	_
-	1.3,	1.3,	1.3,	DWR,	1.0,	DWR,	1.0,	1.0,
-
-//	`	a	b	c	d	e	f	g
-	1.0,	0.9,	0.9,	0.9,	1.0,	0.9,	0.8,	1.0,
-
-//	h	i	j	k	l	m	n	o
-	1.0,	0.5,	0.5,	1.0,	0.5,	1.4,	1.0,	0.9,
-
-//	p	q	r	s	t	u	v	w
-	1.0,	1.0,	0.7,	0.8,	0.6,	1.0,	1.0,	1.4,
-
-//	x	y	z	{	|	}	~
-	0.9,	0.9,	0.9,	1.0,	1.0,	1.0,	1.0,	1.0,
+const italic_width_tab = [
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+778,778,778,778,778,778,778,778,
+250,338,473,503,510,838,778,282,
+463,333,500,675,250,333,250,402,
+515,500,500,500,508,500,546,544,
+510,512,333,333,675,675,675,500,
+920,611,611,725,726,653,689,746,
+832,431,568,750,556,945,783,739,
+642,738,611,563,670,835,744,965,
+762,688,632,492,278,389,481,530,
+358,500,500,449,562,451,494,542,
+500,293,301,511,318,722,500,500,
+500,500,424,389,321,500,463,683,
+460,461,413,536,275,400,563,778,
 ];
 
 const emit_stab = [
@@ -3217,67 +3195,78 @@ const emit_stab = [
 	"hbar",
 ];
 
-const emit_gtab = {
+const symbol_width_tab = {
+"&parenleft;":333,
+"&parenright;":333,
+"&plus;":565,
+"&lt;":565,
+"&equals;":566,
+"&gt;":564,
+"&le;":558,
+"&ge;":558,
+"&times;":823,
+"&minus;":565,
+"&Gamma;":578,
+"&Theta;":722,
+"&Phi;":731,
+"&Alpha;":732,
+"&Beta;":667,
+"&Delta;":643,
+"&Epsilon;":611,
+"&Zeta;":611,
+"&Eta;":723,
+"&Iota;":333,
+"&Kappa;":751,
+"&Lambda;":736,
+"&Mu;":889,
+"&Nu;":729,
+"&Xi;":643,
+"&Pi;":725,
+"&Rho;":556,
+"&Sigma;":582,
+"&Tau;":611,
+"&Upsilon;":729,
+"&Chi;":731,
+"&Psi;":748,
+"&Omega;":743,
 
-"Alpha"		: 1.5,
-"Beta"		: 1.5,
-"Gamma"		: 1.5,
-"Delta"		: 1.5,
-"Epsilon"	: 1.5,
-"Zeta"		: 1.5,
-"Eta"		: 1.5,
-"Theta"		: 1.5,
-"Iota"		: 1.5,
-"Kappa"		: 1.5,
-"Lambda"	: 1.5,
-"Mu"		: 1.5,
-"Nu"		: 1.5,
-"Xi"		: 1.5,
-"Pi"		: 1.5,
-"Rho"		: 1.5,
-"Sigma"		: 1.5,
-"Tau"		: 1.5,
-"Upsilon"	: 1.5,
-"Phi"		: 1.5,
-"Chi"		: 1.5,
-"Psi"		: 1.5,
-"Omega"		: 1.5,
-
-"alpha"		: 1.1,
-"beta"		: 1.0,
-"gamma"		: 1.0,
-"delta"		: 1.0,
-"epsilon"	: 1.0,
-"zeta"		: 1.0,
-"eta"		: 1.0,
-"theta"		: 1.1,
-"iota"		: 1.0,
-"kappa"		: 1.1,
-"lambda"	: 1.0,
-"mu"		: 1.1,
-"nu"		: 1.0,
-"xi"		: 1.1,
-"pi"		: 1.4,
-"rho"		: 1.1,
-"sigma"		: 1.2,
-"tau"		: 1.0,
-"upsilon"	: 1.0,
-"phi"		: 1.2,
-"chi"		: 1.0,
-"psi"		: 1.3,
-"omega"		: 1.4,
-
-"plus"		: 1.4,
-"minus"		: 1.4,
-"times"		: 1.4,
-"equals"	: 1.4,
-"ge"		: 1.4,
-"gt"		: 1.4,
-"le"		: 1.4,
-"lt"		: 1.4,
-
-"hbar"		: 1.0,
+"&alpha;":525,
+"&delta;":483,
+"&epsilon;":412,
+"&sigma;":548,
+"&tau;":411,
+"&phi;":553,
+"&hbar;":500,
+"&beta;":529,
+"&gamma;":407,
+"&zeta;":551,
+"&eta;":496,
+"&theta;":528,
+"&iota;":278,
+"&kappa;":515,
+"&lambda;":433,
+"&mu;":502,
+"&nu;":463,
+"&xi;":511,
+"&rho;":480,
+"&upsilon;":459,
+"&chi;":490,
+"&psi;":668,
+"&omega;":706,
+"&pi;":553,
 };
+function
+emit_delim_width(small_font)
+{
+	var size;
+
+	if (small_font)
+		size = SMALL_FONT_SIZE;
+	else
+		size = FONT_SIZE;
+
+	return symbol_width_tab["&parenleft;"] * WIDTH_RATIO * size;
+}
 function
 emit_denominators(p, n, small_font) // n is number of denominators
 {
@@ -3376,6 +3365,7 @@ emit_double(u, p, small_font) // p is a double
 	else if (s[k] == '-') {
 		k++;
 		emit_roman_symbol(v, "minus", 1);
+		emit_thin_space(v, 1);
 	}
 
 	while (s[k] == '0')
@@ -3408,8 +3398,10 @@ emit_exponent(u, p, small_font)
 function
 emit_expr(u, p, small_font)
 {
-	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p))))
+	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p)))) {
 		emit_roman_symbol(u, "minus", small_font);
+		emit_thin_space(u, small_font);
+	}
 	if (car(p) == symbol(ADD))
 		emit_expr_nib(u, p, small_font);
 	else
@@ -3581,9 +3573,9 @@ emit_indices(u, p, small_font)
 function
 emit_infix_operator(u, s, small_font)
 {
-	emit_space(u, small_font);
+	emit_thick_space(u, small_font);
 	emit_roman_symbol(u, s, small_font);
-	emit_space(u, small_font);
+	emit_thick_space(u, small_font);
 }
 function
 emit_italic_symbol(u, s, small_font)
@@ -3660,12 +3652,16 @@ emit_matrix(u, p, d, k)
 function
 emit_medium_space(u, small_font)
 {
-	var v = {type:SPACE, height:0, depth:0};
+	var size, v, w;
 
 	if (small_font)
-		v.width = SMALL_MEDIUM_SPACE;
+		size = SMALL_FONT_SIZE;
 	else
-		v.width = MEDIUM_SPACE;
+		size = FONT_SIZE;
+
+	w = 1/2 * roman_width_tab['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+
+	v = {type:SPACE, height:0, depth:0, width:w};
 
 	u.a.push(v);
 }
@@ -3829,25 +3825,16 @@ emit_roman_text(u, s, small_font)
 	emit_text(u, s, small_font, 0);
 }
 function
-emit_space(u, small_font)
-{
-	var v = {type:SPACE, height:0, depth:0};
-
-	if (small_font)
-		v.width = WIDTH_RATIO * SMALL_FONT_SIZE;
-	else
-		v.width = WIDTH_RATIO * FONT_SIZE;
-
-	u.a.push(v);
-}
-function
 emit_special_symbol(u, s, small_font, italic_font)
 {
-	var r, size, v;
-
-	r = emit_gtab[s];
+	var size, v, w;
 
 	s = "&" + s + ";";
+
+	w = symbol_width_tab[s];
+
+	if (w == undefined)
+		w = 1000;
 
 	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
 
@@ -3858,7 +3845,7 @@ emit_special_symbol(u, s, small_font, italic_font)
 
 	v.height = HEIGHT_RATIO * size;
 	v.depth = DEPTH_RATIO * size;
-	v.width = r * WIDTH_RATIO * size;
+	v.width = w * WIDTH_RATIO * size;
 
 	u.a.push(v);
 }
@@ -3871,22 +3858,15 @@ function
 emit_subexpr(u, p, small_font)
 {
 	var v = {type:PAREN, a:[], small_font:small_font};
-
 	emit_expr(v, p, small_font);
-
 	emit_update(v);
-
-	if (small_font)
-		v.width += 2 * SMALL_DELIM_WIDTH;
-	else
-		v.width += 2 * DELIM_WIDTH;
-
+	v.width += 2 * emit_delim_width(small_font);
 	u.a.push(v);
 }
 function
 emit_svg(p, x, y)
 {
-	var dx, dy, i, n, size, x1, x2;
+	var dx, dy, i, n, size, w, x1, x2;
 
 	switch (p.type) {
 
@@ -3909,10 +3889,7 @@ emit_svg(p, x, y)
 
 		emit_svg_delims(p, x, y)
 
-		if (p.small_font)
-			x += SMALL_DELIM_WIDTH;
-		else
-			x += DELIM_WIDTH;
+		x += emit_delim_width(p.small_font);
 
 		n = p.a.length;
 
@@ -3983,8 +3960,10 @@ emit_svg(p, x, y)
 		else
 			size = FONT_SIZE;
 
-		x1 = x + THIN_SPACE_RATIO * size;
-		x2 = x + p.width - THIN_SPACE_RATIO * size;
+		w = 1/8 * roman_width_tab['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+
+		x1 = x + w;
+		x2 = x + p.width - w;
 
 		y = y - X_HEIGHT_RATIO * size;
 
@@ -3994,7 +3973,7 @@ emit_svg(p, x, y)
 
 	case TABLE:
 		emit_svg_delims(p, x, y);
-		emit_svg_table(p, x + DELIM_WIDTH, y);
+		emit_svg_table(p, x + emit_delim_width(0), y);
 		break;
 	}
 }
@@ -4024,10 +4003,10 @@ emit_svg_ldelim(p, x, y)
 
 	if (p.small_font) {
 		t = 1;
-		w = SMALL_DELIM_WIDTH
+		w = emit_delim_width(1);
 	} else {
 		t = 2.5;
-		w = DELIM_WIDTH;
+		w = emit_delim_width(0);
 	}
 
 	var x1 = x + w / 2;
@@ -4062,11 +4041,11 @@ emit_svg_parens(p, x, y)
 	if (p.small_font) {
 		h = SMALL_FONT_HEIGHT;
 		d = SMALL_FONT_DEPTH;
-		w = SMALL_DELIM_WIDTH;
+		w = emit_delim_width(1);
 	} else {
 		h = FONT_HEIGHT;
 		d = FONT_DEPTH;
-		w = DELIM_WIDTH;
+		w = emit_delim_width(0);
 	}
 
 	l = {type:TEXT, s:"(", height:h, depth:d, width:w, small_font:p.small_font, italic_font:0};
@@ -4082,10 +4061,10 @@ emit_svg_rdelim(p, x, y)
 
 	if (p.small_font) {
 		t = 1;
-		w = SMALL_DELIM_WIDTH;
+		w = emit_delim_width(1);
 	} else {
 		t = 2.5;
-		w = DELIM_WIDTH;
+		w = emit_delim_width(0);
 	}
 
 	var x1 = x + p.width - w / 2;
@@ -4308,6 +4287,38 @@ emit_text(u, s, small_font, italic_font)
 	}
 }
 function
+emit_thick_space(u, small_font)
+{
+	var size, v, w;
+
+	if (small_font)
+		size = SMALL_FONT_SIZE;
+	else
+		size = FONT_SIZE;
+
+	w = roman_width_tab['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+
+	v = {type:SPACE, height:0, depth:0, width:w};
+
+	u.a.push(v);
+}
+function
+emit_thin_space(u, small_font)
+{
+	var size, v, w;
+
+	if (small_font)
+		size = SMALL_FONT_SIZE;
+	else
+		size = FONT_SIZE;
+
+	w = 1/4 * roman_width_tab['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+
+	v = {type:SPACE, height:0, depth:0, width:w};
+
+	u.a.push(v);
+}
+function
 emit_update(u)
 {
 	var d, h, i, w;
@@ -4329,16 +4340,18 @@ emit_update(u)
 function
 emit_update_fraction(u)
 {
+	var w = roman_width_tab['n'.charCodeAt(0)];
+
 	u.width = Math.max(u.num.width, u.den.width);
 
 	if (u.small_font) {
-		u.height = SMALL_X_HEIGHT + SMALL_VSPACE + u.num.depth + u.num.height;
+		u.height = SMALL_X_HEIGHT + SMALL_VSPACE + u.num.height + u.num.depth;
 		u.depth = -SMALL_X_HEIGHT + SMALL_VSPACE + u.den.height + u.den.depth;
-		u.width += WIDTH_RATIO * SMALL_FONT_SIZE; // extra
+		u.width += w * WIDTH_RATIO * SMALL_FONT_SIZE; // extra
 	} else {
-		u.height = X_HEIGHT + VSPACE + u.num.depth + u.num.height;
+		u.height = X_HEIGHT + VSPACE + u.num.height + u.num.depth;
 		u.depth = -X_HEIGHT + VSPACE + u.den.height + u.den.depth;
-		u.width += WIDTH_RATIO * FONT_SIZE; // extra
+		u.width += w * WIDTH_RATIO * FONT_SIZE; // extra
 	}
 }
 function
@@ -4412,12 +4425,12 @@ emit_update_table(u)
 	for (j = 0; j < m; j++)
 		w += u.a[j].cell_width;
 
-	u.width = w + 2 * DELIM_WIDTH;
+	u.width = w + 2 * emit_delim_width(0); // small_font = 0
 }
 function
 emit_update_text(u)
 {
-	var n, r, size;
+	var n, size, w;
 
 	if (u.small_font)
 		size = SMALL_FONT_SIZE;
@@ -4426,14 +4439,17 @@ emit_update_text(u)
 
 	n = u.s.charCodeAt(0);
 
-	if (n < 128)
-		r = emit_wtab[n];
+	if (u.italic_font)
+		w = italic_width_tab[n];
 	else
-		r = 1.0;
+		w = roman_width_tab[n];
+
+	if (w == undefined)
+		w = 1000;
 
 	u.height = HEIGHT_RATIO * size;
 	u.depth = DEPTH_RATIO * size;
-	u.width = r * WIDTH_RATIO * size;
+	u.width = w * WIDTH_RATIO * size;
 }
 function
 emit_vector(u, p)
