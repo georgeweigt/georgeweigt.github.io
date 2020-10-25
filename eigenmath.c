@@ -1,4 +1,4 @@
-/* October 12, 2020
+/* October 24, 2020
 
 To build and run:
 
@@ -23,7 +23,7 @@ To generate MathJax output:
 
         ./eigenmath --mathjax scriptfilename | tee foo.html
 
-The Eigenmath manual and sample scripts are available at https://eigenmath.github.io
+The Eigenmath manual and sample scripts are available at https://georgeweigt.github.io
 
 
 BSD 2-Clause License
@@ -5822,6 +5822,36 @@ det_nib(void)
 		push(p1->u.tensor->elem[2]);
 		multiply_factors(3);
 		add();
+		return;
+	case 3:
+		push(p1->u.tensor->elem[0]);
+		push(p1->u.tensor->elem[4]);
+		push(p1->u.tensor->elem[8]);
+		multiply_factors(3);
+		push(p1->u.tensor->elem[1]);
+		push(p1->u.tensor->elem[5]);
+		push(p1->u.tensor->elem[6]);
+		multiply_factors(3);
+		push(p1->u.tensor->elem[2]);
+		push(p1->u.tensor->elem[3]);
+		push(p1->u.tensor->elem[7]);
+		multiply_factors(3);
+		push_integer(-1);
+		push(p1->u.tensor->elem[2]);
+		push(p1->u.tensor->elem[4]);
+		push(p1->u.tensor->elem[6]);
+		multiply_factors(4);
+		push_integer(-1);
+		push(p1->u.tensor->elem[1]);
+		push(p1->u.tensor->elem[3]);
+		push(p1->u.tensor->elem[8]);
+		multiply_factors(4);
+		push_integer(-1);
+		push(p1->u.tensor->elem[0]);
+		push(p1->u.tensor->elem[5]);
+		push(p1->u.tensor->elem[7]);
+		multiply_factors(4);
+		add_terms(6);
 		return;
 	}
 	p2 = alloc_matrix(n - 1, n - 1);
