@@ -3137,7 +3137,7 @@ const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
 const FONT_DEPTH = DEPTH_RATIO * FONT_SIZE;
 const SMALL_FONT_DEPTH = DEPTH_RATIO * SMALL_FONT_SIZE;
 
-const MINUS_HEIGHT_RATIO = 434 / 1000; // midpoint of 412 and 457, independent of BASE_RATIO
+const MINUS_HEIGHT_RATIO = 425 / 1000; // independent of BASE_RATIO
 const MINUS_HEIGHT = MINUS_HEIGHT_RATIO * FONT_SIZE;
 const SMALL_MINUS_HEIGHT = MINUS_HEIGHT_RATIO * SMALL_FONT_SIZE;
 
@@ -4020,8 +4020,8 @@ emit_svg_ldelim(u, x, y)
 	var x1 = x + 1/4 * w;
 	var x2 = x + 3/4 * w;
 
-	var y1 = y - u.height + 2 * t;
-	var y2 = y + u.depth - 2 * t;
+	var y1 = y - u.height + 2 * t; // more space below fraction line
+	var y2 = y + u.depth - t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4081,8 +4081,8 @@ emit_svg_rdelim(u, x, y)
 	var x1 = x + u.width - 1/4 * w;
 	var x2 = x + u.width - 3/4 * w;
 
-	var y1 = y - u.height + 2 * t;
-	var y2 = y + u.depth - 2 * t;
+	var y1 = y - u.height + 2 * t; // more space below fraction line
+	var y2 = y + u.depth - t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4354,11 +4354,11 @@ emit_update_fraction(u)
 	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		h = SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH;
+		h = SMALL_MINUS_HEIGHT + 2 * SMALL_STROKE_WIDTH; // more space above fraction line
 		d = -SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH;
 		w = w * SMALL_FONT_SIZE;
 	} else {
-		h = MINUS_HEIGHT + STROKE_WIDTH;
+		h = MINUS_HEIGHT + 2 * STROKE_WIDTH; // more space above fraction line
 		d = -MINUS_HEIGHT + STROKE_WIDTH;
 		w = w * FONT_SIZE;
 	}
