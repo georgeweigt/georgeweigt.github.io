@@ -4020,7 +4020,7 @@ emit_svg_ldelim(u, x, y)
 	var x1 = x + 1/4 * w;
 	var x2 = x + 3/4 * w;
 
-	var y1 = y - u.height + 2 * t; // more space below fraction line
+	var y1 = y - u.height + 2 * t; // glyphs are tighter on the bottom than the top
 	var y2 = y + u.depth - t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
@@ -4081,7 +4081,7 @@ emit_svg_rdelim(u, x, y)
 	var x1 = x + u.width - 1/4 * w;
 	var x2 = x + u.width - 3/4 * w;
 
-	var y1 = y - u.height + 2 * t; // more space below fraction line
+	var y1 = y - u.height + 2 * t; // glyphs are tighter on the bottom than the top
 	var y2 = y + u.depth - t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
@@ -4354,11 +4354,11 @@ emit_update_fraction(u)
 	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		h = SMALL_MINUS_HEIGHT + 2 * SMALL_STROKE_WIDTH; // more space above fraction line
+		h = SMALL_MINUS_HEIGHT + 2 * SMALL_STROKE_WIDTH; // glyphs are tighter on the bottom than the top
 		d = -SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH;
 		w = w * SMALL_FONT_SIZE;
 	} else {
-		h = MINUS_HEIGHT + 2 * STROKE_WIDTH; // more space above fraction line
+		h = MINUS_HEIGHT + 2 * STROKE_WIDTH; // glyphs are tighter on the bottom than the top
 		d = -MINUS_HEIGHT + STROKE_WIDTH;
 		w = w * FONT_SIZE;
 	}
