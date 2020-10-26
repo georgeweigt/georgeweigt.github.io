@@ -3125,11 +3125,11 @@ const TABLE = 7;
 const FONT_SIZE = 20
 const SMALL_FONT_SIZE = 14;
 
-const FONT_RATIO = 1/720;
+const BASE_RATIO = 1.4 / 1000;
 
-const HEIGHT_RATIO = 891 * FONT_RATIO;
-const DEPTH_RATIO = 288 * FONT_RATIO;
-const WIDTH_RATIO = FONT_RATIO;
+const HEIGHT_RATIO = 891 * BASE_RATIO;
+const DEPTH_RATIO = 288 * BASE_RATIO;
+const WIDTH_RATIO = BASE_RATIO;
 
 const FONT_HEIGHT = HEIGHT_RATIO * FONT_SIZE;
 const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
@@ -3610,13 +3610,13 @@ emit_line(p, small_font)
 function
 emit_math()
 {
-	var h, p, w;
+	var h, p, u, w;
 	p = pop();
-	p = emit_line(p, 0);
+	u = emit_line(p, 0);
 	outbuf = "";
-	emit_svg(p, FONT_SIZE / 2, p.height);
-	h = p.height + p.depth;
-	w = p.width + FONT_SIZE;
+	emit_svg(u, FONT_SIZE / 2, u.height);
+	h = u.height + u.depth;
+	w = u.width + FONT_SIZE;
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
 	outbuf = "<p><svg " + h + w + ">\n" + outbuf + "</svg></p>";
@@ -3869,67 +3869,67 @@ emit_subexpr(u, p, small_font)
 	u.a.push(v);
 }
 function
-emit_svg(p, x, y)
+emit_svg(u, x, y)
 {
 	var dx, i, n, size, w, x1, x2;
 
-	switch (p.type) {
+	switch (u.type) {
 
 	case SPACE:
 		break;
 
 	case TEXT:
-		emit_svg_text(p, x, y);
+		emit_svg_text(u, x, y);
 		break;
 
 	case LINE:
-		n = p.a.length;
+		n = u.a.length;
 		for (i = 0; i < n; i++) {
-			emit_svg(p.a[i], x, y);
-			x += p.a[i].width;
+			emit_svg(u.a[i], x, y);
+			x += u.a[i].width;
 		}
 		break;
 
 	case PAREN:
 
-		emit_svg_delims(p, x, y)
+		emit_svg_delims(u, x, y)
 
-		x += emit_delim_width(p.small_font);
+		x += emit_delim_width(u.small_font);
 
-		n = p.a.length;
+		n = u.a.length;
 
 		for (i = 0; i < n; i++) {
-			emit_svg(p.a[i], x, y);
-			x += p.a[i].width;
+			emit_svg(u.a[i], x, y);
+			x += u.a[i].width;
 		}
 
 		break;
 
 	case SUPERSCRIPT:
 
-		y += p.depth; // p.depth is negative
+		y += u.depth; // p.depth is negative
 
-		n = p.a.length;
+		n = u.a.length;
 
 		for (i = 0; i < n; i++) {
-			emit_svg(p.a[i], x, y);
-			x += p.a[i].width;
+			emit_svg(u.a[i], x, y);
+			x += u.a[i].width;
 		}
 
 		break;
 
 	case SUBSCRIPT:
 
-		if (p.small_font)
+		if (u.small_font)
 			y += SMALL_X_HEIGHT;
 		else
 			y += X_HEIGHT;
 
-		n = p.a.length;
+		n = u.a.length;
 
 		for (i = 0; i < n; i++) {
-			emit_svg(p.a[i], x, y);
-			x += p.a[i].width;
+			emit_svg(u.a[i], x, y);
+			x += u.a[i].width;
 		}
 
 		break;
@@ -3938,25 +3938,25 @@ emit_svg(p, x, y)
 
 		// numerator
 
-		dx = (p.width - p.num.width) / 2;
+		dx = (u.width - u.num.width) / 2;
 
 		if (dx < 0)
 			dx = 0;
 
-		emit_svg(p.num, x + dx, y - p.height + p.num.height);
+		emit_svg(u.num, x + dx, y - u.height + u.num.height);
 
 		// denominator
 
-		dx = (p.width - p.den.width) / 2;
+		dx = (u.width - u.den.width) / 2;
 
 		if (dx < 0)
 			dx = 0;
 
-		emit_svg(p.den, x + dx, y + p.depth - p.den.depth);
+		emit_svg(u.den, x + dx, y + u.depth - u.den.depth);
 
 		// line
 
-		if (p.small_font)
+		if (u.small_font)
 			size = SMALL_FONT_SIZE;
 		else
 			size = FONT_SIZE;
@@ -3964,9 +3964,9 @@ emit_svg(p, x, y)
 		w = 1/8 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 		x1 = x + w;
-		x2 = x + p.width - w;
+		x2 = x + u.width - w;
 
-		if (p.small_font) {
+		if (u.small_font) {
 			y -= SMALL_X_HEIGHT;
 			emit_svg_line(x1, y, x2, y, SMALL_STROKE_WIDTH);
 		} else {
@@ -3977,17 +3977,17 @@ emit_svg(p, x, y)
 		break;
 
 	case TABLE:
-		emit_svg_delims(p, x, y);
-		emit_svg_table(p, x + emit_delim_width(0), y);
+		emit_svg_delims(u, x, y);
+		emit_svg_table(u, x + emit_delim_width(0), y);
 		break;
 	}
 }
 function
-emit_svg_delims(p, x, y)
+emit_svg_delims(u, x, y)
 {
 	var h, d;
 
-	if (p.small_font) {
+	if (u.small_font) {
 		h = SMALL_FONT_HEIGHT;
 		d = SMALL_FONT_DEPTH;
 	} else {
@@ -3995,21 +3995,21 @@ emit_svg_delims(p, x, y)
 		d = FONT_DEPTH;
 	}
 
-	if (p.height > h || p.depth > d) {
-		emit_svg_ldelim(p, x, y);
-		emit_svg_rdelim(p, x, y);
+	if (u.height > h || u.depth > d) {
+		emit_svg_ldelim(u, x, y);
+		emit_svg_rdelim(u, x, y);
 	} else
-		emit_svg_parens(p, x, y);
+		emit_svg_parens(u, x, y);
 }
 function
-emit_svg_ldelim(p, x, y)
+emit_svg_ldelim(u, x, y)
 {
 	var t, w;
 
-	if (p.type == TABLE) {
+	if (u.type == TABLE) {
 		t = TABLE_DELIM_STROKE;
 		w = emit_delim_width(0);
-	} else if (p.small_font) {
+	} else if (u.small_font) {
 		t = SMALL_DELIM_STROKE;
 		w = emit_delim_width(1);
 	} else {
@@ -4017,11 +4017,11 @@ emit_svg_ldelim(p, x, y)
 		w = emit_delim_width(0);
 	}
 
-	var x1 = x + w / 2;
-	var x2 = x + w;
+	var x1 = x + 1/4 * w;
+	var x2 = x + 3/4 * w;
 
-	var y1 = y - p.height + 2 * t;
-	var y2 = y + p.depth - 2 * t;
+	var y1 = y - u.height + 2 * t;
+	var y2 = y + u.depth - 2 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4042,11 +4042,11 @@ emit_svg_line(x1, y1, x2, y2, t)
 	outbuf += s;
 }
 function
-emit_svg_parens(p, x, y)
+emit_svg_parens(u, x, y)
 {
 	var d, h, l, r, w;
 
-	if (p.small_font) {
+	if (u.small_font) {
 		h = SMALL_FONT_HEIGHT;
 		d = SMALL_FONT_DEPTH;
 		w = emit_delim_width(1);
@@ -4056,21 +4056,21 @@ emit_svg_parens(p, x, y)
 		w = emit_delim_width(0);
 	}
 
-	l = {type:TEXT, s:"(", height:h, depth:d, width:w, small_font:p.small_font, italic_font:0};
-	r = {type:TEXT, s:")", height:h, depth:d, width:w, small_font:p.small_font, italic_font:0};
+	l = {type:TEXT, s:"(", height:h, depth:d, width:w, small_font:u.small_font, italic_font:0};
+	r = {type:TEXT, s:")", height:h, depth:d, width:w, small_font:u.small_font, italic_font:0};
 
 	emit_svg_text(l, x, y);
-	emit_svg_text(r, x + p.width - w, y);
+	emit_svg_text(r, x + u.width - w, y);
 }
 function
-emit_svg_rdelim(p, x, y)
+emit_svg_rdelim(u, x, y)
 {
 	var t, w;
 
-	if (p.type == TABLE) {
+	if (u.type == TABLE) {
 		t = TABLE_DELIM_STROKE;
 		w = emit_delim_width(0);
-	} else if (p.small_font) {
+	} else if (u.small_font) {
 		t = SMALL_DELIM_STROKE;
 		w = emit_delim_width(1);
 	} else {
@@ -4078,40 +4078,40 @@ emit_svg_rdelim(p, x, y)
 		w = emit_delim_width(0);
 	}
 
-	var x1 = x + p.width - w / 2;
-	var x2 = x + p.width - w;
+	var x1 = x + u.width - 1/4 * w;
+	var x2 = x + u.width - 3/4 * w;
 
-	var y1 = y - p.height + 2 * t;
-	var y2 = y + p.depth - 2 * t;
+	var y1 = y - u.height + 2 * t;
+	var y2 = y + u.depth - 2 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
 	emit_svg_line(x1, y2, x2, y2, t); // bottom segment
 }
 function
-emit_svg_table(p, x, y)
+emit_svg_table(u, x, y)
 {
 	var dx, i, j, m, n, w;
 	var cell_height, cell_depth, cell_width;
 
-	n = p.n; // number of rows
-	m = p.m; // number of columns
+	n = u.n; // number of rows
+	m = u.m; // number of columns
 
-	y -= p.height;
+	y -= u.height;
 
 	for (i = 0; i < n; i++) { // for each row
 
 		dx = 0;
 
-		cell_height = p.a[i * m].cell_height;
-		cell_depth = p.a[i * m].cell_depth;
+		cell_height = u.a[i * m].cell_height;
+		cell_depth = u.a[i * m].cell_depth;
 
 		y += cell_height;
 
 		for (j = 0; j < m; j++) { // for each column
-			cell_width = p.a[j].cell_width;
-			w = p.a[i * m + j].width;
-			emit_svg(p.a[i * m + j], x + dx + (cell_width - w) / 2, y);
+			cell_width = u.a[j].cell_width;
+			w = u.a[i * m + j].width;
+			emit_svg(u.a[i * m + j], x + dx + (cell_width - w) / 2, y);
 			dx += cell_width;
 		}
 
@@ -4119,11 +4119,11 @@ emit_svg_table(p, x, y)
 	}
 }
 function
-emit_svg_text(p, x, y)
+emit_svg_text(u, x, y)
 {
 	var s, t;
 
-	s = p.s;
+	s = u.s;
 
 	if (s == '&')
 		s = "&amp;";
@@ -4132,19 +4132,19 @@ emit_svg_text(p, x, y)
 	else if (s == '>')
 		s = "&gt;";
 
-	x += p.width / 2;
+	x += u.width / 2;
 
 	x = "x='" + x + "'";
 	y = "y='" + y + "'";
 
 	t = "<text style='text-anchor:middle;font-family:\"Times New Roman\";";
 
-	if (p.small_font)
+	if (u.small_font)
 		t += "font-size:14pt;";
 	else
 		t += "font-size:20pt;";
 
-	if (p.italic_font)
+	if (u.italic_font)
 		t += "font-style:italic;";
 
 	t += "'" + x + y + ">" + s + "</text>\n";
@@ -4351,7 +4351,7 @@ emit_update_fraction(u)
 {
 	var d, h, w;
 
-	w = roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
+	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
 		h = SMALL_X_HEIGHT + SMALL_STROKE_WIDTH / 2;
