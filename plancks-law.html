@@ -24,14 +24,15 @@ k = 1.38064852 10^(-23) joule/kelvin
 
 B(nu) = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
 
--- f cancels physical units so B(nu) can be drawn
+-- y cancels physical units so B(nu) can be drawn
 
-f = B(nu hertz) meter^2 / joule
+y = B(x hertz) meter^2 / joule
+y
 
 xrange = (0,10^15)
 yrange = (0,10^(-8))
 
-draw(f,nu)
+draw(y,x)
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
