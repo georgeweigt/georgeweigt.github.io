@@ -3139,9 +3139,13 @@ const X_HEIGHT_RATIO = 0.42;
 const X_HEIGHT = X_HEIGHT_RATIO * FONT_SIZE;
 const SMALL_X_HEIGHT = X_HEIGHT_RATIO * SMALL_FONT_SIZE;
 
-const SMALL_STROKE_WIDTH = 1;
 const STROKE_WIDTH = 1.5;
+const SMALL_STROKE_WIDTH = 1;
  
+const DELIM_STROKE = 1.5;
+const SMALL_DELIM_STROKE = 1;
+const TABLE_DELIM_STROKE = 2.5;
+
 const TABLE_HSPACE = 0.6 * FONT_SIZE;
 const TABLE_VSPACE = 0.2 * FONT_SIZE;
 
@@ -3712,11 +3716,12 @@ emit_numeric_exponent(u, p, small_font) // p is rational or double, sign is not 
 	var v = {type:SUPERSCRIPT, a:[], small_font:small_font};
 
 	if (isrational(p)) {
-		emit_roman_text(v, Math.abs(p.a).toFixed(0), 1);
-		if (p.b != 1) {
-			emit_roman_text(v, "/", 1);
-			emit_roman_text(v, p.b.toFixed(0), 1);
-		}
+		emit_rational(v, p, 1);
+//		emit_roman_text(v, Math.abs(p.a).toFixed(0), 1);
+//		if (p.b != 1) {
+//			emit_roman_text(v, "/", 1);
+//			emit_roman_text(v, p.b.toFixed(0), 1);
+//		}
 	} else
 		emit_double(v, p, 1);
 
@@ -3999,11 +4004,14 @@ emit_svg_ldelim(p, x, y)
 {
 	var t, w;
 
-	if (p.small_font) {
-		t = 1;
+	if (p.type == TABLE) {
+		t = TABLE_DELIM_STROKE;
+		w = emit_delim_width(0);
+	} else if (p.small_font) {
+		t = SMALL_DELIM_STROKE;
 		w = emit_delim_width(1);
 	} else {
-		t = 2.5;
+		t = DELIM_STROKE;
 		w = emit_delim_width(0);
 	}
 
@@ -4057,11 +4065,14 @@ emit_svg_rdelim(p, x, y)
 {
 	var t, w;
 
-	if (p.small_font) {
-		t = 1;
+	if (p.type == TABLE) {
+		t = TABLE_DELIM_STROKE;
+		w = emit_delim_width(0);
+	} else if (p.small_font) {
+		t = SMALL_DELIM_STROKE;
 		w = emit_delim_width(1);
 	} else {
-		t = 2.5;
+		t = DELIM_STROKE;
 		w = emit_delim_width(0);
 	}
 
