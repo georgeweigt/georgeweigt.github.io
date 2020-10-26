@@ -3137,9 +3137,9 @@ const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
 const FONT_DEPTH = DEPTH_RATIO * FONT_SIZE;
 const SMALL_FONT_DEPTH = DEPTH_RATIO * SMALL_FONT_SIZE;
 
-const X_HEIGHT_RATIO = 0.42;
-const X_HEIGHT = X_HEIGHT_RATIO * FONT_SIZE;
-const SMALL_X_HEIGHT = X_HEIGHT_RATIO * SMALL_FONT_SIZE;
+const MINUS_HEIGHT_RATIO = 434 / 1000;
+const MINUS_HEIGHT = MINUS_HEIGHT_RATIO * FONT_SIZE;
+const SMALL_MINUS_HEIGHT = MINUS_HEIGHT_RATIO * SMALL_FONT_SIZE;
 
 const STROKE_WIDTH = 1.5;
 const SMALL_STROKE_WIDTH = 1;
@@ -3921,9 +3921,9 @@ emit_svg(u, x, y)
 	case SUBSCRIPT:
 
 		if (u.small_font)
-			y += SMALL_X_HEIGHT;
+			y += SMALL_MINUS_HEIGHT;
 		else
-			y += X_HEIGHT;
+			y += MINUS_HEIGHT;
 
 		n = u.a.length;
 
@@ -3967,10 +3967,10 @@ emit_svg(u, x, y)
 		x2 = x + u.width - w;
 
 		if (u.small_font) {
-			y -= SMALL_X_HEIGHT;
+			y -= SMALL_MINUS_HEIGHT;
 			emit_svg_line(x1, y, x2, y, SMALL_STROKE_WIDTH);
 		} else {
-			y -= X_HEIGHT;
+			y -= MINUS_HEIGHT;
 			emit_svg_line(x1, y, x2, y, STROKE_WIDTH);
 		}
 
@@ -4206,11 +4206,11 @@ emit_symbol(u, p, small_font)
 	emit_update(v);
 
 	if (small_font) {
-		v.height -= SMALL_X_HEIGHT;
-		v.depth += SMALL_X_HEIGHT;
+		v.height -= SMALL_MINUS_HEIGHT;
+		v.depth += SMALL_MINUS_HEIGHT;
 	} else {
-		v.height -= X_HEIGHT;
-		v.depth += X_HEIGHT;
+		v.height -= MINUS_HEIGHT;
+		v.depth += MINUS_HEIGHT;
 	}
 
 	u.a.push(v);
@@ -4354,12 +4354,12 @@ emit_update_fraction(u)
 	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		h = SMALL_X_HEIGHT + SMALL_STROKE_WIDTH / 2;
-		d = -SMALL_X_HEIGHT + SMALL_STROKE_WIDTH / 2;
+		h = SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH / 2;
+		d = -SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH / 2;
 		w = w * SMALL_FONT_SIZE;
 	} else {
-		h = X_HEIGHT + STROKE_WIDTH / 2;
-		d = -X_HEIGHT + STROKE_WIDTH / 2;
+		h = MINUS_HEIGHT + STROKE_WIDTH / 2;
+		d = -MINUS_HEIGHT + STROKE_WIDTH / 2;
 		w = w * FONT_SIZE;
 	}
 
@@ -4377,11 +4377,11 @@ emit_update_superscript(u, h) // h is height of neighbor
 	// move above baseline
 
 	if (u.small_font) {
-		u.height = u.height + u.depth + SMALL_X_HEIGHT;
-		u.depth = -u.depth - SMALL_X_HEIGHT;
+		u.height = u.height + u.depth + SMALL_MINUS_HEIGHT;
+		u.depth = -u.depth - SMALL_MINUS_HEIGHT;
 	} else {
-		u.height = u.height + u.depth + X_HEIGHT;
-		u.depth = -u.depth - X_HEIGHT;
+		u.height = u.height + u.depth + MINUS_HEIGHT;
+		u.depth = -u.depth - MINUS_HEIGHT;
 	}
 
 	d = h - u.height;
@@ -4428,7 +4428,7 @@ emit_update_table(u)
 	for (i = 0; i < n; i++) // for each row
 		h += u.a[i * m].cell_height + u.a[i * m].cell_depth;
 
-	u.height = h / 2 + X_HEIGHT;
+	u.height = h / 2 + MINUS_HEIGHT;
 	u.depth = h - u.height;
 
 	// table width
