@@ -3608,37 +3608,28 @@ emit_line(p, small_font)
 function
 emit_math()
 {
-	var h, p, u, w;
+	var h, p, u, w, x, y;
+
 	p = pop();
 	u = emit_line(p, 0);
+
 	outbuf = "";
-	emit_svg(u, FONT_SIZE / 2, u.height);
-/*
-	// bounding box
 
-	var x = 0;
-	var y = 0;
+	x = FONT_SIZE / 2;
+	y = u.height;
 
-	var x2 = u.width + FONT_SIZE;
-	var y2 = u.height + u.depth;
+	emit_svg(u, x, y);
 
-	h = y2 - y;
-	w = x2 - x;
+	// emit_svg_bbox(x, y, u.height, u.depth, u.width);
 
-	x = "x='" + x + "'";
-	y = "y='" + y + "'";
-
-	h = "height='" + h + "'";
-	w = "width='" + w + "'";
-
-	outbuf += "<rect " + x + y + h + w + "style='fill:none;stroke:black;stroke-width:1'/>";
-*/
 	h = u.height + u.depth;
 	w = u.width + FONT_SIZE;
+
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
 
 	outbuf = "<p><svg " + h + w + ">\n" + outbuf + "</svg></p>";
+
 	stdout.innerHTML += outbuf;
 }
 function
@@ -3993,6 +3984,16 @@ emit_svg(u, x, y)
 		emit_svg_table(u, x + emit_delim_width(0), y);
 		break;
 	}
+}
+/* exported emit_svg_bbox */
+
+function
+emit_svg_bbox(x, y, h, d, w)
+{
+	emit_svg_line(x, y - h, x + w, y - h, 1);	// top
+	emit_svg_line(x, y + d, x + w, y + d, 1);	// bottom
+	emit_svg_line(x, y - h, x, y + d, 1);		// left
+	emit_svg_line(x + w, y - h, x + w, y + d, 1);	// right
 }
 function
 emit_svg_delims(u, x, y)
