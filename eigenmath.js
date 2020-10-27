@@ -3869,7 +3869,7 @@ emit_subexpr(u, p, small_font)
 function
 emit_svg(u, x, y)
 {
-	var dx, i, n, size, w, x1, x2;
+	var dx, i, n, x1, x2;
 
 	switch (u.type) {
 
@@ -3954,15 +3954,8 @@ emit_svg(u, x, y)
 
 		// line
 
-		if (u.small_font)
-			size = SMALL_FONT_SIZE;
-		else
-			size = FONT_SIZE;
-
-		w = 0.125 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
-
-		x1 = x + w;
-		x2 = x + u.width - w;
+		x1 = x;
+		x2 = x + u.width;
 
 		if (u.small_font) {
 			y -= SMALL_MINUS_HEIGHT;
@@ -4347,7 +4340,7 @@ emit_update_fraction(u)
 {
 	var d, h, w;
 
-	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
+	w = 0.5 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
 		h = 1.5 * SMALL_STROKE_WIDTH + SMALL_MINUS_HEIGHT;
