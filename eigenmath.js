@@ -3125,11 +3125,9 @@ const TABLE = 7;
 const FONT_SIZE = 20
 const SMALL_FONT_SIZE = 14;
 
-const BASE_RATIO = 1.4 / 1000;
-
-const HEIGHT_RATIO = 891 * BASE_RATIO; // from Times_New_Roman.afm
-const DEPTH_RATIO = 216 * BASE_RATIO; // from Times_New_Roman.afm
-const WIDTH_RATIO = BASE_RATIO;
+const HEIGHT_RATIO = 1.25;
+const DEPTH_RATIO = 0.35;
+const WIDTH_RATIO = 0.0014;
 
 const FONT_HEIGHT = HEIGHT_RATIO * FONT_SIZE;
 const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
@@ -3164,7 +3162,7 @@ const roman_width = [
 723,333,404,751,611,889,729,722,
 556,722,697,556,611,732,731,957,
 731,729,611,333,301,333,472,530,
-333,463,500,444,523,444,456,503,
+333,463,500,444,523,444,425/*456*/,503,
 515,278,278,527,278,794,517,500,
 500,521,360,389,300,520,512,734,
 509,515,449,480,200,480,563,778,
@@ -3663,7 +3661,7 @@ emit_medium_space(u, small_font)
 	else
 		size = FONT_SIZE;
 
-	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+	w = 0.5 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 	v = {type:SPACE, height:0, depth:0, width:w};
 
@@ -3961,7 +3959,7 @@ emit_svg(u, x, y)
 		else
 			size = FONT_SIZE;
 
-		w = 1/8 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+		w = 0.125 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 		x1 = x + w;
 		x2 = x + u.width - w;
@@ -4017,11 +4015,11 @@ emit_svg_ldelim(u, x, y)
 		w = emit_delim_width(0);
 	}
 
-	var x1 = x + 1/4 * w;
-	var x2 = x + 3/4 * w;
+	var x1 = x + 0.25 * w;
+	var x2 = x + 0.75 * w;
 
-	var y1 = y - u.height + 2 * t; // glyphs are tighter on the bottom than the top
-	var y2 = y + u.depth - t;
+	var y1 = y - u.height + 0.5 * t;
+	var y2 = y + u.depth - 0.5 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4078,11 +4076,11 @@ emit_svg_rdelim(u, x, y)
 		w = emit_delim_width(0);
 	}
 
-	var x1 = x + u.width - 1/4 * w;
-	var x2 = x + u.width - 3/4 * w;
+	var x1 = x + u.width - 0.25 * w;
+	var x2 = x + u.width - 0.75 * w;
 
-	var y1 = y - u.height + 2 * t; // glyphs are tighter on the bottom than the top
-	var y2 = y + u.depth - t;
+	var y1 = y - u.height + 0.5 * t;
+	var y2 = y + u.depth - 0.5 * t;
 
 	emit_svg_line(x1, y1, x1, y2, t); // stem
 	emit_svg_line(x1, y1, x2, y1, t); // top segment
@@ -4319,7 +4317,7 @@ emit_thin_space(u, small_font)
 	else
 		size = FONT_SIZE;
 
-	w = 1/4 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
+	w = 0.25 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO * size;
 
 	v = {type:SPACE, height:0, depth:0, width:w};
 
@@ -4352,12 +4350,12 @@ emit_update_fraction(u)
 	w = 1/2 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		h = SMALL_MINUS_HEIGHT + 2 * SMALL_STROKE_WIDTH; // glyphs are tighter on the bottom than the top
-		d = -SMALL_MINUS_HEIGHT + SMALL_STROKE_WIDTH;
+		h = 1.5 * SMALL_STROKE_WIDTH + SMALL_MINUS_HEIGHT;
+		d = 1.5 * SMALL_STROKE_WIDTH - SMALL_MINUS_HEIGHT;
 		w = w * SMALL_FONT_SIZE;
 	} else {
-		h = MINUS_HEIGHT + 2 * STROKE_WIDTH; // glyphs are tighter on the bottom than the top
-		d = -MINUS_HEIGHT + STROKE_WIDTH;
+		h = 1.5 * STROKE_WIDTH + MINUS_HEIGHT;
+		d = 1.5 * STROKE_WIDTH - MINUS_HEIGHT;
 		w = w * FONT_SIZE;
 	}
 
