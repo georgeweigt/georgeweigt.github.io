@@ -3187,14 +3187,54 @@ const italic_width = [
 460,461,413,536,275,400,563,778,
 ];
 
-const emit_stab = [
-	"Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota",
-	"Kappa","Lambda","Mu","Nu","Xi","Pi","Rho","Sigma","Tau","Upsilon",
-	"Phi","Chi","Psi","Omega",
-	"alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota",
-	"kappa","lambda","mu","nu","xi","pi","rho","sigma","tau","upsilon",
-	"phi","chi","psi","omega",
-	"hbar",
+const glyph_names = [
+"Alpha",
+"Beta",
+"Gamma",
+"Delta",
+"Epsilon",
+"Zeta",
+"Eta",
+"Theta",
+"Iota",
+"Kappa",
+"Lambda",
+"Mu",
+"Nu",
+"Xi",
+"Pi",
+"Rho",
+"Sigma",
+"Tau",
+"Upsilon",
+"Phi",
+"Chi",
+"Psi",
+"Omega",
+"alpha",
+"beta",
+"gamma",
+"delta",
+"epsilon",
+"zeta",
+"eta",
+"theta",
+"iota",
+"kappa",
+"lambda",
+"mu",
+"nu",
+"xi",
+"pi",
+"rho",
+"sigma",
+"tau",
+"upsilon",
+"phi",
+"chi",
+"psi",
+"omega",
+"hbar",
 ];
 
 const glyph_info = {
@@ -4209,9 +4249,9 @@ function
 emit_symbol_scan(s, k)
 {
 	var i, n, t;
-	n = emit_stab.length;
+	n = glyph_names.length;
 	for (i = 0; i < n; i++) {
-		t = emit_stab[i];
+		t = glyph_names[i];
 		if (s.startsWith(t, k))
 			return t.length;
 	}
