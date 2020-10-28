@@ -3197,64 +3197,64 @@ const emit_stab = [
 	"hbar",
 ];
 
-const symbol_width = {
-"&parenleft;":333,
-"&parenright;":333,
-"&plus;":565,
-"&lt;":565,
-"&equals;":566,
-"&gt;":564,
-"&le;":558,
-"&ge;":558,
-"&times;":565/*823*/,
-"&minus;":565,
-"&Gamma;":578,
-"&Theta;":722,
-"&Phi;":731,
-"&Alpha;":732,
-"&Beta;":667,
-"&Delta;":643,
-"&Epsilon;":611,
-"&Zeta;":611,
-"&Eta;":723,
-"&Iota;":333,
-"&Kappa;":751,
-"&Lambda;":736,
-"&Mu;":889,
-"&Nu;":729,
-"&Xi;":643,
-"&Pi;":725,
-"&Rho;":556,
-"&Sigma;":582,
-"&Tau;":611,
-"&Upsilon;":729,
-"&Chi;":731,
-"&Psi;":748,
-"&Omega;":743,
-"&alpha;":525,
-"&delta;":483,
-"&epsilon;":412,
-"&sigma;":548,
-"&tau;":411,
-"&phi;":553,
-"&hbar;":575/*515*/,
-"&beta;":529,
-"&gamma;":407,
-"&zeta;":551,
-"&eta;":496,
-"&theta;":528,
-"&iota;":278,
-"&kappa;":515,
-"&lambda;":433,
-"&mu;":502,
-"&nu;":463,
-"&xi;":511,
-"&rho;":480,
-"&upsilon;":459,
-"&chi;":490,
-"&psi;":668,
-"&omega;":706,
-"&pi;":553,
+const glyph_info = {
+"&parenleft;":	{width:333,	italic_font:0},
+"&parenright;":	{width:333,	italic_font:0},
+"&plus;":	{width:565,	italic_font:0},
+"&lt;":		{width:565,	italic_font:0},
+"&equals;":	{width:566,	italic_font:0},
+"&gt;":		{width:564,	italic_font:0},
+"&le;":		{width:558,	italic_font:0},
+"&ge;":		{width:558,	italic_font:0},
+"&times;":	{width:565/*823*/,	italic_font:0},
+"&minus;":	{width:565,	italic_font:0},
+"&Gamma;":	{width:578,	italic_font:0},
+"&Theta;":	{width:722,	italic_font:0},
+"&Phi;":	{width:731,	italic_font:0},
+"&Alpha;":	{width:732,	italic_font:0},
+"&Beta;":	{width:667,	italic_font:0},
+"&Delta;":	{width:643,	italic_font:0},
+"&Epsilon;":	{width:611,	italic_font:0},
+"&Zeta;":	{width:611,	italic_font:0},
+"&Eta;":	{width:723,	italic_font:0},
+"&Iota;":	{width:333,	italic_font:0},
+"&Kappa;":	{width:751,	italic_font:0},
+"&Lambda;":	{width:736,	italic_font:0},
+"&Mu;":		{width:889,	italic_font:0},
+"&Nu;":		{width:729,	italic_font:0},
+"&Xi;":		{width:643,	italic_font:0},
+"&Pi;":		{width:725,	italic_font:0},
+"&Rho;":	{width:556,	italic_font:0},
+"&Sigma;":	{width:582,	italic_font:0},
+"&Tau;":	{width:611,	italic_font:0},
+"&Upsilon;":	{width:729,	italic_font:0},
+"&Chi;":	{width:731,	italic_font:0},
+"&Psi;":	{width:748,	italic_font:0},
+"&Omega;":	{width:743,	italic_font:0},
+"&alpha;":	{width:525,	italic_font:1},
+"&delta;":	{width:483,	italic_font:1},
+"&epsilon;":	{width:412,	italic_font:1},
+"&sigma;":	{width:548,	italic_font:1},
+"&tau;":	{width:411,	italic_font:1},
+"&phi;":	{width:553,	italic_font:1},
+"&beta;":	{width:529,	italic_font:1},
+"&gamma;":	{width:407,	italic_font:1},
+"&zeta;":	{width:551,	italic_font:1},
+"&eta;":	{width:496,	italic_font:1},
+"&theta;":	{width:528,	italic_font:1},
+"&iota;":	{width:278,	italic_font:1},
+"&kappa;":	{width:515,	italic_font:1},
+"&lambda;":	{width:433,	italic_font:1},
+"&mu;":		{width:502,	italic_font:1},
+"&nu;":		{width:463,	italic_font:1},
+"&xi;":		{width:511,	italic_font:1},
+"&rho;":	{width:480,	italic_font:1},
+"&upsilon;":	{width:459,	italic_font:1},
+"&chi;":	{width:490,	italic_font:1},
+"&psi;":	{width:668,	italic_font:1},
+"&omega;":	{width:706,	italic_font:1},
+"&pi;":		{width:553,	italic_font:1},
+"&hbar;":	{width:575/*515*/,	italic_font:0},
 };
 function
 emit_delim_width(small_font)
@@ -3266,7 +3266,7 @@ emit_delim_width(small_font)
 	else
 		size = FONT_SIZE;
 
-	return symbol_width["&parenleft;"] * WIDTH_RATIO * size;
+	return glyph_info["&parenleft;"].width * WIDTH_RATIO * size;
 }
 function
 emit_denominators(p, n, small_font) // n is number of denominators
@@ -3355,7 +3355,7 @@ emit_double(u, p, small_font) // p is a double
 
 	k++;
 
-	emit_roman_symbol(u, "times", small_font);
+	emit_glyph(u, "times", small_font);
 
 	emit_roman_text(u, "10", small_font);
 
@@ -3365,7 +3365,7 @@ emit_double(u, p, small_font) // p is a double
 		k++;
 	else if (s[k] == '-') {
 		k++;
-		emit_roman_symbol(v, "minus", 1);
+		emit_glyph(v, "minus", 1);
 		emit_thin_space(v, 1);
 	}
 
@@ -3400,7 +3400,7 @@ function
 emit_expr(u, p, small_font)
 {
 	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p)))) {
-		emit_roman_symbol(u, "minus", small_font);
+		emit_glyph(u, "minus", small_font);
 		emit_thin_space(u, small_font);
 	}
 	if (car(p) == symbol(ADD))
@@ -3553,6 +3553,30 @@ emit_function(u, p, small_font)
 	emit_args(u, p, small_font);
 }
 function
+emit_glyph(u, s, small_font)
+{
+	var italic_font, size, v, width;
+
+	s = "&" + s + ";";
+
+	width = glyph_info[s].width;
+
+	italic_font = glyph_info[s].italic_font;
+
+	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
+
+	if (small_font)
+		size = SMALL_FONT_SIZE;
+	else
+		size = FONT_SIZE;
+
+	v.height = HEIGHT_RATIO * size;
+	v.depth = DEPTH_RATIO * size;
+	v.width = width * WIDTH_RATIO * size;
+
+	u.a.push(v);
+}
+function
 emit_indices(u, p, small_font)
 {
 	emit_roman_text(u, "[", small_font);
@@ -3575,13 +3599,8 @@ function
 emit_infix_operator(u, s, small_font)
 {
 	emit_thick_space(u, small_font);
-	emit_roman_symbol(u, s, small_font);
+	emit_glyph(u, s, small_font);
 	emit_thick_space(u, small_font);
-}
-function
-emit_italic_symbol(u, s, small_font)
-{
-	emit_special_symbol(u, s, small_font, 1);
 }
 function
 emit_italic_text(u, s, small_font)
@@ -3824,39 +3843,9 @@ emit_reciprocal(u, p, small_font) // p = y^x where x is a negative number
 	u.a.push(v);
 }
 function
-emit_roman_symbol(u, s, small_font)
-{
-	emit_special_symbol(u, s, small_font, 0);
-}
-function
 emit_roman_text(u, s, small_font)
 {
 	emit_text(u, s, small_font, 0);
-}
-function
-emit_special_symbol(u, s, small_font, italic_font)
-{
-	var size, v, w;
-
-	s = "&" + s + ";";
-
-	w = symbol_width[s];
-
-	if (w == undefined)
-		w = 1000;
-
-	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
-
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
-		size = FONT_SIZE;
-
-	v.height = HEIGHT_RATIO * size;
-	v.depth = DEPTH_RATIO * size;
-	v.width = w * WIDTH_RATIO * size;
-
-	u.a.push(v);
 }
 function
 emit_string(u, p, small_font)
@@ -4177,10 +4166,8 @@ emit_symbol(u, p, small_font)
 
 	if (n == 1)
 		emit_italic_text(u, s[0], small_font);
-	else if ((s[0] >= 'A' && s[0] <= 'Z') || s.startsWith("hbar"))
-		emit_roman_symbol(u, s.substring(0, n), small_font);
 	else
-		emit_italic_symbol(u, s.substring(0, n), small_font);
+		emit_glyph(u, s.substring(0, n), small_font);
 
 	if (n == s.length)
 		return;
@@ -4200,10 +4187,8 @@ emit_symbol(u, p, small_font)
 				emit_roman_text(v, s[k], 1);
 			else
 				emit_italic_text(v, s[k], 1);
-		} else if (s[k] >= 'A' && s[k] <= 'Z')
-			emit_roman_symbol(v, s.substring(k, k + n), 1);
-		else
-			emit_italic_symbol(v, s.substring(k, k + n), 1);
+		} else
+			emit_glyph(v, s.substring(k, k + n), 1);
 
 		k += n;
 	}
