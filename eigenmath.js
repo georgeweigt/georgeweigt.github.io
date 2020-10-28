@@ -7399,14 +7399,14 @@ inv()
 	divide();
 }
 function
-isalnum(c)
+isalnum(s)
 {
-	return isalpha(c) || isdigit(c);
+	return isalpha(s) || isdigit(s);
 }
 function
-isalpha(c)
+isalpha(s)
 {
-	return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+	return s.length == 1 && ((s >= 'A' && s <= 'Z') || (s >= 'a' && s <= 'z'));
 }
 function
 iscomplexnumber(p)
@@ -7422,9 +7422,9 @@ iscons(p)
 		return 0;
 }
 function
-isdigit(c)
+isdigit(s)
 {
-	return c >= '0' && c <= '9';
+	return s.length == 1 && s >= '0' && s <= '9';
 }
 function
 isdouble(p)
