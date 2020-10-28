@@ -3231,14 +3231,13 @@ const symbol_width = {
 "&Chi;":731,
 "&Psi;":748,
 "&Omega;":743,
-
 "&alpha;":525,
 "&delta;":483,
 "&epsilon;":412,
 "&sigma;":548,
 "&tau;":411,
 "&phi;":553,
-"&hbar;":500,
+"&hbar;":575/*515*/,
 "&beta;":529,
 "&gamma;":407,
 "&zeta;":551,
@@ -4178,7 +4177,7 @@ emit_symbol(u, p, small_font)
 
 	if (n == 1)
 		emit_italic_text(u, s[0], small_font);
-	else if (s[0] >= 'A' && s[0] <= 'Z')
+	else if ((s[0] >= 'A' && s[0] <= 'Z') || s.startsWith("hbar"))
 		emit_roman_symbol(u, s.substring(0, n), small_font);
 	else
 		emit_italic_symbol(u, s.substring(0, n), small_font);
