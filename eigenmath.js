@@ -5753,15 +5753,20 @@ eval_transpose(p1)
 		return;
 	}
 
-	push(car(p1));
-	evalf();
-	n = pop_integer();
+	while (iscons(p1)) {
 
-	push(cadr(p1));
-	evalf();
-	m = pop_integer();
+		push(car(p1));
+		evalf();
+		n = pop_integer();
 
-	transpose(n, m);
+		push(cadr(p1));
+		evalf();
+		m = pop_integer();
+
+		transpose(n, m);
+
+		p1 = cddr(p1);
+	}
 }
 function
 eval_unit(p1)

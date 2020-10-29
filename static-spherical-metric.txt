@@ -1,4 +1,6 @@
--- www.eigenmath.org/static-spherical-metric.txt
+-- eigenmath.org/static-spherical-metric.txt
+
+-- gdd is the metric tensor
 
 gdd = ((-exp(2*Phi(r)),                0,   0,                0),
        (             0, exp(2*Lambda(r)),   0,                0),
@@ -26,9 +28,9 @@ gddd = d(gdd,X)
 
 -- Transpose indices to match abc.
 
-GAMDDD = 1/2 * (gddd +              -- indices are already in correct order
-transpose(gddd,2,3) -               -- transpose c and b
-transpose(transpose(gddd,2,3),1,2)) -- transpose c and a, then b and a
+GAMDDD = 1/2 * (gddd +      -- indices are already in correct order
+transpose(gddd,2,3) -       -- transpose c and b
+transpose(gddd,2,3,1,2))    -- transpose c and a, then b and a
 
 -- Raise first index.
 --
@@ -62,10 +64,10 @@ T2 = dot(transpose(GAMUDD,2,3),GAMUDD)
 
 -- Now put it all together. Transpose indices to match abcd.
 
-RUDDD = transpose(T1,3,4) -             -- transpose d and c
-  T1 +                                  -- already in correct order
-  transpose(T2,2,3) -                   -- transpose c and b
-  transpose(transpose(T2,2,3),3,4)      -- transpose d and b, then d and c
+RUDDD = transpose(T1,3,4) -       -- transpose d and c
+  T1 +                            -- already in correct order
+  transpose(T2,2,3) -             -- transpose c and b
+  transpose(T2,2,3,3,4)           -- transpose d and b, then d and c
 
 -- Step 4: Calculate the Ricci tensor. ("Gravitation" by MTW p. 343)
 --
@@ -107,11 +109,18 @@ Gthetatheta = r^2 * exp(-2*Lambda(r)) * (
 
 Gphiphi = Gthetatheta * sin(theta)^2
 
+"Non-zero components of Einstein tensor"
+
+Gtt
+Grr
+Gthetatheta
+Gphiphi
+
 T = ((Gtt,   0,           0,       0),
      (  0, Grr,           0,       0),
      (  0,   0, Gthetatheta,       0),
      (  0,   0,           0, Gphiphi))
 
--- GDD minus T should be zero
+"Check (1=ok)"
 
-GDD - T
+GDD == T

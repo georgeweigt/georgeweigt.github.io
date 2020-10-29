@@ -1,3 +1,12 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+<script src="eigenmath.js"></script>
+</head>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- eigenmath.org/schwarzchild-metric.txt
 
 -- gdd is the metric tensor
@@ -104,3 +113,11 @@ F(r) = 1 - 2 M/r
 "Verify that GDD vanishes for F(r) = 1 - 2 M/r"
 
 GDD == 0
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
