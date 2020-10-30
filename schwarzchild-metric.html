@@ -104,15 +104,16 @@ R = contract(dot(guu,transpose(RDD)))
 GDD = RDD - 1/2 * gdd * R
 
 "Einstein tensor"
+
 GDD
 
--- Define F(r) and simplify.
+"Verify that Einstein tensor vanishes for Schwarzchild metric"
 
 F(r) = 1 - 2 M/r
+F
 
-"Verify that GDD vanishes for F(r) = 1 - 2 M/r"
-
-GDD == 0
+GDD = rationalize(GDD) -- rationalize to simplify
+GDD
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
