@@ -11718,7 +11718,6 @@ const T_END = 1010;
 
 var scan_mode;
 var instring;
-var scan_length;
 var scan_index;
 var scan_level;
 var token;
@@ -11743,8 +11742,6 @@ function
 scan_nib(s, k)
 {
 	instring = s;
-
-	scan_length = s.length;
 	scan_index = k;
 	scan_level = 0;
 
@@ -12078,36 +12075,37 @@ get_token_nib()
 
 	// skip spaces
 
-	while (scan_index < scan_length && (inchar(scan_index) == "\t" || inchar(scan_index) == " "))
+	while (inchar() == "\t" || inchar() == " ")
 		scan_index++;
+
+	c = inchar();
 
 	token_index = scan_index;
 
-	// end of string?
+	// end of input?
 
-	if (scan_index == scan_length) {
+	if (c == "") {
 		token = T_END;
 		return;
 	}
 
-	c = inchar(scan_index);
+	scan_index++;
 
 	// newline?
 
 	if (c == "\n") {
-		scan_index++;
 		token = T_NEWLINE;
 		return;
 	}
 
 	// comment?
 
-	if (c == "#" || (c == "-" && scan_index < scan_length - 1 && inchar(scan_index + 1) == "-")) {
+	if (c == "#" || (c == "-" && inchar() == "-")) {
 
-		while (scan_index < scan_length && inchar(scan_index) != "\n")
+		while (inchar() != "" && inchar() != "\n")
 			scan_index++;
 
-		if (scan_index < scan_length)
+		if (inchar() != "")
 			scan_index++;
 
 		token = T_NEWLINE;
@@ -12119,14 +12117,14 @@ get_token_nib()
 
 	if (isdigit(c) || c == ".") {
 
-		while (scan_index < scan_length && isdigit(inchar(scan_index)))
+		while (isdigit(inchar()))
 			scan_index++;
 
-		if (scan_index < scan_length && inchar(scan_index) == ".") {
+		if (inchar() == ".") {
 
 			scan_index++;
 
-			while (scan_index < scan_length && isdigit(inchar(scan_index)))
+			while (isdigit(inchar()))
 				scan_index++;
 
 			if (scan_index - token_index == 1)
@@ -12145,10 +12143,10 @@ get_token_nib()
 
 	if (isalpha(c)) {
 
-		while (scan_index < scan_length && isalnum(inchar(scan_index)))
+		while (isalnum(inchar()))
 			scan_index++;
 
-		if (scan_index < scan_length && inchar(scan_index) == "(")
+		if (inchar() == "(")
 			token = T_FUNCTION;
 		else
 			token = T_SYMBOL;
@@ -12161,13 +12159,11 @@ get_token_nib()
 	// string ?
 
 	if (c == "\"") {
-		scan_index++;
-		while (scan_index < scan_length && inchar(scan_index) != "\"") {
-			if (scan_index == scan_length || inchar(scan_index) == "\n") {
-				token_index = scan_index;
-				scan_error("runaway string");
-			}
+		while (inchar() != "" && inchar() != "\n" && inchar() != "\"")
 			scan_index++;
+		if (inchar() != "\"") {
+			token_index = scan_index; // no token
+			scan_error("runaway string");
 		}
 		scan_index++;
 		token = T_STRING;
@@ -12177,30 +12173,27 @@ get_token_nib()
 
 	// relational operator?
 
-	if (scan_index < scan_length) {
+	if (c == "=" && inchar() == "=") {
+		scan_index++;
+		token = T_EQ;
+		return;
+	}
 
-		if (c == "=" && inchar(scan_index + 1) == "=") {
-			scan_index += 2;
-			token = T_EQ;
-			return;
-		}
+	if (c == "<" && inchar() == "=") {
+		scan_index++;
+		token = T_LTEQ;
+		return;
+	}
 
-		if (c == "<" && inchar(scan_index + 1) == "=") {
-			scan_index += 2;
-			token = T_LTEQ;
-			return;
-		}
-
-		if (c == ">" && inchar(scan_index + 1) == "=") {
-			scan_index += 2;
-			token = T_GTEQ;
-			return;
-		}
+	if (c == ">" && inchar() == "=") {
+		scan_index++;
+		token = T_GTEQ;
+		return;
 	}
 
 	// single char token
 
-	token = inchar(scan_index++);
+	token = c;
 }
 
 function
@@ -12227,9 +12220,9 @@ scan_error(s)
 }
 
 function
-inchar(k)
+inchar()
 {
-	return instring.charAt(k);
+	return instring.charAt(scan_index); // returns empty string if index out of range
 }
 function
 scan_inbuf(k)
