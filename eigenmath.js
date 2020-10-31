@@ -1639,6 +1639,7 @@ const DEFINT = "defint";
 const DENOMINATOR = "denominator";
 const DERIVATIVE = "derivative";
 const DET = "det";
+const DIM = "dim";
 const DO = "do";
 const DOT = "dot";
 const DRAW = "draw";
@@ -4925,6 +4926,28 @@ eval_det(p1)
 	push(cadr(p1));
 	evalf();
 	det();
+}
+function
+eval_dim(p1)
+{
+	var k = 1, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+
+	p1 = cddr(p1);
+
+	if (iscons(p1)) {
+		push(car(p1));
+		evalf();
+		k = pop_integer();
+	}
+
+	if (!istensor(p2) || k < 1 || k > p2.dim.length)
+		stopf("dim: error");
+
+	push_integer(p2.dim[k - 1]);
 }
 function
 eval_do(p1)
@@ -13146,6 +13169,7 @@ defint:		{printname:DEFINT,	func:eval_defint},
 denominator:	{printname:DENOMINATOR,	func:eval_denominator},
 derivative:	{printname:DERIVATIVE,	func:eval_derivative},
 det:		{printname:DET,		func:eval_det},
+"dim":		{printname:DIM,		func:eval_dim},
 "do":		{printname:DO,		func:eval_do},
 dot:		{printname:DOT,		func:eval_dot},
 draw:		{printname:DRAW,	func:eval_draw},
