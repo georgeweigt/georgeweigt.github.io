@@ -5771,9 +5771,10 @@ eval_transpose(p1)
 	push(cadr(p1));
 	evalf();
 	p2 = pop();
-	if (!istensor(p2))
-		stopf("transpose: tensor expected");
 	push(p2);
+
+	if (!istensor(p2) || p2.dim.length == 1)
+		return;
 
 	p1 = cddr(p1);
 
@@ -13084,7 +13085,7 @@ transpose(n, m)
 	ndim = p1.dim.length;
 
 	if (n < 1 || n > ndim || m < 1 || m > ndim)
-		stopf("index err");
+		stopf("transpose: index error");
 
 	n--; // make zero based
 	m--;
