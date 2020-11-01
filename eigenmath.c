@@ -1,4 +1,4 @@
-/* October 29, 2020
+/* November 1, 2020
 
 To build and run:
 
@@ -20779,6 +20779,10 @@ eval_transpose(void)
 {
 	push(cadr(p1));
 	eval();
+	p2 = pop();
+	push(p2);
+	if (!istensor(p2) || p2->u.tensor->ndim == 1)
+		return; // scalar or vector
 	p1 = cddr(p1);
 	if (!iscons(p1)) {
 		push_integer(1);
@@ -20813,8 +20817,6 @@ transpose_nib(void)
 	p3 = pop();
 	p2 = pop();
 	p1 = pop();
-	if (!istensor(p1))
-		stop("tensor expected");
 	ndim = p1->u.tensor->ndim;
 	nelem = p1->u.tensor->nelem;
 	push(p2);
@@ -20822,7 +20824,7 @@ transpose_nib(void)
 	push(p3);
 	m = pop_integer();
 	if (n < 1 || n > ndim || m < 1 || m > ndim)
-		stop("index err");
+		stop("transpose: index error");
 	n--; // make zero based
 	m--;
 	push(p1);
