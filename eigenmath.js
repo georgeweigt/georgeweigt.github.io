@@ -3123,18 +3123,15 @@ const SUBSCRIPT = 5;
 const FRACTION = 6;
 const TABLE = 7;
 
-const FONT_SIZE = 20
-const SMALL_FONT_SIZE = 14;
-
-const HEIGHT_RATIO = 1.25;
-const DEPTH_RATIO = 0.35;
 const WIDTH_RATIO = 0.0014;
 
-const FONT_HEIGHT = HEIGHT_RATIO * FONT_SIZE;
-const SMALL_FONT_HEIGHT = HEIGHT_RATIO * SMALL_FONT_SIZE;
+const FONT_SIZE = 20;
+const FONT_HEIGHT = 24;
+const FONT_DEPTH = 7;
 
-const FONT_DEPTH = DEPTH_RATIO * FONT_SIZE;
-const SMALL_FONT_DEPTH = DEPTH_RATIO * SMALL_FONT_SIZE;
+const SMALL_FONT_SIZE = 14;
+const SMALL_FONT_HEIGHT = 17;
+const SMALL_FONT_DEPTH = 5;
 
 const MINUS_HEIGHT_RATIO = 425 / 1000;
 const MINUS_HEIGHT = MINUS_HEIGHT_RATIO * FONT_SIZE;
@@ -3602,24 +3599,25 @@ emit_function(u, p, small_font)
 function
 emit_glyph(u, s, small_font)
 {
-	var italic_font, size, v, width;
+	var italic_font, v, w;
 
 	s = "&" + s + ";";
-
-	width = glyph_info[s].width;
 
 	italic_font = glyph_info[s].italic_font;
 
 	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
 
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
-		size = FONT_SIZE;
+	w = glyph_info[s].width;
 
-	v.height = HEIGHT_RATIO * size;
-	v.depth = DEPTH_RATIO * size;
-	v.width = width * WIDTH_RATIO * size;
+	if (small_font) {
+		v.height = SMALL_FONT_HEIGHT;
+		v.depth = SMALL_FONT_DEPTH;
+		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
+	} else {
+		v.height = FONT_HEIGHT;
+		v.depth = FONT_DEPTH;
+		v.width = w * WIDTH_RATIO * FONT_SIZE;
+	}
 
 	u.a.push(v);
 }
@@ -4476,12 +4474,7 @@ emit_update_table(u)
 function
 emit_update_text(u)
 {
-	var n, size, w;
-
-	if (u.small_font)
-		size = SMALL_FONT_SIZE;
-	else
-		size = FONT_SIZE;
+	var n, w;
 
 	n = u.s.charCodeAt(0);
 
@@ -4493,9 +4486,15 @@ emit_update_text(u)
 	if (w == undefined)
 		w = 1000;
 
-	u.height = HEIGHT_RATIO * size;
-	u.depth = DEPTH_RATIO * size;
-	u.width = w * WIDTH_RATIO * size;
+	if (u.small_font) {
+		u.height = SMALL_FONT_HEIGHT;
+		u.depth = SMALL_FONT_DEPTH;
+		u.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
+	} else {
+		u.height = FONT_HEIGHT;
+		u.depth = FONT_DEPTH;
+		u.width = w * WIDTH_RATIO * FONT_SIZE;
+	}
 }
 function
 emit_vector(u, p)
