@@ -60,7 +60,7 @@ gammaL = transpose(dot(gmunu,gamma))
 v1bar = dot(conj(v1),gamma0) -- adjoint of v1
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
-"Summing over spins"
+"Sum over spin states"
 
 S = 0
 
@@ -76,7 +76,7 @@ for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
 
 S
 
-"Computing Casimir trick"
+"Compute Casimir trick"
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
@@ -102,7 +102,7 @@ f22 = contract(dot(T1,transpose(T2)))
 f = f11/t^2 - f12/(s t) - conj(f12)/(s t) + f22/s^2
 f
 
-"Checking Casimir trick (1=ok)"
+"Verify Casimir trick (1=ok)"
 
 S/N == f
 </textarea>

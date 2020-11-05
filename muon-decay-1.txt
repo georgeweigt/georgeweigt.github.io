@@ -53,7 +53,7 @@ pslash4 = dot(p4,gmunu,gamma)
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
--- S is the sum over spins
+-- S is the sum over spin states
 
 S = 0
 
