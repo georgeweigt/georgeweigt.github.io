@@ -3100,9 +3100,7 @@ emit_args(u, p, small_font)
 		}
 	}
 
-	emit_update(v);
-
-	v.width += 2 * emit_delim_width(small_font);
+	emit_update_subexpr(v);
 
 	u.a.push(v);
 }
@@ -3123,13 +3121,15 @@ const SUBSCRIPT = 5;
 const FRACTION = 6;
 const TABLE = 7;
 
+const PAD = 10;
+
 const FONT_SIZE = 20;
-const FONT_HEIGHT = 24;
+const FONT_HEIGHT = 18;
 const FONT_DEPTH = 6;
 const MINUS_HEIGHT = 8.5;
 
 const SMALL_FONT_SIZE = 14;
-const SMALL_FONT_HEIGHT = 17;
+const SMALL_FONT_HEIGHT = 13;
 const SMALL_FONT_DEPTH = 4;
 const SMALL_MINUS_HEIGHT = 6;
 
@@ -3141,7 +3141,7 @@ const SMALL_DELIM_STROKE = 1;
 const TABLE_DELIM_STROKE = 2.5;
 
 const TABLE_HSPACE = 12;
-const TABLE_VSPACE = 4;
+const TABLE_VSPACE = 10;
 
 const WIDTH_RATIO = 0.0014;
 
@@ -3234,63 +3234,63 @@ const glyph_names = [
 ];
 
 const glyph_info = {
-"&parenleft;":	{width:333,	italic_font:0},
-"&parenright;":	{width:333,	italic_font:0},
-"&plus;":	{width:565,	italic_font:0},
-"&lt;":		{width:565,	italic_font:0},
-"&equals;":	{width:566,	italic_font:0},
-"&gt;":		{width:564,	italic_font:0},
-"&le;":		{width:558,	italic_font:0},
-"&ge;":		{width:558,	italic_font:0},
-"&times;":	{width:565/*823*/,	italic_font:0},
-"&minus;":	{width:565,	italic_font:0},
-"&Gamma;":	{width:578,	italic_font:0},
-"&Theta;":	{width:722,	italic_font:0},
-"&Phi;":	{width:731,	italic_font:0},
-"&Alpha;":	{width:732,	italic_font:0},
-"&Beta;":	{width:667,	italic_font:0},
-"&Delta;":	{width:643,	italic_font:0},
-"&Epsilon;":	{width:611,	italic_font:0},
-"&Zeta;":	{width:611,	italic_font:0},
-"&Eta;":	{width:723,	italic_font:0},
-"&Iota;":	{width:333,	italic_font:0},
-"&Kappa;":	{width:751,	italic_font:0},
-"&Lambda;":	{width:736,	italic_font:0},
-"&Mu;":		{width:889,	italic_font:0},
-"&Nu;":		{width:729,	italic_font:0},
-"&Xi;":		{width:643,	italic_font:0},
-"&Pi;":		{width:725,	italic_font:0},
-"&Rho;":	{width:556,	italic_font:0},
-"&Sigma;":	{width:582,	italic_font:0},
-"&Tau;":	{width:611,	italic_font:0},
-"&Upsilon;":	{width:729,	italic_font:0},
-"&Chi;":	{width:731,	italic_font:0},
-"&Psi;":	{width:748,	italic_font:0},
-"&Omega;":	{width:743,	italic_font:0},
-"&alpha;":	{width:525,	italic_font:1},
-"&delta;":	{width:483,	italic_font:1},
-"&epsilon;":	{width:412,	italic_font:1},
-"&sigma;":	{width:548,	italic_font:1},
-"&tau;":	{width:411,	italic_font:1},
-"&phi;":	{width:553,	italic_font:1},
-"&beta;":	{width:529,	italic_font:1},
-"&gamma;":	{width:407,	italic_font:1},
-"&zeta;":	{width:551,	italic_font:1},
-"&eta;":	{width:496,	italic_font:1},
-"&theta;":	{width:528,	italic_font:1},
-"&iota;":	{width:278,	italic_font:1},
-"&kappa;":	{width:515,	italic_font:1},
-"&lambda;":	{width:433,	italic_font:1},
-"&mu;":		{width:502,	italic_font:1},
-"&nu;":		{width:463,	italic_font:1},
-"&xi;":		{width:511,	italic_font:1},
-"&rho;":	{width:480,	italic_font:1},
-"&upsilon;":	{width:459,	italic_font:1},
-"&chi;":	{width:490,	italic_font:1},
-"&psi;":	{width:668,	italic_font:1},
-"&omega;":	{width:706,	italic_font:1},
-"&pi;":		{width:553,	italic_font:1},
-"&hbar;":	{width:575/*515*/,	italic_font:0},
+"&parenleft;":	{width:333,	italic_font:0,	descender:1},
+"&parenright;":	{width:333,	italic_font:0,	descender:1},
+"&plus;":	{width:565,	italic_font:0,	descender:0},
+"&lt;":		{width:565,	italic_font:0,	descender:0},
+"&equals;":	{width:566,	italic_font:0,	descender:0},
+"&gt;":		{width:564,	italic_font:0,	descender:0},
+"&le;":		{width:558,	italic_font:0,	descender:0},
+"&ge;":		{width:558,	italic_font:0,	descender:0},
+"&times;":	{width:565/*823*/,	italic_font:0,	descender:0},
+"&minus;":	{width:565,	italic_font:0,	descender:0},
+"&Gamma;":	{width:578,	italic_font:0,	descender:0},
+"&Theta;":	{width:722,	italic_font:0,	descender:0},
+"&Phi;":	{width:731,	italic_font:0,	descender:0},
+"&Alpha;":	{width:732,	italic_font:0,	descender:0},
+"&Beta;":	{width:667,	italic_font:0,	descender:0},
+"&Delta;":	{width:643,	italic_font:0,	descender:0},
+"&Epsilon;":	{width:611,	italic_font:0,	descender:0},
+"&Zeta;":	{width:611,	italic_font:0,	descender:0},
+"&Eta;":	{width:723,	italic_font:0,	descender:0},
+"&Iota;":	{width:333,	italic_font:0,	descender:0},
+"&Kappa;":	{width:751,	italic_font:0,	descender:0},
+"&Lambda;":	{width:736,	italic_font:0,	descender:0},
+"&Mu;":		{width:889,	italic_font:0,	descender:0},
+"&Nu;":		{width:729,	italic_font:0,	descender:0},
+"&Xi;":		{width:643,	italic_font:0,	descender:0},
+"&Pi;":		{width:725,	italic_font:0,	descender:0},
+"&Rho;":	{width:556,	italic_font:0,	descender:0},
+"&Sigma;":	{width:582,	italic_font:0,	descender:0},
+"&Tau;":	{width:611,	italic_font:0,	descender:0},
+"&Upsilon;":	{width:729,	italic_font:0,	descender:0},
+"&Chi;":	{width:731,	italic_font:0,	descender:0},
+"&Psi;":	{width:748,	italic_font:0,	descender:0},
+"&Omega;":	{width:743,	italic_font:0,	descender:0},
+"&alpha;":	{width:525,	italic_font:1,	descender:0},
+"&delta;":	{width:483,	italic_font:1,	descender:0},
+"&epsilon;":	{width:412,	italic_font:1,	descender:0},
+"&sigma;":	{width:548,	italic_font:1,	descender:0},
+"&tau;":	{width:411,	italic_font:1,	descender:0},
+"&phi;":	{width:553,	italic_font:1,	descender:1},
+"&beta;":	{width:529,	italic_font:1,	descender:1},
+"&gamma;":	{width:407,	italic_font:1,	descender:1},
+"&zeta;":	{width:551,	italic_font:1,	descender:1},
+"&eta;":	{width:496,	italic_font:1,	descender:1},
+"&theta;":	{width:528,	italic_font:1,	descender:0},
+"&iota;":	{width:278,	italic_font:1,	descender:0},
+"&kappa;":	{width:515,	italic_font:1,	descender:0},
+"&lambda;":	{width:433,	italic_font:1,	descender:0},
+"&mu;":		{width:502,	italic_font:1,	descender:1},
+"&nu;":		{width:463,	italic_font:1,	descender:0},
+"&xi;":		{width:511,	italic_font:1,	descender:1},
+"&rho;":	{width:480,	italic_font:1,	descender:1},
+"&upsilon;":	{width:459,	italic_font:1,	descender:0},
+"&chi;":	{width:490,	italic_font:1,	descender:1},
+"&psi;":	{width:668,	italic_font:1,	descender:1},
+"&omega;":	{width:706,	italic_font:1,	descender:0},
+"&pi;":		{width:553,	italic_font:1,	descender:0},
+"&hbar;":	{width:575/*515*/,	italic_font:0,	descender:0},
 };
 function
 emit_delim_width(small_font)
@@ -3597,11 +3597,12 @@ emit_function(u, p, small_font)
 function
 emit_glyph(u, s, small_font)
 {
-	var italic_font, v, w;
+	var descender, italic_font, v, w;
 
 	s = "&" + s + ";";
 
 	italic_font = glyph_info[s].italic_font;
+	descender = glyph_info[s].descender;
 
 	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
 
@@ -3609,11 +3610,17 @@ emit_glyph(u, s, small_font)
 
 	if (small_font) {
 		v.height = SMALL_FONT_HEIGHT;
-		v.depth = SMALL_FONT_DEPTH;
+		if (descender)
+			v.depth = SMALL_FONT_DEPTH;
+		else
+			v.depth = 0;
 		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
 	} else {
 		v.height = FONT_HEIGHT;
-		v.depth = FONT_DEPTH;
+		if (descender)
+			v.depth = FONT_DEPTH;
+		else
+			v.depth = 0;
 		v.width = w * WIDTH_RATIO * FONT_SIZE;
 	}
 
@@ -3676,15 +3683,15 @@ emit_math()
 
 	outbuf = "";
 
-	x = FONT_SIZE / 2;
-	y = u.height;
+	x = PAD;
+	y = u.height + PAD;
 
 	emit_svg(u, x, y);
 
 	// emit_svg_bbox(x, y, u.height, u.depth, u.width);
 
-	h = u.height + u.depth;
-	w = u.width + FONT_SIZE;
+	h = u.height + u.depth + 2 * PAD;
+	w = u.width + 2 * PAD;
 
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
@@ -3900,8 +3907,7 @@ emit_subexpr(u, p, small_font)
 {
 	var v = {type:PAREN, a:[], small_font:small_font};
 	emit_expr(v, p, small_font);
-	emit_update(v);
-	v.width += 2 * emit_delim_width(small_font);
+	emit_update_subexpr(v, small_font);
 	u.a.push(v);
 }
 function
@@ -4383,12 +4389,12 @@ emit_update_fraction(u)
 	w = 0.5 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.small_font) {
-		h = 2 * SMALL_HRULE_WIDTH + SMALL_MINUS_HEIGHT;
-		d = 2 * SMALL_HRULE_WIDTH - SMALL_MINUS_HEIGHT;
+		h = 4 * SMALL_HRULE_WIDTH + SMALL_MINUS_HEIGHT;
+		d = 4 * SMALL_HRULE_WIDTH - SMALL_MINUS_HEIGHT;
 		w = w * SMALL_FONT_SIZE;
 	} else {
-		h = 2 * HRULE_WIDTH + MINUS_HEIGHT;
-		d = 2 * HRULE_WIDTH - MINUS_HEIGHT;
+		h = 4 * HRULE_WIDTH + MINUS_HEIGHT;
+		d = 4 * HRULE_WIDTH - MINUS_HEIGHT;
 		w = w * FONT_SIZE;
 	}
 
@@ -4397,28 +4403,32 @@ emit_update_fraction(u)
 	u.width = Math.max(u.num.width, u.den.width) + w;
 }
 function
+emit_update_subexpr(u, small_font)
+{
+	emit_update(u);
+
+	if (u.depth == 0) {
+		if (small_font)
+			u.depth = SMALL_FONT_DEPTH;
+		else
+			u.depth = FONT_DEPTH;
+	}
+
+	u.width += 2 * emit_delim_width(small_font);
+}
+function
 emit_update_superscript(u, h) // h is height of neighbor
 {
-	var d;
+	var t;
 
 	emit_update(u);
 
-	// move above baseline
+	// move up
 
-	if (u.small_font) {
-		u.height = u.height + u.depth + SMALL_MINUS_HEIGHT;
-		u.depth = -u.depth - SMALL_MINUS_HEIGHT;
-	} else {
-		u.height = u.height + u.depth + MINUS_HEIGHT;
-		u.depth = -u.depth - MINUS_HEIGHT;
-	}
+	t = u.height + u.depth;
 
-	d = h - u.height;
-
-	if (d > 0) {
-		u.height += d;
-		u.depth -= d;
-	}
+	u.height = h + t;
+	u.depth = -h - u.depth;
 }
 function
 emit_update_table(u)
@@ -4472,7 +4482,25 @@ emit_update_table(u)
 function
 emit_update_text(u)
 {
-	var n, w;
+	var descender = 0, n, w;
+
+	switch (u.s) {
+	case "(":
+	case ")":
+	case "[":
+	case "]":
+	case "{":
+	case "}":
+	case "@":
+	case "|":
+	case "_":
+	case "g":
+	case "j":
+	case "p":
+	case "q":
+	case "y":
+		descender = 1;
+	}
 
 	n = u.s.charCodeAt(0);
 
@@ -4486,11 +4514,17 @@ emit_update_text(u)
 
 	if (u.small_font) {
 		u.height = SMALL_FONT_HEIGHT;
-		u.depth = SMALL_FONT_DEPTH;
+		if (descender)
+			u.depth = SMALL_FONT_DEPTH;
+		else
+			u.depth = 0;
 		u.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
 	} else {
 		u.height = FONT_HEIGHT;
-		u.depth = FONT_DEPTH;
+		if (descender)
+			u.depth = FONT_DEPTH;
+		else
+			u.depth = 0;
 		u.width = w * WIDTH_RATIO * FONT_SIZE;
 	}
 }
