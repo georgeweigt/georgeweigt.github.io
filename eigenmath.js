@@ -4482,6 +4482,15 @@ emit_update_text(u)
 	var descender = 0, n, w;
 
 	switch (u.s) {
+	case "f":
+		if (u.italic_font)
+			descender = 1;
+		break;
+	case "g":
+	case "j":
+	case "p":
+	case "q":
+	case "y":
 	case "(":
 	case ")":
 	case "[":
@@ -4491,12 +4500,8 @@ emit_update_text(u)
 	case "@":
 	case "|":
 	case "_":
-	case "g":
-	case "j":
-	case "p":
-	case "q":
-	case "y":
 		descender = 1;
+		break;
 	}
 
 	n = u.s.charCodeAt(0);
