@@ -3121,7 +3121,8 @@ const SUBSCRIPT = 5;
 const FRACTION = 6;
 const TABLE = 7;
 
-const PAD = 10;
+const HPAD = 10;
+const VPAD = 6;
 
 const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
@@ -3683,15 +3684,15 @@ emit_math()
 
 	outbuf = "";
 
-	x = PAD;
-	y = u.height + PAD;
+	x = HPAD;
+	y = u.height + VPAD;
 
 	emit_svg(u, x, y);
 
 	// emit_svg_bbox(x, y, u.height, u.depth, u.width);
 
-	h = u.height + u.depth + 2 * PAD;
-	w = u.width + 2 * PAD;
+	h = u.height + u.depth + 2 * VPAD;
+	w = u.width + 2 * HPAD;
 
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
