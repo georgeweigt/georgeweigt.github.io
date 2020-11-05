@@ -3142,7 +3142,7 @@ const SMALL_DELIM_STROKE = 1;
 const TABLE_DELIM_STROKE = 2.5;
 
 const TABLE_HSPACE = 12;
-const TABLE_VSPACE = 10;
+const TABLE_VSPACE = 12;
 
 const WIDTH_RATIO = 0.0014;
 
@@ -3359,7 +3359,7 @@ emit_denominators(p, n, small_font) // n is number of denominators
 function
 emit_double(u, p, small_font) // p is a double
 {
-	var h, i, j, k, s, v;
+	var i, j, k, s, v;
 
 	if (p.d == 0) {
 		emit_roman_text(u, "0", small_font);
@@ -3415,9 +3415,7 @@ emit_double(u, p, small_font) // p is a double
 
 	emit_roman_text(v, s.substring(k, s.length), 1);
 
-	h = u.a[u.a.length - 1].height; // height of neighbor
-
-	emit_update_superscript(v, h);
+	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
@@ -3435,7 +3433,7 @@ emit_exponent(u, p, small_font)
 
 	emit_expr(v, p, 1);
 
-	emit_update_superscript(v, u.a[u.a.length - 1].height);
+	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
@@ -3796,12 +3794,16 @@ emit_numeric_exponent(u, p, small_font) // p is rational or double, sign is not 
 {
 	var v = {type:SUPERSCRIPT, a:[], small_font:small_font};
 
-	if (isrational(p))
-		emit_rational(v, p, 1);
-	else
+	if (isrational(p)) {
+		emit_roman_text(v, Math.abs(p.a).toFixed(0), 1);
+		if (p.b != 1) {
+			emit_roman_text(v, "/", 1);
+			emit_roman_text(v, p.b.toFixed(0), 1);
+		}
+	} else
 		emit_double(v, p, 1);
 
-	emit_update_superscript(v, u.a[u.a.length - 1].height);
+	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
@@ -4418,14 +4420,30 @@ emit_update_subexpr(u, small_font)
 	u.width += 2 * emit_delim_width(small_font);
 }
 function
-emit_update_superscript(u, h) // h is height of neighbor
+emit_update_superscript(u, v) // u is neighbor
 {
-	emit_update(u);
+	var h, n;
+
+	emit_update(v);
 
 	// move up
 
-	u.height = h + u.height + u.depth;
-	u.depth = -h - u.depth;
+	n = u.a.length;
+
+	if (n == 0) {
+		if (u.small_font)
+			h = SMALL_FONT_HEIGHT;
+		else
+			h = FONT_HEIGHT;
+	} else {
+		if (u.a[n - 1].type == SUBSCRIPT && n > 1)
+			h = u.a[n - 2].height;
+		else
+			h = u.a[n - 1].height;
+	}
+
+	v.height = h + v.height + v.depth;
+	v.depth = -h - v.depth;
 }
 function
 emit_update_table(u)
