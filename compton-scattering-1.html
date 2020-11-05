@@ -60,7 +60,7 @@ qslash2 = dot(q2,gmunu,gamma)
 C1 = 1/(s - m^2)
 C2 = 1/(u - m^2)
 
-"Summing over spin states"
+"Sum over spin states"
 
 S = 0
 
@@ -76,7 +76,7 @@ for(s2,1,2,for(s4,1,2,
 
 S
 
-"Computing Casimir trick"
+"Casimir trick"
 
 pslash2 = dot(p2,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
@@ -99,7 +99,7 @@ f22 = contract(contract(contract(T,3,4),2,3))
 f = C1^2 f11 + C1 C2 f12 + C1 C2 conj(f12) + C2^2 f22
 f
 
-"Checking Casimir trick (1=ok)"
+"Verify Casimir trick (1=ok)"
 
 S/N == f
 </textarea>
