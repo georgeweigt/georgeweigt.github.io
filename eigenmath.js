@@ -2680,35 +2680,35 @@ draw_evalf(F, X, x)
 function
 draw_labels()
 {
-	var p, x, y;
+	var p, u, x, y;
 
 	push_double(ymax);
 	p = pop();
-	p = emit_line(p, 1);
-	x = DRAW_LEFT_PAD - p.width - SMALL_FONT_SIZE;
-	y = DRAW_TOP_PAD + p.height;
-	emit_svg(p, x, y);
+	u = emit_line(p, 1);
+	x = DRAW_LEFT_PAD - u.width - SMALL_FONT_SIZE;
+	y = DRAW_TOP_PAD + u.height;
+	emit_svg(u, x, y);
 
 	push_double(ymin);
 	p = pop();
-	p = emit_line(p, 1);
-	x = DRAW_LEFT_PAD - p.width - SMALL_FONT_SIZE;
+	u = emit_line(p, 1);
+	x = DRAW_LEFT_PAD - u.width - SMALL_FONT_SIZE;
 	y = DRAW_TOP_PAD + DRAW_HEIGHT;
-	emit_svg(p, x, y);
+	emit_svg(u, x, y);
 
 	push_double(xmin);
 	p = pop();
-	p = emit_line(p, 1);
-	x = DRAW_LEFT_PAD - p.width / 2;
+	u = emit_line(p, 1);
+	x = DRAW_LEFT_PAD - u.width / 2;
 	y = DRAW_TOP_PAD + DRAW_HEIGHT + 2 * SMALL_FONT_SIZE;
-	emit_svg(p, x, y);
+	emit_svg(u, x, y);
 
 	push_double(xmax);
 	p = pop();
-	p = emit_line(p, 1);
-	x = DRAW_LEFT_PAD + DRAW_WIDTH - p.width / 2;
+	u = emit_line(p, 1);
+	x = DRAW_LEFT_PAD + DRAW_WIDTH - u.width / 2;
 	y = DRAW_TOP_PAD + DRAW_HEIGHT + 2 * SMALL_FONT_SIZE;
-	emit_svg(p, x, y);
+	emit_svg(u, x, y);
 }
 function
 draw_line(x1, y1, x2, y2, t)
@@ -3089,18 +3089,18 @@ dtt(p1, p2)
 	push(p3);
 }
 function
-emit_args(u, p, small_font)
+emit_args(u, p)
 {
-	var v = {type:PAREN, a:[], small_font:small_font};
+	var v = {type:SUBEXPR, a:[], level:u.level};
 
 	p = cdr(p);
 
 	if (iscons(p)) {
-		emit_expr(v, car(p), small_font);
+		emit_expr(v, car(p));
 		p = cdr(p);
 		while (iscons(p)) {
-			emit_roman_text(v, ",", small_font);
-			emit_expr(v, car(p), small_font);
+			emit_roman_text(v, ",");
+			emit_expr(v, car(p));
 			p = cdr(p);
 		}
 	}
@@ -3110,17 +3110,17 @@ emit_args(u, p, small_font)
 	u.a.push(v);
 }
 function
-emit_base(u, p, small_font)
+emit_base(u, p)
 {
 	if (isnegativenumber(p) || isfraction(p) || isdouble(p) || car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY) || car(p) == symbol(POWER))
-		emit_subexpr(u, p, small_font);
+		emit_subexpr(u, p);
 	else
-		emit_expr(u, p, small_font);
+		emit_expr(u, p);
 }
 const SPACE = 0;
 const TEXT = 1;
 const LINE = 2;
-const PAREN = 3;
+const SUBEXPR = 3;
 const SUPERSCRIPT = 4;
 const SUBSCRIPT = 5;
 const FRACTION = 6;
@@ -3133,21 +3133,21 @@ const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
 const FONT_DEPTH = 5;
 const MINUS_HEIGHT = 8.5;
+const FRAC_VSPACE = 5.5; // vspace plus minus height should be an integer
+const FRAC_STROKE = 1.5;
+const DELIM_STROKE = 1.5;
 
 const SMALL_FONT_SIZE = 14;
 const SMALL_FONT_HEIGHT = 13;
 const SMALL_FONT_DEPTH = 4;
 const SMALL_MINUS_HEIGHT = 6;
-
-const HRULE_WIDTH = 1.5;
-const SMALL_HRULE_WIDTH = 1;
- 
-const DELIM_STROKE = 1.5;
+const SMALL_FRAC_VSPACE = 4;
+const SMALL_FRAC_STROKE = 1;
 const SMALL_DELIM_STROKE = 1;
-const TABLE_DELIM_STROKE = 2.5;
-
+ 
 const TABLE_HSPACE = 12;
 const TABLE_VSPACE = 12;
+const TABLE_DELIM_STROKE = 2.5;
 
 const WIDTH_RATIO = 0.0014;
 
@@ -3299,30 +3299,30 @@ const glyph_info = {
 "&hbar;":	{width:575/*515*/,	italic_font:0,	descender:0},
 };
 function
-emit_delim_width(small_font)
+emit_delim_width(u)
 {
 	var size;
 
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
+	if (u.level == 0)
 		size = FONT_SIZE;
+	else
+		size = SMALL_FONT_SIZE;
 
 	return glyph_info["&parenleft;"].width * WIDTH_RATIO * size;
 }
 function
-emit_denominators(p, n, small_font) // n is number of denominators
+emit_denominators(u, p, n) // n is number of denominators
 {
-	var q, u;
+	var q, v;
 
-	u = {type:LINE, a:[]};
+	v = {type:LINE, a:[], level:u.level};
 
 	p = cdr(p);
 	q = car(p);
 
 	if (isrational(q)) {
 		if (q.b != 1) {
-			emit_roman_text(u, q.b.toFixed(0), small_font);
+			emit_roman_text(v, q.b.toFixed(0));
 			n++;
 		}
 		p = cdr(p);
@@ -3337,37 +3337,39 @@ emit_denominators(p, n, small_font) // n is number of denominators
 			continue; // not a denominator
 		}
 
-		if (u.a.length > 0)
-			emit_medium_space(u, small_font);
+		if (v.a.length > 0)
+			emit_medium_space(v);
 
 		if (isminusone(caddr(q))) {
 			q = cadr(q);
 			if (car(q) == symbol(ADD) && n > 1)
-				emit_subexpr(u, q, small_font);
+				emit_subexpr(v, q);
 			else
-				emit_expr(u, q, small_font);
+				emit_expr(v, q);
 		} else {
-			emit_base(u, cadr(q), small_font);
-			emit_numeric_exponent(u, caddr(q), small_font); // sign is not emitted
+			emit_base(v, cadr(q));
+			emit_numeric_exponent(v, caddr(q)); // sign is not emitted
 		}
 
 		p = cdr(p);
 	}
 
-	if (u.a.length == 1)
-		return u.a[0];
+	if (v.a.length == 1) {
+		u.den = v.a[0];
+		return;
+	}
 
-	emit_update(u);
+	emit_update(v);
 
-	return u;
+	u.den = v;
 }
 function
-emit_double(u, p, small_font) // p is a double
+emit_double(u, p) // p is a double
 {
 	var i, j, k, s, v;
 
 	if (p.d == 0) {
-		emit_roman_text(u, "0", small_font);
+		emit_roman_text(u, "0");
 		return;
 	}
 
@@ -3383,13 +3385,13 @@ emit_double(u, p, small_font) // p is a double
 	i = s.indexOf(".");
 
 	if (i == -1)
-		emit_roman_text(u, s.substring(0, k), small_font);
+		emit_roman_text(u, s.substring(0, k));
 	else {
 		for (j = k - 1; j > i + 1; j--) {
 			if (s.charAt(j) != "0")
 				break;
 		}
-		emit_roman_text(u, s.substring(0, j + 1), small_font);
+		emit_roman_text(u, s.substring(0, j + 1));
 	}
 
 	if (s.charAt(k) != "E" && s.charAt(k) != "e")
@@ -3397,19 +3399,19 @@ emit_double(u, p, small_font) // p is a double
 
 	k++;
 
-	emit_glyph(u, "times", small_font);
+	emit_glyph(u, "times");
 
-	emit_roman_text(u, "10", small_font);
+	emit_roman_text(u, "10");
 
-	v = {type:SUPERSCRIPT, a:[], small_font:small_font};
+	v = {type:SUPERSCRIPT, a:[], level:u.level + 1};
 
 	// sign of exponent
 
 	if (s.charAt(k) == "+")
 		k++;
 	else if (s.charAt(k) == "-") {
-		emit_glyph(v, "minus", 1);
-		emit_thin_space(v, 1);
+		emit_glyph(v, "minus");
+		emit_thin_space(v);
 		k++;
 	}
 
@@ -3418,77 +3420,77 @@ emit_double(u, p, small_font) // p is a double
 	while (k < s.length - 1 && s.charAt(k) == "0")
 		k++;
 
-	emit_roman_text(v, s.substring(k, s.length), 1);
+	emit_roman_text(v, s.substring(k, s.length));
 
 	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
 function
-emit_exponent(u, p, small_font)
+emit_exponent(u, p)
 {
 	var v;
 
 	if (isnum(p) && !isnegativenumber(p)) {
-		emit_numeric_exponent(u, p, small_font); // sign is not emitted
+		emit_numeric_exponent(u, p); // sign is not emitted
 		return;
 	}
 
-	v = {type:SUPERSCRIPT, a:[], small_font:small_font};
+	v = {type:SUPERSCRIPT, a:[], level:u.level + 1};
 
-	emit_expr(v, p, 1);
+	emit_expr(v, p);
 
 	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
 function
-emit_expr(u, p, small_font)
+emit_expr(u, p)
 {
 	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p)))) {
-		emit_glyph(u, "minus", small_font);
-		emit_thin_space(u, small_font);
+		emit_glyph(u, "minus");
+		emit_thin_space(u);
 	}
 	if (car(p) == symbol(ADD))
-		emit_expr_nib(u, p, small_font);
+		emit_expr_nib(u, p);
 	else
-		emit_term(u, p, small_font);
+		emit_term(u, p);
 }
 function
-emit_expr_nib(u, p, small_font)
+emit_expr_nib(u, p)
 {
 	p = cdr(p);
-	emit_term(u, car(p), small_font);
+	emit_term(u, car(p));
 	p = cdr(p);
 	while (iscons(p)) {
 		if (isnegativeterm(car(p)))
-			emit_infix_operator(u, "minus", small_font);
+			emit_infix_operator(u, "minus");
 		else
-			emit_infix_operator(u, "plus", small_font);
-		emit_term(u, car(p), small_font);
+			emit_infix_operator(u, "plus");
+		emit_term(u, car(p));
 		p = cdr(p);
 	}
 }
 function
-emit_factor(u, p, small_font)
+emit_factor(u, p)
 {
 	if (isrational(p)) {
-		emit_rational(u, p, small_font);
+		emit_rational(u, p);
 		return;
 	}
 
 	if (isdouble(p)) {
-		emit_double(u, p, small_font);
+		emit_double(u, p);
 		return;
 	}
 
 	if (issymbol(p)) {
-		emit_symbol(u, p, small_font);
+		emit_symbol(u, p);
 		return;
 	}
 
 	if (isstring(p)) {
-		emit_string(u, p, small_font);
+		emit_string(u, p);
 		return;
 	}
 
@@ -3499,34 +3501,34 @@ emit_factor(u, p, small_font)
 
 	if (iscons(p)) {
 		if (car(p) == symbol(POWER))
-			emit_power(u, p, small_font);
+			emit_power(u, p);
 		else if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY))
-			emit_subexpr(u, p, small_font);
+			emit_subexpr(u, p);
 		else
-			emit_function(u, p, small_font);
+			emit_function(u, p);
 		return;
 	}
 }
 function
-emit_fraction(u, p, n, small_font) // n is number of denominators
+emit_fraction(u, p, n) // n is number of denominators
 {
-	var v = {type:FRACTION, small_font:small_font};
+	var v = {type:FRACTION, level:u.level};
 
-	v.num = emit_numerators(p, small_font);
-	v.den = emit_denominators(p, n, small_font);
+	emit_numerators(v, p);
+	emit_denominators(v, p, n);
 
 	emit_update_fraction(v);
 
 	u.a.push(v);
 }
 function
-emit_function(u, p, small_font)
+emit_function(u, p)
 {
 	// d(f(x),x)
 
 	if (car(p) == symbol(DERIVATIVE)) {
-		emit_roman_text(u, "d", small_font);
-		emit_args(u, p, small_font);
+		emit_roman_text(u, "d");
+		emit_args(u, p);
 		return;
 	}
 
@@ -3535,10 +3537,10 @@ emit_function(u, p, small_font)
 	if (car(p) == symbol(FACTORIAL)) {
 		p = cadr(p);
 		if (isposint(p) || issymbol(p))
-			emit_expr(u, p, small_font);
+			emit_expr(u, p);
 		else
-			emit_subexpr(u, p, small_font);
-		emit_roman_text(u, "!", small_font);
+			emit_subexpr(u, p);
+		emit_roman_text(u, "!");
 		return;
 	}
 
@@ -3547,44 +3549,44 @@ emit_function(u, p, small_font)
 	if (car(p) == symbol(INDEX)) {
 		p = cdr(p);
 		if (issymbol(car(p)))
-			emit_symbol(u, car(p), small_font);
+			emit_symbol(u, car(p));
 		else
-			emit_subexpr(u, car(p), small_font);
-		emit_indices(u, p, small_font);
+			emit_subexpr(u, car(p));
+		emit_indices(u, p);
 		return;
 	}
 
 	if (car(p) == symbol(SETQ) || car(p) == symbol(TESTEQ)) {
-		emit_expr(u, cadr(p), small_font);
-		emit_infix_operator(u, "equals", small_font);
-		emit_expr(u, caddr(p), small_font);
+		emit_expr(u, cadr(p));
+		emit_infix_operator(u, "equals");
+		emit_expr(u, caddr(p));
 		return;
 	}
 
 	if (car(p) == symbol(TESTGE)) {
-		emit_expr(u, cadr(p), small_font);
-		emit_infix_operator(u, "ge", small_font);
-		emit_expr(u, caddr(p), small_font);
+		emit_expr(u, cadr(p));
+		emit_infix_operator(u, "ge");
+		emit_expr(u, caddr(p));
 		return;
 	}
 
 	if (car(p) == symbol(TESTGT)) {
-		emit_expr(u, cadr(p), small_font);
-		emit_infix_operator(u, "gt", small_font);
-		emit_expr(u, caddr(p), small_font);
+		emit_expr(u, cadr(p));
+		emit_infix_operator(u, "gt");
+		emit_expr(u, caddr(p));
 		return;
 	}
 
 	if (car(p) == symbol(TESTLE)) {
-		emit_expr(u, cadr(p), small_font);
-		emit_infix_operator(u, "le", small_font);
-		emit_expr(u, caddr(p), small_font);
+		emit_expr(u, cadr(p));
+		emit_infix_operator(u, "le");
+		emit_expr(u, caddr(p));
 		return;
 	}
 
 	if (car(p) == symbol(TESTLT)) {
-		emit_expr(u, cadr(p), small_font);
-		emit_infix_operator(u, "lt", small_font);
+		emit_expr(u, cadr(p));
+		emit_infix_operator(u, "lt");
 		emit_expr(u, caddr(p));
 		return;
 	}
@@ -3592,14 +3594,14 @@ emit_function(u, p, small_font)
 	// default
 
 	if (issymbol(car(p)))
-		emit_symbol(u, car(p), small_font);
+		emit_symbol(u, car(p));
 	else
-		emit_subexpr(u, car(p), small_font);
+		emit_subexpr(u, car(p));
 
-	emit_args(u, p, small_font);
+	emit_args(u, p);
 }
 function
-emit_glyph(u, s, small_font)
+emit_glyph(u, s)
 {
 	var descender, italic_font, v, w;
 
@@ -3608,65 +3610,65 @@ emit_glyph(u, s, small_font)
 	italic_font = glyph_info[s].italic_font;
 	descender = glyph_info[s].descender;
 
-	v = {type:TEXT, s:s, small_font:small_font, italic_font:italic_font};
+	v = {type:TEXT, s:s, level:u.level, italic_font:italic_font};
 
 	w = glyph_info[s].width;
 
-	if (small_font) {
-		v.height = SMALL_FONT_HEIGHT;
-		if (descender)
-			v.depth = SMALL_FONT_DEPTH;
-		else
-			v.depth = 0;
-		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
-	} else {
+	if (u.level == 0) {
 		v.height = FONT_HEIGHT;
 		if (descender)
 			v.depth = FONT_DEPTH;
 		else
 			v.depth = 0;
 		v.width = w * WIDTH_RATIO * FONT_SIZE;
+	} else {
+		v.height = SMALL_FONT_HEIGHT;
+		if (descender)
+			v.depth = SMALL_FONT_DEPTH;
+		else
+			v.depth = 0;
+		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
 	}
 
 	u.a.push(v);
 }
 function
-emit_indices(u, p, small_font)
+emit_indices(u, p)
 {
-	emit_roman_text(u, "[", small_font);
+	emit_roman_text(u, "[");
 
 	p = cdr(p);
 
 	if (iscons(p)) {
-		emit_expr(u, car(p), small_font);
+		emit_expr(u, car(p));
 		p = cdr(p);
 		while (iscons(p)) {
-			emit_roman_text(u, ",", small_font);
-			emit_expr(u, car(p), small_font);
+			emit_roman_text(u, ",");
+			emit_expr(u, car(p));
 			p = cdr(p);
 		}
 	}
 
-	emit_roman_text(u, "]", small_font);
+	emit_roman_text(u, "]");
 }
 function
-emit_infix_operator(u, s, small_font)
+emit_infix_operator(u, s)
 {
-	emit_thick_space(u, small_font);
-	emit_glyph(u, s, small_font);
-	emit_thick_space(u, small_font);
+	emit_thick_space(u);
+	emit_glyph(u, s);
+	emit_thick_space(u);
 }
 function
-emit_italic_text(u, s, small_font)
+emit_italic_text(u, s)
 {
-	emit_text(u, s, small_font, 1);
+	emit_text(u, s, 1);
 }
 function
-emit_line(p, small_font)
+emit_line(p, level)
 {
-	var u = {type:LINE, a:[]};
+	var u = {type:LINE, a:[], level:level};
 
-	emit_expr(u, p, small_font);
+	emit_expr(u, p);
 
 	if (u.a.length == 1)
 		return u.a[0];
@@ -3710,7 +3712,7 @@ emit_matrix(u, p, d, k)
 	var i, j, m, n, s, v;
 
 	if (d == p.dim.length) {
-		v = emit_line(p.elem[k]);
+		v = emit_line(p.elem[k], 0);
 		u.a.push(v);
 		return;
 	}
@@ -3725,7 +3727,7 @@ emit_matrix(u, p, d, k)
 	for (i = d + 2; i < p.dim.length; i++)
 		s *= p.dim[i];
 
-	v = {type:TABLE, n:n, m:m, a:[], small_font:0};
+	v = {type:TABLE, n:n, m:m, a:[], level:0};
 
 	for (i = 0; i < n; i++)
 		for (j = 0; j < m; j++)
@@ -3736,27 +3738,27 @@ emit_matrix(u, p, d, k)
 	u.a.push(v);
 }
 function
-emit_medium_space(u, small_font)
+emit_medium_space(u)
 {
 	var size, v, w;
 
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
+	if (u.level == 0)
 		size = FONT_SIZE;
+	else
+		size = SMALL_FONT_SIZE;
 
 	w = 0.5 * roman_width["n".charCodeAt(0)] * WIDTH_RATIO * size;
 
-	v = {type:SPACE, height:0, depth:0, width:w};
+	v = {type:SPACE, height:0, depth:0, width:w, level:u.level};
 
 	u.a.push(v);
 }
 function
-emit_numerators(p, small_font)
+emit_numerators(u, p)
 {
-	var q, u;
+	var q, v;
 
-	u = {type:LINE, a:[]};
+	v = {type:LINE, a:[], level:u.level};
 
 	p = cdr(p);
 	q = car(p);
@@ -3770,54 +3772,56 @@ emit_numerators(p, small_font)
 			continue; // printed in denominator
 		}
 
-		if (u.a.length > 0)
-			emit_medium_space(u, small_font);
+		if (v.a.length > 0)
+			emit_medium_space(v);
 
 		if (isrational(q)) {
 			if (Math.abs(q.a) != 1)
-				emit_roman_text(u, Math.abs(q.a).toFixed(0), small_font);
+				emit_roman_text(v, Math.abs(q.a).toFixed(0));
 		} else if (car(q) == symbol(ADD))
-			emit_subexpr(u, q, small_font);
+			emit_subexpr(v, q);
 		else
-			emit_expr(u, q, small_font);
+			emit_expr(v, q);
 
 		p = cdr(p);
 	}
 
-	if (u.a.length == 0)
-		emit_roman_text(u, "1", small_font); // there were no numerators
+	if (v.a.length == 0)
+		emit_roman_text(v, "1"); // there were no numerators
 
-	if (u.a.length == 1)
-		return u.a[0];
+	if (v.a.length == 1) {
+		u.num = v.a[0];
+		return;
+	}
 
-	emit_update(u);
+	emit_update(v);
 
-	return u;
+	u.num = v;
 }
 function
-emit_numeric_exponent(u, p, small_font) // p is rational or double, sign is not emitted
+emit_numeric_exponent(u, p) // p is rational or double, sign is not emitted
 {
-	var v = {type:SUPERSCRIPT, a:[], small_font:small_font};
+	var v = {type:SUPERSCRIPT, a:[], level:u.level + 1};
 
 	if (isrational(p)) {
-		emit_roman_text(v, Math.abs(p.a).toFixed(0), 1);
+		emit_roman_text(v, Math.abs(p.a).toFixed(0));
 		if (p.b != 1) {
-			emit_roman_text(v, "/", 1);
-			emit_roman_text(v, p.b.toFixed(0), 1);
+			emit_roman_text(v, "/");
+			emit_roman_text(v, p.b.toFixed(0));
 		}
 	} else
-		emit_double(v, p, 1);
+		emit_double(v, p);
 
 	emit_update_superscript(u, v);
 
 	u.a.push(v);
 }
 function
-emit_power(u, p, small_font) // p = y^x
+emit_power(u, p) // p = y^x
 {
 	if (cadr(p) == symbol(EXP1)) {
-		emit_roman_text(u, "exp", small_font);
-		emit_subexpr(u, caddr(p), small_font);
+		emit_roman_text(u, "exp");
+		emit_subexpr(u, caddr(p));
 		return;
 	}
 
@@ -3829,27 +3833,27 @@ emit_power(u, p, small_font) // p = y^x
 	}
 
 	if (isnegativenumber(caddr(p)))
-		emit_reciprocal(u, p, small_font);
+		emit_reciprocal(u, p);
 	else {
-		emit_base(u, cadr(p), small_font);
-		emit_exponent(u, caddr(p), small_font);
+		emit_base(u, cadr(p));
+		emit_exponent(u, caddr(p));
 	}
 }
 function
-emit_rational(u, p, small_font)
+emit_rational(u, p)
 {
 	var num, den, v;
 
 	if (p.b == 1) {
-		emit_roman_text(u, Math.abs(p.a).toFixed(0), small_font);
+		emit_roman_text(u, Math.abs(p.a).toFixed(0));
 		return;
 	}
 
-	num = {type:LINE, a:[]};
-	den = {type:LINE, a:[]};
+	num = {type:LINE, a:[], level:u.level + 1};
+	den = {type:LINE, a:[], level:u.level + 1};
 
-	emit_roman_text(num, Math.abs(p.a).toFixed(0), 1);
-	emit_roman_text(den, p.b.toFixed(0), 1);
+	emit_roman_text(num, Math.abs(p.a).toFixed(0));
+	emit_roman_text(den, p.b.toFixed(0));
 
 	if (num.a.length == 1)
 		num = num.a[0];
@@ -3861,26 +3865,26 @@ emit_rational(u, p, small_font)
 	else
 		emit_update(den);
 
-	v = {type:FRACTION, num:num, den:den, small_font:small_font};
+	v = {type:FRACTION, num:num, den:den, level:u.level + 1};
 
 	emit_update_fraction(v);
 
 	u.a.push(v);
 }
 function
-emit_reciprocal(u, p, small_font) // p = y^x where x is a negative number
+emit_reciprocal(u, p) // p = y^x where x is a negative number
 {
 	var num, den, v;
 
-	num = {type:LINE, a:[]};
-	den = {type:LINE, a:[]};
+	num = {type:LINE, a:[], level:u.level};
+	den = {type:LINE, a:[], level:u.level};
 
-	emit_roman_text(num, "1", small_font);
+	emit_roman_text(num, "1");
 
 	if (isminusone(caddr(p)))
-		emit_expr(den, cadr(p), small_font);
+		emit_expr(den, cadr(p));
 	else {
-		emit_base(den, cadr(p), small_font);
+		emit_base(den, cadr(p));
 		emit_numeric_exponent(den, caddr(p)); // sign is not emitted
 	}
 
@@ -3894,28 +3898,28 @@ emit_reciprocal(u, p, small_font) // p = y^x where x is a negative number
 	else
 		emit_update(den);
 
-	v = {type:FRACTION, num:num, den:den, small_font:small_font};
+	v = {type:FRACTION, num:num, den:den, level:u.level};
 
 	emit_update_fraction(v);
 
 	u.a.push(v);
 }
 function
-emit_roman_text(u, s, small_font)
+emit_roman_text(u, s)
 {
-	emit_text(u, s, small_font, 0);
+	emit_text(u, s, 0);
 }
 function
-emit_string(u, p, small_font)
+emit_string(u, p)
 {
-	emit_roman_text(u, p.string, small_font);
+	emit_roman_text(u, p.string);
 }
 function
-emit_subexpr(u, p, small_font)
+emit_subexpr(u, p)
 {
-	var v = {type:PAREN, a:[], small_font:small_font};
-	emit_expr(v, p, small_font);
-	emit_update_subexpr(v, small_font);
+	var v = {type:SUBEXPR, a:[], level:u.level};
+	emit_expr(v, p);
+	emit_update_subexpr(v);
 	u.a.push(v);
 }
 function
@@ -3940,11 +3944,11 @@ emit_svg(u, x, y)
 		}
 		break;
 
-	case PAREN:
+	case SUBEXPR:
 
 		emit_svg_delims(u, x, y)
 
-		x += emit_delim_width(u.small_font);
+		x += emit_delim_width(u);
 
 		n = u.a.length;
 
@@ -3970,10 +3974,10 @@ emit_svg(u, x, y)
 
 	case SUBSCRIPT:
 
-		if (u.small_font)
-			y += SMALL_MINUS_HEIGHT;
-		else
+		if (u.level == 0)
 			y += MINUS_HEIGHT;
+		else
+			y += SMALL_MINUS_HEIGHT;
 
 		n = u.a.length;
 
@@ -4009,19 +4013,19 @@ emit_svg(u, x, y)
 		x1 = x;
 		x2 = x + u.width;
 
-		if (u.small_font) {
-			y -= SMALL_MINUS_HEIGHT;
-			emit_svg_line(x1, y, x2, y, SMALL_HRULE_WIDTH);
-		} else {
+		if (u.level == 0) {
 			y -= MINUS_HEIGHT;
-			emit_svg_line(x1, y, x2, y, HRULE_WIDTH);
+			emit_svg_line(x1, y, x2, y, FRAC_STROKE);
+		} else {
+			y -= SMALL_MINUS_HEIGHT;
+			emit_svg_line(x1, y, x2, y, SMALL_FRAC_STROKE);
 		}
 
 		break;
 
 	case TABLE:
 		emit_svg_delims(u, x, y);
-		emit_svg_table(u, x + emit_delim_width(0), y);
+		emit_svg_table(u, x + emit_delim_width(u), y);
 		break;
 	}
 }
@@ -4040,12 +4044,12 @@ emit_svg_delims(u, x, y)
 {
 	var h, d;
 
-	if (u.small_font) {
-		h = SMALL_FONT_HEIGHT;
-		d = SMALL_FONT_DEPTH;
-	} else {
+	if (u.level == 0) {
 		h = FONT_HEIGHT;
 		d = FONT_DEPTH;
+	} else {
+		h = SMALL_FONT_HEIGHT;
+		d = SMALL_FONT_DEPTH;
 	}
 
 	if (u.height > h || u.depth > d) {
@@ -4059,16 +4063,14 @@ emit_svg_ldelim(u, x, y)
 {
 	var t, w;
 
-	if (u.type == TABLE) {
+	if (u.type == TABLE)
 		t = TABLE_DELIM_STROKE;
-		w = emit_delim_width(0);
-	} else if (u.small_font) {
-		t = SMALL_DELIM_STROKE;
-		w = emit_delim_width(1);
-	} else {
+	else if (u.level == 0)
 		t = DELIM_STROKE;
-		w = emit_delim_width(0);
-	}
+	else
+		t = SMALL_DELIM_STROKE;
+
+	w = emit_delim_width(u);
 
 	var x1 = x + 0.25 * w;
 	var x2 = x + 0.75 * w;
@@ -4099,18 +4101,18 @@ emit_svg_parens(u, x, y)
 {
 	var d, h, l, r, w;
 
-	if (u.small_font) {
-		h = SMALL_FONT_HEIGHT;
-		d = SMALL_FONT_DEPTH;
-		w = emit_delim_width(1);
-	} else {
+	if (u.level == 0) {
 		h = FONT_HEIGHT;
 		d = FONT_DEPTH;
-		w = emit_delim_width(0);
+	} else {
+		h = SMALL_FONT_HEIGHT;
+		d = SMALL_FONT_DEPTH;
 	}
 
-	l = {type:TEXT, s:"(", height:h, depth:d, width:w, small_font:u.small_font, italic_font:0};
-	r = {type:TEXT, s:")", height:h, depth:d, width:w, small_font:u.small_font, italic_font:0};
+	w = emit_delim_width(u);
+
+	l = {type:TEXT, s:"(", height:h, depth:d, width:w, level:u.level, italic_font:0};
+	r = {type:TEXT, s:")", height:h, depth:d, width:w, level:u.level, italic_font:0};
 
 	emit_svg_text(l, x, y);
 	emit_svg_text(r, x + u.width - w, y);
@@ -4120,16 +4122,14 @@ emit_svg_rdelim(u, x, y)
 {
 	var t, w;
 
-	if (u.type == TABLE) {
+	if (u.type == TABLE)
 		t = TABLE_DELIM_STROKE;
-		w = emit_delim_width(0);
-	} else if (u.small_font) {
-		t = SMALL_DELIM_STROKE;
-		w = emit_delim_width(1);
-	} else {
+	else if (u.level == 0)
 		t = DELIM_STROKE;
-		w = emit_delim_width(0);
-	}
+	else
+		t = SMALL_DELIM_STROKE;
+
+	w = emit_delim_width(u);
 
 	var x1 = x + u.width - 0.25 * w;
 	var x2 = x + u.width - 0.75 * w;
@@ -4190,10 +4190,10 @@ emit_svg_text(u, x, y)
 
 	t = "<text style='font-family:\"Times New Roman\";";
 
-	if (u.small_font)
-		t += "font-size:" + SMALL_FONT_SIZE + "pt;";
-	else
+	if (u.level == 0)
 		t += "font-size:" + FONT_SIZE + "pt;";
+	else
+		t += "font-size:" + SMALL_FONT_SIZE + "pt;";
 
 	if (u.italic_font)
 		t += "font-style:italic;";
@@ -4203,47 +4203,47 @@ emit_svg_text(u, x, y)
 	outbuf += t;
 }
 function
-emit_symbol(u, p, small_font)
+emit_symbol(u, p)
 {
 	var j, k, s, v;
 
 	if (p == symbol(EXP1)) {
-		emit_roman_text(u, "exp(1)", small_font);
+		emit_roman_text(u, "exp(1)");
 		return;
 	}
 
 	s = printname(p);
 
 	if (iskeyword(p) || p == symbol(LAST) || p == symbol(TRACE)) {
-		emit_roman_text(u, s, small_font);
+		emit_roman_text(u, s);
 		return;
 	}
 
 	k = emit_symbol_scan(s, 0);
 
-	emit_symbol_text(u, s.substring(0, k), small_font);
+	emit_symbol_text(u, s.substring(0, k));
 
 	if (k == s.length)
 		return;
 
 	// emit subscript
 
-	v = {type:SUBSCRIPT, a:[], small_font:small_font};
+	v = {type:SUBSCRIPT, a:[], level:u.level + 1};
 
 	while (k < s.length) {
 		j = k;
 		k = emit_symbol_scan(s, k);
-		emit_symbol_text(v, s.substring(j, k), 1);
+		emit_symbol_text(v, s.substring(j, k));
 	}
 
 	emit_update(v);
 
-	if (small_font) {
-		v.height -= SMALL_MINUS_HEIGHT;
-		v.depth += SMALL_MINUS_HEIGHT;
-	} else {
+	if (u.level == 0) {
 		v.height -= MINUS_HEIGHT;
 		v.depth += MINUS_HEIGHT;
+	} else {
+		v.height -= SMALL_MINUS_HEIGHT;
+		v.depth += SMALL_MINUS_HEIGHT;
 	}
 
 	u.a.push(v);
@@ -4261,14 +4261,14 @@ emit_symbol_scan(s, k)
 	return k + 1;
 }
 function
-emit_symbol_text(u, s, small_font)
+emit_symbol_text(u, s)
 {
 	if (isdigit(s))
-		emit_roman_text(u, s, small_font);
+		emit_roman_text(u, s);
 	else if (s.length == 1)
-		emit_italic_text(u, s, small_font);
+		emit_italic_text(u, s);
 	else
-		emit_glyph(u, s, small_font);
+		emit_glyph(u, s);
 }
 function
 emit_tensor(u, p)
@@ -4279,15 +4279,15 @@ emit_tensor(u, p)
 		emit_matrix(u, p, 0, 0); // even rank
 }
 function
-emit_term(u, p, small_font)
+emit_term(u, p)
 {
 	if (car(p) == symbol(MULTIPLY))
-		emit_term_nib(u, p, small_font);
+		emit_term_nib(u, p);
 	else
-		emit_factor(u, p, small_font);
+		emit_factor(u, p);
 }
 function
-emit_term_nib(u, p, small_font)
+emit_term_nib(u, p)
 {
 	var n = 0, q, t;
 
@@ -4306,7 +4306,7 @@ emit_term_nib(u, p, small_font)
 	p = t;
 
 	if (n > 0) {
-		emit_fraction(u, p, n, small_font);
+		emit_fraction(u, p, n);
 		return;
 	}
 
@@ -4317,56 +4317,56 @@ emit_term_nib(u, p, small_font)
 	if (isrational(car(p)) && isminusone(car(p)))
 		p = cdr(p); // skip -1
 
-	emit_factor(u, car(p), small_font);
+	emit_factor(u, car(p));
 
 	p = cdr(p);
 
 	while (iscons(p)) {
-		emit_medium_space(u, small_font);
-		emit_factor(u, car(p), small_font);
+		emit_medium_space(u);
+		emit_factor(u, car(p));
 		p = cdr(p);
 	}
 }
 function
-emit_text(u, s, small_font, italic_font)
+emit_text(u, s, italic_font)
 {
 	var i, n, v;
 	n = s.length;
 	for (i = 0; i < n; i++) {
-		v = {type:TEXT, s:s[i], small_font:small_font, italic_font:italic_font};
+		v = {type:TEXT, s:s[i], level:u.level, italic_font:italic_font};
 		emit_update_text(v);
 		u.a.push(v);
 	}
 }
 function
-emit_thick_space(u, small_font)
+emit_thick_space(u)
 {
 	var size, v, w;
 
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
+	if (u.level == 0)
 		size = FONT_SIZE;
+	else
+		size = SMALL_FONT_SIZE;
 
 	w = roman_width["n".charCodeAt(0)] * WIDTH_RATIO * size;
 
-	v = {type:SPACE, height:0, depth:0, width:w};
+	v = {type:SPACE, height:0, depth:0, width:w, level:u.level};
 
 	u.a.push(v);
 }
 function
-emit_thin_space(u, small_font)
+emit_thin_space(u)
 {
 	var size, v, w;
 
-	if (small_font)
-		size = SMALL_FONT_SIZE;
-	else
+	if (u.level == 0)
 		size = FONT_SIZE;
+	else
+		size = SMALL_FONT_SIZE;
 
 	w = 0.25 * roman_width["n".charCodeAt(0)] * WIDTH_RATIO * size;
 
-	v = {type:SPACE, height:0, depth:0, width:w};
+	v = {type:SPACE, height:0, depth:0, width:w, level:u.level};
 
 	u.a.push(v);
 }
@@ -4396,14 +4396,14 @@ emit_update_fraction(u)
 
 	w = 0.5 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
-	if (u.small_font) {
-		h = 4 * SMALL_HRULE_WIDTH + SMALL_MINUS_HEIGHT;
-		d = 4 * SMALL_HRULE_WIDTH - SMALL_MINUS_HEIGHT;
-		w = w * SMALL_FONT_SIZE;
-	} else {
-		h = 4 * HRULE_WIDTH + MINUS_HEIGHT;
-		d = 4 * HRULE_WIDTH - MINUS_HEIGHT;
+	if (u.level == 0) {
+		h = FRAC_VSPACE + MINUS_HEIGHT;
+		d = FRAC_VSPACE - MINUS_HEIGHT;
 		w = w * FONT_SIZE;
+	} else {
+		h = SMALL_FRAC_VSPACE + SMALL_MINUS_HEIGHT;
+		d = SMALL_FRAC_VSPACE - SMALL_MINUS_HEIGHT;
+		w = w * SMALL_FONT_SIZE;
 	}
 
 	u.height = u.num.height + u.num.depth + h;
@@ -4411,18 +4411,21 @@ emit_update_fraction(u)
 	u.width = Math.max(u.num.width, u.den.width) + w;
 }
 function
-emit_update_subexpr(u, small_font)
+emit_update_subexpr(u)
 {
+	var d;
+
 	emit_update(u);
 
-	if (u.depth == 0) {
-		if (small_font)
-			u.depth = SMALL_FONT_DEPTH;
-		else
-			u.depth = FONT_DEPTH;
-	}
+	if (u.level == 0)
+		u.depth = FONT_DEPTH;
+	else
+		u.depth = SMALL_FONT_DEPTH;
 
-	u.width += 2 * emit_delim_width(small_font);
+	if (u.depth < d)
+		u.depth = d;
+
+	u.width += 2 * emit_delim_width(u);
 }
 function
 emit_update_superscript(u, v)
@@ -4433,10 +4436,10 @@ emit_update_superscript(u, v)
 
 	// h is height of neighbor
 
-	if (u.small_font)
-		h = SMALL_FONT_HEIGHT;
-	else
+	if (u.level == 0)
 		h = FONT_HEIGHT;
+	else
+		h = SMALL_FONT_HEIGHT;
 
 	k = u.a.length;
 
@@ -4444,9 +4447,13 @@ emit_update_superscript(u, v)
 		k = k - 1;
 		if (u.a[k].type == SUBSCRIPT)
 			continue;
-		h = u.a[k].height;
+		h = Math.max(h, u.a[k].height);
 		break;
 	}
+
+	// adjust
+
+	h = h - Math.floor(SMALL_FONT_HEIGHT / 2);
 
 	// move up
 
@@ -4500,7 +4507,7 @@ emit_update_table(u)
 	for (j = 0; j < m; j++)
 		w += u.a[j].cell_width;
 
-	u.width = w + 2 * emit_delim_width(0); // small_font = 0
+	u.width = w + 2 * emit_delim_width(u);
 }
 function
 emit_update_text(u)
@@ -4540,20 +4547,20 @@ emit_update_text(u)
 	if (w == undefined)
 		w = 1000;
 
-	if (u.small_font) {
-		u.height = SMALL_FONT_HEIGHT;
-		if (descender)
-			u.depth = SMALL_FONT_DEPTH;
-		else
-			u.depth = 0;
-		u.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
-	} else {
+	if (u.level == 0) {
 		u.height = FONT_HEIGHT;
 		if (descender)
 			u.depth = FONT_DEPTH;
 		else
 			u.depth = 0;
 		u.width = w * WIDTH_RATIO * FONT_SIZE;
+	} else {
+		u.height = SMALL_FONT_HEIGHT;
+		if (descender)
+			u.depth = SMALL_FONT_DEPTH;
+		else
+			u.depth = 0;
+		u.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
 	}
 }
 function
@@ -4570,7 +4577,7 @@ emit_vector(u, p)
 	for (i = 1; i < p.dim.length; i++)
 		s *= p.dim[i];
 
-	v = {type:TABLE, n:n, m:1, a:[], small_font:0};
+	v = {type:TABLE, n:n, m:1, a:[], level:0};
 
 	for (i = 0; i < n; i++)
 		emit_matrix(v, p, 1, i * s);
