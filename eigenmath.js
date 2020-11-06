@@ -3131,7 +3131,7 @@ const VPAD = 6;
 
 const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
-const FONT_DEPTH = 5;
+const FONT_DEPTH = 6;
 const MINUS_HEIGHT = 8.5;
 const FRAC_VSPACE = 5.5; // vspace plus minus height should be an integer
 const FRAC_STROKE = 1.5;
@@ -4413,17 +4413,20 @@ emit_update_fraction(u)
 function
 emit_update_subexpr(u)
 {
-	var d;
+	var d, h;
 
 	emit_update(u);
 
-	if (u.level == 0)
+	if (u.level == 0) {
+		h = FONT_HEIGHT
 		d = FONT_DEPTH;
-	else
+	} else {
+		h = SMALL_FONT_HEIGHT;
 		d = SMALL_FONT_DEPTH;
+	}
 
-	if (u.depth < d)
-		u.depth = d;
+	u.height = Math.max(h, u.height);
+	u.depth = Math.max(d, u.depth);
 
 	u.width += 2 * emit_delim_width(u);
 }
