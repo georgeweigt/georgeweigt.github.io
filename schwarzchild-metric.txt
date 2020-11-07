@@ -103,5 +103,5 @@ GDD
 F(r) = 1 - 2 M/r
 F
 
-GDD = rationalize(GDD) -- rationalize to simplify
+GDD = simplify(GDD)
 GDD
