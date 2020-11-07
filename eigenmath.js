@@ -2045,6 +2045,17 @@ cosh()
 	list(2);
 }
 function
+count_denominators(p)
+{
+	var n = 0;
+	while (iscons(p)) {
+		if (isfraction(car(p)) || isdenominator(car(p)))
+			n++;
+		p = cdr(p);
+	}
+	return n;
+}
+function
 dabs(p1, p2)
 {
 	push(cadr(p1));
@@ -3312,9 +3323,11 @@ emit_delim_width(u)
 	return glyph_info["&parenleft;"].width * WIDTH_RATIO * size;
 }
 function
-emit_denominators(u, p, n) // n is number of denominators
+emit_denominators(u, p)
 {
-	var q, v;
+	var n, q, v;
+
+	n = count_denominators(cdr(p));
 
 	v = {type:LINE, a:[], level:u.level};
 
@@ -3322,10 +3335,8 @@ emit_denominators(u, p, n) // n is number of denominators
 	q = car(p);
 
 	if (isrational(q)) {
-		if (q.b != 1) {
+		if (q.b != 1)
 			emit_roman_text(v, q.b.toFixed(0));
-			n++;
-		}
 		p = cdr(p);
 	}
 
@@ -3333,9 +3344,9 @@ emit_denominators(u, p, n) // n is number of denominators
 
 		q = car(p);
 
-		if (car(q) != symbol(POWER) || !isnegativenumber(caddr(q))) {
+		if (!isdenominator(q)) {
 			p = cdr(p);
-			continue; // not a denominator
+			continue;
 		}
 
 		if (v.a.length > 0)
@@ -3511,12 +3522,12 @@ emit_factor(u, p)
 	}
 }
 function
-emit_fraction(u, p, n) // n is number of denominators
+emit_fraction(u, p)
 {
 	var v = {type:FRACTION, level:u.level};
 
 	emit_numerators(v, p);
-	emit_denominators(v, p, n);
+	emit_denominators(v, p);
 
 	emit_update_fraction(v);
 
@@ -3768,9 +3779,9 @@ emit_numerators(u, p)
 
 		q = car(p);
 
-		if (car(q) == symbol(POWER) && isnegativenumber(caddr(q))) {
+		if (isdenominator(q)) {
 			p = cdr(p);
-			continue; // printed in denominator
+			continue;
 		}
 
 		if (v.a.length > 0)
@@ -3779,10 +3790,8 @@ emit_numerators(u, p)
 		if (isrational(q)) {
 			if (Math.abs(q.a) != 1)
 				emit_roman_text(v, Math.abs(q.a).toFixed(0));
-		} else if (car(q) == symbol(ADD))
-			emit_subexpr(v, q);
-		else
-			emit_expr(v, q);
+		} else
+			emit_term(v, q);
 
 		p = cdr(p);
 	}
@@ -4290,24 +4299,17 @@ emit_term(u, p)
 function
 emit_term_nib(u, p)
 {
-	var n = 0, q, t;
+	var n;
 
 	// count denominators
 
-	t = p;
-
-	p = cdr(p);
-	while (iscons(p)) {
-		q = car(p);
-		if (car(q) == symbol(POWER) && isnegativenumber(caddr(q)))
-			n++;
-		p = cdr(p);
-	}
-
-	p = t;
+	if (isfraction(cadr(p)))
+		n = count_denominators(cddr(p)); // don't include leading coeff in count
+	else
+		n = count_denominators(cdr(p));
 
 	if (n > 0) {
-		emit_fraction(u, p, n);
+		emit_fraction(u, p);
 		return;
 	}
 
@@ -4316,7 +4318,7 @@ emit_term_nib(u, p)
 	p = cdr(p);
 
 	if (isrational(car(p)) && isminusone(car(p)))
-		p = cdr(p); // skip -1
+		p = cdr(p); // sign already emitted
 
 	emit_factor(u, car(p));
 
@@ -7533,6 +7535,11 @@ iscons(p)
 		return 1;
 	else
 		return 0;
+}
+function
+isdenominator(p)
+{
+	return car(p) == symbol(POWER) && isnegativenumber(caddr(p));
 }
 function
 isdigit(s)
