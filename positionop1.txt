@@ -1,3 +1,5 @@
+-- Position operator demo
+
 ket00 = (1,0,0,0)
 ket10 = (0,1,0,0)
 ket01 = (0,0,1,0)

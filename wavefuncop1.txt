@@ -1,3 +1,5 @@
+-- Wavefunction operator demo
+
 phi(n,x) = sqrt(2 / L) sin(n pi x / L)
 
 ket00 = (1,0,0,0)

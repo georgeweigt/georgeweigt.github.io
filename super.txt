@@ -1,3 +1,5 @@
+-- Superposition demo
+
 ket0 = (1,0,0,0)
 ket1 = (0,1,0,0)
 ket2 = (0,0,1,0)
