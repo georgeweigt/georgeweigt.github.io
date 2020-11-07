@@ -3364,12 +3364,10 @@ emit_denominators(u, p)
 		}
 	}
 
-	if (v.a.length == 1) {
-		u.den = v.a[0];
-		return;
-	}
-
-	emit_update(v);
+	if (v.a.length == 1)
+		v = v.a[0];
+	else
+		emit_update(v);
 
 	u.den = v;
 }
@@ -3798,12 +3796,10 @@ emit_numerators(u, p)
 	if (v.a.length == 0)
 		emit_roman_text(v, "1"); // there were no numerators
 
-	if (v.a.length == 1) {
-		u.num = v.a[0];
-		return;
-	}
-
-	emit_update(v);
+	if (v.a.length == 1)
+		v = v.a[0];
+	else
+		emit_update(v);
 
 	u.num = v;
 }
