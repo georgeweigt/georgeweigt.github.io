@@ -67,7 +67,7 @@ for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
 
 S
 
-"Compute Casimir trick"
+"Casimir trick"
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
