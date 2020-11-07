@@ -2048,8 +2048,9 @@ function
 count_denominators(p)
 {
 	var n = 0;
+	p = cdr(p);
 	while (iscons(p)) {
-		if (isfraction(car(p)) || isdenominator(car(p)))
+		if (isdenominator(car(p)))
 			n++;
 		p = cdr(p);
 	}
@@ -3327,17 +3328,17 @@ emit_denominators(u, p)
 {
 	var n, q, v;
 
-	n = count_denominators(cdr(p));
+	n = count_denominators(p);
 
 	v = {type:LINE, a:[], level:u.level};
 
 	p = cdr(p);
 	q = car(p);
 
-	if (isrational(q)) {
-		if (q.b != 1)
-			emit_roman_text(v, q.b.toFixed(0));
+	if (isfraction(q)) {
+		emit_roman_text(v, q.b.toFixed(0));
 		p = cdr(p);
+		n++;
 	}
 
 	while (iscons(p)) {
@@ -3775,6 +3776,14 @@ emit_numerators(u, p)
 	p = cdr(p);
 	q = car(p);
 
+	if (isnum(q)) {
+		if (isdouble(q))
+			emit_double(v, q);
+		else if (Math.abs(q.a) != 1)
+			emit_roman_text(v, Math.abs(q.a).toFixed(0));
+		p = cdr(p);
+	}
+
 	while (iscons(p)) {
 
 		q = car(p);
@@ -3787,11 +3796,7 @@ emit_numerators(u, p)
 		if (v.a.length > 0)
 			emit_medium_space(v);
 
-		if (isrational(q)) {
-			if (Math.abs(q.a) != 1)
-				emit_roman_text(v, Math.abs(q.a).toFixed(0));
-		} else
-			emit_term(v, q);
+		emit_term(v, q);
 
 		p = cdr(p);
 	}
@@ -4301,12 +4306,7 @@ emit_term_nib(u, p)
 {
 	var n;
 
-	// count denominators
-
-	if (isfraction(cadr(p)))
-		n = count_denominators(cddr(p)); // don't include leading coeff in count
-	else
-		n = count_denominators(cdr(p));
+	n = count_denominators(p);
 
 	if (n > 0) {
 		emit_fraction(u, p);
@@ -4317,7 +4317,7 @@ emit_term_nib(u, p)
 
 	p = cdr(p);
 
-	if (isrational(car(p)) && isminusone(car(p)))
+	if (isminusone(car(p)) && !isdouble(car(p)))
 		p = cdr(p); // sign already emitted
 
 	emit_factor(u, car(p));
