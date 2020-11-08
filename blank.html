@@ -22,6 +22,7 @@ onchange="document.getElementById('openfile').value=''">
 
 </td><td>
 
+<button onclick="clearf()">Clear</button>
 <input type="file" id="openfile">
 
 </td></tr></table>
@@ -45,7 +46,6 @@ function
 clearf()
 {
 	document.getElementById("openfile").value = "";
-	document.getElementById("stdin").value = "";
 	document.getElementById("stdout").innerHTML = "";
 }
 </script>
