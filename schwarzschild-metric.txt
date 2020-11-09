@@ -1,4 +1,4 @@
--- Verify that Einstein tensor vanishes for Schwarzchild metric
+-- Verify that Einstein tensor vanishes for Schwarzschild metric
 
 -- d indicates a down index
 -- u indicates an up index
@@ -99,7 +99,7 @@ Gmunu = RDD - 1/2 * gdd * R
 
 Gmunu
 
-"Verify that Einstein tensor vanishes for Schwarzchild metric"
+"Verify that Einstein tensor vanishes for Schwarzschild metric"
 
 F(r) = 1 - 2 M/r
 F

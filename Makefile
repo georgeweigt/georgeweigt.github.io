@@ -41,7 +41,7 @@ demos:
 	cat 1.txt positionop2.txt 2.txt > positionop2.html
 	cat 1.txt radialeigenfunc.txt 2.txt > radialeigenfunc.html
 	cat 1.txt radialfuncnorm.txt 2.txt > radialfuncnorm.html
-	cat 1.txt schwarzchild-metric.txt 2.txt > schwarzchild-metric.html
+	cat 1.txt schwarzschild-metric.txt 2.txt > schwarzschild-metric.html
 	cat 1.txt spharm.txt 2.txt > spharm.html
 	cat 1.txt static-spherical-metric.txt 2.txt > static-spherical-metric.html
 	cat 1.txt super.txt 2.txt > super.html
