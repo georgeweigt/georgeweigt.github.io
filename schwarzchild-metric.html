@@ -105,22 +105,22 @@ R = contract(dot(guu,transpose(RDD)))
 -- G   = R   - 1/2 g   R
 --  uv    uv        uv
 
-GDD = RDD - 1/2 * gdd * R
+Gmunu = RDD - 1/2 * gdd * R
 
 "Einstein tensor"
 
-GDD
+Gmunu
 
 "Verify that Einstein tensor vanishes for Schwarzchild metric"
 
 F(r) = 1 - 2 M/r
 F
 
-GDD = simplify(GDD)
-GDD
+Gmunu = simplify(Gmunu)
+Gmunu
 </textarea>
 </td><td>
-<button onclick="run()" style="font-weight:bold;width:96px">Run</button>
+<button onclick="run()" style="width:90px">Run</button>
 </td></tr></table>
 
 <p>
