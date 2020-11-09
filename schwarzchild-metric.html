@@ -12,6 +12,9 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Verify that Einstein tensor vanishes for Schwarzchild metric
 
+-- d indicates a down index
+-- u indicates an up index
+
 -- metric tensor
 
 gdd = zero(4,4)
@@ -19,12 +22,9 @@ gdd = zero(4,4)
 gdd[1,1] = -F(r)
 gdd[2,2] = 1/F(r)
 gdd[3,3] = r^2
-gdd[4,4] = r^2*sin(theta)^2
+gdd[4,4] = r^2 sin(theta)^2
 
--- dd is two down indices
--- uu is two up indices
-
-X = (t,r,theta,phi) -- for computing gradients
+X = (t,r,theta,phi) -- X is for computing gradients
 
 -- Step 1: Calculate guu.
 
