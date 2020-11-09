@@ -13,7 +13,7 @@
 <textarea id="stdin" rows="24" cols="80"
 style="font-family:courier;font-size:12pt"
 placeholder="Scripts go here"
-onchange="document.getElementById('openfile').value=''">
+onchange="clearf()">
 </textarea>
 
 </td><td>
@@ -23,7 +23,6 @@ onchange="document.getElementById('openfile').value=''">
 </td><td>
 
 <button onclick="demo()">Demo Script</button>
-<button onclick="clearf()">Clear</button>
 <input type="file" id="openfile">
 
 </td></tr></table>
