@@ -1,6 +1,6 @@
 </textarea>
 </td><td>
-<button onclick="run()" style="font-weight:bold;width:90px">Run</button>
+<button onclick="run()" style="font-weight:bold;width:96px">Run</button>
 </td></tr></table>
 
 <p>
