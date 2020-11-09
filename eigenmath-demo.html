@@ -12,6 +12,7 @@
 
 <textarea id="stdin" rows="24" cols="80"
 style="font-family:courier;font-size:12pt"
+placeholder="Scripts go here"
 onchange="document.getElementById('openfile').value=''">
 </textarea>
 
@@ -52,7 +53,7 @@ clearf()
 
 var foo;
 
-function demo(s)
+function demo()
 {
 	clearf();
 	foo = new XMLHttpRequest();
