@@ -1,4 +1,4 @@
-/* November 1, 2020
+/* November 10, 2020
 
 To build and run:
 
@@ -718,6 +718,7 @@ int collect_coeffs_sort_func(const void *q1, const void *q2);
 void partition_integrand(void);
 void eval_inv(void);
 void inv(void);
+void inv_nib(void);
 int iszero(struct atom *p);
 int isplusone(struct atom *p);
 int isminusone(struct atom *p);
@@ -10832,8 +10833,20 @@ void
 inv(void)
 {
 	save();
+	inv_nib();
+	restore();
+}
+
+void
+inv_nib(void)
+{
 	p1 = pop();
-	if (!istensor(p1) || p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
+	if (!istensor(p1)) {
+		push(p1);
+		reciprocate();
+		return;
+	}
+	if (p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
 		stop("inv: square matrix expected");
 	push(p1);
 	adj();
@@ -10844,7 +10857,6 @@ inv(void)
 		stop("inv: singular matrix");
 	push(p2);
 	divide();
-	restore();
 }
 
 int
