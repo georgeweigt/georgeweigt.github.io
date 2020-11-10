@@ -1,7 +1,7 @@
 -- Verify that Einstein tensor vanishes for Schwarzschild metric
 
--- d indicates down index
--- u indicates up index
+-- d for down index
+-- u for up index
 
 -- metric tensor
 
