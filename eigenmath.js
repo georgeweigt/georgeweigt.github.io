@@ -3157,7 +3157,7 @@ const SMALL_MINUS_HEIGHT = 6;
 const SMALL_FRAC_VSPACE = 4;
 const SMALL_FRAC_STROKE = 1;
 const SMALL_DELIM_STROKE = 1.5;
- 
+
 const TABLE_HSPACE = 12;
 const TABLE_VSPACE = 12;
 const TABLE_DELIM_STROKE = 2.5;
@@ -3979,7 +3979,7 @@ emit_svg(u, x, y)
 
 	case SUBSCRIPT:
 
-		y += SMALL_MINUS_HEIGHT;
+		y += FONT_DEPTH;
 
 		n = u.a.length;
 
@@ -4242,8 +4242,8 @@ emit_symbol(u, p)
 
 	emit_update(v);
 
-	v.height -= SMALL_MINUS_HEIGHT;
-	v.depth += SMALL_MINUS_HEIGHT;
+	v.height -= FONT_DEPTH;
+	v.depth += FONT_DEPTH;
 
 	u.a.push(v);
 }
