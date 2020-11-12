@@ -3146,6 +3146,7 @@ const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
 const FONT_DEPTH = 6;
 const MINUS_HEIGHT = 8.5;
+const SUBSCRIPT_DEPTH = 6;
 const FRAC_VSPACE = 5.5;
 const FRAC_STROKE = 1.5;
 const DELIM_STROKE = 2;
@@ -3154,6 +3155,7 @@ const SMALL_FONT_SIZE = 14;
 const SMALL_FONT_HEIGHT = 13;
 const SMALL_FONT_DEPTH = 4;
 const SMALL_MINUS_HEIGHT = 6;
+const SMALL_SUBSCRIPT_DEPTH = 8;
 const SMALL_FRAC_VSPACE = 4;
 const SMALL_FRAC_STROKE = 1;
 const SMALL_DELIM_STROKE = 1.5;
@@ -3979,7 +3981,10 @@ emit_svg(u, x, y)
 
 	case SUBSCRIPT:
 
-		y += FONT_DEPTH;
+		if (u.level == 1)
+			y += SUBSCRIPT_DEPTH;
+		else
+			y += SMALL_SUBSCRIPT_DEPTH;
 
 		n = u.a.length;
 
@@ -4242,8 +4247,13 @@ emit_symbol(u, p)
 
 	emit_update(v);
 
-	v.height -= FONT_DEPTH;
-	v.depth += FONT_DEPTH;
+	if (v.level == 1) {
+		v.height -= SUBSCRIPT_DEPTH;
+		v.depth += SUBSCRIPT_DEPTH;
+	} else {
+		v.height -= SMALL_SUBSCRIPT_DEPTH;
+		v.depth += SMALL_SUBSCRIPT_DEPTH;
+	}
 
 	u.a.push(v);
 }
