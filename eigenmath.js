@@ -4074,25 +4074,10 @@ emit_svg(u, x, y)
 		break;
 
 	case SUPERSCRIPT:
+	case SUBSCRIPT:
 
 		x += u.dx;
 		y += u.dy;
-
-		n = u.a.length;
-
-		for (i = 0; i < n; i++) {
-			emit_svg(u.a[i], x, y);
-			x += u.a[i].width;
-		}
-
-		break;
-
-	case SUBSCRIPT:
-
-		if (u.level == 1)
-			y += SUBSCRIPT_DEPTH;
-		else
-			y += SMALL_SUBSCRIPT_DEPTH;
 
 		n = u.a.length;
 
@@ -4358,9 +4343,13 @@ emit_symbol(u, p)
 	if (v.level == 1) {
 		v.height = FONT_HEIGHT;
 		v.depth += SUBSCRIPT_DEPTH;
+		v.dx = 0;
+		v.dy = SUBSCRIPT_DEPTH;
 	} else {
 		v.height = SMALL_FONT_HEIGHT;
 		v.depth += SMALL_SUBSCRIPT_DEPTH;
+		v.dx = 0;
+		v.dy = SMALL_SUBSCRIPT_DEPTH;
 	}
 
 	u.a.push(v);
