@@ -3146,8 +3146,8 @@ const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
 const FONT_DEPTH = 6;
 const MINUS_HEIGHT = 8.5;
-const SUPERSCRIPT_HEIGHT = 12;
-const SUBSCRIPT_DEPTH = 6;
+const SUPERSCRIPT_HEIGHT = 10;
+const SUBSCRIPT_DEPTH = 7;
 const FRAC_VSPACE = 5.5;
 const FRAC_STROKE = 1.5;
 const DELIM_STROKE = 2;
@@ -3156,8 +3156,8 @@ const SMALL_FONT_SIZE = 14;
 const SMALL_FONT_HEIGHT = 13;
 const SMALL_FONT_DEPTH = 4;
 const SMALL_MINUS_HEIGHT = 6;
-const SMALL_SUPERSCRIPT_HEIGHT = 9;
-const SMALL_SUBSCRIPT_DEPTH = 8;
+const SMALL_SUPERSCRIPT_HEIGHT = 7;
+const SMALL_SUBSCRIPT_DEPTH = 7;
 const SMALL_FRAC_VSPACE = 4;
 const SMALL_FRAC_STROKE = 1;
 const SMALL_DELIM_STROKE = 1.5;
@@ -4075,7 +4075,8 @@ emit_svg(u, x, y)
 
 	case SUPERSCRIPT:
 
-		y += u.depth; // depth is negative
+		x += u.dx;
+		y += u.dy;
 
 		n = u.a.length;
 
@@ -4355,10 +4356,10 @@ emit_symbol(u, p)
 	emit_update(v);
 
 	if (v.level == 1) {
-		v.height -= SUBSCRIPT_DEPTH;
+		v.height = FONT_HEIGHT;
 		v.depth += SUBSCRIPT_DEPTH;
 	} else {
-		v.height -= SMALL_SUBSCRIPT_DEPTH;
+		v.height = SMALL_FONT_HEIGHT;
 		v.depth += SMALL_SUBSCRIPT_DEPTH;
 	}
 
@@ -4526,13 +4527,14 @@ emit_update_subexpr(u)
 function
 emit_update_superscript(u, v)
 {
-	var h;
+	var h, k;
 
 	emit_update(v);
 
 	// h is height of neighbor
 
-	h = u.a[u.a.length - 1].height;
+	k = u.a.length - 1;
+	h = u.a[k].height;
 
 	// adjust
 
@@ -4543,10 +4545,16 @@ emit_update_superscript(u, v)
 	else
 		h = Math.max(h, SMALL_SUPERSCRIPT_HEIGHT);
 
-	// move up
+	v.dx = 0;
+	v.dy = -(h + v.depth);
 
 	v.height = h + v.height + v.depth;
-	v.depth = -h - v.depth;
+	v.depth = 0;
+
+	if (u.a[k].type == SUBSCRIPT) {
+		v.dx = -u.a[k].width;
+		v.width = Math.max(0, v.width - u.a[k].width);
+	}
 }
 function
 emit_update_table(u)
