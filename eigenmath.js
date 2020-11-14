@@ -3146,6 +3146,7 @@ const FONT_SIZE = 20;
 const FONT_HEIGHT = 18;
 const FONT_DEPTH = 6;
 const MINUS_HEIGHT = 8.5;
+const SUPERSCRIPT_HEIGHT = 12;
 const SUBSCRIPT_DEPTH = 6;
 const FRAC_VSPACE = 5.5;
 const FRAC_STROKE = 1.5;
@@ -3155,6 +3156,7 @@ const SMALL_FONT_SIZE = 14;
 const SMALL_FONT_HEIGHT = 13;
 const SMALL_FONT_DEPTH = 4;
 const SMALL_MINUS_HEIGHT = 6;
+const SMALL_SUPERSCRIPT_HEIGHT = 9;
 const SMALL_SUBSCRIPT_DEPTH = 8;
 const SMALL_FRAC_VSPACE = 4;
 const SMALL_FRAC_STROKE = 1;
@@ -4524,30 +4526,22 @@ emit_update_subexpr(u)
 function
 emit_update_superscript(u, v)
 {
-	var h, k;
+	var h;
 
 	emit_update(v);
 
 	// h is height of neighbor
 
-	if (u.level == 0)
-		h = FONT_HEIGHT;
-	else
-		h = SMALL_FONT_HEIGHT;
-
-	k = u.a.length;
-
-	while (k) {
-		k = k - 1;
-		if (u.a[k].type == SUBSCRIPT)
-			continue;
-		h = Math.max(h, u.a[k].height);
-		break;
-	}
+	h = u.a[u.a.length - 1].height;
 
 	// adjust
 
-	h = h - Math.floor(SMALL_FONT_HEIGHT / 2);
+	h -= v.height + v.depth;
+
+	if (u.level == 0)
+		h = Math.max(h, SUPERSCRIPT_HEIGHT);
+	else
+		h = Math.max(h, SMALL_SUPERSCRIPT_HEIGHT);
 
 	// move up
 
