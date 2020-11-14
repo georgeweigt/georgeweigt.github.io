@@ -3131,7 +3131,7 @@ emit_base(u, p)
 		emit_expr(u, p);
 }
 const SPACE = 0;
-const TEXT = 1;
+const GLYPH = 1;
 const LINE = 2;
 const SUBEXPR = 3;
 const SUPERSCRIPT = 4;
@@ -3409,7 +3409,7 @@ emit_double(u, p) // p is a double
 
 	k++;
 
-	emit_glyph(u, "times");
+	emit_named_glyph(u, "times");
 
 	emit_roman_text(u, "10");
 
@@ -3420,7 +3420,7 @@ emit_double(u, p) // p is a double
 	if (s.charAt(k) == "+")
 		k++;
 	else if (s.charAt(k) == "-") {
-		emit_glyph(v, "minus");
+		emit_named_glyph(v, "minus");
 		emit_thin_space(v);
 		k++;
 	}
@@ -3458,7 +3458,7 @@ function
 emit_expr(u, p)
 {
 	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p)))) {
-		emit_glyph(u, "minus");
+		emit_named_glyph(u, "minus");
 		emit_thin_space(u);
 	}
 	if (car(p) == symbol(ADD))
@@ -3611,38 +3611,6 @@ emit_function(u, p)
 	emit_args(u, p);
 }
 function
-emit_glyph(u, s)
-{
-	var descender, italic_font, v, w;
-
-	s = "&" + s + ";";
-
-	italic_font = glyph_info[s].italic_font;
-	descender = glyph_info[s].descender;
-
-	v = {type:TEXT, s:s, level:u.level, italic_font:italic_font};
-
-	w = glyph_info[s].width;
-
-	if (u.level == 0) {
-		v.height = FONT_HEIGHT;
-		if (descender)
-			v.depth = FONT_DEPTH;
-		else
-			v.depth = 0;
-		v.width = w * WIDTH_RATIO * FONT_SIZE;
-	} else {
-		v.height = SMALL_FONT_HEIGHT;
-		if (descender)
-			v.depth = SMALL_FONT_DEPTH;
-		else
-			v.depth = 0;
-		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
-	}
-
-	u.a.push(v);
-}
-function
 emit_indices(u, p)
 {
 	emit_roman_text(u, "[");
@@ -3665,13 +3633,66 @@ function
 emit_infix_operator(u, s)
 {
 	emit_thick_space(u);
-	emit_glyph(u, s);
+	emit_named_glyph(u, s);
 	emit_thick_space(u);
+}
+function
+emit_italic_glyph(u, s)
+{
+	var n, v, w;
+
+	v = {type:GLYPH, s:s, level:u.level, italic_font:1};
+
+	switch (s) {
+	case "f":
+	case "g":
+	case "j":
+	case "p":
+	case "q":
+	case "y":
+	case "(":
+	case ")":
+	case "[":
+	case "]":
+	case "{":
+	case "}":
+	case "@":
+	case "|":
+	case "_":
+		if (v.level == 0)
+			v.depth = FONT_DEPTH;
+		else
+			v.depth = SMALL_FONT_DEPTH;
+		break;
+	default:
+		v.depth = 0;
+		break;
+	}
+
+	n = s.charCodeAt(0);
+
+	if (n < 128)
+		w = italic_width[n];
+	else
+		w = 1000;
+
+	if (v.level == 0) {
+		v.height = FONT_HEIGHT;
+		v.width = w * WIDTH_RATIO * FONT_SIZE;
+	} else {
+		v.height = SMALL_FONT_HEIGHT;
+		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
+	}
+
+	u.a.push(v);
 }
 function
 emit_italic_text(u, s)
 {
-	emit_text(u, s, 1);
+	var i, n;
+	n = s.length;
+	for (i = 0; i < n; i++)
+		emit_italic_glyph(u, s.charAt(i));
 }
 function
 emit_line(p, level)
@@ -3760,6 +3781,38 @@ emit_medium_space(u)
 	w = 0.5 * roman_width["n".charCodeAt(0)] * WIDTH_RATIO * size;
 
 	v = {type:SPACE, height:0, depth:0, width:w, level:u.level};
+
+	u.a.push(v);
+}
+function
+emit_named_glyph(u, s)
+{
+	var descender, italic_font, v, w;
+
+	s = "&" + s + ";";
+
+	italic_font = glyph_info[s].italic_font;
+	descender = glyph_info[s].descender;
+
+	v = {type:GLYPH, s:s, level:u.level, italic_font:italic_font};
+
+	w = glyph_info[s].width;
+
+	if (u.level == 0) {
+		v.height = FONT_HEIGHT;
+		if (descender)
+			v.depth = FONT_DEPTH;
+		else
+			v.depth = 0;
+		v.width = w * WIDTH_RATIO * FONT_SIZE;
+	} else {
+		v.height = SMALL_FONT_HEIGHT;
+		if (descender)
+			v.depth = SMALL_FONT_DEPTH;
+		else
+			v.depth = 0;
+		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
+	}
 
 	u.a.push(v);
 }
@@ -3912,9 +3965,61 @@ emit_reciprocal(u, p) // p = y^x where x is a negative number
 	u.a.push(v);
 }
 function
+emit_roman_glyph(u, s)
+{
+	var n, v, w;
+
+	v = {type:GLYPH, s:s, level:u.level, italic_font:0};
+
+	switch (s) {
+	case "g":
+	case "j":
+	case "p":
+	case "q":
+	case "y":
+	case "(":
+	case ")":
+	case "[":
+	case "]":
+	case "{":
+	case "}":
+	case "@":
+	case "|":
+	case "_":
+		if (v.level == 0)
+			v.depth = FONT_DEPTH;
+		else
+			v.depth = SMALL_FONT_DEPTH;
+		break;
+	default:
+		v.depth = 0;
+		break;
+	}
+
+	n = s.charCodeAt(0);
+
+	if (n < 128)
+		w = roman_width[n];
+	else
+		w = 1000;
+
+	if (v.level == 0) {
+		v.height = FONT_HEIGHT;
+		v.width = w * WIDTH_RATIO * FONT_SIZE;
+	} else {
+		v.height = SMALL_FONT_HEIGHT;
+		v.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
+	}
+
+	u.a.push(v);
+}
+function
 emit_roman_text(u, s)
 {
-	emit_text(u, s, 0);
+	var i, n;
+	n = s.length;
+	for (i = 0; i < n; i++)
+		emit_roman_glyph(u, s.charAt(i));
 }
 function
 emit_string(u, p)
@@ -3939,8 +4044,8 @@ emit_svg(u, x, y)
 	case SPACE:
 		break;
 
-	case TEXT:
-		emit_svg_text(u, x, y);
+	case GLYPH:
+		emit_svg_glyph(u, x, y);
 		break;
 
 	case LINE:
@@ -4066,6 +4171,39 @@ emit_svg_delims(u, x, y)
 		emit_svg_parens(u, x, y);
 }
 function
+emit_svg_glyph(u, x, y)
+{
+	var s, t;
+
+	s = u.s;
+
+	if (s == '&')
+		s = "&amp;";
+	else if (s == '<')
+		s = "&lt;";
+	else if (s == '>')
+		s = "&gt;";
+
+	x += u.width / 2;
+
+	x = "x='" + x + "'";
+	y = "y='" + y + "'";
+
+	t = "<text text-anchor='middle' style='font-family:\"Times New Roman\";";
+
+	if (u.level == 0)
+		t += "font-size:" + FONT_SIZE + "pt;";
+	else
+		t += "font-size:" + SMALL_FONT_SIZE + "pt;";
+
+	if (u.italic_font)
+		t += "font-style:italic;";
+
+	t += "'" + x + y + ">" + s + "</text>\n";
+
+	outbuf += t;
+}
+function
 emit_svg_ldelim(u, x, y)
 {
 	var t, w;
@@ -4118,11 +4256,11 @@ emit_svg_parens(u, x, y)
 
 	w = emit_delim_width(u);
 
-	l = {type:TEXT, s:"(", height:h, depth:d, width:w, level:u.level, italic_font:0};
-	r = {type:TEXT, s:")", height:h, depth:d, width:w, level:u.level, italic_font:0};
+	l = {type:GLYPH, s:"(", height:h, depth:d, width:w, level:u.level, italic_font:0};
+	r = {type:GLYPH, s:")", height:h, depth:d, width:w, level:u.level, italic_font:0};
 
-	emit_svg_text(l, x, y);
-	emit_svg_text(r, x + u.width - w, y);
+	emit_svg_glyph(l, x, y);
+	emit_svg_glyph(r, x + u.width - w, y);
 }
 function
 emit_svg_rdelim(u, x, y)
@@ -4177,39 +4315,6 @@ emit_svg_table(u, x, y)
 
 		y += cell_depth;
 	}
-}
-function
-emit_svg_text(u, x, y)
-{
-	var s, t;
-
-	s = u.s;
-
-	if (s == '&')
-		s = "&amp;";
-	else if (s == '<')
-		s = "&lt;";
-	else if (s == '>')
-		s = "&gt;";
-
-	x += u.width / 2;
-
-	x = "x='" + x + "'";
-	y = "y='" + y + "'";
-
-	t = "<text text-anchor='middle' style='font-family:\"Times New Roman\";";
-
-	if (u.level == 0)
-		t += "font-size:" + FONT_SIZE + "pt;";
-	else
-		t += "font-size:" + SMALL_FONT_SIZE + "pt;";
-
-	if (u.italic_font)
-		t += "font-style:italic;";
-
-	t += "'" + x + y + ">" + s + "</text>\n";
-
-	outbuf += t;
 }
 function
 emit_symbol(u, p)
@@ -4277,7 +4382,7 @@ emit_symbol_text(u, s)
 	else if (s.length == 1)
 		emit_italic_text(u, s);
 	else
-		emit_glyph(u, s);
+		emit_named_glyph(u, s);
 }
 function
 emit_tensor(u, p)
@@ -4322,17 +4427,6 @@ emit_term_nib(u, p)
 		emit_medium_space(u);
 		emit_factor(u, car(p));
 		p = cdr(p);
-	}
-}
-function
-emit_text(u, s, italic_font)
-{
-	var i, n, v;
-	n = s.length;
-	for (i = 0; i < n; i++) {
-		v = {type:TEXT, s:s[i], level:u.level, italic_font:italic_font};
-		emit_update_text(v);
-		u.a.push(v);
 	}
 }
 function
@@ -4508,60 +4602,6 @@ emit_update_table(u)
 		w += u.a[j].cell_width;
 
 	u.width = w + 2 * emit_delim_width(u);
-}
-function
-emit_update_text(u)
-{
-	var descender = 0, n, w;
-
-	switch (u.s) {
-	case "f":
-		if (u.italic_font)
-			descender = 1;
-		break;
-	case "g":
-	case "j":
-	case "p":
-	case "q":
-	case "y":
-	case "(":
-	case ")":
-	case "[":
-	case "]":
-	case "{":
-	case "}":
-	case "@":
-	case "|":
-	case "_":
-		descender = 1;
-		break;
-	}
-
-	n = u.s.charCodeAt(0);
-
-	if (u.italic_font)
-		w = italic_width[n];
-	else
-		w = roman_width[n];
-
-	if (w == undefined)
-		w = 1000;
-
-	if (u.level == 0) {
-		u.height = FONT_HEIGHT;
-		if (descender)
-			u.depth = FONT_DEPTH;
-		else
-			u.depth = 0;
-		u.width = w * WIDTH_RATIO * FONT_SIZE;
-	} else {
-		u.height = SMALL_FONT_HEIGHT;
-		if (descender)
-			u.depth = SMALL_FONT_DEPTH;
-		else
-			u.depth = 0;
-		u.width = w * WIDTH_RATIO * SMALL_FONT_SIZE;
-	}
 }
 function
 emit_vector(u, p)
