@@ -1737,8 +1737,10 @@ contract()
 	p2 = pop();
 	p1 = pop();
 
-	if (!istensor(p1))
-		stopf("contract: tensor expected");
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
 
 	ndim = p1.dim.length;
 
@@ -1749,7 +1751,7 @@ contract()
 	m = pop_integer();
 
 	if (n < 1 || n > ndim || m < 1 || m > ndim || n == m)
-		stopf("contract: index err");
+		stopf("contract: index error");
 
 	n--; // make zero based
 	m--;
@@ -1758,7 +1760,7 @@ contract()
 	nrow = p1.dim[m];
 
 	if (ncol != nrow)
-		stopf("contract: index err");
+		stopf("contract: unequal tensor dimensions");
 
 	// nelem is the number of elements in result
 
@@ -4862,17 +4864,24 @@ eval_contract(p1)
 {
 	push(cadr(p1));
 	evalf();
+
 	p1 = cddr(p1);
-	if (iscons(p1)) {
+
+	if (!iscons(p1)) {
+		push_integer(1);
+		push_integer(2);
+		contract();
+		return;
+	}
+
+	while (iscons(p1)) {
 		push(car(p1));
 		evalf();
 		push(cadr(p1));
 		evalf();
-	} else {
-		push_integer(1);
-		push_integer(2);
+		contract();
+		p1 = cddr(p1);
 	}
-	contract();
 }
 function
 eval_cos(p1)
