@@ -5920,9 +5920,13 @@ eval_unit(p1)
 
 	push(cadr(p1));
 	evalf();
+
 	n = pop_integer();
 
-	if (n < 2) {
+	if (n < 1)
+		stopf("unit: index error");
+
+	if (n == 1) {
 		push_integer(1);
 		return;
 	}
