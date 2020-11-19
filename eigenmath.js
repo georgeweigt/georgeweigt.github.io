@@ -3341,10 +3341,12 @@ emit_denominators(u, p)
 	p = cdr(p);
 	q = car(p);
 
-	if (isfraction(q)) {
-		emit_roman_text(v, q.b.toFixed(0));
+	if (isrational(q)) {
+		if (q.b != 1) {
+			emit_roman_text(v, q.b.toFixed(0));
+			n++;
+		}
 		p = cdr(p);
-		n++;
 	}
 
 	while (iscons(p)) {
@@ -3826,10 +3828,8 @@ emit_numerators(u, p)
 	p = cdr(p);
 	q = car(p);
 
-	if (isnum(q)) {
-		if (isdouble(q))
-			emit_double(v, q);
-		else if (Math.abs(q.a) != 1)
+	if (isrational(q)) {
+		if (Math.abs(q.a) != 1)
 			emit_roman_text(v, Math.abs(q.a).toFixed(0));
 		p = cdr(p);
 	}
