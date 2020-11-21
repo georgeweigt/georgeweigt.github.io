@@ -19,25 +19,25 @@ I(a,b) = (b - a)/100 sum(k,0,99,eval(f,theta,a + k (b - a)/100))
 xrange = (0,pie)
 yrange = (0,1)
 
-"Probability density for omega = 50 keV"
+"Scattering angle probability density 0.05 MeV"
 
 omega = 0.05
 C = I(0,pie)
 draw(f/C,theta)
 
-"Probability density for omega = 500 keV"
+"Scattering angle probability density 0.5 MeV"
 
 omega = 0.5
 C = I(0,pie)
 draw(f/C,theta)
 
-"Probability density for omega = 5 MeV"
+"Scattering angle probability density 5 MeV"
 
 omega = 5.0
 C = I(0,pie)
 draw(f/C,theta)
 
-"Probability distribution for omega = m = 0.511 MeV"
+"Scattering angle probability distribution 0.511 MeV"
 
 omega = m
 
