@@ -1,4 +1,4 @@
-/* November 10, 2020
+/* November 21, 2020
 
 To build and run:
 
@@ -594,8 +594,6 @@ void emit_str(char *s);
 void emit_number(struct atom *p);
 int display_cmp(const void *aa, const void *bb);
 void print_it(void);
-char * getdisplaystr(void);
-void fill_buf(void);
 void emit_tensor(struct atom *p);
 void emit_flat_tensor(struct atom *p);
 void emit_tensor_inner(struct atom *p, int j, int *k);
@@ -4147,16 +4145,21 @@ eval_contract(void)
 {
 	push(cadr(p1));
 	eval();
-	if (cddr(p1) == symbol(NIL)) {
+	p1 = cddr(p1);
+	if (!iscons(p1)) {
 		push_integer(1);
 		push_integer(2);
-	} else {
-		push(caddr(p1));
-		eval();
-		push(cadddr(p1));
-		eval();
+		contract();
+		return;
 	}
-	contract();
+	while (iscons(p1)) {
+		push(car(p1));
+		eval();
+		push(cadr(p1));
+		eval();
+		contract();
+		p1 = cddr(p1);
+	}
 }
 
 void
@@ -4176,25 +4179,23 @@ contract_nib(void)
 	p3 = pop();
 	p2 = pop();
 	p1 = pop();
-	if (!istensor(p1))
-		stop("contract: 1st arg is not a tensor");
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
 	ndim = p1->u.tensor->ndim;
 	push(p2);
 	n = pop_integer();
 	push(p3);
 	m = pop_integer();
-	if (n < 1 || n > ndim)
-		stop("contract: 2nd arg not numerical or out of range (less than 1 or greater than tensor rank)");
-	if (m < 1 || m > ndim)
-		stop("contract: 3rd arg not numerical or out of range (less than 1 or greater than tensor rank)");
-	if (n == m)
-		stop("contract: 2nd and 3rd args are the same");
+	if (n < 1 || n > ndim || m < 1 || m > ndim || n == m)
+		stop("contract: index error");
 	n--; // make zero based
 	m--;
 	ncol = p1->u.tensor->dim[n];
 	nrow = p1->u.tensor->dim[m];
 	if (ncol != nrow)
-		stop("contract: unequal tensor dimensions for indices given by 2nd and 3rd args");
+		stop("contract: unequal tensor dimensions");
 	// nelem is the number of elements in result
 	nelem = p1->u.tensor->nelem / ncol / nrow;
 	p2 = alloc_tensor(nelem);
@@ -6713,51 +6714,7 @@ print_it(void)
 	fputc('\n', stdout);
 }
 
-char print_buffer[10000];
-
-char *
-getdisplaystr(void)
-{
-	yindex = 0;
-	expr_level = 0;
-	emit_x = 0;
-	emit_expr(pop());
-	fill_buf();
-	return print_buffer;
-}
-
-void
-fill_buf(void)
-{
-	int i, k, x, y;
-	qsort(chartab, yindex, sizeof (struct glyph), display_cmp);
-	k = 0;
-	x = 0;
-	y = chartab[0].y;
-	for (i = 0; i < yindex; i++) {
-		while (chartab[i].y > y) {
-			if (k < sizeof print_buffer - 2)
-				print_buffer[k++] = '\n';
-			x = 0;
-			y++;
-		}
-		while (chartab[i].x > x) {
-			if (k < sizeof print_buffer - 2)
-				print_buffer[k++] = ' ';
-			x++;
-		}
-		if (k < sizeof print_buffer - 2)
-			print_buffer[k++] = chartab[i].c;
-		x++;
-	}
-	if (k == sizeof print_buffer - 2)
-		printf("warning: print buffer full\n");
-	print_buffer[k++] = '\n';
-	print_buffer[k++] = '\0';
-}
-
 #undef N
-
 #define N 100
 
 struct elem {
@@ -11365,7 +11322,7 @@ latex_double(struct atom *p)
 	if (e == NULL)
 		e = strchr(s, 'E');
 	if (e == NULL) {
-		if (strchr(s, '.') ==  NULL)
+		if (strchr(s, '.') == NULL)
 			strcat(s, ".0");
 		print_str(s);
 		return;
@@ -12655,7 +12612,7 @@ mml_double(struct atom *p)
 	if (e == NULL)
 		e = strchr(s, 'E');
 	if (e == NULL) {
-		if (strchr(s, '.') ==  NULL)
+		if (strchr(s, '.') == NULL)
 			strcat(s, ".0");
 		mml_mn(s);
 		return;
@@ -20427,8 +20384,10 @@ eval_unit(void)
 	push(cadr(p1));
 	eval();
 	n = pop_integer();
-	if (n < 2) {
-		push(p1);
+	if (n < 1)
+		stop("unit: index error");
+	if (n == 1) {
+		push_integer(1);
 		return;
 	}
 	p1 = alloc_matrix(n, n);
