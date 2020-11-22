@@ -3209,6 +3209,7 @@ const italic_width = [
 ];
 
 const glyph_names = [
+"hbar",
 "Alpha",
 "Beta",
 "Gamma",
@@ -3223,6 +3224,7 @@ const glyph_names = [
 "Mu",
 "Nu",
 "Xi",
+"Omicron",
 "Pi",
 "Rho",
 "Sigma",
@@ -3246,6 +3248,7 @@ const glyph_names = [
 "mu",
 "nu",
 "xi",
+"omicron",
 "pi",
 "rho",
 "sigma",
@@ -3255,7 +3258,6 @@ const glyph_names = [
 "chi",
 "psi",
 "omega",
-"hbar",
 ];
 
 const glyph_info = {
@@ -3272,6 +3274,7 @@ const glyph_info = {
 "&Gamma;":	{width:578,	italic_font:0,	descender:0},
 "&Theta;":	{width:722,	italic_font:0,	descender:0},
 "&Phi;":	{width:731,	italic_font:0,	descender:0},
+"&hbar;":       {width:575/*515*/,      italic_font:0,  descender:0},
 "&Alpha;":	{width:732,	italic_font:0,	descender:0},
 "&Beta;":	{width:667,	italic_font:0,	descender:0},
 "&Delta;":	{width:643,	italic_font:0,	descender:0},
@@ -3284,6 +3287,7 @@ const glyph_info = {
 "&Mu;":		{width:889,	italic_font:0,	descender:0},
 "&Nu;":		{width:729,	italic_font:0,	descender:0},
 "&Xi;":		{width:643,	italic_font:0,	descender:0},
+"&Omicron;":	{width:722,	italic_font:0,	descender:0},
 "&Pi;":		{width:725,	italic_font:0,	descender:0},
 "&Rho;":	{width:556,	italic_font:0,	descender:0},
 "&Sigma;":	{width:582,	italic_font:0,	descender:0},
@@ -3309,13 +3313,13 @@ const glyph_info = {
 "&mu;":		{width:502,	italic_font:1,	descender:1},
 "&nu;":		{width:463,	italic_font:1,	descender:0},
 "&xi;":		{width:511,	italic_font:1,	descender:1},
+"&omicron;":	{width:500,	italic_font:1,	descender:1},
 "&rho;":	{width:480,	italic_font:1,	descender:1},
 "&upsilon;":	{width:459,	italic_font:1,	descender:0},
 "&chi;":	{width:490,	italic_font:1,	descender:1},
 "&psi;":	{width:668,	italic_font:1,	descender:1},
 "&omega;":	{width:706,	italic_font:1,	descender:0},
 "&pi;":		{width:553,	italic_font:1,	descender:0},
-"&hbar;":	{width:575/*515*/,	italic_font:0,	descender:0},
 };
 function
 emit_delim_width(u)
