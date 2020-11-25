@@ -3141,32 +3141,27 @@ const SUBSCRIPT = 5;
 const FRACTION = 6;
 const TABLE = 7;
 
-const HPAD = 10;
-const VPAD = 6;
+const THIN_STROKE = 1;
+const MEDIUM_STROKE = 1.5;
+const THICK_STROKE = 2.5;
 
 const FONT_SIZE = 20;
-const FONT_HEIGHT = 18;
-const FONT_DEPTH = 6;
-const MINUS_HEIGHT = 8.5;
-const SUPERSCRIPT_HEIGHT = 10;
-const SUBSCRIPT_DEPTH = 7;
-const FRAC_VSPACE = 5.5;
-const FRAC_STROKE = 1.5;
-const DELIM_STROKE = 2;
-
 const SMALL_FONT_SIZE = 14;
-const SMALL_FONT_HEIGHT = 13;
-const SMALL_FONT_DEPTH = 4;
-const SMALL_MINUS_HEIGHT = 6;
-const SMALL_SUPERSCRIPT_HEIGHT = 10;
-const SMALL_SUBSCRIPT_DEPTH = 7;
-const SMALL_FRAC_VSPACE = 4;
-const SMALL_FRAC_STROKE = 1;
-const SMALL_DELIM_STROKE = 1.5;
 
-const TABLE_HSPACE = 12;
-const TABLE_VSPACE = 12;
-const TABLE_DELIM_STROKE = 2.5;
+const FONT_HEIGHT = 0.88 * FONT_SIZE;
+const SMALL_FONT_HEIGHT = 0.88 * SMALL_FONT_SIZE;
+
+const FONT_DEPTH = 0.3 * FONT_SIZE;
+const SMALL_FONT_DEPTH = 0.3 * SMALL_FONT_SIZE;
+
+const FONT_XHEIGHT = 0.6 * FONT_SIZE;
+const SMALL_FONT_XHEIGHT = 0.6 * SMALL_FONT_SIZE;
+
+const TABLE_HSPACE = FONT_SIZE / 2;
+const TABLE_VSPACE = FONT_SIZE / 2;
+
+const HPAD = FONT_SIZE / 2;
+const VPAD = FONT_SIZE / 4;
 
 const WIDTH_RATIO = 0.0014;
 
@@ -3313,7 +3308,7 @@ const glyph_info = {
 "&mu;":		{width:502,	italic_font:1,	descender:1},
 "&nu;":		{width:463,	italic_font:1,	descender:0},
 "&xi;":		{width:511,	italic_font:1,	descender:1},
-"&omicron;":	{width:500,	italic_font:1,	descender:1},
+"&omicron;":	{width:500,	italic_font:1,	descender:0},
 "&rho;":	{width:480,	italic_font:1,	descender:1},
 "&upsilon;":	{width:459,	italic_font:1,	descender:0},
 "&chi;":	{width:490,	italic_font:1,	descender:1},
@@ -4121,11 +4116,11 @@ emit_svg(u, x, y)
 		x2 = x + u.width;
 
 		if (u.level == 0) {
-			y -= MINUS_HEIGHT;
-			emit_svg_line(x1, y, x2, y, FRAC_STROKE);
+			y -= FONT_HEIGHT / 2;
+			emit_svg_line(x1, y, x2, y, MEDIUM_STROKE);
 		} else {
-			y -= SMALL_MINUS_HEIGHT;
-			emit_svg_line(x1, y, x2, y, SMALL_FRAC_STROKE);
+			y -= SMALL_FONT_HEIGHT / 2;
+			emit_svg_line(x1, y, x2, y, THIN_STROKE);
 		}
 
 		break;
@@ -4202,11 +4197,11 @@ emit_svg_ldelim(u, x, y)
 	var t, w;
 
 	if (u.type == TABLE)
-		t = TABLE_DELIM_STROKE;
+		t = THICK_STROKE;
 	else if (u.level == 0)
-		t = DELIM_STROKE;
+		t = MEDIUM_STROKE;
 	else
-		t = SMALL_DELIM_STROKE;
+		t = THIN_STROKE;
 
 	w = emit_delim_width(u);
 
@@ -4226,8 +4221,9 @@ emit_svg_line(x1, y1, x2, y2, t)
 	var s;
 
 	x1 = "x1='" + x1 + "'";
-	y1 = "y1='" + y1 + "'";
 	x2 = "x2='" + x2 + "'";
+
+	y1 = "y1='" + y1 + "'";
 	y2 = "y2='" + y2 + "'";
 
 	s = "<line " + x1 + y1 + x2 + y2 + "style='stroke:black;stroke-width:" + t + "'/>\n"
@@ -4261,11 +4257,11 @@ emit_svg_rdelim(u, x, y)
 	var t, w;
 
 	if (u.type == TABLE)
-		t = TABLE_DELIM_STROKE;
+		t = THICK_STROKE;
 	else if (u.level == 0)
-		t = DELIM_STROKE;
+		t = MEDIUM_STROKE;
 	else
-		t = SMALL_DELIM_STROKE;
+		t = THIN_STROKE;
 
 	w = emit_delim_width(u);
 
@@ -4347,14 +4343,14 @@ emit_symbol(u, p)
 
 	if (v.level == 1) {
 		v.height = FONT_HEIGHT;
-		v.depth += SUBSCRIPT_DEPTH;
+		v.depth += FONT_HEIGHT / 2;
 		v.dx = 0;
-		v.dy = SUBSCRIPT_DEPTH;
+		v.dy = FONT_HEIGHT / 2;
 	} else {
 		v.height = SMALL_FONT_HEIGHT;
-		v.depth += SMALL_SUBSCRIPT_DEPTH;
+		v.depth += SMALL_FONT_HEIGHT / 2;
 		v.dx = 0;
-		v.dy = SMALL_SUBSCRIPT_DEPTH;
+		v.dy = SMALL_FONT_HEIGHT / 2;
 	}
 
 	u.a.push(v);
@@ -4480,19 +4476,23 @@ emit_update(u)
 function
 emit_update_fraction(u)
 {
-	var d, h, w;
+	var d, h, m, v, w, y;
 
 	w = 0.5 * roman_width['n'.charCodeAt(0)] * WIDTH_RATIO;
 
 	if (u.level == 0) {
-		h = FRAC_VSPACE + MINUS_HEIGHT;
-		d = FRAC_VSPACE - MINUS_HEIGHT;
-		w = w * FONT_SIZE;
+		y = FONT_HEIGHT;
+		w *= FONT_SIZE;
 	} else {
-		h = SMALL_FRAC_VSPACE + SMALL_MINUS_HEIGHT;
-		d = SMALL_FRAC_VSPACE - SMALL_MINUS_HEIGHT;
-		w = w * SMALL_FONT_SIZE;
+		y = SMALL_FONT_HEIGHT;
+		w *= SMALL_FONT_SIZE;
 	}
+
+	m = 0.5 * y;	// midpoint
+	v = 0.25 * y;	// extra vertical space
+
+	h = v + m;
+	d = v - m;
 
 	u.height = u.num.height + u.num.depth + h;
 	u.depth = u.den.height + u.den.depth + d;
@@ -4532,12 +4532,12 @@ emit_update_superscript(u, v)
 
 	// adjust
 
-	h -= Math.floor((v.height + v.depth) / 2);
+	h -= (v.height + v.depth) / 2;
 
 	if (u.level == 0)
-		h = Math.max(h, SUPERSCRIPT_HEIGHT);
+		h = Math.max(h, FONT_XHEIGHT);
 	else
-		h = Math.max(h, SMALL_SUPERSCRIPT_HEIGHT);
+		h = Math.max(h, SMALL_FONT_XHEIGHT);
 
 	v.dx = 0;
 	v.dy = -(h + v.depth);
@@ -4587,7 +4587,7 @@ emit_update_table(u)
 	for (i = 0; i < n; i++) // for each row
 		h += u.a[i * m].cell_height + u.a[i * m].cell_depth;
 
-	u.height = h / 2 + MINUS_HEIGHT;
+	u.height = h / 2 + FONT_HEIGHT / 2;
 	u.depth = h - u.height;
 
 	// table width
