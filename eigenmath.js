@@ -2612,6 +2612,8 @@ draw(F, X)
 {
 	var h, w;
 
+	draw_array = [];
+
 	h = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_BOTTOM_PAD;
 	w = DRAW_LEFT_PAD + DRAW_WIDTH + DRAW_RIGHT_PAD;
 
@@ -2627,6 +2629,7 @@ draw(F, X)
 	draw_labels();
 	draw_pass1(F, X);
 	draw_pass2(F, X);
+	draw_points();
 
 	outbuf += "</svg></p>\n";
 
@@ -2665,7 +2668,26 @@ draw_box()
 	draw_line(x2, y1, x2, y2, 0.5); // right line
 }
 function
-draw_evalf(F, X, x)
+draw_eval(F, X, x)
+{
+	var dx, dy, p, y;
+
+	draw_eval_nib(F, X, x);
+	p = pop();
+	if (!isnum(p))
+		return;
+	push(p);
+	y = pop_double();
+
+	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
+	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+
+	dy = DRAW_HEIGHT - dy; // flip
+
+	draw_array.push({x:x, y:y, dx:dx, dy:dy});
+}
+function
+draw_eval_nib(F, X, x)
 {
 	var tos = stack.length;
 	var tof = frame.length;
@@ -2744,11 +2766,10 @@ function
 draw_pass1(F, X)
 {
 	var i, n, x;
-	draw_array = [];
 	n = DRAW_WIDTH + 1; // +1 eliminates aliasing
 	for (i = 0; i <= n; i++) {
 		x = xmin + (xmax - xmin) * i / n;
-		draw_point(F, X, x, 1);
+		draw_eval(F, X, x);
 	}
 }
 function
@@ -2763,45 +2784,40 @@ draw_pass2(F, X)
 		p1 = draw_array[i];
 		p2 = draw_array[i + 1];
 
-		if ((p1.dy > 0 && p1.dy < DRAW_HEIGHT) || (p2.dy > 0 && p2.dy < DRAW_HEIGHT)) {
+		if ((p1.dy >= 0 && p1.dy <= DRAW_HEIGHT) || (p2.dy >= 0 && p2.dy <= DRAW_HEIGHT)) {
+
 			m = Math.floor(Math.abs(p1.dy - p2.dy));
+
 			for (j = 1; j < m; j++) {
 				x = p1.x + (p2.x - p1.x) * j / m;
-				draw_point(F, X, x, 0);
+				draw_eval(F, X, x);
 			}
 		}
 	}
 }
 function
-draw_point(F, X, x, pass1)
+draw_points()
 {
-	var cx, cy, dx, dy, p, y;
+	var i, n, x, y;
 
-	draw_evalf(F, X, x);
-	p = pop();
-	if (!isnum(p))
-		return;
-	push(p);
-	y = pop_double();
+	n = draw_array.length;
 
-	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+	for (i = 0; i < n; i++) {
 
-	dy = DRAW_HEIGHT - dy; // flip
+		x = draw_array[i].dx;
+		y = draw_array[i].dy;
 
-	if (dy >= 0 && dy <= DRAW_HEIGHT) {
+		if (y < 0 || y > DRAW_HEIGHT)
+			continue;
 
-		cx = dx + DRAW_LEFT_PAD;
-		cy = dy + DRAW_TOP_PAD;
+		x += DRAW_LEFT_PAD;
+		y += DRAW_TOP_PAD;
 
-		cx = "cx='" + cx + "'";
-		cy = "cy='" + cy + "'";
+		x = "cx='" + x + "'";
+		y = "cy='" + y + "'";
 
-		outbuf += "<circle " + cx + " " + cy + " r='2' style='stroke:black;fill:black'/>";
+		outbuf += "<circle " + x + y + "r='2' style='stroke:black;fill:black'/>";
 	}
-
-	if (pass1)
-		draw_array.push({x:x, y:y, dx:dx, dy:dy});
 }
 const DRAW_WIDTH = 300;
 const DRAW_HEIGHT = 300;
