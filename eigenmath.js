@@ -2628,8 +2628,6 @@ draw(F, X)
 	draw_pass1(F, X);
 	draw_pass2(F, X);
 
-//	outbuf += "<rect " + h + w + "style='fill:none;stroke:black;stroke-width:1'/>\n";
-
 	outbuf += "</svg></p>\n";
 
 	stdout.innerHTML += outbuf;
@@ -2660,11 +2658,11 @@ draw_box()
 	var y1 = 0;
 	var y2 = DRAW_HEIGHT;
 
-	draw_line(x1, y1, x2, y1, 2); // top line
-	draw_line(x1, y2, x2, y2, 2); // bottom line
+	draw_line(x1, y1, x2, y1, 0.5); // top line
+	draw_line(x1, y2, x2, y2, 0.5); // bottom line
 
-	draw_line(x1, y1, x1, y2, 2); // left line
-	draw_line(x2, y1, x2, y2, 2); // right line
+	draw_line(x1, y1, x1, y2, 0.5); // left line
+	draw_line(x2, y1, x2, y2, 0.5); // right line
 }
 function
 draw_evalf(F, X, x)
@@ -2748,7 +2746,7 @@ draw_pass1(F, X)
 	var i, n, x;
 	draw_array = [];
 	n = DRAW_WIDTH + 1; // +1 eliminates aliasing
-	for (i = 1; i < n; i++) {
+	for (i = 0; i <= n; i++) {
 		x = xmin + (xmax - xmin) * i / n;
 		draw_point(F, X, x, 1);
 	}
@@ -2777,7 +2775,7 @@ draw_pass2(F, X)
 function
 draw_point(F, X, x, pass1)
 {
-	var dx, dy, p, y;
+	var cx, cy, dx, dy, p, y;
 
 	draw_evalf(F, X, x);
 	p = pop();
@@ -2787,10 +2785,20 @@ draw_point(F, X, x, pass1)
 	y = pop_double();
 
 	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT - DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
 
-	if (dy > 0 && dy < DRAW_HEIGHT)
-		draw_line(dx - 1, dy, dx + 1, dy, 2);
+	dy = DRAW_HEIGHT - dy; // flip
+
+	if (dy >= 0 && dy <= DRAW_HEIGHT) {
+
+		cx = dx + DRAW_LEFT_PAD;
+		cy = dy + DRAW_TOP_PAD;
+
+		cx = "cx='" + cx + "'";
+		cy = "cy='" + cy + "'";
+
+		outbuf += "<circle " + cx + " " + cy + " r='2' style='stroke:black;fill:black'/>";
+	}
 
 	if (pass1)
 		draw_array.push({x:x, y:y, dx:dx, dy:dy});
@@ -3399,9 +3407,12 @@ emit_double(u, p) // p is a double
 
 	j = k;
 
-	if (s.indexOf(".") != -1)
-		while (s.charAt(j - 1) == "0" && s.charAt(j - 2) != ".")
+	if (s.indexOf(".") > 0) {
+		while (s.charAt(j - 1) == "0")
 			j--;
+		if (s.charAt(j - 1) == ".")
+			j--;
+	}
 
 	emit_roman_text(u, s.substring(0, j));
 
