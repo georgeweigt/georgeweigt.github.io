@@ -2682,8 +2682,6 @@ draw_eval(F, X, x)
 	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
 	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
 
-	dy = DRAW_HEIGHT - dy; // flip
-
 	draw_array.push({x:x, y:y, dx:dx, dy:dy});
 }
 function
@@ -2811,7 +2809,7 @@ draw_points()
 			continue;
 
 		x += DRAW_LEFT_PAD;
-		y += DRAW_TOP_PAD;
+		y = DRAW_HEIGHT - y + DRAW_TOP_PAD;
 
 		x = "cx='" + x + "'";
 		y = "cy='" + y + "'";
