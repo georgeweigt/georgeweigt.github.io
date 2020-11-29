@@ -23,13 +23,13 @@ c = 299792458 meter/second
 h = 6.62607004 10^(-34) joule second
 k = 1.38064852 10^(-23) joule/kelvin
 
--- B(nu) is Planck's law
+-- rho is Planck's law
 
-B(nu) = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
+rho = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
 
--- y cancels physical units so B(nu) can be drawn
+-- y cancels physical units so rho can be drawn
 
-y = B(x hertz) meter^2 / joule
+y = eval(rho,nu,x hertz) meter^2 / joule
 y
 
 xrange = (0,10^15)
