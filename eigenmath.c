@@ -6961,7 +6961,7 @@ emit_update_table(int n, int m)
 	// h, d, w for entire table centered vertical
 	total_height += (n - 1) * TABLE_VSPACE + 2; // +2 for delimiters
 	total_width += (m - 1) * TABLE_HSPACE + 4; // +4 for delimiters
-	h = (total_height + 1) / 2;
+	h = total_height / 2 + 1;
 	d = total_height - h;
 	w = total_width;
 	list(n * m);
