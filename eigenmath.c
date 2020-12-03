@@ -5,7 +5,7 @@ To build and run:
 	gcc -O0 -o eigenmath eigenmath.c -lm
 	./eigenmath
 
-Press control-C or type exit to exit. Note: UTF-8 is used, terminal settings should enable UTF-8.
+Press control-C or type exit to exit. Note: Terminal settings should enable UTF-8.
 
 To run a script:
 
@@ -5938,7 +5938,7 @@ int *display_buf;
 void
 display(void)
 {
-	int c, d, h, i, j, w;
+	int c, d, h, i, j, n, w;
 	save();
 	emit_level = 0;
 	p1 = pop();
@@ -5949,10 +5949,11 @@ display(void)
 	w = WIDTH(p1);
 	display_nrow = h + d;
 	display_ncol = imin(CLIP, w);
-	display_buf = malloc(display_nrow * display_ncol * sizeof (int));
+	n = display_nrow * display_ncol * sizeof (int); // number of bytes
+	display_buf = malloc(n);
 	if (display_buf == NULL)
 		malloc_kaput();
-	memset(display_buf, 0, display_nrow * display_ncol * sizeof (int));
+	memset(display_buf, 0, n);
 	emit_draw(0, h - 1, p1);
 	for (i = 0; i < display_nrow; i++) {
 		for (j = 0; j < display_ncol; j++) {
