@@ -3163,7 +3163,7 @@ const SUBSCRIPT = 5;
 const FRACTION = 6;
 const TABLE = 7;
 
-const THIN_STROKE = 1;
+const THIN_STROKE = 1.4;
 const MEDIUM_STROKE = 2;
 const THICK_STROKE = 2.5;
 
