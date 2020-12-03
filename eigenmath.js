@@ -3164,7 +3164,7 @@ const FRACTION = 6;
 const TABLE = 7;
 
 const THIN_STROKE = 1;
-const MEDIUM_STROKE = 1.5;
+const MEDIUM_STROKE = 2;
 const THICK_STROKE = 2.5;
 
 const FONT_SIZE = 20;
