@@ -1,4 +1,4 @@
-/* December 2, 2020
+/* December 6, 2020
 
 To build and run:
 
@@ -562,48 +562,48 @@ void eval_det(void);
 void det(void);
 void det_nib(void);
 void display(void);
-void emit_args(struct atom *p);
-void emit_base(struct atom *p);
-void emit_char(int x, int y, int c);
-void emit_delims(int x, int y, int h, int d, int w);
-void emit_denominators(struct atom *p);
-void emit_double(struct atom *p);
-void emit_draw(int x, int y, struct atom *p);
-void emit_exponent(struct atom *p);
-void emit_expr(struct atom *p);
-void emit_expr_nib(struct atom *p);
-void emit_factor(struct atom *p);
-void emit_frac(struct atom *p);
-void emit_function(struct atom *p);
-void emit_indices(struct atom *p);
-void emit_infix_operator(int c);
-void emit_left_delim(int x, int y, int h, int d, int w);
-void emit_list(struct atom *p);
-void emit_matrix(struct atom *p, int d, int k);
-void emit_numerators(struct atom *p);
-void emit_numeric_exponent(struct atom *p);
-void emit_power(struct atom *p);
-void emit_rational(struct atom *p);
-void emit_reciprocal(struct atom *p);
-void emit_right_delim(int x, int y, int h, int d, int w);
-void emit_roman_char(int c);
-void emit_roman_string(char *s);
-void emit_space(void);
-void emit_string(struct atom *p);
-void emit_subexpr(struct atom *p);
-void emit_symbol(struct atom *p);
-int emit_symbol_fragment(char *s, int k);
-void emit_table(int x, int y, struct atom *p);
-void emit_tensor(struct atom *p);
-void emit_term(struct atom *p);
-void emit_term_nib(struct atom *p);
-void emit_update_fraction(void);
-void emit_update_list(int t);
-void emit_update_subexpr(void);
-void emit_update_subscript(void);
-void emit_update_superscript(void);
-void emit_update_table(int n, int m);
-void emit_vector(struct atom *p);
+void fmt_args(struct atom *p);
+void fmt_base(struct atom *p);
+void fmt_char(int x, int y, int c);
+void fmt_delims(int x, int y, int h, int d, int w);
+void fmt_denominators(struct atom *p);
+void fmt_double(struct atom *p);
+void fmt_draw(int x, int y, struct atom *p);
+void fmt_exponent(struct atom *p);
+void fmt_expr(struct atom *p);
+void fmt_expr_nib(struct atom *p);
+void fmt_factor(struct atom *p);
+void fmt_frac(struct atom *p);
+void fmt_function(struct atom *p);
+void fmt_indices(struct atom *p);
+void fmt_infix_operator(int c);
+void fmt_left_delim(int x, int y, int h, int d, int w);
+void fmt_list(struct atom *p);
+void fmt_matrix(struct atom *p, int d, int k);
+void fmt_numerators(struct atom *p);
+void fmt_numeric_exponent(struct atom *p);
+void fmt_power(struct atom *p);
+void fmt_rational(struct atom *p);
+void fmt_reciprocal(struct atom *p);
+void fmt_right_delim(int x, int y, int h, int d, int w);
+void fmt_roman_char(int c);
+void fmt_roman_string(char *s);
+void fmt_space(void);
+void fmt_string(struct atom *p);
+void fmt_subexpr(struct atom *p);
+void fmt_symbol(struct atom *p);
+int fmt_symbol_fragment(char *s, int k);
+void fmt_table(int x, int y, struct atom *p);
+void fmt_tensor(struct atom *p);
+void fmt_term(struct atom *p);
+void fmt_term_nib(struct atom *p);
+void fmt_update_fraction(void);
+void fmt_update_list(int t);
+void fmt_update_subexpr(void);
+void fmt_update_subscript(void);
+void fmt_update_superscript(void);
+void fmt_update_table(int n, int m);
+void fmt_vector(struct atom *p);
 int count_denominators(struct atom *p);
 int isdenominator(struct atom *p);
 void eval_eigen(void);
@@ -5930,34 +5930,34 @@ det_nib(void)
 #define imax(a, b) (a > b ? a : b)
 #define imin(a, b) (a < b ? a : b)
 
-int emit_level;
-int display_nrow;
-int display_ncol;
-int *display_buf;
+int fmt_level;
+int fmt_nrow;
+int fmt_ncol;
+int *fmt_buf;
 
 void
 display(void)
 {
 	int c, d, h, i, j, n, w;
 	save();
-	emit_level = 0;
+	fmt_level = 0;
 	p1 = pop();
-	emit_list(p1);
+	fmt_list(p1);
 	p1 = pop();
 	h = HEIGHT(p1);
 	d = DEPTH(p1);
 	w = WIDTH(p1);
-	display_nrow = h + d;
-	display_ncol = imin(CLIP, w);
-	n = display_nrow * display_ncol * sizeof (int); // number of bytes
-	display_buf = malloc(n);
-	if (display_buf == NULL)
+	fmt_nrow = h + d;
+	fmt_ncol = imin(CLIP, w);
+	n = fmt_nrow * fmt_ncol * sizeof (int); // number of bytes
+	fmt_buf = malloc(n);
+	if (fmt_buf == NULL)
 		malloc_kaput();
-	memset(display_buf, 0, n);
-	emit_draw(0, h - 1, p1);
-	for (i = 0; i < display_nrow; i++) {
-		for (j = 0; j < display_ncol; j++) {
-			c = display_buf[i * display_ncol + j];
+	memset(fmt_buf, 0, n);
+	fmt_draw(0, h - 1, p1);
+	for (i = 0; i < fmt_nrow; i++) {
+		for (j = 0; j < fmt_ncol; j++) {
+			c = fmt_buf[i * fmt_ncol + j];
 			if (c == 0)
 				putchar(' ');
 			else if (c < 256)
@@ -5973,62 +5973,62 @@ display(void)
 		}
 		putchar('\n');
 	}
-	free(display_buf);
+	free(fmt_buf);
 	restore();
 }
 
 void
-emit_args(struct atom *p)
+fmt_args(struct atom *p)
 {
 	int t;
 	p = cdr(p);
 	if (!iscons(p)) {
-		emit_roman_char('(');
-		emit_roman_char(')');
+		fmt_roman_char('(');
+		fmt_roman_char(')');
 		return;
 	}
 	t = tos;
-	emit_expr(car(p));
+	fmt_expr(car(p));
 	p = cdr(p);
 	while (iscons(p)) {
-		emit_roman_char(',');
-		emit_expr(car(p));
+		fmt_roman_char(',');
+		fmt_expr(car(p));
 		p = cdr(p);
 	}
-	emit_update_list(t);
-	emit_update_subexpr();
+	fmt_update_list(t);
+	fmt_update_subexpr();
 }
 
 void
-emit_base(struct atom *p)
+fmt_base(struct atom *p)
 {
 	if (isnegativenumber(p) || isfraction(p) || isdouble(p) || car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY) || car(p) == symbol(POWER))
-		emit_subexpr(p);
+		fmt_subexpr(p);
 	else
-		emit_expr(p);
+		fmt_expr(p);
 }
 
 void
-emit_char(int x, int y, int c)
+fmt_char(int x, int y, int c)
 {
-	if (x >= 0 && x < display_ncol && y >= 0 && y < display_nrow)
-		display_buf[y * display_ncol + x] = c;
+	if (x >= 0 && x < fmt_ncol && y >= 0 && y < fmt_nrow)
+		fmt_buf[y * fmt_ncol + x] = c;
 }
 
 void
-emit_delims(int x, int y, int h, int d, int w)
+fmt_delims(int x, int y, int h, int d, int w)
 {
 	if (h > 1 || d > 0) {
-		emit_left_delim(x, y, h, d, w);
-		emit_right_delim(x + w - 1, y, h, d, w);
+		fmt_left_delim(x, y, h, d, w);
+		fmt_right_delim(x + w - 1, y, h, d, w);
 	} else {
-		emit_char(x, y, '(');
-		emit_char(x + w - 1, y, ')');
+		fmt_char(x, y, '(');
+		fmt_char(x + w - 1, y, ')');
 	}
 }
 
 void
-emit_denominators(struct atom *p)
+fmt_denominators(struct atom *p)
 {
 	int n, t;
 	char *s;
@@ -6040,7 +6040,7 @@ emit_denominators(struct atom *p)
 	if (isrational(q)) {
 		if (!MEQUAL(q->u.q.b, 1)) {
 			s = mstr(q->u.q.b);
-			emit_roman_string(s);
+			fmt_roman_string(s);
 			n++;
 		}
 		p = cdr(p);
@@ -6050,28 +6050,28 @@ emit_denominators(struct atom *p)
 		p = cdr(p);
 		if (!isdenominator(q))
 			continue;
-		if (tos - t)
-			emit_space();
+		if (tos > t)
+			fmt_space();
 		if (isminusone(caddr(q))) {
 			q = cadr(q);
 			if (car(q) == symbol(ADD) && n == 1)
-				emit_expr(q); // parens not needed
+				fmt_expr(q); // parens not needed
 			else
-				emit_factor(q);
+				fmt_factor(q);
 		} else {
-			emit_base(cadr(q));
-			emit_numeric_exponent(caddr(q)); // sign is not emitted
+			fmt_base(cadr(q));
+			fmt_numeric_exponent(caddr(q)); // sign is not emitted
 		}
 	}
-	emit_update_list(t);
+	fmt_update_list(t);
 }
 
 void
-emit_double(struct atom *p)
+fmt_double(struct atom *p)
 {
 	int i, j, k, t;
 	if (p->u.d == 0.0) {
-		emit_roman_char('0');
+		fmt_roman_char('0');
 		return;
 	}
 	sprintf(tbuf, "%g", fabs(p->u.d));
@@ -6084,33 +6084,33 @@ emit_double(struct atom *p)
 		while (tbuf[j - 1] == '0' && tbuf[j - 2] != '.')
 			j--;
 	for (i = 0; i < j; i++)
-		emit_roman_char(tbuf[i]);
+		fmt_roman_char(tbuf[i]);
 	if (tbuf[k] != 'E' && tbuf[k] != 'e')
 		return;
 	k++;
-	emit_roman_char(MULTIPLY_SIGN);
-	emit_roman_string("10");
+	fmt_roman_char(MULTIPLY_SIGN);
+	fmt_roman_string("10");
 	// superscripted exponent
-	emit_level++;
+	fmt_level++;
 	t = tos;
 	// sign of exponent
 	if (tbuf[k] == '+')
 		k++;
 	else if (tbuf[k] == '-') {
-		emit_roman_char(MINUS_SIGN);
+		fmt_roman_char(MINUS_SIGN);
 		k++;
 	}
 	// skip leading zeroes in exponent
 	while (tbuf[k] == '0')
 		k++;
-	emit_roman_string(tbuf + k);
-	emit_update_list(t);
-	emit_level--;
-	emit_update_superscript();
+	fmt_roman_string(tbuf + k);
+	fmt_update_list(t);
+	fmt_level--;
+	fmt_update_superscript();
 }
 
 void
-emit_draw(int x, int y, struct atom *p)
+fmt_draw(int x, int y, struct atom *p)
 {
 	int d, dx, dy, h, i, k, w;
 	k = OPCODE(p);
@@ -6122,12 +6122,12 @@ emit_draw(int x, int y, struct atom *p)
 	case EMIT_SPACE:
 		break;
 	case EMIT_CHAR:
-		emit_char(x, y, VAL1(p));
+		fmt_char(x, y, VAL1(p));
 		break;
 	case EMIT_LIST:
 		p = car(p);
 		while (iscons(p)) {
-			emit_draw(x, y, car(p));
+			fmt_draw(x, y, car(p));
 			x += WIDTH(car(p));
 			p = cdr(p);
 		}
@@ -6137,234 +6137,234 @@ emit_draw(int x, int y, struct atom *p)
 		x += VAL1(p);
 		y += VAL2(p);
 		p = caddr(p);
-		emit_draw(x, y, p);
+		fmt_draw(x, y, p);
 		break;
 	case EMIT_SUBEXPR:
-		emit_delims(x, y, h, d, w);
+		fmt_delims(x, y, h, d, w);
 		x += 1;
-		emit_draw(x, y, car(p));
+		fmt_draw(x, y, car(p));
 		break;
 	case EMIT_FRACTION:
 		// horizontal line
-		emit_char(x, y, BDLR);
+		fmt_char(x, y, BDLR);
 		for (i = 1; i < w - 1; i++)
-			emit_char(x + i, y, BDLH);
-		emit_char(x + w - 1, y, BDLL);
+			fmt_char(x + i, y, BDLH);
+		fmt_char(x + w - 1, y, BDLL);
 		// numerator
 		dx = (w - WIDTH(car(p))) / 2;
 		dy = -h + HEIGHT(car(p));
-		emit_draw(x + dx, y + dy, car(p));
+		fmt_draw(x + dx, y + dy, car(p));
 		// denominator
 		p = cdr(p);
 		dx = (w - WIDTH(car(p))) / 2;
 		dy = d - DEPTH(car(p));
-		emit_draw(x + dx, y + dy, car(p));
+		fmt_draw(x + dx, y + dy, car(p));
 		break;
 	case EMIT_TABLE:
-		emit_delims(x, y, h, d, w);
-		emit_table(x + 2, y - h + 1, p);
+		fmt_delims(x, y, h, d, w);
+		fmt_table(x + 2, y - h + 1, p);
 		break;
 	}
 }
 
 void
-emit_exponent(struct atom *p)
+fmt_exponent(struct atom *p)
 {
 	if (isnum(p) && !isnegativenumber(p)) {
-		emit_numeric_exponent(p); // sign is not emitted
+		fmt_numeric_exponent(p); // sign is not emitted
 		return;
 	}
-	emit_level++;
-	emit_list(p);
-	emit_level--;
-	emit_update_superscript();
+	fmt_level++;
+	fmt_list(p);
+	fmt_level--;
+	fmt_update_superscript();
 }
 
 void
-emit_expr(struct atom *p)
+fmt_expr(struct atom *p)
 {
 	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p))))
-		emit_roman_char(MINUS_SIGN);
+		fmt_roman_char(MINUS_SIGN);
 	if (car(p) == symbol(ADD))
-		emit_expr_nib(p);
+		fmt_expr_nib(p);
 	else
-		emit_term(p);
+		fmt_term(p);
 }
 
 void
-emit_expr_nib(struct atom *p)
+fmt_expr_nib(struct atom *p)
 {
 	p = cdr(p);
-	emit_term(car(p));
+	fmt_term(car(p));
 	p = cdr(p);
 	while (iscons(p)) {
 		if (isnegativeterm(car(p)))
-			emit_infix_operator(MINUS_SIGN);
+			fmt_infix_operator(MINUS_SIGN);
 		else
-			emit_infix_operator(PLUS_SIGN);
-		emit_term(car(p));
+			fmt_infix_operator(PLUS_SIGN);
+		fmt_term(car(p));
 		p = cdr(p);
 	}
 }
 
 void
-emit_factor(struct atom *p)
+fmt_factor(struct atom *p)
 {
 	if (isrational(p)) {
-		emit_rational(p);
+		fmt_rational(p);
 		return;
 	}
 	if (isdouble(p)) {
-		emit_double(p);
+		fmt_double(p);
 		return;
 	}
 	if (issymbol(p)) {
-		emit_symbol(p);
+		fmt_symbol(p);
 		return;
 	}
 	if (isstr(p)) {
-		emit_string(p);
+		fmt_string(p);
 		return;
 	}
 	if (istensor(p)) {
-		emit_tensor(p);
+		fmt_tensor(p);
 		return;
 	}
 	if (iscons(p)) {
 		if (car(p) == symbol(POWER))
-			emit_power(p);
+			fmt_power(p);
 		else if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY))
-			emit_subexpr(p);
+			fmt_subexpr(p);
 		else
-			emit_function(p);
+			fmt_function(p);
 		return;
 	}
 }
 
 void
-emit_frac(struct atom *p)
+fmt_frac(struct atom *p)
 {
-	emit_numerators(p);
-	emit_denominators(p);
-	emit_update_fraction();
+	fmt_numerators(p);
+	fmt_denominators(p);
+	fmt_update_fraction();
 }
 
 void
-emit_function(struct atom *p)
+fmt_function(struct atom *p)
 {
 	// d(f(x),x)
 	if (car(p) == symbol(DERIVATIVE)) {
-		emit_roman_char('d');
-		emit_args(p);
+		fmt_roman_char('d');
+		fmt_args(p);
 		return;
 	}
 	// n!
 	if (car(p) == symbol(FACTORIAL)) {
 		p = cadr(p);
 		if (isposint(p) || issymbol(p))
-			emit_expr(p);
+			fmt_expr(p);
 		else
-			emit_subexpr(p);
-		emit_roman_char('!');
+			fmt_subexpr(p);
+		fmt_roman_char('!');
 		return;
 	}
 	// A[1,2]
 	if (car(p) == symbol(INDEX)) {
 		p = cdr(p);
 		if (issymbol(car(p)))
-			emit_symbol(car(p));
+			fmt_symbol(car(p));
 		else
-			emit_subexpr(car(p));
-		emit_indices(p);
+			fmt_subexpr(car(p));
+		fmt_indices(p);
 		return;
 	}
 	if (car(p) == symbol(SETQ) || car(p) == symbol(TESTEQ)) {
-		emit_expr(cadr(p));
-		emit_infix_operator('=');
-		emit_expr(caddr(p));
+		fmt_expr(cadr(p));
+		fmt_infix_operator('=');
+		fmt_expr(caddr(p));
 		return;
 	}
 	if (car(p) == symbol(TESTGE)) {
-		emit_expr(cadr(p));
-		emit_infix_operator(GREATEREQUAL);
-		emit_expr(caddr(p));
+		fmt_expr(cadr(p));
+		fmt_infix_operator(GREATEREQUAL);
+		fmt_expr(caddr(p));
 		return;
 	}
 	if (car(p) == symbol(TESTGT)) {
-		emit_expr(cadr(p));
-		emit_infix_operator('>');
-		emit_expr(caddr(p));
+		fmt_expr(cadr(p));
+		fmt_infix_operator('>');
+		fmt_expr(caddr(p));
 		return;
 	}
 	if (car(p) == symbol(TESTLE)) {
-		emit_expr(cadr(p));
-		emit_infix_operator(LESSEQUAL);
-		emit_expr(caddr(p));
+		fmt_expr(cadr(p));
+		fmt_infix_operator(LESSEQUAL);
+		fmt_expr(caddr(p));
 		return;
 	}
 	if (car(p) == symbol(TESTLT)) {
-		emit_expr(cadr(p));
-		emit_infix_operator('<');
-		emit_expr(caddr(p));
+		fmt_expr(cadr(p));
+		fmt_infix_operator('<');
+		fmt_expr(caddr(p));
 		return;
 	}
 	// default
 	if (issymbol(car(p)))
-		emit_symbol(car(p));
+		fmt_symbol(car(p));
 	else
-		emit_subexpr(car(p));
-	emit_args(p);
+		fmt_subexpr(car(p));
+	fmt_args(p);
 }
 
 void
-emit_indices(struct atom *p)
+fmt_indices(struct atom *p)
 {
-	emit_roman_char('[');
+	fmt_roman_char('[');
 	p = cdr(p);
 	if (iscons(p)) {
-		emit_expr(car(p));
+		fmt_expr(car(p));
 		p = cdr(p);
 		while (iscons(p)) {
-			emit_roman_char(',');
-			emit_expr(car(p));
+			fmt_roman_char(',');
+			fmt_expr(car(p));
 			p = cdr(p);
 		}
 	}
-	emit_roman_char(']');
+	fmt_roman_char(']');
 }
 
 void
-emit_infix_operator(int c)
+fmt_infix_operator(int c)
 {
-	emit_space();
-	emit_roman_char(c);
-	emit_space();
+	fmt_space();
+	fmt_roman_char(c);
+	fmt_space();
 }
 
 void
-emit_left_delim(int x, int y, int h, int d, int w)
+fmt_left_delim(int x, int y, int h, int d, int w)
 {
 	int i;
-	emit_char(x, y - h + 1, BDLDAR);
+	fmt_char(x, y - h + 1, BDLDAR);
 	for (i = 1; i < h + d - 1; i++)
-		emit_char(x, y - h + 1 + i, BDLV);
-	emit_char(x, y + d, BDLUAR);
+		fmt_char(x, y - h + 1 + i, BDLV);
+	fmt_char(x, y + d, BDLUAR);
 }
 
 void
-emit_list(struct atom *p)
+fmt_list(struct atom *p)
 {
 	int t = tos;
-	emit_expr(p);
-	emit_update_list(t);
+	fmt_expr(p);
+	fmt_update_list(t);
 }
 
 void
-emit_matrix(struct atom *p, int d, int k)
+fmt_matrix(struct atom *p, int d, int k)
 {
 	int i, j, m, n, span;
 	if (d == p->u.tensor->ndim) {
-		emit_list(p->u.tensor->elem[k]);
+		fmt_list(p->u.tensor->elem[k]);
 		return;
 	}
 	// compute element span
@@ -6375,12 +6375,12 @@ emit_matrix(struct atom *p, int d, int k)
 	m = p->u.tensor->dim[d + 1];	// number of columns
 	for (i = 0; i < n; i++)
 		for (j = 0; j < m; j++)
-			emit_matrix(p, d + 2, k + (i * m + j) * span);
-	emit_update_table(n, m);
+			fmt_matrix(p, d + 2, k + (i * m + j) * span);
+	fmt_update_table(n, m);
 }
 
 void
-emit_numerators(struct atom *p)
+fmt_numerators(struct atom *p)
 {
 	int t;
 	char *s;
@@ -6391,7 +6391,7 @@ emit_numerators(struct atom *p)
 	if (isrational(q)) {
 		if (!MEQUAL(q->u.q.a, 1)) {
 			s = mstr(q->u.q.a);
-			emit_roman_string(s);
+			fmt_roman_string(s);
 		}
 		p = cdr(p);
 	}
@@ -6400,118 +6400,118 @@ emit_numerators(struct atom *p)
 		p = cdr(p);
 		if (isdenominator(q))
 			continue;
-		if (tos - t)
-			emit_space();
-		emit_factor(q);
+		if (tos > t)
+			fmt_space();
+		fmt_factor(q);
 	}
 	if (t == tos)
-		emit_roman_char('1'); // no numerators
-	emit_update_list(t);
+		fmt_roman_char('1'); // no numerators
+	fmt_update_list(t);
 }
 
 // p is rational or double, sign is not emitted
 
 void
-emit_numeric_exponent(struct atom *p)
+fmt_numeric_exponent(struct atom *p)
 {
 	int t;
 	char *s;
-	emit_level++;
+	fmt_level++;
 	t = tos;
 	if (isrational(p)) {
 		s = mstr(p->u.q.a);
-		emit_roman_string(s);
+		fmt_roman_string(s);
 		if (!MEQUAL(p->u.q.b, 1)) {
-			emit_roman_char('/');
+			fmt_roman_char('/');
 			s = mstr(p->u.q.b);
-			emit_roman_string(s);
+			fmt_roman_string(s);
 		}
 	} else
-		emit_double(p);
-	emit_update_list(t);
-	emit_level--;
-	emit_update_superscript();
+		fmt_double(p);
+	fmt_update_list(t);
+	fmt_level--;
+	fmt_update_superscript();
 }
 
 void
-emit_power(struct atom *p)
+fmt_power(struct atom *p)
 {
 	if (cadr(p) == symbol(EXP1)) {
-		emit_roman_string("exp");
-		emit_subexpr(caddr(p));
+		fmt_roman_string("exp");
+		fmt_args(cdr(p));
 		return;
 	}
 	if (isimaginaryunit(p)) {
 		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
-			emit_roman_char('j');
+			fmt_roman_char('j');
 			return;
 		}
 		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
-			emit_roman_char('i');
+			fmt_roman_char('i');
 			return;
 		}
 	}
 	if (isnegativenumber(caddr(p))) {
-		emit_reciprocal(p);
+		fmt_reciprocal(p);
 		return;
 	}
-	emit_base(cadr(p));
-	emit_exponent(caddr(p));
+	fmt_base(cadr(p));
+	fmt_exponent(caddr(p));
 }
 
 void
-emit_rational(struct atom *p)
+fmt_rational(struct atom *p)
 {
 	int t;
 	char *s;
 	if (MEQUAL(p->u.q.b, 1)) {
 		s = mstr(p->u.q.a);
-		emit_roman_string(s);
+		fmt_roman_string(s);
 		return;
 	}
-	emit_level++;
+	fmt_level++;
 	t = tos;
 	s = mstr(p->u.q.a);
-	emit_roman_string(s);
-	emit_update_list(t);
+	fmt_roman_string(s);
+	fmt_update_list(t);
 	t = tos;
 	s = mstr(p->u.q.b);
-	emit_roman_string(s);
-	emit_update_list(t);
-	emit_level--;
-	emit_update_fraction();
+	fmt_roman_string(s);
+	fmt_update_list(t);
+	fmt_level--;
+	fmt_update_fraction();
 }
 
 // p = y^x where x is a negative number
 
 void
-emit_reciprocal(struct atom *p)
+fmt_reciprocal(struct atom *p)
 {
 	int t;
-	emit_roman_char('1'); // numerator
+	fmt_roman_char('1'); // numerator
 	t = tos;
 	if (isminusone(caddr(p)))
-		emit_expr(cadr(p));
+		fmt_expr(cadr(p));
 	else {
-		emit_base(cadr(p));
-		emit_numeric_exponent(caddr(p)); // sign is not emitted
+		fmt_base(cadr(p));
+		fmt_numeric_exponent(caddr(p)); // sign is not emitted
 	}
-	emit_update_list(t);
-	emit_update_fraction();
+	fmt_update_list(t);
+	fmt_update_fraction();
 }
 
 void
-emit_right_delim(int x, int y, int h, int d, int w)
+fmt_right_delim(int x, int y, int h, int d, int w)
 {
 	int i;
-	emit_char(x, y - h + 1, BDLDAL);
+	fmt_char(x, y - h + 1, BDLDAL);
 	for (i = 1; i < h + d - 1; i++)
-		emit_char(x, y - h + 1 + i, BDLV);
-	emit_char(x, y + d, BDLUAL);
+		fmt_char(x, y - h + 1 + i, BDLV);
+	fmt_char(x, y + d, BDLUAL);
 }
 
 void
-emit_roman_char(int c)
+fmt_roman_char(int c)
 {
 	int d, h, w;
 	h = 1;
@@ -6526,14 +6526,14 @@ emit_roman_char(int c)
 }
 
 void
-emit_roman_string(char *s)
+fmt_roman_string(char *s)
 {
 	while (*s)
-		emit_roman_char(*s++);
+		fmt_roman_char(*s++);
 }
 
 void
-emit_space(void)
+fmt_space(void)
 {
 	push_double(EMIT_SPACE);
 	push_double(0);
@@ -6543,43 +6543,43 @@ emit_space(void)
 }
 
 void
-emit_string(struct atom *p)
+fmt_string(struct atom *p)
 {
-	emit_roman_string(p->u.str);
+	fmt_roman_string(p->u.str);
 }
 
 void
-emit_subexpr(struct atom *p)
+fmt_subexpr(struct atom *p)
 {
-	emit_list(p);
-	emit_update_subexpr();
+	fmt_list(p);
+	fmt_update_subexpr();
 }
 
 void
-emit_symbol(struct atom *p)
+fmt_symbol(struct atom *p)
 {
 	int k, t;
 	char *s;
 	if (p == symbol(EXP1)) {
-		emit_roman_string("exp(1)");
+		fmt_roman_string("exp(1)");
 		return;
 	}
 	s = printname(p);
 	if (iskeyword(p) || p == symbol(LAST) || p == symbol(TRACE)) {
-		emit_roman_string(s);
+		fmt_roman_string(s);
 		return;
 	}
-	k = emit_symbol_fragment(s, 0);
+	k = fmt_symbol_fragment(s, 0);
 	if (s[k] == '\0')
 		return;
 	// emit subscript
-	emit_level++;
+	fmt_level++;
 	t = tos;
 	while (s[k] != '\0')
-		k = emit_symbol_fragment(s, k);
-	emit_update_list(t);
-	emit_level--;
-	emit_update_subscript();
+		k = fmt_symbol_fragment(s, k);
+	fmt_update_list(t);
+	fmt_level--;
+	fmt_update_subscript();
 }
 
 #undef N
@@ -6696,7 +6696,7 @@ int symbol_unicode_tab[N] = {
 };
 
 int
-emit_symbol_fragment(char *s, int k)
+fmt_symbol_fragment(char *s, int k)
 {
 	int c, i, n;
 	char *t;
@@ -6707,16 +6707,16 @@ emit_symbol_fragment(char *s, int k)
 			break;
 	}
 	if (i == N) {
-		emit_roman_char(s[k]);
+		fmt_roman_char(s[k]);
 		return k + 1;
 	}
 	c = symbol_unicode_tab[i];
-	emit_roman_char(c);
+	fmt_roman_char(c);
 	return k + n;
 }
 
 void
-emit_table(int x, int y, struct atom *p)
+fmt_table(int x, int y, struct atom *p)
 {
 	int cx, dx, i, j, m, n;
 	int column_width, elem_width, row_depth, row_height;
@@ -6737,7 +6737,7 @@ emit_table(int x, int y, struct atom *p)
 			column_width = VAL1(w);
 			elem_width = WIDTH(car(table));
 			cx = x + dx + (column_width - elem_width) / 2; // center horizontal
-			emit_draw(cx, y, car(table));
+			fmt_draw(cx, y, car(table));
 			dx += column_width + TABLE_HSPACE;
 			table = cdr(table);
 			w = cdr(w);
@@ -6749,45 +6749,45 @@ emit_table(int x, int y, struct atom *p)
 }
 
 void
-emit_tensor(struct atom *p)
+fmt_tensor(struct atom *p)
 {
 	if (p->u.tensor->ndim % 2 == 1)
-		emit_vector(p); // odd rank
+		fmt_vector(p); // odd rank
 	else
-		emit_matrix(p, 0, 0); // even rank
+		fmt_matrix(p, 0, 0); // even rank
 }
 
 void
-emit_term(struct atom *p)
+fmt_term(struct atom *p)
 {
 	if (car(p) == symbol(MULTIPLY))
-		emit_term_nib(p);
+		fmt_term_nib(p);
 	else
-		emit_factor(p);
+		fmt_factor(p);
 }
 
 void
-emit_term_nib(struct atom *p)
+fmt_term_nib(struct atom *p)
 {
 	if (count_denominators(p) > 0) {
-		emit_frac(p);
+		fmt_frac(p);
 		return;
 	}
 	// no denominators
 	p = cdr(p);
 	if (isminusone(car(p)) && !isdouble(car(p)))
 		p = cdr(p); // sign already emitted
-	emit_factor(car(p));
+	fmt_factor(car(p));
 	p = cdr(p);
 	while (iscons(p)) {
-		emit_space();
-		emit_factor(car(p));
+		fmt_space();
+		fmt_factor(car(p));
 		p = cdr(p);
 	}
 }
 
 void
-emit_update_fraction(void)
+fmt_update_fraction(void)
 {
 	int d, h, w;
 	save();
@@ -6809,7 +6809,7 @@ emit_update_fraction(void)
 }
 
 void
-emit_update_list(int t)
+fmt_update_list(int t)
 {
 	int d, h, i, w;
 	if (tos - t == 1)
@@ -6836,7 +6836,7 @@ emit_update_list(int t)
 }
 
 void
-emit_update_subexpr(void)
+fmt_update_subexpr(void)
 {
 	int d, h, w;
 	save();
@@ -6859,7 +6859,7 @@ emit_update_subexpr(void)
 }
 
 void
-emit_update_subscript(void)
+fmt_update_subscript(void)
 {
 	int d, dx, dy, h, w;
 	save();
@@ -6881,7 +6881,7 @@ emit_update_subscript(void)
 }
 
 void
-emit_update_superscript(void)
+fmt_update_superscript(void)
 {
 	int d, dx, dy, h, w, y;
 	save();
@@ -6914,7 +6914,7 @@ emit_update_superscript(void)
 }
 
 void
-emit_update_table(int n, int m)
+fmt_update_table(int n, int m)
 {
 	int i, j, t;
 	int d, h, w;
@@ -6982,18 +6982,18 @@ emit_update_table(int n, int m)
 }
 
 void
-emit_vector(struct atom *p)
+fmt_vector(struct atom *p)
 {
-	int i, n, span, t;
+	int i, n, span;
 	// compute element span
 	span = 1;
-	for (i = 1; i < p->u.tensor->ndim; i++)
+	n = p->u.tensor->ndim;
+	for (i = 1; i < n; i++)
 		span *= p->u.tensor->dim[i];
-	t = tos;
 	n = p->u.tensor->dim[0]; // number of rows
 	for (i = 0; i < n; i++)
-		emit_matrix(p, 1, i * span);
-	emit_update_table(n, 1);
+		fmt_matrix(p, 1, i * span);
+	fmt_update_table(n, 1); // n rows, 1 column
 }
 
 int
