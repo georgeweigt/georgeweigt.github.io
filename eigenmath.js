@@ -2513,7 +2513,7 @@ const TABLE_HSPACE = 10;
 const TABLE_VSPACE = 10;
 
 const HPAD = 10;
-const VPAD = 10;
+const VPAD = 6;
 
 var emit_level;
 
@@ -2537,17 +2537,17 @@ display()
 	x = HPAD;
 	y = h + VPAD;
 
-	outbuf = "";
-
-	draw_formula(x, y, p1);
-
 	h += d + 2 * VPAD;
 	w += 2 * HPAD;
 
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
 
-	outbuf = "<p><svg " + h + w + ">\n" + outbuf + "</svg></p>";
+	outbuf = "<p><svg " + h + w + ">";
+
+	draw_formula(x, y, p1);
+
+	outbuf += "</svg>";
 
 	stdout.innerHTML += outbuf;
 }
@@ -4373,7 +4373,7 @@ draw(F, X)
 	h = "height='" + h + "'";
 	w = "width='" + w + "'";
 
-	outbuf = "<p><svg " + h + w + ">\n"
+	outbuf = "<p><svg " + h + w + ">"
 
 	draw_xrange();
 	draw_yrange();
@@ -4384,7 +4384,7 @@ draw(F, X)
 	draw_pass2(F, X);
 	draw_points();
 
-	outbuf += "</svg></p>\n";
+	outbuf += "</svg>";
 
 	stdout.innerHTML += outbuf;
 }
@@ -10843,15 +10843,15 @@ print_buf(s, color)
 	switch (color) {
 
 	case BLACK:
-		s = "<p><span style='color:black'>" + s + "</span></p>";
+		s = "<p><span style='color:black'>" + s + "</span>";
 		break;
 
 	case BLUE:
-		s = "<p><span style='color:blue;font-family:courier'>" + s + "</span></p>";
+		s = "<p><span style='color:blue;font-family:courier'>" + s + "</span>";
 		break;
 
 	case RED:
-		s = "<p><span style='color:red;font-family:courier'>" + s + "</span></p>";
+		s = "<p><span style='color:red;font-family:courier'>" + s + "</span>";
 		break;
 	}
 
