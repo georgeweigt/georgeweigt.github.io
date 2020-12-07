@@ -3262,7 +3262,7 @@ const symbol_name_tab = [
 	"hbar",
 ];
 
-const italic_tab = [
+const symbol_italic_tab = [
 	0,0,0,0,0,0,0,0,
 	0,0,0,0,0,0,0,0,
 	0,0,0,0,0,0,0,0,
@@ -3295,7 +3295,7 @@ emit_symbol_fragment(s, k)
 
 	char_num = i + 128;
 
-	if (italic_tab[i])
+	if (symbol_italic_tab[i])
 		emit_italic_char(char_num);
 	else
 		emit_roman_char(char_num);
