@@ -5928,8 +5928,8 @@ det_nib(void)
 #define BDLUAR 0xe29494 // BOX DRAW LIGHT UP AND RIGHT
 #define BDLUAL 0xe29498 // BOX DRAW LIGHT UP AND LEFT
 
-#define imax(a, b) (a > b ? a : b)
-#define imin(a, b) (a < b ? a : b)
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
 
 int fmt_level;
 int fmt_nrow;
@@ -5949,7 +5949,7 @@ display(void)
 	d = DEPTH(p1);
 	w = WIDTH(p1);
 	fmt_nrow = h + d;
-	fmt_ncol = imin(CLIP, w);
+	fmt_ncol = MIN(CLIP, w);
 	n = fmt_nrow * fmt_ncol * sizeof (int); // number of bytes
 	fmt_buf = malloc(n);
 	if (fmt_buf == NULL)
@@ -6699,7 +6699,7 @@ fmt_update_fraction(void)
 	p1 = pop(); // numerator
 	h = HEIGHT(p1) + DEPTH(p1);
 	d = HEIGHT(p2) + DEPTH(p2);
-	w = imax(WIDTH(p1), WIDTH(p2));
+	w = MAX(WIDTH(p1), WIDTH(p2));
 	h += 1;
 	w += 2;
 	push_double(EMIT_FRACTION);
@@ -6724,8 +6724,8 @@ fmt_update_list(int t)
 	w = 0;
 	for (i = t; i < tos; i++) {
 		p1 = stack[i];
-		h = imax(h, HEIGHT(p1));
-		d = imax(d, DEPTH(p1));
+		h = MAX(h, HEIGHT(p1));
+		d = MAX(d, DEPTH(p1));
 		w += WIDTH(p1);
 	}
 	list(tos - t);
@@ -6750,10 +6750,7 @@ fmt_update_subexpr(void)
 	w = WIDTH(p1);
 	// delimiters have vertical symmetry
 	if (h > 1 || d > 0) {
-		if (h > d)
-			h += 1;
-		else
-			h = d + 2;
+		h = MAX(h + 1, d + 2);
 		d = h - 1;
 	}
 	w += 2;
@@ -6800,14 +6797,14 @@ fmt_update_superscript(void)
 	w = WIDTH(p2);
 	// y is distance from baseline to bottom of superscript
 	y = HEIGHT(p1) - d - 1;
-	y = imax(y, 1);
+	y = MAX(y, 1);
 	dx = 0;
 	dy = -(y + d);
 	h = y + h + d;
 	d = 0;
 	if (OPCODE(p1) == EMIT_SUBSCRIPT) {
 		dx = -WIDTH(p1);
-		w = imax(0, w - WIDTH(p1));
+		w = MAX(0, w - WIDTH(p1));
 	}
 	push(p1); // base
 	push_double(EMIT_SUPERSCRIPT);
@@ -6836,7 +6833,7 @@ fmt_update_table(int n, int m)
 		h = 0;
 		for (j = 0; j < m; j++) { // for each column
 			p1 = stack[t + i * m + j];
-			h = imax(h, HEIGHT(p1));
+			h = MAX(h, HEIGHT(p1));
 		}
 		push_double(h);
 		total_height += h;
@@ -6848,7 +6845,7 @@ fmt_update_table(int n, int m)
 		d = 0;
 		for (j = 0; j < m; j++) { // for each column
 			p1 = stack[t + i * m + j];
-			d = imax(d, DEPTH(p1));
+			d = MAX(d, DEPTH(p1));
 		}
 		push_double(d);
 		total_height += d;
@@ -6860,7 +6857,7 @@ fmt_update_table(int n, int m)
 		w = 0;
 		for (i = 0; i < n; i++) { // for each row
 			p1 = stack[t + i * m + j];
-			w = imax(w, WIDTH(p1));
+			w = MAX(w, WIDTH(p1));
 		}
 		push_double(w);
 		total_width += w;
