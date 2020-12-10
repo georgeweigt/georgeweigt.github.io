@@ -2501,9 +2501,6 @@ const EMIT_FRACTION = 8;
 const EMIT_SMALL_FRACTION = 9;
 const EMIT_TABLE = 10;
 
-const DELIM_STROKE = 2.5;
-const SMALL_DELIM_STROKE = 1;
-
 const TABLE_HSPACE = 12;
 const TABLE_VSPACE = 10;
 
@@ -4001,13 +3998,13 @@ draw_formula(x, y, p)
 		break;
 
 	case EMIT_SUBEXPR:
-		draw_delims(x, y, h, d, w, DELIM_STROKE, ROMAN_FONT);
+		draw_delims(x, y, h, d, w, 2.2, ROMAN_FONT);
 		dx = get_char_width(ROMAN_FONT, LEFT_PAREN);
 		draw_formula(x + dx, y, car(p));
 		break;
 
 	case EMIT_SMALL_SUBEXPR:
-		draw_delims(x, y, h, d, w, SMALL_DELIM_STROKE, SMALL_ROMAN_FONT);
+		draw_delims(x, y, h, d, w, 1.5, SMALL_ROMAN_FONT);
 		dx = get_char_width(SMALL_ROMAN_FONT, LEFT_PAREN);
 		draw_formula(x + dx, y, car(p));
 		break;
@@ -4043,7 +4040,7 @@ draw_formula(x, y, p)
 		break;
 
 	case EMIT_TABLE:
-		draw_delims(x, y, h, d, w, DELIM_STROKE, ROMAN_FONT);
+		draw_delims(x, y, h, d, w, 2.5, ROMAN_FONT);
 		dx = get_char_width(ROMAN_FONT, LEFT_PAREN);
 		draw_table(x + dx, y - h, p);
 		break;
