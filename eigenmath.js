@@ -3684,6 +3684,283 @@ emit_vector(p)
 }
 
 function
+opcode(p)
+{
+	return car(p).d;
+}
+
+function
+height(p)
+{
+	return cadr(p).d;
+}
+
+function
+depth(p)
+{
+	return caddr(p).d;
+}
+
+function
+width(p)
+{
+	return cadddr(p).d;
+}
+
+function
+val1(p)
+{
+	return car(p).d;
+}
+
+function
+val2(p)
+{
+	return cadr(p).d;
+}
+function
+divide()
+{
+	reciprocate();
+	multiply();
+}
+function
+divisor(p)
+{
+	if (car(p) == symbol(ADD)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (divisor_term(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+		return 0;
+	}
+
+	return divisor_term(p);
+}
+function
+divisor_factor(p)
+{
+	if (isrational(p)) {
+		if (isinteger(p))
+			return 0;
+		push_integer(p.b);
+		return 1;
+	}
+
+	if (car(p) == symbol(POWER) && !isminusone(cadr(p)) && isnegativeterm(caddr(p))) {
+		if (isminusone(caddr(p)))
+			push(cadr(p));
+		else {
+			push_symbol(POWER);
+			push(cadr(p));
+			push(caddr(p));
+			negate();
+			list(3);
+		}
+		return 1;
+	}
+
+	return 0;
+}
+function
+divisor_term(p)
+{
+	if (car(p) == symbol(MULTIPLY)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (divisor_factor(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+		return 0;
+	}
+
+	return divisor_factor(p);
+}
+function
+dlog(p1, p2)
+{
+	push(cadr(p1));
+	push(p2);
+	derivative();
+	push(cadr(p1));
+	divide();
+}
+//	     v
+//	y = u
+//
+//	log y = v log u
+//
+//	1 dy   v du           dv
+//	- -- = - -- + (log u) --
+//	y dx   u dx           dx
+//
+//	dy    v  v du           dv
+//	-- = u  (- -- + (log u) --)
+//	dx       u dx           dx
+
+function
+dpower(F, X)
+{
+	if (isnum(cadr(F)) && isnum(caddr(F))) {
+		push_integer(0); // irr or imag
+		return;
+	}
+
+	push(caddr(F));		// v/u
+	push(cadr(F));
+	divide();
+
+	push(cadr(F));		// du/dx
+	push(X);
+	derivative();
+
+	multiply();
+
+	push(cadr(F));		// log u
+	log();
+
+	push(caddr(F));		// dv/dx
+	push(X);
+	derivative();
+
+	multiply();
+
+	add();
+	push(F);		// u^v
+	multiply();
+}
+function
+dproduct(p1, p2)
+{
+	var i, j, n, p3;
+
+	n = lengthf(p1) - 1;
+
+	for (i = 0; i < n; i++) {
+
+		p3 = cdr(p1);
+
+		for (j = 0; j < n; j++) {
+			push(car(p3));
+			if (i == j) {
+				push(p2);
+				derivative();
+			}
+			p3 = cdr(p3);
+		}
+
+		multiply_factors(n);
+	}
+
+	add_terms(n);
+}
+function
+draw(F, X)
+{
+	var h, w;
+
+	draw_array = [];
+
+	h = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_BOTTOM_PAD;
+	w = DRAW_LEFT_PAD + DRAW_WIDTH + DRAW_RIGHT_PAD;
+
+	h = "height='" + h + "'";
+	w = "width='" + w + "'";
+
+	outbuf = "<svg " + h + w + ">"
+
+	draw_xrange();
+	draw_yrange();
+	draw_axes();
+	draw_box();
+	draw_labels();
+	draw_pass1(F, X);
+	draw_pass2(F, X);
+	draw_points();
+
+	outbuf += "</svg><br>";
+
+	stdout.innerHTML += outbuf;
+}
+function
+draw_axes()
+{
+	var dx, dy, x, y;
+
+	x = 0;
+	y = 0;
+
+	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
+	dy = DRAW_HEIGHT - DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+
+	if (dx > 0 && dx < DRAW_WIDTH)
+		draw_line(dx, 0, dx, DRAW_HEIGHT, 0.5); // vertical axis
+
+	if (dy > 0 && dy < DRAW_HEIGHT)
+		draw_line(0, dy, DRAW_WIDTH, dy, 0.5); // horizontal axis
+}
+function
+draw_box()
+{
+	var x1 = 0;
+	var x2 = DRAW_WIDTH;
+
+	var y1 = 0;
+	var y2 = DRAW_HEIGHT;
+
+	draw_line(x1, y1, x2, y1, 0.5); // top line
+	draw_line(x1, y2, x2, y2, 0.5); // bottom line
+
+	draw_line(x1, y1, x1, y2, 0.5); // left line
+	draw_line(x2, y1, x2, y2, 0.5); // right line
+}
+function
+draw_eval(F, X, x)
+{
+	var dx, dy, p, y;
+
+	draw_eval_nib(F, X, x);
+	p = pop();
+	if (!isnum(p))
+		return;
+	push(p);
+	y = pop_double();
+
+	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
+	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+
+	draw_array.push({x:x, y:y, dx:dx, dy:dy});
+}
+function
+draw_eval_nib(F, X, x)
+{
+	var tos = stack.length;
+	var tof = frame.length;
+
+	try {
+		push_double(x);
+		x = pop();
+		set_binding(X, x);
+		push(F);
+		evalf();
+		floatf();
+	}
+
+	catch(err) {
+		stack.splice(tos); // pop all
+		frame.splice(tof); // pop all
+		expanding = 1;
+		push_symbol(NIL);
+	}
+
+	finally {
+		//
+	}
+}
+function
 draw_formula(x, y, p)
 {
 	var char_num, d, dx, dy, font_num, h, k, stroke_width, w;
@@ -3995,284 +4272,6 @@ draw_table(x, y, p)
 
 		h = cdr(h);
 		d = cdr(d);
-	}
-}
-
-function
-opcode(p)
-{
-	return car(p).d;
-}
-
-function
-height(p)
-{
-	return cadr(p).d;
-}
-
-function
-depth(p)
-{
-	return caddr(p).d;
-}
-
-function
-width(p)
-{
-	return cadddr(p).d;
-}
-
-function
-val1(p)
-{
-	return car(p).d;
-}
-
-function
-val2(p)
-{
-	return cadr(p).d;
-}
-function
-divide()
-{
-	reciprocate();
-	multiply();
-}
-function
-divisor(p)
-{
-	if (car(p) == symbol(ADD)) {
-		p = cdr(p);
-		while (iscons(p)) {
-			if (divisor_term(car(p)))
-				return 1;
-			p = cdr(p);
-		}
-		return 0;
-	}
-
-	return divisor_term(p);
-}
-function
-divisor_factor(p)
-{
-	if (isrational(p)) {
-		if (isinteger(p))
-			return 0;
-		push_integer(p.b);
-		return 1;
-	}
-
-	if (car(p) == symbol(POWER) && !isminusone(cadr(p)) && isnegativeterm(caddr(p))) {
-		if (isminusone(caddr(p)))
-			push(cadr(p));
-		else {
-			push_symbol(POWER);
-			push(cadr(p));
-			push(caddr(p));
-			negate();
-			list(3);
-		}
-		return 1;
-	}
-
-	return 0;
-}
-function
-divisor_term(p)
-{
-	if (car(p) == symbol(MULTIPLY)) {
-		p = cdr(p);
-		while (iscons(p)) {
-			if (divisor_factor(car(p)))
-				return 1;
-			p = cdr(p);
-		}
-		return 0;
-	}
-
-	return divisor_factor(p);
-}
-function
-dlog(p1, p2)
-{
-	push(cadr(p1));
-	push(p2);
-	derivative();
-	push(cadr(p1));
-	divide();
-}
-//	     v
-//	y = u
-//
-//	log y = v log u
-//
-//	1 dy   v du           dv
-//	- -- = - -- + (log u) --
-//	y dx   u dx           dx
-//
-//	dy    v  v du           dv
-//	-- = u  (- -- + (log u) --)
-//	dx       u dx           dx
-
-function
-dpower(F, X)
-{
-	if (isnum(cadr(F)) && isnum(caddr(F))) {
-		push_integer(0); // irr or imag
-		return;
-	}
-
-	push(caddr(F));		// v/u
-	push(cadr(F));
-	divide();
-
-	push(cadr(F));		// du/dx
-	push(X);
-	derivative();
-
-	multiply();
-
-	push(cadr(F));		// log u
-	log();
-
-	push(caddr(F));		// dv/dx
-	push(X);
-	derivative();
-
-	multiply();
-
-	add();
-	push(F);		// u^v
-	multiply();
-}
-function
-dproduct(p1, p2)
-{
-	var i, j, n, p3;
-
-	n = lengthf(p1) - 1;
-
-	for (i = 0; i < n; i++) {
-
-		p3 = cdr(p1);
-
-		for (j = 0; j < n; j++) {
-			push(car(p3));
-			if (i == j) {
-				push(p2);
-				derivative();
-			}
-			p3 = cdr(p3);
-		}
-
-		multiply_factors(n);
-	}
-
-	add_terms(n);
-}
-function
-draw(F, X)
-{
-	var h, w;
-
-	draw_array = [];
-
-	h = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_BOTTOM_PAD;
-	w = DRAW_LEFT_PAD + DRAW_WIDTH + DRAW_RIGHT_PAD;
-
-	h = "height='" + h + "'";
-	w = "width='" + w + "'";
-
-	outbuf = "<svg " + h + w + ">"
-
-	draw_xrange();
-	draw_yrange();
-	draw_axes();
-	draw_box();
-	draw_labels();
-	draw_pass1(F, X);
-	draw_pass2(F, X);
-	draw_points();
-
-	outbuf += "</svg><br>";
-
-	stdout.innerHTML += outbuf;
-}
-function
-draw_axes()
-{
-	var dx, dy, x, y;
-
-	x = 0;
-	y = 0;
-
-	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT - DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
-
-	if (dx > 0 && dx < DRAW_WIDTH)
-		draw_line(dx, 0, dx, DRAW_HEIGHT, 0.5); // vertical axis
-
-	if (dy > 0 && dy < DRAW_HEIGHT)
-		draw_line(0, dy, DRAW_WIDTH, dy, 0.5); // horizontal axis
-}
-function
-draw_box()
-{
-	var x1 = 0;
-	var x2 = DRAW_WIDTH;
-
-	var y1 = 0;
-	var y2 = DRAW_HEIGHT;
-
-	draw_line(x1, y1, x2, y1, 0.5); // top line
-	draw_line(x1, y2, x2, y2, 0.5); // bottom line
-
-	draw_line(x1, y1, x1, y2, 0.5); // left line
-	draw_line(x2, y1, x2, y2, 0.5); // right line
-}
-function
-draw_eval(F, X, x)
-{
-	var dx, dy, p, y;
-
-	draw_eval_nib(F, X, x);
-	p = pop();
-	if (!isnum(p))
-		return;
-	push(p);
-	y = pop_double();
-
-	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
-
-	draw_array.push({x:x, y:y, dx:dx, dy:dy});
-}
-function
-draw_eval_nib(F, X, x)
-{
-	var tos = stack.length;
-	var tof = frame.length;
-
-	try {
-		push_double(x);
-		x = pop();
-		set_binding(X, x);
-		push(F);
-		evalf();
-		floatf();
-	}
-
-	catch(err) {
-		stack.splice(tos); // pop all
-		frame.splice(tof); // pop all
-		expanding = 1;
-		push_symbol(NIL);
-	}
-
-	finally {
-		//
 	}
 }
 function
