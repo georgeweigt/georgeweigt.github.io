@@ -4186,11 +4186,11 @@ draw_left_delim(x, y, h, d, w, stroke_width)
 {
 	var x1, x2, y1, y2;
 
-	x1 = x + 0.25 * w;
-	x2 = x + 0.75 * w;
+	x1 = Math.round(x + 0.5 * w);
+	x2 = x1 + Math.round(0.5 * w);
 
-	y1 = y - h + stroke_width / 2.0;
-	y2 = y + d - stroke_width / 2.0;
+	y1 = Math.round(y - h);
+	y2 = Math.round(y + d);
 
 	draw_stroke(x1, y1, x1, y2, stroke_width); // stem stroke
 	draw_stroke(x1, y1, x2, y1, stroke_width); // top stroke
@@ -4202,11 +4202,11 @@ draw_right_delim(x, y, h, d, w, stroke_width)
 {
 	var x1, x2, y1, y2;
 
-	x1 = x + 0.75 * w;
-	x2 = x + 0.25 * w;
+	x1 = Math.round(x + 0.5 * w);
+	x2 = x1 - Math.round(0.5 * w);
 
-	y1 = y - h + stroke_width / 2.0;
-	y2 = y + d - stroke_width / 2.0;
+	y1 = Math.round(y - h);
+	y2 = Math.round(y + d);
 
 	draw_stroke(x1, y1, x1, y2, stroke_width); // stem stroke
 	draw_stroke(x1, y1, x2, y1, stroke_width); // top stroke
@@ -4217,12 +4217,6 @@ function
 draw_stroke(x1, y1, x2, y2, stroke_width)
 {
 	var s;
-
-	x1 = Math.round(x1);
-	x2 = Math.round(x2);
-
-	y1 = Math.round(y1);
-	y2 = Math.round(y2);
 
 	x1 = "x1='" + x1 + "'";
 	x2 = "x2='" + x2 + "'";
