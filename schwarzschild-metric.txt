@@ -7,8 +7,8 @@
 
 gdd = zero(4,4)
 
-gdd[1,1] = -F(r)
-gdd[2,2] = 1/F(r)
+gdd[1,1] = -Phi(r)
+gdd[2,2] = 1/Phi(r)
 gdd[3,3] = r^2
 gdd[4,4] = r^2 sin(theta)^2
 
@@ -101,8 +101,8 @@ Gmunu
 
 "Verify that Einstein tensor vanishes for Schwarzschild metric"
 
-F(r) = 1 - 2 M/r
-F
+Phi(r) = 1 - 2 M/r
+Phi
 
 Gmunu = simplify(Gmunu)
 Gmunu
