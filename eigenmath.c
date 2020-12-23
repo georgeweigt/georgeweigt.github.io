@@ -1,29 +1,13 @@
-/* December 9, 2020
+/* December 23, 2020
 
 To build and run:
 
 	gcc -O0 -o eigenmath eigenmath.c -lm
 	./eigenmath
 
-Press control-C or type exit to exit. Note: Terminal settings should enable UTF-8.
+Press control-C to exit.
 
-To run a script:
-
-	./eigenmath scriptfilename
-
-To generate LaTeX output:
-
-        ./eigenmath --latex scriptfilename | tee foo.tex
-
-To generate MathML output:
-
-        ./eigenmath --mathml scriptfilename | tee foo.html
-
-To generate MathJax output:
-
-        ./eigenmath --mathjax scriptfilename | tee foo.html
-
-The Eigenmath manual and sample scripts are available at https://georgeweigt.github.io
+See also github.com/georgeweigt/eigenmath
 
 
 BSD 2-Clause License
@@ -338,8 +322,9 @@ struct tensor {
 #define caaddr(p) car(car(cdr(cdr(p))))
 #define cadadr(p) car(cdr(car(cdr(p))))
 #define caddar(p) car(cdr(cdr(car(p))))
-#define cdaddr(p) cdr(car(cdr(cdr(p))))
 #define cadddr(p) car(cdr(cdr(cdr(p))))
+#define cdaddr(p) cdr(car(cdr(cdr(p))))
+#define cddadr(p) cdr(cdr(car(cdr(p))))
 #define cddddr(p) cdr(cdr(cdr(cdr(p))))
 #define caddddr(p) car(cdr(cdr(cdr(cdr(p)))))
 #define cadaddr(p) car(cdr(car(cdr(cdr(p)))))
@@ -989,8 +974,8 @@ void static_reciprocate(void);
 void static_reciprocate_nib(void);
 void eval_setq(void);
 void setq_indexed(void);
-void set_component(int n);
-void set_component_nib(int n);
+void set_component(int h);
+void set_component_nib(int h);
 void setq_userfunc(void);
 void eval_sgn(void);
 void sgn(void);
@@ -18576,98 +18561,82 @@ eval_setq(void)
 //	cadadr(p1) = a
 //	caddr(p1) = b
 
+#undef S
+#undef LVAL
+#undef RVAL
+
+#define S p3
+#define LVAL p4
+#define RVAL p5
+
 void
 setq_indexed(void)
 {
 	int h;
-	p4 = cadadr(p1);
-	if (!issymbol(p4))
-		stop("indexed assignment: symbol expected");
-	h = tos;
+	S = cadadr(p1);
+	if (!issymbol(S))
+		stop("symbol expected");
+	push(S);
+	eval();
+	LVAL = pop();
 	push(caddr(p1));
 	eval();
-	p2 = cdadr(p1);
-	while (iscons(p2)) {
-		push(car(p2));
+	RVAL = pop();
+	// eval indices
+	p1 = cddadr(p1);
+	h = tos;
+	while (iscons(p1)) {
+		push(car(p1));
 		eval();
-		p2 = cdr(p2);
+		p1 = cdr(p1);
 	}
-	set_component(tos - h);
-	p3 = pop();
-	set_binding(p4, p3);
+	set_component(h);
+	set_binding(S, LVAL);
 }
 
-#undef LVALUE
-#undef RVALUE
-#undef TMP
-
-#define LVALUE p1
-#define RVALUE p2
-#define TMP p3
-
 void
-set_component(int n)
+set_component(int h)
 {
 	save();
-	set_component_nib(n);
+	set_component_nib(h);
 	restore();
 }
 
 void
-set_component_nib(int n)
+set_component_nib(int h)
 {
-	int i, k, m, ndim, t;
-	struct atom **s;
-	if (n < 3)
-		stop("error in indexed assign");
-	s = stack + tos - n;
-	RVALUE = s[0];
-	LVALUE = s[1];
-	if (!istensor(LVALUE))
-		stop("error in indexed assign");
-	ndim = LVALUE->u.tensor->ndim;
-	m = n - 2;
-	if (m > ndim)
-		stop("error in indexed assign");
+	int i, k, m, n, t;
+	if (!istensor(LVAL))
+		stop("index error");
+	// n is the number of indices
+	n = tos - h;
+	if (n < 1 || n > LVAL->u.tensor->ndim)
+		stop("index error");
+	// k is the combined index
 	k = 0;
-	for (i = 0; i < m; i++) {
-		push(s[i + 2]);
+	for (i = 0; i < n; i++) {
+		push(stack[h + i]);
 		t = pop_integer();
-		if (t < 1 || t > LVALUE->u.tensor->dim[i])
-			stop("error in indexed assign");
-		k = k * p1->u.tensor->dim[i] + t - 1;
+		if (t < 1 || t > LVAL->u.tensor->dim[i])
+			stop("index error");
+		k = k * LVAL->u.tensor->dim[i] + t - 1;
 	}
-	for (i = m; i < ndim; i++)
-		k = k * p1->u.tensor->dim[i] + 0;
-	// copy
-	TMP = alloc_tensor(LVALUE->u.tensor->nelem);
-	TMP->u.tensor->ndim = LVALUE->u.tensor->ndim;
-	for (i = 0; i < p1->u.tensor->ndim; i++)
-		TMP->u.tensor->dim[i] = LVALUE->u.tensor->dim[i];
-	for (i = 0; i < p1->u.tensor->nelem; i++)
-		TMP->u.tensor->elem[i] = LVALUE->u.tensor->elem[i];
-	LVALUE = TMP;
-	if (ndim == m) {
-		if (istensor(RVALUE))
-			stop("error in indexed assign");
-		LVALUE->u.tensor->elem[k] = RVALUE;
-		tos -= n;
-		push(LVALUE);
-		return;
+	tos = h; // pop all
+	if (istensor(RVAL)) {
+		m = RVAL->u.tensor->ndim;
+		if (n + m != LVAL->u.tensor->ndim)
+			stop("index error");
+		for (i = 0; i < m; i++)
+			if (LVAL->u.tensor->dim[n + i] != RVAL->u.tensor->dim[i])
+				stop("index error");
+		m = RVAL->u.tensor->nelem;
+		for (i = 0; i < m; i++)
+			LVAL->u.tensor->elem[m * k + i] = RVAL->u.tensor->elem[i];
+	} else {
+		if (n != LVAL->u.tensor->ndim)
+			stop("index error");
+		LVAL->u.tensor->elem[k] = RVAL;
 	}
-	// see if the rvalue matches
-	if (!istensor(RVALUE))
-		stop("error in indexed assign");
-	if (ndim - m != RVALUE->u.tensor->ndim)
-		stop("error in indexed assign");
-	for (i = 0; i < RVALUE->u.tensor->ndim; i++)
-		if (LVALUE->u.tensor->dim[m + i] != RVALUE->u.tensor->dim[i])
-			stop("error in indexed assign");
-	// copy rvalue
-	for (i = 0; i < RVALUE->u.tensor->nelem; i++)
-		LVALUE->u.tensor->elem[k + i] = RVALUE->u.tensor->elem[i];
-	tos -= n;
-	push(LVALUE);
 }
 
 // Example:
