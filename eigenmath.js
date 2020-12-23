@@ -11940,7 +11940,7 @@ set_binding_and_arglist(p, b, a)
 function
 set_component(LVAL, RVAL, h)
 {
-	var i, k, m, n, t, p1;
+	var i, k, m, n, t;
 
 	if (!istensor(LVAL))
 		stopf("index error");
@@ -11966,8 +11966,6 @@ set_component(LVAL, RVAL, h)
 
 	stack.splice(h); // pop all indices
 
-	p1 = copy_tensor(LVAL);
-
 	if (istensor(RVAL)) {
 		m = RVAL.dim.length;
 		if (n + m != LVAL.dim.length)
@@ -11977,19 +11975,17 @@ set_component(LVAL, RVAL, h)
 				stopf("index error");
 		m = RVAL.elem.length;
 		for (i = 0; i < m; i++)
-			p1.elem[m * k + i] = RVAL.elem[i];
+			LVAL.elem[m * k + i] = RVAL.elem[i];
 	} else {
 		if (n != LVAL.dim.length)
 			stopf("index error");
-		p1.elem[k] = RVAL;
+		LVAL.elem[k] = RVAL;
 	}
-
-	push(p1);
 }
 function
 setq_indexed(p1)
 {
-	var h, p2, S, LVAL, RVAL;
+	var h, LVAL, RVAL, S;
 
 	S = cadadr(p1);
 
@@ -12006,18 +12002,17 @@ setq_indexed(p1)
 
 	h = stack.length;
 
-	p2 = cddadr(p1);
+	p1 = cddadr(p1);
 
-	while (iscons(p2)) {
-		push(car(p2));
+	while (iscons(p1)) {
+		push(car(p1));
 		evalf();
-		p2 = cdr(p2);
+		p1 = cdr(p1);
 	}
 
 	set_component(LVAL, RVAL, h);
 
-	p2 = pop();
-	set_binding(S, p2);
+	set_binding(S, LVAL);
 }
 
 // Example: a[1] = b
