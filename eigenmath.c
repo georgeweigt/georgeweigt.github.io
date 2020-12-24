@@ -5,7 +5,7 @@ To build and run:
 	gcc eigenmath.c
 	./a.out
 
-Press control-C to exit.
+Press ctrl-C to exit.
 
 See also github.com/georgeweigt/eigenmath
 
