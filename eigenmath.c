@@ -18719,8 +18719,6 @@ simplify_nib(void)
 	// p1 is a term (factor or product of factors)
 	push(p1);
 	simplify_expr();
-	p1 = pop();
-	push(p1);
 }
 
 void
