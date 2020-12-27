@@ -18714,11 +18714,13 @@ simplify_nib(void)
 			p1 = pop();
 		}
 		push(p1);
+		simplify_trig();
 		return;
 	}
 	// p1 is a term (factor or product of factors)
 	push(p1);
 	simplify_expr();
+	simplify_trig();
 }
 
 void
@@ -18726,7 +18728,6 @@ simplify_expr(void)
 {
 	save();
 	simplify_expr_nib();
-	simplify_trig();
 	restore();
 }
 
