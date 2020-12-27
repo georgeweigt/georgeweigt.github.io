@@ -18802,7 +18802,7 @@ simplify_expr_nib(void)
 	push(NUM);
 	subtract();
 	T = pop();
-	if (equaln(T, 0))
+	if (iszero(T))
 		p1 = R;
 	push(p1);
 }
