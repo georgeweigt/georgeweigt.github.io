@@ -981,7 +981,6 @@ void sgn(void);
 void eval_simplify(void);
 void simplify(void);
 void simplify_nib(void);
-void simplify_tensor(void);
 void simplify_expr(void);
 void simplify_expr_nib(void);
 void simplify_trig(void);
@@ -18683,10 +18682,19 @@ simplify(void)
 void
 simplify_nib(void)
 {
-	int h;
+	int i, h, n;
 	p1 = pop();
 	if (istensor(p1)) {
-		simplify_tensor();
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			simplify();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
 		return;
 	}
 	if (car(p1) == symbol(ADD)) {
@@ -18712,22 +18720,6 @@ simplify_nib(void)
 	push(p1);
 	simplify_expr();
 	p1 = pop();
-	push(p1);
-}
-
-void
-simplify_tensor(void)
-{
-	int i, n;
-	push(p1);
-	copy_tensor();
-	p1 = pop();
-	n = p1->u.tensor->nelem;
-	for (i = 0; i < n; i++) {
-		push(p1->u.tensor->elem[i]);
-		simplify();
-		p1->u.tensor->elem[i] = pop();
-	}
 	push(p1);
 }
 
