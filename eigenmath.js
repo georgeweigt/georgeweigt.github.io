@@ -1647,6 +1647,7 @@ const ARCTAN = "arctan";
 const ARCTANH = "arctanh";
 const ARG = "arg";
 const BINDING = "binding";
+const CEILING = "ceiling";
 const CHECK = "check";
 const CIRCEXP = "circexp";
 const CLEAR = "clear";
@@ -4898,6 +4899,27 @@ function
 eval_binding(p1)
 {
 	push(get_binding(cadr(p1)));
+}
+function
+eval_ceiling(p1)
+{
+	push(cadr(p1));
+	evalf();
+	p1 = pop();
+
+	if (isrational(p1)) {
+		push_integer(Math.ceil(p1.a / p1.b));
+		return;
+	}
+
+	if (isdouble(p1)) {
+		push_double(Math.ceil(p1.d));
+		return;
+	}
+
+	push_symbol(CEILING);
+	push(p1);
+	list(2);
 }
 function
 eval_check(p1)
@@ -13037,6 +13059,7 @@ var symtab = {
 "arctanh":	{printname:ARCTANH,	func:eval_arctanh},
 "arg":		{printname:ARG,		func:eval_arg},
 "binding":	{printname:BINDING,	func:eval_binding},
+"ceiling":	{printname:CEILING,	func:eval_ceiling},
 "check":	{printname:CHECK,	func:eval_check},
 "circexp":	{printname:CIRCEXP,	func:eval_circexp},
 "clear":	{printname:CLEAR,	func:eval_clear},
