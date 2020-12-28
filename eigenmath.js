@@ -1697,6 +1697,7 @@ const RANK = "rank";
 const RATIONALIZE = "rationalize";
 const REAL = "real";
 const RECT = "rect";
+const RUN = "run";
 const SGN = "sgn";
 const SIMPLIFY = "simplify";
 const SIN = "sin";
@@ -5676,6 +5677,52 @@ eval_rect(p1)
 	push(cadr(p1));
 	evalf();
 	rect();
+}
+function
+eval_run(p1)
+{
+	var f, k, save_inbuf, save_trace1, save_trace2;
+
+	push(cadr(p1));
+	evalf();
+	p1 = pop();
+
+	if (!isstring(p1))
+		stopf("run: string expected");
+
+	f = new XMLHttpRequest();
+	f.open("GET", p1.string, false);
+	f.send();
+
+	if (f.responseText == "")
+		stopf("run: error reading file");
+
+	save_inbuf = inbuf;
+	save_trace1 = trace1;
+	save_trace2 = trace2;
+
+	inbuf = f.responseText;
+
+//print_buf(inbuf, BLUE);
+
+
+	k = 0;
+
+	for (;;) {
+
+		k = scan_inbuf(k);
+
+		if (k == 0)
+			break; // end of input
+
+		eval_and_print_result();
+	}
+
+	inbuf = save_inbuf;
+	trace1 = save_trace1;
+	trace2 = save_trace2;
+
+	push_symbol(NIL);
 }
 function
 eval_setq(p1)
@@ -11786,10 +11833,17 @@ get_token_nib()
 
 	// skip spaces
 
-	while (inchar() == "\t" || inchar() == " ")
+	for (;;) {
+		c = inchar();
+		if (c == "" || c == "\n" || (c.charCodeAt(0) > 32 && c.charCodeAt(0) < 127))
+			break;
 		scan_index++;
+	}
 
-	c = inchar();
+//	while (inchar() == "\t" || inchar() == " ")
+//		scan_index++;
+
+//	c = inchar();
 
 	token_index = scan_index;
 
@@ -13056,6 +13110,7 @@ var symtab = {
 "rationalize":	{printname:RATIONALIZE,	func:eval_rationalize},
 "real":		{printname:REAL,	func:eval_real},
 "rect":		{printname:RECT,	func:eval_rect},
+"run":		{printname:RUN,		func:eval_run},
 "sgn":		{printname:SGN,		func:eval_sgn},
 "simplify":	{printname:SIMPLIFY,	func:eval_simplify},
 "sin":		{printname:SIN,		func:eval_sin},
