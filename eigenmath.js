@@ -11820,11 +11820,6 @@ get_token_nib()
 		scan_index++;
 	}
 
-//	while (inchar() == "\t" || inchar() == " ")
-//		scan_index++;
-
-//	c = inchar();
-
 	token_index = scan_index;
 
 	// end of input?
