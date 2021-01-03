@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+Q=zero(4,4,4)     -- (1) a first tensor
+Q[1]= ((0,0,0,1), (1,0,0,0), (0,0,1,0),(0,1,0,0))
+Q[2]= ((1,0,0,0), (0,0,0,1), (0,1,0,0),(0,0,1,0)) 
+                  -- (2) here comes Q[3] .. Q[8]
+Q                 -- (3)
+Q12 = 2*Q[1]+Q[2] -- (4)
+Q12
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+A=((0.8,0.1),(0.2,0.9))
+A
+X=(5,20)
+X
+
+dot(A,X)                 --(1)
+dot(A,A,X)               --(2)
+dot(A,A,A,X)             --(3)
+
+dot(A^9,((5,20)))        --(4)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
