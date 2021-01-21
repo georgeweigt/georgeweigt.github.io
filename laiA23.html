@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+L(t) = (0,0)+ t*(1,2)
+L(t)
+N=(-2,1)           -- see figure: 2 steps west, 1 step north
+n(t)=(3,1)+s*N     -- normal line through P in R^2
+n(t)
+LS=((1, 2, 3),     --  t = -2s+3 i.e. 1t+2s=3
+    (2,-1, 1))     -- 2t =   s+1 i.e. 2t -s=1
+A=((1,2),(2,-1))   -- system matrix
+B=(3,1)            -- RHS
+S=dot( inv(A), B)  -- solve for (t,s)
+S                  -- =(1,1)
+L(1)               -- =(1,2)     END of EX.
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

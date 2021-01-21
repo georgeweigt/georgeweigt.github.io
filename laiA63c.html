@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+X=(x,y,z)
+normalP(Q,N)     = dot(X-Q,N)           -- to be = 0
+HesseNF(Q,N)     = dot(X-Q, N/abs(N))   -- = 0, with Q _in_ plane
+HesseDist(R,Q,N) = mag( dot(R-Q, N/abs(N)) )
+
+-- distance of R(1,6,2) to H: x-2y+4z=1
+--             R           N(1,-2, 4)
+
+H(x,y,z)=x-2y+4z-1  -- the given (hyper)plane as function term
+R=(1,6,2)           -- R must be outside of plane H
+N=(1,-2,4)
+
+H(1,6,2) == 0       --(1) test returns 0=FALSE, i.e. R is _outside_ H 
+                    --    Now look for a special point Q _inside_ H 
+H(1,0,0) == 0       --(2) test returns 1=TRUE, therefore Q=(1,0,0) in H
+Q=(1,0,0)
+
+-- Now invoke Hesse normal form 
+HNF = HesseNF(Q,N)  -- needs Q in H, which is ok here
+HNF                 -- (3)
+
+-- compute the distance of R to H by plugging in R for X in HNF
+HesseDist(R,Q,N)          --(4)
+float(HesseDist(R,Q,N))   --(5) distance R to H ca. 0.87
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
