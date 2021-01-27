@@ -1,0 +1,49 @@
+"Bell state demo"
+
+ket0 = (1,0)
+ket1 = (0,1)
+
+ket00 = (1,0,0,0)
+ket01 = (0,1,0,0)
+ket10 = (0,0,1,0)
+ket11 = (0,0,0,1)
+
+-- Hadamard operator
+
+UH = sqrt(1/2) ((1,1),(1,-1))
+
+-- CNOT operator
+
+UCNOT = ((1,0,0,0),
+         (0,1,0,0),
+         (0,0,0,1),
+         (0,0,1,0))
+
+-- T forms the tensor product of qubits u and v
+
+T(u,v) = dot(ket0,u) dot(ket0,v) (1,0,0,0) +
+         dot(ket0,u) dot(ket1,v) (0,1,0,0) +
+         dot(ket0,u) dot(ket0,v) (0,0,1,0) +
+         dot(ket0,u) dot(ket1,v) (0,0,0,1)
+
+-- initial state
+
+q0 = ket0
+q1 = ket0
+
+q0 = dot(UH,q0) -- Hadamard gate
+
+psi = dot(UCNOT,T(q0,q1)) -- CNOT gate
+psi
+
+"Measure"
+
+P00 = mag(dot(ket00,psi))^2
+P01 = mag(dot(ket01,psi))^2
+P10 = mag(dot(ket10,psi))^2
+P11 = mag(dot(ket11,psi))^2
+
+P00
+P01
+P10
+P11

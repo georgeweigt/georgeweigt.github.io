@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+isMPI(P,A)= test(and(
+                 dot(A,P,A) == A,
+                 dot(P,A,P) == P,
+                 transpose(dot(P,A)) == dot(P,A),
+                 transpose(dot(A,P)) == dot(A,P)),
+                 " is MPI",
+                 " is NOT the MPI")
+
+mpiV(A) = test(  dot(A,A)==0,  
+                 0*A,
+                 1/dot(A,A) * A)
+
+-----------------------------------------  A  typ 3 x n 
+-- GREVILLE 3 x n : A1+, A2+ --> An+ = A+   
+-----------------------------------------  A+ typ n x 3
+
+Greville3xn(A) = do( 
+         n=dim(A,1), 
+         m=dim(A,2),
+                                   --print(n),    
+         null = zero(2,n),
+         ai = transpose(A),
+                                   --print(ai),
+         Aip = zero(2,n),
+         Aip[1]= mpiV(ai[1]),
+         A1p=Aip[1],
+         a2 = ai[2] ,   
+                                   --print(a2),                           
+         d2 = dot(A1p,a2) , 
+                                   --print(d2),
+         c2 = a2 - ai[1]*d2, 
+                                   --print(c2),
+         test( c2 == null[1],
+               b2 = (1+dot(d2,d2))^(-1)*dot(d2,A1p),
+               b2 = mpiV(c2)) ,
+         B2 = A1p - d2*b2 ,
+         A2p = zero(2,n) ,  
+               A2p[1]= B2 ,       
+               A2p[2]= b2 ,       
+                           -- j=3 
+         a1 = ai[1],
+         A2 = transpose((a1,a2)) ,  
+         a3 = ai[3] ,      
+         d3 = dot(A2p,a3) , 
+         c3 = a3-dot(A2,d3) ,    
+         test( c3 == (0,0,0) , 
+               b3 = (1+dot(d3,d3))^(-1)*dot(d3,A2p) ,
+               b3 = mpiV(c3)) ,
+         B3 = A2p - outer(d3,b3) , -- also d3*b3
+         A3p= zero(3,3) ,     
+         A3p[1] = B3[1] ,     
+         A3p[2] = B3[2] ,        
+         A3p[3] = b3    ,      
+         A3p
+         ) -- i.e. mpi
+
+######################## END 3 x n ##################
+
+" here we are .."
+
+M = ((0,1/2,0),(0,1/2,0),(1,-1,0))        
+M
+Mpi = Greville3xn( M ) 
+Mpi             
+isMPI(Mpi,M)    
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

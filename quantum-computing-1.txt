@@ -1,0 +1,30 @@
+"Quantum operators"
+
+UH = sqrt(1/2) ((1,1),(1,-1))
+
+UCNOT = ((1,0,0,0),
+         (0,1,0,0),
+         (0,0,0,1),
+         (0,0,1,0))
+
+dot(UCNOT,(1,0,0,0)) -- |00> --> |00>
+dot(UCNOT,(0,1,0,0)) -- |01> --> |01>
+dot(UCNOT,(0,0,1,0)) -- |10> --> |11>
+dot(UCNOT,(0,0,0,1)) -- |11> --> |10>
+
+-- tensor product of two quantum bits
+
+T(u,v) = dot((1,0),u) dot((1,0),v) (1,0,0,0) +
+         dot((1,0),u) dot((0,1),v) (0,1,0,0) +
+         dot((0,1),u) dot((1,0),v) (0,0,1,0) +
+         dot((0,1),u) dot((0,1),v) (0,0,0,1)
+
+q0 = (1,0)
+q1 = (1,0)
+
+q0 = dot(UH,q0)
+
+psi = T(q0,q1)
+
+psi = dot(UCNOT,psi)
+psi

@@ -1,5 +1,5 @@
 ############################ mpiBox.txt ##########################
-#  toolbox mpiBox.txt for Eigenmath.               W. Lindner 2020
+#  toolbox mpiBox.txt for Eigenmath.           (2020) Dr.W.Lindner  
 #  Use with the script    Moore-Penrose-pseudoinverse-Greville.pdf
 ############################ mpiBox.txt ##########################
 
@@ -47,8 +47,6 @@ isSolvable(A,B,P) = test(and(dot(A,P,A)==A, dot(A,P,B)==B),
                         "is solvable", 
                         "is NOT solvable")
 
-mpi0(A)= dot( inv( dot(transpose(A),A) +0.0001*unit(dim(A,2)) ), transpose(A) ) 
-
 solSet(A,B,P,X) =  do(        -- solution set of LinearSystem AX=B
                       m=dim(dot(P,A),1), 
                       n=dim(dot(P,A),2),
@@ -63,6 +61,8 @@ isMPI(P,A)= test(and(
                      transpose(dot(A,P))==dot(A,P) ),
                  " is MPI",
                  " is NOT the MPI")
+
+mpi0(A)= dot( inv( dot(transpose(A),A) +0.0001*unit(dim(A,2)) ), transpose(A) ) 
 
 mpiV(A) = test(  dot(A,A)==0,  
                  0*A,
@@ -114,4 +114,6 @@ Greville(A)=
        )  -- close outer do               
     
 -----------------  END GREVILLE -----------------   
+############################ END mpiBox.txt ######################
+
   
