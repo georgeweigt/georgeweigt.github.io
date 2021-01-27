@@ -1705,6 +1705,7 @@ const SIN = "sin";
 const SINH = "sinh";
 const SQRT = "sqrt";
 const STOP = "stop";
+const SUBST = "subst";
 const SUM = "sum";
 const TAN = "tan";
 const TANH = "tanh";
@@ -5814,6 +5815,18 @@ function
 eval_stop()
 {
 	stopf("stop function");
+}
+function
+eval_subst(p1)
+{
+	push(cadddr(p1));
+	evalf();
+	push(caddr(p1));
+	evalf();
+	push(cadr(p1));
+	evalf();
+	subst();
+	evalf(); // normalize
 }
 function
 eval_sum(p1)
@@ -13124,6 +13137,7 @@ var symtab = {
 "sinh":		{printname:SINH,	func:eval_sinh},
 "sqrt":		{printname:SQRT,	func:eval_sqrt},
 "stop":		{printname:STOP,	func:eval_stop},
+"subst":	{printname:SUBST,	func:eval_subst},
 "sum":		{printname:SUM,		func:eval_sum},
 "tan":		{printname:TAN,		func:eval_tan},
 "tanh":		{printname:TANH,	func:eval_tanh},
