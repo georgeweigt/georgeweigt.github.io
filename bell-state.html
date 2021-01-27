@@ -20,11 +20,15 @@ ket01 = (0,1,0,0)
 ket10 = (0,0,1,0)
 ket11 = (0,0,0,1)
 
--- Hadamard operator
+-- Hadamard gate
+
+H(u) = dot(UH,u)
 
 UH = sqrt(1/2) ((1,1),(1,-1))
 
--- CNOT operator
+-- CNOT gate
+
+CNOT(u,v) = dot(UCNOT,T(u,v))
 
 UCNOT = ((1,0,0,0),
          (0,1,0,0),
@@ -38,16 +42,16 @@ T(u,v) = dot(ket0,u) dot(ket0,v) (1,0,0,0) +
          dot(ket0,u) dot(ket0,v) (0,0,1,0) +
          dot(ket0,u) dot(ket1,v) (0,0,0,1)
 
--- initial quantum bits
+-- initial qubit states
 
 q0 = ket0
 q1 = ket0
 
 -- compute
 
-q0 = dot(UH,q0) -- Hadamard gate
+q0 = H(q0) -- Hadamard gate
 
-psi = dot(UCNOT,T(q0,q1)) -- CNOT gate
+psi = CNOT(q0,q1) -- CNOT gate
 
 -- result
 
