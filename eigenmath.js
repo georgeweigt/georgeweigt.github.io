@@ -5892,13 +5892,12 @@ eval_symbol(p1)
 
 	p2 = get_binding(p1);
 
-	if (p1 == p2 || p2 == symbol(NIL)) {
-		push(p1);
-		return; // undefined symbol evaluates to itself
+	if (p1 == p2 || p2 == symbol(NIL))
+		push(p1); // symbol evaluates to itself
+	else {
+		push(p2);
+		evalf();
 	}
-
-	push(p2);
-	evalf();
 }
 function
 eval_tan(p1)
@@ -6960,7 +6959,7 @@ get_arglist(p)
 	if (p.printname in arglist)
 		return arglist[p.printname];
 	else
-		return symbol(NIL); // symbol has no arglist
+		return symbol(NIL);
 }
 function
 get_binding(p)
@@ -6968,7 +6967,7 @@ get_binding(p)
 	if (p.printname in binding)
 		return binding[p.printname];
 	else
-		return symbol(NIL); // symbol has no binding
+		return symbol(NIL);
 }
 function
 imag()
