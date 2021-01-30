@@ -1003,6 +1003,7 @@ void push_string(char *s);
 void eval_sum(void);
 struct atom * lookup(char *s);
 struct atom * dual(struct atom *p);
+struct atom * ddual(struct atom *p);
 char * printname(struct atom *p);
 void set_binding(struct atom *p, struct atom *q);
 void set_arglist(struct atom *p, struct atom *q);
@@ -18667,7 +18668,7 @@ setq_userfunc(void)
 		p2 = cdr(p2);
 	}
 	B = pop();
-	set_binding(dual(F), B);
+	set_binding(ddual(F), B);
 }
 
 void
@@ -19308,6 +19309,27 @@ dual(struct atom *p)
 		malloc_kaput();
 	strcpy(buf, s);
 	strcat(buf, "$");
+	p = lookup(buf);
+	free(buf);
+	return p;
+}
+
+// for function definitions
+
+struct atom *
+ddual(struct atom *p)
+{
+	int n;
+	char *buf, *s;
+	if (p->k != USYM)
+		stop("symbol error");
+	s = p->u.usym.name;
+	n = (int) strlen(s) + 3;
+	buf = malloc(n);
+	if (buf == NULL)
+		malloc_kaput();
+	strcpy(buf, s);
+	strcat(buf, "$$");
 	p = lookup(buf);
 	free(buf);
 	return p;
@@ -20653,7 +20675,7 @@ eval_user_function(void)
 		list(tos - h);
 		return;
 	}
-	FUNC_DEFN = get_binding(dual(FUNC_NAME));
+	FUNC_DEFN = get_binding(ddual(FUNC_NAME));
 	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
 	p1 = FORMAL;
 	p2 = ACTUAL;

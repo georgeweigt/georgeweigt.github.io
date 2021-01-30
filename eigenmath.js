@@ -2236,6 +2236,11 @@ dd(p1, p2)
 	}
 }
 function
+ddual(p)
+{
+	return lookup(p.printname + "$$");
+}
+function
 decomp()
 {
 	var p1, F, X;
@@ -6157,7 +6162,7 @@ eval_userfunc(p1)
 		return;
 	}
 
-	FUNC_DEFN = get_binding(dual(FUNC_NAME)); // get binding of the dual
+	FUNC_DEFN = get_binding(ddual(FUNC_NAME)); // get binding of the dual
 
 	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
 
@@ -12135,7 +12140,7 @@ setq_userfunc(p1)
 	}
 
 	B = pop();
-	set_binding(dual(F), B);
+	set_binding(ddual(F), B);
 }
 function
 sgn()
