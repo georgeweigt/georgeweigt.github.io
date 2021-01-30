@@ -3955,23 +3955,26 @@ draw_eval(F, X, x)
 function
 draw_eval_nib(F, X, x)
 {
-	var tos = stack.length;
-	var tof = frame.length;
+	var save_stack_length, save_frame_length;
 
 	try {
+		save_stack_length = stack.length;
+		save_frame_length = frame.length;
+
 		push_double(x);
 		x = pop();
 		set_binding(X, x);
+
 		push(F);
 		evalf();
 		floatf();
 	}
 
 	catch(err) {
-		stack.splice(tos); // pop all
-		frame.splice(tof); // pop all
+		stack.splice(save_stack_length);
+		frame.splice(save_frame_length);
 		expanding = 1;
-		push_symbol(NIL);
+		push_symbol(NIL); // return value
 	}
 
 	finally {
@@ -4711,6 +4714,11 @@ dtt(p1, p2)
 	p3.dim = p1.dim.concat(p2.dim);
 
 	push(p3);
+}
+function
+dual(p)
+{
+	return lookup(p.printname + "$");
 }
 function
 equal(p1, p2)
@@ -5884,10 +5892,17 @@ eval_symbol(p1)
 
 	p2 = get_binding(p1);
 
-	push(p2);
+	if (p2 == symbol(NIL)) {
+		push(p1);
+		return; // undefined symbol evaluates to itself
+	}
 
-	if (p1 != p2)
-		evalf();
+	set_binding(p1, symbol(NIL)); // prevent infinite loop
+
+	push(p2); // eval symbol binding
+	evalf();
+
+	set_binding(p1, p2); // restore binding
 }
 function
 eval_tan(p1)
@@ -6116,25 +6131,28 @@ eval_unit(p1)
 function
 eval_userfunc(p1)
 {
-	var h, p2, F, A, B, S;
+	var h, k, p2, p3, FUNC_NAME, FUNC_DEFN, FORMAL, ACTUAL, T;
+
+	h = stack.length;
+
+	FUNC_NAME = car(p1);
+	FUNC_DEFN = get_binding(FUNC_NAME);
+
+	FORMAL = get_arglist(FUNC_NAME);
+	ACTUAL = cdr(p1);
 
 	// use "derivative" instead of "d" if there is no user function "d"
 
-	if (car(p1) == symbol(SYMBOL_D) && get_arglist(symbol(SYMBOL_D)) == symbol(NIL)) {
+	if (FUNC_NAME == symbol(SYMBOL_D) && get_arglist(symbol(SYMBOL_D)) == symbol(NIL)) {
 		eval_derivative(p1);
 		return;
 	}
 
-	F = get_binding(car(p1));
-	A = get_arglist(car(p1));
-	B = cdr(p1);
-
 	// undefined function?
 
-	if (F == car(p1)) {
-		h = stack.length;
-		push(F);
-		p1 = B;
+	if (FUNC_NAME == FUNC_DEFN || FUNC_DEFN == symbol(NIL)) {
+		push(FUNC_NAME);
+		p1 = ACTUAL;
 		while (iscons(p1)) {
 			push(car(p1));
 			evalf();
@@ -6144,29 +6162,56 @@ eval_userfunc(p1)
 		return;
 	}
 
-	// create the argument substitution list S
+	FUNC_DEFN = get_binding(dual(FUNC_NAME)); // get binding of the dual
 
-	p1 = A;
-	p2 = B;
-	h = stack.length;
-	while (iscons(p1) && iscons(p2)) {
-		push(car(p1));
+	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
+
+	p1 = FORMAL;
+	p2 = ACTUAL;
+
+	while (iscons(p1)) {
 		push(car(p2));
 		evalf();
 		p1 = cdr(p1);
 		p2 = cdr(p2);
 	}
-	list(stack.length - h);
-	S = pop();
 
-	// evaluate the function body
+	// assign actual to formal
 
-	push(F);
+	k = h;
+	p1 = FORMAL;
 
-	if (iscons(S))
-		rewrite(S);
+	while (iscons(p1)) {
+		p2 = car(p1);
+		p3 = stack[k];
+		stack[k] = get_binding(p2);
+		set_binding(p2, p3);
+		k++;
+		p1 = cdr(p1);
+	}
 
+	// evaluate user function
+
+	push(FUNC_DEFN);
 	evalf();
+	T = pop();
+
+	// restore bindings
+
+	k = h;
+	p1 = FORMAL;
+
+	while (iscons(p1)) {
+		p2 = car(p1);
+		p3 = stack[k];
+		set_binding(p2, p3);
+		k++;
+		p1 = cdr(p1);
+	}
+
+	stack.splice(h); // pop all
+
+	push(T);
 }
 function
 eval_zero(p1)
@@ -6919,7 +6964,7 @@ get_arglist(p)
 	if (p.printname in arglist)
 		return arglist[p.printname];
 	else
-		return symbol(NIL);
+		return symbol(NIL); // symbol has no arglist
 }
 function
 get_binding(p)
@@ -6927,7 +6972,7 @@ get_binding(p)
 	if (p.printname in binding)
 		return binding[p.printname];
 	else
-		return p;
+		return symbol(NIL); // symbol has no binding
 }
 function
 imag()
@@ -8316,6 +8361,10 @@ lookup(s)
 {
 	if (!(s in symtab))
 		symtab[s] = {printname:s, func:eval_symbol};
+	if (!(s in binding))
+		binding[s] = symbol(NIL);
+	if (!(s in arglist))
+		arglist[s] = symbol(NIL);
 	return symtab[s];
 }
 function
@@ -11363,84 +11412,8 @@ restore_binding(p)
 	p2 = frame.pop();
 	p1 = frame.pop();
 
-	set_binding_and_arglist(p, p1, p2);
-}
-function
-rewrite(p0) // p0 is arg subst list
-{
-	var count, h, i, n, p1, p2;
-
-	p1 = pop();
-
-	count = 0;
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			count += rewrite(p0);
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return count;
-	}
-
-	if (iscons(p1)) {
-
-		h = stack.length;
-
-		push(car(p1)); // don't rewrite function name
-		p1 = cdr(p1);
-
-		while (iscons(p1)) {
-			push(car(p1));
-			count += rewrite(p0);
-			p1 = cdr(p1);
-		}
-
-		list(stack.length - h);
-
-		return count;
-	}
-
-	// if not a symbol then done
-
-	if (!issymbol(p1)) {
-		push(p1);
-		return 0; // no substitution
-	}
-
-	// check argument substitution list
-
-	p2 = p0;
-	while (iscons(p2)) {
-		if (p1 == car(p2)) {
-			push(cadr(p2));
-			return 1; // substitution occurred
-		}
-		p2 = cddr(p2);
-	}
-
-	// get the symbol's binding, try again
-
-	p2 = get_binding(p1);
-
-	if (p1 == p2) {
-		push(p1);
-		return 0; // no substitution
-	}
-
-	push(p2);
-
-	count = rewrite(p0);
-
-	if (count == 0) {
-		pop(); // undo
-		push(p1);
-	}
-
-	return count;
+	set_binding(p, p1);
+	set_arglist(p, p2);
 }
 /* exported run */
 
@@ -11459,6 +11432,7 @@ run()
 		//
 	}
 }
+
 function
 run_nib()
 {
@@ -12021,20 +11995,14 @@ scan_inbuf(k)
 	return k;
 }
 function
-set_binding(p, b)
+set_arglist(p, q)
 {
-	if ("printname" in p) {
-		binding[p.printname] = b;
-		arglist[p.printname] = symbol(NIL);
-	}
+	arglist[p.printname] = q;
 }
 function
-set_binding_and_arglist(p, b, a)
+set_binding(p, q)
 {
-	if ("printname" in p) {
-		binding[p.printname] = b;
-		arglist[p.printname] = a;
-	}
+	binding[p.printname] = q;
 }
 function
 set_component(LVAL, RVAL, h)
@@ -12128,16 +12096,51 @@ setq_indexed(p1)
 function
 setq_userfunc(p1)
 {
-	var A, B, F;
+	var h, p2, A, B, F, T;
 
-	F = caadr(p1);
-	A = cdadr(p1);
-	B = caddr(p1);
+	F = caadr(p1); // function name
+	A = cdadr(p1); // function arg list
+	B = caddr(p1); // function body
 
-	if (!issymbol(F))
-		stopf("function name?");
+	if (!isusersymbol(F))
+		stopf("function definition error");
 
-	set_binding_and_arglist(F, B, A);
+	// convert args
+
+	h = stack.length;
+	p1 = A;
+
+	while (iscons(p1)) {
+		p2 = car(p1);
+		if (!isusersymbol(p2))
+			stopf("function definition error");
+		push(dual(p2));
+		p1 = cdr(p1);
+	}
+
+	list(stack.length - h);
+	T = pop();
+
+	set_binding(F, B);
+	set_arglist(F, T);
+
+	// convert body
+
+	push(B);
+
+	p1 = A;
+	p2 = T;
+
+	while (iscons(p1)) {
+		push(car(p1));
+		push(car(p2));
+		subst();
+		p1 = cdr(p1);
+		p2 = cdr(p2);
+	}
+
+	B = pop();
+	set_binding(dual(F), B);
 }
 function
 sgn()

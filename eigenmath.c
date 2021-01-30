@@ -4268,7 +4268,7 @@ alloc_tensor(int nelem)
 void
 gc(void)
 {
-	int i, j, k;
+	int i, j;
 	struct atom *p;
 	gc_count++;
 	// tag everything
@@ -4293,16 +4293,12 @@ gc(void)
 	untag(minusone);
 	untag(imaginaryunit);
 	// symbol table
-	for (i = 0; i < 27; i++) {
-		for (j = 0; j < NSYM; j++) {
-			k = NSYM * i + j;
-			if (symtab[k] == NULL)
-				break;
-			untag(symtab[k]);
-			untag(binding[k]);
-			untag(arglist[k]);
+	for (i = 0; i < 27 * NSYM; i++)
+		if (symtab[i]) {
+			untag(symtab[i]);
+			untag(binding[i]);
+			untag(arglist[i]);
 		}
-	}
 	for (i = 0; i < tos; i++)
 		untag(stack[i]);
 	for (i = 0; i < tof; i++)
@@ -4483,18 +4479,17 @@ subst(void)
 	}
 	p1 = pop(); // expr
 	if (istensor(p1)) {
-		p4 = alloc_tensor(p1->u.tensor->nelem);
-		p4->u.tensor->ndim = p1->u.tensor->ndim;
-		for (i = 0; i < p1->u.tensor->ndim; i++)
-			p4->u.tensor->dim[i] = p1->u.tensor->dim[i];
+		push(p1);
+		copy_tensor();
+		p1 = pop();
 		for (i = 0; i < p1->u.tensor->nelem; i++) {
 			push(p1->u.tensor->elem[i]);
 			push(p2);
 			push(p3);
 			subst();
-			p4->u.tensor->elem[i] = pop();
+			p1->u.tensor->elem[i] = pop();
 		}
-		push(p4);
+		push(p1);
 	} else if (equal(p1, p2))
 		push(p3);
 	else if (iscons(p1)) {
@@ -7529,20 +7524,22 @@ void
 eval_usym(void)
 {
 	p2 = get_binding(p1);
-	if (p2 == symbol(NIL)) {
+	if (p1 == p2 || p2 == symbol(NIL)) {
 		push(p1);
-		return; // undefined symbol evaluates to itself
+		return;
 	}
-	set_binding(p1, symbol(NIL)); // prevents infinite loop
-	push(p2); // eval symbol binding
+	push(p2);
 	eval();
-	set_binding(p1, p2); // restore binding
 }
 
 void
 eval_binding(void)
 {
-	push(get_binding(cadr(p1)));
+	p1 = cadr(p1);
+	p2 = get_binding(p1);
+	if (p2 == symbol(NIL))
+		p2 = p1;
+	push(p2);
 }
 
 void
@@ -18648,7 +18645,10 @@ setq_userfunc(void)
 	h = tos;
 	p1 = A;
 	while (iscons(p1)) {
-		push(dual(car(p1)));
+		p2 = car(p1);
+		if (!isusersymbol(p2))
+			stop("function definition error");
+		push(dual(p2));
 		p1 = cdr(p1);
 	}
 	list(tos - h);
@@ -19258,15 +19258,15 @@ eval_sum(void)
 struct atom *
 lookup(char *s)
 {
-	int c, i, j;
+	int c, i, k;
 	char *t;
 	struct atom *p;
 	c = tolower(*s) - 'a';
 	if (c < 0 || c > 25)
 		c = 26;
-	j = NSYM * c;
+	k = NSYM * c;
 	for (i = 0; i < NSYM; i++) {
-		p = symtab[j];
+		p = symtab[k + i];
 		if (p == NULL)
 			break;
 		if (p->k == KSYM)
@@ -19275,7 +19275,6 @@ lookup(char *s)
 			t = p->u.usym.name;
 		if (strcmp(s, t) == 0)
 			return p;
-		j++;
 	}
 	if (i == NSYM)
 		stop("symbol table full");
@@ -19285,10 +19284,10 @@ lookup(char *s)
 		malloc_kaput();
 	p->k = USYM;
 	p->u.usym.name = s;
-	p->u.usym.index = j;
-	symtab[j] = p;
-	binding[j] = symbol(NIL);
-	arglist[j] = symbol(NIL);
+	p->u.usym.index = k + i;
+	symtab[k + i] = p;
+	binding[k + i] = symbol(NIL);
+	arglist[k + i] = symbol(NIL);
 	usym_count++;
 	return p;
 }
@@ -19535,9 +19534,8 @@ init_symbol_table(void)
 	int i, n;
 	char *s;
 	struct atom *p;
-	memset(symtab, 0, 27 * NSYM * sizeof (struct atom *));
-	memset(binding, 0, 27 * NSYM * sizeof (struct atom *));
-	memset(arglist, 0, 27 * NSYM * sizeof (struct atom *));
+	for (i = 0; i < 27 * NSYM; i++)
+		symtab[i] = NULL;
 	n = sizeof stab / sizeof (struct se);
 	for (i = 0; i < n; i++) {
 		p = alloc();
@@ -19563,15 +19561,10 @@ init_symbol_table(void)
 void
 clear_symbols(void)
 {
-	int i, j, k;
-	for (i = 0; i < 27; i++) {
-		for (j = 0; j < NSYM; j++) {
-			k = NSYM * i + j;
-			if (symtab[k] == NULL)
-				break;
-			binding[k] = symbol(NIL);
-			arglist[k] = symbol(NIL);
-		}
+	int i;
+	for (i = 0; i < 27 * NSYM; i++) {
+		binding[i] = symbol(NIL);
+		arglist[i] = symbol(NIL);
 	}
 }
 
@@ -20640,7 +20633,7 @@ eval_user_function(void)
 	int h, k;
 	h = tos;
 	FUNC_NAME = car(p1);
-	FUNC_DEFN = get_binding(dual(FUNC_NAME));
+	FUNC_DEFN = get_binding(FUNC_NAME);
 	FORMAL = get_arglist(FUNC_NAME);
 	ACTUAL = cdr(p1);
 	// use "derivative" instead of "d" if there is no user function "d"
@@ -20649,7 +20642,7 @@ eval_user_function(void)
 		return;
 	}
 	// undefined function?
-	if (FUNC_DEFN == symbol(NIL)) {
+	if (FUNC_NAME == FUNC_DEFN || FUNC_DEFN == symbol(NIL)) {
 		push(FUNC_NAME);
 		p1 = ACTUAL;
 		while (iscons(p1)) {
@@ -20660,6 +20653,7 @@ eval_user_function(void)
 		list(tos - h);
 		return;
 	}
+	FUNC_DEFN = get_binding(dual(FUNC_NAME));
 	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
 	p1 = FORMAL;
 	p2 = ACTUAL;
