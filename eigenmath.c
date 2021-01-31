@@ -1,4 +1,4 @@
-/* January 30, 2021
+/* January 31, 2021
 
 To build and run:
 
@@ -606,9 +606,8 @@ void eval_erfc(void);
 void serfc(void);
 void serfc_nib(void);
 void eval(void);
-void eval_cons(void);
-void eval_ksym(void);
-void eval_usym(void);
+void eval_nib(void);
+void eval_user_symbol(void);
 void eval_binding(void);
 void eval_clear(void);
 void eval_do(void);
@@ -7482,53 +7481,49 @@ void
 eval(void)
 {
 	save();
-	p1 = pop();
-	if (p1->k == CONS)
-		eval_cons();
-	else if (p1->k == KSYM)
-		eval_ksym();
-	else if (p1->k == USYM)
-		eval_usym();
-	else if (p1->k == TENSOR)
-		eval_tensor();
-	else
-		push(p1); // rational, double, or string
+	eval_nib();
 	restore();
 }
 
 void
-eval_cons(void)
+eval_nib(void)
 {
-	if (car(p1)->k == KSYM)
-		car(p1)->u.ksym.func(); // call through function pointer
-	else if (car(p1)->k == USYM)
-		eval_user_function();
-	else
-		push(p1); // not evaluated
-}
-
-// bare keyword
-
-void
-eval_ksym(void)
-{
-	push(p1);
-	push_symbol(LAST); // default arg
-	list(2);
 	p1 = pop();
-	car(p1)->u.ksym.func(); // call through function pointer
+	if (iscons(p1) && iskeyword(car(p1))) {
+		car(p1)->u.ksym.func(); // call through function pointer
+		return;
+	}
+	if (iscons(p1) && isusersymbol(car(p1))) {
+		eval_user_function();
+		return;
+	}
+	if (iskeyword(p1)) { // bare keyword
+		push(p1);
+		push_symbol(LAST); // default arg
+		list(2);
+		p1 = pop();
+		car(p1)->u.ksym.func(); // call through function pointer
+		return;
+	}
+	if (isusersymbol(p1)) {
+		eval_user_symbol();
+		return;
+	}
+	if (istensor(p1)) {
+		eval_tensor();
+		return;
+	}
+	push(p1); // rational, double, or string
 }
 
-// evaluate symbol's binding
-
 void
-eval_usym(void)
+eval_user_symbol(void)
 {
 	p2 = get_binding(p1);
 	if (p1 == p2 || p2 == symbol(NIL))
-		push(p1);
+		push(p1); // symbol evaluates to itself
 	else {
-		push(p2);
+		push(p2); // eval symbol binding
 		eval();
 	}
 }
@@ -19298,20 +19293,15 @@ lookup(char *s)
 struct atom *
 dual(struct atom *p)
 {
-	int n;
-	char *buf, *s;
-	if (p->k != USYM)
+	char buf[100], *s;
+	if (!isusersymbol(p))
 		stop("symbol error");
 	s = p->u.usym.name;
-	n = (int) strlen(s) + 2; // add 2 for '$' and '\0'
-	buf = malloc(n);
-	if (buf == NULL)
-		malloc_kaput();
+	if (strlen(s) + 2 > sizeof buf)
+		stop("buffer kaput");
 	strcpy(buf, s);
 	strcat(buf, "$");
-	p = lookup(buf);
-	free(buf);
-	return p;
+	return lookup(buf);
 }
 
 // for function definitions
@@ -19319,37 +19309,32 @@ dual(struct atom *p)
 struct atom *
 ddual(struct atom *p)
 {
-	int n;
-	char *buf, *s;
-	if (p->k != USYM)
+	char buf[100], *s;
+	if (!isusersymbol(p))
 		stop("symbol error");
 	s = p->u.usym.name;
-	n = (int) strlen(s) + 3;
-	buf = malloc(n);
-	if (buf == NULL)
-		malloc_kaput();
+	if (strlen(s) + 3 > sizeof buf)
+		stop("buffer kaput");
 	strcpy(buf, s);
 	strcat(buf, "$$");
-	p = lookup(buf);
-	free(buf);
-	return p;
+	return lookup(buf);
 }
 
 char *
 printname(struct atom *p)
 {
-	if (p->k == KSYM)
+	if (iskeyword(p))
 		return p->u.ksym.name;
-	else if (p->k == USYM)
+	if (isusersymbol(p))
 		return p->u.usym.name;
-	else
-		return "?";
+	stop("symbol error");
+	return "?";
 }
 
 void
 set_binding(struct atom *p, struct atom *q)
 {
-	if (p->k != USYM)
+	if (!isusersymbol(p))
 		stop("symbol error");
 	binding[p->u.usym.index] = q;
 }
@@ -19357,7 +19342,7 @@ set_binding(struct atom *p, struct atom *q)
 void
 set_arglist(struct atom *p, struct atom *q)
 {
-	if (p->k != USYM)
+	if (!isusersymbol(p))
 		stop("symbol error");
 	arglist[p->u.usym.index] = q;
 }
@@ -19365,7 +19350,7 @@ set_arglist(struct atom *p, struct atom *q)
 struct atom *
 get_binding(struct atom *p)
 {
-	if (p->k != USYM)
+	if (!isusersymbol(p))
 		stop("symbol error");
 	return binding[p->u.usym.index];
 }
@@ -19373,7 +19358,7 @@ get_binding(struct atom *p)
 struct atom *
 get_arglist(struct atom *p)
 {
-	if (p->k != USYM)
+	if (!isusersymbol(p))
 		stop("symbol error");
 	return arglist[p->u.usym.index];
 }
