@@ -5886,25 +5886,6 @@ eval_sum(p1)
 	restore_binding(p2);
 }
 function
-eval_symbol(p1)
-{
-	var p2;
-
-	if (iscons(p1)) {
-		eval_userfunc(p1);
-		return;
-	}
-
-	p2 = get_binding(p1);
-
-	if (p1 == p2 || p2 == symbol(NIL))
-		push(p1); // symbol evaluates to itself
-	else {
-		push(p2);
-		evalf();
-	}
-}
-function
 eval_tan(p1)
 {
 	push(cadr(p1));
@@ -6129,7 +6110,7 @@ eval_unit(p1)
 	push(p1);
 }
 function
-eval_userfunc(p1)
+eval_user_function(p1)
 {
 	var h, k, p2, p3, FUNC_NAME, FUNC_DEFN, FORMAL, ACTUAL, T;
 
@@ -6214,6 +6195,20 @@ eval_userfunc(p1)
 	push(T);
 }
 function
+eval_user_symbol(p1)
+{
+	var p2;
+
+	p2 = get_binding(p1);
+
+	if (p1 == p2 || p2 == symbol(NIL))
+		push(p1); // symbol evaluates to itself
+	else {
+		push(p2); // eval symbol binding
+		evalf();
+	}
+}
+function
 eval_zero(p1)
 {
 	var i, m, n, p2;
@@ -6242,30 +6237,51 @@ eval_zero(p1)
 function
 evalf()
 {
-	var p1;
-
 	if (++evaldepth == 1000)
-		stopf("circular eval");
+		stopf("recursion level");
+
+	evalf_nib();
+
+	--evaldepth;
+}
+
+function
+evalf_nib()
+{
+	var p1;
 
 	p1 = pop();
 
-	if (iscons(p1) && issymbol(car(p1)))
+	if (iscons(p1) && iskeyword(car(p1))) {
 		car(p1).func(p1);
-	else if (iskeyword(p1)) {
-		// bare keyword
+		return;
+	}
+
+	if (iscons(p1) && isusersymbol(car(p1))) {
+		eval_user_function(p1);
+		return;
+	}
+
+	if (iskeyword(p1)) { // bare keyword
 		push(p1);
-		push_symbol(LAST);
+		push_symbol(LAST); // default arg
 		list(2);
 		p1 = pop();
 		car(p1).func(p1);
-	} else if (issymbol(p1))
-		eval_symbol(p1); // keyword already handled
-	else if (istensor(p1))
-		eval_tensor(p1);
-	else
-		push(p1);
+		return;
+	}
 
-	evaldepth--;
+	if (isusersymbol(p1)) {
+		eval_user_symbol(p1);
+		return;
+	}
+
+	if (istensor(p1)) {
+		eval_tensor(p1);
+		return;
+	}
+
+	push(p1); // rational, double, or string
 }
 function
 evalp()
@@ -8109,7 +8125,7 @@ isinteger(p)
 function
 iskeyword(p)
 {
-	return issymbol(p) && p.func != eval_symbol;
+	return issymbol(p) && p.func != eval_user_symbol;
 }
 function
 isminusone(p)
@@ -8187,7 +8203,7 @@ istensor(p)
 function
 isusersymbol(p)
 {
-	return p.func == eval_symbol;
+	return issymbol(p) && p.func == eval_user_symbol;
 }
 function
 iszero(p)
@@ -8360,11 +8376,7 @@ function
 lookup(s)
 {
 	if (!(s in symtab))
-		symtab[s] = {printname:s, func:eval_symbol};
-	if (!(s in binding))
-		binding[s] = symbol(NIL);
-	if (!(s in arglist))
-		arglist[s] = symbol(NIL);
+		symtab[s] = {printname:s, func:eval_user_symbol};
 	return symtab[s];
 }
 function
@@ -13160,24 +13172,24 @@ var symtab = {
 "[":		{printname:INDEX,	func:eval_index},
 "=":		{printname:SETQ,	func:eval_setq},
 
-"(e)":		{printname:EXP1,	func:eval_symbol},
-"(a)":		{printname:METAA,	func:eval_symbol},
-"(b)":		{printname:METAB,	func:eval_symbol},
-"(x)":		{printname:METAX,	func:eval_symbol},
-"(X)":		{printname:SPECX,	func:eval_symbol},
+"(e)":		{printname:EXP1,	func:eval_user_symbol},
+"(a)":		{printname:METAA,	func:eval_user_symbol},
+"(b)":		{printname:METAB,	func:eval_user_symbol},
+"(x)":		{printname:METAX,	func:eval_user_symbol},
+"(X)":		{printname:SPECX,	func:eval_user_symbol},
 
-"last":		{printname:LAST,	func:eval_symbol},
-"pi":		{printname:PI,		func:eval_symbol},
-"trace":	{printname:TRACE,	func:eval_symbol},
+"last":		{printname:LAST,	func:eval_user_symbol},
+"pi":		{printname:PI,		func:eval_user_symbol},
+"trace":	{printname:TRACE,	func:eval_user_symbol},
 
-"d":		{printname:SYMBOL_D,	func:eval_symbol},
-"i":		{printname:SYMBOL_I,	func:eval_symbol},
-"j":		{printname:SYMBOL_J,	func:eval_symbol},
-"s":		{printname:SYMBOL_S,	func:eval_symbol},
-"t":		{printname:SYMBOL_T,	func:eval_symbol},
-"x":		{printname:SYMBOL_X,	func:eval_symbol},
-"y":		{printname:SYMBOL_Y,	func:eval_symbol},
-"z":		{printname:SYMBOL_Z,	func:eval_symbol},
+"d":		{printname:SYMBOL_D,	func:eval_user_symbol},
+"i":		{printname:SYMBOL_I,	func:eval_user_symbol},
+"j":		{printname:SYMBOL_J,	func:eval_user_symbol},
+"s":		{printname:SYMBOL_S,	func:eval_user_symbol},
+"t":		{printname:SYMBOL_T,	func:eval_user_symbol},
+"x":		{printname:SYMBOL_X,	func:eval_user_symbol},
+"y":		{printname:SYMBOL_Y,	func:eval_user_symbol},
+"z":		{printname:SYMBOL_Z,	func:eval_user_symbol},
 
 };
 function
