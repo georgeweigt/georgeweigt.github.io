@@ -1652,6 +1652,7 @@ const CHECK = "check";
 const CIRCEXP = "circexp";
 const CLEAR = "clear";
 const CLOCK = "clock";
+const COFACTOR = "cofactor";
 const CONJ = "conj";
 const CONTRACT = "contract";
 const COS = "cos";
@@ -1683,6 +1684,8 @@ const INTEGRAL = "integral";
 const INV = "inv";
 const LOG = "log";
 const MAG = "mag";
+const MINOR = "minor";
+const MINORMATRIX = "minormatrix";
 const NIL = "nil";
 const NOT = "not";
 const NUMBER = "number";
@@ -2426,7 +2429,12 @@ det()
 
 	p1 = pop();
 
-	if (!istensor(p1) || p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
+
+	if (p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
 		stopf("det: square matrix expected");
 
 	n = p1.dim[0];
@@ -4979,6 +4987,38 @@ eval_clock(p1)
 	clock();
 }
 function
+eval_cofactor(p1)
+{
+	var i, j, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+
+	push(caddr(p1));
+	evalf();
+	i = pop_integer();
+
+	push(cadddr(p1));
+	evalf();
+	j = pop_integer();
+
+	if (!istensor(p2) || p2.dim.length != 2 || p2.dim[0] != p2.dim[1])
+		stopf("cofactor");
+
+	if (i < 1 || i > p2.dim[0] || j < 0 || j > p2.dim[1])
+		stopf("cofactor");
+
+	push(p2);
+
+	minormatrix(i, j);
+
+	det();
+
+	if ((i + j) % 2)
+		negate();
+}
+function
 eval_conj(p1)
 {
 	push(cadr(p1));
@@ -5501,6 +5541,62 @@ eval_mag(p1)
 	push(cadr(p1));
 	evalf();
 	mag();
+}
+function
+eval_minor(p1)
+{
+	var i, j, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+
+	push(caddr(p1));
+	evalf();
+	i = pop_integer();
+
+	push(cadddr(p1));
+	evalf();
+	j = pop_integer();
+
+	if (!istensor(p2) || p2.dim.length != 2 || p2.dim[0] != p2.dim[1])
+		stopf("minor");
+
+	if (i < 1 || i > p2.dim[0] || j < 0 || j > p2.dim[1])
+		stopf("minor");
+
+	push(p2);
+
+	minormatrix(i, j);
+
+	det();
+}
+function
+eval_minormatrix(p1)
+{
+	var i, j, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+
+	push(caddr(p1));
+	evalf();
+	i = pop_integer();
+
+	push(cadddr(p1));
+	evalf();
+	j = pop_integer();
+
+	if (!istensor(p2) || p2.dim.length != 2)
+		stopf("minormatrix");
+
+	if (i < 1 || i > p2.dim[0] || j < 0 || j > p2.dim[1])
+		stopf("minormatrix");
+
+	push(p2);
+
+	minormatrix(i, j);
 }
 function
 eval_multiply(p1)
@@ -8449,6 +8545,65 @@ mag()
 	// real
 
 	push(p1);
+}
+function
+minormatrix(row, col)
+{
+	var i, j, k, m, n, p1, p2;
+
+	p1 = pop();
+
+	n = p1.dim[0];
+	m = p1.dim[1];
+
+	if (n == 2 && m == 2) {
+		if (row == 1) {
+			if (col == 1)
+				push(p1.elem[3]);
+			else
+				push(p1.elem[2]);
+		} else {
+			if (col == 1)
+				push(p1.elem[1]);
+			else
+				push(p1.elem[0]);
+		}
+		return;
+	}
+
+	p2 = alloc_tensor();
+
+	if (n == 2)
+		p2.dim[0] = m - 1;
+
+	if (m == 2)
+		p2.dim[0] = n - 1;
+
+	if (n > 2 && m > 2) {
+		p2.dim[0] = n - 1;
+		p2.dim[1] = m - 1;
+	}
+
+	row--;
+	col--;
+
+	k = 0;
+
+	for (i = 0; i < n; i++) {
+
+		if (i == row)
+			continue;
+
+		for (j = 0; j < m; j++) {
+
+			if (j == col)
+				continue;
+
+			p2.elem[k++] = p1.elem[m * i + j];
+		}
+	}
+
+	push(p2);
 }
 function
 mod_integers(p1, p2)
@@ -13099,6 +13254,7 @@ var symtab = {
 "circexp":	{printname:CIRCEXP,	func:eval_circexp},
 "clear":	{printname:CLEAR,	func:eval_clear},
 "clock":	{printname:CLOCK,	func:eval_clock},
+"cofactor":	{printname:COFACTOR,	func:eval_cofactor},
 "conj":		{printname:CONJ,	func:eval_conj},
 "contract":	{printname:CONTRACT,	func:eval_contract},
 "cos":		{printname:COS,		func:eval_cos},
@@ -13130,6 +13286,8 @@ var symtab = {
 "inv":		{printname:INV,		func:eval_inv},
 "log":		{printname:LOG,		func:eval_log},
 "mag":		{printname:MAG,		func:eval_mag},
+"minor":	{printname:MINOR,	func:eval_minor},
+"minormatrix":	{printname:MINORMATRIX,	func:eval_minormatrix},
 "nil":		{printname:NIL,		func:eval_nil},
 "not":		{printname:NOT,		func:eval_not},
 "number":	{printname:NUMBER,	func:eval_number},
