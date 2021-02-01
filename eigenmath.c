@@ -1,4 +1,4 @@
-/* January 31, 2021
+/* February 1, 2021
 
 To build and run:
 
@@ -213,7 +213,9 @@ struct atom {
 #define MAG		(12 * NSYM + 0)
 #define MATHJAX		(12 * NSYM + 1)
 #define MATHML		(12 * NSYM + 2)
-#define MOD		(12 * NSYM + 3)
+#define MINOR		(12 * NSYM + 3)
+#define MINORMATRIX	(12 * NSYM + 4)
+#define MOD		(12 * NSYM + 5)
 
 #define NIL		(13 * NSYM + 0)
 #define NOT		(13 * NSYM + 1)
@@ -481,6 +483,7 @@ void eval_contract(void);
 void contract(void);
 void contract_nib(void);
 struct atom * alloc(void);
+struct atom * alloc_vector(int nrow);
 struct atom * alloc_matrix(int nrow, int ncol);
 struct atom * alloc_tensor(int nelem);
 void gc(void);
@@ -817,6 +820,10 @@ void mml_string(struct atom *p, int mathmode);
 void mml_mi(char *s);
 void mml_mn(char *s);
 void mml_mo(char *s);
+void eval_minor(void);
+void eval_minormatrix(void);
+void minormatrix(int row, int col);
+void minormatrix_nib(int row, int col);
 void eval_mod(void);
 void smod(void);
 void smod_nib(void);
@@ -4008,51 +4015,24 @@ coeff(void)
 void
 eval_cofactor(void)
 {
-	int col, i, j, k, n, row;
+	int i, j;
 	push(cadr(p1));
 	eval();
 	p2 = pop();
-	if (!istensor(p2) || p2->u.tensor->ndim != 2 || p2->u.tensor->dim[0] != p2->u.tensor->dim[1])
-		stop("cofactor: square matrix expected");
-	n = p2->u.tensor->dim[0];
 	push(caddr(p1));
 	eval();
-	row = pop_integer();
+	i = pop_integer();
 	push(cadddr(p1));
 	eval();
-	col = pop_integer();
-	if (row < 1 || row > n || col < 1 || col > n)
-		stop("cofactor: index range error");
-	row--; // make zero based
-	col--;
-	if (n == 2) {
-		switch (2 * row + col) {
-		case 0:
-			push(p2->u.tensor->elem[3]);
-			break;
-		case 1:
-			push(p2->u.tensor->elem[2]);
-			negate();
-			break;
-		case 2:
-			push(p2->u.tensor->elem[1]);
-			negate();
-			break;
-		case 3:
-			push(p2->u.tensor->elem[0]);
-			break;
-		}
-		return;
-	}
-	p3 = alloc_matrix(n - 1, n - 1);
-	k = 0;
-	for (i = 0; i < n; i++)
-		for (j = 0; j < n; j++)
-			if (i != row && j != col)
-				p3->u.tensor->elem[k++] = p2->u.tensor->elem[n * i + j];
-	push(p3);
+	j = pop_integer();
+	if (!istensor(p2) || p2->u.tensor->ndim != 2 || p2->u.tensor->dim[0] != p2->u.tensor->dim[1])
+		stop("cofactor");
+	if (i < 1 || i > p2->u.tensor->dim[0] || j < 0 || j > p2->u.tensor->dim[1])
+		stop("cofactor");
+	push(p2);
+	minormatrix(i, j);
 	det();
-	if ((row + col) % 2)
+	if ((i + j) % 2)
 		negate();
 }
 
@@ -4233,6 +4213,15 @@ alloc(void)
 	p = free_list;
 	free_list = free_list->u.cons.cdr;
 	free_count--;
+	return p;
+}
+
+struct atom *
+alloc_vector(int nrow)
+{
+	struct atom *p = alloc_tensor(nrow);
+	p->u.tensor->ndim = 1;
+	p->u.tensor->dim[0] = nrow;
 	return p;
 }
 
@@ -5754,7 +5743,11 @@ det_nib(void)
 {
 	int h, i, j, k, m, n;
 	p1 = pop();
-	if (!istensor(p1) || p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
+	if (p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
 		stop("det: square matrix expected");
 	n = p1->u.tensor->dim[0];
 	switch (n) {
@@ -13198,6 +13191,99 @@ mml_mo(char *s)
 }
 
 void
+eval_minor(void)
+{
+	int i, j;
+	push(cadr(p1));
+	eval();
+	p2 = pop();
+	push(caddr(p1));
+	eval();
+	i = pop_integer();
+	push(cadddr(p1));
+	eval();
+	j = pop_integer();
+	if (!istensor(p2) || p2->u.tensor->ndim != 2 || p2->u.tensor->dim[0] != p2->u.tensor->dim[1])
+		stop("minor");
+	if (i < 1 || i > p2->u.tensor->dim[0] || j < 0 || j > p2->u.tensor->dim[1])
+		stop("minor");
+	push(p2);
+	minormatrix(i, j);
+	det();
+}
+
+void
+eval_minormatrix(void)
+{
+	int i, j;
+	push(cadr(p1));
+	eval();
+	p2 = pop();
+	push(caddr(p1));
+	eval();
+	i = pop_integer();
+	push(cadddr(p1));
+	eval();
+	j = pop_integer();
+	if (!istensor(p2) || p2->u.tensor->ndim != 2)
+		stop("minormatrix");
+	if (i < 1 || i > p2->u.tensor->dim[0] || j < 0 || j > p2->u.tensor->dim[1])
+		stop("minormatrix");
+	push(p2);
+	minormatrix(i, j);
+}
+
+void
+minormatrix(int row, int col)
+{
+	save();
+	minormatrix_nib(row, col);
+	restore();
+}
+
+void
+minormatrix_nib(int row, int col)
+{
+	int i, j, k, m, n;
+	p1 = pop();
+	n = p1->u.tensor->dim[0];
+	m = p1->u.tensor->dim[1];
+	if (n == 2 && m == 2) {
+		if (row == 1) {
+			if (col == 1)
+				push(p1->u.tensor->elem[3]);
+			else
+				push(p1->u.tensor->elem[2]);
+		} else {
+			if (col == 1)
+				push(p1->u.tensor->elem[1]);
+			else
+				push(p1->u.tensor->elem[0]);
+		}
+		return;
+	}
+	if (n == 2)
+		p2 = alloc_vector(m - 1);
+	if (m == 2)
+		p2 = alloc_vector(n - 1);
+	if (n > 2 && m > 2)
+		p2 = alloc_matrix(n - 1, m - 1);
+	row--;
+	col--;
+	k = 0;
+	for (i = 0; i < n; i++) {
+		if (i == row)
+			continue;
+		for (j = 0; j < m; j++) {
+			if (j == col)
+				continue;
+			p2->u.tensor->elem[k++] = p1->u.tensor->elem[m * i + j];
+		}
+	}
+	push(p2);
+}
+
+void
 eval_mod(void)
 {
 	push(cadr(p1));
@@ -17762,7 +17848,7 @@ eval_and_print_result(void)
 void
 stop(char *s)
 {
-	if (drawing > 1)
+	if (drawing == 2)
 		longjmp(draw_stop_return, 1);
 	if (s) {
 		print_input_line();
@@ -19461,6 +19547,8 @@ struct se stab[] = {
 	{ "mag",		MAG,		eval_mag		},
 	{ "mathjax",		MATHJAX,	eval_mathjax		},
 	{ "mathml",		MATHML,		eval_mathml		},
+	{ "minor",		MINOR,		eval_minor		},
+	{ "minormatrix",	MINORMATRIX,	eval_minormatrix	},
 	{ "mod",		MOD,		eval_mod		},
 
 	{ "nil",		NIL,		eval_nil		},
