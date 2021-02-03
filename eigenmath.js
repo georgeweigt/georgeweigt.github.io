@@ -3987,12 +3987,10 @@ draw_eval_nib(F, X, x)
 		floatf();
 	}
 
-	catch(err) {
+	catch(errmsg) {
 
-		if (drawmode == 1) {
-			drawmode = 0;
-			stopf("draw");
-		}
+		if (drawmode == 1)
+			throw errmsg;
 
 		drawmode = 1;
 		expanding = 1;
@@ -11613,8 +11611,12 @@ run()
 		run_nib();
 	}
 
-	catch(err) {
-		//
+	catch(errmsg) {
+		if (errmsg.length > 0) {
+			if (trace1 < trace2 && inbuf[trace2 - 1] == '\n')
+				trace2--;
+			print_buf(inbuf.substring(trace1, trace2) + "\nStop: " + errmsg, RED);
+		}
 	}
 
 	finally {
@@ -12900,18 +12902,9 @@ static_reciprocate()
 	list(3);
 }
 function
-stopf(s)
+stopf(errmsg)
 {
-	if (drawmode)
-		throw s;
-
-	if (s.length > 0) {
-		if (trace1 < trace2 && inbuf[trace2 - 1] == '\n')
-			trace2--;
-		print_buf(inbuf.substring(trace1, trace2) + "\nStop: " + s, RED);
-	}
-
-	throw s;
+	throw errmsg;
 }
 function
 subst()
