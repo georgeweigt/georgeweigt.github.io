@@ -3979,14 +3979,27 @@ draw_eval_nib(F, X, x)
 		set_binding(X, x);
 
 		push(F);
+
+		drawmode = 2;
 		evalf();
+		drawmode = 1;
+
 		floatf();
 	}
 
 	catch(err) {
+
+		if (drawmode == 1) {
+			drawmode = 0;
+			stopf("draw");
+		}
+
+		drawmode = 1;
+		expanding = 1;
+
 		stack.splice(save_stack_length);
 		frame.splice(save_frame_length);
-		expanding = 1;
+
 		push_symbol(NIL); // return value
 	}
 
@@ -5240,21 +5253,30 @@ eval_dot(p1)
 	eval_inner(p1);
 }
 function
-eval_draw(p)
+eval_draw(p1)
 {
 	var F, X;
+
 	push_symbol(NIL); // return value
+
 	if (drawmode)
 		return;
-	F = cadr(p);
-	X = caddr(p);
+
+	drawmode = 1;
+
+	F = cadr(p1);
+	X = caddr(p1);
+
 	if (!isusersymbol(X))
 		X = symbol(SYMBOL_X);
+
 	save_binding(X);
-	drawmode = 1;
+
 	draw(F, X);
-	drawmode = 0;
+
 	restore_binding(X);
+
+	drawmode = 0;
 }
 function
 eval_erf(p1)
