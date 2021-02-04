@@ -1,4 +1,4 @@
-/* February 1, 2021
+/* February 4, 2021
 
 To build and run:
 
@@ -1095,11 +1095,10 @@ struct atom *imaginaryunit;
 
 int expanding;
 int drawing;
-
 int interrupt;
-
-jmp_buf stop_return;
-jmp_buf draw_stop_return;
+jmp_buf jmpbuf;
+jmp_buf jmpbuf2;
+char *errmsg;
 
 int block_count;
 int free_count;
@@ -17765,8 +17764,14 @@ char *trace2;
 void
 run(char *s)
 {
-	if (setjmp(stop_return))
+	if (setjmp(jmpbuf)) {
+		if (errmsg) {
+			print_input_line();
+			sprintf(tbuf, "Stop: %s\n", s);
+			printbuf(tbuf, RED);
+		}
 		return;
+	}
 	if (zero == NULL)
 		init();
 	prep();
@@ -17848,14 +17853,11 @@ eval_and_print_result(void)
 void
 stop(char *s)
 {
+	errmsg = s;
 	if (drawing == 2)
-		longjmp(draw_stop_return, 1);
-	if (s) {
-		print_input_line();
-		sprintf(tbuf, "Stop: %s\n", s);
-		printbuf(tbuf, RED);
-	}
-	longjmp(stop_return, 1);
+		longjmp(jmpbuf2, 1);
+	else
+		longjmp(jmpbuf, 1);
 }
 
 void
