@@ -3951,59 +3951,27 @@ draw_box()
 function
 draw_eval(F, X, x)
 {
-	var dx, dy, p, y;
+	var dx, dy, p1, t, y;
 
-	draw_eval_nib(F, X, x);
-	p = pop();
-	if (!isnum(p))
+	push_double(x);
+	t = pop();
+	set_binding(X, t);
+
+	push(F);
+	eval_nonstop();
+	floatf();
+	p1 = pop();
+
+	if (!isnum(p1))
 		return;
-	push(p);
+
+	push(p1);
 	y = pop_double();
 
 	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
 	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
 
 	draw_array.push({x:x, y:y, dx:dx, dy:dy});
-}
-function
-draw_eval_nib(F, X, x)
-{
-	var save_stack_length, save_frame_length;
-
-	try {
-		save_stack_length = stack.length;
-		save_frame_length = frame.length;
-
-		push_double(x);
-		x = pop();
-		set_binding(X, x);
-
-		push(F);
-
-		drawmode = 2;
-		evalf();
-		drawmode = 1;
-
-		floatf();
-	}
-
-	catch(errmsg) {
-
-		if (drawmode == 1)
-			throw errmsg;
-
-		drawmode = 1;
-		expanding = 1;
-
-		stack.splice(save_stack_length);
-		frame.splice(save_frame_length);
-
-		push_symbol(NIL); // return value
-	}
-
-	finally {
-		//
-	}
 }
 function
 draw_formula(x, y, p)
@@ -5637,6 +5605,34 @@ function
 eval_nil()
 {
 	push_symbol(NIL);
+}
+function
+eval_nonstop()
+{
+	var save_expanding, save_stack_length, save_frame_length;
+
+	try {
+		save_expanding = expanding;
+		save_stack_length = stack.length;
+		save_frame_length = frame.length;
+
+		evalf();
+	}
+
+	catch(errmsg) {
+
+		expanding = save_expanding;
+		stack.splice(save_stack_length);
+		frame.splice(save_frame_length);
+
+		pop(); // pop what was on the stack when eval_nonstop called
+
+		push_symbol(NIL); // return value
+	}
+
+	finally {
+		//
+	}
 }
 function
 eval_not(p1)
