@@ -12332,7 +12332,7 @@ setup_trange()
 
 	p1 = lookup("trange");
 	push(p1);
-	evalf();
+	eval_nonstop();
 	floatf();
 	p1 = pop();
 
@@ -12361,7 +12361,7 @@ setup_xrange()
 
 	p1 = lookup("xrange");
 	push(p1);
-	evalf();
+	eval_nonstop();
 	floatf();
 	p1 = pop();
 
@@ -12390,7 +12390,7 @@ setup_yrange()
 
 	p1 = lookup("yrange");
 	push(p1);
-	evalf();
+	eval_nonstop();
 	floatf();
 	p1 = pop();
 
