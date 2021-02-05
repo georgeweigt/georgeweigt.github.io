@@ -3889,91 +3889,6 @@ dproduct(p1, p2)
 	add_terms(n);
 }
 function
-draw(F, X)
-{
-	var h, w;
-
-	draw_array = [];
-
-	h = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_BOTTOM_PAD;
-	w = DRAW_LEFT_PAD + DRAW_WIDTH + DRAW_RIGHT_PAD;
-
-	h = "height='" + h + "'";
-	w = "width='" + w + "'";
-
-	outbuf = "<svg " + h + w + ">"
-
-	draw_xrange();
-	draw_yrange();
-	draw_axes();
-	draw_box();
-	draw_labels();
-	draw_pass1(F, X);
-	draw_pass2(F, X);
-	draw_points();
-
-	outbuf += "</svg><br>";
-
-	stdout.innerHTML += outbuf;
-}
-function
-draw_axes()
-{
-	var dx, dy, x, y;
-
-	x = 0;
-	y = 0;
-
-	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT - DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
-
-	if (dx > 0 && dx < DRAW_WIDTH)
-		draw_line(dx, 0, dx, DRAW_HEIGHT, 0.5); // vertical axis
-
-	if (dy > 0 && dy < DRAW_HEIGHT)
-		draw_line(0, dy, DRAW_WIDTH, dy, 0.5); // horizontal axis
-}
-function
-draw_box()
-{
-	var x1 = 0;
-	var x2 = DRAW_WIDTH;
-
-	var y1 = 0;
-	var y2 = DRAW_HEIGHT;
-
-	draw_line(x1, y1, x2, y1, 0.5); // top line
-	draw_line(x1, y2, x2, y2, 0.5); // bottom line
-
-	draw_line(x1, y1, x1, y2, 0.5); // left line
-	draw_line(x2, y1, x2, y2, 0.5); // right line
-}
-function
-draw_eval(F, X, x)
-{
-	var dx, dy, p1, t, y;
-
-	push_double(x);
-	t = pop();
-	set_binding(X, t);
-
-	push(F);
-	eval_nonstop();
-	floatf();
-	p1 = pop();
-
-	if (!isnum(p1))
-		return;
-
-	push(p1);
-	y = pop_double();
-
-	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
-	dy = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
-
-	draw_array.push({x:x, y:y, dx:dx, dy:dy});
-}
-function
 draw_formula(x, y, p)
 {
 	var char_num, d, dx, dy, font_num, h, k, w;
@@ -4282,47 +4197,6 @@ draw_table(x, y, p)
 	}
 }
 function
-draw_labels()
-{
-	var p, x, y;
-
-	push_double(ymax);
-	p = pop();
-	emit_level = 1; // small font
-	emit_list(p);
-	p = pop();
-	x = DRAW_LEFT_PAD - width(p) - DRAW_YLABEL_MARGIN;
-	y = DRAW_TOP_PAD + height(p);
-	draw_formula(x, y, p);
-
-	push_double(ymin);
-	p = pop();
-	emit_level = 1; // small font
-	emit_list(p);
-	p = pop();
-	x = DRAW_LEFT_PAD - width(p) - DRAW_YLABEL_MARGIN;
-	y = DRAW_TOP_PAD + DRAW_HEIGHT;
-	draw_formula(x, y, p);
-
-	push_double(xmin);
-	p = pop();
-	emit_level = 1; // small font
-	emit_list(p);
-	p = pop();
-	x = DRAW_LEFT_PAD - width(p) / 2;
-	y = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_XLABEL_BASELINE;
-	draw_formula(x, y, p);
-
-	push_double(xmax);
-	p = pop();
-	emit_level = 1; // small font
-	emit_list(p);
-	p = pop();
-	x = DRAW_LEFT_PAD + DRAW_WIDTH - width(p) / 2;
-	y = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_XLABEL_BASELINE;
-	draw_formula(x, y, p);
-}
-function
 draw_line(x1, y1, x2, y2, t)
 {
 	x1 += DRAW_LEFT_PAD;
@@ -4340,60 +4214,46 @@ draw_line(x1, y1, x2, y2, t)
 	outbuf += "<line " + x1 + y1 + x2 + y2 + "style='stroke:black;stroke-width:" + t + "'/>\n";
 }
 function
-draw_pass1(F, X)
+draw_pass1(F, T)
 {
-	var i, n, x;
-	n = DRAW_WIDTH + 1; // +1 eliminates aliasing
-	for (i = 0; i <= n; i++) {
-		x = xmin + (xmax - xmin) * i / n;
-		draw_eval(F, X, x);
+	var i, t;
+	for (i = 0; i <= DRAW_WIDTH; i++) {
+		t = tmin + (tmax - tmin) * i / DRAW_WIDTH;
+		sample(F, T, t);
 	}
 }
 function
-draw_pass2(F, X)
+draw_pass2(F, T)
 {
-	var i, j, m, n, p1, p2, x;
+	var dx, dy, i, j, m, n, t, t1, t2, x1, x2, y1, y2;
 
-	n = draw_array.length;
-
-	for (i = 0; i < n - 1; i++) {
-
-		p1 = draw_array[i];
-		p2 = draw_array[i + 1];
-
-		if ((p1.dy >= 0 && p1.dy <= DRAW_HEIGHT) || (p2.dy >= 0 && p2.dy <= DRAW_HEIGHT)) {
-
-			m = Math.floor(Math.abs(p1.dy - p2.dy));
-
-			for (j = 1; j < m; j++) {
-				x = p1.x + (p2.x - p1.x) * j / m;
-				draw_eval(F, X, x);
-			}
-		}
-	}
-}
-function
-draw_points()
-{
-	var i, n, x, y;
-
-	n = draw_array.length;
+	n = draw_array.length - 1;
 
 	for (i = 0; i < n; i++) {
 
-		x = draw_array[i].dx;
-		y = draw_array[i].dy;
+		t1 = draw_array[i].t;
+		t2 = draw_array[i + 1].t;
 
-		if (y < 0 || y > DRAW_HEIGHT)
-			continue;
+		x1 = draw_array[i].x;
+		x2 = draw_array[i + 1].x;
 
-		x += DRAW_LEFT_PAD;
-		y = DRAW_HEIGHT - y + DRAW_TOP_PAD;
+		y1 = draw_array[i].y;
+		y2 = draw_array[i + 1].y;
 
-		x = "cx='" + x + "'";
-		y = "cy='" + y + "'";
+		if ((x1 < 0 || x1 > DRAW_WIDTH || y1 < 0 || y1 > DRAW_HEIGHT) && (x2 < 0 || x2 > DRAW_WIDTH || y2 < 0 || y2 > DRAW_HEIGHT))
+			continue; // both coordinates are out of range
 
-		outbuf += "<circle " + x + y + "r='2' style='stroke:black;fill:black'/>";
+		dx = x2 - x1;
+		dy = y2 - y1;
+
+		m = Math.sqrt(dx * dx + dy * dy);
+
+		m = Math.floor(m);
+
+		for (j = 1; j < m; j++) {
+			t = t1 + (t2 - t1) * j / m;
+			sample(F, T, t);
+		}
 	}
 }
 const DRAW_WIDTH = 300;
@@ -4408,6 +4268,9 @@ const DRAW_BOTTOM_PAD = 40;
 const DRAW_XLABEL_BASELINE = 30;
 const DRAW_YLABEL_MARGIN = 15;
 
+var tmin;
+var tmax;
+
 var xmin;
 var xmax;
 
@@ -4415,64 +4278,6 @@ var ymin;
 var ymax;
 
 var draw_array;
-function
-draw_xrange()
-{
-	var p, p1, p2;
-
-	xmin = -10;
-	xmax = 10;
-
-	p = lookup("xrange");
-	push(p);
-	evalf();
-	floatf();
-	p = pop();
-
-	if (!istensor(p) || p.dim.length != 1 || p.dim[0] != 2)
-		return;
-
-	p1 = p.elem[0];
-	p2 = p.elem[1];
-
-	if (!isnum(p1) || !isnum(p2))
-		return;
-
-	push(p1);
-	xmin = pop_double();
-
-	push(p2);
-	xmax = pop_double();
-}
-function
-draw_yrange()
-{
-	var p, p1, p2;
-
-	ymin = -10;
-	ymax = 10;
-
-	p = lookup("yrange");
-	push(p);
-	evalf();
-	floatf();
-	p = pop();
-
-	if (!istensor(p) || p.dim.length != 1 || p.dim[0] != 2)
-		return;
-
-	p1 = p.elem[0];
-	p2 = p.elem[1];
-
-	if (!isnum(p1) || !isnum(p2))
-		return;
-
-	push(p1);
-	ymin = pop_double();
-
-	push(p2);
-	ymax = pop_double();
-}
 function
 dsin(F, X)
 {
@@ -4711,6 +4516,125 @@ function
 dual(p)
 {
 	return lookup(p.printname + "$");
+}
+function
+emit_axes()
+{
+	var dx, dy, x, y;
+
+	x = 0;
+	y = 0;
+
+	dx = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
+	dy = DRAW_HEIGHT - DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+
+	if (dx > 0 && dx < DRAW_WIDTH)
+		draw_line(dx, 0, dx, DRAW_HEIGHT, 0.5); // vertical axis
+
+	if (dy > 0 && dy < DRAW_HEIGHT)
+		draw_line(0, dy, DRAW_WIDTH, dy, 0.5); // horizontal axis
+}
+function
+emit_box()
+{
+	var x1 = 0;
+	var x2 = DRAW_WIDTH;
+
+	var y1 = 0;
+	var y2 = DRAW_HEIGHT;
+
+	draw_line(x1, y1, x2, y1, 0.5); // top line
+	draw_line(x1, y2, x2, y2, 0.5); // bottom line
+
+	draw_line(x1, y1, x1, y2, 0.5); // left line
+	draw_line(x2, y1, x2, y2, 0.5); // right line
+}
+function
+emit_graph()
+{
+	var h, w;
+
+	h = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_BOTTOM_PAD;
+	w = DRAW_LEFT_PAD + DRAW_WIDTH + DRAW_RIGHT_PAD;
+
+	h = "height='" + h + "'";
+	w = "width='" + w + "'";
+
+	outbuf = "<svg " + h + w + ">"
+
+	emit_axes();
+	emit_box();
+	emit_labels();
+	emit_points();
+
+	outbuf += "</svg><br>";
+
+	stdout.innerHTML += outbuf;
+}
+function
+emit_labels()
+{
+	var p, x, y;
+
+	push_double(ymax);
+	p = pop();
+	emit_level = 1; // small font
+	emit_list(p);
+	p = pop();
+	x = DRAW_LEFT_PAD - width(p) - DRAW_YLABEL_MARGIN;
+	y = DRAW_TOP_PAD + height(p);
+	draw_formula(x, y, p);
+
+	push_double(ymin);
+	p = pop();
+	emit_level = 1; // small font
+	emit_list(p);
+	p = pop();
+	x = DRAW_LEFT_PAD - width(p) - DRAW_YLABEL_MARGIN;
+	y = DRAW_TOP_PAD + DRAW_HEIGHT;
+	draw_formula(x, y, p);
+
+	push_double(xmin);
+	p = pop();
+	emit_level = 1; // small font
+	emit_list(p);
+	p = pop();
+	x = DRAW_LEFT_PAD - width(p) / 2;
+	y = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_XLABEL_BASELINE;
+	draw_formula(x, y, p);
+
+	push_double(xmax);
+	p = pop();
+	emit_level = 1; // small font
+	emit_list(p);
+	p = pop();
+	x = DRAW_LEFT_PAD + DRAW_WIDTH - width(p) / 2;
+	y = DRAW_TOP_PAD + DRAW_HEIGHT + DRAW_XLABEL_BASELINE;
+	draw_formula(x, y, p);
+}
+function
+emit_points()
+{
+	var i, n, x, y;
+
+	n = draw_array.length;
+
+	for (i = 0; i < n; i++) {
+
+		x = draw_array[i].x;
+		y = draw_array[i].y;
+
+		if (x < 0 || x > DRAW_WIDTH || y < 0 || y > DRAW_HEIGHT)
+			continue;
+
+		x += DRAW_LEFT_PAD;
+		y = DRAW_HEIGHT - y + DRAW_TOP_PAD;
+
+		x = "cx='" + x + "'";
+		y = "cy='" + y + "'";
+
+		outbuf += "<circle " + x + y + "r='2' style='stroke:black;fill:black'/>";
+	}
 }
 function
 equal(p1, p2)
@@ -5221,26 +5145,39 @@ eval_dot(p1)
 function
 eval_draw(p1)
 {
-	var F, X;
+	var F, T;
 
-	push_symbol(NIL); // return value
-
-	if (drawmode)
+	if (drawmode) {
+		push_symbol(NIL); // return value
 		return;
+	}
 
 	drawmode = 1;
 
 	F = cadr(p1);
-	X = caddr(p1);
+	T = caddr(p1);
 
-	if (!isusersymbol(X))
-		X = symbol(SYMBOL_X);
+	if (!isusersymbol(T))
+		T = symbol(SYMBOL_X);
 
-	save_binding(X);
+	save_binding(T);
 
-	draw(F, X);
+	setup_trange();
+	setup_xrange();
+	setup_yrange();
 
-	restore_binding(X);
+	setup_final(F, T);
+
+	draw_array = [];
+
+	draw_pass1(F, T);
+	draw_pass2(F, T);
+
+	emit_graph();
+
+	restore_binding(T);
+
+	push_symbol(NIL);
 
 	drawmode = 0;
 }
@@ -11643,6 +11580,43 @@ run_nib()
 	}
 }
 function
+sample(F, T, t)
+{
+	var x, y, p1, X, Y;
+
+	push_double(t);
+	p1 = pop();
+	set_binding(T, p1);
+
+	push(F);
+	eval_nonstop();
+	floatf();
+	p1 = pop();
+
+	if (istensor(p1)) {
+		X = p1.elem[0];
+		Y = p1.elem[1];
+	} else {
+		push_double(t);
+		X = pop();
+		Y = p1;
+	}
+
+	if (!isnum(X) || !isnum(Y))
+		return;
+
+	push(X);
+	x = pop_double();
+
+	push(Y);
+	y = pop_double();
+
+	x = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
+	y = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
+
+	draw_array.push({t:t, x:x, y:y});
+}
+function
 save_binding(p)
 {
 	frame.push(get_binding(p));
@@ -12328,6 +12302,111 @@ setq_userfunc(p1)
 
 	B = pop();
 	set_binding(ddual(F), B);
+}
+function
+setup_final(F, T)
+{
+	var p1;
+
+	push_double(tmin);
+	p1 = pop();
+	set_binding(T, p1);
+
+	push(F);
+	eval_nonstop();
+	p1 = pop();
+
+	if (!istensor(p1)) {
+		tmin = xmin;
+		tmax = xmax;
+	}
+}
+function
+setup_trange()
+{
+	var p1, p2, p3;
+
+	tmin = -Math.PI;
+	tmax = Math.PI;
+
+	p1 = lookup("trange");
+	push(p1);
+	evalf();
+	floatf();
+	p1 = pop();
+
+	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
+		return;
+
+	p2 = p1.elem[0];
+	p3 = p1.elem[1];
+
+	if (!isnum(p2) || !isnum(p3))
+		return;
+
+	push(p2);
+	tmin = pop_double();
+
+	push(p3);
+	tmax = pop_double();
+}
+function
+setup_xrange()
+{
+	var p1, p2, p3;
+
+	xmin = -10;
+	xmax = 10;
+
+	p1 = lookup("xrange");
+	push(p1);
+	evalf();
+	floatf();
+	p1 = pop();
+
+	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
+		return;
+
+	p2 = p1.elem[0];
+	p3 = p1.elem[1];
+
+	if (!isnum(p2) || !isnum(p3))
+		return;
+
+	push(p2);
+	xmin = pop_double();
+
+	push(p3);
+	xmax = pop_double();
+}
+function
+setup_yrange()
+{
+	var p1, p2, p3;
+
+	ymin = -10;
+	ymax = 10;
+
+	p1 = lookup("yrange");
+	push(p1);
+	evalf();
+	floatf();
+	p1 = pop();
+
+	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
+		return;
+
+	p2 = p1.elem[0];
+	p3 = p1.elem[1];
+
+	if (!isnum(p2) || !isnum(p3))
+		return;
+
+	push(p2);
+	ymin = pop_double();
+
+	push(p3);
+	ymax = pop_double();
 }
 function
 sgn()
