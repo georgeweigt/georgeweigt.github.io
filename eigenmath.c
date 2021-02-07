@@ -1100,7 +1100,6 @@ int interrupt;
 int jmpsel;
 jmp_buf jmpbuf0;
 jmp_buf jmpbuf1;
-char *errmsg;
 
 int block_count;
 int free_count;
@@ -17766,14 +17765,8 @@ char *trace2;
 void
 run(char *s)
 {
-	if (setjmp(jmpbuf0)) {
-		if (errmsg) {
-			print_input_line();
-			sprintf(tbuf, "Stop: %s\n", errmsg);
-			printbuf(tbuf, RED);
-		}
+	if (setjmp(jmpbuf0))
 		return;
-	}
 	if (zero == NULL)
 		init();
 	prep();
@@ -17856,9 +17849,13 @@ eval_and_print_result(void)
 void
 stop(char *s)
 {
-	errmsg = s;
 	switch (jmpsel) {
 	case 0:
+		if (s) {
+			print_input_line();
+			sprintf(tbuf, "Stop: %s\n", s);
+			printbuf(tbuf, RED);
+		}
 		longjmp(jmpbuf0, 1);
 	case 1:
 		longjmp(jmpbuf1, 1);
@@ -17868,8 +17865,8 @@ stop(char *s)
 void
 kaput(char *s)
 {
-	errmsg = s;
-	longjmp(jmpbuf0, 1);
+	jmpsel = 0;
+	stop(s);
 }
 
 void
@@ -18485,7 +18482,7 @@ scan_error(char *errmsg)
 	print_char('\n');
 	print_char('\0');
 	printbuf(outbuf, RED);
-	stop(NULL);
+	kaput(NULL);
 }
 
 // There are n expressions on the stack, possibly tensors.
