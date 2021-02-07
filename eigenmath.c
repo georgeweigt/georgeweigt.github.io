@@ -1096,8 +1096,9 @@ struct atom *imaginaryunit;
 int expanding;
 int drawing;
 int interrupt;
-jmp_buf jmpbuf;
-jmp_buf jmpbuf2;
+int jmpsel;
+jmp_buf jmpbuf0;
+jmp_buf jmpbuf1;
 char *errmsg;
 
 int block_count;
@@ -4208,7 +4209,7 @@ alloc(void)
 			alloc_block();
 		if (free_count == 0) {
 			errmsg = "out of memory";
-			longjmp(jmpbuf, 1);
+			longjmp(jmpbuf0, 1);
 		}
 	}
 	p = free_list;
@@ -17766,7 +17767,7 @@ char *trace2;
 void
 run(char *s)
 {
-	if (setjmp(jmpbuf)) {
+	if (setjmp(jmpbuf0)) {
 		if (errmsg) {
 			print_input_line();
 			sprintf(tbuf, "Stop: %s\n", s);
@@ -17812,6 +17813,7 @@ prep(void)
 	expanding = 1;
 	drawing = 0;
 	interrupt = 0;
+	jmpsel = 0;
 	p0 = symbol(NIL);
 	p1 = symbol(NIL);
 	p2 = symbol(NIL);
@@ -17856,10 +17858,12 @@ void
 stop(char *s)
 {
 	errmsg = s;
-	if (drawing == 2)
-		longjmp(jmpbuf2, 1);
-	else
-		longjmp(jmpbuf, 1);
+	switch (jmpsel) {
+	case 0:
+		longjmp(jmpbuf0, 1);
+	case 1:
+		longjmp(jmpbuf1, 1);
+	}
 }
 
 void
