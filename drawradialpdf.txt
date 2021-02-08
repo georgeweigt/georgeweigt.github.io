@@ -2,7 +2,7 @@
 
 "x axis: nanometers"
 
-"y axis: probability density"
+"y axis: probability density (1/nanometers)"
 
 "n: principle quantum number"
 
