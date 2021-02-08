@@ -1,4 +1,4 @@
--- Draw radial probability densities for hydrogen atom electron
+-- Draw radial probability density for hydrogen atom electron
 
 "x axis: nanometers"
 
