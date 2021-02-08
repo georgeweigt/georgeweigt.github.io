@@ -1,4 +1,4 @@
-/* February 4, 2021
+/* February 8, 2021
 
 To build and run:
 
@@ -945,8 +945,6 @@ void init(void);
 void prep(void);
 char * scan_input(char *s);
 void eval_and_print_result(void);
-void stop(char *s);
-void kaput(char *s);
 void eval_run(void);
 void run_file(char *filename);
 void trace_input(void);
@@ -954,6 +952,8 @@ void print_input_line(void);
 void print_scan_line(char *s);
 void eval_status(void);
 void run_init_script(void);
+void stop(char *s);
+void kaput(char *s);
 void malloc_kaput(void);
 char * scan(char *s);
 char * scan1(char *s);
@@ -17847,29 +17847,6 @@ eval_and_print_result(void)
 }
 
 void
-stop(char *s)
-{
-	switch (jmpsel) {
-	case 0:
-		if (s) {
-			print_input_line();
-			sprintf(tbuf, "Stop: %s\n", s);
-			printbuf(tbuf, RED);
-		}
-		longjmp(jmpbuf0, 1);
-	case 1:
-		longjmp(jmpbuf1, 1);
-	}
-}
-
-void
-kaput(char *s)
-{
-	jmpsel = 0;
-	stop(s);
-}
-
-void
 eval_run(void)
 {
 	push(cadr(p1));
@@ -18031,9 +18008,29 @@ run_init_script(void)
 }
 
 void
+stop(char *s)
+{
+	switch (jmpsel) {
+	case 0:
+		print_input_line();
+		sprintf(tbuf, "Stop: %s\n", s);
+		printbuf(tbuf, RED);
+		longjmp(jmpbuf0, 1);
+	case 1:
+		longjmp(jmpbuf1, 1);
+	}
+}
+
+void
+kaput(char *s)
+{
+	jmpsel = 0;
+	stop(s);
+}
+
+void
 malloc_kaput(void)
 {
-	fprintf(stderr, "malloc kaput\n");
 	exit(1);
 }
 
@@ -18482,7 +18479,7 @@ scan_error(char *errmsg)
 	print_char('\n');
 	print_char('\0');
 	printbuf(outbuf, RED);
-	kaput(NULL);
+	longjmp(jmpbuf0, 1);
 }
 
 // There are n expressions on the stack, possibly tensors.
