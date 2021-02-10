@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+-- relation E vs E'
+relEE(P,U,V, Q,W,Z) = 
+   do( UVW=zero(3,3),
+       UVW[1]=U, UVW[2]=V, UVW[3]=W, 
+       UVZ=zero(3,3),
+       UVZ[1]=U, UVZ[2]=V, UVZ[3]=Z,
+       UVPQ=zero(3,3),
+       UVPQ[1]=U, UVPQ[2]=V, UVPQ[3]=P-Q,
+       test( 
+         or( not(det(UVW)==0), not(det(UVZ)==0)), 
+           "E cut E' = g", 
+         and( det(UVW)==0, det(UVZ)==0, not(det(UVPQ)==0) ),
+           "E // E'",
+         and( det(UVW)==0, det(UVZ)==0, det(UVPQ)==0),
+           "E == E'"))
+
+-- test the relation E vs E'
+do( P=(2,1,2), U=(-1,2,0), V=(3,1,4) )  -- plane E:  X=P+rU+sV
+do( Q=(0,6,4), W=(2,2,4),  Z=(-2,1,3))  -- plane E': X=Q+aW+bZ
+relEE(P,U,V, Q,W,Z)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

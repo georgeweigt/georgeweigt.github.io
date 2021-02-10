@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+isMPI(P,A)= test(and(
+                 dot(A,P,A) == A,
+                 dot(P,A,P) == P,
+                 transpose(dot(P,A)) == dot(P,A),
+                 transpose(dot(A,P)) == dot(A,P)),
+                 " is MPI",
+                 " is NOT the MPI")
+
+mpiV(A) = test(  dot(A,A)==0,  
+                 0*A,
+                 1/dot(A,A) * A)
+
+#####    sequence of submatrices A1, A2, .. Ak i.e. A[:,1..k] 
+Ai(k) =  test( k=1, a[1],                -- case a[1] is vector
+           do( AA=zero(k,dim(A,1)),      -- else k > 1 
+               for(i,1,k, AA[i]=a[i]),   -- (0)
+               transpose(AA) ))
+               
+################## Greville m x n #################  A  typ m x n
+--      procedure  GREVILLE  : A1+, A2+, .., An+  =  A+
+--      (2020) Dr. W. Lindner, Leichlingen DE
+###################################################  A+ typ n x m
+Greville(A)=
+     do( n=dim(A,2) ,        
+         m=dim(A,1) ,        
+         a = transpose(A) ,
+         null = zero(2,m) , 
+       do(  -- k = 1
+         Ap = null ,  
+         Ap[1] = mpiV(a[1]) ,
+            -- k = 2
+         di = dot(Ap[1],a[2]) ,
+         c  = a[2] - Ai(1)*di  ,
+         test( c == null[1] ,
+               b = (1+dot(di,di))^(-1)*dot(di,Ap[1]),
+               b = mpiV(c)) ,
+         B  = Ap[1] - di*b ,     
+         Ap = zero(2,m)  ,
+               Ap[1] = B ,
+               Ap[2] = b,  
+            -- k > 2
+         do(for(k,3,n,
+             di = dot(Ap,a[k]) ,   
+             c  = a[k] - dot(Ai(k-1),di),
+             test( c == null[1],
+                   b = (1+dot(di,di))^(-1)*dot(di,Ap),
+                   b = mpiV(c) ),
+             B = Ap - outer(di,b),
+             -- print(B),                    -- (1)
+             Ap = zero(k,m),
+                  for(i,1,k-1, Ap[i] = B[i] ), 
+                  Ap[k] = b, 
+             Ap), -- close for, WATCH THE',' -- (2)
+         Ap) -- close do around for-loop     -- (3)
+        )   -- close inner do
+       )  -- close outer do               
+################## END GREVILLE ###########################  
+
+A=((1,1,1,3), (2,2,2,2), (3,3,3,5))
+A
+Api=Greville( A )           -- ..pi = (p)seudo(i)nverse
+Api             
+isMPI(Api,A) 
+		  
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+mpi(A) = dot(inv(dot(transpose(A),A)), transpose(A))  --(0)
+
+mpiN(A,n)= dot(inv(dot(transpose(A),A) +              --(N)
+                   1/n*unit(dim(A,2))), transpose(A)) 
+
+A=((1,-2),(2,-4))          
+
+bad =  dot(transpose(A),A)                         --(1)
+good = dot(transpose(A),A) + 0.01*unit(dim(A,2))   --(2)
+good
+
+inv(good)                                          --(3)
+dot(inv(good),transpose(A))  -- (At*A)^-1*At =mpi  --(4)
+
+((0.04,0.08),(-0.08,-0.16))  --(5)
+((1/25,2/25),(-2/25,-4/25))  --(6)
+float                        --(7)
+
+N1=mpiN(A,100)               --(8)
+N1
+N2=mpiN(A,100.0)             --(9)
+N2
+
+-- stop
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

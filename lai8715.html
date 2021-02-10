@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("gjBox.txt")
+
+-- LS5:{2x+2y+4z=2, x+y+2z=1}
+A5 = ((2,2,4, 2), (1,1,2, 1))
+B5 = Ge(A5)  
+B5
+C5 = ((2,2,4, 2), (0,1,0,a), (0,0,1,b)) -- 2 dummy rows
+D5 = RREF(C5)
+D5
+
+A5h = ((2, 2, 4, 0), (1,1,2, 0))
+B5h = Ge(A5h)  
+B5h
+C5h = ((2,2,4, 0), (0,1,0, a), (0,0,1, b)) -- 2 dummy rows
+D5h 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

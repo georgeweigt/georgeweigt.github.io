@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+Det1(U) = product(i,1,dim(U,1), U[i,i])          -- (0)
+
+B = ((2,4,-2),   -- is Upper triangular
+     (0,1, 1),
+     (0,0, 4))
+Det1(B)          -- returns 8
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>

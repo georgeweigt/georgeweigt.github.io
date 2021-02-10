@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+-- searching for best fits
+
+A=((2,1),(-1,2),(1,2))
+A
+X=(x,y)
+B=(1,2,3)
+B
+dot(A,X)        -- left side of LS is A*X
+
+X1=(1,2)
+B1=dot(A,X1)    -- B1=A*X=(4,3,5)
+B1
+
+X2=(1,0)
+B2=dot(A,X2)    -- B2=A*X=(2,-1,1)
+B2
+
+Xo=(0.1,1.2)    -- Xo is a good fit 
+Bo=dot(A,Xo)    -- Bo=(1.4,2.3,2.5) 
+Bo
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

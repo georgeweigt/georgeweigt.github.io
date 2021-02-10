@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+do( e=quote(e), i=quote(i))
+A = ((a,b,c),(d,e,f),(g,h,i))
+adj(A)[3,1]
+
+MiMa(A)= do( e = quote(e), i = quote(i),    --(1)
+             MM = zero(3,3,2,2),            --(2)
+             for(k,1,3,
+             for(j,1,3,
+                 MM[k,j] = minormatrix(A,k,j))),  --(3)
+             MM)                            --(4)
+
+MiMa(A)	  
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
