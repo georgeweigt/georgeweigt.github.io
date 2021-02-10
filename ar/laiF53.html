@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+Box(A,B,C) = dot(A,cross(B,C))          --(1)
+
+DET3(M)= dot(M[1],cross(M[2],M[3]))     --(2)
+
+# EXAMPLE 3x3 LINEAR SYSTEM
+# 2x+2y+4z=5  
+# 1x+2y-5z=4
+# 3x+1y-3z=5
+
+A = (2, 2,  4)    --LHS
+B = (1, 2, -5)
+C = (3, 1, -3)
+R = (5, 4,  5)    --RHS
+R
+
+M = (A,B,C)
+M
+
+Box(A,B,C)        --(a)
+det((A,B,C))      --(b)
+DET3((A,B,C))     --(c)
+
+Cramer3x(M,R)= do( M=transpose(M),          --(3)
+                   Box(   R, M[2], M[3]) /  --(4)
+                   Box(M[1], M[2], M[3]))   --(5)
+
+
+Cramer3x( ((A,B,C)), R)                     --(6)
+Cramer3x(M,R)                               --(7)
+
+DET3((A,B,C))       --(5)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
