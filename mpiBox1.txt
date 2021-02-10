@@ -1,0 +1,14 @@
+##########  mpiBox1, preliminary version (2020) Dr. W. Lindner
+mpi11(A) = do( At=A,                        -- only if A is a VECTOR (!)
+               dot( dot(At,A)^(-1), At) )   -- and 1/dot(At,A) < > 0
+               
+proj11(B,A) = A * dot( mpi11(A), B))        -- only if A is a VECTOR (!)
+bestFit(B,A) = proj11(B,A)                  -- alias dot(mpi(A),B) 
+
+
+mpi1(A)    = dot(inv(dot(transpose(A),A)),transpose(A))   -- A matrix
+
+proj1(B,A) = dot(A, mpi1(A), B)
+Xfit1(B,A)  = dot(mpi1(A),B)     -- the best fit solution Xo 
+Yfit1(B,A)  = proj1(B,A)         -- alias dot(A, mpi1(A), B) = Bo, the proximum
+##########

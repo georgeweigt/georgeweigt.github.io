@@ -1,0 +1,155 @@
+################ (2021) Dr.W.G. Lindner, Leichlingen DE
+###       geoBox        Functions for Analytic Geometry in R^3
+################
+--           1 = yes/true  0 = no/false
+
+Nv(v)          = (v[2],-v[1])         --Normal vector to v in R^2
+
+cross(u,v) = (u[2] v[3] - u[3] v[2], u[3] v[1] - u[1] v[3], u[1] v[2] - u[2] v[1])
+
+Box(A,B,C)     = dot(A, cross(B,C))
+
+linDep2(U,V)   = test( cross(U,V)==(0,0,0) )
+linDep3(U,V,W) = test( Box(U,V,W)==0 )  
+
+perp(U,V)      = test( dot(U,V)==0 ) 
+
+
+##### INCIDENCE ---------------- R point, L line, P plane, U,V,W vectors 
+
+RonLine(R,Q,U)    = test( linDep2(R-Q,U)==1 )   -- line X=Q+tU
+
+RonPlane(R,Q,U,V) = test( linDep3(R-Q,U,V)==1 ) -- plane X=Q+rU+sV
+
+RonPlaneN(R,N,d)  = test( dot(R,N)==d )         -- plane X*N=d
+
+
+##### RELative POSITION ----------------------------------
+
+               ----- Line R+rU vs Line Q+sV
+relLL(R,U,Q,V) =                     -- line1 rel line2
+    test( linDep2(U,V)==1, 
+          test(linDep2(Q-R,U)==1, 
+               "Line1 = Line2",      -- identical
+               "Line1 // Line2"),    -- true parallel
+          test(linDep3(U,V,R-Q)==0, 
+               "Line1 skew Line2",   -- skew
+               1))                   -- intersecting
+
+
+                 ----- Line: X=Q+tW  vs Plane: X=R+rU+sV
+relLP(Q,W,R,U,V) = 
+        test(linDep3(W,U,V)==1,
+             test(linDep3(U,V,R-Q)==1,
+                 "line in plane",    -- L in plane
+                 "line // plane"),   -- L // plane
+            1)                       -- 1 = intersect
+
+
+ 
+                      ----- plane1: X=R+aU+bV  vs plane2: X=R1+rU1+sV1
+relPP(R,U,V,R1,U1,V1)=
+   test( and( linDep3(U1,U,V)=1, linDep3(V1,U,V)=1 ),
+         test(linDep3(R1-R,U,V)=1,
+              "E1 = E2",
+              "E1 // E2"),
+         test( or(linDep3(U1,U,V)=0, linDep3(V1,U,V)=0),
+               1)
+       )    -- 1 = '(E1 cut E2) = g'
+
+       
+##### INTERSECTION ----------------------------------
+
+               ----- Line R+rU cut Line Q+sV
+cutLL(R,U,Q,V) =                
+test( linDep3(U,V,R-Q)==1, -- interection test
+      do(LS   = zero(3,3), -- LS linear system 
+         LS[1]= U,
+         LS[2]= -V,
+         LS[3]= Q-R,
+         LS = transpose(LS),
+         M  = zero(2,2),   -- get 2x2 submatrix for r,s
+         M[1,1]=LS[1,1],
+         M[1,2]=LS[1,2],
+         M[2,1]=LS[2,1],
+         M[2,2]=LS[2,2],
+         B=(0,0),          -- get RHS
+         B[1]=LS[1,3],     
+         B[2]=LS[2,3],     
+         rs=dot(inv(M),B), -- output solution rs 
+         r=rs[1],          -- get only r
+         R + r*U           -- return equation
+         ))
+
+                 ----- Line: X=Q+tW  vs Plane: X=R+rU+sV
+cutLP(Q,W,R,U,V) =               -- intersection line-plane
+    test( relLP(Q,W,R,U,V)==1,   -- if interection test ok
+          Q + Box(U,V,R-Q)/Box(U,V,W)*W )
+              
+                      ----- plane1: X=R+aU+bV  vs plane2: X=R1+rU1+sV1
+cutPP(R,U,V,R1,U1,V1) = 
+      test(
+           relPP1(R,U,V,R1,U1,V1)==1,
+           R+t*U+(Box(U1,V1,R1-R)-Box(U1,V1,U)*t)/Box(U1,V1,V)*V) 
+ 
+
+##### PLANES ----------------------------------
+
+X=(x,y,z)                                -- variable point
+
+line(Q,U)       = Q+t*U                  -- parametric eq. of line
+
+line2(A,B)      = line(A,B-A)            -- line through 2 points
+
+paraP(Q,U,V)    = Q+t*U+s*V              -- parametric eq. of plane
+
+paraP3(A,B,C)   = paraP(A,B-A,C-A)       -- parametric eq. of plane trough 3 points
+
+normalP(Q,N)    = dot(X-Q,N)             -- normal form of plane trough Q perp. N
+
+normalP2(R,U,V) = normalP(R,cross(U,V))  -- normal form of plane X=R+t*U+s*V
+
+normalP3(A,B,C) = normalP2(A,B-A,C-A)    -- normal form of plane through 3 points
+
+HesseNF(Q,N)     = dot(X-Q, N/abs(N))    -- = 0, with Q in plane
+
+Hesse2(Q,U,V) = HesseNF(Q,cross(U,V))    -- HESSEnormal form of plane X=Q+t*U+s*V
+
+Hesse3(A,B,C) = Hesse2(A,B-A,C-A)        -- HESSEnormal form of plane through 3 points
+
+HesseDist(R,Q,N) = mag( dot(R-Q, N/abs(N)) )
+
+##### DISTANCES ----------------------------------
+
+                 ----- distance R to plane (X-Q)*N=0 in normal form  
+distRPn(R,Q,N)   = mag( dot(R-Q, N/abs(N)) )
+
+                 ----- distance R to plane X=Q+sU+tV
+distRPp(R,Q,U,V) = distRPn(R,Q,cross(U,V))
+
+                 ----- distance R to plane through points A,B,C
+distRP3(R,A,B,C) = distRPp(R,A,B-A,C-A)
+
+                 ----- distance of skew lines
+distSkewLL = do("Use      distRPp(R,Q,U,V)",
+                "with U = direction vector line 1",
+                "     V = direction vector line 2",
+                "     Q = position vector line 1",
+                "     R = position vector line 2.")
+
+                 ----- distance R to plane in normal form (R-Q)*U=0
+distRL(R,Q,U) = sqrt( abs(R-Q)^2 - dot(R-Q,U/abs(U))^2)
+
+
+##### VOLUMINA ----------------------------------
+
+                   ---- volume of Box spanned of edges U,V,W
+VolBox(U,V,W)    = abs( box(U,V,W) )
+
+                   ---- volume of Box with 4 points A,B,C,D
+VolBox4(A,B,C,D) = VolBox(B-A,C-A,D-A)
+
+                  ---- volume of pyramid with the 4 points A,B,C,D
+VolPyr(A,B,C,D) = 1/6 * VolBox4(A,B,C,D)
+
+#################  geoBox END ####################
