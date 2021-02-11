@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH is row oriented.
+# But we have to Replace the 1st column.
+# Therefore we must transpose and re-transpose.
+
+Replace(pp,M,i) = do(X=M,               --(1)
+                     Xt=transpose(X),   --(2)
+                     Xt[i]=pp  ,        --(3)
+                     transpose(Xt))     --(4)
+
+# implement the 2x2 Cramer rule (Cr22).   --(5)
+Cramer22(A,B) = ( det(Replace(B,A,1))/det(A),
+                  det(Replace(B,A,2))/det(A) )
+
+---           (6)             (7)
+c22=Cramer22( ((3,2),(1,2)),  (6,4) )
+c22 
+	  
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
