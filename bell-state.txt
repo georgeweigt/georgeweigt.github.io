@@ -27,3 +27,15 @@ psi = ket00
 
 psi = dot(C,H,psi)
 psi
+
+"Measurement"
+
+P00 = mag(dot(ket00,psi))^2 -- probability of observing q1=0, q0=0
+P01 = mag(dot(ket01,psi))^2 -- probability of observing q1=0, q0=1
+P10 = mag(dot(ket10,psi))^2 -- probability of observing q1=1, q0=0
+P11 = mag(dot(ket11,psi))^2 -- probability of observing q1=1, q0=1
+
+P00
+P01
+P10
+P11
