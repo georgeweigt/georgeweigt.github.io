@@ -1,18 +1,18 @@
 "Bell state"
 
-ket00 = (1,0,0,0)
-ket01 = (0,1,0,0)
-ket10 = (0,0,1,0)
-ket11 = (0,0,0,1)
+ket00 = (1,0,0,0) -- q1=0, q0=0
+ket01 = (0,1,0,0) -- q1=0, q0=1
+ket10 = (0,0,1,0) -- q1=1, q0=0
+ket11 = (0,0,0,1) -- q1=1, q0=0
 
--- Hadamard (q0 target)
+-- Hadamard operator (q0 target)
 
 H = (sqrt(1/2) (ket00 + ket01),
      sqrt(1/2) (ket00 - ket01),
      ket10,
      ket11)
 
--- CNOT (q0 control, q1 target)
+-- CNOT operator (q0 control, q1 target)
 
 C = (ket00, -- ket00 -> ket00
      ket11, -- ket01 -> ket11 (q1 inverted)
