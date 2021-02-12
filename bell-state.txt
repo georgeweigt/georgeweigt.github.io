@@ -1,58 +1,29 @@
 "Bell state"
 
-ket0 = (1,0)
-ket1 = (0,1)
-
 ket00 = (1,0,0,0)
 ket01 = (0,1,0,0)
 ket10 = (0,0,1,0)
 ket11 = (0,0,0,1)
 
--- Hadamard gate
+-- Hadamard of first qubit
 
-H(u) = dot(UH,u)
+H = (sqrt(1/2) (ket00 + ket01),
+     sqrt(1/2) (ket00 - ket01),
+     ket10,
+     ket11)
 
-UH = sqrt(1/2) ((1,1),(1,-1))
+-- CNOT (q0 control, q1 target)
 
--- CNOT gate
+C = (ket00, -- ket00 -> ket00
+     ket11, -- ket01 -> ket11 (q1 inverted)
+     ket10, -- ket10 -> ket10
+     ket01) -- ket11 -> ket01 (q1 inverted)
 
-CNOT(u,v) = dot(UCNOT,T(u,v))
+-- initial state
 
-UCNOT = ((1,0,0,0),
-         (0,1,0,0),
-         (0,0,0,1),
-         (0,0,1,0))
-
--- T forms the tensor product of qubits u and v
-
-T(u,v) = dot(ket0,u) dot(ket0,v) (1,0,0,0) +
-         dot(ket0,u) dot(ket1,v) (0,1,0,0) +
-         dot(ket1,u) dot(ket0,v) (0,0,1,0) +
-         dot(ket1,u) dot(ket1,v) (0,0,0,1)
-
--- initial qubit states
-
-q0 = ket0
-q1 = ket0
+psi = ket00
 
 -- compute
 
-q0 = H(q0) -- Hadamard gate
-
-psi = CNOT(q0,q1) -- CNOT gate
-
--- result
-
+psi = dot(C,H,psi)
 psi
-
-"Measurement of Bell state"
-
-P00 = mag(dot(ket00,psi))^2 -- probability of measuring 00
-P01 = mag(dot(ket01,psi))^2 -- probability of measuring 01
-P10 = mag(dot(ket10,psi))^2 -- probability of measuring 10
-P11 = mag(dot(ket11,psi))^2 -- probability of measuring 11
-
-P00
-P01
-P10
-P11
