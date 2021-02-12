@@ -17,12 +17,12 @@ ket01 = (0,1,0,0) -- basis state q1=0, q0=1
 ket10 = (0,0,1,0) -- basis state q1=1, q0=0
 ket11 = (0,0,0,1) -- basis state q1=1, q0=1
 
--- Hadamard operator
+-- Hadamard operator (q0 target)
 
-H = (sqrt(1/2) (ket00 + ket01), -- ket00 -> sqrt(1/2) (ket00 + ket01)
-     sqrt(1/2) (ket00 - ket01), -- ket01 -> sqrt(1/2) (ket00 - ket01)
-     ket10,                     -- ket10 -> ket10
-     ket11)                     -- ket11 -> ket11
+H = sqrt(1/2) (ket00 + ket01,
+               ket00 - ket01,
+               ket10 + ket11,
+               ket10 - ket11)
 
 -- CNOT operator (q0 control, q1 target)
 
