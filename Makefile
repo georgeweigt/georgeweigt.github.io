@@ -48,3 +48,4 @@ demos:
 	cat 1.txt wavefuncop1.txt 2.txt > wavefuncop1.html
 	cat 1.txt wavefuncop2.txt 2.txt > wavefuncop2.html
 	cat 1.txt bell-state.txt 2.txt > bell-state.html
+	cat 1.txt deutsch-jozsa.txt 2.txt > deutsch-jozsa.html
