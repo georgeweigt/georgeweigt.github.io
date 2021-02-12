@@ -5,7 +5,7 @@ ket01 = (0,1,0,0)
 ket10 = (0,0,1,0)
 ket11 = (0,0,0,1)
 
--- Hadamard of first qubit
+-- Hadamard (q0 target)
 
 H = (sqrt(1/2) (ket00 + ket01),
      sqrt(1/2) (ket00 - ket01),
