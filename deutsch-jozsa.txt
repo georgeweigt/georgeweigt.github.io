@@ -1,4 +1,4 @@
--- Deutsch-Jozsa algorithm demo (4 qubits)
+-- Deutsch-Jozsa algorithm demo (4 qbits)
 
 ket0000 = (1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 ket0001 = (0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
@@ -16,6 +16,8 @@ ket1100 = (0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0)
 ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
 ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
 ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+
+-- Hadamard operators (subscript is target qbit)
 
 H0 = (ket0000 + ket1000,
       ket0001 + ket1001,
@@ -84,6 +86,8 @@ H3 = (ket0000 + ket0001,
       ket1100 - ket1101,
       ket1110 + ket1111,
       ket1110 - ket1111) / sqrt(2)
+
+-- CNOT operators (1st subscript is control qbit, 2nd subscript is target qbit)
 
 C01 = (ket0000,
        ket0001,
