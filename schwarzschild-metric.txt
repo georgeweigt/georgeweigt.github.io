@@ -1,7 +1,7 @@
 -- Verify that Einstein tensor vanishes for Schwarzschild metric
 
--- d for down index
--- u for up index
+-- d for down index (covariant index)
+-- u for up index (contravariant index)
 
 -- metric tensor
 
