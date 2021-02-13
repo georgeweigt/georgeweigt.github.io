@@ -1,4 +1,4 @@
-/* February 8, 2021
+/* February 13, 2021
 
 To build and run:
 
@@ -200,6 +200,8 @@ struct atom {
 #define ISPRIME		(8 * NSYM + 5)
 
 #define SYMBOL_J	(9 * NSYM + 0)
+
+#define KRON		(10 * NSYM + 0)
 
 #define LAGUERRE	(11 * NSYM + 0)
 #define LAST		(11 * NSYM + 1)
@@ -736,6 +738,9 @@ int ispoly_expr(struct atom *p, struct atom *x);
 int ispoly_term(struct atom *p, struct atom *x);
 int ispoly_factor(struct atom *p, struct atom *x);
 void eval_isprime(void);
+void eval_kron(void);
+void kron(void);
+void kron_nib(void);
 void eval_laguerre(void);
 void eval_latex(void);
 void latex(void);
@@ -11199,6 +11204,66 @@ eval_isprime(void)
 		push_integer(0);
 }
 
+// kronecker product
+
+void
+eval_kron(void)
+{
+	push(cadr(p1));
+	eval();
+	p1 = cddr(p1);
+	while (iscons(p1)) {
+		push(car(p1));
+		eval();
+		kron();
+		p1 = cdr(p1);
+	}
+}
+
+void
+kron(void)
+{
+	save();
+	kron_nib();
+	restore();
+}
+
+void
+kron_nib(void)
+{
+	int h, i, j, k, l, m, n, p, q;
+	p2 = pop();
+	p1 = pop();
+	if (!istensor(p1) || !istensor(p2)) {
+		push(p1);
+		push(p2);
+		multiply();
+		return;
+	}
+	if (p1->u.tensor->ndim > 2 || p2->u.tensor->ndim > 2)
+		stop("kron");
+	m = p1->u.tensor->dim[0];
+	n = p1->u.tensor->ndim == 1 ? 1 : p1->u.tensor->dim[1];
+	p = p2->u.tensor->dim[0];
+	q = p2->u.tensor->ndim == 1 ? 1 : p2->u.tensor->dim[1];
+	p3 = alloc_tensor(m * n * p * q);
+	h = 0;
+	// result matrix has (m * p) rows and (n * q) columns
+	for (i = 0; i < m; i++)
+		for (j = 0; j < p; j++)
+			for (k = 0; k < n; k++)
+				for (l = 0; l < q; l++) {
+					push(p1->u.tensor->elem[n * i + k]);
+					push(p2->u.tensor->elem[q * j + l]);
+					multiply();
+					p3->u.tensor->elem[h++] = pop();
+				}
+	p3->u.tensor->dim[0] = m * p;
+	p3->u.tensor->dim[1] = n * q;
+	p3->u.tensor->ndim = n * q == 1 ? 1 : 2;
+	push(p3);
+}
+
 // L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
 
 void
@@ -18375,7 +18440,7 @@ void
 get_token_nib(void)
 {
 	// skip spaces
-	while (isspace(*scan_str) && *scan_str != '\n')
+	while (*scan_str != '\0' && *scan_str != '\n' && *scan_str != '\r' && (*scan_str < 33 || *scan_str > 126))
 		scan_str++;
 	token_str = scan_str;
 	// end of string?
@@ -18384,7 +18449,7 @@ get_token_nib(void)
 		return;
 	}
 	// newline?
-	if (*scan_str == '\n') {
+	if (*scan_str == '\n' || *scan_str == '\r') {
 		scan_str++;
 		token = T_NEWLINE;
 		return;
@@ -19558,6 +19623,8 @@ struct se stab[] = {
 	{ "isprime",		ISPRIME,	eval_isprime		},
 
 	{ "j",			SYMBOL_J,	NULL			},
+
+	{ "kron",		KRON,		eval_kron		},
 
 	{ "laguerre",		LAGUERRE,	eval_laguerre		},
 	{ "last",		LAST,		NULL			},
