@@ -1,39 +1,45 @@
-"Bell state"
+-- Bell state demo (2 qbits)
 
-ket00 = (1,0,0,0) -- basis state q1=0, q0=0
-ket01 = (0,1,0,0) -- basis state q1=0, q0=1
-ket10 = (0,0,1,0) -- basis state q1=1, q0=0
-ket11 = (0,0,0,1) -- basis state q1=1, q0=1
+ket00 = (1,0,0,0)
+ket01 = (0,1,0,0)
+ket10 = (0,0,1,0)
+ket11 = (0,0,0,1)
 
--- Hadamard operator (q0 target)
+-- Hadamard operators (subscript is target qbit)
 
-H = sqrt(1/2) (ket00 + ket01,
-               ket00 - ket01,
-               ket10 + ket11,
-               ket10 - ket11)
+H0 = (ket00 + ket10,
+      ket01 + ket11,
+      ket00 - ket10,
+      ket01 - ket11) / sqrt(2)
 
--- CNOT operator (q0 control, q1 target)
+H1 = (ket00 + ket01,
+      ket00 - ket01,
+      ket10 + ket11,
+      ket10 - ket11) / sqrt(2)
 
-C = (ket00, -- ket00 -> ket00
-     ket11, -- ket01 -> ket11 (q1 inverted)
-     ket10, -- ket10 -> ket10
-     ket01) -- ket11 -> ket01 (q1 inverted)
+-- CNOT operators (1st subscript is control qbit, 2nd is target qbit)
 
--- initial state
+C01 = (ket00,
+       ket01,
+       ket11,
+       ket10)
 
-psi = ket00
+C10 = (ket00,
+       ket11,
+       ket10,
+       ket01)
 
--- compute
+"Final state"
 
-psi = dot(C,H,psi)
+psi = dot(C01,H0,ket00)
 psi
 
 "Measurement"
 
-P00 = mag(dot(ket00,psi))^2 -- probability of observing q1=0, q0=0
-P01 = mag(dot(ket01,psi))^2 -- probability of observing q1=0, q0=1
-P10 = mag(dot(ket10,psi))^2 -- probability of observing q1=1, q0=0
-P11 = mag(dot(ket11,psi))^2 -- probability of observing q1=1, q0=1
+P00 = mag(dot(ket00,psi))^2 -- probability of observing q0=0, q1=0
+P01 = mag(dot(ket01,psi))^2 -- probability of observing q0=0, q1=1
+P10 = mag(dot(ket10,psi))^2 -- probability of observing q0=1, q1=0
+P11 = mag(dot(ket11,psi))^2 -- probability of observing q0=1, q1=1
 
 P00
 P01
