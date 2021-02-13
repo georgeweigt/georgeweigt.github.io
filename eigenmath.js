@@ -1682,6 +1682,7 @@ const IMAG = "imag";
 const INNER = "inner";
 const INTEGRAL = "integral";
 const INV = "inv";
+const KRON = "kron";
 const LOG = "log";
 const MAG = "mag";
 const MINOR = "minor";
@@ -5455,6 +5456,19 @@ eval_inv(p1)
 	inv();
 }
 function
+eval_kron(p1)
+{
+	push(cadr(p1));
+	evalf();
+	p1 = cddr(p1);
+	while (iscons(p1)) {
+		push(car(p1));
+		evalf();
+		kron();
+		p1 = cdr(p1);
+	}
+}
+function
 eval_log(p1)
 {
 	push(cadr(p1));
@@ -8281,6 +8295,52 @@ iszero(p)
 	}
 
 	return 0;
+}
+function
+kron()
+{
+	var i, j, k, l, m, n, p, q, p1, p2, p3, p4;
+
+	p2 = pop();
+	p1 = pop();
+
+	if (!istensor(p1) || !istensor(p2)) {
+		push(p1);
+		push(p2);
+		multiply();
+		return;
+	}
+
+	if (p1.dim.length > 2 || p2.dim.length > 2)
+		stopf("kron");
+
+	m = p1.dim[0];
+	n = p1.dim.length == 1 ? 1 : p1.dim[1];
+
+	p = p2.dim[0];
+	q = p2.dim.length == 1 ? 1 : p2.dim[1];
+
+	p3 = alloc_tensor();
+
+	// result matrix has (m * p) rows and (n * q) columns
+
+	for (i = 0; i < m; i++)
+		for (j = 0; j < p; j++)
+			for (k = 0; k < n; k++)
+				for (l = 0; l < q; l++) {
+					push(p1.elem[n * i + k]);
+					push(p2.elem[q * j + l]);
+					multiply();
+					p4 = pop();
+					p3.elem.push(p4);
+				}
+
+	p3.dim[0] = m * p;
+
+	if (n * q > 1)
+		p3.dim[1] = n * q;
+
+	push(p3);
 }
 function
 lengthf(p)
@@ -12000,7 +12060,7 @@ get_token_nib()
 
 	for (;;) {
 		c = inchar();
-		if (c == "" || c == "\n" || (c.charCodeAt(0) > 32 && c.charCodeAt(0) < 127))
+		if (c == "" || c == "\n" || c == "\r" || (c.charCodeAt(0) > 32 && c.charCodeAt(0) < 127))
 			break;
 		scan_index++;
 	}
@@ -12018,7 +12078,7 @@ get_token_nib()
 
 	// newline?
 
-	if (c == "\n") {
+	if (c == "\n" || c == "\r") {
 		token = T_NEWLINE;
 		return;
 	}
@@ -13380,6 +13440,7 @@ var symtab = {
 "inner":	{printname:INNER,	func:eval_inner},
 "integral":	{printname:INTEGRAL,	func:eval_integral},
 "inv":		{printname:INV,		func:eval_inv},
+"kron":		{printname:KRON,	func:eval_kron},
 "log":		{printname:LOG,		func:eval_log},
 "mag":		{printname:MAG,		func:eval_mag},
 "minor":	{printname:MINOR,	func:eval_minor},
