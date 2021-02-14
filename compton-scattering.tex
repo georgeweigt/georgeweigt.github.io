@@ -12,9 +12,7 @@
 
 \maketitle
 
-\tableofcontents
-
-\subsection{Theory}
+\subsection*{Theory}
 
 Compton scattering occurs when a high energy photon such as a gamma ray hits an electron.
 In typical Compton scattering experiments the incident electron is at rest with zero velocity.
@@ -71,12 +69,19 @@ E\\
 \noindent
 Symbol $\omega$ is the photon energy and $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
 The spinors are
-\begin{gather*}
+\begin{equation*}
 u_{21}=\begin{pmatrix}
 E+m\\
 0\\
 -\omega\\
 0
+\end{pmatrix}
+\qquad
+u_{22}=\begin{pmatrix}
+0\\
+E+m\\
+0\\
+\omega
 \end{pmatrix}
 \qquad
 u_{41}=\begin{pmatrix}
@@ -85,13 +90,6 @@ E+m\\
 p_4^z\\
 p_4^x+ip_4^y
 \end{pmatrix}
-\\
-u_{22}=\begin{pmatrix}
-0\\
-E+m\\
-0\\
-\omega
-\end{pmatrix}
 \qquad
 u_{42}=\begin{pmatrix}
 0\\
@@ -99,7 +97,7 @@ E+m\\
 p_4^x-ip_4^y\\
 -p_4^z
 \end{pmatrix}
-\end{gather*}
+\end{equation*}
 
 \noindent
 The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
@@ -276,7 +274,7 @@ center of mass frame is
 \href{https://georgeweigt.github.io/compton-scattering-2.html}{Click here}
 to verify momentum formulas for Compton scattering.
 
-\subsection{Lab frame}
+\subsection*{Lab frame}
 
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
 The following Lorentz boost $\Lambda$ transforms momentum vectors from
@@ -364,7 +362,7 @@ Hence
 \href{https://georgeweigt.github.io/compton-scattering-3.html}{Click here}
 to verify lab frame formulas for Compton scattering.
 
-\subsection{Cross section}
+\subsection*{Cross section}
 
 Now that we have derived $\langle|\mathcal{M}|^2\rangle$
 we can investigate the angular distribution of scattered photons.
@@ -457,7 +455,7 @@ Run ``compton-scattering-4.txt'' to plot $f(\theta)$.
 Plot of $f(\theta)$ for $\omega=m$.
 \end{center}
 
-\subsection{Thomson scattering}
+\subsection*{Thomson scattering}
 
 When $\omega$ is much smaller than the electron mass $m$ we have
 \begin{equation*}
@@ -473,7 +471,7 @@ Hence for $\omega\ll m$ the differential cross section is approximately
 \noindent
 which is the formula for Thomson scattering.
 
-\subsection{LEP data}
+\subsection*{LEP data}
 
 The following Compton scattering data is from the paper
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''
@@ -565,7 +563,7 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.97
 \noindent
 The result indicates that the model $d\sigma$ explains 97\% of the variance in the data.
 
-\subsection{Eigenmath notes}
+\subsection*{Eigenmath notes}
 
 Here are a few notes on how the Eigenmath scripts work.
 
@@ -729,7 +727,7 @@ f_{12}
 \noindent
 The innermost contract sums over $\nu$ followed by sum over $\mu$ then sum over $\alpha$.
 
-\subsection{References}
+\subsection*{References}
 
 L3 Collaboration.
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''\\
