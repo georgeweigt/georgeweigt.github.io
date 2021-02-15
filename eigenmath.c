@@ -5966,7 +5966,6 @@ fmt_denominators(struct atom *p)
 	t = tos;
 	n = count_denominators(p);
 	p = cdr(p);
-	q = car(p);
 	while (iscons(p)) {
 		q = car(p);
 		p = cdr(p);
@@ -6247,7 +6246,6 @@ fmt_numerators(struct atom *p)
 	t = tos;
 	n = count_numerators(p);
 	p = cdr(p);
-	q = car(p);
 	while (iscons(p)) {
 		q = car(p);
 		p = cdr(p);
