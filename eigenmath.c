@@ -1,4 +1,4 @@
-/* February 13, 2021
+/* February 15, 2021
 
 To build and run:
 
@@ -589,8 +589,11 @@ void fmt_update_subscript(void);
 void fmt_update_superscript(void);
 void fmt_update_table(int n, int m);
 void fmt_vector(struct atom *p);
+int find_denominator(struct atom *p);
 int count_denominators(struct atom *p);
 int isdenominator(struct atom *p);
+int count_numerators(struct atom *p);
+int isnumerator(struct atom *p);
 void fmt_draw(int x, int y, struct atom *p);
 void fmt_draw_char(int x, int y, int c);
 void fmt_draw_delims(int x, int y, int h, int d, int w);
@@ -5964,14 +5967,6 @@ fmt_denominators(struct atom *p)
 	n = count_denominators(p);
 	p = cdr(p);
 	q = car(p);
-	if (isrational(q)) {
-		if (!MEQUAL(q->u.q.b, 1)) {
-			s = mstr(q->u.q.b);
-			fmt_roman_string(s);
-			n++;
-		}
-		p = cdr(p);
-	}
 	while (iscons(p)) {
 		q = car(p);
 		p = cdr(p);
@@ -5979,6 +5974,11 @@ fmt_denominators(struct atom *p)
 			continue;
 		if (tos > t)
 			fmt_space();
+		if (isrational(q)) {
+			s = mstr(q->u.q.b);
+			fmt_roman_string(s);
+			continue;
+		}
 		if (isminusone(caddr(q))) {
 			q = cadr(q);
 			if (car(q) == symbol(ADD) && n == 1)
@@ -6241,27 +6241,29 @@ fmt_matrix(struct atom *p, int d, int k)
 void
 fmt_numerators(struct atom *p)
 {
-	int t;
+	int n, t;
 	char *s;
 	struct atom *q;
 	t = tos;
+	n = count_numerators(p);
 	p = cdr(p);
 	q = car(p);
-	if (isrational(q)) {
-		if (!MEQUAL(q->u.q.a, 1)) {
-			s = mstr(q->u.q.a);
-			fmt_roman_string(s);
-		}
-		p = cdr(p);
-	}
 	while (iscons(p)) {
 		q = car(p);
 		p = cdr(p);
-		if (isdenominator(q))
+		if (!isnumerator(q))
 			continue;
 		if (tos > t)
 			fmt_space();
-		fmt_factor(q);
+		if (isrational(q)) {
+			s = mstr(q->u.q.a);
+			fmt_roman_string(s);
+			continue;
+		}
+		if (car(q) == symbol(ADD) && n == 1)
+			fmt_expr(q); // parens not needed
+		else
+			fmt_factor(q);
 	}
 	if (t == tos)
 		fmt_roman_char('1'); // no numerators
@@ -6618,7 +6620,7 @@ fmt_term(struct atom *p)
 void
 fmt_term_nib(struct atom *p)
 {
-	if (count_denominators(p) > 0) {
+	if (find_denominator(p)) {
 		fmt_frac(p);
 		return;
 	}
@@ -6847,6 +6849,20 @@ fmt_vector(struct atom *p)
 }
 
 int
+find_denominator(struct atom *p)
+{
+	struct atom *q;
+	p = cdr(p);
+	while (iscons(p)) {
+		q = car(p);
+		if (car(q) == symbol(POWER) && isnegativenumber(caddr(q)))
+			return 1;
+		p = cdr(p);
+	}
+	return 0;
+}
+
+int
 count_denominators(struct atom *p)
 {
 	int n = 0;
@@ -6862,7 +6878,36 @@ count_denominators(struct atom *p)
 int
 isdenominator(struct atom *p)
 {
-	return car(p) == symbol(POWER) && isnegativenumber(caddr(p));
+	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
+		return 1;
+	else if (isrational(p) && !MEQUAL(p->u.q.b, 1))
+		return 1;
+	else
+		return 0;
+}
+
+int
+count_numerators(struct atom *p)
+{
+	int n = 0;
+	p = cdr(p);
+	while (iscons(p)) {
+		if (isnumerator(car(p)))
+			n++;
+		p = cdr(p);
+	}
+	return n;
+}
+
+int
+isnumerator(struct atom *p)
+{
+	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
+		return 0;
+	else if (isrational(p) && MEQUAL(p->u.q.a, 1))
+		return 0;
+	else
+		return 1;
 }
 
 void
