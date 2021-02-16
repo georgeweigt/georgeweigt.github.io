@@ -589,17 +589,17 @@ void fmt_update_subscript(void);
 void fmt_update_superscript(void);
 void fmt_update_table(int n, int m);
 void fmt_vector(struct atom *p);
-int find_denominator(struct atom *p);
-int count_denominators(struct atom *p);
-int isdenominator(struct atom *p);
-int count_numerators(struct atom *p);
-int isnumerator(struct atom *p);
 void fmt_draw(int x, int y, struct atom *p);
 void fmt_draw_char(int x, int y, int c);
 void fmt_draw_delims(int x, int y, int h, int d, int w);
 void fmt_draw_ldelim(int x, int y, int h, int d, int w);
 void fmt_draw_rdelim(int x, int y, int h, int d, int w);
 void fmt_draw_table(int x, int y, struct atom *p);
+int find_denominator(struct atom *p);
+int count_denominators(struct atom *p);
+int isdenominator(struct atom *p);
+int count_numerators(struct atom *p);
+int isnumerator(struct atom *p);
 void eval_eigen(void);
 void eval_eigenval(void);
 void eval_eigenvec(void);
@@ -5923,6 +5923,7 @@ display(void)
 		putchar('\n');
 	}
 	free(fmt_buf);
+	putchar('\n'); // double space
 	restore();
 }
 
@@ -6846,68 +6847,6 @@ fmt_vector(struct atom *p)
 	fmt_update_table(n, 1); // n rows, 1 column
 }
 
-int
-find_denominator(struct atom *p)
-{
-	struct atom *q;
-	p = cdr(p);
-	while (iscons(p)) {
-		q = car(p);
-		if (car(q) == symbol(POWER) && isnegativenumber(caddr(q)))
-			return 1;
-		p = cdr(p);
-	}
-	return 0;
-}
-
-int
-count_denominators(struct atom *p)
-{
-	int n = 0;
-	p = cdr(p);
-	while (iscons(p)) {
-		if (isdenominator(car(p)))
-			n++;
-		p = cdr(p);
-	}
-	return n;
-}
-
-int
-isdenominator(struct atom *p)
-{
-	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
-		return 1;
-	else if (isrational(p) && !MEQUAL(p->u.q.b, 1))
-		return 1;
-	else
-		return 0;
-}
-
-int
-count_numerators(struct atom *p)
-{
-	int n = 0;
-	p = cdr(p);
-	while (iscons(p)) {
-		if (isnumerator(car(p)))
-			n++;
-		p = cdr(p);
-	}
-	return n;
-}
-
-int
-isnumerator(struct atom *p)
-{
-	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
-		return 0;
-	else if (isrational(p) && MEQUAL(p->u.q.a, 1))
-		return 0;
-	else
-		return 1;
-}
-
 void
 fmt_draw(int x, int y, struct atom *p)
 {
@@ -7035,6 +6974,68 @@ fmt_draw_table(int x, int y, struct atom *p)
 		h = cdr(h);
 		d = cdr(d);
 	}
+}
+
+int
+find_denominator(struct atom *p)
+{
+	struct atom *q;
+	p = cdr(p);
+	while (iscons(p)) {
+		q = car(p);
+		if (car(q) == symbol(POWER) && isnegativenumber(caddr(q)))
+			return 1;
+		p = cdr(p);
+	}
+	return 0;
+}
+
+int
+count_denominators(struct atom *p)
+{
+	int n = 0;
+	p = cdr(p);
+	while (iscons(p)) {
+		if (isdenominator(car(p)))
+			n++;
+		p = cdr(p);
+	}
+	return n;
+}
+
+int
+isdenominator(struct atom *p)
+{
+	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
+		return 1;
+	else if (isrational(p) && !MEQUAL(p->u.q.b, 1))
+		return 1;
+	else
+		return 0;
+}
+
+int
+count_numerators(struct atom *p)
+{
+	int n = 0;
+	p = cdr(p);
+	while (iscons(p)) {
+		if (isnumerator(car(p)))
+			n++;
+		p = cdr(p);
+	}
+	return n;
+}
+
+int
+isnumerator(struct atom *p)
+{
+	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
+		return 0;
+	else if (isrational(p) && MEQUAL(p->u.q.a, 1))
+		return 0;
+	else
+		return 1;
 }
 
 //	Compute eigenvalues and eigenvectors
