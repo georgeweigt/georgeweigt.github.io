@@ -224,8 +224,13 @@ adj()
 
 	p1 = pop();
 
-	if (!istensor(p1) || p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
-		stopf("adj: square matrix expected");
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
+
+	if (p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
+		stopf("adj");
 
 	n = p1.dim[0];
 
@@ -1688,6 +1693,7 @@ const MAG = "mag";
 const MINOR = "minor";
 const MINORMATRIX = "minormatrix";
 const NIL = "nil";
+const NOEXPAND = "noexpand";
 const NOT = "not";
 const NUMBER = "number";
 const NUMERATOR = "numerator";
@@ -5566,6 +5572,19 @@ eval_nil()
 	push_symbol(NIL);
 }
 function
+eval_noexpand(p1)
+{
+	var t;
+
+	t = expanding;
+	expanding = 0;
+
+	push(cadr(p1));
+	evalf();
+
+	expanding = t;
+}
+function
 eval_nonstop()
 {
 	var save_expanding, save_stack_length, save_frame_length;
@@ -8066,7 +8085,7 @@ var integral_tab = [
 function
 inv()
 {
-	var t, p1;
+	var p1;
 
 	p1 = pop();
 
@@ -8082,13 +8101,8 @@ inv()
 	push(p1);
 	adj();
 
-	// ensure inv(A) gives the same result as adj(A)/det(A)
-
 	push(p1);
-	t = expanding;
-	expanding = 0;
 	det();
-	expanding = t;
 
 	divide();
 }
@@ -13480,6 +13494,7 @@ var symtab = {
 "minor":	{printname:MINOR,	func:eval_minor},
 "minormatrix":	{printname:MINORMATRIX,	func:eval_minormatrix},
 "nil":		{printname:NIL,		func:eval_nil},
+"noexpand":	{printname:NOEXPAND,	func:eval_noexpand},
 "not":		{printname:NOT,		func:eval_not},
 "number":	{printname:NUMBER,	func:eval_number},
 "numerator":	{printname:NUMERATOR,	func:eval_numerator},

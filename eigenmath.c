@@ -220,10 +220,11 @@ struct atom {
 #define MOD		(12 * NSYM + 5)
 
 #define NIL		(13 * NSYM + 0)
-#define NOT		(13 * NSYM + 1)
-#define NROOTS		(13 * NSYM + 2)
-#define NUMBER		(13 * NSYM + 3)
-#define NUMERATOR	(13 * NSYM + 4)
+#define NOEXPAND	(13 * NSYM + 1)
+#define NOT		(13 * NSYM + 2)
+#define NROOTS		(13 * NSYM + 3)
+#define NUMBER		(13 * NSYM + 4)
+#define NUMERATOR	(13 * NSYM + 5)
 
 #define OR		(14 * NSYM + 0)
 #define OUTER		(14 * NSYM + 1)
@@ -648,6 +649,7 @@ void eval_sqrt(void);
 void eval_stop(void);
 void eval_subst(void);
 void expand_expr(void);
+void eval_noexpand(void);
 void eval_exp(void);
 void exponential(void);
 void eval_expand(void);
@@ -1635,8 +1637,12 @@ adj_nib(void)
 {
 	int col, i, j, k, n, row;
 	p1 = pop();
-	if (!istensor(p1) || p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
-		stop("adj: square matrix expected");
+	if (!istensor(p1)) {
+		push(p1);
+		return;
+	}
+	if (p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
+		stop("adj");
 	n = p1->u.tensor->dim[0];
 	// p2 is the adjunct matrix
 	p2 = alloc_matrix(n, n);
@@ -7897,6 +7903,17 @@ expand_expr(void)
 }
 
 void
+eval_noexpand(void)
+{
+	int t;
+	t = expanding;
+	expanding = 0;
+	push(cadr(p1));
+	eval();
+	expanding = t;
+}
+
+void
 eval_exp(void)
 {
 	push(cadr(p1));
@@ -11217,7 +11234,6 @@ inv(void)
 void
 inv_nib(void)
 {
-	int t;
 	p1 = pop();
 	if (!istensor(p1)) {
 		push(p1);
@@ -11228,12 +11244,8 @@ inv_nib(void)
 		stop("inv");
 	push(p1);
 	adj();
-	// ensure inv(A) gives the same result as adj(A)/det(A)
 	push(p1);
-	t = expanding;
-	expanding = 0;
 	det();
-	expanding = t;
 	divide();
 }
 
@@ -19688,6 +19700,7 @@ struct se stab[] = {
 	{ "mod",		MOD,		eval_mod		},
 
 	{ "nil",		NIL,		eval_nil		},
+	{ "noexpand",		NOEXPAND,	eval_noexpand		},
 	{ "not",		NOT,		eval_not		},
 	{ "nroots",		NROOTS,		eval_nroots		},
 	{ "number",		NUMBER,		eval_number		},
