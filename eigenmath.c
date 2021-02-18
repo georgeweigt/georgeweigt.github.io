@@ -1,4 +1,4 @@
-/* February 16, 2021
+/* February 18, 2021
 
 To build and run:
 
@@ -539,6 +539,7 @@ void eval_cosh(void);
 void scosh(void);
 void scosh_nib(void);
 void eval_defint(void);
+void eval_defint_nib(void);
 void eval_degree(void);
 void degree(void);
 void degree_nib(struct atom *p);
@@ -710,7 +711,6 @@ void gcd_term_term(void);
 void gcd_term_factor(void);
 void gcd_factor_term(void);
 void gcd_numbers(void);
-void guess(void);
 void eval_hermite(void);
 void eval_hilbert(void);
 void hilbert(void);
@@ -724,6 +724,7 @@ void eval_inner(void);
 void inner(void);
 void inner_nib(void);
 void eval_integral(void);
+void eval_integral_nib(void);
 void integral(void);
 void integral_nib(void);
 void integral_of_form(void);
@@ -862,6 +863,7 @@ int order_factor(struct atom *p);
 void multiply_numbers(void);
 void multiply_rationals(void);
 void reduce_radical_factors(int h);
+void multiply_expand(void);
 void multiply_noexpand(void);
 void multiply_factors_noexpand(int n);
 void negate(void);
@@ -1638,7 +1640,7 @@ adj_nib(void)
 	int col, i, j, k, n, row;
 	p1 = pop();
 	if (!istensor(p1)) {
-		push(p1);
+		push_integer(1); // adj of scalar is 1 by adj = det inv
 		return;
 	}
 	if (p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
@@ -5205,14 +5207,23 @@ scosh_nib(void)
 void
 eval_defint(void)
 {
-	expanding++; // in case integral is in denominator
+	int t;
+	t = expanding;
+	expanding = 1;
+	eval_defint_nib();
+	expanding = t;
+}
+
+void
+eval_defint_nib(void)
+{
 	push(cadr(p1));
 	eval();
 	F = pop();
 	p1 = cddr(p1);
 	do {
 		if (length(p1) < 3)
-			stop("defint: missing argument");
+			stop("defint");
 		push(car(p1));
 		p1 = cdr(p1);
 		eval();
@@ -5243,7 +5254,6 @@ eval_defint(void)
 		F = pop();
 	} while (iscons(p1));
 	push(F);
-	expanding--;
 }
 
 void
@@ -5255,7 +5265,7 @@ eval_degree(void)
 	eval();
 	p1 = pop();
 	if (p1 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p1);
 	degree();
@@ -5363,7 +5373,7 @@ eval_derivative(void)
 	eval();
 	p1 = cddr(p1);
 	if (!iscons(p1)) {
-		guess();
+		push_symbol(SYMBOL_X);
 		derivative();
 		return;
 	}
@@ -5382,8 +5392,8 @@ eval_derivative(void)
 			push(X);
 			n = pop_integer();
 			if (n == ERR)
-				stop("derivative: integer expected");
-			guess();
+				stop("derivative");
+			push_symbol(SYMBOL_X);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -5400,7 +5410,7 @@ eval_derivative(void)
 				push(Y);
 				n = pop_integer();
 				if (n == ERR)
-					stop("derivative: integer expected");
+					stop("derivative");
 				for (i = 0; i < n; i++) {
 					push(X);
 					derivative();
@@ -7897,9 +7907,11 @@ eval_subst(void)
 void
 expand_expr(void)
 {
-	expanding++;
+	int t;
+	t = expanding;
+	expanding = 1;
 	eval();
-	expanding--;
+	expanding = t;
 }
 
 void
@@ -7938,7 +7950,7 @@ eval_expand(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p2);
 	expand();
@@ -8517,7 +8529,7 @@ eval_factor(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p2);
 	factorpoly();
@@ -9567,17 +9579,18 @@ eval_gcd(void)
 void
 gcd(void)
 {
-	int x = expanding;
+	int t;
+	t = expanding;
+	expanding = 1;
 	save();
 	gcd_main();
 	restore();
-	expanding = x;
+	expanding = t;
 }
 
 void
 gcd_main(void)
 {
-	expanding = 1;
 	p2 = pop();
 	p1 = pop();
 	if (equal(p1, p2)) {
@@ -9802,28 +9815,6 @@ gcd_numbers(void)
 	b = mgcd(p1->u.q.b, p2->u.q.b);
 	push_rational_number(MPLUS, a, b);
 	restore();
-}
-
-// Guess which symbol to use for derivative, integral, etc.
-
-void
-guess(void)
-{
-	struct atom *p;
-	p = pop();
-	push(p);
-	if (find(p, symbol(SYMBOL_X)))
-		push_symbol(SYMBOL_X);
-	else if (find(p, symbol(SYMBOL_Y)))
-		push_symbol(SYMBOL_Y);
-	else if (find(p, symbol(SYMBOL_Z)))
-		push_symbol(SYMBOL_Z);
-	else if (find(p, symbol(SYMBOL_T)))
-		push_symbol(SYMBOL_T);
-	else if (find(p, symbol(SYMBOL_S)))
-		push_symbol(SYMBOL_S);
-	else
-		push_symbol(SYMBOL_X);
 }
 
 void
@@ -10774,15 +10765,23 @@ char *integral_tab[] = {
 void
 eval_integral(void)
 {
-	int i, n, flag;
-	expanding++;
+	int t;
+	t = expanding;
+	expanding = 1;
+	eval_integral_nib();
+	expanding = t;
+}
+
+void
+eval_integral_nib(void)
+{
+	int flag, i, n;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
 	if (!iscons(p1)) {
-		guess();
+		push_symbol(SYMBOL_X);
 		integral();
-		expanding--;
 		return;
 	}
 	flag = 0;
@@ -10800,8 +10799,8 @@ eval_integral(void)
 			push(X);
 			n = pop_integer();
 			if (n == ERR)
-				stop("integral: integer expected");
-			guess();
+				stop("integral");
+			push_symbol(SYMBOL_X);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -10809,8 +10808,8 @@ eval_integral(void)
 			}
 			continue;
 		}
-		if (!issymbol(X))
-			stop("integral: symbol expected");
+		if (!isusersymbol(X))
+			stop("integral");
 		if (iscons(p1)) {
 			push(car(p1));
 			eval();
@@ -10820,7 +10819,7 @@ eval_integral(void)
 				push(Y);
 				n = pop_integer();
 				if (n == ERR)
-					stop("integral: integer expected");
+					stop("integral");
 				for (i = 0; i < n; i++) {
 					push(X);
 					integral();
@@ -10832,7 +10831,6 @@ eval_integral(void)
 		push(X);
 		integral();
 	}
-	expanding--;
 }
 
 #undef F
@@ -11944,8 +11942,6 @@ latex_string(struct atom *p)
 	print_str("}");
 }
 
-// Find the least common multiple of two expressions.
-
 void
 eval_lcm(void)
 {
@@ -11964,11 +11960,13 @@ eval_lcm(void)
 void
 lcm(void)
 {
-	expanding++;
+	int t;
+	t = expanding;
+	expanding = 1;
 	save();
 	lcm_nib();
 	restore();
-	expanding--;
+	expanding = t;
 }
 
 void
@@ -11986,18 +11984,6 @@ lcm_nib(void)
 	reciprocate();
 }
 
-/* Return the leading coefficient of a polynomial.
-
-Example
-
-	leading(5x^2+x+1,x)
-
-Result
-
-	5
-
-The result is undefined if P is not a polynomial. */
-
 void
 eval_leading(void)
 {
@@ -12007,7 +11993,7 @@ eval_leading(void)
 	eval();
 	p1 = pop();
 	if (p1 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p1);
 	leading();
@@ -14032,9 +14018,20 @@ reduce_radical_factors(int h)
 }
 
 void
+multiply_expand(void)
+{
+	int t;
+	t = expanding;
+	expanding = 1;
+	multiply();
+	expanding = t;
+}
+
+void
 multiply_noexpand(void)
 {
-	int t = expanding;
+	int t;
+	t = expanding;
 	expanding = 0;
 	multiply();
 	expanding = t;
@@ -14043,7 +14040,8 @@ multiply_noexpand(void)
 void
 multiply_factors_noexpand(int n)
 {
-	int t = expanding;
+	int t;
+	t = expanding;
 	expanding = 0;
 	multiply_factors(n);
 	expanding = t;
@@ -14103,7 +14101,7 @@ eval_nroots(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p2);
 	p2 = pop();
@@ -14682,9 +14680,7 @@ power_nib(void)
 		push(cadr(BASE));
 		push(caddr(BASE));
 		push(EXPO);
-		expanding++; // expand products of exponents
-		multiply();
-		expanding--;
+		multiply_expand(); // always expand products of exponents
 		power();
 		return;
 	}
@@ -17745,7 +17741,7 @@ eval_roots(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		guess();
+		push_symbol(SYMBOL_X);
 	else
 		push(p2);
 	p2 = pop();
