@@ -650,7 +650,6 @@ void eval_sqrt(void);
 void eval_stop(void);
 void eval_subst(void);
 void expand_expr(void);
-void eval_noexpand(void);
 void eval_exp(void);
 void exponential(void);
 void eval_expand(void);
@@ -870,6 +869,7 @@ void negate(void);
 void negate_noexpand(void);
 void reciprocate(void);
 void divide(void);
+void eval_noexpand(void);
 void eval_nroots(void);
 void monic(int n);
 void findroot(int n);
@@ -7915,17 +7915,6 @@ expand_expr(void)
 }
 
 void
-eval_noexpand(void)
-{
-	int t;
-	t = expanding;
-	expanding = 0;
-	push(cadr(p1));
-	eval();
-	expanding = t;
-}
-
-void
 eval_exp(void)
 {
 	push(cadr(p1));
@@ -14075,6 +14064,17 @@ divide(void)
 {
 	reciprocate();
 	multiply();
+}
+
+void
+eval_noexpand(void)
+{
+	int t;
+	t = expanding;
+	expanding = 0;
+	push(cadr(p1));
+	eval();
+	expanding = t;
 }
 
 // find the roots of a polynomial numerically
