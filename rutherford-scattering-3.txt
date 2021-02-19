@@ -11,7 +11,10 @@ alpha = pie / 4
 dtheta = (pie - alpha) / 100
 C = sum(k,1,100,eval(f,theta,alpha + (k - 0.5) dtheta)) dtheta
 
+"Probability density"
+
 f = M sin(theta) / C
+f
 
 xrange = (alpha,pi)
 yrange = (0,4)
