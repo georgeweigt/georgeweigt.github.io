@@ -91,6 +91,6 @@ f22 = contract(contract(contract(T,3,4),2,3))
 f = C1^2 f11 + C1 C2 f12 + C1 C2 conj(f12) + C2^2 f22
 f
 
-"Does S = f?"
+"Does S equal f ?"
 
 test(S == f,"yes","no")

@@ -50,6 +50,8 @@ pslash2 = dot(p2,gmunu,gamma)
 
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 
+"Sum over spin states"
+
 S = 0
 
 for(s1,1,2,for(s2,1,2,
@@ -59,20 +61,16 @@ for(s1,1,2,for(s2,1,2,
 ))
 
 S = S / N -- normalize
-
-T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
-
-"Sum over spin states"
-
 S
 
 "Casimir trick"
 
-T
+f = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
+f
 
-"Does S equal T?"
+"Does S equal f ?"
 
-test(S == T,"yes","no")
+test(S == f,"yes","no")
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
