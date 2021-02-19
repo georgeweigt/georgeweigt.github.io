@@ -52,4 +52,6 @@ demos:
 	cat 1.txt quaternions.txt 2.txt > quaternions.html
 	cat 1.txt octonions.txt 2.txt > octonions.html
 	cat 1.txt sedenions.txt 2.txt > sedenions.html
-
+	cat 1.txt rutherford-scattering-1.txt 2.txt > rutherford-scattering-1.html
+	cat 1.txt rutherford-scattering-2.txt 2.txt > rutherford-scattering-2.html
+	cat 1.txt rutherford-scattering-3.txt 2.txt > rutherford-scattering-3.html
