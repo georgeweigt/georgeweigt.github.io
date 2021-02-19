@@ -4963,9 +4963,17 @@ eval_cosh(p1)
 function
 eval_defint(p1)
 {
-	var A, B, F, X;
+	var t;
+	t = expanding;
+	expanding = 1;
+	eval_defint_nib(p1);
+	expanding = t;
+}
 
-	expanding++; // in case integral is in denominator
+function
+eval_defint_nib(p1)
+{
+	var A, B, F, X;
 
 	push(cadr(p1));
 	evalf();
@@ -5015,8 +5023,6 @@ eval_defint(p1)
 	} while (iscons(p1));
 
 	push(F);
-
-	expanding--;
 }
 function
 eval_denominator(p1)
@@ -5373,9 +5379,17 @@ eval_inner(p1)
 function
 eval_integral(p1)
 {
-	var flag, i, n, X, Y;
+	var t;
+	t = expanding;
+	expanding = 1;
+	eval_integral_nib(p1);
+	expanding = t;
+}
 
-	expanding++;
+function
+eval_integral_nib(p1)
+{
+	var flag, i, n, X, Y;
 
 	push(cadr(p1));
 	evalf();
@@ -5384,7 +5398,6 @@ eval_integral(p1)
 	if (!iscons(p1)) {
 		push_symbol(SYMBOL_X);
 		integral();
-		expanding--;
 		return;
 	}
 
@@ -5437,8 +5450,6 @@ eval_integral(p1)
 		push(X);
 		integral();
 	}
-
-	expanding--;
 }
 function
 eval_inv(p1)
@@ -8662,6 +8673,15 @@ multiply()
 	multiply_factors(2);
 }
 function
+multiply_expand()
+{
+	var t;
+	t = expanding;
+	expanding = 1;
+	multiply();
+	expanding = t;
+}
+function
 multiply_factors(n) // n is number of factors on stack
 {
 	var h, T;
@@ -8685,7 +8705,8 @@ multiply_factors(n) // n is number of factors on stack
 function
 multiply_noexpand()
 {
-	var t = expanding;
+	var t;
+	t = expanding;
 	expanding = 0;
 	multiply();
 	expanding = t;
@@ -9088,9 +9109,7 @@ power()
 		push(cadr(BASE));
 		push(caddr(BASE));
 		push(EXPO);
-		expanding++; // expand products of exponents
-		multiply();
-		expanding--;
+		multiply_expand(); // always expand products of exponents
 		power();
 		return;
 	}
