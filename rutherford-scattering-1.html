@@ -58,19 +58,21 @@ for(s1,1,2,for(s2,1,2,
   S = S + f
 ))
 
+S = S / N -- normalize
+
 T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
 
 "Sum over spin states"
 
-S / N
+S
 
 "Casimir trick"
 
 T
 
-"Verify Casimir trick (1=ok)"
+"Verify S equals T"
 
-S / N == T
+test(S == T,"yes","no")
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
