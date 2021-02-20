@@ -53,9 +53,9 @@ S
 
 "Casimir trick"
 
-f = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
-f
+T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
+T
 
-"Does S equal f ?"
+"Does S equal T ?"
 
-test(S == f,"yes","no")
+test(S == T,"yes","no")

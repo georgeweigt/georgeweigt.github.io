@@ -10,7 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Verify probability density for Rutherford scattering
+-- Verify amplitude squared for Rutherford scattering
 
 -- eigenmath.org/rutherford-scattering-2.txt
 
@@ -42,14 +42,14 @@ pslash2 = dot(p2,gmunu,gamma)
 T = contract(dot(pslash1 + m I,gamma0,pslash2 + m I,gamma0))
 T
 
-"Probability density"
+"Amplitude squared"
 
-f = E^2 + m^2 + p^2 expcos(theta)
+f = 2 (E^2 + m^2 + p^2 expcos(theta))
 f
 
-"Verify probability density (1=ok)"
+"Verify (1=ok)"
 
-1/2 T == 2 f
+1/2 T == f
 
 q = p1 - p2
 
