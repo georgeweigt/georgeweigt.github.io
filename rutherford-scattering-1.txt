@@ -42,9 +42,9 @@ u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 
 S = 0
 
-for(s1,1,2,for(s2,1,2,
-  a = dot(u2bar[s2],gamma0,u1[s1]),  -- a is an amplitude
-  f = a conj(a),                     -- f is a probability density
+for(j,1,2,for(k,1,2,
+  M = dot(u2bar[k],gamma0,u1[j]),  -- M is an amplitude
+  f = M conj(M),                   -- f = |M|^2
   S = S + f
 ))
 
