@@ -2,7 +2,7 @@
 
 -- eigenmath.org/rutherford-scattering-3.txt
 
-pi = float(pi)
+pi = float(pi) -- use numerical value of pi
 a = pi / 4 -- minimum support angle
 
 I(xi) = 2 pi (1 / (cos(xi) - 1) - 1 / (cos(a) - 1))
@@ -20,15 +20,16 @@ xrange = (a,pi)
 yrange = (0,4)
 draw(f,theta)
 
+"Probability distribution"
+
 N = 3 -- number of bins
+D = (pi - a) / N
 P = zero(N)
 
 for(k,1,N,
-  theta1 = a + (k - 1) (pi - a) / N,
-  theta2 = a + k (pi - a) / N,
+  theta2 = a + k D,
+  theta1 = theta2 - D,
   P[k] = F(theta2) - F(theta1)
 )
-
-"Probability distribution"
 
 P
