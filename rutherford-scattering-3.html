@@ -19,16 +19,16 @@ M = 1 / (cos(theta) - 1)^2
 f = M sin(theta)
 
 pie = float(pi)
-alpha = pie / 4
-dtheta = (pie - alpha) / 100
-C = sum(k,1,100,eval(f,theta,alpha + (k - 0.5) dtheta)) dtheta
+amin = pie / 4 -- minimum support angle
+dtheta = (pie - amin) / 100
+C = sum(k,1,100,eval(f,theta,amin + (k - 0.5) dtheta)) dtheta
 
 "Probability density"
 
 f = M sin(theta) / C
 f
 
-xrange = (alpha,pi)
+xrange = (amin,pi)
 yrange = (0,4)
 draw(f,theta)
 
@@ -38,8 +38,8 @@ P = zero(N)
 I(a,b) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a)/100)) (b - a)/100
 
 for(k,1,N,
-  a = alpha + (k - 1) (pie - alpha) / N,
-  b = a + (pie - alpha) / N,
+  a = amin + (k - 1) (pie - amin) / N,
+  b = a + (pie - amin) / N,
   P[k] = I(a,b)
 )
 
