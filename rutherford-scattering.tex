@@ -158,16 +158,20 @@ From $e^2=4\pi\alpha$ and $(\cos\theta-1)^2=4\sin^4(\theta/2)$ we have
 =\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
-\newpage
 \noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
+Recall that $d\Omega=\sin\theta\,d\theta\,d\phi$ hence
+\begin{equation*}
+d\sigma=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
+\end{equation*}
 
-\bigskip
 \noindent
 Let
 \begin{equation*}
-I(\xi)=\int_a^{\xi}\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
-\qquad a\le\xi\le\pi
+I(\xi)=\frac{p^4}{Z^2\alpha^2m^2}\int_0^{2\pi}\int_a^\xi d\sigma
+=2\pi\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
+=\frac{2\pi}{\cos\theta-1}\bigg|_a^\xi
+%\qquad a\le\xi\le\pi
 \end{equation*}
 
 \noindent
@@ -192,8 +196,9 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \noindent
 The probability density $f(\theta)$ is
 \begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{d\sigma}{d\Omega}\sin\theta,
-\qquad a\le\theta\le\pi
+f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
+=C^{-1}\frac{2\pi\sin\theta}{(\cos\theta-1)^2}
+%\qquad a\le\theta\le\pi
 \end{equation*}
 
 \noindent
