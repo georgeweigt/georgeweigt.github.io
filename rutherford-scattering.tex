@@ -1,25 +1,22 @@
+%\documentclass[12pt]{article}
+%\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
+%\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{slashed}
+%\usepackage{tikz}
+%\usepackage{mathrsfs}
+
 \documentclass[12pt]{article}
-\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-%\usepackage{parskip}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-\usepackage{mathrsfs}
 
-% change margins
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
-
-\hyphenpenalty=10000
+\title{Rutherford Scattering}
+\date{}
 
 \begin{document}
 
-\begin{center}
-{\sc rutherford scattering}
-\end{center}
+\maketitle
 
 \noindent
 Consider an electron scattered by an atomic nucleus.\footnote{
@@ -133,8 +130,8 @@ and
 q^4=(p_1-p_2)^4=16p^4\sin^4(\theta/2)
 \end{equation*}
 
-\noindent
-For low energy electron beams such that $p\ll m$ we have
+\subsection*{Low energy approximation}
+For low energy electrons such that $p\ll m$ we have
 \begin{equation*}
 E^2+m^2+p^2\cos\theta\approx2m^2
 \end{equation*}
@@ -152,7 +149,7 @@ The differential cross section is
 \end{equation*}
 
 \noindent
-From $e^2=4\pi\alpha$ and $(\cos\theta-1)^2=4\sin^4(\theta/2)$ we have
+By substituting $e^2=4\pi\alpha$ and $4\sin^4(\theta/2)=(\cos\theta-1)^2$ we have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
