@@ -2,33 +2,31 @@
 
 -- eigenmath.org/rutherford-scattering-3.txt
 
-M = 1 / (cos(theta) - 1)^2
+pi = float(pi)
+a = pi / 4 -- minimum support angle
 
-f = M sin(theta)
+I(xi) = 2 pi (1 / (cos(xi) - 1) - 1 / (cos(a) - 1))
 
-pie = float(pi)
-amin = pie / 4 -- minimum support angle
-dtheta = (pie - amin) / 100
-C = sum(k,1,100,eval(f,theta,amin + (k - 0.5) dtheta)) dtheta
+C = I(pi) -- normalization constant
+
+F(theta) = I(theta) / C
 
 "Probability density"
 
-f = M sin(theta) / C
+f = d(F,theta)
 f
 
-xrange = (amin,pi)
+xrange = (a,pi)
 yrange = (0,4)
 draw(f,theta)
 
 N = 3 -- number of bins
 P = zero(N)
 
-I(a,b) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a)/100)) (b - a)/100
-
 for(k,1,N,
-  a = amin + (k - 1) (pie - amin) / N,
-  b = a + (pie - amin) / N,
-  P[k] = I(a,b)
+  theta1 = a + (k - 1) (pi - a) / N,
+  theta2 = a + k (pi - a) / N,
+  P[k] = F(theta2) - F(theta1)
 )
 
 "Probability distribution"
