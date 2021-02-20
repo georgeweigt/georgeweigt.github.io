@@ -166,17 +166,19 @@ d\sigma=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
-Let
-\begin{equation*}
-I(\xi)=\frac{p^4}{Z^2\alpha^2m^2}\int_0^{2\pi}\int_a^\xi d\sigma
-=2\pi\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
-=\frac{2\pi}{\cos\theta-1}\bigg|_a^\xi
-%\qquad a\le\xi\le\pi
-\end{equation*}
+Let $I(\xi)$ be the following definite integral.
+\begin{align*}
+I(\xi)&=\frac{p^4}{Z^2\alpha^2m^2}\int_0^{2\pi}\int_a^\xi d\sigma
+\\
+&=2\pi\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
+\\
+&=2\pi\left(\frac{1}{\cos\theta-1}\right)\bigg|_a^\xi
+\\
+&=2\pi\left(\frac{1}{\cos\xi-1}-\frac{1}{\cos a-1}\right),\qquad a\le\xi\le\pi
+\end{align*}
 
 \noindent
-for some angle $a>0$.
-The support interval is restricted because $d\sigma$ is undefined for $\theta=0$.
+The minimum supported angle is $a$ such that $a>0$ because $d\sigma$ is undefined for $\theta=0$.
 
 \bigskip
 \noindent
