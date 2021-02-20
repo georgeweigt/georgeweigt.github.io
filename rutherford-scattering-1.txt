@@ -1,4 +1,4 @@
--- Verify Casimir trick for Rutherford scattering
+-- Verify formulas for Rutherford scattering
 
 -- eigenmath.org/rutherford-scattering-1.txt
 
@@ -59,3 +59,13 @@ T
 "Does S equal T ?"
 
 test(S == T,"yes","no")
+
+"Verify additional formulas (1=ok)"
+
+T == 4 (E^2 + m^2 + p^2 expcos(theta))
+
+q = p1 - p2
+
+dot(q,gmunu,q)^2 == 16 p^4 expsin(theta/2)^4
+
+4 expsin(theta/2)^4 == (expcos(theta) - 1)^2
