@@ -77,10 +77,10 @@ test(S == T,"yes","no")
 T == 4 (E^2 + m^2 + p^2 expcos(theta))
 
 q = p1 - p2
+q4 = dot(q,gmunu,q)^2
 
-dot(q,gmunu,q)^2 == 16 p^4 expsin(theta/2)^4
-
-4 expsin(theta/2)^4 == (expcos(theta) - 1)^2
+q4 == 16 p^4 expsin(theta/2)^4
+q4 == 4 p^4 (expcos(theta) - 1)^2
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
