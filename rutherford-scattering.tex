@@ -50,13 +50,18 @@ Here is the same diagram with momentum and spinor labels.
 \noindent
 For a typical Rutherford scattering experiment, the momentum vectors are
 \begin{equation*}
-p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}\qquad
+\underset{\text{inbound electron}}
+{p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\qquad
+\underset{\text{outbound electron}}
+{
 p_2=\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
 p\sin\theta\sin\phi\\
 p\cos\theta
 \end{pmatrix}
+}
 \end{equation*}
 
 \noindent
@@ -66,13 +71,17 @@ Symbol $E=\sqrt{p^2+m^2}$ is total energy, $p$ is electron momentum, and $m$ is 
 \noindent
 The spinors are
 \begin{equation*}
-u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+\underset{\text{inbound electron, spin up}}
+{u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
-u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
+\underset{\text{inbound electron, spin down}}
+{u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \qquad
-u_{21}=\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}
+\underset{\text{outbound electron, spin up}}
+{u_{21}=\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
 \qquad
-u_{22}=\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}
+\underset{\text{outbound electron, spin down}}
+{u_{22}=\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
 \end{equation*}
 
 \noindent
@@ -178,14 +187,14 @@ F(\theta)=C^{-1}I(\theta),
 \end{equation*}
 
 \noindent
-This is the probability of observing a scattering event
-in the interval $\theta_1$ to $\theta_2$.
+The probability of observing scattering events
+in the interval $\theta_1$ to $\theta_2$ can now be computed.
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \noindent
-The probability density $f(\theta)$ is the derivative of $F(\theta)$.
+Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
 =C^{-1}\frac{2\pi\sin\theta}{(\cos\theta-1)^2}
