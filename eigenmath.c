@@ -1,4 +1,4 @@
-/* February 18, 2021
+/* February 22, 2021
 
 To build and run:
 
@@ -123,22 +123,22 @@ struct atom {
 #define STR		5
 #define TENSOR		6
 
-#define ABS		0
-#define ADJ		1
-#define AND		2
-#define ARCCOS		3
-#define ARCCOSH		4
-#define ARCSIN		5
-#define ARCSINH		6
-#define ARCTAN		7
-#define ARCTANH		8
-#define ARG		9
-#define ATOMIZE		10
+#define ABS		(0 * NSYM + 0)
+#define ADJ		(0 * NSYM + 1)
+#define AND		(0 * NSYM + 2)
+#define ARCCOS		(0 * NSYM + 3)
+#define ARCCOSH		(0 * NSYM + 4)
+#define ARCSIN		(0 * NSYM + 5)
+#define ARCSINH		(0 * NSYM + 6)
+#define ARCTAN		(0 * NSYM + 7)
+#define ARCTANH		(0 * NSYM + 8)
+#define ARG		(0 * NSYM + 9)
+#define ATOMIZE		(0 * NSYM + 10)
 
-#define BESSELJ		(NSYM + 0)
-#define BESSELY		(NSYM + 1)
-#define BINDING		(NSYM + 2)
-#define BINOMIAL	(NSYM + 3)
+#define BESSELJ		(1 * NSYM + 0)
+#define BESSELY		(1 * NSYM + 1)
+#define BINDING		(1 * NSYM + 2)
+#define BINOMIAL	(1 * NSYM + 3)
 
 #define CEILING		(2 * NSYM + 0)
 #define CHECK		(2 * NSYM + 1)
@@ -1640,7 +1640,7 @@ adj_nib(void)
 	int col, i, j, k, n, row;
 	p1 = pop();
 	if (!istensor(p1)) {
-		push_integer(1); // adj of scalar is 1 by adj = det inv
+		push_integer(1); // adj of scalar is 1 because adj = det inv
 		return;
 	}
 	if (p1->u.tensor->ndim != 2 || p1->u.tensor->dim[0] != p1->u.tensor->dim[1])
@@ -10400,6 +10400,14 @@ char *integral_tab_trig[] = {
 	"1/2 ((x sin(x (a - b)))/(a - b) - (x sin(x (a + b)))/(a + b) + cos(x (a - b))/(a - b)^2 - cos(x (a + b))/(a + b)^2)",
 	"and(not(a + b == 0),not(a - b == 0))",
 
+	"sin(a x)/(cos(a x) - 1)^2",
+	"1/a * 1/(cos(a x) - 1)",
+	"1",
+
+	"sin(a x)/(1 - cos(a x))^2",
+	"1/a * 1/(cos(a x) - 1)",
+	"1",
+
 	NULL,
 };
 
@@ -14046,7 +14054,8 @@ negate(void)
 void
 negate_noexpand(void)
 {
-	int t = expanding;
+	int t;
+	t = expanding;
 	expanding = 0;
 	negate();
 	expanding = t;

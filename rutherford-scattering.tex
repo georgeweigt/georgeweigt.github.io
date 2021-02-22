@@ -1,12 +1,4 @@
-%\documentclass[12pt]{article}
-%\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-%\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-%\usepackage{slashed}
-%\usepackage{tikz}
-%\usepackage{mathrsfs}
-
-\documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
+\documentclass{article}
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
@@ -19,12 +11,12 @@
 \maketitle
 
 \noindent
-Consider an electron scattered by an atomic nucleus.\footnote{
-The original Rutherford scattering experiment in 1911 used alpha particles, not electrons.
-However, scattering of any charged particle by Coulomb interaction
-is now known as Rutherford scattering.
-The first Rutherford scattering experiment using electrons appears to have
-been done by F.~L.~Arnot, then a student of Rutherford, in 1929.}
+Consider an electron scattered by an atomic nucleus.
+%The original Rutherford scattering experiment in 1911 used alpha particles, not electrons.
+%However, scattering of any charged particle by Coulomb interaction
+%is now known as Rutherford scattering.
+%The first Rutherford scattering experiment using electrons appears to have
+%been done by F.~L.~Arnot, then a student of Rutherford, in 1929.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -48,7 +40,8 @@ Here is the same diagram with momentum and spinor labels.
 \end{center}
 
 \noindent
-For a typical Rutherford scattering experiment, the momentum vectors are
+The incident electron can be modeled as coincident with the $z$ axis,
+resulting in the following momentum vectors.
 \begin{equation*}
 \underset{\text{inbound electron}}
 {p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
@@ -76,7 +69,8 @@ The spinors are
 \qquad
 \underset{\text{inbound electron, spin down}}
 {u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
-\qquad
+\end{equation*}
+\begin{equation*}
 \underset{\text{outbound electron, spin up}}
 {u_{21}=\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
 \qquad
@@ -85,8 +79,8 @@ The spinors are
 \end{equation*}
 
 \noindent
-The second digit in a spinor subscript indicates the spin state.
-The spinors are not individually normalized.
+The second digit in each spinor subscript indicates whether the spin state is up or down.
+It should be noted that the spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ is used.
 
 \bigskip
