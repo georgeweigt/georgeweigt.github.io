@@ -12,8 +12,7 @@
 
 \maketitle
 
-\subsection*{Theory}
-
+\noindent
 Compton scattering occurs when a high energy photon such as a gamma ray hits an electron.
 In typical Compton scattering experiments the incident electron is at rest with zero velocity.
 However, it is easier to develop a theory using the center of mass frame in which
@@ -47,62 +46,89 @@ Here is the same diagram with momentum and spinor labels.
 \noindent
 Here are the momentum vectors for center of mass coordinates.
 \begin{equation*}
+\underset{\text{inbound photon}}
+{
 p_1=\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
+}
 \qquad
+\underset{\text{inbound electron}}
+{
 p_2=\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
+}
 \qquad
+\underset{\text{outbound photon}}
+{
 p_3=\begin{pmatrix}
 \omega\\
 \omega\sin\theta\cos\phi\\
 \omega\sin\theta\sin\phi\\
 \omega\cos\theta
 \end{pmatrix}
+}
 \qquad
+\underset{\text{outbound electron}}
+{
 p_4=\begin{pmatrix}
 E\\
 -\omega\sin\theta\cos\phi\\
 -\omega\sin\theta\sin\phi\\
 -\omega\cos\theta
 \end{pmatrix}
+}
 \end{equation*}
 
 \noindent
 Symbol $\omega$ is the photon energy and $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
+
+\bigskip
+\noindent
 The spinors are
 \begin{equation*}
+\underset{\text{inbound electron, spin up}}
+{
 u_{21}=\begin{pmatrix}
 E+m\\
 0\\
 -\omega\\
 0
 \end{pmatrix}
+}
 \qquad
+\underset{\text{inbound electron, spin down}}
+{
 u_{22}=\begin{pmatrix}
 0\\
 E+m\\
 0\\
 \omega
 \end{pmatrix}
+}
 \qquad
+\underset{\text{outbound electron, spin up}}
+{
 u_{41}=\begin{pmatrix}
 E+m\\
 0\\
-p_4^z\\
-p_4^x+ip_4^y
+p_{4z}\\
+p_{4x}+ip_{4y}
 \end{pmatrix}
+}
 \qquad
+\underset{\text{outbound electron, spin down}}
+{
 u_{42}=\begin{pmatrix}
 0\\
 E+m\\
-p_4^x-ip_4^y\\
--p_4^z
+p_{4x}-ip_{4y}\\
+-p_{4z}
 \end{pmatrix}
+}
 \end{equation*}
 
 \noindent
-The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-The spinors are not normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2$ is used.
+The second digit in each spinor subscript indicates whether the spin state is up or down.
+The spinors shown above are not individually normalized.
+Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
 \noindent
