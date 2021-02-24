@@ -1,5 +1,7 @@
 -- Verify lab frame formulas for Compton scattering
 
+-- eigenmath.org/compton-scattering-3.txt
+
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 
 -- momentum vectors in center of mass frame
