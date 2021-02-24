@@ -56,7 +56,7 @@ S
 T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
 T
 
-"Does S equal T ?"
+"Does S equal T?"
 
 test(S == T,"yes","no")
 
