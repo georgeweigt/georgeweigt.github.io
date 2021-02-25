@@ -189,9 +189,6 @@ struct atom {
 
 #define GCD		(6 * NSYM + 0)
 
-#define HERMITE		(7 * NSYM + 0)
-#define HILBERT		(7 * NSYM + 1)
-
 #define SYMBOL_I	(8 * NSYM + 0)
 #define IMAG		(8 * NSYM + 1)
 #define INNER		(8 * NSYM + 2)
@@ -203,14 +200,12 @@ struct atom {
 
 #define KRON		(10 * NSYM + 0)
 
-#define LAGUERRE	(11 * NSYM + 0)
-#define LAST		(11 * NSYM + 1)
-#define LATEX		(11 * NSYM + 2)
-#define LCM		(11 * NSYM + 3)
-#define LEADING		(11 * NSYM + 4)
-#define LEGENDRE	(11 * NSYM + 5)
-#define LISP		(11 * NSYM + 6)
-#define LOG		(11 * NSYM + 7)
+#define LAST		(11 * NSYM + 0)
+#define LATEX		(11 * NSYM + 1)
+#define LCM		(11 * NSYM + 2)
+#define LEADING		(11 * NSYM + 3)
+#define LISP		(11 * NSYM + 4)
+#define LOG		(11 * NSYM + 5)
 
 #define MAG		(12 * NSYM + 0)
 #define MATHJAX		(12 * NSYM + 1)
@@ -260,16 +255,15 @@ struct atom {
 #define SYMBOL_T	(19 * NSYM + 0)
 #define TAN		(19 * NSYM + 1)
 #define TANH		(19 * NSYM + 2)
-#define TAYLOR		(19 * NSYM + 3)
-#define TEST		(19 * NSYM + 4)
-#define TESTEQ		(19 * NSYM + 5)
-#define TESTGE		(19 * NSYM + 6)
-#define TESTGT		(19 * NSYM + 7)
-#define TESTLE		(19 * NSYM + 8)
-#define TESTLT		(19 * NSYM + 9)
-#define TRACE		(19 * NSYM + 10)
-#define TRANSPOSE	(19 * NSYM + 11)
-#define TTY		(19 * NSYM + 12)
+#define TEST		(19 * NSYM + 3)
+#define TESTEQ		(19 * NSYM + 4)
+#define TESTGE		(19 * NSYM + 5)
+#define TESTGT		(19 * NSYM + 6)
+#define TESTLE		(19 * NSYM + 7)
+#define TESTLT		(19 * NSYM + 8)
+#define TRACE		(19 * NSYM + 9)
+#define TRANSPOSE	(19 * NSYM + 10)
+#define TTY		(19 * NSYM + 11)
 
 #define UNIT		(20 * NSYM + 0)
 
@@ -710,10 +704,6 @@ void gcd_term_term(void);
 void gcd_term_factor(void);
 void gcd_factor_term(void);
 void gcd_numbers(void);
-void eval_hermite(void);
-void eval_hilbert(void);
-void hilbert(void);
-void push_zero_matrix(int i, int j);
 void eval_imag(void);
 void imag(void);
 void eval_index(void);
@@ -746,7 +736,6 @@ void eval_isprime(void);
 void eval_kron(void);
 void kron(void);
 void kron_nib(void);
-void eval_laguerre(void);
 void eval_latex(void);
 void latex(void);
 void latex_nib(void);
@@ -776,7 +765,6 @@ void lcm(void);
 void lcm_nib(void);
 void eval_leading(void);
 void leading(void);
-void eval_legendre(void);
 void eval_log(void);
 void logarithm(void);
 void log_nib(void);
@@ -1037,9 +1025,6 @@ void stan_of_sum(void);
 void eval_tanh(void);
 void stanh(void);
 void stanh_nib(void);
-void eval_taylor(void);
-void taylor(void);
-void taylor_nib(void);
 void eval_tensor(void);
 void promote_tensor(void);
 void promote_tensor_nib(void);
@@ -9805,91 +9790,6 @@ gcd_numbers(void)
 }
 
 void
-eval_hermite(void)
-{
-	int k, n;
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	p0 = pop();
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	n = pop_integer();
-	if (n == ERR || n < 0)
-		stop("hermite");
-	for (k = 0; k <= n / 2; k++) {
-		push_integer(-1);
-		push_integer(k);
-		power();
-		push_integer(k);
-		factorial();
-		divide();
-		push_integer(n - 2 * k);
-		factorial();
-		divide();
-		push_integer(2);
-		push(p0);
-		multiply();
-		push_integer(n - 2 * k);
-		power();
-		multiply();
-	}
-	add_terms(n / 2 + 1);
-	push_integer(n);
-	factorial();
-	multiply();
-}
-
-void
-eval_hilbert(void)
-{
-	push(cadr(p1));
-	eval();
-	hilbert();
-}
-
-#undef A
-#undef N
-#undef AELEM
-
-#define A p1
-#define N p2
-#define AELEM(i, j) A->u.tensor->elem[i * n + j]
-
-void
-hilbert(void)
-{
-	int i, j, n;
-	save();
-	N = pop();
-	push(N);
-	n = pop_integer();
-	if (n < 2)
-		stop("hilbert arg");
-	push_zero_matrix(n, n);
-	A = pop();
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n; j++) {
-			push_integer(i + j + 1);
-			reciprocate();
-			AELEM(i, j) = pop();
-		}
-	}
-	push(A);
-	restore();
-}
-
-void
-push_zero_matrix(int i, int j)
-{
-	push(alloc_tensor(i * j));
-	stack[tos - 1]->u.tensor->ndim = 2;
-	stack[tos - 1]->u.tensor->dim[0] = i;
-	stack[tos - 1]->u.tensor->dim[1] = j;
-}
-
-void
 eval_imag(void)
 {
 	push(cadr(p1));
@@ -11314,48 +11214,6 @@ kron_nib(void)
 	push(p3);
 }
 
-// L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
-
-void
-eval_laguerre(void)
-{
-	int k, m = 0, n;
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	negate();
-	p0 = pop();
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	n = pop_integer();
-	p1 = cdr(p1);
-	if (iscons(p1)) {
-		push(car(p1));
-		eval();
-		m = pop_integer();
-	}
-	if (n == ERR || m == ERR || n < 0 || m < 0)
-		stop("laguerre");
-	for (k = 0; k <= n; k++) {
-		push(p0);
-		push_integer(k);
-		power();
-		push_integer(n - k);
-		factorial();
-		push_integer(m + k);
-		factorial();
-		push_integer(k);
-		factorial();
-		multiply_factors(3);
-		divide();
-	}
-	add_terms(n + 1);
-	push_integer(n + m);
-	factorial();
-	multiply();
-}
-
 void
 eval_latex(void)
 {
@@ -12020,61 +11878,6 @@ leading(void)
 	push(X);	// remove terms that depend on X
 	filter();
 	restore();
-}
-
-// P(x,n,m) = 1/(2^n n!) (1 - x^2)^(m/2) d((x^2 - 1)^n,x,n + m)
-
-void
-eval_legendre(void)
-{
-	int i, m = 0, n;
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	p0 = pop();
-	p1 = cdr(p1);
-	push(car(p1));
-	eval();
-	n = pop_integer();
-	p1 = cdr(p1);
-	if (iscons(p1)) {
-		push(car(p1));
-		eval();
-		m = pop_integer();
-	}
-	if (n == ERR || m == ERR || n < 0 || abs(m) > n)
-		stop("legendre");
-	push_integer(2);
-	push_integer(-n);
-	power();
-	push_integer(n);
-	factorial();
-	divide();
-	push_integer(1);
-	push_symbol(SPECX);
-	push_integer(2);
-	power();
-	subtract();
-	push_integer(m);
-	push_rational(1, 2);
-	multiply();
-	power();
-	push_symbol(SPECX);
-	push_integer(2);
-	power();
-	push_integer(-1);
-	add();
-	push_integer(n);
-	power();
-	for (i = 0; i < n + m; i++) {
-		push_symbol(SPECX);
-		derivative();
-	}
-	multiply_factors(3);
-	push_symbol(SPECX);
-	push(p0);
-	subst();
-	eval();
 }
 
 // natural log
@@ -18127,6 +17930,10 @@ char *init_script[] = {
 	"curl(u)=(d(u[3],y)-d(u[2],z),d(u[1],z)-d(u[3],x),d(u[2],x)-d(u[1],y))",
 	"div(u)=d(u[1],x)+d(u[2],y)+d(u[3],z)",
 	"ln(x)=log(x)",
+	"taylor(f,x,n,a) = sum(k,0,n,eval(d(f,x,k),x,a) (x - a)^k / k!)",
+	"laguerre(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))",
+	"legendre(f,n,m,x) = eval(1 / (2^n n!) (1 - x^2)^(m/2) d((x^2 - 1)^n,x,n + m),x,f)",
+	"hermite(x,n) = (-1)^n exp(x^2) d(exp(-x^2),x,n)",
 	"last=0",
 	"tty=0",
 	NULL,
@@ -19672,9 +19479,6 @@ struct se stab[] = {
 
 	{ "gcd",		GCD,		eval_gcd		},
 
-	{ "hermite",		HERMITE,	eval_hermite		},
-	{ "hilbert",		HILBERT,	eval_hilbert		},
-
 	{ "i",			SYMBOL_I,	NULL			},
 	{ "imag",		IMAG,		eval_imag		},
 	{ "inner",		INNER,		eval_inner		},
@@ -19686,12 +19490,10 @@ struct se stab[] = {
 
 	{ "kron",		KRON,		eval_kron		},
 
-	{ "laguerre",		LAGUERRE,	eval_laguerre		},
 	{ "last",		LAST,		NULL			},
 	{ "latex",		LATEX,		eval_latex		},
 	{ "lcm",		LCM,		eval_lcm		},
 	{ "leading",		LEADING,	eval_leading		},
-	{ "legendre",		LEGENDRE,	eval_legendre		},
 	{ "lisp",		LISP,		eval_lisp		},
 	{ "log",		LOG,		eval_log		},
 
@@ -19743,7 +19545,6 @@ struct se stab[] = {
 	{ "t",			SYMBOL_T,	NULL			},
 	{ "tan",		TAN,		eval_tan		},
 	{ "tanh",		TANH,		eval_tanh		},
-	{ "taylor",		TAYLOR,		eval_taylor		},
 	{ "test",		TEST,		eval_test		},
 	{ "testeq",		TESTEQ,		eval_testeq		},
 	{ "testge",		TESTGE,		eval_testge		},
@@ -20002,97 +19803,6 @@ stanh_nib(void)
 	push_symbol(TANH);
 	push(p1);
 	list(2);
-}
-
-void
-eval_taylor(void)
-{
-	p1 = cdr(p1);	// f
-	push(car(p1));
-	eval();
-	p1 = cdr(p1);	// x
-	push(car(p1));
-	eval();
-	p1 = cdr(p1);	// n
-	push(car(p1));
-	eval();
-	p1 = cdr(p1);	// a
-	push(car(p1));
-	eval();
-	p2 = pop();
-	if (p2 == symbol(NIL))
-		push_integer(0); // default expansion point
-	else
-		push(p2);
-	taylor();
-}
-
-void
-taylor(void)
-{
-	save();
-	taylor_nib();
-	restore();
-}
-
-#undef F
-#undef X
-#undef N
-#undef A
-#undef C
-
-#define F p1
-#define X p2
-#define N p3
-#define A p4
-#define C p5
-
-void
-taylor_nib(void)
-{
-	int h, i, k;
-	A = pop();
-	N = pop();
-	X = pop();
-	F = pop();
-	push(N);
-	k = pop_integer();
-	if (k == ERR)
-		stop("taylor: 3rd arg not numeric or out of range");
-	h = tos;
-	push(F);	// f(a)
-	push(X);
-	push(A);
-	subst();
-	eval();
-	C = one;
-	for (i = 1; i <= k; i++) {
-		push(F);	// f = f'
-		push(X);
-		derivative();
-		F = pop();
-		if (iszero(F))
-			break;
-		if (car(F) == symbol(DERIVATIVE))
-			stop("taylor: 1st arg not differentiable");
-		push(C);	// c = c * (x - a)
-		push(X);
-		push(A);
-		subtract();
-		multiply();
-		C = pop();
-		push(F);	// f(a)
-		push(X);
-		push(A);
-		subst();
-		eval();
-		push(C);
-		multiply();
-		push_integer(i);
-		factorial();
-		divide();
-	}
-	add_terms(tos - h);
 }
 
 void
