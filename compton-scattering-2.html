@@ -43,7 +43,7 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 gammaL = transpose(dot(gmunu,gamma))
 
-"Probability density"
+"Probability density formulas"
 
 q1 = p1 + p2
 q2 = p2 - p3
@@ -60,14 +60,14 @@ P4 = pslash4 + m I
 Q1 = qslash1 + m I
 Q2 = qslash2 + m I
 
-T = dot(P2,gammaT,Q1,gammaT,P4,gammaL,Q1,gammaL)
-f11 = contract(contract(contract(T,3,4),2,3))
+T11 = dot(P2,gammaT,Q1,gammaT,P4,gammaL,Q1,gammaL)
+f11 = contract(contract(contract(T11,3,4),2,3))
 
-T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q1,gammaL)
-f12 = contract(contract(contract(T,3,5),2,3))
+T12 = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q1,gammaL)
+f12 = contract(contract(contract(T12,3,5),2,3))
 
-T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
-f22 = contract(contract(contract(T,3,4),2,3))
+T22 = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
+f22 = contract(contract(contract(T22,3,4),2,3))
 
 f11
 f12
