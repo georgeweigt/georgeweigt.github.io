@@ -138,20 +138,18 @@ struct atom {
 #define BESSELJ		(1 * NSYM + 0)
 #define BESSELY		(1 * NSYM + 1)
 #define BINDING		(1 * NSYM + 2)
-#define BINOMIAL	(1 * NSYM + 3)
 
 #define CEILING		(2 * NSYM + 0)
 #define CHECK		(2 * NSYM + 1)
-#define CHOOSE		(2 * NSYM + 2)
-#define CIRCEXP		(2 * NSYM + 3)
-#define CLEAR		(2 * NSYM + 4)
-#define CLOCK		(2 * NSYM + 5)
-#define COEFF		(2 * NSYM + 6)
-#define COFACTOR	(2 * NSYM + 7)
-#define CONJ		(2 * NSYM + 8)
-#define CONTRACT	(2 * NSYM + 9)
-#define COS		(2 * NSYM + 10)
-#define COSH		(2 * NSYM + 11)
+#define CIRCEXP		(2 * NSYM + 2)
+#define CLEAR		(2 * NSYM + 3)
+#define CLOCK		(2 * NSYM + 4)
+#define COEFF		(2 * NSYM + 5)
+#define COFACTOR	(2 * NSYM + 6)
+#define CONJ		(2 * NSYM + 7)
+#define CONTRACT	(2 * NSYM + 8)
+#define COS		(2 * NSYM + 9)
+#define COSH		(2 * NSYM + 10)
 
 #define SYMBOL_D	(3 * NSYM + 0)
 #define DEFINT		(3 * NSYM + 1)
@@ -445,16 +443,8 @@ uint32_t * mmodpow(uint32_t *x, uint32_t *n, uint32_t *m);
 uint32_t * mroot(uint32_t *a, uint32_t *n);
 int mprime(uint32_t *n);
 int mprimef(uint32_t *n, uint32_t *q, int k);
-void eval_binomial(void);
-void binomial(void);
-void binomial_nib(void);
-int binomial_check_args(void);
 void eval_ceiling(void);
 void ceiling_nib(void);
-void eval_choose(void);
-void choose(void);
-void choose_nib(void);
-int choose_check_args(void);
 void eval_circexp(void);
 void circexp(void);
 void circexp_subst(void);
@@ -3550,66 +3540,6 @@ mprimef(uint32_t *n, uint32_t *q, int k)
 }
 
 void
-eval_binomial(void)
-{
-	push(cadr(p1)); // n
-	eval();
-	push(caddr(p1)); // k
-	eval();
-	binomial();
-}
-
-// Result vanishes for k < 0 or k > n. (A=B, p. 19)
-
-void
-binomial(void)
-{
-	save();
-	binomial_nib();
-	restore();
-}
-
-#undef N
-#undef K
-
-#define N p1
-#define K p2
-
-void
-binomial_nib(void)
-{
-	K = pop();
-	N = pop();
-	if (binomial_check_args() == 0) {
-		push_integer(0);
-		return;
-	}
-	push(N);
-	factorial();
-	push(K);
-	factorial();
-	divide();
-	push(N);
-	push(K);
-	subtract();
-	factorial();
-	divide();
-}
-
-int
-binomial_check_args(void)
-{
-	if (isnegativenumber(N))
-		return 0;
-	else if (isnegativenumber(K))
-		return 0;
-	else if (isnum(N) && isnum(K) && lessp(N, K))
-		return 0;
-	else
-		return 1;
-}
-
-void
 eval_ceiling(void)
 {
 	push(cadr(p1));
@@ -3642,66 +3572,6 @@ ceiling_nib(void)
 		push_integer(1);
 		add();
 	}
-}
-
-void
-eval_choose(void)
-{
-	push(cadr(p1)); // n
-	eval();
-	push(caddr(p1)); // k
-	eval();
-	choose();
-}
-
-// Result vanishes for k < 0 or k > n. (A=B, p. 19)
-
-void
-choose(void)
-{
-	save();
-	choose_nib();
-	restore();
-}
-
-#undef N
-#undef K
-
-#define N p1
-#define K p2
-
-void
-choose_nib(void)
-{
-	K = pop();
-	N = pop();
-	if (choose_check_args() == 0) {
-		push_integer(0);
-		return;
-	}
-	push(N);
-	factorial();
-	push(K);
-	factorial();
-	divide();
-	push(N);
-	push(K);
-	subtract();
-	factorial();
-	divide();
-}
-
-int
-choose_check_args(void)
-{
-	if (isnegativenumber(N))
-		return 0;
-	else if (isnegativenumber(K))
-		return 0;
-	else if (isnum(N) && isnum(K) && lessp(N, K))
-		return 0;
-	else
-		return 1;
 }
 
 // change circular functions to exponentials
@@ -17933,6 +17803,8 @@ char *init_script[] = {
 	"laguerre(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))",
 	"legendre(f,n,m,x) = eval(1 / (2^n n!) (1 - x^2)^(m/2) d((x^2 - 1)^n,x,n + m),x,f)",
 	"hermite(x,n) = (-1)^n exp(x^2) d(exp(-x^2),x,n)",
+	"binomial(n,k) = n! / (k! (n - k)!)",
+	"choose(n,k) = n! / (k! (n - k)!)",
 };
 
 void
@@ -19427,11 +19299,9 @@ struct se stab[] = {
 	{ "besselj",		BESSELJ,	eval_besselj		},
 	{ "bessely",		BESSELY,	eval_bessely		},
 	{ "binding",		BINDING,	eval_binding		},
-	{ "binomial",		BINOMIAL,	eval_binomial		},
 
 	{ "ceiling",		CEILING,	eval_ceiling		},
 	{ "check",		CHECK,		eval_check		},
-	{ "choose",		CHOOSE,		eval_choose		},
 	{ "circexp",		CIRCEXP,	eval_circexp		},
 	{ "clear",		CLEAR,		eval_clear		},
 	{ "clock",		CLOCK,		eval_clock		},
