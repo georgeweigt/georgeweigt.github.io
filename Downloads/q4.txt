@@ -357,10 +357,9 @@ C32 = (ket0000,
        ket1110,
        ket1101)
 
-M(psi,v,k,x) = do(
-  v = zero(16),
-  for(k,1,16,v[k] = conj(psi[k]) psi[k]),
+M(psi,P,x) = do(
+  P = outer(conj(psi),psi),
   xrange = (0,16),
   yrange = (0,1),
-  draw(v[ceiling(x)],x)
+  draw(P[ceiling(x),ceiling(x)],x)
 )
