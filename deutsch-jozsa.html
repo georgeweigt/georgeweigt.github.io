@@ -10,19 +10,27 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Deutsch-Jozsa algorithm demo
+-- Deutsch-Jozsa algorithm demo (4 qbits)
 
 run("Downloads/q4.txt") -- eigenmath.org/Downloads/q4.txt
 
+-- M is measurement function, plots probability of observing each state
+
+-- Hn is Hadamard operator on qbit n
+
+-- Cmn is CNOT operator, m is control qbit, n is target qbit
+
+-- ket0001 is the state with q3 = 1, all other qbits zero
+
 "Constant oracle"
 
-psi = dot(H3,X3,H2,H1,H0,ket0000)
+psi = dot(H3,H2,H1,H0,ket0001)
 
 M(psi) -- measure
 
 "Balanced oracle"
 
-psi = dot(H2,H1,H0,C23,C13,C03,H3,X3,H2,H1,H0,ket0000)
+psi = dot(H3,H2,H1,H0,C23,C13,C03,H3,H2,H1,H0,ket0001)
 
 M(psi) -- measure
 </textarea>
