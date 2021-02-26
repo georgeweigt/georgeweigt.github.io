@@ -29,8 +29,6 @@ ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
 ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
 ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
 
--- Hadamard operators (subscript is target qbit)
-
 H0 = (ket0000 + ket1000,
       ket0001 + ket1001,
       ket0010 + ket1010,
@@ -99,7 +97,73 @@ H3 = (ket0000 + ket0001,
       ket1110 + ket1111,
       ket1110 - ket1111) / sqrt(2)
 
--- CNOT operators (1st subscript is control qbit, 2nd is target qbit)
+X0 = (ket1000,
+      ket1001,
+      ket1010,
+      ket1011,
+      ket1100,
+      ket1101,
+      ket1110,
+      ket1111,
+      ket0000,
+      ket0001,
+      ket0010,
+      ket0011,
+      ket0100,
+      ket0101,
+      ket0110,
+      ket0111)
+
+X1 = (ket0100,
+      ket0101,
+      ket0110,
+      ket0111,
+      ket0000,
+      ket0001,
+      ket0010,
+      ket0011,
+      ket1100,
+      ket1101,
+      ket1110,
+      ket1111,
+      ket1000,
+      ket1001,
+      ket1010,
+      ket1011)
+
+X2 = (ket0010,
+      ket0011,
+      ket0000,
+      ket0001,
+      ket0110,
+      ket0111,
+      ket0100,
+      ket0101,
+      ket1010,
+      ket1011,
+      ket1000,
+      ket1001,
+      ket1110,
+      ket1111,
+      ket1100,
+      ket1101)
+
+X3 = (ket0001,
+      ket0000,
+      ket0011,
+      ket0010,
+      ket0101,
+      ket0100,
+      ket0111,
+      ket0110,
+      ket1001,
+      ket1000,
+      ket1011,
+      ket1010,
+      ket1101,
+      ket1100,
+      ket1111,
+      ket1110)
 
 C01 = (ket0000,
        ket0001,
@@ -305,12 +369,59 @@ C32 = (ket0000,
        ket1110,
        ket1101)
 
-"Final state"
+"Final state (constant oracle)"
 
-psi = dot(C23,C13,C03,H2,H1,H0,ket0000)
+psi = dot(H3,X3,H2,H1,H0,ket0000)
 psi
 
-"Measurement (zero probability of observing odd number of 1s)"
+"Measurement (constant oracle)"
+
+P0000 = mag(dot(ket0000,psi))^2
+P0001 = mag(dot(ket0001,psi))^2
+P0010 = mag(dot(ket0010,psi))^2
+P0011 = mag(dot(ket0011,psi))^2
+
+P0100 = mag(dot(ket0100,psi))^2
+P0101 = mag(dot(ket0101,psi))^2
+P0110 = mag(dot(ket0110,psi))^2
+P0111 = mag(dot(ket0111,psi))^2
+
+P1000 = mag(dot(ket1000,psi))^2
+P1001 = mag(dot(ket1001,psi))^2
+P1010 = mag(dot(ket1010,psi))^2
+P1011 = mag(dot(ket1011,psi))^2
+
+P1100 = mag(dot(ket1100,psi))^2
+P1101 = mag(dot(ket1101,psi))^2
+P1110 = mag(dot(ket1110,psi))^2
+P1111 = mag(dot(ket1111,psi))^2
+
+P0000
+P0001
+P0010
+P0011
+
+P0100
+P0101
+P0110
+P0111
+
+P1000
+P1001
+P1010
+P1011
+
+P1100
+P1101
+P1110
+P1111
+
+"Final state (balanced oracle)"
+
+psi = dot(H2,H1,H0,C23,C13,C03,H3,X3,H2,H1,H0,ket0000)
+psi
+
+"Measurement (balanced oracle)"
 
 P0000 = mag(dot(ket0000,psi))^2
 P0001 = mag(dot(ket0001,psi))^2
