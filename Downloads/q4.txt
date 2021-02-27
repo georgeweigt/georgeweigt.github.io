@@ -17,345 +17,345 @@ ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
 ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
 ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
 
-H0 = (ket0000 + ket1000,
-      ket0001 + ket1001,
-      ket0010 + ket1010,
-      ket0011 + ket1011,
-      ket0100 + ket1100,
-      ket0101 + ket1101,
-      ket0110 + ket1110,
-      ket0111 + ket1111,
-      ket0000 - ket1000,
-      ket0001 - ket1001,
-      ket0010 - ket1010,
-      ket0011 - ket1011,
-      ket0100 - ket1100,
-      ket0101 - ket1101,
-      ket0110 - ket1110,
-      ket0111 - ket1111) / sqrt(2)
+H0 = outer(ket0000,ket1000 + ket0000) / sqrt(2) +
+     outer(ket0001,ket1001 + ket0001) / sqrt(2) +
+     outer(ket0010,ket1010 + ket0010) / sqrt(2) +
+     outer(ket0011,ket1011 + ket0011) / sqrt(2) +
+     outer(ket0100,ket1100 + ket0100) / sqrt(2) +
+     outer(ket0101,ket1101 + ket0101) / sqrt(2) +
+     outer(ket0110,ket1110 + ket0110) / sqrt(2) +
+     outer(ket0111,ket1111 + ket0111) / sqrt(2) +
+     outer(ket1000,ket0000 - ket1000) / sqrt(2) +
+     outer(ket1001,ket0001 - ket1001) / sqrt(2) +
+     outer(ket1010,ket0010 - ket1010) / sqrt(2) +
+     outer(ket1011,ket0011 - ket1011) / sqrt(2) +
+     outer(ket1100,ket0100 - ket1100) / sqrt(2) +
+     outer(ket1101,ket0101 - ket1101) / sqrt(2) +
+     outer(ket1110,ket0110 - ket1110) / sqrt(2) +
+     outer(ket1111,ket0111 - ket1111) / sqrt(2)
 
-H1 = (ket0000 + ket0100,
-      ket0001 + ket0101,
-      ket0010 + ket0110,
-      ket0011 + ket0111,
-      ket0000 - ket0100,
-      ket0001 - ket0101,
-      ket0010 - ket0110,
-      ket0011 - ket0111,
-      ket1000 + ket1100,
-      ket1001 + ket1101,
-      ket1010 + ket1110,
-      ket1011 + ket1111,
-      ket1000 - ket1100,
-      ket1001 - ket1101,
-      ket1010 - ket1110,
-      ket1011 - ket1111) / sqrt(2)
+H1 = outer(ket0000,ket0100 + ket0000) / sqrt(2) +
+     outer(ket0001,ket0101 + ket0001) / sqrt(2) +
+     outer(ket0010,ket0110 + ket0010) / sqrt(2) +
+     outer(ket0011,ket0111 + ket0011) / sqrt(2) +
+     outer(ket0100,ket0000 - ket0100) / sqrt(2) +
+     outer(ket0101,ket0001 - ket0101) / sqrt(2) +
+     outer(ket0110,ket0010 - ket0110) / sqrt(2) +
+     outer(ket0111,ket0011 - ket0111) / sqrt(2) +
+     outer(ket1000,ket1100 + ket1000) / sqrt(2) +
+     outer(ket1001,ket1101 + ket1001) / sqrt(2) +
+     outer(ket1010,ket1110 + ket1010) / sqrt(2) +
+     outer(ket1011,ket1111 + ket1011) / sqrt(2) +
+     outer(ket1100,ket1000 - ket1100) / sqrt(2) +
+     outer(ket1101,ket1001 - ket1101) / sqrt(2) +
+     outer(ket1110,ket1010 - ket1110) / sqrt(2) +
+     outer(ket1111,ket1011 - ket1111) / sqrt(2)
 
-H2 = (ket0000 + ket0010,
-      ket0001 + ket0011,
-      ket0000 - ket0010,
-      ket0001 - ket0011,
-      ket0100 + ket0110,
-      ket0101 + ket0111,
-      ket0100 - ket0110,
-      ket0101 - ket0111,
-      ket1000 + ket1010,
-      ket1001 + ket1011,
-      ket1000 - ket1010,
-      ket1001 - ket1011,
-      ket1100 + ket1110,
-      ket1101 + ket1111,
-      ket1100 - ket1110,
-      ket1101 - ket1111) / sqrt(2)
+H2 = outer(ket0000,ket0010 + ket0000) / sqrt(2) +
+     outer(ket0001,ket0011 + ket0001) / sqrt(2) +
+     outer(ket0010,ket0000 - ket0010) / sqrt(2) +
+     outer(ket0011,ket0001 - ket0011) / sqrt(2) +
+     outer(ket0100,ket0110 + ket0100) / sqrt(2) +
+     outer(ket0101,ket0111 + ket0101) / sqrt(2) +
+     outer(ket0110,ket0100 - ket0110) / sqrt(2) +
+     outer(ket0111,ket0101 - ket0111) / sqrt(2) +
+     outer(ket1000,ket1010 + ket1000) / sqrt(2) +
+     outer(ket1001,ket1011 + ket1001) / sqrt(2) +
+     outer(ket1010,ket1000 - ket1010) / sqrt(2) +
+     outer(ket1011,ket1001 - ket1011) / sqrt(2) +
+     outer(ket1100,ket1110 + ket1100) / sqrt(2) +
+     outer(ket1101,ket1111 + ket1101) / sqrt(2) +
+     outer(ket1110,ket1100 - ket1110) / sqrt(2) +
+     outer(ket1111,ket1101 - ket1111) / sqrt(2)
 
-H3 = (ket0000 + ket0001,
-      ket0000 - ket0001,
-      ket0010 + ket0011,
-      ket0010 - ket0011,
-      ket0100 + ket0101,
-      ket0100 - ket0101,
-      ket0110 + ket0111,
-      ket0110 - ket0111,
-      ket1000 + ket1001,
-      ket1000 - ket1001,
-      ket1010 + ket1011,
-      ket1010 - ket1011,
-      ket1100 + ket1101,
-      ket1100 - ket1101,
-      ket1110 + ket1111,
-      ket1110 - ket1111) / sqrt(2)
+H3 = outer(ket0000,ket0001 + ket0000) / sqrt(2) +
+     outer(ket0001,ket0000 - ket0001) / sqrt(2) +
+     outer(ket0010,ket0011 + ket0010) / sqrt(2) +
+     outer(ket0011,ket0010 - ket0011) / sqrt(2) +
+     outer(ket0100,ket0101 + ket0100) / sqrt(2) +
+     outer(ket0101,ket0100 - ket0101) / sqrt(2) +
+     outer(ket0110,ket0111 + ket0110) / sqrt(2) +
+     outer(ket0111,ket0110 - ket0111) / sqrt(2) +
+     outer(ket1000,ket1001 + ket1000) / sqrt(2) +
+     outer(ket1001,ket1000 - ket1001) / sqrt(2) +
+     outer(ket1010,ket1011 + ket1010) / sqrt(2) +
+     outer(ket1011,ket1010 - ket1011) / sqrt(2) +
+     outer(ket1100,ket1101 + ket1100) / sqrt(2) +
+     outer(ket1101,ket1100 - ket1101) / sqrt(2) +
+     outer(ket1110,ket1111 + ket1110) / sqrt(2) +
+     outer(ket1111,ket1110 - ket1111) / sqrt(2)
 
-X0 = (ket1000,
-      ket1001,
-      ket1010,
-      ket1011,
-      ket1100,
-      ket1101,
-      ket1110,
-      ket1111,
-      ket0000,
-      ket0001,
-      ket0010,
-      ket0011,
-      ket0100,
-      ket0101,
-      ket0110,
-      ket0111)
+X0 = outer(ket0000,ket1000) +
+     outer(ket0001,ket1001) +
+     outer(ket0010,ket1010) +
+     outer(ket0011,ket1011) +
+     outer(ket0100,ket1100) +
+     outer(ket0101,ket1101) +
+     outer(ket0110,ket1110) +
+     outer(ket0111,ket1111) +
+     outer(ket1000,ket0000) +
+     outer(ket1001,ket0001) +
+     outer(ket1010,ket0010) +
+     outer(ket1011,ket0011) +
+     outer(ket1100,ket0100) +
+     outer(ket1101,ket0101) +
+     outer(ket1110,ket0110) +
+     outer(ket1111,ket0111)
 
-X1 = (ket0100,
-      ket0101,
-      ket0110,
-      ket0111,
-      ket0000,
-      ket0001,
-      ket0010,
-      ket0011,
-      ket1100,
-      ket1101,
-      ket1110,
-      ket1111,
-      ket1000,
-      ket1001,
-      ket1010,
-      ket1011)
+X1 = outer(ket0000,ket0100) +
+     outer(ket0001,ket0101) +
+     outer(ket0010,ket0110) +
+     outer(ket0011,ket0111) +
+     outer(ket0100,ket0000) +
+     outer(ket0101,ket0001) +
+     outer(ket0110,ket0010) +
+     outer(ket0111,ket0011) +
+     outer(ket1000,ket1100) +
+     outer(ket1001,ket1101) +
+     outer(ket1010,ket1110) +
+     outer(ket1011,ket1111) +
+     outer(ket1100,ket1000) +
+     outer(ket1101,ket1001) +
+     outer(ket1110,ket1010) +
+     outer(ket1111,ket1011)
 
-X2 = (ket0010,
-      ket0011,
-      ket0000,
-      ket0001,
-      ket0110,
-      ket0111,
-      ket0100,
-      ket0101,
-      ket1010,
-      ket1011,
-      ket1000,
-      ket1001,
-      ket1110,
-      ket1111,
-      ket1100,
-      ket1101)
+X2 = outer(ket0000,ket0010) +
+     outer(ket0001,ket0011) +
+     outer(ket0010,ket0000) +
+     outer(ket0011,ket0001) +
+     outer(ket0100,ket0110) +
+     outer(ket0101,ket0111) +
+     outer(ket0110,ket0100) +
+     outer(ket0111,ket0101) +
+     outer(ket1000,ket1010) +
+     outer(ket1001,ket1011) +
+     outer(ket1010,ket1000) +
+     outer(ket1011,ket1001) +
+     outer(ket1100,ket1110) +
+     outer(ket1101,ket1111) +
+     outer(ket1110,ket1100) +
+     outer(ket1111,ket1101)
 
-X3 = (ket0001,
-      ket0000,
-      ket0011,
-      ket0010,
-      ket0101,
-      ket0100,
-      ket0111,
-      ket0110,
-      ket1001,
-      ket1000,
-      ket1011,
-      ket1010,
-      ket1101,
-      ket1100,
-      ket1111,
-      ket1110)
+X3 = outer(ket0000,ket0001) +
+     outer(ket0001,ket0000) +
+     outer(ket0010,ket0011) +
+     outer(ket0011,ket0010) +
+     outer(ket0100,ket0101) +
+     outer(ket0101,ket0100) +
+     outer(ket0110,ket0111) +
+     outer(ket0111,ket0110) +
+     outer(ket1000,ket1001) +
+     outer(ket1001,ket1000) +
+     outer(ket1010,ket1011) +
+     outer(ket1011,ket1010) +
+     outer(ket1100,ket1101) +
+     outer(ket1101,ket1100) +
+     outer(ket1110,ket1111) +
+     outer(ket1111,ket1110)
 
-C01 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket0100,
-       ket0101,
-       ket0110,
-       ket0111,
-       ket1100,
-       ket1101,
-       ket1110,
-       ket1111,
-       ket1000,
-       ket1001,
-       ket1010,
-       ket1011)
+C01 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket0111) +
+      outer(ket1000,ket1100) +
+      outer(ket1001,ket1101) +
+      outer(ket1010,ket1110) +
+      outer(ket1011,ket1111) +
+      outer(ket1100,ket1000) +
+      outer(ket1101,ket1001) +
+      outer(ket1110,ket1010) +
+      outer(ket1111,ket1011)
 
-C02 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket0100,
-       ket0101,
-       ket0110,
-       ket0111,
-       ket1010,
-       ket1011,
-       ket1000,
-       ket1001,
-       ket1110,
-       ket1111,
-       ket1100,
-       ket1101)
+C02 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket0111) +
+      outer(ket1000,ket1010) +
+      outer(ket1001,ket1011) +
+      outer(ket1010,ket1000) +
+      outer(ket1011,ket1001) +
+      outer(ket1100,ket1110) +
+      outer(ket1101,ket1111) +
+      outer(ket1110,ket1100) +
+      outer(ket1111,ket1101)
 
-C03 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket0100,
-       ket0101,
-       ket0110,
-       ket0111,
-       ket1001,
-       ket1000,
-       ket1011,
-       ket1010,
-       ket1101,
-       ket1100,
-       ket1111,
-       ket1110)
+C03 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket0111) +
+      outer(ket1000,ket1001) +
+      outer(ket1001,ket1000) +
+      outer(ket1010,ket1011) +
+      outer(ket1011,ket1010) +
+      outer(ket1100,ket1101) +
+      outer(ket1101,ket1100) +
+      outer(ket1110,ket1111) +
+      outer(ket1111,ket1110)
 
-C10 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket1100,
-       ket1101,
-       ket1110,
-       ket1111,
-       ket1000,
-       ket1001,
-       ket1010,
-       ket1011,
-       ket0100,
-       ket0101,
-       ket0110,
-       ket0111)
+C10 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket1100) +
+      outer(ket0101,ket1101) +
+      outer(ket0110,ket1110) +
+      outer(ket0111,ket1111) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket1011) +
+      outer(ket1100,ket0100) +
+      outer(ket1101,ket0101) +
+      outer(ket1110,ket0110) +
+      outer(ket1111,ket0111)
 
-C12 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket0110,
-       ket0111,
-       ket0100,
-       ket0101,
-       ket1000,
-       ket1001,
-       ket1010,
-       ket1011,
-       ket1110,
-       ket1111,
-       ket1100,
-       ket1101)
+C12 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket0110) +
+      outer(ket0101,ket0111) +
+      outer(ket0110,ket0100) +
+      outer(ket0111,ket0101) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket1011) +
+      outer(ket1100,ket1110) +
+      outer(ket1101,ket1111) +
+      outer(ket1110,ket1100) +
+      outer(ket1111,ket1101)
 
-C13 = (ket0000,
-       ket0001,
-       ket0010,
-       ket0011,
-       ket0101,
-       ket0100,
-       ket0111,
-       ket0110,
-       ket1000,
-       ket1001,
-       ket1010,
-       ket1011,
-       ket1101,
-       ket1100,
-       ket1111,
-       ket1110)
+C13 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0011) +
+      outer(ket0100,ket0101) +
+      outer(ket0101,ket0100) +
+      outer(ket0110,ket0111) +
+      outer(ket0111,ket0110) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket1011) +
+      outer(ket1100,ket1101) +
+      outer(ket1101,ket1100) +
+      outer(ket1110,ket1111) +
+      outer(ket1111,ket1110)
 
-C20 = (ket0000,
-       ket0001,
-       ket1010,
-       ket1011,
-       ket0100,
-       ket0101,
-       ket1110,
-       ket1111,
-       ket1000,
-       ket1001,
-       ket0010,
-       ket0011,
-       ket1100,
-       ket1101,
-       ket0110,
-       ket0111)
+C20 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket1010) +
+      outer(ket0011,ket1011) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket1110) +
+      outer(ket0111,ket1111) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket0010) +
+      outer(ket1011,ket0011) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket1101) +
+      outer(ket1110,ket0110) +
+      outer(ket1111,ket0111)
 
-C21 = (ket0000,
-       ket0001,
-       ket0110,
-       ket0111,
-       ket0100,
-       ket0101,
-       ket0010,
-       ket0011,
-       ket1000,
-       ket1001,
-       ket1110,
-       ket1111,
-       ket1100,
-       ket1101,
-       ket1010,
-       ket1011)
+C21 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0110) +
+      outer(ket0011,ket0111) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket0010) +
+      outer(ket0111,ket0011) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket1110) +
+      outer(ket1011,ket1111) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket1101) +
+      outer(ket1110,ket1010) +
+      outer(ket1111,ket1011)
 
-C23 = (ket0000,
-       ket0001,
-       ket0011,
-       ket0010,
-       ket0100,
-       ket0101,
-       ket0111,
-       ket0110,
-       ket1000,
-       ket1001,
-       ket1011,
-       ket1010,
-       ket1100,
-       ket1101,
-       ket1111,
-       ket1110)
+C23 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0001) +
+      outer(ket0010,ket0011) +
+      outer(ket0011,ket0010) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0101) +
+      outer(ket0110,ket0111) +
+      outer(ket0111,ket0110) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1001) +
+      outer(ket1010,ket1011) +
+      outer(ket1011,ket1010) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket1101) +
+      outer(ket1110,ket1111) +
+      outer(ket1111,ket1110)
 
-C30 = (ket0000,
-       ket1001,
-       ket0010,
-       ket1011,
-       ket0100,
-       ket1101,
-       ket0110,
-       ket1111,
-       ket1000,
-       ket0001,
-       ket1010,
-       ket0011,
-       ket1100,
-       ket0101,
-       ket1110,
-       ket0111)
+C30 = outer(ket0000,ket0000) +
+      outer(ket0001,ket1001) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket1011) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket1101) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket1111) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket0001) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket0011) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket0101) +
+      outer(ket1110,ket1110) +
+      outer(ket1111,ket0111)
 
-C31 = (ket0000,
-       ket0101,
-       ket0010,
-       ket0111,
-       ket0100,
-       ket0001,
-       ket0110,
-       ket0011,
-       ket1000,
-       ket1101,
-       ket1010,
-       ket1111,
-       ket1100,
-       ket1001,
-       ket1110,
-       ket1011)
+C31 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0101) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0111) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0001) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket0011) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1101) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket1111) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket1001) +
+      outer(ket1110,ket1110) +
+      outer(ket1111,ket1011)
 
-C32 = (ket0000,
-       ket0011,
-       ket0010,
-       ket0001,
-       ket0100,
-       ket0111,
-       ket0110,
-       ket0101,
-       ket1000,
-       ket1011,
-       ket1010,
-       ket1001,
-       ket1100,
-       ket1111,
-       ket1110,
-       ket1101)
+C32 = outer(ket0000,ket0000) +
+      outer(ket0001,ket0011) +
+      outer(ket0010,ket0010) +
+      outer(ket0011,ket0001) +
+      outer(ket0100,ket0100) +
+      outer(ket0101,ket0111) +
+      outer(ket0110,ket0110) +
+      outer(ket0111,ket0101) +
+      outer(ket1000,ket1000) +
+      outer(ket1001,ket1011) +
+      outer(ket1010,ket1010) +
+      outer(ket1011,ket1001) +
+      outer(ket1100,ket1100) +
+      outer(ket1101,ket1111) +
+      outer(ket1110,ket1110) +
+      outer(ket1111,ket1101)
 
 M(psi,P,x) = do(
   P = outer(conj(psi),psi),
