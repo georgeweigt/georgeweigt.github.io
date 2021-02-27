@@ -5936,7 +5936,7 @@ eval_setq(p1)
 	}
 
 	if (!isusersymbol(cadr(p1)))
-		stopf("symbol expected");
+		stopf("user symbol expected");
 
 	push(caddr(p1));
 	evalf();
@@ -12427,7 +12427,7 @@ setq_indexed(p1)
 	S = cadadr(p1);
 
 	if (!isusersymbol(S))
-		stopf("symbol expected");
+		stopf("user symbol expected");
 
 	push(S);
 	evalf();
