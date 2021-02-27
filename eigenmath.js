@@ -5347,20 +5347,20 @@ eval_index(p1)
 {
 	var k;
 
-	p1 = cdr(p1);
-
-	push(car(p1));
-	p1 = cdr(p1);
+	push(cadr(p1));
 	evalf();
+
+	p1 = cddr(p1);
 
 	while (iscons(p1)) {
 
 		push(car(p1));
-		p1 = cdr(p1);
 		evalf();
 		k = pop_integer();
 
 		index(k);
+
+		p1 = cdr(p1);
 	}
 }
 function
@@ -5581,7 +5581,8 @@ eval_nonstop()
 
 	try {
 		save_expanding = expanding;
-		save_stack_length = stack.length;
+
+		save_stack_length = stack.length - 1;
 		save_frame_length = frame.length;
 
 		evalf();
@@ -5590,10 +5591,9 @@ eval_nonstop()
 	catch(errmsg) {
 
 		expanding = save_expanding;
+
 		stack.splice(save_stack_length);
 		frame.splice(save_frame_length);
-
-		pop(); // pop what was on the stack when eval_nonstop called
 
 		push_symbol(NIL); // return value
 	}

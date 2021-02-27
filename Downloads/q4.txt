@@ -357,9 +357,8 @@ C32 = outer(ket0000,ket0000) +
       outer(ket1110,ket1110) +
       outer(ket1111,ket1101)
 
-M(psi,P,x) = do(
-  P = outer(conj(psi),psi),
+M(psi) = do(
   xrange = (0,16),
   yrange = (0,1),
-  draw(P[ceiling(x),ceiling(x)],x)
+  draw(psi[ceiling(x)] conj(psi[ceiling(x)]),x)
 )
