@@ -7,25 +7,25 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Draw demo
 
-draw(x^2)
+draw(floor(x))
 draw(1/x)
-draw(5*sin(x)/x)
-draw(5*cos(x)/x)
-draw(5*(sin(x),cos(x)))
+draw(5 sin(x) / x)
+draw(5 cos(x) / x)
+draw(5 (sin(x),cos(x)))
 
 -- lemniscate
-X = cos(t)/(1+sin(t)^2)
-Y = sin(t)*cos(t)/(1+sin(t)^2)
+X = cos(t) / (1 + sin(t)^2)
+Y = sin(t) cos(t) / (1 + sin(t)^2)
 f = (X,Y)
-draw(5*f,t)
+draw(5f,t)
 
 -- cardioid
-r = (1+cos(t))/2
+r = 1/2 (1 + cos(t))
 u = (cos(t),sin(t))
 xrange = (-1,1)
 yrange = (-1,1)
-trange = (0,2*pi)
-draw(r*u,t)
+trange = (0,2pi)
+draw(r u,t)
 
 -- smiley face
 xrange = (-10,10)
