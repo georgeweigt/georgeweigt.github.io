@@ -1733,6 +1733,16 @@ const SYMBOL_X = "x";
 const SYMBOL_Y = "y";
 const SYMBOL_Z = "z";
 
+const ARG1 = "$1";
+const ARG2 = "$2";
+const ARG3 = "$3";
+const ARG4 = "$4";
+const ARG5 = "$5";
+const ARG6 = "$6";
+const ARG7 = "$7";
+const ARG8 = "$8";
+const ARG9 = "$9";
+
 const MAXINT = 1e15;
 function
 contract()
@@ -1818,6 +1828,81 @@ contract()
 			p2.dim[k++] = p1.dim[i];
 
 	push(p2);
+}
+function
+convert_body(A)
+{
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG1);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG2);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG3);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG4);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG5);
+	subst();
+
+	A = cdr(A);
+
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG6);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG7);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG8);
+	subst();
+
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+
+	push(car(A));
+	push_symbol(ARG9);
+	subst();
 }
 function
 copy_tensor(p1)
@@ -2235,11 +2320,6 @@ dd(p1, p2)
 		push(caddr(p1));
 		derivative();
 	}
-}
-function
-ddual(p)
-{
-	return lookup(p.printname + "$$");
 }
 function
 decomp()
@@ -4507,11 +4587,6 @@ dtt(p1, p2)
 	push(p3);
 }
 function
-dual(p)
-{
-	return lookup(p.printname + "$");
-}
-function
 emit_axes()
 {
 	var dx, dy, x, y;
@@ -4865,14 +4940,14 @@ eval_circexp(p1)
 function
 eval_clear()
 {
-	save_binding(symbol(TRACE));
+	save_symbol(symbol(TRACE));
 
 	binding = {};
-	arglist = {};
+	usrfunc = {};
 
 	initscript();
 
-	restore_binding(symbol(TRACE));
+	restore_symbol(symbol(TRACE));
 
 	push_symbol(NIL);
 }
@@ -5160,7 +5235,7 @@ eval_draw(p1)
 	if (!isusersymbol(T))
 		T = symbol(SYMBOL_X);
 
-	save_binding(T);
+	save_symbol(T);
 
 	setup_trange();
 	setup_xrange();
@@ -5175,7 +5250,7 @@ eval_draw(p1)
 
 	emit_graph();
 
-	restore_binding(T);
+	restore_symbol(T);
 
 	push_symbol(NIL);
 
@@ -5310,7 +5385,7 @@ eval_for(p1)
 
 	p1 = cddr(p1);
 
-	save_binding(p2);
+	save_symbol(p2);
 
 	for (;;) {
 		push_integer(j);
@@ -5331,7 +5406,7 @@ eval_for(p1)
 			break;
 	}
 
-	restore_binding(p2);
+	restore_symbol(p2);
 
 	push_symbol(NIL); // return value
 }
@@ -5739,7 +5814,7 @@ eval_product(p1)
 
 	p1 = caddr(p1);
 
-	save_binding(p2);
+	save_symbol(p2);
 
 	h = stack.length;
 
@@ -5759,7 +5834,7 @@ eval_product(p1)
 
 	multiply_factors(stack.length - h);
 
-	restore_binding(p2);
+	restore_symbol(p2);
 }
 function
 eval_quote(p1)
@@ -5943,7 +6018,7 @@ eval_sum(p1)
 
 	p1 = caddr(p1);
 
-	save_binding(p2);
+	save_symbol(p2);
 
 	h = stack.length;
 
@@ -5963,7 +6038,7 @@ eval_sum(p1)
 
 	add_terms(stack.length - h);
 
-	restore_binding(p2);
+	restore_symbol(p2);
 }
 function
 eval_tan(p1)
@@ -6192,87 +6267,88 @@ eval_unit(p1)
 function
 eval_user_function(p1)
 {
-	var h, k, p2, p3, FUNC_NAME, FUNC_DEFN, FORMAL, ACTUAL, T;
-
-	h = stack.length;
+	var h, i, FUNC_NAME, FUNC_ARGS, FUNC_DEFN;
 
 	FUNC_NAME = car(p1);
-	FUNC_DEFN = get_binding(FUNC_NAME);
+	FUNC_ARGS = cdr(p1);
 
-	FORMAL = get_arglist(FUNC_NAME);
-	ACTUAL = cdr(p1);
-
-	// use "derivative" instead of "d" if there is no user function "d"
-
-	if (FUNC_NAME == symbol(SYMBOL_D) && get_arglist(symbol(SYMBOL_D)) == symbol(NIL)) {
-		eval_derivative(p1);
-		return;
-	}
+	FUNC_DEFN = get_usrfunc(FUNC_NAME);
 
 	// undefined function?
 
-	if (FUNC_NAME == FUNC_DEFN || FUNC_DEFN == symbol(NIL)) {
+	if (FUNC_DEFN == symbol(NIL)) {
+		if (FUNC_NAME == symbol(SYMBOL_D)) {
+			eval_derivative(p1);
+			return;
+		}
+		h = stack.length;
 		push(FUNC_NAME);
-		p1 = ACTUAL;
-		while (iscons(p1)) {
-			push(car(p1));
+		while (iscons(FUNC_ARGS)) {
+			push(car(FUNC_ARGS));
 			evalf();
-			p1 = cdr(p1);
+			FUNC_ARGS = cdr(FUNC_ARGS);
 		}
 		list(stack.length - h);
 		return;
 	}
 
-	FUNC_DEFN = get_binding(ddual(FUNC_NAME)); // get binding of the dual
+	// eval all args before changing bindings
 
-	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
-
-	p1 = FORMAL;
-	p2 = ACTUAL;
-
-	while (iscons(p1)) {
-		push(car(p2));
+	for (i = 0; i < 9; i++) {
+		push(car(FUNC_ARGS));
 		evalf();
-		p1 = cdr(p1);
-		p2 = cdr(p2);
+		FUNC_ARGS = cdr(FUNC_ARGS);
 	}
 
-	// assign actual to formal
+	save_symbol(symbol(ARG1));
+	save_symbol(symbol(ARG2));
+	save_symbol(symbol(ARG3));
+	save_symbol(symbol(ARG4));
+	save_symbol(symbol(ARG5));
+	save_symbol(symbol(ARG6));
+	save_symbol(symbol(ARG7));
+	save_symbol(symbol(ARG8));
+	save_symbol(symbol(ARG9));
 
-	k = h;
-	p1 = FORMAL;
+	p1 = pop();
+	set_binding(symbol(ARG9), p1);
 
-	while (iscons(p1)) {
-		p2 = car(p1);
-		p3 = stack[k];
-		stack[k] = get_binding(p2);
-		set_binding(p2, p3);
-		k++;
-		p1 = cdr(p1);
-	}
+	p1 = pop();
+	set_binding(symbol(ARG8), p1);
 
-	// evaluate user function
+	p1 = pop();
+	set_binding(symbol(ARG7), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG6), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG5), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG4), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG3), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG2), p1);
+
+	p1 = pop();
+	set_binding(symbol(ARG1), p1);
 
 	push(FUNC_DEFN);
 	evalf();
-	T = pop();
 
-	// restore bindings
-
-	k = h;
-	p1 = FORMAL;
-
-	while (iscons(p1)) {
-		p2 = car(p1);
-		p3 = stack[k];
-		set_binding(p2, p3);
-		k++;
-		p1 = cdr(p1);
-	}
-
-	stack.splice(h); // pop all
-
-	push(T);
+	restore_symbol(symbol(ARG9));
+	restore_symbol(symbol(ARG8));
+	restore_symbol(symbol(ARG7));
+	restore_symbol(symbol(ARG6));
+	restore_symbol(symbol(ARG5));
+	restore_symbol(symbol(ARG4));
+	restore_symbol(symbol(ARG3));
+	restore_symbol(symbol(ARG2));
+	restore_symbol(symbol(ARG1));
 }
 function
 eval_user_symbol(p1)
@@ -7068,18 +7144,18 @@ gcd_integers(a, b)
 	return a;
 }
 function
-get_arglist(p)
-{
-	if (p.printname in arglist)
-		return arglist[p.printname];
-	else
-		return symbol(NIL);
-}
-function
 get_binding(p)
 {
 	if (p.printname in binding)
 		return binding[p.printname];
+	else
+		return symbol(NIL);
+}
+function
+get_usrfunc(p)
+{
+	if (p.printname in usrfunc)
+		return usrfunc[p.printname];
 	else
 		return symbol(NIL);
 }
@@ -7138,8 +7214,8 @@ init()
 	stack = [];
 	frame = [];
 
-	arglist = {};
 	binding = {};
+	usrfunc = {};
 
 	push_integer(0);
 	zero = pop();
@@ -7364,9 +7440,9 @@ integral_nib(F, X)
 {
 	var h;
 
-	save_binding(symbol(METAA));
-	save_binding(symbol(METAB));
-	save_binding(symbol(METAX));
+	save_symbol(symbol(METAA));
+	save_symbol(symbol(METAB));
+	save_symbol(symbol(METAX));
 
 	set_binding(symbol(METAX), X);
 
@@ -7382,9 +7458,9 @@ integral_nib(F, X)
 
 	integral_lookup(F, h);
 
-	restore_binding(symbol(METAX));
-	restore_binding(symbol(METAB));
-	restore_binding(symbol(METAA));
+	restore_symbol(symbol(METAX));
+	restore_symbol(symbol(METAB));
+	restore_symbol(symbol(METAA));
 }
 function
 integral_search(F, h, table)
@@ -11651,7 +11727,7 @@ reduce_radical_rational(h, COEFF)
 	return COEFF;
 }
 function
-restore_binding(p)
+restore_symbol(p)
 {
 	var p1, p2;
 
@@ -11659,7 +11735,7 @@ restore_binding(p)
 	p1 = frame.pop();
 
 	set_binding(p, p1);
-	set_arglist(p, p2);
+	set_usrfunc(p, p2);
 }
 /* exported run */
 
@@ -11743,10 +11819,12 @@ sample(F, T, t)
 	draw_array.push({t:t, x:x, y:y});
 }
 function
-save_binding(p)
+save_symbol(p)
 {
 	frame.push(get_binding(p));
-	frame.push(get_arglist(p));
+	frame.push(get_usrfunc(p));
+	set_binding(p, symbol(NIL));
+	set_usrfunc(p, symbol(NIL));
 }
 const T_INTEGER = 1001;
 const T_DOUBLE = 1002;
@@ -12282,11 +12360,6 @@ scan_inbuf(k)
 	return k;
 }
 function
-set_arglist(p, q)
-{
-	arglist[p.printname] = q;
-}
-function
 set_binding(p, q)
 {
 	binding[p.printname] = q;
@@ -12337,6 +12410,11 @@ set_component(LVAL, RVAL, h)
 	}
 }
 function
+set_usrfunc(p, q)
+{
+	usrfunc[p.printname] = q;
+}
+function
 setq_indexed(p1)
 {
 	var h, LVAL, RVAL, S;
@@ -12383,51 +12461,24 @@ setq_indexed(p1)
 function
 setq_userfunc(p1)
 {
-	var h, p2, A, B, F, T;
+	var A, B, C, F;
 
 	F = caadr(p1); // function name
-	A = cdadr(p1); // function arg list
+	A = cdadr(p1); // function args
 	B = caddr(p1); // function body
 
 	if (!isusersymbol(F))
-		stopf("function definition error");
+		stopf("user symbol expected");
 
-	// convert args
-
-	h = stack.length;
-	p1 = A;
-
-	while (iscons(p1)) {
-		p2 = car(p1);
-		if (!isusersymbol(p2))
-			stopf("function definition error");
-		push(dual(p2));
-		p1 = cdr(p1);
-	}
-
-	list(stack.length - h);
-	T = pop();
-
-	set_binding(F, B);
-	set_arglist(F, T);
-
-	// convert body
+	if (lengthf(A) > 9)
+		stopf("more than 9 arguments");
 
 	push(B);
+	convert_body(A);
+	C = pop();
 
-	p1 = A;
-	p2 = T;
-
-	while (iscons(p1)) {
-		push(car(p1));
-		push(car(p2));
-		subst();
-		p1 = cdr(p1);
-		p2 = cdr(p2);
-	}
-
-	B = pop();
-	set_binding(ddual(F), B);
+	set_binding(F, B);
+	set_usrfunc(F, C);
 }
 function
 setup_final(F, T)
@@ -13442,7 +13493,7 @@ var stdout;
 var stack;
 var frame;
 var binding;
-var arglist;
+var usrfunc;
 var zero;
 var one;
 var minusone;
@@ -13567,6 +13618,15 @@ var symtab = {
 "y":		{printname:SYMBOL_Y,	func:eval_user_symbol},
 "z":		{printname:SYMBOL_Z,	func:eval_user_symbol},
 
+"$1":		{printname:ARG1,	func:eval_user_symbol},
+"$2":		{printname:ARG2,	func:eval_user_symbol},
+"$3":		{printname:ARG3,	func:eval_user_symbol},
+"$4":		{printname:ARG4,	func:eval_user_symbol},
+"$5":		{printname:ARG5,	func:eval_user_symbol},
+"$6":		{printname:ARG6,	func:eval_user_symbol},
+"$7":		{printname:ARG7,	func:eval_user_symbol},
+"$8":		{printname:ARG8,	func:eval_user_symbol},
+"$9":		{printname:ARG9,	func:eval_user_symbol},
 };
 function
 vector(h)
