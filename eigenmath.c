@@ -1,4 +1,4 @@
-/* February 25, 2021
+/* February 27, 2021
 
 To build and run:
 
@@ -282,6 +282,15 @@ struct atom {
 #define METAB		(26 * NSYM + 7)
 #define METAX		(26 * NSYM + 8)
 #define SPECX		(26 * NSYM + 9)
+#define ARG1		(26 * NSYM + 10)
+#define ARG2		(26 * NSYM + 11)
+#define ARG3		(26 * NSYM + 12)
+#define ARG4		(26 * NSYM + 13)
+#define ARG5		(26 * NSYM + 14)
+#define ARG6		(26 * NSYM + 15)
+#define ARG7		(26 * NSYM + 16)
+#define ARG8		(26 * NSYM + 17)
+#define ARG9		(26 * NSYM + 18)
 
 #define MAXPRIMETAB 10000
 #define MAXDIM 24
@@ -974,6 +983,7 @@ void setq_indexed(void);
 void set_component(int h);
 void set_component_nib(int h);
 void setq_userfunc(void);
+void convert_body(void);
 void eval_sgn(void);
 void sgn(void);
 void eval_simplify(void);
@@ -993,19 +1003,17 @@ void push(struct atom *p);
 struct atom * pop(void);
 void save(void);
 void restore(void);
-void save_binding(struct atom *p);
-void restore_binding(struct atom *p);
+void save_symbol(struct atom *p);
+void restore_symbol(struct atom *p);
 void swap(void);
 void push_string(char *s);
 void eval_sum(void);
 struct atom * lookup(char *s);
-struct atom * dual(struct atom *p);
-struct atom * ddual(struct atom *p);
 char * printname(struct atom *p);
 void set_binding(struct atom *p, struct atom *q);
-void set_arglist(struct atom *p, struct atom *q);
+void set_usrfunc(struct atom *p, struct atom *q);
 struct atom * get_binding(struct atom *p);
-struct atom * get_arglist(struct atom *p);
+struct atom * get_usrfunc(struct atom *p);
 void init_symbol_table(void);
 void clear_symbols(void);
 void eval_tan(void);
@@ -1063,7 +1071,7 @@ struct atom *frame[FRAMESIZE];
 
 struct atom *symtab[27 * NSYM];
 struct atom *binding[27 * NSYM];
-struct atom *arglist[27 * NSYM];
+struct atom *usrfunc[27 * NSYM];
 
 struct atom *p0;
 struct atom *p1;
@@ -4157,7 +4165,7 @@ gc(void)
 		if (symtab[i]) {
 			untag(symtab[i]);
 			untag(binding[i]);
-			untag(arglist[i]);
+			untag(usrfunc[i]);
 		}
 	for (i = 0; i < tos; i++)
 		untag(stack[i]);
@@ -7663,13 +7671,13 @@ eval_binding(void)
 void
 eval_clear(void)
 {
-	save_binding(symbol(TRACE));
-	save_binding(symbol(TTY));
+	save_symbol(symbol(TRACE));
+	save_symbol(symbol(TTY));
 	clear_symbols();
 	run_init_script();
 	gc(); // garbage collection
-	restore_binding(symbol(TTY));
-	restore_binding(symbol(TRACE));
+	restore_symbol(symbol(TTY));
+	restore_symbol(symbol(TRACE));
 	push_symbol(NIL); // result
 }
 
@@ -9365,7 +9373,7 @@ eval_for(void)
 	int j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
-	if (!issymbol(p2))
+	if (!isusersymbol(p2))
 		stop("for: 1st arg?");
 	p1 = cdr(p1);
 	push(car(p1));
@@ -9380,7 +9388,7 @@ eval_for(void)
 	if (k == ERR)
 		stop("for: 3rd arg?");
 	p1 = cdr(p1);
-	p4 = get_binding(p2); // save binding
+	save_symbol(p2);
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
@@ -9399,7 +9407,7 @@ eval_for(void)
 		else
 			break;
 	}
-	set_binding(p2, p4); // restore binding
+	restore_symbol(p2);
 	push_symbol(NIL); // return value
 }
 
@@ -9713,19 +9721,9 @@ index_function_nib(int n)
 	struct atom **s;
 	s = stack + tos - n;
 	p1 = s[0];
-	// index of number
-	if (isnum(p1)) {
-		tos -= n;
-		push(p1);
-		return;
-	}
-	// index of symbol (f.e., u[2] -> u[2])
 	if (!istensor(p1)) {
-		list(n);
-		p1 = pop();
-		push_symbol(INDEX);
-		push(p1);
-		append();
+		tos -= n;
+		push(p1); // quirky, but EVA2.txt depends on it
 		return;
 	}
 	ndim = p1->u.tensor->ndim;
@@ -10650,9 +10648,9 @@ void
 integral_of_form(void)
 {
 	int h;
-	save_binding(symbol(METAA));
-	save_binding(symbol(METAB));
-	save_binding(symbol(METAX));
+	save_symbol(symbol(METAA));
+	save_symbol(symbol(METAB));
+	save_symbol(symbol(METAX));
 	set_binding(symbol(METAX), X);
 	// put constants in F(X) on the stack
 	h = tos;
@@ -10663,9 +10661,9 @@ integral_of_form(void)
 	push(X);
 	decomp();
 	integral_lookup(h);
-	restore_binding(symbol(METAX));
-	restore_binding(symbol(METAB));
-	restore_binding(symbol(METAA));
+	restore_symbol(symbol(METAX));
+	restore_symbol(symbol(METAB));
+	restore_symbol(symbol(METAA));
 }
 
 void
@@ -17098,7 +17096,7 @@ eval_product(void)
 	int h, j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
-	if (!issymbol(p2))
+	if (!isusersymbol(p2))
 		stop("product: 1st arg?");
 	p1 = cdr(p1);
 	push(car(p1));
@@ -17113,7 +17111,7 @@ eval_product(void)
 	if (k == ERR)
 		stop("product: 3rd arg?");
 	p1 = cadr(p1);
-	p4 = get_binding(p2); // save binding
+	save_symbol(p2);
 	h = tos;
 	for (;;) {
 		push_integer(j);
@@ -17129,7 +17127,7 @@ eval_product(void)
 			break;
 	}
 	multiply_factors(tos - h);
-	set_binding(p2, p4); // restore binding
+	restore_symbol(p2);
 }
 
 void
@@ -18400,12 +18398,13 @@ eval_setq(void)
 	else if (iscons(cadr(p1)))
 		setq_userfunc();
 	else {
-		if (!issymbol(cadr(p1)))
-			stop("assignment: symbol expected");
+		if (!isusersymbol(cadr(p1)))
+			stop("user symbol expected");
 		push(caddr(p1));
 		eval();
 		p2 = pop();
 		set_binding(cadr(p1), p2);
+		set_usrfunc(cadr(p1), symbol(NIL));
 	}
 	push_symbol(NIL);
 }
@@ -18435,8 +18434,8 @@ setq_indexed(void)
 {
 	int h;
 	S = cadadr(p1);
-	if (!issymbol(S))
-		stop("symbol expected");
+	if (!isusersymbol(S))
+		stop("user symbol expected");
 	push(S);
 	eval();
 	LVAL = pop();
@@ -18529,49 +18528,86 @@ set_component_nib(int h)
 #undef F
 #undef A
 #undef B
-#undef T
+#undef C
 
-#define F p3 // F points to the function name
-#define A p4 // A points to the argument list
-#define B p5 // B points to the function body
-#define T p6
+#define F p3 // function name
+#define A p4 // argument list
+#define B p5 // function body
+#define C p6 // function body (converted)
 
 void
 setq_userfunc(void)
 {
-	int h;
 	F = caadr(p1);
 	A = cdadr(p1);
 	B = caddr(p1);
 	if (!isusersymbol(F))
-		stop("function definition error");
-	// convert args
-	h = tos;
-	p1 = A;
-	while (iscons(p1)) {
-		p2 = car(p1);
-		if (!isusersymbol(p2))
-			stop("function definition error");
-		push(dual(p2));
-		p1 = cdr(p1);
-	}
-	list(tos - h);
-	T = pop();
-	set_binding(F, B);
-	set_arglist(F, T);
-	// convert body
+		stop("user symbol expected");
+	if (length(A) > 9)
+		stop("more than 9 arguments");
 	push(B);
-	p1 = A;
-	p2 = T;
-	while (iscons(p1)) {
-		push(car(p1));
-		push(car(p2));
-		subst();
-		p1 = cdr(p1);
-		p2 = cdr(p2);
-	}
-	B = pop();
-	set_binding(ddual(F), B);
+	convert_body();
+	C = pop();
+	set_binding(F, B);
+	set_usrfunc(F, C);
+}
+
+void
+convert_body(void)
+{
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG1);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG2);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG3);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG4);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG5);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG6);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG7);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG8);
+	subst();
+	A = cdr(A);
+	if (!iscons(A))
+		return;
+	push(car(A));
+	push_symbol(ARG9);
+	subst();
 }
 
 void
@@ -19071,32 +19107,27 @@ restore(void)
 }
 
 void
-save_binding(struct atom *p)
+save_symbol(struct atom *p)
 {
 	if (tof < 0 || tof + 2 > FRAMESIZE)
 		kaput("frame error, circular definition?");
-	if (isusersymbol(p)) {
-		frame[tof + 0] = get_binding(p);
-		frame[tof + 1] = get_arglist(p);
-	} else {
-		frame[tof + 0] = symbol(NIL);
-		frame[tof + 1] = symbol(NIL);
-	}
+	frame[tof + 0] = get_binding(p);
+	frame[tof + 1] = get_usrfunc(p);
 	tof += 2;
 	if (tof > max_frame)
 		max_frame = tof; // new high
+	set_binding(p, symbol(NIL));
+	set_usrfunc(p, symbol(NIL));
 }
 
 void
-restore_binding(struct atom *p)
+restore_symbol(struct atom *p)
 {
 	if (tof < 2 || tof > FRAMESIZE)
 		kaput("frame error");
 	tof -= 2;
-	if (isusersymbol(p)) {
-		set_binding(p, frame[tof + 0]);
-		set_arglist(p, frame[tof + 1]);
-	}
+	set_binding(p, frame[tof + 0]);
+	set_usrfunc(p, frame[tof + 1]);
 }
 
 void
@@ -19128,7 +19159,7 @@ eval_sum(void)
 	int h, j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
-	if (!issymbol(p2))
+	if (!isusersymbol(p2))
 		stop("sum: 1st arg?");
 	p1 = cdr(p1);
 	push(car(p1));
@@ -19143,7 +19174,7 @@ eval_sum(void)
 	if (k == ERR)
 		stop("sum: 3rd arg?");
 	p1 = cadr(p1);
-	p4 = get_binding(p2); // save binding
+	save_symbol(p2);
 	h = tos;
 	for (;;) {
 		push_integer(j);
@@ -19159,7 +19190,7 @@ eval_sum(void)
 			break;
 	}
 	add_terms(tos - h);
-	set_binding(p2, p4); // restore binding
+	restore_symbol(p2);
 }
 
 // symbol lookup, create symbol if not found
@@ -19196,41 +19227,9 @@ lookup(char *s)
 	p->u.usym.index = k + i;
 	symtab[k + i] = p;
 	binding[k + i] = symbol(NIL);
-	arglist[k + i] = symbol(NIL);
+	usrfunc[k + i] = symbol(NIL);
 	usym_count++;
 	return p;
-}
-
-// symbol with trailing '$'
-
-struct atom *
-dual(struct atom *p)
-{
-	char buf[100], *s;
-	if (!isusersymbol(p))
-		stop("symbol error");
-	s = p->u.usym.name;
-	if (strlen(s) + 2 > sizeof buf)
-		stop("buffer kaput");
-	strcpy(buf, s);
-	strcat(buf, "$");
-	return lookup(buf);
-}
-
-// for function definitions
-
-struct atom *
-ddual(struct atom *p)
-{
-	char buf[100], *s;
-	if (!isusersymbol(p))
-		stop("symbol error");
-	s = p->u.usym.name;
-	if (strlen(s) + 3 > sizeof buf)
-		stop("buffer kaput");
-	strcpy(buf, s);
-	strcat(buf, "$$");
-	return lookup(buf);
 }
 
 char *
@@ -19253,11 +19252,11 @@ set_binding(struct atom *p, struct atom *q)
 }
 
 void
-set_arglist(struct atom *p, struct atom *q)
+set_usrfunc(struct atom *p, struct atom *q)
 {
 	if (!isusersymbol(p))
 		stop("symbol error");
-	arglist[p->u.usym.index] = q;
+	usrfunc[p->u.usym.index] = q;
 }
 
 struct atom *
@@ -19269,11 +19268,11 @@ get_binding(struct atom *p)
 }
 
 struct atom *
-get_arglist(struct atom *p)
+get_usrfunc(struct atom *p)
 {
 	if (!isusersymbol(p))
 		stop("symbol error");
-	return arglist[p->u.usym.index];
+	return usrfunc[p->u.usym.index];
 }
 
 struct se {
@@ -19443,6 +19442,15 @@ struct se stab[] = {
 	{ "(b)",		METAB,		NULL			},
 	{ "(x)",		METAX,		NULL			},
 	{ "(X)",		SPECX,		NULL			},
+	{ "$1",			ARG1,		NULL,			},
+	{ "$2",			ARG2,		NULL,			},
+	{ "$3",			ARG3,		NULL,			},
+	{ "$4",			ARG4,		NULL,			},
+	{ "$5",			ARG5,		NULL,			},
+	{ "$6",			ARG6,		NULL,			},
+	{ "$7",			ARG7,		NULL,			},
+	{ "$8",			ARG8,		NULL,			},
+	{ "$9",			ARG9,		NULL,			},
 };
 
 void
@@ -19481,7 +19489,7 @@ clear_symbols(void)
 	int i;
 	for (i = 0; i < 27 * NSYM; i++) {
 		binding[i] = symbol(NIL);
-		arglist[i] = symbol(NIL);
+		usrfunc[i] = symbol(NIL);
 	}
 }
 
@@ -20442,35 +20450,29 @@ transpose_nib(void)
 }
 
 #undef FUNC_NAME
+#undef FUNC_ARGS
 #undef FUNC_DEFN
-#undef FORMAL
-#undef ACTUAL
-#undef T
 
 #define FUNC_NAME p4
-#define FUNC_DEFN p5
-#define FORMAL p6 // formal argument list
-#define ACTUAL p7 // actual argument list
-#define T p8
+#define FUNC_ARGS p5
+#define FUNC_DEFN p6
 
 void
 eval_user_function(void)
 {
-	int h, k;
-	h = tos;
+	int h, i;
 	FUNC_NAME = car(p1);
-	FUNC_DEFN = get_binding(FUNC_NAME);
-	FORMAL = get_arglist(FUNC_NAME);
-	ACTUAL = cdr(p1);
-	// use "derivative" instead of "d" if there is no user function "d"
-	if (FUNC_NAME == symbol(SYMBOL_D) && get_arglist(symbol(SYMBOL_D)) == symbol(NIL)) {
-		eval_derivative();
-		return;
-	}
+	FUNC_ARGS = cdr(p1);
+	FUNC_DEFN = get_usrfunc(FUNC_NAME);
 	// undefined function?
-	if (FUNC_NAME == FUNC_DEFN || FUNC_DEFN == symbol(NIL)) {
+	if (FUNC_DEFN == symbol(NIL)) {
+		if (FUNC_NAME == symbol(SYMBOL_D)) {
+			eval_derivative();
+			return;
+		}
+		h = tos;
 		push(FUNC_NAME);
-		p1 = ACTUAL;
+		p1 = FUNC_ARGS;
 		while (iscons(p1)) {
 			push(car(p1));
 			eval();
@@ -20479,41 +20481,49 @@ eval_user_function(void)
 		list(tos - h);
 		return;
 	}
-	FUNC_DEFN = get_binding(ddual(FUNC_NAME));
-	// eval actual args (ACTUAL can be shorter than FORMAL, NIL is pushed for missing args)
-	p1 = FORMAL;
-	p2 = ACTUAL;
-	while (iscons(p1)) {
-		push(car(p2));
+	// eval all args before changing bindings
+	p1 = FUNC_ARGS;
+	for (i = 0; i < 9; i++) {
+		push(car(p1));
 		eval();
 		p1 = cdr(p1);
-		p2 = cdr(p2);
 	}
-	// assign actual to formal
-	k = h;
-	p1 = FORMAL;
-	while (iscons(p1)) {
-		p2 = car(p1);
-		p3 = stack[k];
-		stack[k] = get_binding(p2);
-		set_binding(p2, p3);
-		k++;
-		p1 = cdr(p1);
-	}
-	// evaluate user function
+	save_symbol(symbol(ARG1));
+	save_symbol(symbol(ARG2));
+	save_symbol(symbol(ARG3));
+	save_symbol(symbol(ARG4));
+	save_symbol(symbol(ARG5));
+	save_symbol(symbol(ARG6));
+	save_symbol(symbol(ARG7));
+	save_symbol(symbol(ARG8));
+	save_symbol(symbol(ARG9));
+	p1 = pop();
+	set_binding(symbol(ARG9), p1);
+	p1 = pop();
+	set_binding(symbol(ARG8), p1);
+	p1 = pop();
+	set_binding(symbol(ARG7), p1);
+	p1 = pop();
+	set_binding(symbol(ARG6), p1);
+	p1 = pop();
+	set_binding(symbol(ARG5), p1);
+	p1 = pop();
+	set_binding(symbol(ARG4), p1);
+	p1 = pop();
+	set_binding(symbol(ARG3), p1);
+	p1 = pop();
+	set_binding(symbol(ARG2), p1);
+	p1 = pop();
+	set_binding(symbol(ARG1), p1);
 	push(FUNC_DEFN);
 	eval();
-	T = pop();
-	// restore bindings
-	k = h;
-	p1 = FORMAL;
-	while (iscons(p1)) {
-		p2 = car(p1);
-		p3 = stack[k];
-		set_binding(p2, p3);
-		k++;
-		p1 = cdr(p1);
-	}
-	tos = h; // pop all
-	push(T);
+	restore_symbol(symbol(ARG9));
+	restore_symbol(symbol(ARG8));
+	restore_symbol(symbol(ARG7));
+	restore_symbol(symbol(ARG6));
+	restore_symbol(symbol(ARG5));
+	restore_symbol(symbol(ARG4));
+	restore_symbol(symbol(ARG3));
+	restore_symbol(symbol(ARG2));
+	restore_symbol(symbol(ARG1));
 }
