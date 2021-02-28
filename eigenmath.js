@@ -5931,7 +5931,7 @@ eval_setq(p1)
 	}
 
 	if (iscons(cadr(p1))) {
-		setq_userfunc(p1);
+		setq_usrfunc(p1);
 		return;
 	}
 
@@ -5941,7 +5941,9 @@ eval_setq(p1)
 	push(caddr(p1));
 	evalf();
 	p2 = pop();
+
 	set_binding(cadr(p1), p2);
+	set_usrfunc(cadr(p1), symbol(NIL));
 }
 function
 eval_sgn(p1)
@@ -12464,7 +12466,7 @@ setq_indexed(p1)
 // cadadr(p1) = a
 // caddr(p1) = b
 function
-setq_userfunc(p1)
+setq_usrfunc(p1)
 {
 	var A, B, C, F;
 
