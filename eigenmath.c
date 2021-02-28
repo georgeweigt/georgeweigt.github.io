@@ -281,16 +281,15 @@ struct atom {
 #define METAA		(26 * NSYM + 6)
 #define METAB		(26 * NSYM + 7)
 #define METAX		(26 * NSYM + 8)
-#define SPECX		(26 * NSYM + 9)
-#define ARG1		(26 * NSYM + 10)
-#define ARG2		(26 * NSYM + 11)
-#define ARG3		(26 * NSYM + 12)
-#define ARG4		(26 * NSYM + 13)
-#define ARG5		(26 * NSYM + 14)
-#define ARG6		(26 * NSYM + 15)
-#define ARG7		(26 * NSYM + 16)
-#define ARG8		(26 * NSYM + 17)
-#define ARG9		(26 * NSYM + 18)
+#define ARG1		(26 * NSYM + 9)
+#define ARG2		(26 * NSYM + 10)
+#define ARG3		(26 * NSYM + 11)
+#define ARG4		(26 * NSYM + 12)
+#define ARG5		(26 * NSYM + 13)
+#define ARG6		(26 * NSYM + 14)
+#define ARG7		(26 * NSYM + 15)
+#define ARG8		(26 * NSYM + 16)
+#define ARG9		(26 * NSYM + 17)
 
 #define MAXPRIMETAB 10000
 #define MAXDIM 24
@@ -542,7 +541,6 @@ void denominator_nib(void);
 void eval_derivative(void);
 void derivative(void);
 void d_scalar_scalar(void);
-void d_scalar_scalar_1(void);
 void dsum(void);
 void dproduct(void);
 void dpower(void);
@@ -5308,26 +5306,6 @@ derivative(void)
 
 void
 d_scalar_scalar(void)
-{
-	if (issymbol(p2))
-		d_scalar_scalar_1();
-	else {
-		// Example: d(sin(cos(x)),cos(x))
-		// Replace cos(x) <- X, find derivative, then do X <- cos(x)
-		push(p1);		// sin(cos(x))
-		push(p2);		// cos(x)
-		push_symbol(SPECX);	// X
-		subst();		// sin(cos(x)) -> sin(X)
-		push_symbol(SPECX);	// X
-		derivative();
-		push_symbol(SPECX);	// X
-		push(p2);		// cos(x)
-		subst();		// cos(X) -> cos(cos(x))
-	}
-}
-
-void
-d_scalar_scalar_1(void)
 {
 	// d(x,x)?
 	if (equal(p1, p2)) {
@@ -19423,20 +19401,19 @@ struct se stab[] = {
 	{ "^",			POWER,		eval_power		},
 	{ "[",			INDEX,		eval_index		},
 	{ "=",			SETQ,		eval_setq		},
-	{ "(e)",		EXP1,		NULL			},
-	{ "(a)",		METAA,		NULL			},
-	{ "(b)",		METAB,		NULL			},
-	{ "(x)",		METAX,		NULL			},
-	{ "(X)",		SPECX,		NULL			},
-	{ "$1",			ARG1,		NULL,			},
-	{ "$2",			ARG2,		NULL,			},
-	{ "$3",			ARG3,		NULL,			},
-	{ "$4",			ARG4,		NULL,			},
-	{ "$5",			ARG5,		NULL,			},
-	{ "$6",			ARG6,		NULL,			},
-	{ "$7",			ARG7,		NULL,			},
-	{ "$8",			ARG8,		NULL,			},
-	{ "$9",			ARG9,		NULL,			},
+	{ "$e",			EXP1,		NULL			},
+	{ "$a",			METAA,		NULL			},
+	{ "$b",			METAB,		NULL			},
+	{ "$x",			METAX,		NULL			},
+	{ "$1",			ARG1,		NULL			},
+	{ "$2",			ARG2,		NULL			},
+	{ "$3",			ARG3,		NULL			},
+	{ "$4",			ARG4,		NULL			},
+	{ "$5",			ARG5,		NULL			},
+	{ "$6",			ARG6,		NULL			},
+	{ "$7",			ARG7,		NULL			},
+	{ "$8",			ARG8,		NULL			},
+	{ "$9",			ARG9,		NULL			},
 };
 
 void
