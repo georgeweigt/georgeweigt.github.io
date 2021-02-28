@@ -7170,18 +7170,18 @@ gcd_integers(a, b)
 function
 get_binding(p)
 {
-	if (p.printname in binding)
-		return binding[p.printname];
-	else
-		return symbol(NIL);
+	p = binding[p.printname];
+	if (p == undefined)
+		p = symbol(NIL);
+	return p;
 }
 function
 get_usrfunc(p)
 {
-	if (p.printname in usrfunc)
-		return usrfunc[p.printname];
-	else
-		return symbol(NIL);
+	p = usrfunc[p.printname];
+	if (p == undefined)
+		p = symbol(NIL);
+	return p;
 }
 function
 imag()
@@ -8649,9 +8649,12 @@ log()
 function
 lookup(s)
 {
-	if (!(s in symtab))
-		symtab[s] = {printname:s, func:eval_user_symbol};
-	return symtab[s];
+	var p = symtab[s];
+	if (p == undefined) {
+		p = {printname:s, func:eval_user_symbol};
+		symtab[s] = p;
+	}
+	return p;
 }
 function
 mag()
