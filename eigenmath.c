@@ -982,7 +982,7 @@ void eval_setq(void);
 void setq_indexed(void);
 void set_component(int h);
 void set_component_nib(int h);
-void setq_userfunc(void);
+void setq_usrfunc(void);
 void convert_body(void);
 void eval_sgn(void);
 void sgn(void);
@@ -18383,7 +18383,7 @@ eval_setq(void)
 		return;
 	}
 	if (iscons(cadr(p1))) {
-		setq_userfunc();
+		setq_usrfunc();
 		return;
 	}
 	if (!isusersymbol(cadr(p1)))
@@ -18522,7 +18522,7 @@ set_component_nib(int h)
 #define C p6 // function body (converted)
 
 void
-setq_userfunc(void)
+setq_usrfunc(void)
 {
 	F = caadr(p1);
 	A = cdadr(p1);
