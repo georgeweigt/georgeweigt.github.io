@@ -1,4 +1,4 @@
-/* February 28, 2021
+/* February 27, 2021
 
 To build and run:
 
@@ -48,14 +48,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <errno.h>
 
 #define STACKSIZE 1000000 // evaluation stack
-#define FRAMESIZE 10000 // limits recursion depth, prevents seg fault
+#define FRAMESIZE 10000
 #define BLOCKSIZE 100000
-#define MAXBLOCKS 250
+#define MAXBLOCKS 200
 #define NSYM 100
 
 #define JOURNALSIZE 1000
 
-// MAXBLOCKS * BLOCKSIZE * sizeof (struct atom) = 600,000,000 bytes
+// MAXBLOCKS * BLOCKSIZE * sizeof (struct atom) = 480,000,000 bytes
 
 // Symbolic expressions are built by linking structs of type "atom".
 //
@@ -1091,6 +1091,7 @@ struct atom *one;
 struct atom *minusone;
 struct atom *imaginaryunit;
 
+int level;
 int expanding;
 int drawing;
 int journaling;
@@ -1106,6 +1107,7 @@ int ksym_count;
 int usym_count;
 int string_count;
 int tensor_count;
+int max_level;
 int max_stack;
 int max_frame;
 int max_journal;
@@ -7595,9 +7597,15 @@ serfc_nib(void)
 void
 eval(void)
 {
+	level++;
+	if (level > max_level)
+		max_level = level;
+	if (level == 100)
+		kaput("circular definition?");
 	save();
 	eval_nib();
 	restore();
+	level--;
 }
 
 void
@@ -17576,13 +17584,14 @@ init(void)
 void
 prep(void)
 {
+	interrupt = 0;
 	tos = 0;
 	tof = 0;
 	toj = 0;
+	level = 0;
 	expanding = 1;
 	drawing = 0;
 	journaling = 0;
-	interrupt = 0;
 	p0 = symbol(NIL);
 	p1 = symbol(NIL);
 	p2 = symbol(NIL);
@@ -17733,7 +17742,7 @@ void
 eval_status(void)
 {
 	outbuf_index = 0;
-	sprintf(tbuf, "block_count %d\n", block_count);
+	sprintf(tbuf, "block_count %d (%d%%)\n", block_count, 100 * block_count / MAXBLOCKS);
 	print_str(tbuf);
 	sprintf(tbuf, "free_count %d\n", free_count);
 	print_str(tbuf);
@@ -17748,6 +17757,8 @@ eval_status(void)
 	sprintf(tbuf, "string_count %d\n", string_count);
 	print_str(tbuf);
 	sprintf(tbuf, "tensor_count %d\n", tensor_count);
+	print_str(tbuf);
+	sprintf(tbuf, "max_level %d\n", max_level);
 	print_str(tbuf);
 	sprintf(tbuf, "max_stack %d (%d%%)\n", max_stack, 100 * max_stack / STACKSIZE);
 	print_str(tbuf);
@@ -19041,7 +19052,7 @@ save(void)
 	if (interrupt)
 		kaput("interrupt");
 	if (tof < 0 || tof + 10 > FRAMESIZE)
-		kaput("frame error, circular definition?");
+		kaput("frame error");
 	frame[tof + 0] = p0;
 	frame[tof + 1] = p1;
 	frame[tof + 2] = p2;

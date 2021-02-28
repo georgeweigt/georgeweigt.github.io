@@ -5669,12 +5669,14 @@ eval_nonstop()
 function
 eval_nonstop_nib()
 {
-	var save_tos, save_tof, t;
+	var save_tos, save_tof, save_level, save_expanding
 
 	try {
 		save_tos = stack.length - 1;
 		save_tof = frame.length;
-		t = expanding;
+
+		save_level = level;
+		save_expanding = expanding;
 
 		evalf();
 	}
@@ -5685,7 +5687,9 @@ eval_nonstop_nib()
 
 		stack.splice(save_tos);
 		frame.splice(save_tof);
-		expanding = t;
+
+		level = save_level;
+		expanding = save_expanding;
 
 		push_symbol(NIL); // return value
 	}
@@ -6411,12 +6415,14 @@ eval_zero(p1)
 function
 evalf()
 {
-	if (++evaldepth == 1000)
-		stopf("recursion level");
+	level++;
+
+	if (level == 100)
+		stopf("circular definition?");
 
 	evalf_nib();
 
-	--evaldepth;
+	level--;
 }
 
 function
@@ -7230,10 +7236,10 @@ index(k)
 function
 init()
 {
+	level = 0;
 	expanding = 1;
 	drawing = 0;
 	journaling = 0;
-	evaldepth = 0;
 
 	stack = [];
 	frame = [];
@@ -13531,10 +13537,10 @@ var zero;
 var one;
 var minusone;
 var imaginaryunit;
+var level;
 var expanding;
 var drawing;
 var journaling;
-var evaldepth;
 var trace1;
 var trace2;
 
