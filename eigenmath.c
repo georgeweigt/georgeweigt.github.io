@@ -1,4 +1,4 @@
-/* February 27, 2021
+/* February 28, 2021
 
 To build and run:
 
@@ -52,6 +52,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define BLOCKSIZE 100000
 #define MAXBLOCKS 250
 #define NSYM 100
+
+#define JOURNALSIZE 1000
 
 // MAXBLOCKS * BLOCKSIZE * sizeof (struct atom) = 600,000,000 bytes
 
@@ -1008,8 +1010,8 @@ void push_string(char *s);
 void eval_sum(void);
 struct atom * lookup(char *s);
 char * printname(struct atom *p);
-void set_binding(struct atom *p, struct atom *q);
-void set_usrfunc(struct atom *p, struct atom *q);
+void set_symbol(struct atom *p, struct atom *b, struct atom *u);
+void undo(void);
 struct atom * get_binding(struct atom *p);
 struct atom * get_usrfunc(struct atom *p);
 void init_symbol_table(void);
@@ -1063,9 +1065,11 @@ struct atom *free_list;
 
 int tos; // top of stack
 int tof; // top of frame
+int toj; // top of journal
 
 struct atom *stack[STACKSIZE];
 struct atom *frame[FRAMESIZE];
+struct atom *journal[JOURNALSIZE];
 
 struct atom *symtab[27 * NSYM];
 struct atom *binding[27 * NSYM];
@@ -1089,8 +1093,8 @@ struct atom *imaginaryunit;
 
 int expanding;
 int drawing;
+int journaling;
 int interrupt;
-int jmpsel;
 jmp_buf jmpbuf0;
 jmp_buf jmpbuf1;
 
@@ -1104,6 +1108,7 @@ int string_count;
 int tensor_count;
 int max_stack;
 int max_frame;
+int max_journal;
 
 char tbuf[1000];
 
@@ -4169,6 +4174,8 @@ gc(void)
 		untag(stack[i]);
 	for (i = 0; i < tof; i++)
 		untag(frame[i]);
+	for (i = 0; i < toj; i++)
+		untag(journal[i]);
 	// collect everything that's still tagged
 	free_count = 0;
 	for (i = 0; i < block_count; i++) {
@@ -7139,9 +7146,9 @@ eval_eigen(void)
 		stop("eigen: argument is not a square matrix");
 	eigen(EIGEN);
 	p1 = lookup("D");
-	set_binding(p1, p2);
+	set_symbol(p1, p2, symbol(NIL));
 	p1 = lookup("Q");
-	set_binding(p1, p3);
+	set_symbol(p1, p3, symbol(NIL));
 	push_symbol(NIL);
 }
 
@@ -9370,7 +9377,7 @@ eval_for(void)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		p3 = p1;
 		while (iscons(p3)) {
 			push(car(p3));
@@ -10613,7 +10620,7 @@ integral_of_form(void)
 	save_symbol(symbol(METAA));
 	save_symbol(symbol(METAB));
 	save_symbol(symbol(METAX));
-	set_binding(symbol(METAX), X);
+	set_symbol(symbol(METAX), X, symbol(NIL));
 	// put constants in F(X) on the stack
 	h = tos;
 	push_integer(1); // 1 is a candidate for a or b
@@ -10694,9 +10701,9 @@ find_integral_nib(int h)
 {
 	int i, j;
 	for (i = h; i < tos; i++) {
-		set_binding(symbol(METAA), stack[i]);
+		set_symbol(symbol(METAA), stack[i], symbol(NIL));
 		for (j = h; j < tos; j++) {
-			set_binding(symbol(METAB), stack[j]);
+			set_symbol(symbol(METAB), stack[j], symbol(NIL));
 			push(C);			// condition ok?
 			eval();
 			p1 = pop();
@@ -17078,7 +17085,7 @@ eval_product(void)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		push(p1);
 		eval();
 		if (j < k)
@@ -17539,7 +17546,7 @@ run(char *s)
 	if (zero == NULL)
 		init();
 	prep();
-	set_binding(symbol(TRACE), zero);
+	set_symbol(symbol(TRACE), zero, symbol(NIL));
 	for (;;) {
 		s = scan_input(s);
 		if (s == NULL)
@@ -17571,10 +17578,11 @@ prep(void)
 {
 	tos = 0;
 	tof = 0;
+	toj = 0;
 	expanding = 1;
 	drawing = 0;
+	journaling = 0;
 	interrupt = 0;
-	jmpsel = 0;
 	p0 = symbol(NIL);
 	p1 = symbol(NIL);
 	p2 = symbol(NIL);
@@ -17611,7 +17619,7 @@ eval_and_print_result(void)
 	push(p2);
 	print_result();
 	if (p2 != symbol(NIL))
-		set_binding(symbol(LAST), p2);
+		set_symbol(symbol(LAST), p2, symbol(NIL));
 	restore();
 }
 
@@ -17745,6 +17753,8 @@ eval_status(void)
 	print_str(tbuf);
 	sprintf(tbuf, "max_frame %d (%d%%)\n", max_frame, 100 * max_frame / FRAMESIZE);
 	print_str(tbuf);
+	sprintf(tbuf, "max_journal %d (%d%%)\n", max_journal, 100 * max_journal / JOURNALSIZE);
+	print_str(tbuf);
 	print_char('\0');
 	printbuf(outbuf, BLACK);
 	push_symbol(NIL);
@@ -17784,21 +17794,18 @@ run_init_script(void)
 void
 stop(char *s)
 {
-	switch (jmpsel) {
-	case 0:
-		print_input_line();
-		sprintf(tbuf, "Stop: %s\n", s);
-		printbuf(tbuf, RED);
-		longjmp(jmpbuf0, 1);
-	case 1:
+	if (journaling)
 		longjmp(jmpbuf1, 1);
-	}
+	print_input_line();
+	sprintf(tbuf, "Stop: %s\n", s);
+	printbuf(tbuf, RED);
+	longjmp(jmpbuf0, 1);
 }
 
 void
 kaput(char *s)
 {
-	jmpsel = 0;
+	journaling = 0;
 	stop(s);
 }
 
@@ -18369,8 +18376,7 @@ eval_setq(void)
 	push(caddr(p1));
 	eval();
 	p2 = pop();
-	set_binding(cadr(p1), p2);
-	set_usrfunc(cadr(p1), symbol(NIL));
+	set_symbol(cadr(p1), p2, symbol(NIL));
 }
 
 //	Example: a[1] = b
@@ -18415,7 +18421,7 @@ setq_indexed(void)
 		p1 = cdr(p1);
 	}
 	set_component(h);
-	set_binding(S, LVAL);
+	set_symbol(S, LVAL, symbol(NIL));
 }
 
 void
@@ -18512,8 +18518,7 @@ setq_usrfunc(void)
 	push(B);
 	convert_body();
 	C = pop();
-	set_binding(F, B);
-	set_usrfunc(F, C);
+	set_symbol(F, B, C);
 }
 
 void
@@ -19080,8 +19085,6 @@ save_symbol(struct atom *p)
 	tof += 2;
 	if (tof > max_frame)
 		max_frame = tof; // new high
-	set_binding(p, symbol(NIL));
-	set_usrfunc(p, symbol(NIL));
 }
 
 void
@@ -19090,8 +19093,7 @@ restore_symbol(struct atom *p)
 	if (tof < 2 || tof > FRAMESIZE)
 		kaput("frame error");
 	tof -= 2;
-	set_binding(p, frame[tof + 0]);
-	set_usrfunc(p, frame[tof + 1]);
+	set_symbol(p, frame[tof + 0], frame[tof + 1]);
 }
 
 void
@@ -19143,7 +19145,7 @@ eval_sum(void)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		push(p1);
 		eval();
 		if (j < k)
@@ -19208,19 +19210,40 @@ printname(struct atom *p)
 }
 
 void
-set_binding(struct atom *p, struct atom *q)
+set_symbol(struct atom *p, struct atom *b, struct atom *u)
 {
+	int k;
 	if (!isusersymbol(p))
 		stop("symbol error");
-	binding[p->u.usym.index] = q;
+	k = p->u.usym.index;
+	if (journaling) {
+		if (toj + 3 > JOURNALSIZE)
+			kaput("journal error");
+		journal[toj + 0] = p;
+		journal[toj + 1] = binding[k];
+		journal[toj + 2] = usrfunc[k];
+		toj += 3;
+		if (toj > max_journal)
+			max_journal = toj;
+	}
+	binding[k] = b;
+	usrfunc[k] = u;
 }
 
+// restore symbol table
+
 void
-set_usrfunc(struct atom *p, struct atom *q)
+undo(void)
 {
-	if (!isusersymbol(p))
-		stop("symbol error");
-	usrfunc[p->u.usym.index] = q;
+	int k;
+	struct atom *p;
+	while (toj > 0) {
+		toj -= 3;
+		p = journal[toj + 0];
+		k = p->u.usym.index;
+		binding[k] = journal[toj + 1];
+		usrfunc[k] = journal[toj + 2];
+	}
 }
 
 struct atom *
@@ -20459,23 +20482,23 @@ eval_user_function(void)
 	save_symbol(symbol(ARG8));
 	save_symbol(symbol(ARG9));
 	p1 = pop();
-	set_binding(symbol(ARG9), p1);
+	set_symbol(symbol(ARG9), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG8), p1);
+	set_symbol(symbol(ARG8), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG7), p1);
+	set_symbol(symbol(ARG7), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG6), p1);
+	set_symbol(symbol(ARG6), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG5), p1);
+	set_symbol(symbol(ARG5), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG4), p1);
+	set_symbol(symbol(ARG4), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG3), p1);
+	set_symbol(symbol(ARG3), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG2), p1);
+	set_symbol(symbol(ARG2), p1, symbol(NIL));
 	p1 = pop();
-	set_binding(symbol(ARG1), p1);
+	set_symbol(symbol(ARG1), p1, symbol(NIL));
 	push(FUNC_DEFN);
 	eval();
 	restore_symbol(symbol(ARG9));

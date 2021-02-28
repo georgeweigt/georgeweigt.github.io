@@ -4837,7 +4837,7 @@ eval_and_print_result()
 	print_result();
 
 	if (p2 != symbol(NIL))
-		set_binding(symbol(LAST), p2);
+		set_symbol(symbol(LAST), p2, symbol(NIL));
 }
 function
 eval_arccos(p1)
@@ -5222,12 +5222,12 @@ eval_draw(p1)
 {
 	var F, T;
 
-	if (drawmode) {
+	if (drawing) {
 		push_symbol(NIL); // return value
 		return;
 	}
 
-	drawmode = 1;
+	drawing = 1;
 
 	F = cadr(p1);
 	T = caddr(p1);
@@ -5252,9 +5252,9 @@ eval_draw(p1)
 
 	restore_symbol(T);
 
-	push_symbol(NIL);
+	push_symbol(NIL); // return value
 
-	drawmode = 0;
+	drawing = 0;
 }
 function
 eval_erf(p1)
@@ -5390,7 +5390,7 @@ eval_for(p1)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		p3 = p1;
 		while (iscons(p3)) {
 			push(car(p3));
@@ -5652,23 +5652,40 @@ eval_noexpand(p1)
 function
 eval_nonstop()
 {
-	var save_expanding, save_stack_length, save_frame_length;
+	if (journaling) {
+		pop();
+		push_symbol(NIL);
+		return;
+	}
+
+	journaling = 1;
+
+	eval_nonstop_nib();
+
+	journaling = 0;
+	journal = [];
+}
+
+function
+eval_nonstop_nib()
+{
+	var save_tos, save_tof, t;
 
 	try {
-		save_expanding = expanding;
-
-		save_stack_length = stack.length - 1;
-		save_frame_length = frame.length;
+		save_tos = stack.length - 1;
+		save_tof = frame.length;
+		t = expanding;
 
 		evalf();
 	}
 
 	catch(errmsg) {
 
-		expanding = save_expanding;
+		undo(); // restore symbol table
 
-		stack.splice(save_stack_length);
-		frame.splice(save_frame_length);
+		stack.splice(save_tos);
+		frame.splice(save_tof);
+		expanding = t;
 
 		push_symbol(NIL); // return value
 	}
@@ -5821,7 +5838,7 @@ eval_product(p1)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		push(p1);
 		evalf();
 		if (j < k)
@@ -5942,8 +5959,7 @@ eval_setq(p1)
 	evalf();
 	p2 = pop();
 
-	set_binding(cadr(p1), p2);
-	set_usrfunc(cadr(p1), symbol(NIL));
+	set_symbol(cadr(p1), p2, symbol(NIL));
 }
 function
 eval_sgn(p1)
@@ -6027,7 +6043,7 @@ eval_sum(p1)
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
-		set_binding(p2, p3);
+		set_symbol(p2, p3, symbol(NIL));
 		push(p1);
 		evalf();
 		if (j < k)
@@ -6313,31 +6329,31 @@ eval_user_function(p1)
 	save_symbol(symbol(ARG9));
 
 	p1 = pop();
-	set_binding(symbol(ARG9), p1);
+	set_symbol(symbol(ARG9), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG8), p1);
+	set_symbol(symbol(ARG8), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG7), p1);
+	set_symbol(symbol(ARG7), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG6), p1);
+	set_symbol(symbol(ARG6), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG5), p1);
+	set_symbol(symbol(ARG5), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG4), p1);
+	set_symbol(symbol(ARG4), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG3), p1);
+	set_symbol(symbol(ARG3), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG2), p1);
+	set_symbol(symbol(ARG2), p1, symbol(NIL));
 
 	p1 = pop();
-	set_binding(symbol(ARG1), p1);
+	set_symbol(symbol(ARG1), p1, symbol(NIL));
 
 	push(FUNC_DEFN);
 	evalf();
@@ -7215,11 +7231,13 @@ function
 init()
 {
 	expanding = 1;
-	drawmode = 0;
+	drawing = 0;
+	journaling = 0;
 	evaldepth = 0;
 
 	stack = [];
 	frame = [];
+	journal = [];
 
 	binding = {};
 	usrfunc = {};
@@ -7451,7 +7469,7 @@ integral_nib(F, X)
 	save_symbol(symbol(METAB));
 	save_symbol(symbol(METAX));
 
-	set_binding(symbol(METAX), X);
+	set_symbol(symbol(METAX), X, symbol(NIL));
 
 	// put constants in F(X) on the stack
 
@@ -7507,11 +7525,11 @@ integral_search_nib(F, I, C, h)
 
 	for (i = h; i < n; i++) {
 
-		set_binding(symbol(METAA), stack[i]);
+		set_symbol(symbol(METAA), stack[i], symbol(NIL));
 
 		for (j = h; j < n; j++) {
 
-			set_binding(symbol(METAB), stack[j]);
+			set_symbol(symbol(METAB), stack[j], symbol(NIL));
 
 			push(C);			// condition ok?
 			evalf();
@@ -11737,12 +11755,9 @@ function
 restore_symbol(p)
 {
 	var p1, p2;
-
 	p2 = frame.pop();
 	p1 = frame.pop();
-
-	set_binding(p, p1);
-	set_usrfunc(p, p2);
+	set_symbol(p, p1, p2);
 }
 /* exported run */
 
@@ -11795,7 +11810,7 @@ sample(F, T, t)
 
 	push_double(t);
 	p1 = pop();
-	set_binding(T, p1);
+	set_symbol(T, p1, symbol(NIL));
 
 	push(F);
 	eval_nonstop();
@@ -11830,8 +11845,6 @@ save_symbol(p)
 {
 	frame.push(get_binding(p));
 	frame.push(get_usrfunc(p));
-	set_binding(p, symbol(NIL));
-	set_usrfunc(p, symbol(NIL));
 }
 const T_INTEGER = 1001;
 const T_DOUBLE = 1002;
@@ -12367,11 +12380,6 @@ scan_inbuf(k)
 	return k;
 }
 function
-set_binding(p, q)
-{
-	binding[p.printname] = q;
-}
-function
 set_component(LVAL, RVAL, h)
 {
 	var i, k, m, n, t;
@@ -12417,9 +12425,15 @@ set_component(LVAL, RVAL, h)
 	}
 }
 function
-set_usrfunc(p, q)
+set_symbol(p, b, u)
 {
-	usrfunc[p.printname] = q;
+	if (journaling) {
+		journal.push(p);
+		journal.push(b);
+		journal.push(u);
+	}
+	binding[p.printname] = b;
+	usrfunc[p.printname] = u;
 }
 function
 setq_indexed(p1)
@@ -12451,7 +12465,7 @@ setq_indexed(p1)
 
 	set_component(LVAL, RVAL, h);
 
-	set_binding(S, LVAL);
+	set_symbol(S, LVAL, symbol(NIL));
 }
 
 // Example: a[1] = b
@@ -12484,8 +12498,7 @@ setq_usrfunc(p1)
 	convert_body(A);
 	C = pop();
 
-	set_binding(F, B);
-	set_usrfunc(F, C);
+	set_symbol(F, B, C);
 }
 function
 setup_final(F, T)
@@ -12494,7 +12507,7 @@ setup_final(F, T)
 
 	push_double(tmin);
 	p1 = pop();
-	set_binding(T, p1);
+	set_symbol(T, p1, symbol(NIL));
 
 	push(F);
 	eval_nonstop();
@@ -13494,11 +13507,24 @@ transpose(n, m)
 
 	push(p2);
 }
+function
+undo()
+{
+	var p, b, u;
+	while (journal.length) {
+		u = journal.pop();
+		b = journal.pop();
+		p = journal.pop();
+		binding[p.printname] = b;
+		usrfunc[p.printname] = u;
+	}
+}
 var inbuf;
 var outbuf;
 var stdout;
 var stack;
 var frame;
+var journal;
 var binding;
 var usrfunc;
 var zero;
@@ -13506,7 +13532,8 @@ var one;
 var minusone;
 var imaginaryunit;
 var expanding;
-var drawmode;
+var drawing;
+var journaling;
 var evaldepth;
 var trace1;
 var trace2;
