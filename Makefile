@@ -56,4 +56,5 @@ demos:
 	cat 1.txt rutherford-scattering-1.txt 2.txt > rutherford-scattering-1.html
 	cat 1.txt rutherford-scattering-2.txt 2.txt > rutherford-scattering-2.html
 	cat 1.txt rutherford-scattering-3.txt 2.txt > rutherford-scattering-3.html
+	cat 1.txt moller-scattering-2.txt 2.txt > moller-scattering-2.html
 	cat 1.txt moller-scattering-3.txt 2.txt > moller-scattering-3.html
