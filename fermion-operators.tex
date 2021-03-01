@@ -1,0 +1,380 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\title{Fermion Operators}
+\date{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Anticommutation}
+Consider the following eigenstates of a hypothetical quantum system.\footnote{
+Adapted from problem 16.1.1 of ``Quantum Mechanics for Scientists and Engineers.''\\
+{\tt https://ee.stanford.edu/{\textasciitilde}dabm/QMbook.html}}
+\begin{align*}
+|00\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no fermions}\\
+|10\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one fermion in state 1}\\
+|01\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one fermion in state 2}\\
+|11\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two fermions, one in state 1, one in state 2}
+\end{align*}
+
+\noindent
+Creation and annihilation operators are formed from outer products of state vectors.
+Sign changes make the operators antisymmetric.
+\begin{align*}
+\hat{b}_1^\dag&=|10\rangle\langle00|-|11\rangle\langle01| \qquad\text{Create one fermion in state 1}
+\\
+\hat{b}_1&=|00\rangle\langle10|-|01\rangle\langle11| \qquad\text{Annihilate one fermion in state 1}
+\\
+\hat{b}_2^\dag&=|01\rangle\langle00|+|11\rangle\langle10| \qquad\text{Create one fermion in state 2}
+\\
+\hat{b}_2&=|00\rangle\langle01|+|10\rangle\langle11| \qquad\text{Annihilate one fermion in state 2}
+\end{align*}
+
+\noindent
+The operators in matrix form.
+\begin{equation*}
+\hat{b}_1^\dag=\begin{pmatrix}0&0&0&0\\1&0&0&0\\0&0&0&0\\0&0&-1&0\end{pmatrix}
+\quad
+\hat{b}_1=\begin{pmatrix}0&1&0&0\\0&0&0&0\\0&0&0&-1\\0&0&0&0\end{pmatrix}
+\quad
+\hat{b}_2^\dag=\begin{pmatrix}0&0&0&0\\0&0&0&0\\1&0&0&0\\0&1&0&0\end{pmatrix}
+\quad
+\hat{b}_2=\begin{pmatrix}0&0&1&0\\0&0&0&1\\0&0&0&0\\0&0&0&0\end{pmatrix}
+\end{equation*}
+
+\noindent
+Verify anticommutation relations of the operators.
+\begin{align*}
+\hat{b}_j\hat{b}_k+\hat{b}_k\hat{b}_j&=0
+\\[2ex]
+\hat{b}_j^\dag\hat{b}_k^\dag+\hat{b}_k^\dag\hat{b}_j^\dag&=0
+\\[2ex]
+\hat{b}_j\hat{b}_k^\dag+\hat{b}_k^\dag\hat{b}_j&=\delta_{jk}
+\end{align*}
+
+\newpage
+
+\section{Wavefunction operator}
+Consider the following eigenstates of a hypothetical quantum system.\footnote{
+Adapted from problem 16.2.1 of ``Quantum Mechanics for Scientists and Engineers.''\\
+{\tt https://ee.stanford.edu/{\textasciitilde}dabm/QMbook.html}}
+\begin{align*}
+|00\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no fermions}\\
+|10\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one fermion in state $\phi_1$}\\
+|01\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one fermion in state $\phi_2$}\\
+|11\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two fermions, one in state $\phi_1$, one in state $\phi_2$}
+\end{align*}
+
+\noindent
+Let fermion states $\phi_n$ be modeled by a one dimensional box of length $L$.
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+Creation and annihilation operators are formed from outer products of state vectors.
+Sign changes make the operators antisymmetric.
+\begin{align*}
+\hat{b}_1^\dag&=|10\rangle\langle00|-|11\rangle\langle01| \qquad\text{Create one fermion in state $\phi_1$}
+\\
+\hat{b}_1&=|00\rangle\langle10|-|01\rangle\langle11| \qquad\text{Annihilate one fermion in state $\phi_1$}
+\\
+\hat{b}_2^\dag&=|01\rangle\langle00|+|11\rangle\langle10| \qquad\text{Create one fermion in state $\phi_2$}
+\\
+\hat{b}_2&=|00\rangle\langle01|+|10\rangle\langle11| \qquad\text{Annihilate one fermion in state $\phi_2$}
+\end{align*}
+
+\noindent
+Given the wavefunction operator
+\begin{equation*}
+\hat{\psi}=\frac{1}{\sqrt{2}}\sum_{n,m}\phi_n(x)\phi_m(y)\hat{b}_n\hat{b}_m
+\end{equation*}
+
+\noindent
+show that
+\begin{equation*}
+\hat{\psi}|11\rangle=\frac{1}{\sqrt{2}}\big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)|00\rangle
+\end{equation*}
+
+\newpage
+
+\section{Position operator}
+Consider the following eigenstates of a hypothetical quantum system.
+\begin{align*}
+|00\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no fermions}\\
+|10\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one fermion in state $\phi_1$}\\
+|01\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one fermion in state $\phi_2$}\\
+|11\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two fermions, one in state $\phi_1$, one in state $\phi_2$}
+\end{align*}
+
+\noindent
+Let fermion states $\phi_n$ be modeled by a one dimensional box of length $L$.
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+Creation and annihilation operators are formed from outer products of state vectors.
+Sign changes make the operators antisymmetric.
+\begin{align*}
+\hat{b}_1^\dag&=|10\rangle\langle00|-|11\rangle\langle01| \qquad\text{Create one fermion in state $\phi_1$}
+\\
+\hat{b}_1&=|00\rangle\langle10|-|01\rangle\langle11| \qquad\text{Annihilate one fermion in state $\phi_1$}
+\\
+\hat{b}_2^\dag&=|01\rangle\langle00|+|11\rangle\langle10| \qquad\text{Create one fermion in state $\phi_2$}
+\\
+\hat{b}_2&=|00\rangle\langle01|+|10\rangle\langle11| \qquad\text{Annihilate one fermion in state $\phi_2$}
+\end{align*}
+
+\noindent
+Let $\hat{r}$ be the position operator
+\begin{equation*}
+\hat{r}=\sum_{n,m}r_{nm}\hat{b}_n^\dag\hat{b}_m
+\end{equation*}
+
+\noindent
+where
+\begin{equation*}
+r_{nm}=\int_0^L\phi_n^*(x)x\phi_m(x)\,dx
+\end{equation*}
+
+\noindent
+Note that for a one dimensional box
+\begin{equation*}
+r_{nn}=\langle x\rangle=\tfrac{1}{2}L
+\end{equation*}
+
+\noindent
+Verify that
+\begin{align*}
+\langle10|\hat{r}|10\rangle&=r_{11}\\
+\langle10|\hat{r}|01\rangle&=r_{12}\\
+\langle01|\hat{r}|10\rangle&=r_{21}\\
+\langle01|\hat{r}|01\rangle&=r_{22}
+\end{align*}
+
+\newpage
+
+\section{Exchange energy}
+Let $\psi(x,y)$ be the antisymmetrized wave function for two electrons in a box of length $L$.
+\begin{align*}
+\psi(x,y)&=\frac{1}{\sqrt{2}}
+\big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)
+\\[2ex]
+\phi_n(x)&=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{align*}
+
+\noindent
+For $L=10^{-9}$ meter the expected potential energy is
+\begin{equation*}
+V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L\frac{\psi^*(x,y)\psi(x,y)}{|x-y|}\,dx\,dy
+=4.67\,\text{eV}
+\end{equation*}
+
+\noindent
+Next calculate the potential energy for a wave function that is not antisymmetrized.
+\begin{equation*}
+V_0=\frac{e^2}{4\pi\epsilon_0}
+\int_0^L\int_0^L\frac{\phi_1^*(x)\phi_2^*(y)\phi_1(x)\phi_2(y)}{|x-y|}\,dx\,dy
+=12.80\,\text{eV}
+\end{equation*}
+
+\noindent
+The difference is the exchange energy.
+\begin{equation*}
+V_{ex}=V-V_0=-8.13\,\text{eV}
+\end{equation*}
+
+\noindent
+Note that the formula for $V_0$ has a singularity at $x=y$.
+The computed value shown above is the result of an arbitrary cutoff in numerical integration.
+The actual value of $V_0$ goes to infinity.
+
+\bigskip
+\noindent
+Note also that there is a singularity at $x=y$ in the formula for $V$.
+However, due to antisymmetry we have $\psi(x,x)=0$ and hence the integral converges.
+
+\bigskip
+\noindent
+We are left to ponder the reality of exchange energy since it cannot be computed.
+
+\newpage
+
+\section{Energy matrix}
+Consider a system with the following eigenstates.
+\begin{align*}
+|0\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no electrons}\\
+|1\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one electron in state $\phi_1$}\\
+|2\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one electron in state $\phi_2$}\\
+|3\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two electrons, one in state $\phi_1$, one in state $\phi_2$}
+\end{align*}
+
+\noindent
+Let electron states $\phi_n$ be modeled by a one dimensional box of length $L$.
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+Let $|\xi\rangle$ be an arbitrary normalized state vector.
+\begin{equation*}
+|\xi\rangle=c_0|0\rangle+c_1|1\rangle+c_2|2\rangle+c_3|3\rangle,\qquad\langle\xi|\xi\rangle=1
+\end{equation*}
+
+\noindent
+Let us determine an energy matrix $\hat{E}$ such that the expected
+energy $\langle E \rangle$ in state $|\xi\rangle$ is
+\begin{equation*}
+\langle E\rangle=\langle\xi|\hat{E}|\xi\rangle
+\end{equation*}
+
+\noindent
+Energy matrix $\hat{E}$ is the sum of kinetic and potential energy matrices.
+\begin{equation*}
+\hat{E}=\hat{K}+\hat{V}
+\end{equation*}
+
+\noindent
+Kinetic energy matrix $\hat{K}$ can be computed from energy eigenvalues of the box model.
+\begin{equation*}
+\hat{K}=\begin{pmatrix}
+0 & 0 & 0 & 0\\
+0 & E_1 & 0 & 0\\
+0 & 0 & E_2 & 0\\
+0 & 0 & 0 & E_1+E_2
+\end{pmatrix},
+\qquad
+E_n=\frac{n^2\pi^2\hbar^2}{2mL^2}
+\end{equation*}
+
+\noindent
+Potential energy matrix $\hat{V}$ has one entry due to Coulomb interaction in the two electron state.
+\begin{equation*}
+\hat{V}=
+\begin{pmatrix}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & V
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Let $\psi(x,y)$ be the antisymmetrized wavefunction of the two electrons.
+\begin{equation*}
+\psi(x,y)=\frac{1}{\sqrt{2}}\big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)
+\end{equation*}
+
+\noindent
+Then
+\begin{equation*}
+V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L
+\psi^*(x,y)\left(\frac{1}{|x-y|}\right)\psi(x,y)\,dx\,dy
+\end{equation*}
+
+\noindent
+Let us now choose $L=10^{-9}$ meters and compute numerical values.
+For $\hat{K}$ we have
+\begin{equation*}
+\hat{K}=\begin{pmatrix}
+0 & 0 & 0 & 0\\
+0 & 0.38\,\text{eV} & 0 & 0\\
+0 & 0 & 1.50\,\text{eV} & 0\\
+0 & 0 & 0 & 1.88\,\text{eV}
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Computing $V$ by numerical integration we have
+\begin{equation*}
+\hat{V}=\begin{pmatrix}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 4.67\,\text{eV}
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+\hat{E}=\hat{K}+\hat{V}=\begin{pmatrix}
+0 & 0 & 0 & 0\\
+0 & 0.38\,\text{eV} & 0 & 0\\
+0 & 0 & 1.50\,\text{eV} & 0\\
+0 & 0 & 0 & 6.55\,\text{eV}
+\end{pmatrix}
+\end{equation*}
+
+\newpage
+
+\section{Superposition of eigenstates}
+Consider a system with the following eigenstates.
+\begin{align*}
+|0\rangle&=(\text{1 0 0 0})^\dag\qquad\text{no electrons}\\
+|1\rangle&=(\text{0 1 0 0})^\dag\qquad\text{one electron in state $\phi_1$}\\
+|2\rangle&=(\text{0 0 1 0})^\dag\qquad\text{one electron in state $\phi_2$}\\
+|3\rangle&=(\text{0 0 0 1})^\dag\qquad\text{two electrons, one in state $\phi_1$, one in state $\phi_2$}
+\end{align*}
+
+\noindent
+Then for the wavefunction basis
+\begin{equation*}
+\phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
+\end{equation*}
+
+\noindent
+and for $L=10^{-9}$ meters we have
+\begin{equation*}
+\hat{E}=\begin{pmatrix}
+0&0&0&0\\
+0&0.38\,\text{eV}&0&0\\
+0&0&1.50\,\text{eV}&0\\
+0&0&0&6.55\,\text{eV}
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Let $|\xi\rangle$ be the state vector
+\begin{equation*}
+|\xi\rangle
+=\frac{1}{2}|0\rangle+\frac{1}{2}|1\rangle+\frac{1}{2}|2\rangle+\frac{1}{2}|3\rangle
+=\begin{pmatrix}1/2\\1/2\\1/2\\1/2\end{pmatrix}
+\end{equation*}
+
+\noindent
+The expected energy is
+\begin{equation*}
+\langle\xi|\hat{E}|\xi\rangle
+=\frac{0\,\text{eV}}{4}+\frac{0.38\,\text{eV}}{4}+\frac{1.50\,\text{eV}}{4}+\frac{6.55\,\text{eV}}{4}
+=2.11\,\text{eV}
+\end{equation*}
+
+\noindent
+For the system we are considering, the result of a single measurement is either
+0~eV, 0.38~eV, 1.50~eV, or 6.55~eV.
+%The probability of observing each eigenvalue is 0.25 when the system is in state $|\xi\rangle$.
+The value 2.11 eV is the expected average across multiple measurements.
+Recall that a measurement causes the system to exit state $|\xi\rangle$
+and enter an eigenstate $|0\rangle$, $|1\rangle$, $|2\rangle$, or $|3\rangle$
+corresponding to the measured eigenvalue.
+The system must be put back in state $|\xi\rangle$ before the next measurement.
+
+\bigskip
+\noindent
+To use a slot machine analogy, state $|\xi\rangle$ is like the wheels spinning.
+Observing the system makes the wheels stop.
+The stopped wheels are in an eigenstate $|0\rangle$, $|1\rangle$, $|2\rangle$, or $|3\rangle$.
+Once they are stopped the wheels don't change, they remain in the same eigenstate.
+You have to pull the lever to get the wheels spinning again.
+
+\end{document}
