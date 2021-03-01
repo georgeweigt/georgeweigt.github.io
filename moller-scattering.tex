@@ -299,7 +299,7 @@ The support region is restricted because $d\sigma$ is undefined for $\theta=0$ a
 \noindent
 The cumulative distribution function is
 \begin{equation*}
-F(\theta)=\frac{I(\theta)}{I(\pi-\alpha)},\qquad\alpha\le\theta\le\pi-\alpha
+F(\theta)=\frac{I(\theta)}{I(\pi-\alpha)},\qquad\alpha\le\theta\le\tfrac{\pi}{2}-\alpha
 \end{equation*}
 
 \noindent
@@ -318,28 +318,25 @@ f(\theta)=\frac{dF(\theta)}{d\theta}
 \end{equation*}
 
 \noindent
-Run ``moller-scattering-3.txt'' to draw a graph of $f(\theta)$ for $\alpha=\pi/180$.
+Run ``moller-scattering-3.txt'' to draw a graph of $f(\theta)$ for $\alpha=\pi/6=30^\circ$.
 
 \begin{center}
-\includegraphics[scale=0.5]{moller-scattering-ss1.png}
+\includegraphics[scale=0.5]{moller-scattering.png}
 \end{center}
 
 \noindent
-Here is a probability distribution for $20^\circ$ bins with $\alpha=20^\circ$.
+The following table shows the probability distribution for $30^\circ$ bins ($\alpha=\pi/6=30^\circ$).
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
 $\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
 \hline
-$0^\circ$ & $20^\circ$ & -- \\
-$20^\circ$ & $40^\circ$ & 0.38 \\
-$40^\circ$ & $60^\circ$ & 0.07 \\
-$60^\circ$ & $80^\circ$ & 0.03 \\
-$80^\circ$ & $100^\circ$ & 0.02 \\
-$100^\circ$ & $120^\circ$ & 0.03 \\
-$120^\circ$ & $140^\circ$ & 0.07 \\
-$140^\circ$ & $160^\circ$ & 0.38 \\
-$160^\circ$ & $180^\circ$ & -- \\
+$0^\circ$ & $30^\circ$ & -- \\
+$30^\circ$ & $60^\circ$ & 0.40 \\
+$60^\circ$ & $90^\circ$ & 0.10 \\
+$90^\circ$ & $120^\circ$ & 0.10 \\
+$120^\circ$ & $150^\circ$ & 0.40 \\
+$150^\circ$ & $180^\circ$ & -- \\
 \hline
 \end{tabular}
 \end{center}
