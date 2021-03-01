@@ -2,6 +2,7 @@
 
 %.pdf: %.tex
 	pdflatex $<
+	pdflatex $<
 
 # $$ sends a single $ to the shell
 # sed changes .tex to .pdf

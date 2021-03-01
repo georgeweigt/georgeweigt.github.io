@@ -6,12 +6,17 @@
 
 \title{Compton Scattering}
 \date{}
+\author{}
 
 \begin{document}
 
 \maketitle
 
-\noindent
+\tableofcontents
+
+\newpage
+
+\section{Theory}
 Compton scattering occurs when a high energy photon such as a gamma ray interacts with an electron.
 In typical Compton scattering experiments the incident electron is at rest with zero velocity.
 However, it is easier to develop a theory using the center of mass frame in which
@@ -296,8 +301,7 @@ For center of mass momentum vectors and for $m=0$, the probability density is
 \noindent
 Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
 
-\subsection*{Lab frame}
-
+\section{Lab frame}
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
 The following Lorentz boost $\Lambda$ transforms momentum vectors from
 the center of mass frame to the lab frame.
@@ -383,8 +387,7 @@ Hence
 \noindent
 Run ``compton-scattering-3.txt'' to verify lab frame formulas for Compton scattering.
 
-\subsection*{Cross section}
-
+\section{Cross section}
 Now that we have derived $\langle|\mathcal{M}|^2\rangle$
 we can investigate the angular distribution of scattered photons.
 For simplicity let us drop the $L$ subscript from lab variables.
@@ -476,8 +479,7 @@ Run ``compton-scattering-4.txt'' to plot $f(\theta)$.
 Plot of $f(\theta)$ for $\omega=m$.
 \end{center}
 
-\subsection*{Thomson scattering}
-
+\section{Thomson scattering}
 When $\omega$ is much smaller than the electron mass $m$ we have
 \begin{equation*}
 \frac{m}{m+\omega(1-\cos\theta)}\approx1
@@ -492,8 +494,7 @@ Hence for $\omega\ll m$ the differential cross section is approximately
 \noindent
 which is the formula for Thomson scattering.
 
-\subsection*{LEP data}
-
+\section{LEP data}
 The following Compton scattering data is from the paper
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''
 
@@ -584,8 +585,7 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.97
 \noindent
 The result indicates that the model $d\sigma$ explains 97\% of the variance in the data.
 
-\subsection*{Eigenmath notes}
-
+\section{Eigenmath notes}
 Here are a few notes on how the Eigenmath scripts work.
 
 \bigskip
@@ -748,8 +748,7 @@ f_{12}
 \noindent
 The innermost contract sums over $\nu$ followed by sum over $\mu$ then sum over $\alpha$.
 
-\subsection*{References}
-
+\section{Reference}
 L3 Collaboration.
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''\\
 \verb$arxiv.org/abs/hep-ex/0504012$
