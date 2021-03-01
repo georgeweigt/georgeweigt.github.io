@@ -1,4 +1,4 @@
-/* February 28, 2021
+/* March 1, 2021
 
 To build and run:
 
@@ -280,9 +280,9 @@ struct atom {
 #define INDEX		(26 * NSYM + 3)
 #define SETQ		(26 * NSYM + 4)
 #define EXP1		(26 * NSYM + 5)
-#define METAA		(26 * NSYM + 6)
-#define METAB		(26 * NSYM + 7)
-#define METAX		(26 * NSYM + 8)
+#define SA		(26 * NSYM + 6)
+#define SB		(26 * NSYM + 7)
+#define SX		(26 * NSYM + 8)
 #define ARG1		(26 * NSYM + 9)
 #define ARG2		(26 * NSYM + 10)
 #define ARG3		(26 * NSYM + 11)
@@ -10625,10 +10625,10 @@ void
 integral_of_form(void)
 {
 	int h;
-	save_symbol(symbol(METAA));
-	save_symbol(symbol(METAB));
-	save_symbol(symbol(METAX));
-	set_symbol(symbol(METAX), X, symbol(NIL));
+	save_symbol(symbol(SA));
+	save_symbol(symbol(SB));
+	save_symbol(symbol(SX));
+	set_symbol(symbol(SX), X, symbol(NIL));
 	// put constants in F(X) on the stack
 	h = tos;
 	push_integer(1); // 1 is a candidate for a or b
@@ -10638,9 +10638,9 @@ integral_of_form(void)
 	push(X);
 	decomp();
 	integral_lookup(h);
-	restore_symbol(symbol(METAX));
-	restore_symbol(symbol(METAB));
-	restore_symbol(symbol(METAA));
+	restore_symbol(symbol(SX));
+	restore_symbol(symbol(SB));
+	restore_symbol(symbol(SA));
 }
 
 void
@@ -10709,9 +10709,9 @@ find_integral_nib(int h)
 {
 	int i, j;
 	for (i = h; i < tos; i++) {
-		set_symbol(symbol(METAA), stack[i], symbol(NIL));
+		set_symbol(symbol(SA), stack[i], symbol(NIL));
 		for (j = h; j < tos; j++) {
-			set_symbol(symbol(METAB), stack[j], symbol(NIL));
+			set_symbol(symbol(SB), stack[j], symbol(NIL));
 			push(C);			// condition ok?
 			eval();
 			p1 = pop();
@@ -18066,13 +18066,13 @@ scan_symbol(void)
 	if (scan_mode && strlen(token_buf) == 1)
 		switch (token_buf[0]) {
 		case 'a':
-			push_symbol(METAA);
+			push_symbol(SA);
 			break;
 		case 'b':
-			push_symbol(METAB);
+			push_symbol(SB);
 			break;
 		case 'x':
-			push_symbol(METAX);
+			push_symbol(SX);
 			break;
 		default:
 			push(lookup(token_buf));
@@ -19436,9 +19436,9 @@ struct se stab[] = {
 	{ "[",			INDEX,		eval_index		},
 	{ "=",			SETQ,		eval_setq		},
 	{ "$e",			EXP1,		NULL			},
-	{ "$a",			METAA,		NULL			},
-	{ "$b",			METAB,		NULL			},
-	{ "$x",			METAX,		NULL			},
+	{ "$a",			SA,		NULL			},
+	{ "$b",			SB,		NULL			},
+	{ "$x",			SX,		NULL			},
 	{ "$1",			ARG1,		NULL			},
 	{ "$2",			ARG2,		NULL			},
 	{ "$3",			ARG3,		NULL			},
