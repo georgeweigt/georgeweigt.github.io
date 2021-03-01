@@ -5669,7 +5669,7 @@ eval_nonstop()
 function
 eval_nonstop_nib()
 {
-	var save_tos, save_tof, save_level, save_expanding
+	var save_tos, save_tof, save_level, save_expanding;
 
 	try {
 		save_tos = stack.length - 1;
@@ -5679,9 +5679,8 @@ eval_nonstop_nib()
 		save_expanding = expanding;
 
 		evalf();
-	}
 
-	catch(errmsg) {
+	} catch (errmsg) {
 
 		undo(); // restore symbol table
 
@@ -5692,10 +5691,6 @@ eval_nonstop_nib()
 		expanding = save_expanding;
 
 		push_symbol(NIL); // return value
-	}
-
-	finally {
-		//
 	}
 }
 function
@@ -11775,18 +11770,12 @@ run()
 {
 	try {
 		run_nib();
-	}
-
-	catch(errmsg) {
+	} catch (errmsg) {
 		if (errmsg.length > 0) {
 			if (trace1 < trace2 && inbuf[trace2 - 1] == '\n')
 				trace2--;
 			print_buf(inbuf.substring(trace1, trace2) + "\nStop: " + errmsg, RED);
 		}
-	}
-
-	finally {
-		//
 	}
 }
 
