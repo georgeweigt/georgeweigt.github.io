@@ -274,12 +274,6 @@ In the center of mass frame the differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-%=\frac{\alpha^2}{8E^2}
-%\left(
-%\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
-%+\frac{8}{\sin^2\theta}
-%+\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
-%\right)
 =\frac{e^4}{64\pi^2E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}
 \end{equation*}
 
@@ -299,13 +293,13 @@ d\sigma=\frac{\alpha^2}{4E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\the
 \noindent
 Let $I(\xi)$ be the following definite integral.
 \begin{align*}
-I(\xi)&=\frac{4E^2}{\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
+I(\xi)&=\frac{4E^2}{2\pi\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
 \\
-&=2\pi\int_a^\xi\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\theta\,d\theta
+&=\int_a^\xi\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\theta\,d\theta
 \\
-&=2\pi\left(-\cos\theta-\frac{8\cos\theta}{\sin^2\theta}\right)\bigg|_a^\xi
+&=\left(-\cos\theta-\frac{8\cos\theta}{\sin^2\theta}\right)\bigg|_a^\xi
 \\
-&=2\pi\left(\cos a+\frac{8\cos a}{\sin^2 a}-\cos\xi-\frac{8\cos\xi}{\sin^2\xi}\right),
+&=\cos a+\frac{8\cos a}{\sin^2 a}-\cos\xi-\frac{8\cos\xi}{\sin^2\xi},
 \qquad a\le\xi\le\pi-a
 \end{align*}
 

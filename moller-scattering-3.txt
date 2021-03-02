@@ -2,32 +2,28 @@
 
 -- eigenmath.org/moller-scattering-3.txt
 
-M = 4 (3 + cos(theta)^2)^2 / sin(theta)^4
-
-f = M sin(theta) -- unnormalized probability density
-
 pi = float(pi) -- use numerical value of pi
 N = 6 -- 30 degree bins
-alpha = pi / N
+a = pi / N
 
--- define numerical integrator
+I(xi) = cos(a) + 8 cos(a)/sin(a)^2 - cos(xi) - 8 cos(xi)/sin(xi)^2
 
-I(a,b) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100)) (b - a) / 100
+C = I(pi - a) -- normalization constant
 
-C = I(alpha,pi - alpha) -- normalization constant
+F(theta) = I(theta) / C
 
-f = 1/C M sin(theta) -- normalized probability density
+f = 1/C (3 + cos(theta)^2)^2 / sin(theta)^3
 
-xrange = (alpha,pi - alpha)
+xrange = (a,pi - a)
 yrange = (0,2)
 draw(f,theta)
 
 P = zero(N)
 
 for(k,1,N - 2,
-  a = k alpha,
-  b = a + alpha,
-  P[k + 1] = I(a,b)
+  theta1 = k a,
+  theta2 = theta1 + a,
+  P[k + 1] = F(theta2) - F(theta1)
 )
 
 P
