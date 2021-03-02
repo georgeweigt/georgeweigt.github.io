@@ -67,7 +67,7 @@ for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
   S = S + f
 ))))
 
-S = S / N
+S = S / N -- normalize
 S
 
 "Casimir trick"
