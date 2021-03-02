@@ -74,8 +74,8 @@ for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
   X42 = dot(u4bar[d],gammaL,u2[b]),
   X41 = dot(u4bar[d],gammaT,u1[a]),
   X32 = dot(u3bar[c],gammaL,u2[b]),
-  A = 1/t dot(X31,X42) - 1/u dot(X41,X32), -- amplitude
-  f = A conj(A), -- probability density function
+  M = 1/t dot(X31,X42) - 1/u dot(X41,X32),  -- M is an amplitude
+  f = M conj(M),                            -- f = |M|^2
   S = S + f
 ))))
 

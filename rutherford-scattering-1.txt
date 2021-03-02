@@ -42,8 +42,8 @@ u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 
 S = 0
 
-for(j,1,2,for(k,1,2,
-  M = dot(u2bar[k],gamma0,u1[j]),  -- M is an amplitude
+for(a,1,2,for(b,1,2,
+  M = dot(u2bar[b],gamma0,u1[a]),  -- M is an amplitude
   f = M conj(M),                   -- f = |M|^2
   S = S + f
 ))

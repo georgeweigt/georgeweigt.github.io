@@ -84,10 +84,10 @@ Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
 \noindent
-The following formula computes a probability density $|\mathcal{M}_{jk}|^2$ for Rutherford scattering
-where $j$ is the spin state of the inbound electron and $k$ is the spin state of the outbound electron.
+The following formula computes a probability density $|\mathcal{M}_{ab}|^2$ for Rutherford scattering
+where $a$ is the spin state of the inbound electron and $b$ is the spin state of the outbound electron.
 \begin{equation*}
-|\mathcal{M}_{jk}|^2=\frac{Z^2e^4}{q^4}\frac{1}{N}\left|\bar{u}_{2k}\gamma^0 u_{1j}\right|^2
+|\mathcal{M}_{ab}|^2=\frac{Z^2e^4}{q^4}\frac{1}{N}\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
 \end{equation*}
 
 \noindent
@@ -99,14 +99,14 @@ and $q=p_1-p_2$ is momentum transfer.
 \noindent
 The expected probability density
 $\langle\vert\mathcal{M}\vert^2\rangle$
-is computed by summing $|\mathcal{M}_{jk}|^2$
+is computed by summing $|\mathcal{M}_{ab}|^2$
 over all four spin states and then dividing by the number of inbound states.
 There are two inbound states.
 \begin{align*}
 \langle\vert\mathcal{M}\vert^2\rangle
-&=\frac{1}{2}\sum_{j=1}^2\sum_{k=1}^2\left|\mathcal{M}_{jk}\right|^2
+&=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
 \\
-&=\frac{Z^2e^4}{2q^4}\frac{1}{N}\sum_{j=1}^2\sum_{k=1}^2\left|\bar{u}_{2k}\gamma^0 u_{1j}\right|^2
+&=\frac{Z^2e^4}{2q^4}\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
 \\
 &=\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
 \\
@@ -116,7 +116,7 @@ There are two inbound states.
 \noindent
 Run ``rutherford-scattering-1.txt'' to verify the following formulas.
 \begin{gather*}
-\frac{1}{N}\sum_{j=1}^2\sum_{k=1}^2\left|\bar{u}_{2k}\gamma^0 u_{1j}\right|^2
+\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
 =\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
 =4(E^2+m^2+p^2\cos\theta)
 \\

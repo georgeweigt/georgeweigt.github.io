@@ -69,9 +69,9 @@ C2 = 1/(u - m^2)
 
 S = 0
 
-for(j,1,2,for(k,1,2,
-  a1 = -C1 dot(u4bar[k],gammaT,qslash1 + m I,gammaT,u2[j]),
-  a2 = -C2 dot(u4bar[k],gammaT,qslash2 + m I,gammaT,u2[j]),
+for(a,1,2,for(b,1,2,
+  a1 = -C1 dot(u4bar[b],gammaT,qslash1 + m I,gammaT,u2[a]),
+  a2 = -C2 dot(u4bar[b],gammaT,qslash2 + m I,gammaT,u2[a]),
   a11 = contract(dot(a1,gmunu,transpose(conj(a1)),gmunu)),
   a12 = contract(dot(a1,gmunu,conj(a2),gmunu)),
   a22 = contract(dot(a2,gmunu,transpose(conj(a2)),gmunu)),
