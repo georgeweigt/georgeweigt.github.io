@@ -1,27 +1,15 @@
 \documentclass[12pt]{article}
-\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-\usepackage{mathrsfs}
-
-% change margins
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
-
-\hyphenpenalty=10000
 
 \begin{document}
 
-\begin{center}
-{\sc bhabha scattering}
-\end{center}
-
 \noindent
-Bhabha scattering is the interaction between positrons and electrons.
+Bhabha scattering is the result of interactions between positrons and electrons.
+The following diagram represents a collider experiment with
+collinear electron and positron beams.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -68,7 +56,7 @@ E\\
 \end{equation*}
 
 \noindent
-where $p=\sqrt{E^2-m^2}$.
+where $E=\sqrt{p^2+m^2}$.
 The spinors are
 \begin{gather*}
 v_{11}=\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}\quad
@@ -83,15 +71,13 @@ u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
 \end{gather*}
 
 \noindent
-The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-Note that the spinors are not individually normalized.
+The spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^4$
-will be used where needed.
+will be used.
 
-\newpage
+\bigskip
 \noindent
 This is the probability density for Bhabha scattering.
-The formula is from Feynman diagrams.
 $$
 |\mathcal{M}(s_1,s_2,s_3,s_4)|^2=\frac{e^4}{N}
 \left|
@@ -189,9 +175,10 @@ Hence
 \noindent
 Run ``bhabha-scattering-1.txt'' to verify the Casimir trick.
 
-\newpage
+\bigskip
 \noindent
-These formulas compute probability densities from dot products.
+The following momentum formulas are equivalent to the Casimir trick.
+(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
 32(p_1\cdot p_2)(p_3\cdot p_4)+32(p_1\cdot p_4)(p_2\cdot p_3)
@@ -218,7 +205,7 @@ f_{12} &= -8 u^2 + 64 u m^2 - 96 m^4
 f_{22} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
 \end{align*}
 
-\noindent
+\subsection*{High energy approximation}
 When $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&= 8 s^2 + 8 u^2\\
@@ -259,8 +246,7 @@ The corresponding expected probability density is
 \noindent
 Run ``bhabha-scattering-2.txt'' to verify.
 
-\newpage
-\noindent
+\subsection*{Cross section}
 This is the differential cross section for Bhabha scattering.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
@@ -339,7 +325,7 @@ $135^\circ$ & $180^\circ$ & 0.04 \\
 \end{tabular}
 \end{center}
 
-\newpage
+\subsection*{SLAC data}
 \noindent
 The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 
@@ -442,8 +428,7 @@ The result indicates that the model $\langle|\mathcal{M}|^2\rangle$ explains
 \noindent
 Run ``bhabha-scattering-4.txt'' to verify.
 
-\newpage
-\noindent
+\subsection*{DESY data}
 The following table shows DESY-PETRA Bhabha scattering data obtained from
 HEP Data.\footnote{{\tt www.hepdata.net/record/ins191231} (Table 3, 14.0 GeV)}
 
@@ -555,9 +540,8 @@ The result indicates that the model $d\sigma$ explains 99.5\% of the variance in
 \noindent
 Run ``bhabha-scattering-5.txt'' to verify.
 
-\newpage
-\noindent
-Here are a few notes about how the scripts work.
+\section*{Notes on Eigenmath scripts}
+Here are a few notes about how the Eigenmath scripts work.
 In component notation the trace operators of the Casimir trick become sums over the repeated index $\alpha$.
 \begin{align*}
 f_{11}&=
