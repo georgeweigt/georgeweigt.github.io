@@ -27,9 +27,9 @@ omega = 0.05
 C = I(0,pi)
 draw(f/C,theta)
 
-"Scattering angle probability density 0.5 MeV"
+"Scattering angle probability density 0.511 MeV"
 
-omega = 0.5
+omega = m
 C = I(0,pi)
 draw(f/C,theta)
 
