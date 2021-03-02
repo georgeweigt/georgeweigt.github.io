@@ -274,60 +274,76 @@ In the center of mass frame the differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{\alpha^2}{8E^2}
-\left(
-\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
-+\frac{8}{\sin^2\theta}
-+\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
-\right)
+%=\frac{\alpha^2}{8E^2}
+%\left(
+%\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
+%+\frac{8}{\sin^2\theta}
+%+\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
+%\right)
+=\frac{e^4}{64\pi^2E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}
+\end{equation*}
+
+\noindent
+Substituting $e^2=4\pi\alpha$ yields
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}
 \end{equation*}
 
 \noindent
 We can integrate $d\sigma$ to obtain a normalized probability density function.
-
-\bigskip
-\noindent
-Let
+Recall that $d\Omega=\sin\theta\,d\theta\,d\phi$ hence
 \begin{equation*}
-I(\xi)=2\pi\int_\alpha^\xi\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
-\qquad\alpha\le\xi\le\pi-\alpha
+d\sigma=\frac{\alpha^2}{4E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
-for some $\alpha>0$.
-The support region is restricted because $d\sigma$ is undefined for $\theta=0$ and $\theta=\pi$.
+Let $I(\xi)$ be the following definite integral.
+\begin{align*}
+I(\xi)&=\frac{4E^2}{\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
+\\
+&=2\pi\int_a^\xi\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\theta\,d\theta
+\\
+&=2\pi\left(-\cos\theta-\frac{8\cos\theta}{\sin^2\theta}\right)\bigg|_a^\xi
+\\
+&=2\pi\left(\cos a+\frac{8\cos a}{\sin^2 a}-\cos\xi-\frac{8\cos\xi}{\sin^2\xi}\right),
+\qquad a\le\xi\le\pi-a
+\end{align*}
+
+\noindent
+Support is limited to $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
 
 \bigskip
 \noindent
-The cumulative distribution function is
+Let $C$ be the normalization constant $C=I(\pi-a)$.
+Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-F(\theta)=\frac{I(\theta)}{I(\pi-\alpha)},\qquad\alpha\le\theta\le\pi-\alpha
+F(\theta)=C^{-1}I(\theta),\qquad a\le\theta\le\pi-a
 \end{equation*}
 
 \noindent
-Hence
+The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$
+can now be computed.
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \noindent
-The probability density is
+Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{2\pi}{I(\pi-\alpha)}
-\left(\frac{d\sigma}{d\Omega}\right)
-\sin\theta,\quad\alpha\le\theta\le\pi-\alpha
+=C^{-1}\frac{dI(\theta)}{d\theta}
+=C^{-1}\frac{(3+\cos^2\theta)^2}{\sin^3\theta}
 \end{equation*}
 
 \noindent
-Run ``moller-scattering-3.txt'' to draw a graph of $f(\theta)$ for $\alpha=\pi/6=30^\circ$.
+Run ``moller-scattering-3.txt'' to draw a graph of $f(\theta)$ for $a=\pi/6=30^\circ$.
 
 \begin{center}
 \includegraphics[scale=0.5]{moller-scattering.png}
 \end{center}
 
 \noindent
-The following table shows the probability distribution for $30^\circ$ bins ($\alpha=\pi/6=30^\circ$).
+The following table shows the probability distribution for $30^\circ$ bins ($a=\pi/6=30^\circ$).
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
