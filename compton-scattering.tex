@@ -4,19 +4,9 @@
 \usepackage{slashed}
 \usepackage{tikz}
 
-\title{Compton Scattering}
-\date{}
-\author{}
-
 \begin{document}
 
-\maketitle
-
-\tableofcontents
-
-\newpage
-
-\section{Theory}
+\noindent
 Compton scattering occurs when a high energy photon such as a gamma ray interacts with an electron.
 In typical Compton scattering experiments the incident electron is at rest with zero velocity.
 However, it is easier to develop a theory using the center of mass frame in which
@@ -301,7 +291,7 @@ resulting in the following simplified probability density.
 \noindent
 Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
 
-\section{Lab frame}
+\subsection*{Lab frame}
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
 The following Lorentz boost $\Lambda$ transforms momentum vectors from
 the center of mass frame to the lab frame.
@@ -387,7 +377,7 @@ Hence
 \noindent
 Run ``compton-scattering-3.txt'' to verify lab frame formulas for Compton scattering.
 
-\section{Cross section}
+\subsection*{Cross section}
 Now that we have derived $\langle|\mathcal{M}|^2\rangle$
 we can investigate the angular distribution of scattered photons.
 For simplicity let us drop the $L$ subscript from lab variables.
@@ -396,8 +386,22 @@ From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame vari
 \bigskip
 \noindent
 The differential cross section for Compton scattering is
+\begin{align*}
+\frac{d\sigma}{d\Omega}&=\frac{1}{64\pi^2m^2}
+\left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
+\\
+&=\frac{e^4}{32\pi^2m^2}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1
+\right)
+\end{align*}
+
+\noindent
+From $e^4=16\pi^2\alpha^2$ we have
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2m^2}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{2m^2}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1
@@ -405,20 +409,9 @@ The differential cross section for Compton scattering is
 \end{equation*}
 
 \noindent
-From the Compton equation we have
+The scattered photon frequency $\omega'$ is computed from the Compton equation.
 \begin{equation*}
 \omega'=\frac{m\omega}{m+\omega(1-\cos\theta)}
-\end{equation*}
-
-\noindent
-Use the Compton equation to eliminate $\omega'$ in $d\sigma$.
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2m^2}
-\left(\frac{m}{m+\omega(1-\cos\theta)}\right)^2
-\left(
-\frac{m+\omega(1-\cos\theta)}{m}
-+\frac{m}{m+\omega(1-\cos\theta)}+\cos^2\theta-1
-\right)
 \end{equation*}
 
 \noindent
@@ -429,12 +422,11 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{2m^2}
-\left(\frac{m}{m+\omega(1-\cos\theta)}\right)^2
-\left(
-\frac{m+\omega(1-\cos\theta)}{m}
-+\frac{m}{m+\omega(1-\cos\theta)}+\cos^2\theta-1
-\right)\sin\theta\,d\theta\,d\phi
+d\sigma
+=\frac{\alpha^2}{2m^2}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
+\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \bigskip
@@ -470,7 +462,16 @@ f(\theta)=\frac{dF(\theta)}{d\theta}
 \end{equation*}
 
 \noindent
-The following angular distribution is for $\omega=m$.
+Run ``compton-scattering-4.txt'' to plot $f(\theta)$.
+(The following plot is for $\omega=m$)
+
+\begin{center}
+\includegraphics[scale=0.5]{compton-scattering.png}
+%Plot of $f(\theta)$ for $\omega=m$.
+\end{center}
+
+\noindent
+The following table shows the angular distribution for $\omega=m$ and four bins.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -485,16 +486,7 @@ $135^\circ$ & $180^\circ$ & 0.09 \\
 \end{tabular}
 \end{center}
 
-\noindent
-Run ``compton-scattering-4.txt'' to plot $f(\theta)$.
-
-\begin{center}
-\includegraphics[scale=0.5]{compton-scattering-ss1.png}
-
-Plot of $f(\theta)$ for $\omega=m$.
-\end{center}
-
-\section{Thomson scattering}
+\subsection*{Thomson scattering}
 When $\omega$ is much smaller than the electron mass $m$ we have
 \begin{equation*}
 \frac{m}{m+\omega(1-\cos\theta)}\approx1
@@ -509,7 +501,7 @@ Hence for $\omega\ll m$ the differential cross section is approximately
 \noindent
 which is the formula for Thomson scattering.
 
-\section{LEP data}
+\subsection*{LEP data}
 The following Compton scattering data is from the paper
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''
 
@@ -600,7 +592,7 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.97
 \noindent
 The result indicates that the model $d\sigma$ explains 97\% of the variance in the data.
 
-\section{Eigenmath notes}
+\subsection{Notes on Eigenmath scripts}
 Here are a few notes on how the Eigenmath scripts work.
 
 \bigskip
@@ -763,7 +755,7 @@ f_{12}
 \noindent
 The innermost contract sums over $\nu$ followed by sum over $\mu$ then sum over $\alpha$.
 
-\section{Reference}
+\subsection{Reference}
 L3 Collaboration.
 ``Compton Scattering of Quasi-Real Virtual Photons at LEP.''\\
 \verb$arxiv.org/abs/hep-ex/0504012$
