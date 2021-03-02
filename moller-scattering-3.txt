@@ -6,11 +6,10 @@ pi = float(pi) -- use numerical value of pi
 N = 6 -- 30 degree bins
 a = pi / N
 
-I(xi) = cos(a) + 8 cos(a)/sin(a)^2 - cos(xi) - 8 cos(xi)/sin(xi)^2
+I(xi) = cos(a) + 8 cos(a) / sin(a)^2 -
+        cos(xi) - 8 cos(xi) / sin(xi)^2
 
-C = I(pi - a)
-
-F(theta) = I(theta) / C
+C = I(pi - a) -- normalization constant
 
 "Probability density"
 
@@ -23,6 +22,8 @@ draw(f,theta)
 
 "Probability distribution"
 
+F(theta) = 1/C I(theta)
+
 P = zero(N)
 
 for(k,1,N - 2,
@@ -32,3 +33,12 @@ for(k,1,N - 2,
 )
 
 P
+
+"Verify probability density formula (1=ok)"
+
+F = expcos(a) + 8 expcos(a) / expsin(a)^2 -
+    expcos(theta) - 8 expcos(theta) / expsin(theta)^2
+
+f = (3 + expcos(theta)^2)^2 / expsin(theta)^3
+
+d(F,theta) == f
