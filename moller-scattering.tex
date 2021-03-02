@@ -1,24 +1,10 @@
 \documentclass[12pt]{article}
-\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-\usepackage{mathrsfs}
-
-% change margins
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
-
-\hyphenpenalty=10000
 
 \begin{document}
-
-\begin{center}
-{\sc moller scattering}
-\end{center}
 
 \noindent
 Moller scattering is the interaction of two electrons.
@@ -89,7 +75,7 @@ Note that the spinors are not individually normalized.
 Instead, a combined spinor normalization constant
 $N=(E+m)^4$ will be used where needed.
 
-\newpage
+\bigskip
 \noindent
 This is the probability density for Moller scattering.
 The formula is from Feynman diagrams.
@@ -188,7 +174,7 @@ Hence
 \noindent
 Run ``moller-scattering-1.txt'' to verify the Casimir trick.
 
-\newpage
+\bigskip
 \noindent
 These formulas compute probability densities from dot products.
 Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$.
@@ -223,7 +209,7 @@ f_{12} &= -8 s^2 + 64 s m^2 - 96 m^4
 f_{22} &= 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
 \end{align*}
 
-\noindent
+\subsection*{High energy approximation}
 When $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&=8s^2+8u^2\\
@@ -268,9 +254,8 @@ The corresponding expected probability density is
 \noindent
 Run ``moller-scattering-2.txt'' to verify the formulas on this page.
 
-\newpage
-\noindent
-In the center of mass frame the differential cross section is
+\subsection*{Cross section}
+The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
@@ -284,8 +269,12 @@ Substituting $e^2=4\pi\alpha$ yields
 \end{equation*}
 
 \noindent
-We can integrate $d\sigma$ to obtain a normalized probability density function.
-Recall that $d\Omega=\sin\theta\,d\theta\,d\phi$ hence
+We can integrate $d\sigma$ to obtain a normalized probability density in spherical coordinates.
+Recall that
+\begin{equation*}
+d\Omega=\sin\theta\,d\theta\,d\phi
+\end{equation*}
+Hence
 \begin{equation*}
 d\sigma=\frac{\alpha^2}{4E^2}\,\frac{(3+\cos^2\theta)^2}{\sin^4\theta}\,\sin\theta\,d\theta\,d\phi
 \end{equation*}
@@ -304,7 +293,7 @@ I(\xi)&=\frac{4E^2}{2\pi\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
 \end{align*}
 
 \noindent
-Support is limited to $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
+Angular support is limited to $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
 
 \bigskip
 \noindent
@@ -353,8 +342,7 @@ $150^\circ$ & $180^\circ$ & -- \\
 \end{tabular}
 \end{center}
 
-\newpage
-\noindent
+\subsection*{Eigenmath code}
 Here are a few notes about how the scripts work.
 
 \bigskip
