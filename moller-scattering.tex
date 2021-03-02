@@ -129,8 +129,8 @@ There are four inbound states.
 \frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
 |\mathcal{M}_{abcd}|^2\\
 &=
-\frac{e^4}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
-\frac{1}{N}\left(
+\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+\left(
 \frac{a_1a_1^*}{t^2}-\frac{a_1a_2^*}{tu}-\frac{a_1^*a_2}{tu}+\frac{a_2a_2^*}{u^2}
 \right)
 \end{align*}
@@ -138,7 +138,7 @@ There are four inbound states.
 \noindent
 Use the Casimir trick to replace sums over spins with matrix products.
 \begin{align*}
-f_{11}&=\frac{1}{N}\sum_{\rm spins}a_1a_1^*=
+f_{11}&=\frac{1}{N}\sum_{abcd}a_1a_1^*=
 \mathop{\rm Tr}\left(
 (\slashed{p}_3+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
 \right)
@@ -146,13 +146,13 @@ f_{11}&=\frac{1}{N}\sum_{\rm spins}a_1a_1^*=
 (\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
 \right)
 \\
-f_{12}&=\frac{1}{N}\sum_{\rm spins}a_1a_2^*=
+f_{12}&=\frac{1}{N}\sum_{abcd}a_1a_2^*=
 \mathop{\rm Tr}\left(
 (\slashed{p}_3+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
 (\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
 \right)
 \\
-f_{22}&=\frac{1}{N}\sum_{\rm spins}a_2a_2^*=
+f_{22}&=\frac{1}{N}\sum_{abcd}a_2a_2^*=
 \mathop{\rm Tr}\left(
 (\slashed{p}_4+m)\gamma^\mu(\slashed{p}_1+m)\gamma^\nu
 \right)
