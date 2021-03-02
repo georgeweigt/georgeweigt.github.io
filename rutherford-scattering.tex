@@ -159,13 +159,13 @@ d\sigma=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
 \noindent
 Let $I(\xi)$ be the following definite integral.
 \begin{align*}
-I(\xi)&=\frac{p^4}{m^2Z^2\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
+I(\xi)&=\frac{p^4}{2\pi m^2Z^2\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
 \\
-&=2\pi\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
+&=\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
 \\
-&=2\pi\left(\frac{1}{\cos\theta-1}\right)\bigg|_a^\xi
+&=\left(\frac{1}{\cos\theta-1}\right)\bigg|_a^\xi
 \\
-&=2\pi\left(\frac{1}{\cos\xi-1}-\frac{1}{\cos a-1}\right),\qquad a\le\xi\le\pi
+&=\frac{1}{\cos\xi-1}-\frac{1}{\cos a-1},\qquad a\le\xi\le\pi
 \end{align*}
 
 \noindent
@@ -191,8 +191,7 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
-=C^{-1}\frac{2\pi\sin\theta}{(\cos\theta-1)^2}
-%\qquad a\le\theta\le\pi
+=C^{-1}\frac{\sin\theta}{(\cos\theta-1)^2}
 \end{equation*}
 
 \noindent
