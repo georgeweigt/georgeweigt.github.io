@@ -1714,12 +1714,6 @@ const POWER = "^";
 const INDEX = "[";
 const SETQ = "=";
 
-const EXP1 = "(e)";
-const METAA = "(a)";
-const METAB = "(b)";
-const METAX = "(x)";
-const SPECX = "(X)";
-
 const LAST = "last";
 const PI = "pi";
 const TRACE = "trace";
@@ -1732,6 +1726,11 @@ const SYMBOL_T = "t";
 const SYMBOL_X = "x";
 const SYMBOL_Y = "y";
 const SYMBOL_Z = "z";
+
+const EXP1 = "$e";
+const SA = "$a";
+const SB = "$b";
+const SX = "$x";
 
 const ARG1 = "$1";
 const ARG2 = "$2";
@@ -7410,6 +7409,34 @@ integral()
 
 	integral_nib(F, X);
 }
+
+function
+integral_nib(F, X)
+{
+	var h;
+
+	save_symbol(symbol(SA));
+	save_symbol(symbol(SB));
+	save_symbol(symbol(SX));
+
+	set_symbol(symbol(SX), X, symbol(NIL));
+
+	// put constants in F(X) on the stack
+
+	h = stack.length;
+
+	push_integer(1); // 1 is a candidate for a or b
+
+	push(F);
+	push(X);
+	decomp();
+
+	integral_lookup(F, h);
+
+	restore_symbol(symbol(SX));
+	restore_symbol(symbol(SB));
+	restore_symbol(symbol(SA));
+}
 function
 integral_classify(p)
 {
@@ -7461,33 +7488,6 @@ integral_lookup(F, h)
 	stopf("integral: no solution found");
 }
 function
-integral_nib(F, X)
-{
-	var h;
-
-	save_symbol(symbol(METAA));
-	save_symbol(symbol(METAB));
-	save_symbol(symbol(METAX));
-
-	set_symbol(symbol(METAX), X, symbol(NIL));
-
-	// put constants in F(X) on the stack
-
-	h = stack.length;
-
-	push_integer(1); // 1 is a candidate for a or b
-
-	push(F);
-	push(X);
-	decomp();
-
-	integral_lookup(F, h);
-
-	restore_symbol(symbol(METAX));
-	restore_symbol(symbol(METAB));
-	restore_symbol(symbol(METAA));
-}
-function
 integral_search(F, h, table)
 {
 	var i, n, I, C;
@@ -7516,6 +7516,7 @@ integral_search(F, h, table)
 
 	return 1;
 }
+
 function
 integral_search_nib(F, I, C, h)
 {
@@ -7525,11 +7526,11 @@ integral_search_nib(F, I, C, h)
 
 	for (i = h; i < n; i++) {
 
-		set_symbol(symbol(METAA), stack[i], symbol(NIL));
+		set_symbol(symbol(SA), stack[i], symbol(NIL));
 
 		for (j = h; j < n; j++) {
 
-			set_symbol(symbol(METAB), stack[j], symbol(NIL));
+			set_symbol(symbol(SB), stack[j], symbol(NIL));
 
 			push(C);			// condition ok?
 			evalf();
@@ -12111,13 +12112,13 @@ scan_symbol()
 	if (scan_mode == 1 && token_buf.length == 1) {
 		switch (token_buf[0]) {
 		case "a":
-			push_symbol(METAA);
+			push_symbol(SA);
 			break;
 		case "b":
-			push_symbol(METAB);
+			push_symbol(SB);
 			break;
 		case "x":
-			push_symbol(METAX);
+			push_symbol(SX);
 			break;
 		default:
 			push(lookup(token_buf));
@@ -13627,12 +13628,6 @@ var symtab = {
 "[":		{printname:INDEX,	func:eval_index},
 "=":		{printname:SETQ,	func:eval_setq},
 
-"(e)":		{printname:EXP1,	func:eval_user_symbol},
-"(a)":		{printname:METAA,	func:eval_user_symbol},
-"(b)":		{printname:METAB,	func:eval_user_symbol},
-"(x)":		{printname:METAX,	func:eval_user_symbol},
-"(X)":		{printname:SPECX,	func:eval_user_symbol},
-
 "last":		{printname:LAST,	func:eval_user_symbol},
 "pi":		{printname:PI,		func:eval_user_symbol},
 "trace":	{printname:TRACE,	func:eval_user_symbol},
@@ -13645,6 +13640,11 @@ var symtab = {
 "x":		{printname:SYMBOL_X,	func:eval_user_symbol},
 "y":		{printname:SYMBOL_Y,	func:eval_user_symbol},
 "z":		{printname:SYMBOL_Z,	func:eval_user_symbol},
+
+"$e":		{printname:EXP1,	func:eval_user_symbol},
+"$a":		{printname:SA,		func:eval_user_symbol},
+"$b":		{printname:SB,		func:eval_user_symbol},
+"$x":		{printname:SX,		func:eval_user_symbol},
 
 "$1":		{printname:ARG1,	func:eval_user_symbol},
 "$2":		{printname:ARG2,	func:eval_user_symbol},
