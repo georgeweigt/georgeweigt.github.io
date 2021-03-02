@@ -3,7 +3,7 @@
 -- eigenmath.org/rutherford-scattering-3.txt
 
 pi = float(pi) -- use numerical value of pi
-N = 6 -- number of bins
+N = 4 -- number of bins
 a = pi / N -- minimum support angle
 
 I(xi) = 1 / (cos(xi) - 1) - 1 / (cos(a) - 1)

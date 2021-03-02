@@ -1,4 +1,4 @@
--- Draw probability density for Moller scattering
+-- Draw probability density for high energy Moller scattering
 
 -- eigenmath.org/moller-scattering-3.txt
 
@@ -8,7 +8,7 @@ a = pi / N
 
 I(xi) = cos(a) + 8 cos(a)/sin(a)^2 - cos(xi) - 8 cos(xi)/sin(xi)^2
 
-C = I(pi - a) -- normalization constant
+C = I(pi - a)
 
 F(theta) = I(theta) / C
 
