@@ -6,35 +6,34 @@ M = (1 + cos(theta/2)^4)/sin(theta/2)^4 -
     2 cos(theta/2)^4/sin(theta/2)^2 +
     (1 + cos(theta)^2)/2
 
-f = M sin(theta)
+f = M sin(theta)  -- unnormalized probability density
 
-pie = float(pi)
-alpha = pie / 4
-dtheta = (pie - alpha) / 100
+pi = float(pi) -- use numerical value of pi
+N = 4  -- number of bins
+a = pi / N
 
--- integrate f from alpha to pi to obtain normalization constant C
+-- integrate f numerically from a to xi
 
-C = sum(k,1,100,eval(f,theta,alpha + (k - 0.5) dtheta)) dtheta
+I(xi) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (xi - a) / 100)) (xi - a) / 100
 
-f = M sin(theta) / C
+C = I(pi)  -- normalization constant
 
-xrange = (alpha,pi)
+"Probability density"
+
+xrange = (a,pi)
 yrange = (0,4)
-draw(f,theta)
-
--- integrate f from a to b
-
-I(a,b) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a)/100)) (b - a)/100
-
-N = 3 -- number of bins
-P = zero(N)
-
-for(k,1,N,
-  a = alpha + (k - 1) (pie - alpha) / N,
-  b = alpha + k (pie - alpha) / N,
-  P[k] = I(a,b)
-)
+draw(f/C,theta)
 
 "Probability distribution"
+
+F(theta) = 1/C I(theta)
+
+P = zero(N)
+
+for(k,2,N,
+  theta2 = k a,
+  theta1 = theta2 - a,
+  P[k] = F(theta2) - F(theta1)
+)
 
 P
