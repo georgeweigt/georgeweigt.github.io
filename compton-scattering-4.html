@@ -14,15 +14,17 @@
 
 -- eigenmath.org/compton-scattering-4.txt
 
+pi = float(pi)  -- use numerical value of pi
+
+m = 0.511 -- MeV
+
 omegap = m omega / (m + omega (1 - cos(theta)))
 
 M = omega/omegap + omegap/omega + cos(theta)^2 - 1
 
-f = (omegap/omega)^2 M sin(theta)
+-- f is the unnormalized probability density function
 
-m = 0.511 -- MeV
-
-pi = float(pi)  -- use numerical value of pi
+f = 2 pi (omegap/omega)^2 M sin(theta)
 
 -- I integrates f numerically from a to b
 

@@ -130,41 +130,40 @@ p_{4x}-ip_{4y}\\
 \end{equation*}
 
 \noindent
-The second digit in each spinor subscript indicates whether the spin state is up or down.
 The spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
 \noindent
-The following formula computes a probability density $|\mathcal{M}_{jk}|^2$
-for Compton scattering where $j$ is the spin state of the inbound electron
-and $k$ is the spin state of the outbound electron.
-The formula is from Feynman diagrams.
-Symbol $e$ is electron charge,
-symbols $s$ and $u$ are Mandelstam variables $s=(p_1+p_2)^2$ and $u=(p_1-p_4)^2$.
-Symbol $q_1=p_1+p_2$ and $q_2=p_2-p_3$.
+The following formula computes a probability density $|\mathcal{M}_{ab}|^2$
+for Compton scattering where $a$ is the spin state of the inbound electron
+and $b$ is the spin state of the outbound electron.
 \begin{equation*}
-|\mathcal{M}_{jk}|^2
+|\mathcal{M}_{ab}|^2
 =
 \frac{e^4}{N}
 \left|
--\frac{\bar{u}_{4k}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2j}}{s-m^2}
--\frac{\bar{u}_{4k}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2j}}{u-m^2}
+-\frac{\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a}}{s-m^2}
+-\frac{\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}}{u-m^2}
 \right|^2
 \end{equation*}
+Symbol $e$ is electron charge.
+Symbols $s$ and $u$ are Mandelstam variables $s=(p_1+p_2)^2$ and $u=(p_1-p_4)^2$.
+Symbol $q_1=p_1+p_2$ and $q_2=p_2-p_3$.
 
+\bigskip
 \noindent
 Let
 \begin{equation*}
-a_1=\bar{u}_{4k}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2j}
+a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a}
 \qquad
-a_2=\bar{u}_{4k}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2j}
+a_2=\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}
 \end{equation*}
 
 \noindent
 Then
 \begin{align*}
-|\mathcal{M}_{jk}|^2&=\frac{e^4}{N}\left|-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right|^2\\
+|\mathcal{M}_{ab}|^2&=\frac{e^4}{N}\left|-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right|^2\\
 &=
 \frac{e^4}{N}
 \left(-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right)
@@ -180,14 +179,14 @@ Then
 
 \noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is
-computed by summing $|\mathcal{M}_{jk}|^2$ over all spin and polarization states
+computed by summing $|\mathcal{M}_{ab}|^2$ over all spin and polarization states
 and then dividing by the number of inbound states.
 There are four inbound states.
 The sum over polarizations is already accomplished by contraction of $aa^*$ over $\mu$ and $\nu$.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{j=1}^2\sum_{k=1}^2|\mathcal{M}_{jk}|^2\\
-&=\frac{e^4}{4}\sum_{j=1}^2\sum_{k=1}^2
+&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2\\
+&=\frac{e^4}{4}\sum_{a=1}^2\sum_{b=1}^2
 \frac{1}{N}\left(
 \frac{a_1a_1^*}{(s-m^2)^2}
 +\frac{a_1a_2^*}{(s-m^2)(u-m^2)}
@@ -199,17 +198,17 @@ The sum over polarizations is already accomplished by contraction of $aa^*$ over
 \noindent
 Use the Casimir trick to replace sums over spins with matrix products.
 \begin{align*}
-f_{11}&=\frac{1}{N} \sum_{j=1}^2\sum_{k=1}^2 a_1a_1^*=\mathop{\rm Tr}
+f_{11}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_1^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
 \right)
 \\
-f_{12}&=\frac{1}{N} \sum_{j=1}^2\sum_{k=1}^2 a_1a_2^*=\mathop{\rm Tr}
+f_{12}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_2^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=\frac{1}{N} \sum_{j=1}^2\sum_{k=1}^2 a_2a_2^*=\mathop{\rm Tr}
+f_{22}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_2a_2^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
 \right)
@@ -276,7 +275,8 @@ f_{22}&=
 \end{align*}
 
 \noindent
-In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, and $u=(p_1-p_4)^2$ the formulas are
+In terms of Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, and $u=(p_1-p_4)^2$
+the formulas are
 \begin{equation}
 \begin{aligned}
 f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
@@ -288,7 +288,7 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \end{equation}
 
 \noindent
-For high energy experiments $E\gg m$ the approximation $m=0$ can be used
+For high energy experiments where $E\gg m$ the approximation $m=0$ can be used
 resulting in the following simplified probability density.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -423,35 +423,50 @@ Use the Compton equation to eliminate $\omega'$ in $d\sigma$.
 
 \noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
+Recall that
+\begin{equation*}
+d\Omega=\sin\theta\,d\theta\,d\phi
+\end{equation*}
+Hence
+\begin{equation*}
+d\sigma=\frac{\alpha^2}{2m^2}
+\left(\frac{m}{m+\omega(1-\cos\theta)}\right)^2
+\left(
+\frac{m+\omega(1-\cos\theta)}{m}
++\frac{m}{m+\omega(1-\cos\theta)}+\cos^2\theta-1
+\right)\sin\theta\,d\theta\,d\phi
+\end{equation*}
 
 \bigskip
 \noindent
-Let
+Let $I(\xi)$ be the following definite integral.
+\begin{align*}
+I(\xi)&=\int_0^{2\pi}\int_0^\xi d\sigma\,\sin\theta\,d\theta\,d\phi
+\\
+&=2\pi\int_0^\xi d\sigma\,\sin\theta\,d\theta
+\end{align*}
+
+\noindent
+Let $C$ be the normalization constant $C=I(\pi)$.
+Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-I(\xi)=2\pi\int_0^\xi\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
-\quad0\le\xi\le\pi
+F(\theta)=C^{-1}I(\theta),
+\qquad0\le\theta\le\pi
 \end{equation*}
 
 \noindent
-The factor $2\pi$ is from integrating over azimuth $\phi$.
-The cumulative distribution function is
+The probability of observing scattering events in the interval
+$\theta_1$ to $\theta_2$ can now be computed.
 \begin{equation*}
-F(\theta)=\frac{I(\theta)}{I(\pi)},
-\quad0\le\theta\le\pi
-\end{equation*}
-
-\noindent
-Hence\begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \noindent
-The probability density is
+The probability density $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{2\pi}{I(\pi)}
-\left(\frac{d\sigma}{d\Omega}\right)\sin\theta,
-\quad0\le\theta\le\pi
+=\frac{2\pi}{C}\left(\frac{d\sigma}{d\Omega}\right)\sin\theta,
+\qquad0\le\theta\le\pi
 \end{equation*}
 
 \noindent
