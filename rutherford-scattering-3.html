@@ -37,10 +37,10 @@ draw(f,theta)
 
 P = zero(N)
 
-for(k,1,N - 1,
-  theta1 = k a,
-  theta2 = theta1 + a,
-  P[k + 1] = F(theta2) - F(theta1)
+for(k,2,N,
+  theta2 = k a,
+  theta1 = theta2 - a,
+  P[k] = F(theta2) - F(theta1)
 )
 
 P
