@@ -69,13 +69,13 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 S = 0
 
-for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
-  X31 = dot(u3bar[s3],gammaT,u1[s1]),
-  X42 = dot(u4bar[s4],gammaL,u2[s2]),
-  X41 = dot(u4bar[s4],gammaT,u1[s1]),
-  X32 = dot(u3bar[s3],gammaL,u2[s2]),
-  a = 1/t dot(X31,X42) - 1/u dot(X41,X32), -- amplitude
-  f = a conj(a), -- probability density function
+for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
+  X31 = dot(u3bar[c],gammaT,u1[a]),
+  X42 = dot(u4bar[d],gammaL,u2[b]),
+  X41 = dot(u4bar[d],gammaT,u1[a]),
+  X32 = dot(u3bar[c],gammaL,u2[b]),
+  A = 1/t dot(X31,X42) - 1/u dot(X41,X32), -- amplitude
+  f = A conj(A), -- probability density function
   S = S + f
 ))))
 

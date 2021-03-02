@@ -7,8 +7,9 @@
 \begin{document}
 
 \noindent
-Moller scattering is the interaction of two electrons.
-
+Moller scattering is the result of interactions between electrons.
+The following diagram represents a collider experiment with
+colinear electron beams.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -55,7 +56,7 @@ E\\
 $$
 
 \noindent
-where $p=\sqrt{E^2-m^2}$.
+where $E=\sqrt{p^2+m^2}$.
 The spinors are
 \begin{gather*}
 u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}\quad
@@ -70,25 +71,23 @@ u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
 \end{gather*}
 
 \noindent
-The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-Note that the spinors are not individually normalized.
+The spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant
-$N=(E+m)^4$ will be used where needed.
+$N=(E+m)^4$ will be used.
 
 \bigskip
 \noindent
-This is the probability density for Moller scattering.
-The formula is from Feynman diagrams.
-$$
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2=\frac{e^4}{N}
+The following formula computes a probability density $|\mathcal{M}_{abcd}|^2$
+for Moller scattering where the subscripts $abcd$ are the spin states of the electrons.
+\begin{equation*}
+|\mathcal{M}_{abcd}|^2=\frac{e^4}{N}
 \left|
-\frac{1}{t}(\bar{u}_3\gamma^\mu u_1)(\bar{u}_4\gamma_\mu u_2)
--\frac{1}{u}(\bar{u}_4\gamma^\nu u_1)(\bar{u}_3\gamma_\nu u_2)
+\frac{1}{t}(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})
+-\frac{1}{u}(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \right|^2
-$$
+\end{equation*}
 
 \noindent
-Symbol $s_j$ selects the spin (up or down) of spinor $j$.
 Symbol $e$ is electron charge.
 Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2$ and $u=(p_1-p_4)^2$.
 
@@ -96,15 +95,15 @@ Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2$ and $u=(p_1-p_4)^2$
 \noindent
 Let
 \begin{equation*}
-a_1=(\bar{u}_3\gamma^\mu u_1)(\bar{u}_4\gamma_\mu u_2)
+a_1=(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})
 \qquad
-a_2=(\bar{u}_4\gamma^\nu u_1)(\bar{u}_3\gamma_\nu u_2)
+a_2=(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \end{equation*}
 
 \noindent
 Then
 \begin{align*}
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
+|\mathcal{M}_{abcd}|^2
 &=
 \frac{e^4}{N}
 \left|\frac{a_1}{t} - \frac{a_2}{u}\right|^2\\
@@ -121,16 +120,16 @@ Then
 
 \noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed by
-summing $|\mathcal{M}|^2$ over all spin states and dividing by the number
+summing $|\mathcal{M}_{abcd}|^2$ over all spin states and dividing by the number
 of inbound states.
 There are four inbound states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=
-\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2\\
+\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+|\mathcal{M}_{abcd}|^2\\
 &=
-\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
+\frac{e^4}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
 \frac{1}{N}\left(
 \frac{a_1a_1^*}{t^2}-\frac{a_1a_2^*}{tu}-\frac{a_1^*a_2}{tu}+\frac{a_2a_2^*}{u^2}
 \right)
@@ -176,8 +175,8 @@ Run ``moller-scattering-1.txt'' to verify the Casimir trick.
 
 \bigskip
 \noindent
-These formulas compute probability densities from dot products.
-Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$.
+The following momentum formulas are equivalent to the Casimir trick.
+(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
 32 (p_1\cdot p_2) (p_3\cdot p_4) +
@@ -200,7 +199,7 @@ f_{22}&=
 \end{align*}
 
 \noindent
-In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, $u=(p_1-p_4)^2$ the formulas are
+In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, and $u=(p_1-p_4)^2$ the formulas are
 \begin{align*}
 f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
 \\
