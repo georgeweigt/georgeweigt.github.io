@@ -22,42 +22,48 @@ f = (omegap/omega)^2 M sin(theta)
 
 m = 0.511 -- MeV
 
-pie = float(pi)
+pi = float(pi)  -- use numerical value of pi
 
 -- I integrates f numerically from a to b
 
 I(a,b) = (b - a)/100 sum(k,0,99,eval(f,theta,a + k (b - a)/100))
 
-xrange = (0,pie)
+xrange = (0,pi)
 yrange = (0,1)
 
 "Scattering angle probability density 0.05 MeV"
 
 omega = 0.05
-C = I(0,pie)
+C = I(0,pi)
 draw(f/C,theta)
 
 "Scattering angle probability density 0.5 MeV"
 
 omega = 0.5
-C = I(0,pie)
+C = I(0,pi)
 draw(f/C,theta)
 
 "Scattering angle probability density 5 MeV"
 
 omega = 5.0
-C = I(0,pie)
+C = I(0,pi)
 draw(f/C,theta)
 
 "Scattering angle probability distribution 0.511 MeV"
 
 omega = m
 
-N = 4
+N = 4  -- number of bins
 P = zero(N)
-C = I(0,pie)
+C = I(0,pi)
 
-for(k,0,N - 1,P[k + 1] = I(k pie/N,(k + 1) pie/N)/C)
+F(theta) = 1/C I(0,theta)
+
+for(k,1,N,
+  theta2 = k pi/N,
+  theta1 = theta2 - pi/N,
+  P[k] = F(theta2) - F(theta1)
+)
 
 P
 </textarea>
