@@ -164,8 +164,7 @@ f_{22}&=\frac{1}{N}\sum_\text{spins}a_2a_2^*=
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=
-\frac{e^4}{4}
+=\frac{e^4}{4}
 \left(
 \frac{f_{11}}{t^2} - \frac{f_{12}}{st} -
 \frac{f_{12}^*}{st} + \frac{f_{22}}{s^2}
@@ -224,23 +223,41 @@ u&=-2E^2(1+\cos\theta)=-4E^2\cos^2(\theta/2)
 \end{align*}
 
 \noindent
+It follows that
+\begin{equation*}
+s^2t^2=256E^8\sin^4(\theta/2)
+\end{equation*}
+
+\noindent
 The corresponding expected probability density is
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=
-\frac{e^4}{4}
+&=\frac{e^4}{4}
 \left(
-\frac{8s^2+8u^2}{t^2}+\frac{16u^2}{st}+\frac{8t^2+8u^2}{s^2}
+\frac{f_{11}}{t^2} - \frac{f_{12}}{st} -
+\frac{f_{12}^*}{st} + \frac{f_{22}}{s^2}
 \right)
 \\
-&=2e^4\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
-\\
-&=2e^4
+&=\frac{e^4}{4s^2t^2}
 \left(
-\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
--\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
-+\frac{1+\cos^2\theta}{2}
+s^2f_{11}-stf_{12}-stf_{12}^*+t^2f_{22}
 \right)
+\\
+&=\frac{e^4}{4s^2t^2}
+\left(
+s^2\left(8s^2+8u^2\right)+16stu^2+t^2\left(8t^2+8u^2\right)
+\right)
+\\
+&=\frac{e^4}{1024E^8\sin^4(\theta/2)}
+\left(
+256E^8\cos^4\theta+1536E^8\cos^2\theta+2304E^8
+\right)
+\\
+&=\frac{e^4}{4\sin^4(\theta/2)}
+\left(\cos^4\theta+6\cos^2\theta+9\right)
+\\
+&=\frac{e^4}{4}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}
 \end{align*}
 
 \noindent
@@ -251,62 +268,74 @@ This is the differential cross section for Bhabha scattering.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{\alpha^2}{8E^2}
-\left(
-\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
--\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
-+\frac{1+\cos^2\theta}{2}
-\right)
+=\frac{e^4}{1024\pi^2E^2}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}
+\end{equation*}
+
+\noindent
+Substituting $e^4=16\pi^2\alpha^2$ yields
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{64E^2}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}
 \end{equation*}
 
 \noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
-
-\bigskip
-\noindent
-Let
+Recall that
 \begin{equation*}
-I(\xi)=\int_\alpha^\xi\frac{d\sigma}{d\Omega}\,\sin\theta\,d\theta,
-\quad\alpha\le\xi\le\pi
-\end{equation*}
-
-\noindent
-for some $\alpha>0$.
-The support interval is restricted because $d\sigma$ is undefined for $\theta=0$.
-
-\bigskip
-\noindent
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)=\frac{I(\theta)}{I(\pi)},
-\quad\alpha\le\theta\le\pi
+d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
 Hence
 \begin{equation*}
+d\sigma=\frac{\alpha^2}{64E^2}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
+\bigskip
+\noindent
+Let $I(\xi)$ be the following definite integral.
+\begin{align*}
+I(\xi)
+&=\frac{64E^2}{2\pi\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma\,\sin\theta\,d\theta\,d\phi
+\\
+&=\int_a^\xi \frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta\,d\theta,
+\qquad a\le\xi\le\pi
+\end{align*}
+
+\noindent
+Angular support is limited to $a>0$ because $I(0)$ is undefined.
+
+\bigskip
+\noindent
+Let $C$ be the normalization constant $C=I(\pi)$.
+Then the cumulative distribution function $F(\theta)$ is
+\begin{equation*}
+F(\theta)=C^{-1}I(\theta),
+\qquad a\le\theta\le\pi
+\end{equation*}
+
+\noindent
+The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$
+can now be computed.
+\begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \noindent
-The probability density is
+Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{1}{I(\pi)}\frac{d\sigma}{d\Omega}
-%\left(
-%\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
-%-\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
-%+\frac{1+\cos^2\theta}{2}
-%\right)
-\sin\theta,
-\quad\alpha\le\theta\le\pi
+=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta
 \end{equation*}
 
 \noindent
-Run ``bhabha-scattering-3.txt'' to draw $f(\theta)$ for $\alpha=\tfrac{1}{4}\pi=45^\circ$.
+Run ``bhabha-scattering-3.txt'' to draw $f(\theta)$ for $a=\pi/4=45^\circ$.
 
 \begin{center}
-\includegraphics[scale=0.5]{bhabha-scattering-ss1.png}
+\includegraphics[scale=0.5]{bhabha-scattering.png}
 \end{center}
 
 \noindent

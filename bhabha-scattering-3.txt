@@ -2,9 +2,7 @@
 
 -- eigenmath.org/bhabha-scattering-3.txt
 
-M = (1 + cos(theta/2)^4)/sin(theta/2)^4 -
-    2 cos(theta/2)^4/sin(theta/2)^2 +
-    (1 + cos(theta)^2)/2
+M = (cos(theta)^2 + 3)^2 / sin(theta/2)^4
 
 f = M sin(theta)  -- unnormalized probability density
 
