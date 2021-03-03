@@ -31,8 +31,6 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 gammaL = transpose(dot(gmunu,gamma))
 
-"Computing probability density"
-
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
@@ -96,13 +94,14 @@ u == -2 E^2 (1 + expcos(theta))
 t == -4 E^2 expsin(theta/2)^2
 u == -4 E^2 expcos(theta/2)^2
 
-(s^2 + u^2) expsin(theta/2)^4 == (1 + expcos(theta/2)^4) t^2
-2 s^2 expsin(theta)^2 == 8 t u
-(s^2 + t^2) expcos(theta/2)^4 == (1 + expsin(theta/2)^4) u^2
+t^2 u^2 == 16 E^8 expsin(theta)^4
 
 "Verify final probability density (1=ok)"
 
-A = 1/4 (f11 / t^2 - 2 f12 / t / u + f22 / u^2)
-B = 4 (3 + expcos(theta)^2)^2 / expsin(theta)^4
+t = -2 E^2 (1 - cos(theta))
+u = -2 E^2 (1 + cos(theta))
+
+A = u^2 (8 s^2 + 8 u^2) + 16 s^2 t u + t^2 (8 s^2 + 8 t^2)
+B = 256 E^8 (cos(theta)^4 + 6 cos(theta)^2 + 9)
 
 A == B

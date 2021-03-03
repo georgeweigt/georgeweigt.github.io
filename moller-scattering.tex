@@ -163,12 +163,16 @@ f_{22}&=\frac{1}{N}\sum_{abcd}a_2a_2^*=
 
 \noindent
 Hence
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=\frac{e^4}{4}
 \left(
 \frac{f_{11}}{t^2}-\frac{f_{12}}{tu}-\frac{f_{12}^*}{tu}+\frac{f_{22}}{u^2}
 \right)
-\end{equation*}
+\\
+&=\frac{e^4}{4t^2u^2}
+\left(u^2f_{11}-tuf_{12}-tuf_{12}^*+t^2f_{22}\right)
+\end{align*}
 
 \noindent
 Run ``moller-scattering-1.txt'' to verify the Casimir trick.
@@ -221,44 +225,39 @@ For $m=0$ the Mandelstam variables are
 \begin{align*}
 s&=4E^2
 \\
-t&=-2E^2(1-\cos\theta)=-4E^2\sin^2(\theta/2)
+t&=-2E^2(1-\cos\theta)%=-4E^2\sin^2(\theta/2)
 \\
-u&=-2E^2(1+\cos\theta)=-4E^2\cos^2(\theta/2)
+u&=-2E^2(1+\cos\theta)%=-4E^2\cos^2(\theta/2)
 \end{align*}
+
+\noindent
+It follows that
+\begin{equation*}
+t^2u^2=16E^8\sin^4\theta
+\end{equation*}
 
 \noindent
 The corresponding expected probability density is
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
+&=\frac{e^4}{4t^2u^2}
 \left(
-\frac{f_{11}}{t^2}-\frac{f_{12}}{tu}-\frac{f_{12}^*}{tu}+\frac{f_{22}}{u^2}
+u^2f_{11}-tuf_{12}-tuf_{12}^*+t^2f_{22}
 \right)
 \\
-&=\frac{e^4}{4}
+&=\frac{e^4}{4t^2u^2}
 \left(
-\frac{8s^2+8u^2}{t^2}+\frac{16s^2}{tu}+\frac{8s^2+8t^2}{u^2}
+u^2\left(8s^2+8u^2\right)+16s^2tu+t^2\left(8s^2+8t^2\right)
 \right)
 \\
-&=2e^4
-\left(
-\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
-\right)
+&=\frac{e^4}{64E^8\sin^4\theta}
+\left(256 E^8\cos^4\theta+1536 E^8\cos^2\theta+2304 E^8\right)
 \\
-&=2e^4
-\left(
-\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
-+\frac{8}{\sin^2\theta}
-+\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
-\right)
+&=\frac{4e^4}{\sin^4\theta}
+\left(\cos^4\theta+6\cos^2\theta+9\right)
+\\
+&=4e^4\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
 \end{align*}
-
-\noindent
-It can be shown that this monster reduces to the following compact form.
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=4e^4\frac{\left(3+\cos^2\theta\right)^2}{\sin^4\theta}
-\end{equation*}
 
 \noindent
 Run ``moller-scattering-2.txt'' to verify.
@@ -268,13 +267,13 @@ The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{e^4}{64\pi^2E^2}\,\frac{\left(3+\cos^2\theta\right)^2}{\sin^4\theta}
+=\frac{e^4}{64\pi^2E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
 \end{equation*}
 
 \noindent
 Substituting $e^2=4\pi\alpha$ yields
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\,\frac{\left(3+\cos^2\theta\right)^2}{\sin^4\theta}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
 \end{equation*}
 
 \noindent
@@ -285,7 +284,7 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{4E^2}\,\frac{\left(3+\cos^2\theta\right)^2}{\sin^4\theta}\,\sin\theta\,d\theta\,d\phi
+d\sigma=\frac{\alpha^2}{4E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\,\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
@@ -293,7 +292,7 @@ Let $I(\xi)$ be the following definite integral.
 \begin{align*}
 I(\xi)&=\frac{4E^2}{2\pi\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
 \\
-&=\int_a^\xi\frac{\left(3+\cos^2\theta\right)^2}{\sin^4\theta}\,\sin\theta\,d\theta
+&=\int_a^\xi\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\,\sin\theta\,d\theta
 \\
 &=\left(-\cos\theta-\frac{8\cos\theta}{\sin^2\theta}\right)\bigg|_a^\xi
 \\
@@ -324,7 +323,7 @@ Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
 =C^{-1}\frac{dI(\theta)}{d\theta}
-=C^{-1}\frac{\left(3+\cos^2\theta\right)^2}{\sin^3\theta}
+=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^3\theta}
 \end{equation*}
 
 \noindent
