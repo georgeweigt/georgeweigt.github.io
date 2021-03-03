@@ -388,7 +388,7 @@ Integrate the probability density function
 \begin{equation*}
 f(\theta)=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta
 \end{equation*}
-to obtain a scattering event probability per bin.
+to obtain a scattering probability per bin.
 Then multiply each probability by the total number of observed counts (15773) to obtain
 the following predicted counts per bin.
 
@@ -541,7 +541,7 @@ The result indicates that the model $d\sigma$ explains 99.5\% of the variance in
 \noindent
 Run ``bhabha-scattering-5.txt'' to verify.
 
-\section*{Notes on Eigenmath scripts}
+\subsection*{Notes on Eigenmath scripts}
 Here are a few notes about how the Eigenmath scripts work.
 In component notation the trace operators of the Casimir trick become sums over the repeated index $\alpha$.
 \begin{align*}
@@ -687,5 +687,14 @@ f_{12}=\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu\cdots\gamma_\mu\cdots\ga
 \quad\rightarrow\quad
 \text{\tt f12 = contract(contract(T,1,3))}
 $$
+
+%F(theta) = -37/8 cos(theta) - 1/4 cos(2 theta) - 1/24 cos(3 theta) - 4 / sin(theta/2)^2 - 16 log(sin(theta/2))
+
+%\subsection*{Epilogue}
+%This is the closed form of $I(\theta)$.
+%\begin{equation*}
+%I(\theta)=-\tfrac{37}{8}\cos\theta - \tfrac{1}{4}\cos(2\theta)
+%- \tfrac{1}{24}\cos(3\theta) - \frac{4}{\sin(\theta/2)^2} - 16\log(\sin(\theta/2))
+%\end{equation*}
 
 \end{document}
