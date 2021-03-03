@@ -380,46 +380,18 @@ The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 \end{center}
 
 \noindent
-``Count'' is the number of Bhabha scattering events observed per bin.
-Let us see if the density function $\langle|\mathcal{M}|^2\rangle$ explains the distribution of counts in the table.
-Start by integrating $\langle|\mathcal{M}|^2\rangle$ over all the bins to obtain a normalization constant.
-\begin{equation*}
-\int_\text{bins}\langle|\mathcal{M}|^2\rangle\,d\Omega
-=\int_0^{2\pi}\int_{\arccos 0.6}^{\arccos -0.6}\langle|\mathcal{M}|^2\rangle\sin\theta\,d\theta\,d\phi
-=2\pi\times9.3817\times 2e^4
-\end{equation*}
+``Count'' is the number of observed scattering events per bin.
 
+\bigskip
 \noindent
-Let
+Integrate the probability density function
 \begin{equation*}
-f(\theta)=\frac{\langle|\mathcal{M}|^2\rangle}{2\pi\times9.3817\times 2e^4}
-=\frac{1}{2\pi\times9.3817}
-\left(
-\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
--\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
-+\frac{1+\cos^2\theta}{2}
-\right)
+f(\theta)=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta
 \end{equation*}
+to obtain a scattering event probability per bin.
+Then multiply each probability by the total number of observed counts (15773) to obtain
+the following predicted counts per bin.
 
-\noindent
-The probability of a scattering event occurring in an interval $\theta_1$ to $\theta_2$ is obtained
-by integrating $f(\theta)$ over that interval.
-\begin{equation*}
-P(\theta_1<\theta<\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}f(\theta)\sin\theta\,d\theta\,d\phi
-=2\pi\int_{\theta_1}^{\theta_2}f(\theta)\sin\theta\,d\theta
-\end{equation*}
-
-\noindent
-The total number of counts in the table is 15773.
-To obtain a predicted distribution,
-multiply 15773 times the probability for each bin.
-For example, for the first bin we have
-\begin{equation*}
-P(\arccos 0.6<\theta<\arccos 0.5) \times 15773=4598
-\end{equation*}
-
-\noindent
-Repeat for all bins to obtain the following predicted distribution.
 \begin{center}
 \begin{tabular}{|r|c|r|r|}
 \hline
