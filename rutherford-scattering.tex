@@ -160,15 +160,14 @@ d\sigma=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
-Let $I(\xi)$ be the following definite integral.
+Let $I(\theta)$ be the following integral.
 \begin{align*}
-I(\xi)&=\frac{p^4}{2\pi m^2Z^2\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma
+I(\theta)
+&=\frac{p^4}{2\pi m^2Z^2\alpha^2}\int_0^{2\pi}\int d\sigma
 \\
-&=\int_a^\xi\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
+&=\int\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
 \\
-&=\left(\frac{1}{\cos\theta-1}\right)\bigg|_a^\xi
-\\
-&=\frac{1}{\cos\xi-1}-\frac{1}{\cos a-1},\qquad a\le\xi\le\pi
+&=\frac{1}{\cos\theta-1},\quad a\le\theta\le\pi
 \end{align*}
 
 \noindent
@@ -176,10 +175,10 @@ A lower bound of $a>0$ is required because $I(0)$ is undefined.
 
 \bigskip
 \noindent
-Let $C$ be the normalization constant $C=I(\pi)$.
+Let $C$ be the normalization constant $C=I(\pi)-I(a)$.
 Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-F(\theta)=C^{-1}I(\theta),
+F(\theta)=\frac{I(\theta)-I(a)}{C}
 \qquad a\le\theta\le\pi
 \end{equation*}
 

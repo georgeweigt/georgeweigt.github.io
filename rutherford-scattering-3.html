@@ -18,15 +18,13 @@ pi = float(pi)  -- use numerical value of pi
 N = 4           -- number of bins
 a = pi / N      -- minimum support angle
 
-I(xi) = 1 / (cos(xi) - 1) - 1 / (cos(a) - 1)
+I(theta) = 1 / (cos(theta) - 1)
 
-C = I(pi) -- normalization constant
-
-F(theta) = I(theta) / C
+C = I(pi) - I(a) -- normalization constant
 
 "Probability density"
 
-f = d(F,theta)
+f = 1/C d(I,theta)
 f
 
 xrange = (a,pi)
@@ -40,9 +38,10 @@ P = zero(N)
 for(k,2,N,
   theta2 = k a,
   theta1 = theta2 - a,
-  P[k] = F(theta2) - F(theta1)
+  P[k] = I(theta2) - I(theta1)
 )
 
+P = P / sum(k,1,N,P[k])
 P
 </textarea>
 </td><td>
