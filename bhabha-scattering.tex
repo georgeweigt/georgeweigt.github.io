@@ -359,9 +359,9 @@ $135^\circ$ & $180^\circ$ & 0.04 \\
 The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 
 \begin{center}
-\begin{tabular}{|lr|c|r|}
+\begin{tabular}{|lr|c|c|}
 \hline
-& Bin & $\cos\theta$ (interval) & Count\\
+& Bin & $x_k$, $x_{k+1}$ & $y$\\
 \hline
 (Smallest $\theta$) & 1 & $0.6, 0.5$ & 4432\\
 & 2 & $0.5, 0.4$ & 2841\\
@@ -380,22 +380,26 @@ The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 \end{center}
 
 \noindent
-``Count'' is the number of observed scattering events per bin.
+Data column $y$ is the observed number of scattering events per bin.
 
 \bigskip
 \noindent
-Integrate the probability density function
+To compute predicted counts $\hat{y}$, integrate the probability density function
+over each bin and multiply by the total number of observed counts.
 \begin{equation*}
-f(\theta)=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta
+P_k=C^{-1}\int_{\arccos(x_k)}^{\arccos(x_{k+1})}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta
 \end{equation*}
-to obtain a scattering probability per bin.
-Then multiply each probability by the total number of observed counts (15773) to obtain
-the following predicted counts per bin.
+\begin{equation*}
+\hat{y}_k=P_k\sum y
+\end{equation*}
+
+\noindent
 
 \begin{center}
-\begin{tabular}{|r|c|r|r|}
+\begin{tabular}{|r|c|c|c|}
 \hline
-Bin & $\cos\theta$ (interval) & Count & Predicted\\
+Bin & $x_k$, $x_{k+1}$ & $y$ & $\hat{y}$ \\
 \hline
 1 & $0.6, 0.5$ & 4432 & 4598\\
 2 & $0.5, 0.4$ & 2841 & 2880\\
