@@ -291,30 +291,31 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 Hence
 \begin{equation*}
 d\sigma=\frac{\alpha^2}{64E^2}
-\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta\,d\theta\,d\phi
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \bigskip
 \noindent
-Let $I(\xi)$ be the following definite integral.
+Let $I(\theta)$ be the following integral.
 \begin{align*}
-I(\xi)
-&=\frac{64E^2}{2\pi\alpha^2}\int_0^{2\pi}\int_a^\xi d\sigma\,\sin\theta\,d\theta\,d\phi
+I(\theta)
+&=\left(\frac{64E^2}{\alpha^2}\right)\frac{1}{2\pi}
+\int_0^{2\pi}\int d\sigma
 \\
-&=\int_a^\xi \frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta\,d\theta,
-\qquad a\le\xi\le\pi
+&=\int\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\sin\theta\,d\theta,
+\quad a\le\xi\le\pi
 \end{align*}
 
 \noindent
-Angular support is limited to $a>0$ because $I(0)$ is undefined.
+Angular support is limited to an arbitrary $a>0$ because $I(0)$ is undefined.
 
 \bigskip
 \noindent
-Let $C$ be the normalization constant $C=I(\pi)$.
+Let $C$ be the normalization constant $C=I(\pi)-I(a)$.
 Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-F(\theta)=C^{-1}I(\theta),
-\qquad a\le\theta\le\pi
+F(\theta)=\frac{I(\theta)-I(a)}{C},
+\quad a\le\theta\le\pi
 \end{equation*}
 
 \noindent
@@ -327,7 +328,7 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \noindent
 Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
+f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
 =C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4(\theta/2)}\,\sin\theta
 \end{equation*}
 
