@@ -15,13 +15,12 @@
 -- eigenmath.org/moller-scattering-3.txt
 
 pi = float(pi) -- use numerical value of pi
-N = 6 -- 30 degree bins
+N = 6 -- number of bins
 a = pi / N
 
-I(xi) = cos(a) + 8 cos(a) / sin(a)^2 -
-        cos(xi) - 8 cos(xi) / sin(xi)^2
+I(theta) = -cos(theta) - 8 cos(theta) / sin(theta)^2
 
-C = I(pi - a) -- normalization constant
+C = I(pi - a) - I(a) -- normalization constant
 
 "Probability density"
 
@@ -34,22 +33,20 @@ draw(f,theta)
 
 "Probability distribution"
 
-F(theta) = 1/C I(theta)
-
 P = zero(N)
 
-for(k,1,N - 2,
-  theta1 = k a,
-  theta2 = theta1 + a,
-  P[k + 1] = F(theta2) - F(theta1)
+for(k,2,N - 1,
+  theta2 = k a,
+  theta1 = theta2 - a,
+  P[k] = I(theta2) - I(theta1)
 )
 
+P = P / sum(k,1,N,P[k]) -- normalize
 P
 
 "Verify probability density formula (1=ok)"
 
-F = expcos(a) + 8 expcos(a) / expsin(a)^2 -
-    expcos(theta) - 8 expcos(theta) / expsin(theta)^2
+F = -expcos(theta) - 8 expcos(theta) / expsin(theta)^2
 
 f = (3 + expcos(theta)^2)^2 / expsin(theta)^3
 
