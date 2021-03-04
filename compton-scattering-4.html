@@ -61,7 +61,7 @@ P = zero(N)
 for(k,1,N,
   theta2 = k pi/N,
   theta1 = theta2 - pi/N,
-  P[k] = I(theta1,theta2) -- probability per bin
+  P[k] = I(theta1,theta2)
 )
 
 P = P / sum(k,1,N,P[k]) -- normalize
