@@ -14,7 +14,7 @@
 
 -- eigenmath.org/bhabha-scattering-3.txt
 
--- f is the probability density function for Bhabha scattering
+-- f is the probability density function for Bhabha scattering (unnormalized)
 
 f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
@@ -26,7 +26,7 @@ a = pi / N
 
 I(a,b) = 1/100 (b - a) sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100))
 
-C = I(pi)  -- normalization constant
+C = I(a,pi) -- normalization constant
 
 "Probability density"
 
@@ -41,9 +41,10 @@ P = zero(N)
 for(k,2,N,
   theta2 = k a,
   theta1 = theta2 - a,
-  P[k] = I(theta1,theta2) / C
+  P[k] = I(theta1,theta2)
 )
 
+P = P / sum(k,1,N,P[k]) -- normalize
 P
 </textarea>
 </td><td>

@@ -55,10 +55,9 @@ y
 
 f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
--- I integrates f from a to b
+-- I integrates f numerically from a to b
 
-I(a,b) = 1/100 (b - a) sum(k,1,100,
-         eval(f,theta,a + (k - 0.5) (b - a) / 100))
+I(a,b) = 1/100 (b - a) sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100))
 
 P = zero(N)
 
