@@ -39,10 +39,6 @@ y = (
 
 y
 
--- T is total counts
-
-T = sum(k,1,N,y[k])
-
 -- f is unnormalized probability density function
 
 f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
@@ -63,6 +59,8 @@ for(k,1,N,
 P = P / sum(k,1,N,P[k]) -- normalize
 
 "Predicted counts"
+
+T = sum(k,1,N,y[k]) -- total counts
 
 yhat = P T
 yhat
