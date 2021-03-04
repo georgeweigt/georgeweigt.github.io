@@ -61,26 +61,22 @@ f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
 -- I integrates f from a to b
 
-I(a,b) = sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100)) *
-         (b - a) / 100
+I(a,b) = 1/100 (b - a) sum(k,1,100,
+         eval(f,theta,a + (k - 0.5) (b - a) / 100))
 
--- C is normalization constant
-
-a = arccos(x[1])
-b = arccos(x[N + 1])
-C = I(a,b)
-
-yhat = zero(N)
+P = zero(N)
 
 for(k,1,N,
   theta1 = arccos(x[k]),
   theta2 = arccos(x[k + 1]),
-  P = 1/C I(theta1,theta2), -- P is probability
-  yhat[k] = P T
+  P[k] = I(theta1,theta2) -- probability per bin
 )
+
+P = P / sum(k,1,N,P[k]) -- normalize
 
 "Predicted counts"
 
+yhat = P T
 yhat
 
 "Coefficient of determination (R-squared)"
