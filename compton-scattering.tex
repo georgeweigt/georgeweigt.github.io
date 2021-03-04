@@ -434,19 +434,24 @@ d\sigma
 
 \bigskip
 \noindent
-Let $I(\xi)$ be the following definite integral.
+Let $I(\theta)$ be the following integral.
 \begin{align*}
-I(\xi)&=\int_0^{2\pi}\int_0^\xi d\sigma\,\sin\theta\,d\theta\,d\phi
+I(\theta)
+&=\left(\frac{2m^2c^4}{\alpha^2\hbar^2}\right)2\pi\int_0^{2\pi}\int d\sigma
 \\
-&=2\pi\int_0^\xi d\sigma\,\sin\theta\,d\theta
+&=\int
+\left(\frac{\omega'}{\omega}\right)^2
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
+\sin\theta\,d\theta,
+\quad0\le\theta\le\pi
 \end{align*}
 
 \noindent
-Let $C$ be the normalization constant $C=I(\pi)$.
+Let $C$ be the normalization constant $C=I(\pi)-I(0)$.
 Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-F(\theta)=C^{-1}I(\theta),
-\qquad0\le\theta\le\pi
+F(\theta)=\frac{I(\theta)-I(0)}{C},
+\quad0\le\theta\le\pi
 \end{equation*}
 
 \noindent
@@ -459,9 +464,11 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \noindent
 The probability density $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{2\pi}{C}\left(\frac{d\sigma}{d\Omega}\right)\sin\theta,
-\qquad0\le\theta\le\pi
+f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
+=C^{-1}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
+\sin\theta
 \end{equation*}
 
 \noindent
@@ -470,7 +477,6 @@ Run ``compton-scattering-4.txt'' to plot $f(\theta)$.
 
 \begin{center}
 \includegraphics[scale=0.5]{compton-scattering.png}
-%Plot of $f(\theta)$ for $\omega=m$.
 \end{center}
 
 \noindent
