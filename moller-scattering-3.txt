@@ -12,7 +12,9 @@ C = I(pi - a) - I(a) -- normalization constant
 
 "Probability density"
 
-f = 1/C (3 + cos(theta)^2)^2 / sin(theta)^3
+-- f is the probability density function for Moller scattering
+
+f = 1/C (cos(theta)^2 + 3)^2 / sin(theta)^3
 f
 
 xrange = (a,pi - a)
@@ -36,6 +38,6 @@ P
 
 F = -expcos(theta) - 8 expcos(theta) / expsin(theta)^2
 
-f = (3 + expcos(theta)^2)^2 / expsin(theta)^3
+f = (expcos(theta)^2 + 3)^2 / expsin(theta)^3
 
 d(F,theta) == f
