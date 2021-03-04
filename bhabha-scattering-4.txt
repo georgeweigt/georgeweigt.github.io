@@ -39,7 +39,7 @@ y = (
 
 y
 
--- f is the unnormalized probability density function for Bhabha scattering
+-- f is the probability density function for Bhabha scattering (unnormalized)
 
 f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
