@@ -22,13 +22,13 @@ omegap = m omega / (m + omega (1 - cos(theta)))
 
 M = omega/omegap + omegap/omega + cos(theta)^2 - 1
 
--- f is the unnormalized probability density function
+-- f is the unnormalized probability density function for Compton scattering
 
 f = 2 pi (omegap/omega)^2 M sin(theta)
 
 -- I integrates f numerically from a to b
 
-I(a,b) = (b - a)/100 sum(k,0,99,eval(f,theta,a + k (b - a)/100))
+I(a,b) = 1/100 (b - a) sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100))
 
 xrange = (0,pi)
 yrange = (0,1)
@@ -57,16 +57,14 @@ omega = m
 
 N = 4  -- number of bins
 P = zero(N)
-C = I(0,pi)
-
-F(theta) = 1/C I(0,theta)
 
 for(k,1,N,
   theta2 = k pi/N,
   theta1 = theta2 - pi/N,
-  P[k] = F(theta2) - F(theta1)
+  P[k] = I(theta1,theta2) -- probability per bin
 )
 
+P = P / sum(k,1,N,P[k]) -- normalize
 P
 </textarea>
 </td><td>
