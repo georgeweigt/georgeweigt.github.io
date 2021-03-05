@@ -16,7 +16,7 @@
 
 pi = float(pi) -- use numerical value of pi
 N = 6          -- number of bins
-a = pi / N     -- minimum support angle
+a = pi / N
 
 I(theta) = -cos(theta) - 8 cos(theta) / sin(theta)^2
 
@@ -38,8 +38,8 @@ draw(f,theta)
 P = zero(N)
 
 for(k,2,N - 1,
-  theta2 = k a,
-  theta1 = theta2 - a,
+  theta2 = k pi/N,
+  theta1 = theta2 - pi/N,
   P[k] = I(theta2) - I(theta1)
 )
 
