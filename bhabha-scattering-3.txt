@@ -18,9 +18,12 @@ C = I(a,pi) -- normalization constant
 
 "Probability density"
 
+f = f / C
+f
+
 xrange = (a,pi)
 yrange = (0,4)
-draw(f/C,theta)
+draw(f,theta)
 
 "Probability distribution"
 
@@ -32,5 +35,4 @@ for(k,2,N,
   P[k] = I(theta1,theta2)
 )
 
-P = P / sum(k,1,N,P[k]) -- normalize
 P
