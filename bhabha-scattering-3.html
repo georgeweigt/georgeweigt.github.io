@@ -19,7 +19,7 @@
 f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
 pi = float(pi) -- use numerical value of pi
-N = 4  -- number of bins
+N = 4          -- number of bins
 a = pi / N
 
 -- I integrates f numerically from a to b
@@ -39,8 +39,8 @@ draw(f/C,theta)
 P = zero(N)
 
 for(k,2,N,
-  theta2 = k a,
-  theta1 = theta2 - a,
+  theta2 = k pi/N,
+  theta1 = theta2 - pi/N,
   P[k] = I(theta1,theta2)
 )
 
