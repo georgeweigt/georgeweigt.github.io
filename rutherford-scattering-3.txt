@@ -16,7 +16,7 @@ f = 1/C d(I,theta)
 f
 
 xrange = (a,pi)
-yrange = (0,4)
+yrange = (0,3)
 draw(f,theta)
 
 "Probability distribution"
