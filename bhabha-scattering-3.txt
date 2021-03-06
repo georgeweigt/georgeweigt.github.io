@@ -39,9 +39,12 @@ P
 
 "Verify closed form of integral (1=ok)"
 
-f = (expcos(x)^2 + 3)^2 expsin(x) / expsin(x/2)^4
+f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
 
-F = -1/3 expcos(3 x) - 2 expcos(2 x) - 111/3 expcos(x) -
-     32/expsin(x/2)^2 - 128 log(expsin(x/2))
+F = -1/3 cos(3 theta) - 2 cos(2 theta) - 111/3 cos(theta) -
+     32/sin(theta/2)^2 - 128 log(sin(theta/2))
 
-d(F) == f
+f = circexp(f)
+F = circexp(F)
+
+d(F,theta) == f
