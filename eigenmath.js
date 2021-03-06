@@ -5971,7 +5971,6 @@ eval_simplify(p1)
 	push(cadr(p1));
 	evalf();
 	simplify();
-	simplify_trig();
 }
 function
 eval_sin(p1)
@@ -12634,7 +12633,7 @@ sgn()
 function
 simplify()
 {
-	var h, i, n, p1, NUM, DEN, R, T;
+	var h, i, n, p1;
 
 	p1 = pop();
 
@@ -12668,11 +12667,20 @@ simplify()
 	list(stack.length - h);
 	evalf();
 	p1 = pop();
+	push(p1);
 
-	if (!iscons(p1)) {
-		push(p1);
+	if (!iscons(p1))
 		return;
-	}
+
+	simplify_pass1();
+	simplify_pass2();
+}
+function
+simplify_pass1()
+{
+	var p1, NUM, DEN, R, T;
+
+	p1 = pop();
 
 	if (car(p1) == symbol(ADD)) {
 		push(p1);
@@ -12746,6 +12754,24 @@ simplify()
 
 	if (iszero(T))
 		p1 = R;
+
+	push(p1);
+}
+function
+simplify_pass2()
+{
+	var p1, p2;
+
+	p1 = pop();
+
+	push(p1);
+	circexp();
+	rationalize();
+	evalf(); // to normalize
+	p2 = pop();
+
+	if (complexity(p2) < complexity(p1))
+		p1 = p2;
 
 	push(p1);
 }
@@ -12841,36 +12867,6 @@ simplify_polar_term(p)
 	}
 
 	return 0;
-}
-function
-simplify_trig()
-{
-	var i, n, p1, p2;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			simplify_trig();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	push(p1);
-	circexp();
-	rationalize();
-	evalf(); // to normalize
-	p2 = pop();
-
-	if (complexity(p2) < complexity(p1))
-		p1 = p2;
-
-	push(p1);
 }
 function
 sin()
