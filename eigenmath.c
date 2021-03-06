@@ -1,4 +1,4 @@
-/* March 1, 2021
+/* March 6, 2021
 
 To build and run:
 
@@ -989,9 +989,8 @@ void sgn(void);
 void eval_simplify(void);
 void simplify(void);
 void simplify_nib(void);
-void simplify_expr(void);
-void simplify_expr_nib(void);
 void simplify_trig(void);
+void simplify_trig_nib(void);
 void eval_sin(void);
 void ssin(void);
 void ssin_nib(void);
@@ -7600,7 +7599,7 @@ eval(void)
 	level++;
 	if (level > max_level)
 		max_level = level;
-	if (level == 100)
+	if (level == 200)
 		kaput("circular definition?");
 	save();
 	eval_nib();
@@ -10200,6 +10199,14 @@ char *integral_tab_power[] = {
 	"arctan(sqrt(a) x / sqrt(b)) / sqrt(a) / sqrt(b)",
 	"1",
 // 17
+	"1 / sqrt(1 - x^2)",
+	"arcsin(x)",
+	"1",
+
+	"sqrt(1 + x^2 / (1 - x^2))",
+	"arcsin(x)",
+	"1",
+
 	"1 / sqrt(a x^2 + b)",
 	"log(sqrt(a) sqrt(a x^2 + b) + a x) / sqrt(a)",
 	"1",
@@ -18616,12 +18623,23 @@ sgn(void)
 	restore();
 }
 
+#undef NUM
+#undef DEN
+#undef R
+#undef T
+
+#define NUM p3
+#define DEN p4
+#define R p5
+#define T p6
+
 void
 eval_simplify(void)
 {
 	push(cadr(p1));
 	eval();
 	simplify();
+	simplify_trig();
 }
 
 void
@@ -18635,7 +18653,7 @@ simplify(void)
 void
 simplify_nib(void)
 {
-	int i, h, n;
+	int h, i, n;
 	p1 = pop();
 	if (istensor(p1)) {
 		push(p1);
@@ -18650,54 +18668,25 @@ simplify_nib(void)
 		push(p1);
 		return;
 	}
-	if (car(p1) == symbol(ADD)) {
-		// simplify each term
-		h = tos;
-		p1 = cdr(p1);
-		while (iscons(p1)) {
-			push(car(p1));
-			simplify_expr();
-			p1 = cdr(p1);
-		}
-		add_terms(tos - h);
-		p1 = pop();
-		if (car(p1) == symbol(ADD)) {
-			push(p1);
-			simplify_expr(); // try rationalizing
-			p1 = pop();
-		}
+	if (!iscons(p1)) {
 		push(p1);
-		simplify_trig();
 		return;
 	}
-	// p1 is a term (factor or product of factors)
-	push(p1);
-	simplify_expr();
-	simplify_trig();
-}
-
-void
-simplify_expr(void)
-{
-	save();
-	simplify_expr_nib();
-	restore();
-}
-
-#undef NUM
-#undef DEN
-#undef R
-#undef T
-
-#define NUM p2
-#define DEN p3
-#define R p4
-#define T p5
-
-void
-simplify_expr_nib(void)
-{
+	h = tos;
+	push(car(p1));
+	p1 = cdr(p1);
+	while (iscons(p1)) {
+		push(car(p1));
+		simplify();
+		p1 = cdr(p1);
+	}
+	list(tos - h);
+	eval();
 	p1 = pop();
+	if (!iscons(p1)) {
+		push(p1);
+		return;
+	}
 	if (car(p1) == symbol(ADD)) {
 		push(p1);
 		rationalize();
@@ -18764,7 +18753,29 @@ simplify_expr_nib(void)
 void
 simplify_trig(void)
 {
+	save();
+	simplify_trig_nib();
+	restore();
+}
+
+void
+simplify_trig_nib(void)
+{
+	int i, n;
 	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			simplify_trig();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 	push(p1);
 	circexp();
 	rationalize();
