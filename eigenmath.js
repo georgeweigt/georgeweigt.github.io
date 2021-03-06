@@ -5971,6 +5971,7 @@ eval_simplify(p1)
 	push(cadr(p1));
 	evalf();
 	simplify();
+	simplify_trig();
 }
 function
 eval_sin(p1)
@@ -12633,7 +12634,7 @@ sgn()
 function
 simplify()
 {
-	var h, i, n, p1;
+	var h, i, n, p1, NUM, DEN, R, T;
 
 	p1 = pop();
 
@@ -12649,39 +12650,29 @@ simplify()
 		return;
 	}
 
-	if (car(p1) == symbol(ADD)) {
-		// simplify each term
-		h = stack.length;
-		p1 = cdr(p1);
-		while (iscons(p1)) {
-			push(car(p1));
-			simplify_expr();
-			p1 = cdr(p1);
-		}
-		add_terms(stack.length - h);
-		p1 = pop();
-		if (car(p1) == symbol(ADD)) {
-			push(p1);
-			simplify_expr(); // try rationalizing
-			p1 = pop();
-		}
+	if (!iscons(p1)) {
 		push(p1);
-		simplify_trig();
 		return;
 	}
 
-	// p1 is a term (factor or product of factors)
+	h = stack.length;
+	push(car(p1));
+	p1 = cdr(p1);
 
-	push(p1);
-	simplify_expr();
-	simplify_trig();
-}
-function
-simplify_expr()
-{
-	var p1, NUM, DEN, R, T;
+	while (iscons(p1)) {
+		push(car(p1));
+		simplify();
+		p1 = cdr(p1);
+	}
 
+	list(stack.length - h);
+	evalf();
 	p1 = pop();
+
+	if (!iscons(p1)) {
+		push(p1);
+		return;
+	}
 
 	if (car(p1) == symbol(ADD)) {
 		push(p1);
@@ -12854,9 +12845,21 @@ simplify_polar_term(p)
 function
 simplify_trig()
 {
-	var p1, p2;
+	var i, n, p1, p2;
 
 	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			simplify_trig();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 
 	push(p1);
 	circexp();
