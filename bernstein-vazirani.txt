@@ -1,0 +1,15 @@
+-- Bernstein-Vazirani algorithm demo (4 qbits)
+
+run("Downloads/q4.txt") -- eigenmath.org/Downloads/q4.txt
+
+"s = 011"
+
+psi = dot(H2,H1,H0,C13,C03,Z3,H3,H2,H1,H0,ket0000)
+
+M(psi)
+
+"s = 111"
+
+psi = dot(H2,H1,H0,C23,C13,C03,Z3,H3,H2,H1,H0,ket0000)
+
+M(psi)

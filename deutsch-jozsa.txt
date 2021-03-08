@@ -2,12 +2,6 @@
 
 run("Downloads/q4.txt") -- eigenmath.org/Downloads/q4.txt
 
--- M is measurement function, plots probability of observing each of 16 states
-
--- Hn is Hadamard operator on qbit n
-
--- Cmn is CNOT operator, m is control qbit, n is target qbit
-
 "Constant oracle"
 
 psi = dot(H2,H1,H0,H3,X3,H2,H1,H0,ket0000)
