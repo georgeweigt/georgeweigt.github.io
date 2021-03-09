@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+The file ``q4.txt'' defines kets, operators, and a measurement function
+for simulating a four qbit quantum computer.
+
+\bigskip
+\noindent
+Each of the following operators defined in ``q4.txt'' is a $16\times16$ matrix.
+
+\bigskip
+\begin{tabular}{l l}
+$Cmn$ & Controlled not (CNOT) operator, $m$ is the control qbit, $n$ is the target qbit.
+\\
+\\
+$Hn$ & Hadamard operator on qbit $n$.
+\\
+\\
+$Xn$ & Pauli X (NOT) operator on qbit $n$.
+\\
+\\
+$Yn$ & Pauli Y operator on qbit $n$.
+\\
+\\
+$Zn$ & Pauli Z operator on qbit $n$.
+\end{tabular}
+
+\bigskip
+\noindent
+The initial state of the quantum computer is $|0000\rangle$,
+i.e., the state in which all qbits are zero.
+Ket vectors have 16 elements, one element for each of the 16 states represented by four qbits.
+\begin{align*}
+&|0000\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|1000\rangle=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|0100\rangle=(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|1100\rangle=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&\vdots
+\\
+&|1111\rangle=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+\end{align*}
+
+\bigskip
+\noindent
+Function $M$ measures the final state by drawing a graph of the probability
+for each of 16 states.
+\begin{equation*}
+M(\psi)
+\end{equation*}
+
+\noindent
+Quantum algorithms are expressed as sequences of operators applied
+to the initial state $|0000\rangle$.
+The operator sequence should be read backwards, from right to left,
+although the direction makes no difference mathematically.
+
+\subsection*{Deutsch-Jozsa algorithm}
+Let $f$ be the oracle function.
+Then the Deutsch-Jozsa algorithm is
+\begin{equation*}
+\psi = H_2 \; H_1 \; H_0 \; f \; H_3 \; X_3 \; H_2 \; H_1 \; H_0 \; |0000\rangle
+\end{equation*}
+
+\subsection*{Bernstein-Vazirani algorithm}
+Let $f$ be the oracle function.
+Then the Bernstein-Vazirani algorithm is
+\begin{equation*}
+\psi = H_2 \; H_1 \; H_0 \; f \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0000\rangle
+\end{equation*}
+
+\end{document}
