@@ -5,12 +5,30 @@
 \begin{document}
 
 \noindent
-The file ``q4.txt'' defines kets, operators, and a measurement function
+The file q4.txt defines kets, operators, and a measurement function
 for simulating a four qbit quantum computer.
 
 \bigskip
 \noindent
-Each of the following operators defined in ``q4.txt'' is a $16\times16$ matrix.
+Ket vectors have 16 elements, one element for each of the 16 states represented by four qbits.
+The following basis kets are defined in q4.txt.
+\begin{align*}
+&|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|1\rangle=|0001_2\rangle=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|2\rangle=|0010_2\rangle=(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&|3\rangle=|0011_2\rangle=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
+\\
+&\vdots
+\\
+&|15\rangle=|1111_2\rangle=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+\end{align*}
+
+\noindent
+Operators are $16\times16$ matrices that rotate kets.
+The following operators are defined in q4.txt.
 
 \bigskip
 \begin{tabular}{l l}
@@ -31,25 +49,6 @@ $Zn$ & Pauli Z operator on qbit $n$.
 
 \bigskip
 \noindent
-The initial state of the quantum computer is $|0000\rangle$,
-i.e., the state in which all qbits are zero.
-Ket vectors have 16 elements, one element for each of the 16 states represented by four qbits.
-\begin{align*}
-&|0000\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|1000\rangle=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|0100\rangle=(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|1100\rangle=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&\vdots
-\\
-&|1111\rangle=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
-\end{align*}
-
-\bigskip
-\noindent
 Function $M$ measures the final state by drawing a graph of the probability
 for each of 16 states.
 \begin{equation*}
@@ -58,7 +57,7 @@ M(\psi)
 
 \noindent
 Quantum algorithms are expressed as sequences of operators applied
-to the initial state $|0000\rangle$.
+to the initial state $|0\rangle$.
 The operator sequence should be read backwards, from right to left,
 although the direction makes no difference mathematically.
 
@@ -66,14 +65,14 @@ although the direction makes no difference mathematically.
 Let $f$ be the oracle function.
 Then the Deutsch-Jozsa algorithm is
 \begin{equation*}
-\psi = H_2 \; H_1 \; H_0 \; f \; H_3 \; X_3 \; H_2 \; H_1 \; H_0 \; |0000\rangle
+\psi = H_2 \; H_1 \; H_0 \; f \; H_3 \; X_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
 \end{equation*}
 
 \subsection*{Bernstein-Vazirani algorithm}
 Let $f$ be the oracle function.
 Then the Bernstein-Vazirani algorithm is
 \begin{equation*}
-\psi = H_2 \; H_1 \; H_0 \; f \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0000\rangle
+\psi = H_2 \; H_1 \; H_0 \; f \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
 \end{equation*}
 
 \end{document}
