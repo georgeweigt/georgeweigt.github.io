@@ -14,16 +14,16 @@
 
 run("Downloads/q4.txt") -- eigenmath.org/Downloads/q4.txt
 
+-- f is the oracle function
+
+psi = quote(dot(H2,H1,H0,f,H3,X3,H2,H1,H0,ket0000))
+
 "Constant oracle"
-
-psi = dot(H2,H1,H0,H3,X3,H2,H1,H0,ket0000)
-
+f = 1
 M(psi)
 
 "Balanced oracle"
-
-psi = dot(H2,H1,H0,C23,C13,C03,H3,X3,H2,H1,H0,ket0000)
-
+f = dot(C23,C13,C03)
 M(psi)
 </textarea>
 </td><td>
