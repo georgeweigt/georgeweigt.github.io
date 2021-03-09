@@ -11,7 +11,7 @@ f = 1
 M(psi)
 
 "s = 100"
-f = C23
+f = C03
 M(psi)
 
 "s = 010"
@@ -19,11 +19,11 @@ f = C13
 M(psi)
 
 "s = 110"
-f = dot(C23,C13)
+f = dot(C13,C03)
 M(psi)
 
 "s = 001"
-f = C03
+f = C23
 M(psi)
 
 "s = 101"
@@ -31,7 +31,7 @@ f = dot(C23,C03)
 M(psi)
 
 "s = 011"
-f = dot(C13,C03)
+f = dot(C23,C13)
 M(psi)
 
 "s = 111"
