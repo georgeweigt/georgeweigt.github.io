@@ -2,34 +2,38 @@
 
 run("Downloads/q4.txt") -- eigenmath.org/Downloads/q4.txt
 
+-- O is the oracle
+
+psi = quote(dot(H2,H1,H0,O,Z3,H3,H2,H1,H0,ket0000))
+
 "s = 000"
-psi = dot(H2,H1,H0,Z3,H3,H2,H1,H0,ket0000)
+O = 1
 M(psi)
 
 "s = 100"
-psi = dot(H2,H1,H0,C23,Z3,H3,H2,H1,H0,ket0000)
+O = C23
 M(psi)
 
 "s = 010"
-psi = dot(H2,H1,H0,C13,Z3,H3,H2,H1,H0,ket0000)
+O = C13
 M(psi)
 
 "s = 110"
-psi = dot(H2,H1,H0,C23,C13,Z3,H3,H2,H1,H0,ket0000)
+O = dot(C23,C13)
 M(psi)
 
 "s = 001"
-psi = dot(H2,H1,H0,C03,Z3,H3,H2,H1,H0,ket0000)
+O = C03
 M(psi)
 
 "s = 101"
-psi = dot(H2,H1,H0,C23,C03,Z3,H3,H2,H1,H0,ket0000)
+O = dot(C23,C03)
 M(psi)
 
 "s = 011"
-psi = dot(H2,H1,H0,C13,C03,Z3,H3,H2,H1,H0,ket0000)
+O = dot(C13,C03)
 M(psi)
 
 "s = 111"
-psi = dot(H2,H1,H0,C23,C13,C03,Z3,H3,H2,H1,H0,ket0000)
+O = dot(C23,C13,C03)
 M(psi)
