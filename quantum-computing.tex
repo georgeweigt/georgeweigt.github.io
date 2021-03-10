@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
+\usepackage{amssymb} % for \mathbb
 
 \begin{document}
 
@@ -11,8 +12,9 @@ See eigenmath.org/q.c for the program that generates q4.txt.
 
 \bigskip
 \noindent
-Ket vectors have 16 elements, one element for each of the 16 states represented by four qbits.
-Qbit order is $|q_3 q_2 q_1 q_0\rangle$.
+Kets are unit vectors in $\mathbb{C}^{16}$.
+The dimension is 16 because four qbits corresponds to $2^4$ basis states.
+Qbit numbering is $|q_3 q_2 q_1 q_0\rangle$.
 The following basis kets are defined in q4.txt.
 \begin{align*}
 &|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
@@ -65,15 +67,15 @@ The operator sequence should be read backwards, from right to left,
 although the direction makes no difference mathematically.
 
 \subsection*{Deutsch-Jozsa algorithm}
-Let $f$ be a constant or balanced oracle such that $q_3=f(q_0,q_1,q_2)$.
+Let $f$ be an operator ($16\times16$ matrix) that operates on $q_3$
+in a manner consistent with a constant or balanced oracle.
 Then the Deutsch-Jozsa algorithm is
 \begin{equation*}
 \psi = H_2 \; H_1 \; H_0 \; f \; H_3 \; X_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
 \end{equation*}
-where $f$ is a $16\times16$ matrix.
 
 \subsection*{Bernstein-Vazirani algorithm}
-Let $f$ be an oracle ($16\times16$ matrix) such that $q_3=f(q_0,q_1,q_2)$.
+Let $f$ be an operator ($16\times16$ matrix) that operates on $q_3$.
 Then the Bernstein-Vazirani algorithm is
 \begin{equation*}
 \psi = H_2 \; H_1 \; H_0 \; f \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
