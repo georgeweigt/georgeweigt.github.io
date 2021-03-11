@@ -1,6 +1,7 @@
 // generate kets, operators, and a measurement function
 
 #include <stdio.h>
+#include <stdlib.h>
 
 // N is number of qbits
 
@@ -16,6 +17,8 @@ void Y(int n);
 void Z(int n);
 void H(int n);
 void C(int m, int n);
+void P(int m, int n);
+void S(int m, int n);
 
 int
 main()
@@ -25,16 +28,23 @@ main()
 	kets();
 
 	for (i = 0; i < N; i++) {
-		X(i);
-		Y(i);
-		Z(i);
-		H(i);
+
+		X(i); // pauli x
+		Y(i); // pauli y
+		Z(i); // pauli z
+		H(i); // hadamard
+
 		for (j = 0; j < N; j++)
-			if (i != j)
-				C(j, i);
+			if (i != j) {
+				C(j, i); // controlled not
+				P(j, i); // controlled phase
+				S(j, i); // swap
+			}
 	}
 
-	printf("M(psi) = do(xrange = (0,%d), yrange = (0,1), draw(psi[ceiling(x)] conj(psi[ceiling(x)]),x))\n", M);
+	fflush(stdout);
+
+	system("cat epilog");
 }
 
 void
@@ -188,6 +198,63 @@ C(int m, int n)
 			j ^= n; // flip bit n
 
 		printf("outer(ket%d,ket%d)", i, j);
+
+		if (i < M - 1)
+			printf(" +");
+
+		printf("\n");
+	}
+
+	printf("\n");
+}
+
+// controlled phase
+
+void
+P(int m, int n)
+{
+	int i;
+
+	printf("P%d%d(phi) = I - P%d%dM + exp(i phi) P%d%dM\n\n", m, n, m, n, m, n);
+
+	printf("P%d%dM =\n", m, n);
+
+	m = 1 << m;
+	n = 1 << n;
+
+	for (i = 0; i < M; i++) {
+		if ((i & m) && (i & n)) {
+			printf("outer(ket%d,ket%d)", i, i);
+			if (i < M - 1)
+				printf(" +");
+			printf("\n");
+		}
+	}
+
+	printf("\n");
+
+}
+
+// swap
+
+void
+S(int m, int n)
+{
+	int i, t;
+
+	printf("S%d%d =\n", m, n);
+
+	m = 1 << m;
+	n = 1 << n;
+
+	for (i = 0; i < M; i++) {
+
+		t = i & (m | n);
+
+		if (t == m || t == n)
+			printf("outer(ket%d,ket%d)", i, i ^ m ^ n);
+		else
+			printf("outer(ket%d,ket%d)", i, i);
 
 		if (i < M - 1)
 			printf(" +");
