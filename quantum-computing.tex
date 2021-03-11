@@ -2,6 +2,8 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb} % mathbb
+\usepackage{graphicx}
+\usepackage{fancyvrb}
 
 \begin{document}
 
@@ -95,5 +97,36 @@ Then the Bernstein-Vazirani algorithm for identifying $f$ is
 \begin{equation*}
 \psi = H_2 \; H_1 \; H_0 \; f(q_0,q_1,q_2) \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
 \end{equation*}
+
+\subsection*{Quantum Fourier transform}
+The following circuit diagram\footnote{\tt qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html}
+shows how to implement the QFT.
+
+\begin{center}
+\includegraphics[scale=0.5]{qft.png}
+\end{center}
+
+\noindent
+This is how the QFT operator $Q$ is defined in q4.txt.
+
+\begin{Verbatim}
+Q = dot(
+S03,
+S12,
+H0,
+P01(pi/2),
+H1,
+P12(pi/2),
+P02(pi/4),
+H2,
+P23(pi/2),
+P13(pi/4),
+P03(pi/8),
+H3)
+\end{Verbatim}
+
+\noindent
+The inverse QFT operator $R$ is defined similarly except the operators appear in reverse order
+and the phase shifts are negated.
 
 \end{document}
