@@ -1,4 +1,4 @@
-/* March 6, 2021
+/* March 11, 2021
 
 To build and run:
 
@@ -13196,6 +13196,9 @@ multiply_scalar_factors(int h)
 		push(COEF);
 		return;
 	}
+	combine_factors(h);
+	normalize_power_factors(h);
+	// do again in case exp(1/2 i pi) changed to i
 	combine_factors(h);
 	normalize_power_factors(h);
 	combine_numerical_factors(h);
