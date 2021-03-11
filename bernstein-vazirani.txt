@@ -9,29 +9,29 @@ f = 1
 M(psi)
 
 "s = 001"
-f = C03
+f = X03
 M(psi)
 
 "s = 010"
-f = C13
+f = X13
 M(psi)
 
 "s = 011"
-f = dot(C13,C03)
+f = dot(X13,X03)
 M(psi)
 
 "s = 100"
-f = C23
+f = X23
 M(psi)
 
 "s = 101"
-f = dot(C23,C03)
+f = dot(X23,X03)
 M(psi)
 
 "s = 110"
-f = dot(C23,C13)
+f = dot(X23,X13)
 M(psi)
 
 "s = 111"
-f = dot(C23,C13,C03)
+f = dot(X23,X13,X03)
 M(psi)
