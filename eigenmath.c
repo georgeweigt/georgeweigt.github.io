@@ -1,4 +1,4 @@
-/* March 11, 2021
+/* March 12, 2021
 
 To build and run:
 
@@ -402,6 +402,8 @@ void arctanh_nib(void);
 void eval_arg(void);
 void arg(void);
 void arg_nib(void);
+void arg1(void);
+void arg1_nib(void);
 void eval_atomize(void);
 void atomize(void);
 void eval_besselj(void);
@@ -468,7 +470,8 @@ void expsinh(void);
 void eval_exptanh(void);
 void exptanh(void);
 void eval_clock(void);
-void clockform(void);
+void clockf(void);
+void clockf_nib(void);
 void eval_coeff(void);
 int coeff(void);
 void eval_cofactor(void);
@@ -705,6 +708,7 @@ void gcd_factor_term(void);
 void gcd_numbers(void);
 void eval_imag(void);
 void imag(void);
+void imag_nib(void);
 void eval_index(void);
 void indexf(int k);
 void indexf_nib(int k);
@@ -770,6 +774,8 @@ void log_nib(void);
 void eval_mag(void);
 void mag(void);
 void mag_nib(void);
+void mag1(void);
+void mag1_nib(void);
 int main(int argc, char *argv[]);
 void run_stdin(void);
 void prompt(void);
@@ -870,6 +876,7 @@ void outer(void);
 void outer_nib(void);
 void eval_polar(void);
 void polar(void);
+void polar_nib(void);
 void factor_number(void);
 void factor_a(void);
 void try_kth_prime(int k);
@@ -931,6 +938,7 @@ void rationalize(void);
 void rationalize_nib(void);
 void eval_real(void);
 void real(void);
+void real_nib(void);
 void eval_rect(void);
 void rect(void);
 void rect_nib(void);
@@ -2187,6 +2195,12 @@ arctanh_nib(void)
 	list(2);
 }
 
+#undef RE
+#undef IM
+
+#define RE p3
+#define IM p4
+
 void
 eval_arg(void)
 {
@@ -2201,29 +2215,47 @@ void
 arg(void)
 {
 	save();
-	p1 = pop();
-	push(p1);
-	numerator();
-	save();
 	arg_nib();
-	restore();
-	push(p1);
-	denominator();
-	save();
-	arg_nib();
-	restore();
-	subtract();
 	restore();
 }
 
-#undef RE
-#undef IM
-
-#define RE p2
-#define IM p3
-
 void
 arg_nib(void)
+{
+	int i, n;
+	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			arg();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+	push(p1);
+	numerator();
+	arg1();
+	push(p1);
+	denominator();
+	arg1();
+	subtract();
+}
+
+void
+arg1(void)
+{
+	save();
+	arg1_nib();
+	restore();
+}
+
+void
+arg1_nib(void)
 {
 	int h;
 	p1 = pop();
@@ -3796,14 +3828,35 @@ eval_clock(void)
 {
 	push(cadr(p1));
 	eval();
-	clockform();
+	clockf();
 }
 
 void
-clockform(void)
+clockf(void)
 {
 	save();
+	clockf_nib();
+	restore();
+}
+
+void
+clockf_nib(void)
+{
+	int i, n;
 	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			clockf();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 	push(p1);
 	mag();
 	push_integer(-1);
@@ -3813,7 +3866,6 @@ clockform(void)
 	divide();
 	power();
 	multiply();
-	restore();
 }
 
 // get the coefficient of x^n in polynomial p(x)
@@ -9671,6 +9723,29 @@ void
 imag(void)
 {
 	save();
+	imag_nib();
+	restore();
+}
+
+void
+imag_nib(void)
+{
+	int i, n;
+	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			imag();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+	push(p1);
 	rect();
 	p1 = pop();
 	push_rational(-1, 2);
@@ -9680,7 +9755,6 @@ imag(void)
 	conjugate();
 	subtract();
 	multiply_factors(3);
-	restore();
 }
 
 void
@@ -11854,6 +11928,12 @@ log_nib(void)
 	list(2);
 }
 
+#undef RE
+#undef IM
+
+#define RE p3
+#define IM p4
+
 void
 eval_mag(void)
 {
@@ -11868,29 +11948,47 @@ void
 mag(void)
 {
 	save();
-	p1 = pop();
-	push(p1);
-	numerator();
-	save();
 	mag_nib();
-	restore();
-	push(p1);
-	denominator();
-	save();
-	mag_nib();
-	restore();
-	divide();
 	restore();
 }
 
-#undef RE
-#undef IM
-
-#define RE p3
-#define IM p4
-
 void
 mag_nib(void)
+{
+	int i, n;
+	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			mag();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+	push(p1);
+	numerator();
+	mag1();
+	push(p1);
+	denominator();
+	mag1();
+	divide();
+}
+
+void
+mag1(void)
+{
+	save();
+	mag1_nib();
+	restore();
+}
+
+void
+mag1_nib(void)
 {
 	int h;
 	p1 = pop();
@@ -14060,7 +14158,28 @@ void
 polar(void)
 {
 	save();
+	polar_nib();
+	restore();
+}
+
+void
+polar_nib(void)
+{
+	int i, n;
 	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			polar();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 	push(p1);
 	mag();
 	push(imaginaryunit);
@@ -14069,7 +14188,6 @@ polar(void)
 	multiply();
 	exponential();
 	multiply();
-	restore();
 }
 
 // Factor using the Pollard rho method
@@ -17266,6 +17384,29 @@ void
 real(void)
 {
 	save();
+	real_nib();
+	restore();
+}
+
+void
+real_nib(void)
+{
+	int i, n;
+	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			real();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+	push(p1);
 	rect();
 	p1 = pop();
 	push(p1);
@@ -17274,8 +17415,13 @@ real(void)
 	add();
 	push_rational(1, 2);
 	multiply();
-	restore();
 }
+
+#undef BASE
+#undef EXPO
+
+#define BASE p3
+#define EXPO p4
 
 void
 eval_rect(void)
@@ -17293,17 +17439,24 @@ rect(void)
 	restore();
 }
 
-#undef BASE
-#undef EXPO
-
-#define BASE p3
-#define EXPO p4
-
 void
 rect_nib(void)
 {
-	int h;
+	int h, i, n;
 	p1 = pop();
+	if (istensor(p1)) {
+		push(p1);
+		copy_tensor();
+		p1 = pop();
+		n = p1->u.tensor->nelem;
+		for (i = 0; i < n; i++) {
+			push(p1->u.tensor->elem[i]);
+			rect();
+			p1->u.tensor->elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 	if (car(p1) == symbol(ADD)) {
 		p1 = cdr(p1);
 		h = tos;

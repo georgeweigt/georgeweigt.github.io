@@ -758,7 +758,21 @@ arctanh()
 function
 arg()
 {
-	var p1 = pop();
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			arg();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 
 	push(p1);
 	numerator();
@@ -1031,7 +1045,21 @@ circexp_subst()
 function
 clock()
 {
-	var p1 = pop();
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			clock();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 
 	push(p1);
 	mag();
@@ -7179,7 +7207,23 @@ get_usrfunc(p)
 function
 imag()
 {
-	var p1;
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			imag();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	push(p1);
 	rect();
 	p1 = pop();
 	push_rational(-1, 2);
@@ -8662,9 +8706,21 @@ lookup(s)
 function
 mag()
 {
-	var h, p1, RE, IM;
+	var h, i, n, p1, RE, IM;
 
 	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			mag();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 
 	if (isnum(p1)) {
 		push(p1);
@@ -9119,7 +9175,22 @@ partition_integrand(F, X)
 function
 polar()
 {
-	var p1 = pop();
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			polar();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
 	push(p1);
 	mag();
 	push(imaginaryunit);
@@ -11550,7 +11621,23 @@ rationalize()
 function
 real()
 {
-	var p1;
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			real();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	push(p1);
 	rect();
 	p1 = pop();
 	push(p1);
@@ -11569,9 +11656,21 @@ reciprocate()
 function
 rect()
 {
-	var h, p1, p2, BASE, EXPO;
+	var h, i, n, p1, p2, BASE, EXPO;
 
 	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			rect();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
 
 	if (car(p1) == symbol(ADD)) {
 		p1 = cdr(p1);
