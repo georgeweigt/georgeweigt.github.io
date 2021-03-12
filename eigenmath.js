@@ -1690,11 +1690,12 @@ const FACTORIAL = "factorial";
 const FLOAT = "float";
 const FLOOR = "floor";
 const FOR = "for";
+const HADAMARD = "hadamard";
 const IMAG = "imag";
 const INNER = "inner";
 const INTEGRAL = "integral";
 const INV = "inv";
-const KRON = "kron";
+const KRONECKER = "kronecker";
 const LOG = "log";
 const MAG = "mag";
 const MINOR = "minor";
@@ -5438,6 +5439,19 @@ eval_for(p1)
 	push_symbol(NIL); // return value
 }
 function
+eval_hadamard(p1)
+{
+	push(cadr(p1));
+	evalf();
+	p1 = cddr(p1);
+	while (iscons(p1)) {
+		push(car(p1));
+		evalf();
+		hadamard();
+		p1 = cdr(p1);
+	}
+}
+function
 eval_imag(p1)
 {
 	push(cadr(p1));
@@ -5561,7 +5575,7 @@ eval_inv(p1)
 	inv();
 }
 function
-eval_kron(p1)
+eval_kronecker(p1)
 {
 	push(cadr(p1));
 	evalf();
@@ -5569,7 +5583,7 @@ eval_kron(p1)
 	while (iscons(p1)) {
 		push(car(p1));
 		evalf();
-		kron();
+		kronecker();
 		p1 = cdr(p1);
 	}
 }
@@ -7205,6 +7219,43 @@ get_usrfunc(p)
 	return p;
 }
 function
+hadamard()
+{
+	var i, n, p1, p2;
+
+	p2 = pop();
+	p1 = pop();
+
+	if (!istensor(p1) || !istensor(p2)) {
+		push(p1);
+		push(p2);
+		multiply();
+		return;
+	}
+
+	if (p1.dim.length != p2.dim.length)
+		stopf("hadamard");
+
+	n = p1.dim.length;
+
+	for (i = 0; i < n; i++)
+		if (p1.dim[i] != p2.dim[i])
+			stopf("hadamard");
+
+	p1 = copy_tensor(p1);
+
+	n = p1.elem.length;
+
+	for (i = 0; i < n; i++) {
+		push(p1.elem[i]);
+		push(p2.elem[i]);
+		multiply();
+		p1.elem[i] = pop();
+	}
+
+	push(p1);
+}
+function
 imag()
 {
 	var i, n, p1;
@@ -8503,7 +8554,7 @@ iszero(p)
 	return 0;
 }
 function
-kron()
+kronecker()
 {
 	var i, j, k, l, m, n, p, q, p1, p2, p3, p4;
 
@@ -8518,7 +8569,7 @@ kron()
 	}
 
 	if (p1.dim.length > 2 || p2.dim.length > 2)
-		stopf("kron");
+		stopf("kronecker");
 
 	m = p1.dim[0];
 	n = p1.dim.length == 1 ? 1 : p1.dim[1];
@@ -13686,11 +13737,12 @@ var symtab = {
 "float":	{printname:FLOAT,	func:eval_float},
 "floor":	{printname:FLOOR,	func:eval_floor},
 "for":		{printname:FOR,		func:eval_for},
+"hadamard":	{printname:HADAMARD,	func:eval_hadamard},
 "imag":		{printname:IMAG,	func:eval_imag},
 "inner":	{printname:INNER,	func:eval_inner},
 "integral":	{printname:INTEGRAL,	func:eval_integral},
 "inv":		{printname:INV,		func:eval_inv},
-"kron":		{printname:KRON,	func:eval_kron},
+"kronecker":	{printname:KRONECKER,	func:eval_kronecker},
 "log":		{printname:LOG,		func:eval_log},
 "mag":		{printname:MAG,		func:eval_mag},
 "minor":	{printname:MINOR,	func:eval_minor},
