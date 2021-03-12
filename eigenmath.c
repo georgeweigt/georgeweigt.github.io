@@ -189,6 +189,8 @@ struct atom {
 
 #define GCD		(6 * NSYM + 0)
 
+#define HADAMARD	(7 * NSYM + 0)
+
 #define SYMBOL_I	(8 * NSYM + 0)
 #define IMAG		(8 * NSYM + 1)
 #define INNER		(8 * NSYM + 2)
@@ -198,7 +200,7 @@ struct atom {
 
 #define SYMBOL_J	(9 * NSYM + 0)
 
-#define KRON		(10 * NSYM + 0)
+#define KRONECKER	(10 * NSYM + 0)
 
 #define LAST		(11 * NSYM + 0)
 #define LATEX		(11 * NSYM + 1)
@@ -706,6 +708,9 @@ void gcd_term_term(void);
 void gcd_term_factor(void);
 void gcd_factor_term(void);
 void gcd_numbers(void);
+void eval_hadamard(void);
+void hadamard(void);
+void hadamard_nib(void);
 void eval_imag(void);
 void imag(void);
 void imag_nib(void);
@@ -736,9 +741,9 @@ void eval_inv(void);
 void inv(void);
 void inv_nib(void);
 void eval_isprime(void);
-void eval_kron(void);
-void kron(void);
-void kron_nib(void);
+void eval_kronecker(void);
+void kronecker(void);
+void kronecker_nib(void);
 void eval_latex(void);
 void latex(void);
 void latex_nib(void);
@@ -9712,6 +9717,59 @@ gcd_numbers(void)
 }
 
 void
+eval_hadamard(void)
+{
+	push(cadr(p1));
+	eval();
+	p1 = cddr(p1);
+	while (iscons(p1)) {
+		push(car(p1));
+		eval();
+		hadamard();
+		p1 = cdr(p1);
+	}
+}
+
+void
+hadamard(void)
+{
+	save();
+	hadamard_nib();
+	restore();
+}
+
+void
+hadamard_nib(void)
+{
+	int i, n;
+	p2 = pop();
+	p1 = pop();
+	if (!istensor(p1) || !istensor(p2)) {
+		push(p1);
+		push(p2);
+		multiply();
+		return;
+	}
+	if (p1->u.tensor->ndim != p2->u.tensor->ndim)
+		stop("hadamard");
+	n = p1->u.tensor->ndim;
+	for (i = 0; i < n; i++)
+		if (p1->u.tensor->dim[i] != p2->u.tensor->dim[i])
+			stop("hadamard");
+	push(p1);
+	copy_tensor();
+	p1 = pop();
+	n = p1->u.tensor->nelem;
+	for (i = 0; i < n; i++) {
+		push(p1->u.tensor->elem[i]);
+		push(p2->u.tensor->elem[i]);
+		multiply();
+		p1->u.tensor->elem[i] = pop();
+	}
+	push(p1);
+}
+
+void
 eval_imag(void)
 {
 	push(cadr(p1));
@@ -11080,10 +11138,8 @@ eval_isprime(void)
 		push_integer(0);
 }
 
-// kronecker product
-
 void
-eval_kron(void)
+eval_kronecker(void)
 {
 	push(cadr(p1));
 	eval();
@@ -11091,21 +11147,21 @@ eval_kron(void)
 	while (iscons(p1)) {
 		push(car(p1));
 		eval();
-		kron();
+		kronecker();
 		p1 = cdr(p1);
 	}
 }
 
 void
-kron(void)
+kronecker(void)
 {
 	save();
-	kron_nib();
+	kronecker_nib();
 	restore();
 }
 
 void
-kron_nib(void)
+kronecker_nib(void)
 {
 	int h, i, j, k, l, m, n, p, q;
 	p2 = pop();
@@ -11117,7 +11173,7 @@ kron_nib(void)
 		return;
 	}
 	if (p1->u.tensor->ndim > 2 || p2->u.tensor->ndim > 2)
-		stop("kron");
+		stop("kronecker");
 	m = p1->u.tensor->dim[0];
 	n = p1->u.tensor->ndim == 1 ? 1 : p1->u.tensor->dim[1];
 	p = p2->u.tensor->dim[0];
@@ -19496,6 +19552,8 @@ struct se stab[] = {
 
 	{ "gcd",		GCD,		eval_gcd		},
 
+	{ "hadamard",		HADAMARD,	eval_hadamard		},
+
 	{ "i",			SYMBOL_I,	NULL			},
 	{ "imag",		IMAG,		eval_imag		},
 	{ "inner",		INNER,		eval_inner		},
@@ -19505,7 +19563,7 @@ struct se stab[] = {
 
 	{ "j",			SYMBOL_J,	NULL			},
 
-	{ "kron",		KRON,		eval_kron		},
+	{ "kronecker",		KRONECKER,	eval_kronecker		},
 
 	{ "last",		LAST,		NULL			},
 	{ "latex",		LATEX,		eval_latex		},
