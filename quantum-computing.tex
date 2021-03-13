@@ -15,8 +15,8 @@ See eigenmath.org/q.c for the program that generates q4.txt.
 \bigskip
 \noindent
 Kets are unit vectors in $\mathbb{C}^{16}$.
-The dimension is 16 because four quantum bits have $2^4=16$ eigenstates.
-The following eigenstates are defined in q4.txt.
+The dimension is 16 because a four bit quantum computer has $2^4=16$ eigenstates.
+The following basis kets are defined in q4.txt.
 \begin{align*}
 &|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 \\
@@ -33,7 +33,7 @@ The following eigenstates are defined in q4.txt.
 
 \noindent
 Operators are $16\times16$ matrices that rotate ket vectors.
-The following operators are defined in q4.txt.
+The following operators and the measurement function $M(\psi)$ are defined in q4.txt.
 
 \bigskip
 \begin{tabular}{l l}
@@ -41,6 +41,9 @@ $H_n$ & Hadamard operator on bit $n$.
 \\
 \\
 $I$ & Identity matrix.
+\\
+\\
+$M(\psi)$ & Measurement function (not an operator).
 \\
 \\
 $P_{mn}(\phi)$ & Controlled phase shift, $m$ is the control bit, $n$ is the target bit, $\phi$ is the phase.
@@ -69,10 +72,10 @@ $Z_n$ & Pauli Z operator on bit $n$.
 
 \bigskip
 \noindent
-Function $M$ (measurement function) shows the probability of observing
+Measurement function $M(\psi)$ shows the probability of observing
 each of the 16 eigenstates given that the system is in some state $\psi$.
 \begin{equation*}
-M(\psi)
+\psi=\sum_{k=0}^{15}c_n|n\rangle,\quad|\psi|^2=1,\quad P_n=c_nc_n^*
 \end{equation*}
 
 \noindent
