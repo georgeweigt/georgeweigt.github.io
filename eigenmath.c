@@ -1,4 +1,4 @@
-/* March 12, 2021
+/* March 13, 2021
 
 To build and run:
 
@@ -360,9 +360,8 @@ struct tensor {
 extern int primetab[MAXPRIMETAB];
 
 void eval_abs(void);
-void absval(void);
-void absval_nib(void);
-void absval_tensor(void);
+void absv(void);
+void absv_nib(void);
 void eval_add(void);
 void add(void);
 void add_terms(int n);
@@ -904,6 +903,7 @@ void power_complex_rational(void);
 void power_numbers(void);
 void power_rationals(void);
 void power_rationals_nib(void);
+void sqrtv(void);
 void eval_prime(void);
 void prime(void);
 void eval_print(void);
@@ -1135,82 +1135,36 @@ eval_abs(void)
 {
 	push(cadr(p1));
 	eval();
-	absval();
+	absv();
 }
 
 void
-absval(void)
+absv(void)
 {
 	save();
-	absval_nib();
+	absv_nib();
 	restore();
 }
 
 void
-absval_nib(void)
+absv_nib(void)
 {
-	int h;
 	p1 = pop();
 	if (istensor(p1)) {
-		absval_tensor();
-		return;
-	}
-	if (isnum(p1)) {
-		push(p1);
-		if (isnegativenumber(p1))
-			negate();
-		return;
-	}
-	if (iscomplexnumber(p1)) {
+		if (p1->u.tensor->ndim != 1)
+			stop("abs");
 		push(p1);
 		push(p1);
 		conjugate();
-		multiply();
-		push_rational(1, 2);
-		power();
+		inner();
+		sqrtv();
 		return;
 	}
-	// abs(1/a) evaluates to 1/abs(a)
-	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
-		push(p1);
-		reciprocate();
-		absval();
-		reciprocate();
-		return;
-	}
-	// abs(a*b) evaluates to abs(a)*abs(b)
-	if (car(p1) == symbol(MULTIPLY)) {
-		h = tos;
-		p1 = cdr(p1);
-		while (iscons(p1)) {
-			push(car(p1));
-			absval();
-			p1 = cdr(p1);
-		}
-		multiply_factors(tos - h);
-		return;
-	}
-	if (isnegativeterm(p1) || (car(p1) == symbol(ADD) && isnegativeterm(cadr(p1)))) {
-		push(p1);
-		negate();
-		p1 = pop();
-	}
-	push_symbol(ABS);
-	push(p1);
-	list(2);
-}
-
-void
-absval_tensor(void)
-{
-	if (p1->u.tensor->ndim != 1)
-		stop("abs: tensor rank > 1");
 	push(p1);
 	push(p1);
 	conjugate();
-	inner();
-	push_rational(1, 2);
-	power();
+	multiply();
+	sqrtv();
 }
 
 void
@@ -2098,7 +2052,7 @@ arctan_numerical_args(void)
 	push(Y);
 	push(X);
 	divide();
-	absval();
+	absv();
 	T = pop();
 	push(T);
 	numerator();
@@ -12050,7 +12004,7 @@ mag1_nib(void)
 	p1 = pop();
 	if (isnum(p1)) {
 		push(p1);
-		absval();
+		absv();
 		return;
 	}
 	if (car(p1) == symbol(POWER) && equaln(cadr(p1), -1)) {
@@ -13267,7 +13221,7 @@ smod_rationals(void)
 	push(p1);
 	push(p2);
 	divide();
-	absval();
+	absv();
 	sfloor();
 	push(p2);
 	multiply();
@@ -13760,7 +13714,7 @@ reduce_radical_factors(int h)
 	if (i == n)
 		return; // no radicals
 	push(COEF);
-	absval();
+	absv();
 	p1 = pop();
 	push(p1);
 	numerator();
@@ -14421,6 +14375,12 @@ push_factor(uint32_t *d, int count)
 	}
 }
 
+#undef BASE
+#undef EXPO
+
+#define BASE p1
+#define EXPO p2
+
 void
 eval_power(void)
 {
@@ -14444,12 +14404,6 @@ eval_power(void)
 		power();
 	}
 }
-
-#undef BASE
-#undef EXPO
-
-#define BASE p1
-#define EXPO p2
 
 void
 power(void)
@@ -15283,6 +15237,13 @@ power_rationals_nib(void)
 		push_rational_number(MPLUS, b, a); // reciprocate
 	else
 		push_rational_number(MPLUS, a, b);
+}
+
+void
+sqrtv(void)
+{
+	push_rational(1, 2);
+	power();
 }
 
 //	Look up the nth prime
@@ -16713,7 +16674,7 @@ print_a_over_b(struct atom *p)
 	if (isrational(p2)) {
 		push(p2);
 		numerator();
-		absval();
+		absv();
 		A = pop();
 		push(p2);
 		denominator();
