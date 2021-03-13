@@ -15,9 +15,8 @@ See eigenmath.org/q.c for the program that generates q4.txt.
 \bigskip
 \noindent
 Kets are unit vectors in $\mathbb{C}^{16}$.
-The dimension is 16 because four quantum bits have $2^4=16$ basis states.
-Quantum bit numbering is $|q_3 q_2 q_1 q_0\rangle$.
-The following basis kets are defined in q4.txt.
+The dimension is 16 because four quantum bits have $2^4=16$ eigenstates.
+The following eigenstates are defined in q4.txt.
 \begin{align*}
 &|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 \\
@@ -34,7 +33,6 @@ The following basis kets are defined in q4.txt.
 
 \noindent
 Operators are $16\times16$ matrices that rotate ket vectors.
-(A ket always has unit length.)
 The following operators are defined in q4.txt.
 
 \bigskip
@@ -72,7 +70,7 @@ $Z_n$ & Pauli Z operator on bit $n$.
 \bigskip
 \noindent
 Function $M$ (measurement function) shows the probability of observing
-each of the 16 basis states given that the system is in state $\psi$.
+each of the 16 eigenstates given that the system is in some state $\psi$.
 \begin{equation*}
 M(\psi)
 \end{equation*}
