@@ -16,7 +16,7 @@ See eigenmath.org/q.c for the program that generates q4.txt.
 \noindent
 Kets are unit vectors in $\mathbb{C}^{16}$.
 The dimension is 16 because a four bit quantum computer has $2^4=16$ eigenstates.
-The following basis kets are defined in q4.txt.
+The following basis kets that represent eigenstates are defined in q4.txt.
 \begin{align*}
 &|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 \\
@@ -75,7 +75,7 @@ $Z_n$ & Pauli Z operator on bit $n$.
 %Let $\psi$ be a state of the quantum computer.
 Measurement function $M(\psi)$ shows, for all $k=0\ldots15$, the probability $P_k$ of observing eigenstate $k$
 given that the quantum computer is in state $\psi$.
-%(Recall that the measurement process causes $\psi$ to change to the eigenstate that is observed.)
+%(Of course, the measurement process causes $\psi$ to change to the eigenstate that is actually observed.)
 \begin{equation*}
 \psi=\sum_{k=0}^{15}c_k|k\rangle,\quad|\psi|^2=1,\quad P_k=c_kc_k^*
 \end{equation*}
