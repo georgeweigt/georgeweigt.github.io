@@ -1,4 +1,4 @@
-/* March 14, 2021
+/* March 15, 2021
 
 To build and run:
 
@@ -183,7 +183,7 @@ struct atom {
 #define FACTOR		(5 * NSYM + 0)
 #define FACTORIAL	(5 * NSYM + 1)
 #define FILTER		(5 * NSYM + 2)
-#define FLOATF		(5 * NSYM + 3)
+#define FLOATV		(5 * NSYM + 3)
 #define FLOOR		(5 * NSYM + 4)
 #define FOR		(5 * NSYM + 5)
 
@@ -691,9 +691,9 @@ void filter_main(void);
 void filter_sum(void);
 void filter_tensor(void);
 void eval_float(void);
-void sfloat(void);
-void sfloat_subst(void);
-void sfloat_subst_nib(void);
+void floatv(void);
+void float_subst(void);
+void float_subst_nib(void);
 void eval_floor(void);
 void sfloor(void);
 void sfloor_nib(void);
@@ -1166,20 +1166,28 @@ absv_nib(void)
 		power();
 		return;
 	}
-	if (isnum(p1)) {
-		push(p1);
-		if (isnegativenumber(p1))
-			negate();
-		return;
-	}
-	if (iscomplexnumber(p1)) {
-		push(p1);
-		push(p1);
-		conjugate();
-		multiply();
-		push_rational(1, 2);
-		power();
-		return;
+	push(p1);
+	push(p1);
+	conjugate();
+	multiply();
+	p2 = pop();
+	if (car(p2) != symbol(ADD)) {
+		push(p2);
+		floatv();
+		p3 = pop();
+		if (isdouble(p3)) {
+			push(p2);
+			push_rational(1, 2);
+			power();
+			p2 = pop();
+			push(p2);
+			push(p2);
+			floatv();
+			p2 = pop();
+			if (isnegativenumber(p2))
+				negate();
+			return;
+		}
 	}
 	// abs(1/a) evaluates to 1/abs(a)
 	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
@@ -7240,7 +7248,7 @@ eigen_check_arg(void)
 	int i, j;
 	push(cadr(p1));
 	eval();
-	sfloat();
+	floatv();
 	p1 = pop();
 	if (!istensor(p1))
 		return 0;
@@ -9284,28 +9292,28 @@ eval_float(void)
 {
 	push(cadr(p1));
 	eval();
-	sfloat();
+	floatv();
 }
 
 void
-sfloat(void)
+floatv(void)
 {
-	sfloat_subst();
+	float_subst();
 	eval();
-	sfloat_subst(); // in case pi popped up
+	float_subst(); // in case pi popped up
 	eval();
 }
 
 void
-sfloat_subst(void)
+float_subst(void)
 {
 	save();
-	sfloat_subst_nib();
+	float_subst_nib();
 	restore();
 }
 
 void
-sfloat_subst_nib(void)
+float_subst_nib(void)
 {
 	int h, i, n;
 	p1 = pop();
@@ -9327,7 +9335,7 @@ sfloat_subst_nib(void)
 		push_symbol(POWER);
 		push_symbol(EXP1);
 		push(caddr(p1));
-		sfloat_subst();
+		float_subst();
 		list(3);
 		return;
 	}
@@ -9338,7 +9346,7 @@ sfloat_subst_nib(void)
 		push_symbol(POWER);
 		push(cadr(p1));
 		push(caddr(p1));
-		sfloat_subst();
+		float_subst();
 		list(3);
 		list(3);
 		return;
@@ -9349,7 +9357,7 @@ sfloat_subst_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			sfloat_subst();
+			float_subst();
 			p1 = cdr(p1);
 		}
 		list(tos - h);
@@ -9362,7 +9370,7 @@ sfloat_subst_nib(void)
 		n = p1->u.tensor->nelem;
 		for (i = 0; i < n; i++) {
 			push(p1->u.tensor->elem[i]);
-			sfloat_subst();
+			float_subst();
 			p1->u.tensor->elem[i] = pop();
 		}
 		push(p1);
@@ -13937,11 +13945,11 @@ eval_nroots(void)
 	for (i = 0; i < n; i++) {
 		push(stack[h + i]);
 		real();
-		sfloat();
+		floatv();
 		p1 = pop();
 		push(stack[h + i]);
 		imag();
-		sfloat();
+		floatv();
 		p2 = pop();
 		if (!isdouble(p1) || !isdouble(p2))
 			stop("nroots: coefficients?");
@@ -19551,7 +19559,7 @@ struct se stab[] = {
 	{ "factor",		FACTOR,		eval_factor		},
 	{ "factorial",		FACTORIAL,	eval_factorial		},
 	{ "filter",		FILTER,		eval_filter		},
-	{ "float",		FLOATF,		eval_float		},
+	{ "float",		FLOATV,		eval_float		},
 	{ "floor",		FLOOR,		eval_floor		},
 	{ "for",		FOR,		eval_for		},
 
@@ -20545,7 +20553,7 @@ cmp_args(void)
 	p1 = pop();
 	if (!isnum(p1)) {
 		push(p1);
-		sfloat(); // try converting pi and e
+		floatv(); // try converting pi and e
 		p1 = pop();
 		if (!isnum(p1))
 			stop("non-numerical comparison");
