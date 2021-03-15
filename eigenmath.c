@@ -362,7 +362,6 @@ extern int primetab[MAXPRIMETAB];
 void eval_abs(void);
 void absv(void);
 void absv_nib(void);
-void absv_tensor(void);
 void eval_add(void);
 void add(void);
 void add_terms(int n);
@@ -1153,7 +1152,18 @@ absv_nib(void)
 	int h;
 	p1 = pop();
 	if (istensor(p1)) {
-		absv_tensor();
+		if (p1->u.tensor->ndim > 1) {
+			push_symbol(ABS);
+			push(p1);
+			list(2);
+			return;
+		}
+		push(p1);
+		push(p1);
+		conjugate();
+		inner();
+		push_rational(1, 2);
+		power();
 		return;
 	}
 	if (isnum(p1)) {
@@ -1199,19 +1209,6 @@ absv_nib(void)
 	push_symbol(ABS);
 	push(p1);
 	list(2);
-}
-
-void
-absv_tensor(void)
-{
-	if (p1->u.tensor->ndim != 1)
-		stop("abs");
-	push(p1);
-	push(p1);
-	conjugate();
-	inner();
-	push_rational(1, 2);
-	power();
 }
 
 void
