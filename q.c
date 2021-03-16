@@ -25,8 +25,6 @@ main()
 {
 	int i, j;
 
-	printf("-- copy to Downloads folder on Mac\n\n");
-
 	kets();
 
 	for (i = 0; i < N; i++) {
