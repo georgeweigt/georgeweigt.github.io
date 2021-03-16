@@ -1,0 +1,33 @@
+run("Downloads/q4.txt")
+
+-- theta is the phase to estimate
+
+theta = 0.3
+
+-- U is unitary transform
+
+U = dot(
+P23(2 pi theta),
+P23(2 pi theta),
+P23(2 pi theta),
+P23(2 pi theta),
+P13(2 pi theta),
+P13(2 pi theta),
+P03(2 pi theta))
+
+-- V is inverse QFT of bits 0-2
+
+V = dot(
+H2,
+P02(-pi/4),
+P12(-pi/2),
+H1,
+P01(-pi/2),
+H0,
+S02)
+
+psi = dot(V,U,X3,H2,H1,H0,ket0)
+P = M(psi)
+
+"Expectation value"
+1/8 sum(k,1,16,(k - 1) P[1,k]) - 1
