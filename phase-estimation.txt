@@ -18,11 +18,11 @@ U = dot(P23(w),P23(w),P23(w),P23(w),P13(w),P13(w),P03(w))
 
 V = dot(H2,P02(-pi/4),P12(-pi/2),H1,P01(-pi/2),H0,S02)
 
--- psi is amplitude
+-- psi is a ket
 
 psi = dot(V,U,X3,H2,H1,H0,ket0)
 
--- P is probability
+-- P is a probability distribution
 
 P = hadamard(psi,conj(psi))
 
