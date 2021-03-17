@@ -12,7 +12,7 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 run("Downloads/q4.txt")
 
--- theta is the phase to estimate
+-- circuit input value, range 0.0 to 1.0
 
 theta = 0.3
 
@@ -20,11 +20,11 @@ theta = 0.3
 
 pi = float(pi)
 
--- U is a unitary operator with phase theta
+-- U is a unitary operator with phase angle 2 pi theta radians
 
 U = dot(P23(8 pi theta),P13(4 pi theta),P03(2 pi theta))
 
--- V is the inverse QFT operator
+-- V is the inverse QFT for qubits 0, 1, and 2
 
 V = dot(H2,P02(-pi/4),P12(-pi/2),H1,P01(-pi/2),H0,S02)
 
