@@ -1,3 +1,7 @@
+-- Quantum phase angle estimation demo
+
+-- eigenmath.org/phase-estimation.txt
+
 run("Downloads/q4.txt")
 
 -- input value, range 0.0 to 1.0
