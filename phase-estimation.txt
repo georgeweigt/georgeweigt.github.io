@@ -8,9 +8,9 @@ theta = 0.3
 
 pi = float(pi)
 
-w = 2 pi theta
-
 -- U is unitary transform
+
+w = 2 pi theta
 
 U = dot(P23(w),P23(w),P23(w),P23(w),P13(w),P13(w),P03(w))
 
@@ -31,4 +31,4 @@ yrange = (0,1)
 draw(P[ceiling(x)],x)
 
 "Expectation value"
-1/8 sum(k,1,16,(k - 1) P[k]) - 1
+sum(k,0,7,k/8 P[k + 9])
