@@ -16,6 +16,10 @@ run("Downloads/q4.txt")
 
 theta = 0.3
 
+-- use numerical value of pi
+
+pi = float(pi)
+
 -- U is unitary transform
 
 U = dot(
@@ -38,11 +42,20 @@ P01(-pi/2),
 H0,
 S02)
 
+-- psi is amplitude
+
 psi = dot(V,U,X3,H2,H1,H0,ket0)
-P = M(psi)
+
+-- P is probability
+
+P = hadamard(psi,conj(psi))
+
+xrange = (0,16)
+yrange = (0,1)
+draw(P[ceiling(x)],x)
 
 "Expectation value"
-1/8 sum(k,1,16,(k - 1) P[1,k]) - 1
+1/8 sum(k,1,16,(k - 1) P[k]) - 1
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
