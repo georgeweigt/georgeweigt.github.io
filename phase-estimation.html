@@ -20,27 +20,15 @@ theta = 0.3
 
 pi = float(pi)
 
+w = 2 pi theta
+
 -- U is unitary transform
 
-U = dot(
-P23(2 pi theta),
-P23(2 pi theta),
-P23(2 pi theta),
-P23(2 pi theta),
-P13(2 pi theta),
-P13(2 pi theta),
-P03(2 pi theta))
+U = dot(P23(w),P23(w),P23(w),P23(w),P13(w),P13(w),P03(w))
 
 -- V is inverse QFT of bits 0-2
 
-V = dot(
-H2,
-P02(-pi/4),
-P12(-pi/2),
-H1,
-P01(-pi/2),
-H0,
-S02)
+V = dot(H2,P02(-pi/4),P12(-pi/2),H1,P01(-pi/2),H0,S02)
 
 -- psi is amplitude
 
