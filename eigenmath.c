@@ -1,4 +1,4 @@
-/* March 15, 2021
+/* March 18, 2021
 
 To build and run:
 
@@ -1170,24 +1170,17 @@ absv_nib(void)
 	push(p1);
 	conjugate();
 	multiply();
+	push_rational(1, 2);
+	power();
 	p2 = pop();
-	if (car(p2) != symbol(ADD)) {
+	push(p2);
+	floatv();
+	p3 = pop();
+	if (isdouble(p3)) {
 		push(p2);
-		floatv();
-		p3 = pop();
-		if (isdouble(p3)) {
-			push(p2);
-			push_rational(1, 2);
-			power();
-			p2 = pop();
-			push(p2);
-			push(p2);
-			floatv();
-			p2 = pop();
-			if (isnegativenumber(p2))
-				negate();
-			return;
-		}
+		if (isnegativenumber(p3))
+			negate();
+		return;
 	}
 	// abs(1/a) evaluates to 1/abs(a)
 	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
