@@ -6178,12 +6178,12 @@ void
 fmt_double(struct atom *p)
 {
 	int t;
-	char *s;
-	sprintf(tbuf, "%g", fabs(p->u.d));
-	s = tbuf;
+	char buf[24], *s;
+	sprintf(buf, "%g", fabs(p->u.d));
+	s = buf;
 	while (*s && *s != 'E' && *s != 'e')
 		fmt_roman_char(*s++);
-	if (*s != 'E' && *s != 'e')
+	if (!*s)
 		return;
 	s++;
 	fmt_roman_char(MULTIPLY_SIGN);
@@ -17065,7 +17065,7 @@ any_denominators(struct atom *p)
 void
 print_number(struct atom *p)
 {
-	char *s;
+	char buf[24], *s;
 	switch (p->k) {
 	case RATIONAL:
 		s = mstr(p->u.q.a);
@@ -17077,27 +17077,27 @@ print_number(struct atom *p)
 		print_str(s);
 		break;
 	case DOUBLE:
-		sprintf(tbuf, "%g", fabs(p->u.d));
-		s = tbuf;
+		sprintf(buf, "%g", fabs(p->u.d));
+		s = buf;
 		while (*s && *s != 'E' && *s != 'e')
 			print_char(*s++);
-		if (*s == 'e' || *s == 'E') {
+		if (!*s)
+			break;
+		s++;
+		print_str(" 10^");
+		if (*s == '-') {
+			print_str("(-");
 			s++;
-			print_str(" 10^");
-			if (*s == '-') {
-				print_str("(-");
+			while (*s == '0')
+				s++; // skip leading zeroes
+			print_str(s);
+			print_char(')');
+		} else {
+			if (*s == '+')
 				s++;
-				while (*s == '0')
-					s++; // skip leading zeroes
-				print_str(s);
-				print_char(')');
-			} else {
-				if (*s == '+')
-					s++;
-				while (*s == '0')
-					s++; // skip leading zeroes
-				print_str(s);
-			}
+			while (*s == '0')
+				s++; // skip leading zeroes
+			print_str(s);
 		}
 		break;
 	default:
