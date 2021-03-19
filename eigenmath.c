@@ -1,4 +1,4 @@
-/* March 18, 2021
+/* March 19, 2021
 
 To build and run:
 
@@ -477,9 +477,9 @@ void eval_coeff(void);
 int coeff(void);
 void eval_cofactor(void);
 void eval_conj(void);
-void conjugate(void);
-void conjugate_subst(void);
-void conjugate_subst_nib(void);
+void conjv(void);
+void conj_subst(void);
+void conj_subst_nib(void);
 void eval_contract(void);
 void contract(void);
 void contract_nib(void);
@@ -1160,7 +1160,7 @@ absv_nib(void)
 		}
 		push(p1);
 		push(p1);
-		conjugate();
+		conjv();
 		inner();
 		push_rational(1, 2);
 		power();
@@ -1168,7 +1168,7 @@ absv_nib(void)
 	}
 	push(p1);
 	push(p1);
-	conjugate();
+	conjv();
 	multiply();
 	push_rational(1, 2);
 	power();
@@ -3980,26 +3980,26 @@ eval_conj(void)
 {
 	push(cadr(p1));
 	eval();
-	conjugate();
+	conjv();
 }
 
 void
-conjugate(void)
+conjv(void)
 {
-	conjugate_subst();
+	conj_subst();
 	eval();
 }
 
 void
-conjugate_subst(void)
+conj_subst(void)
 {
 	save();
-	conjugate_subst_nib();
+	conj_subst_nib();
 	restore();
 }
 
 void
-conjugate_subst_nib(void)
+conj_subst_nib(void)
 {
 	int h, i, n;
 	p1 = pop();
@@ -4010,7 +4010,7 @@ conjugate_subst_nib(void)
 		n = p1->u.tensor->nelem;
 		for (i = 0; i < n; i++) {
 			push(p1->u.tensor->elem[i]);
-			conjugate_subst();
+			conj_subst();
 			p1->u.tensor->elem[i] = pop();
 		}
 		push(p1);
@@ -4031,7 +4031,7 @@ conjugate_subst_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			conjugate_subst();
+			conj_subst();
 			p1 = cdr(p1);
 		}
 		list(tos - h);
@@ -6177,41 +6177,31 @@ fmt_denominators(struct atom *p)
 void
 fmt_double(struct atom *p)
 {
-	int i, j, k, t;
-	if (p->u.d == 0.0) {
-		fmt_roman_char('0');
-		return;
-	}
+	int t;
+	char *s;
 	sprintf(tbuf, "%g", fabs(p->u.d));
-	k = 0;
-	while (isdigit(tbuf[k]) || tbuf[k] == '.')
-		k++;
-	// handle trailing zeroes
-	j = k;
-	if (strchr(tbuf, '.'))
-		while (tbuf[j - 1] == '0' && tbuf[j - 2] != '.')
-			j--;
-	for (i = 0; i < j; i++)
-		fmt_roman_char(tbuf[i]);
-	if (tbuf[k] != 'E' && tbuf[k] != 'e')
+	s = tbuf;
+	while (*s && *s != 'E' && *s != 'e')
+		fmt_roman_char(*s++);
+	if (*s != 'E' && *s != 'e')
 		return;
-	k++;
+	s++;
 	fmt_roman_char(MULTIPLY_SIGN);
 	fmt_roman_string("10");
 	// superscripted exponent
 	fmt_level++;
 	t = tos;
 	// sign of exponent
-	if (tbuf[k] == '+')
-		k++;
-	else if (tbuf[k] == '-') {
+	if (*s == '+')
+		s++;
+	else if (*s == '-') {
 		fmt_roman_char(MINUS_SIGN);
-		k++;
+		s++;
 	}
 	// skip leading zeroes in exponent
-	while (tbuf[k] == '0')
-		k++;
-	fmt_roman_string(tbuf + k);
+	while (*s == '0')
+		s++;
+	fmt_roman_string(s);
 	fmt_update_list(t);
 	fmt_level--;
 	fmt_update_superscript();
@@ -9809,7 +9799,7 @@ imag_nib(void)
 	push(imaginaryunit);
 	push(p1);
 	push(p1);
-	conjugate();
+	conjv();
 	subtract();
 	multiply_factors(3);
 }
@@ -17087,20 +17077,10 @@ print_number(struct atom *p)
 		print_str(s);
 		break;
 	case DOUBLE:
-		sprintf(tbuf, "%g", p->u.d);
+		sprintf(tbuf, "%g", fabs(p->u.d));
 		s = tbuf;
-		if (*s == '+' || *s == '-')
-			s++;
-		if (isinf(p->u.d) || isnan(p->u.d)) {
-			print_str(s);
-			break;
-		}
-		if (strchr(tbuf, 'e') || strchr(tbuf, 'E'))
-			print_char('(');
-		while (*s && *s != 'e' && *s != 'E')
+		while (*s && *s != 'E' && *s != 'e')
 			print_char(*s++);
-		if (!strchr(tbuf, '.'))
-			print_str(".0");
 		if (*s == 'e' || *s == 'E') {
 			s++;
 			print_str(" 10^");
@@ -17119,8 +17099,6 @@ print_number(struct atom *p)
 				print_str(s);
 			}
 		}
-		if (strchr(tbuf, 'e') || strchr(tbuf, 'E'))
-			print_char(')');
 		break;
 	default:
 		break;
@@ -17188,31 +17166,7 @@ print_lisp_nib(struct atom *p)
 		break;
 	case DOUBLE:
 		sprintf(tbuf, "%g", p->u.d);
-		if (isinf(p->u.d) || isnan(p->u.d)) {
-			print_str(tbuf);
-			break;
-		}
-		if (strchr(tbuf, 'e') || strchr(tbuf, 'E'))
-			print_str("(* ");
-		s = tbuf;
-		while (*s && *s != 'e' && *s != 'E')
-			print_char(*s++);
-		if (!strchr(tbuf, '.'))
-			print_str(".0");
-		if (*s == 'e' || *s == 'E') {
-			s++;
-			print_str(" (^ 10 ");
-			if (*s == '+')
-				s++;
-			else if (*s == '-')
-				print_char(*s++);
-			while (*s == '0')
-				s++; // skip leading zeroes
-			print_str(s);
-			print_char(')');
-		}
-		if (strchr(tbuf, 'e') || strchr(tbuf, 'E'))
-			print_char(')');
+		print_str(tbuf);
 		break;
 	case KSYM:
 	case USYM:
@@ -17473,7 +17427,7 @@ real_nib(void)
 	p1 = pop();
 	push(p1);
 	push(p1);
-	conjugate();
+	conjv();
 	add();
 	push_rational(1, 2);
 	multiply();
