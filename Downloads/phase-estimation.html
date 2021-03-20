@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Quantum phase angle estimation demo
+
+-- eigenmath.org/phase-estimation.txt
+
+run("Downloads/q4.txt")
+
+-- input value, range 0.0 to 1.0
+
+theta = 0.3
+
+-- use numerical value of pi
+
+pi = float(pi)
+
+-- U is a unitary operator
+
+U = dot(P23(8 pi theta),P13(4 pi theta),P03(2 pi theta))
+
+-- V is the inverse QFT for qubits 0, 1, and 2
+
+V = dot(H2,P02(-pi/4),P12(-pi/2),H1,P01(-pi/2),H0,S02)
+
+-- psi is a ket
+
+psi = dot(V,U,X3,H2,H1,H0,ket0)
+
+"Probability distribution"
+
+P = hadamard(psi,conj(psi))
+
+xrange = (0,16)
+yrange = (0,1)
+draw(P[ceiling(x)],x)
+
+"Expectation value"
+sum(k,0,15,k/8 P[k + 1]) - 1
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
