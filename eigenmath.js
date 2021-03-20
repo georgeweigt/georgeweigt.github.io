@@ -2775,7 +2775,7 @@ emit_double(p)
 	while (k < s.length && s.charAt(k) != "." && s.charAt(k) != "E" && s.charAt(k) != "e")
 		k++;
 
-	emit_roman_string(s.substr(0, k));
+	emit_roman_string(s.substring(0, k));
 
 	// handle trailing zeroes
 
@@ -2792,7 +2792,7 @@ emit_double(p)
 			j--;
 
 		if (j - i > 1)
-			emit_roman_string(s.substr(i, j - i));
+			emit_roman_string(s.substring(i, j));
 	}
 
 	if (s.charAt(k) != "E" && s.charAt(k) != "e")
