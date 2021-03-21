@@ -1,0 +1,41 @@
+------------------------------------ mpiBox2 (2020) Dr.W.Lindner
+-- MOORE-PENROSE-Pseudoinverse 'mpi'
+------------------------------------ version for Ch.12 and Ch.13
+
+mpi(A) = test( rank(A)=1,  A * 1/dot(A,A) ,  -- if A vector & dot(A,A)<>0
+               rank(A)>1,  do(At=transpose(A), dot(inv(dot(At,A)),At)) )
+         
+proj(B,A) = test( rank(A)=1,  dot(A,B,A) / dot(A,A) ,
+                  rank(A)>1,  dot(A, mpi(A), B) )
+
+Xfit(B,A) = dot(mpi(A),B)          -- the best fit solution Xo
+Yfit(B,A) = dot(A, mpi(A), B)      -- the proximum Bo, alias proj(B,A)
+
+isPinv(P,A)= test(dot(A,P,A) == A, 
+              "is pseudoinvers", 
+              "is NOT pseudoinvers")
+
+isSolvable(A,B,P) = test(and(dot(A,P,A)==A, dot(A,P,B)==B), 
+             "is solvable", 
+             "is NOT solvable")
+
+-- solution set of Linear System AX=B
+solSet1(A,B,X) =  do( mp=mpi(A),
+                    m=dim(dot(mp,A),1), 
+                    n=dim(dot(mp,A),2),
+                    A1=unit(m,n),
+                    dot(mpi(A),B) + dot( (A1-dot(mp,A)), X)
+                  )
+
+-- solution set of Linear System AX=B using pinv P
+solSet(A,B,P,X) =  do(
+                    m=dim(dot(P,A),1), 
+                    n=dim(dot(P,A),2),
+                    E1=unit(m,n),
+                    dot(P,B) + dot( (E1-dot(P,A)), X)
+                  )
+
+-- appoximate mpi for det(At.A) = 0
+mpi0(A)= dot( inv( dot(transpose(A),A) +0.0001*unit(dim(A,2)) ), transpose(A) ) 
+
+----------------------------------------------- END mpiBox2
