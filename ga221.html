@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("Downloads/EVA2.txt")         -- (1)
+tty=1
+cl(1,1)                           -- (2)
+
+do(print(e0),print(e1),print(e2),print(e12))  -- (3)
+
+E = e0       -- (4) E mbedding of R, i.e. first entry
+E
+U = e12      -- (5) U plays role of the unipotent u
+U
+
+gp(E,E)
+gp(U,U)      -- (6) U is indeed the unipotent
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
