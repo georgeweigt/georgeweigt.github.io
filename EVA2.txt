@@ -148,7 +148,7 @@ do(rnd1(u)=rnd(u,1),rnd2(u)=rnd(u,2),rnd3(u)=rnd(u,3),rnd4(u)=rnd(u,4),rnd5(u)=r
 
 exp0(u)=test(number(u),exp(u),do(u2=gp(u,u),u3=gp(u2,u),u4=gp(u2,u2),1.0*gp(e0+u/2+3u2/28+u3/84+u4/1680, inverse(e0-u/2+3u2/28-u3/84+u4/1680 ))))
 exp1(u)= exp0(u-e0*Re(u))*float(exp(Re(u)))  # best method ?
-qq(m,n,x)=sum(k,0,n,((m+n-k)!n!)/((m+n)!(n-k)!k! )(-x)^k) # compute the Padé coef. for exp = pp/qq  (ex: m=n=4 for exp)
+qq(m,n,x)=sum(k,0,n,((m+n-k)!n!)/((m+n)!(n-k)!k! )(-x)^k) # compute the PadÃ© coef. for exp = pp/qq  (ex: m=n=4 for exp)
 pp(m,n,x)=sum(k,0,m,((m+n-k)!m!)/((m+n)!(m-k)!k! )x^k)
 exp11(v)=test(number(v),exp(v),do(u=float(v),un=e0,exp00=e0,for(k,1,maxTaylor,un=1.0*(gp(un,u)),exp00=exp00+un/k!),exp00))
 
