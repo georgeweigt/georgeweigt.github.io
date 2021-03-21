@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+##### HYPERBOLICS H    
+tty=1
+
+E = (1,0)      -- _E_mbedding of R in H
+U = (0,1)      -- the _U_unipotent, analogue to i in C
+
+T = ((E,U),    -- Hyperbolics multiplication _T_able
+     (U,E))    -- E*E = E, E*U = U, U*E = U, U*U = E == 1
+
+M(x,y) = dot(x,T,y)   -- billinear operation on H
+
+               -- two arbitrary hyp.numbers
+x = a*E+b*U
+y = c*E+d*U
+y
+M(x,y)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

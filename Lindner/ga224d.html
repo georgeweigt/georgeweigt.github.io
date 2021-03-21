@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+-- 5/4 and 3/4 are the edges of a box
+-- from the normalized wn on H^1. Therefore:
+
+Lh = 5/4*3/4 - 2*defint(sqrt(x^2-1), x,1,5/4)
+Lh
+
+Lh = mag(defint( sqrt(-1/(x^2-1)), x,1,5/4))  
+Lh
+float
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+################ (3/2021) Dr.W.G. Lindner,  Leichlingen DE
+###        hyBox          Functions for hyperbolic numbers
+################
+tty=1
+do( E=(1,0), U=(0,1) ) 
+
+hymult(x,y) = (x[1]*y[1] + x[2]*y[2], x[1]*y[2] + x[2]*y[1])
+hyreal(w)   = w[1]                        -- REAL part w
+hyunip(w)   = w[2]                        -- UNIPotent part
+hyconj(w)   = (w[1],-w[2])                -- hyperbolic CONJugate
+hyinv(w)    = 1/(w[1]^2-w[2]^2)*hyconj(w) -- hyperbolic INVerse
+hyquot(v,w) = hymult( v, hyinv(w))        -- QUOTient of v and w
+hynorm(w)   = sqrt(abs(w[1]^2-w[2]^2))    -- hyperbolic NORM of w
+hyabs(w)= test( (w[1]^2-w[2]^2)>0, sqrt(w[1]^2-w[2]^2),
+                (w[1]^2-w[2]^2)<0, sqrt(w[2]^2-w[1]^2),
+                (w[1]^2-w[2]^2)=0, 0)
+
+hyinp(U,V)  = U[1]*V[1] - U[2]*V[2]       -- inner product
+hyoutp(U,V) = U[1]*V[2] - U[2]*V[1]       -- outer product
