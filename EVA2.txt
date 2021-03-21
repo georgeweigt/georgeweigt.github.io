@@ -1,6 +1,11 @@
-#*******************************************************************
-#                           EVA 2.0  rev 0                         *      
-#*******************************************************************
+####################################################################
+#                        EVA 2.0  rev 0                         
+# EVA : Euclidian Vector Algebra  (or Clifford or Geometric Algebra)
+# 
+#                                         last revision : 15/04/2012
+#(c) Copyright, Bernard Eyheramendy        contact at beyhfr.free.fr
+####################################################################
+
 fixnum=4
 maxTaylor=12
 do(Inf=-log(0),inf=Inf)
@@ -26,7 +31,6 @@ isPos(u)=test(u[1] >= 0, 1,               errmsg(msg9,u))
 isZero(u)=test(u[1] = 0,                  errmsg(msg10,u),1) 
 isRangeLT1(u)= test(abs(u[1])< 1, 1,      errmsg(msg11,u))   
 isRangeLE1(u)= test(abs(u[1])<=1, 1,      errmsg(msg12,u))   
-
 msg1="not a multivector : "
 msg2="not a vector      : "
 msg3="not a scalar      : "
@@ -47,7 +51,8 @@ cl(p,q1)=do(q=0,q00=0,test(number(q1),q=q1,q00=1),Clmax=p+q,Cldim=2^Clmax,test(C
 
 basisVectors=("e0,e1","e0,e1,e2,e12","e0,e1,e2,e3,e12,e13,e23,e123","e0,e1,e2,e3,e4,e12,e13,e14,e23,e24,e34,e123,e124,e134,e234,e1234","e0,e1,e2,e3,e4,e5,e12,e13,e14,e15,e23,e24,e25,e34,e35,e45,e123,e124,e125,e134,e135,e145,e234,e235,e245,e345,e1234,e1235,e1245,e1345,e2345,e12345")
 isomorph=("isomorphic with R + R","isomorphic with R(2)","isomorphic with C(2)","isomorphic with H(2)","isomorphic with H(2) + H(2)")
-info()=print("Signature",float(Signature),"oriented volume: "," j ="Jtab[Clmax],"basis vectors :",basisVectors[Clmax],"", test(q00==1,isomorph[Clmax],""))
+info()=print("Signature",float(Signature),"oriented volume: "," j ="Jtab[Clmax],"basis vectors :",basisVectors[Clmax]," ")
+## wL 14.3.21 ,"---", test(q00==1,isomorph[Clmax],"--no more info --"))
 Cl(p,q)=cl(p,q)
 
 Jtab=("e1","e12","e123","e1234","e12345")
@@ -230,3 +235,30 @@ rotor2M(R1)=do(test(Clmax<5,1,print("works only for Cl(2), cl(3), Cl(4)",stop)),
 orthogonal(u,v,w)=do(isVector(u),isVector(v),isVector(w),test(outp(outp(u,v),w)=0,print("not a frame",stop)),u0=u,v0=gp(outp(v,u0),inverse(u0)),w0=gp(outp(outp(w,u0),v0),inverse(outp(u0,v0))),((u0[2],u0[3],u0[4]),(v0[2],v0[3],v0[4]),(w0[2],w0[3],w0[4])))
 
 reciprocal(u,v,w)=do(isVector(u),isVector(v),isVector(w),test(outp(outp(u,v),w)=0,print("not a frame",stop)),u123=outp(outp(u,v),w),ru=gp(outp(v,w),inverse(u123)),rv=gp(outp(w,u),inverse(u123)),rw=gp(outp(u,v),inverse(u123)),((ru[2],ru[3],ru[4]),(rv[2],rv[3],rv[4]),(rw[2],rw[3],rw[4]))) 
+
+
+disp3(u) = do( isMvector(u),
+              print(u[1]*"e0"+u[2]*"e1"+u[3]*"e2"+u[4]*"e3"+
+                    u[5]*"e12"+u[6]*"e23"+
+                    u[7]*"e13"+u[8]*"e123"))
+
+disp2(u) = do(isMvector(u),print(u[1]*"e0"+u[2]*"e1"+u[3]*"e2"+u[4]*"e12"))
+
+tty=0
+helpCL=
+(
+("gp(u,v)  :","geometic product : u v               "),
+("inp(u,v) :","inner product    : u.v               "),
+("outp(u,v):","outer product    : u^v               "),
+("dispgrd(u):","display grade decomposition         "),
+("inverse(u):","inverse          : 1/u               "),
+("magnitude(u):","magnitude     : |u|               "),
+("normalize(u) :","normalize    : u/|u|             "),
+("cj(u)    :","Clifford conjugate                   "),
+("rev(u)   :","reverse                              "),
+("invol(u) :","grade involution                     "),
+("dual(u)  :","dual             : u/e123            "),
+("grade(u,k):","k grade of u : <u>k                 "),
+("lc(u),.. :","left, .. contraction                "),
+("exp1(u),..:","usual maths functions with ..1     ")
+)

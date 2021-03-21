@@ -1,0 +1,67 @@
+###################
+## Gauss Jordan Box -- (2020) Dr. W.Lindner, Leichlingen GE
+###################
+
+Em(k,i,j) = do( M=unit(n,n), M[j,i]=k, M)    
+
+-- Row interchange
+Gi(i,j)=do( Gii=unit(n),
+           N= Gii[i],
+           M= Gii[j],
+           Gii[j]=N,
+           Gii[i]=M,
+           Gii)
+
+----      GAUSS matrix I, elimination downstairs
+Gm(k,A) = do( n   = dim(A,1), -- get the dim
+              Gmm = unit(n),  -- k th column
+              for(i,k+1,n, Gmm[i,k] = - A[i,k]/A[k,k]),
+              Gmm )
+
+----       GAUSS matrix II, elimination upstairs
+Gu(k,A) = do( n   = dim(A,1), -- get the dim
+              Gmm = unit(n),  -- k th column
+              for(i,k,1, Gmm[i,k] = - A[i,k]/A[k,k]),
+              Gmm )
+
+
+----    NORMalization of diagonal
+Gn(A) = do( n = dim(A,1), -- get the dim
+               Gmm = unit(n),  -- k th column
+               for(k,1,n, Gmm[k,k] = 1/A[k,k]),
+               Gmm )
+
+----     GAUSS elimination 
+Ge(A) =  do( n=dim(A,1),
+              X = zero(dim(A,1),dim(A,1),dim(A,2)),
+              X[1]=A,
+              for( i,1,n-1, X[i+1]=dot(Gm(i,X[i]),X[i]) ), 
+              X[n])
+
+----     JORDAN elimination
+Gj(A) =  do( n=dim(A,1),
+              X = zero(dim(A,1),dim(A,1),dim(A,2)),
+              X[n]=A,
+              for( i,n-1,1, X[i]=dot(Gu(i+1,X[i+1]),X[i+1]) ), 
+              X[1])
+
+----     syntactic sugar
+doGm(j,M)   = dot(Gm(j,M), M)  
+doGu(j,M)   = dot(Gu(j,M), M)
+doGn(M)     = dot(Gn(M), M)
+doGi(i,j,M) = dot(Gi(i,j,M), M)
+doGn(M)     = dot(Gn(M), M)
+
+----     Row Reduced Echelon Form
+RREF(A) = doGn( Gj( Ge(A) ))    
+
+backSubst(U) = do( n = dim(U,1),    
+                   Z = zero(2,n),          
+                   x = Z[1],                       
+                   x[n] = U[n,n+1] / U[n,n],  
+                   for(i,n-1,1, 
+                    x[i] = (U[i,n+1] - sum(j,i+1,n, U[i,j]*x[j])) /U[i,i]),
+                   x)
+
+################### End of gjBox ###################
+

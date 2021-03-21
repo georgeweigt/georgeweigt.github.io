@@ -1,0 +1,34 @@
+################ (2021) Dr.W.G. Lindner,  Leichlingen DE
+###         cBox        Functions for complex algebra  C
+################
+
+-- Use ordinary vector arithmetic to add and subtract x, y.
+
+E = (1,0)                         -- E   embedding of R, e0
+I = (0,1)                         -- I = imaginary unit, e1
+
+
+-- R[i] multiplication table (per Wikipedia)
+T = ((e0, e1),
+     (e1,-e0))
+Tt=transpose(T,2,3)
+
+muT(x,y) = dot(x,Tt,y)            -- MultC, 1. version via table
+
+-- alternative definition like in C
+mu(u,v) = (u[1]*v[1] - u[2]*v[2],
+           u[1]*v[2] + v[1]*u[2])  
+
+qu(u,v)= 1/(v[1]^2+v[2]^2) *          -- 1/abs(v)
+            (u[1]*v[1] + u[2]*v[2],
+             v[1]*u[2] - u[1]*v[2])   -- qu_otient
+
+im(w) = w[2]                      -- imaginary part
+re(w) = w[1]                      -- real part
+cj(w)   = (w[1],-w[2])            -- conjugate of w
+
+ip(a,b) = inner(a,b)              -- inner product alias scalar 
+op(a,b) = a[1]*b[2] - b[1]*a[2]   -- outer product
+no(w)   = sqrt(w[1]^2+w[2]^2)     -- norm of w, abs(w)
+iv(w)   = 1/(w[1]^2+w[2]^2)*cj(w) -- inverse of w
+iv1(w)  = qu(E,w)                 -- 1/w. Reciprocal 
