@@ -1968,6 +1968,13 @@ cos()
 		return;
 	}
 
+	// 0?
+
+	if (iszero(p1)) {
+		push_integer(1);
+		return;
+	}
+
 	// cos(z) = 1/2 (exp(i z) + exp(-i z))
 
 	if (isdoublez(p1)) {
@@ -2019,23 +2026,40 @@ cos()
 		return;
 	}
 
-	// multiply by 180/pi
+	// n pi ?
 
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	push(p1);
 	push_symbol(PI);
 	divide();
-	p2 = pop()
+	p2 = pop();
 
-	if (isrational(p2))
-		n = p2.a / p2.b;
-	else if (isdouble(p2))
-		n = p2.d;
-	else
-		n = 1; // force default case
+	if (!isnum(p2)) {
+		push_symbol(COS);
+		push(p1);
+		list(2);
+		return;
+	}
 
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(Math.cos(p2.d * Math.PI));
+		return;
+	}
+
+	push(p2); // nonnegative by cos(-x) = cos(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+
+	if (!isinteger(p2)) {
+		push_symbol(COS);
+		push(p1);
+		list(2);
+		return;
+	}
+
+	n = p2.a % 360;
+
+	switch (n) {
 	case 90:
 	case 270:
 		push_integer(0);
@@ -13046,6 +13070,13 @@ sin()
 		return;
 	}
 
+	// 0?
+
+	if (iszero(p1)) {
+		push_integer(0);
+		return;
+	}
+
 	// sin(z) = -i/2 (exp(i z) - exp(-i z))
 
 	if (isdoublez(p1)) {
@@ -13100,23 +13131,40 @@ sin()
 		return;
 	}
 
-	// multiply by 180/pi
+	// n pi ?
 
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	push(p1);
 	push_symbol(PI);
 	divide();
 	p2 = pop();
 
-	if (isrational(p2))
-		n = p2.a / p2.b;
-	else if (isdouble(p2))
-		n = p2.d;
-	else
-		n = 1; // force default case
+	if (!isnum(p2)) {
+		push_symbol(SIN);
+		push(p1);
+		list(2);
+		return;
+	}
 
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(Math.sin(p2.d * Math.PI));
+		return;
+	}
+
+	push(p2); // nonnegative by sin(-x) = -sin(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+
+	if (!isinteger(p2)) {
+		push_symbol(SIN);
+		push(p1);
+		list(2);
+		return;
+	}
+
+	n = p2.a % 360;
+
+	switch (n) {
 	case 0:
 	case 180:
 		push_integer(0);
@@ -13423,6 +13471,13 @@ tan()
 		return;
 	}
 
+	// 0?
+
+	if (iszero(p1)) {
+		push_integer(0);
+		return;
+	}
+
 	if (isdoublez(p1)) {
 		push(p1);
 		sin();
@@ -13454,23 +13509,40 @@ tan()
 		return;
 	}
 
-	// multiply by 180/pi
+	// n pi ?
 
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	push(p1);
 	push_symbol(PI);
 	divide();
 	p2 = pop();
 
-	if (isrational(p2))
-		n = p2.a / p2.b;
-	else if (isdouble(p2))
-		n = p2.d;
-	else
-		n = 1; // force default case
+	if (!isnum(p2)) {
+		push_symbol(TAN);
+		push(p1);
+		list(2);
+		return;
+	}
 
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(Math.tan(p2.d * Math.PI));
+		return;
+	}
+
+	push(p2); // nonnegative by tan(-x) = -tan(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+
+	if (!isinteger(p2)) {
+		push_symbol(TAN);
+		push(p1);
+		list(2);
+		return;
+	}
+
+	n = p2.a % 360;
+
+	switch (n) {
 	case 0:
 	case 180:
 		push_integer(0);

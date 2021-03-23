@@ -1,4 +1,4 @@
-/* March 19, 2021
+/* March 23, 2021
 
 To build and run:
 
@@ -141,28 +141,31 @@ struct atom {
 #define BESSELY		(1 * NSYM + 1)
 #define BINDING		(1 * NSYM + 2)
 
-#define CEILING		(2 * NSYM + 0)
-#define CHECK		(2 * NSYM + 1)
-#define CIRCEXP		(2 * NSYM + 2)
-#define CLEAR		(2 * NSYM + 3)
-#define CLOCK		(2 * NSYM + 4)
-#define COEFF		(2 * NSYM + 5)
-#define COFACTOR	(2 * NSYM + 6)
-#define CONJ		(2 * NSYM + 7)
-#define CONTRACT	(2 * NSYM + 8)
-#define COS		(2 * NSYM + 9)
-#define COSH		(2 * NSYM + 10)
+#define C_UPPER		(2 * NSYM + 0)
+#define C_LOWER		(2 * NSYM + 1)
+#define CEILING		(2 * NSYM + 2)
+#define CHECK		(2 * NSYM + 3)
+#define CIRCEXP		(2 * NSYM + 4)
+#define CLEAR		(2 * NSYM + 5)
+#define CLOCK		(2 * NSYM + 6)
+#define COEFF		(2 * NSYM + 7)
+#define COFACTOR	(2 * NSYM + 8)
+#define CONJ		(2 * NSYM + 9)
+#define CONTRACT	(2 * NSYM + 10)
+#define COS		(2 * NSYM + 11)
+#define COSH		(2 * NSYM + 12)
 
-#define SYMBOL_D	(3 * NSYM + 0)
-#define DEFINT		(3 * NSYM + 1)
-#define DEGREE		(3 * NSYM + 2)
-#define DENOMINATOR	(3 * NSYM + 3)
-#define DERIVATIVE	(3 * NSYM + 4)
-#define DET		(3 * NSYM + 5)
-#define DIM		(3 * NSYM + 6)
-#define DO		(3 * NSYM + 7)
-#define DOT		(3 * NSYM + 8)
-#define DRAW		(3 * NSYM + 9)
+#define D_UPPER		(3 * NSYM + 0)
+#define D_LOWER		(3 * NSYM + 1)
+#define DEFINT		(3 * NSYM + 2)
+#define DEGREE		(3 * NSYM + 3)
+#define DENOMINATOR	(3 * NSYM + 4)
+#define DERIVATIVE	(3 * NSYM + 5)
+#define DET		(3 * NSYM + 6)
+#define DIM		(3 * NSYM + 7)
+#define DO		(3 * NSYM + 8)
+#define DOT		(3 * NSYM + 9)
+#define DRAW		(3 * NSYM + 10)
 
 #define EIGEN		(4 * NSYM + 0)
 #define EIGENVAL	(4 * NSYM + 1)
@@ -189,16 +192,20 @@ struct atom {
 
 #define GCD		(6 * NSYM + 0)
 
-#define HADAMARD	(7 * NSYM + 0)
+#define H_UPPER		(7 * NSYM + 0)
+#define H_LOWER		(7 * NSYM + 1)
+#define HADAMARD	(7 * NSYM + 2)
 
-#define SYMBOL_I	(8 * NSYM + 0)
-#define IMAG		(8 * NSYM + 1)
-#define INNER		(8 * NSYM + 2)
-#define INTEGRAL	(8 * NSYM + 3)
-#define INV		(8 * NSYM + 4)
-#define ISPRIME		(8 * NSYM + 5)
+#define I_UPPER		(8 * NSYM + 0)
+#define I_LOWER		(8 * NSYM + 1)
+#define IMAG		(8 * NSYM + 2)
+#define INNER		(8 * NSYM + 3)
+#define INTEGRAL	(8 * NSYM + 4)
+#define INV		(8 * NSYM + 5)
+#define ISPRIME		(8 * NSYM + 6)
 
-#define SYMBOL_J	(9 * NSYM + 0)
+#define J_UPPER		(9 * NSYM + 0)
+#define J_LOWER		(9 * NSYM + 1)
 
 #define KRONECKER	(10 * NSYM + 0)
 
@@ -226,55 +233,73 @@ struct atom {
 #define OR		(14 * NSYM + 0)
 #define OUTER		(14 * NSYM + 1)
 
-#define PI		(15 * NSYM + 0)
-#define POLAR		(15 * NSYM + 1)
-#define PRIME		(15 * NSYM + 2)
-#define PRINT		(15 * NSYM + 3)
-#define PRODUCT		(15 * NSYM + 4)
+#define P_UPPER		(15 * NSYM + 0)
+#define P_LOWER		(15 * NSYM + 1)
+#define PI		(15 * NSYM + 2)
+#define POLAR		(15 * NSYM + 3)
+#define PRIME		(15 * NSYM + 4)
+#define PRINT		(15 * NSYM + 5)
+#define PRODUCT		(15 * NSYM + 6)
 
-#define QUOTE		(16 * NSYM + 0)
-#define QUOTIENT	(16 * NSYM + 1)
+#define Q_UPPER		(16 * NSYM + 0)
+#define Q_LOWER		(16 * NSYM + 1)
+#define QUOTE		(16 * NSYM + 2)
+#define QUOTIENT	(16 * NSYM + 3)
 
 #define RANK		(17 * NSYM + 0)
 #define RATIONALIZE	(17 * NSYM + 1)
 #define REAL		(17 * NSYM + 2)
 #define RECTF		(17 * NSYM + 3)
 #define ROOTS		(17 * NSYM + 4)
-#define RUN		(17 * NSYM + 5)
+#define ROTATE		(17 * NSYM + 5)
+#define RUN		(17 * NSYM + 6)
 
-#define SYMBOL_S	(18 * NSYM + 0)
-#define SGN		(18 * NSYM + 1)
-#define SIMPLIFY	(18 * NSYM + 2)
-#define SIN		(18 * NSYM + 3)
-#define SINH		(18 * NSYM + 4)
-#define SQRT		(18 * NSYM + 5)
-#define STATUS		(18 * NSYM + 6)
-#define STOP		(18 * NSYM + 7)
-#define STRING		(18 * NSYM + 8)
-#define SUBST		(18 * NSYM + 9)
-#define SUM		(18 * NSYM + 10)
+#define S_UPPER		(18 * NSYM + 0)
+#define S_LOWER		(18 * NSYM + 1)
+#define SGN		(18 * NSYM + 2)
+#define SIMPLIFY	(18 * NSYM + 3)
+#define SIN		(18 * NSYM + 4)
+#define SINH		(18 * NSYM + 5)
+#define SQRT		(18 * NSYM + 6)
+#define STATUS		(18 * NSYM + 7)
+#define STOP		(18 * NSYM + 8)
+#define STRING		(18 * NSYM + 9)
+#define SUBST		(18 * NSYM + 10)
+#define SUM		(18 * NSYM + 11)
 
-#define SYMBOL_T	(19 * NSYM + 0)
-#define TAN		(19 * NSYM + 1)
-#define TANH		(19 * NSYM + 2)
-#define TEST		(19 * NSYM + 3)
-#define TESTEQ		(19 * NSYM + 4)
-#define TESTGE		(19 * NSYM + 5)
-#define TESTGT		(19 * NSYM + 6)
-#define TESTLE		(19 * NSYM + 7)
-#define TESTLT		(19 * NSYM + 8)
-#define TRACE		(19 * NSYM + 9)
-#define TRANSPOSE	(19 * NSYM + 10)
-#define TTY		(19 * NSYM + 11)
+#define T_UPPER		(19 * NSYM + 0)
+#define T_LOWER		(19 * NSYM + 1)
+#define TAN		(19 * NSYM + 2)
+#define TANH		(19 * NSYM + 3)
+#define TEST		(19 * NSYM + 4)
+#define TESTEQ		(19 * NSYM + 5)
+#define TESTGE		(19 * NSYM + 6)
+#define TESTGT		(19 * NSYM + 7)
+#define TESTLE		(19 * NSYM + 8)
+#define TESTLT		(19 * NSYM + 9)
+#define TRACE		(19 * NSYM + 10)
+#define TRANSPOSE	(19 * NSYM + 11)
+#define TTY		(19 * NSYM + 12)
 
-#define UNIT		(20 * NSYM + 0)
+#define U_UPPER		(20 * NSYM + 0)
+#define U_LOWER		(20 * NSYM + 1)
+#define UNIT		(20 * NSYM + 2)
 
-#define SYMBOL_X	(23 * NSYM + 0)
+#define V_UPPER		(21 * NSYM + 0)
+#define V_LOWER		(21 * NSYM + 1)
 
-#define SYMBOL_Y	(24 * NSYM + 0)
+#define W_UPPER		(22 * NSYM + 0)
+#define W_LOWER		(22 * NSYM + 1)
 
-#define SYMBOL_Z	(25 * NSYM + 0)
-#define ZERO		(25 * NSYM + 1)
+#define X_UPPER		(23 * NSYM + 0)
+#define X_LOWER		(23 * NSYM + 1)
+
+#define Y_UPPER		(24 * NSYM + 0)
+#define Y_LOWER		(24 * NSYM + 1)
+
+#define Z_UPPER		(25 * NSYM + 0)
+#define Z_LOWER		(25 * NSYM + 1)
+#define ZERO		(25 * NSYM + 2)
 
 #define ADD		(26 * NSYM + 0)
 #define MULTIPLY	(26 * NSYM + 1)
@@ -893,6 +918,8 @@ int power_precheck(void);
 void power_natural_number(void);
 int simplify_polar_expr(void);
 int simplify_polar_term(struct atom *p);
+void normalize_polar_rational_coeff(struct atom *coeff);
+void normalize_polar_double_coeff(double coeff);
 void power_sum(void);
 void power_imaginary_unit(void);
 void power_complex_number(void);
@@ -952,6 +979,16 @@ void roots(void);
 void roots2(void);
 void roots3(void);
 void mini_solve(void);
+void eval_rotate(void);
+void rotate_check(int n);
+void rotate_h(int n);
+void rotate_p(int c, int n);
+void rotate_s(int m, int n);
+void rotate_x(int c, int n);
+void rotate_y(int c, int n);
+void rotate_z(int c, int n);
+void rotate_q(int n);
+void rotate_v(int n);
 void run(char *s);
 void init(void);
 void prep(void);
@@ -3896,7 +3933,7 @@ eval_coeff(void)
 	P = pop();
 	if (N == symbol(NIL)) {		// only 2 args?
 		N = X;
-		X = symbol(SYMBOL_X);
+		X = symbol(X_LOWER);
 	}
 	push(P);			// divide p by x^n
 	push(X);
@@ -4870,6 +4907,12 @@ isnumerator(struct atom *p)
 		return 1;
 }
 
+#undef X
+#undef Y
+
+#define X p5
+#define Y p6
+
 void
 eval_cos(void)
 {
@@ -4886,12 +4929,6 @@ scos(void)
 	restore();
 }
 
-#undef X
-#undef Y
-
-#define X p5
-#define Y p6
-
 void
 scos_nib(void)
 {
@@ -4899,6 +4936,11 @@ scos_nib(void)
 	p1 = pop();
 	if (isdouble(p1)) {
 		push_double(cos(p1->u.d));
+		return;
+	}
+	// 0?
+	if (iszero(p1)) {
+		push_integer(1);
 		return;
 	}
 	// cos(z) = 1/2 (exp(i z) + exp(-i z))
@@ -4956,20 +4998,36 @@ scos_nib(void)
 		power();
 		return;
 	}
-	// multiply by 180/pi
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	// n pi ?
+	push(p1);
 	push_symbol(PI);
 	divide();
-	n = pop_integer();
-	if (n == ERR) {
+	p2 = pop();
+	if (!isnum(p2)) {
 		push_symbol(COS);
 		push(p1);
 		list(2);
 		return;
 	}
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(cos(p2->u.d * M_PI));
+		return;
+	}
+	push(p2); // nonnegative by cos(-x) = cos(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+	if (!isinteger(p2)) {
+		push_symbol(COS);
+		push(p1);
+		list(2);
+		return;
+	}
+	push(p2);
+	push_integer(360);
+	smod();
+	n = pop_integer();
+	switch (n) {
 	case 90:
 	case 270:
 		push_integer(0);
@@ -5190,7 +5248,7 @@ eval_degree(void)
 	eval();
 	p1 = pop();
 	if (p1 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p1);
 	degree();
@@ -5298,7 +5356,7 @@ eval_derivative(void)
 	eval();
 	p1 = cddr(p1);
 	if (!iscons(p1)) {
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 		derivative();
 		return;
 	}
@@ -5318,7 +5376,7 @@ eval_derivative(void)
 			n = pop_integer();
 			if (n == ERR)
 				stop("derivative");
-			push_symbol(SYMBOL_X);
+			push_symbol(X_LOWER);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -6473,11 +6531,11 @@ fmt_power(struct atom *p)
 		return;
 	}
 	if (isimaginaryunit(p)) {
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 			fmt_roman_char('j');
 			return;
 		}
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 			fmt_roman_char('i');
 			return;
 		}
@@ -7838,7 +7896,7 @@ eval_expand(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p2);
 	expand();
@@ -8417,7 +8475,7 @@ eval_factor(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p2);
 	factorpoly();
@@ -10648,7 +10706,7 @@ eval_integral_nib(void)
 	eval();
 	p1 = cddr(p1);
 	if (!iscons(p1)) {
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 		integral();
 		return;
 	}
@@ -10668,7 +10726,7 @@ eval_integral_nib(void)
 			n = pop_integer();
 			if (n == ERR)
 				stop("integral");
-			push_symbol(SYMBOL_X);
+			push_symbol(X_LOWER);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -11522,11 +11580,11 @@ void
 latex_imaginary(struct atom *p)
 {
 	if (isimaginaryunit(p)) {
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 			print_str("j");
 			return;
 		}
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 			print_str("i");
 			return;
 		}
@@ -11817,7 +11875,7 @@ eval_leading(void)
 	eval();
 	p1 = pop();
 	if (p1 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p1);
 	leading();
@@ -12782,11 +12840,11 @@ void
 mml_imaginary(struct atom *p)
 {
 	if (isimaginaryunit(p)) {
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 			mml_mi("j");
 			return;
 		}
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 			mml_mi("i");
 			return;
 		}
@@ -13647,7 +13705,7 @@ order_factor(struct atom *p)
 		return 1;
 	if (p == symbol(EXP1))
 		return 5;
-	if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(SYMBOL_D))
+	if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(D_LOWER))
 		return 6;
 	if (car(p) == symbol(POWER)) {
 		p = cadr(p); // p = base
@@ -13657,7 +13715,7 @@ order_factor(struct atom *p)
 			return 2;
 		if (p == symbol(EXP1))
 			return 5;
-		if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(SYMBOL_D))
+		if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(D_LOWER))
 			return 6;
 	}
 	return 4;
@@ -13909,7 +13967,7 @@ eval_nroots(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p2);
 	p2 = pop();
@@ -14412,9 +14470,19 @@ push_factor(uint32_t *d, int count)
 
 #undef BASE
 #undef EXPO
+#undef R
+#undef X
+#undef Y
+#undef PX
+#undef PY
 
 #define BASE p1
 #define EXPO p2
+#define R p5
+#define X p6
+#define Y p7
+#define PX p8
+#define PY p9
 
 void
 eval_power(void)
@@ -14617,8 +14685,6 @@ simplify_polar_expr(void)
 int
 simplify_polar_term(struct atom *p)
 {
-	int n;
-	double d;
 	if (car(p) != symbol(MULTIPLY))
 		return 0;
 	// exp(i pi) -> -1
@@ -14630,51 +14696,211 @@ simplify_polar_term(struct atom *p)
 		return 0;
 	p = cadr(p); // coeff
 	if (isdouble(p)) {
-		d = p->u.d;
-		if (floor(d) == d) {
-			if (fmod(d, 2.0) == 0.0)
-				push_double(1.0);
-			else
-				push_double(-1.0);
-			return 1;
-		}
-		if (floor(d) + 0.5 == d) {
-			n = (int) (d / 0.5) % 4;
-			if (n == 1 || n == -3) {
-				push_symbol(MULTIPLY);
-				push_double(1.0);
-				push(imaginaryunit);
-				list(3);
-			} else {
-				push_symbol(MULTIPLY);
-				push_double(-1.0);
-				push(imaginaryunit);
-				list(3);
-			}
-			return 1;
-		}
-		return 0;
-	}
-	if (MEQUAL(p->u.q.b, 1)) {
-		if (p->u.q.a[0] % 2 == 0)
-			push_integer(1);
-		else
-			push_integer(-1);
+		if (0.0 < p->u.d && p->u.d < 0.5)
+			return 0;
+		normalize_polar_double_coeff(p->u.d);
 		return 1;
 	}
-	if (MEQUAL(p->u.q.b, 2)) {
-		n = p->u.q.a[0] % 4;
-		if ((n == 1 && p->sign == MPLUS) || (n == 3 && p->sign == MMINUS))
+	// coeff is a rational number
+	if (p->sign == MPLUS) {
+		push(p);
+		push_rational(1, 2);
+		subtract();
+		p0 = pop();
+		if (p0->sign == MMINUS)
+			return 0; // 0 < coeff < 1/2
+	}
+	normalize_polar_rational_coeff(p);
+	return 1;
+}
+
+// normalize exp(coeff i pi)
+
+void
+normalize_polar_rational_coeff(struct atom *coeff)
+{
+	save();
+	// mod 2
+	push(coeff);
+	push_integer(2);
+	smod();
+	p1 = pop();
+	// convert negative rotation to positive
+	if (p1->sign == MMINUS) {
+		push_integer(2);
+		push(p1);
+		add();
+		p1 = pop();
+	}
+	push(p1);
+	push_rational(1, 2);
+	smod();
+	p2 = pop(); // remainder
+	push(p1);
+	push(p2);
+	subtract();
+	push_integer(2);
+	multiply();
+	p3 = pop(); // 2 * quotient
+	switch (p3->u.q.a[0]) {
+	case 0:
+		if (iszero(p2))
+			push_integer(1);
+		else {
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(p2);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+		}
+		break;
+	case 2:
+		if (iszero(p2))
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(p2);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+	case 1:
+		if (iszero(p2))
 			push(imaginaryunit);
 		else {
+			push_symbol(MULTIPLY);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(p2);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+	case 3:
+		if (iszero(p2)) {
 			push_symbol(MULTIPLY);
 			push_integer(-1);
 			push(imaginaryunit);
 			list(3);
+		} else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(p2);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(4);
 		}
-		return 1;
+		break;
 	}
-	return 0;
+	restore();
+}
+
+// normalize exp(coeff i pi)
+
+void
+normalize_polar_double_coeff(double coeff)
+{
+	int q;
+	double r;
+	// mod 2
+	coeff = fmod(coeff, 2.0);
+	// convert negative rotation to positive
+	if (coeff < 0.0)
+		coeff += 2.0;
+	q = 2.0 * coeff; // 2 * quotient
+	r = coeff - q / 2.0; // remainder
+	switch (q) {
+	case 0:
+		if (r == 0.0)
+			push_integer(1);
+		else {
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+		}
+		break;
+	case 2:
+		if (r == 0.0)
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+	case 1:
+		if (r == 0.0)
+			push(imaginaryunit);
+		else {
+			push_symbol(MULTIPLY);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+	case 3:
+		if (r == 0.0) {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			list(3);
+		} else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(4);
+		}
+		break;
+	}
 }
 
 // (a + b)^n -> (a + b) * (a + b) ...
@@ -14880,18 +15106,6 @@ power_imaginary_unit(void)
 	mfree(r);
 	mfree(t);
 }
-
-#undef R
-#undef X
-#undef Y
-#undef PX
-#undef PY
-
-#define R p3
-#define X p4
-#define Y p5
-#define PX p6
-#define PY p7
 
 // BASE is rectangular complex numerical
 
@@ -16605,9 +16819,9 @@ prep_symbol_equals(void)
 		return; // A = A
 	if (iskeyword(p1))
 		return; // keyword like "float"
-	if (p1 == symbol(SYMBOL_I) && isimaginaryunit(p2))
+	if (p1 == symbol(I_LOWER) && isimaginaryunit(p2))
 		return;
-	if (p1 == symbol(SYMBOL_J) && isimaginaryunit(p2))
+	if (p1 == symbol(J_LOWER) && isimaginaryunit(p2))
 		return;
 	push_symbol(SETQ);
 	push(p1);
@@ -16871,11 +17085,11 @@ print_factor(struct atom *p)
 	}
 	if (car(p) == symbol(POWER)) {
 		if (isimaginaryunit(p)) {
-			if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+			if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 				print_char('j');
 				return;
 			}
-			if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+			if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 				print_char('i');
 				return;
 			}
@@ -17262,7 +17476,7 @@ eval_quotient(void)
 	eval();
 	p1 = pop();			// default x
 	if (p1 == symbol(NIL))
-		p1 = symbol(SYMBOL_X);
+		p1 = symbol(X_LOWER);
 	push(p1);
 	divpoly();
 }
@@ -17575,7 +17789,7 @@ eval_roots(void)
 	eval();
 	p2 = pop();
 	if (p2 == symbol(NIL))
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 	else
 		push(p2);
 	p2 = pop();
@@ -17720,6 +17934,283 @@ mini_solve(void)
 	}
 	tos -= n;
 	restore();
+}
+
+#undef PSI
+#undef OPCODE
+#undef PHASE
+#undef T
+#undef N
+#undef KET0
+#undef KET1
+
+#define PSI p3
+#define OPCODE p4
+#define PHASE p5
+#define T p6
+
+#define N PSI->u.tensor->nelem
+#define KET0 PSI->u.tensor->elem[i ^ n]
+#define KET1 PSI->u.tensor->elem[i]
+
+void
+eval_rotate(void)
+{
+	int c, m, n;
+	push(cadr(p1));
+	eval();
+	PSI = pop();
+	if (!istensor(PSI)) {
+		PSI = alloc_tensor(2);
+		PSI->u.tensor->ndim = 1;
+		PSI->u.tensor->dim[0] = 2;
+		push_integer(1);
+		PSI->u.tensor->elem[0] = pop();
+	}
+	p1 = cddr(p1);
+	while (iscons(p1)) {
+		if (length(p1) < 2)
+			stop("rotate");
+		OPCODE = car(p1);
+		push(cadr(p1));
+		eval();
+		c = pop_integer();
+		p1 = cddr(p1);
+		if (OPCODE == symbol(C_LOWER)) {
+			if (length(p1) < 2)
+				stop("rotate");
+			OPCODE = car(p1);
+			push(cadr(p1));
+			eval();
+			n = pop_integer();
+			p1 = cddr(p1);
+		} else
+			n = c;
+		rotate_check(c);
+		rotate_check(n);
+		if (OPCODE == symbol(H_LOWER)) {
+			rotate_h(n);
+			continue;
+		}
+		if (OPCODE == symbol(P_LOWER)) {
+			if (length(p1) < 1)
+				stop("rotate");
+			push(car(p1));
+			p1 = cdr(p1);
+			eval();
+			push(imaginaryunit);
+			multiply();
+			exponential();
+			PHASE = pop();
+			rotate_p(c, n);
+			continue;
+		}
+		if (OPCODE == symbol(Q_LOWER)) {
+			rotate_q(n);
+			continue;
+		}
+		if (OPCODE == symbol(S_LOWER)) {
+			m = n;
+			if (length(p1) < 1)
+				stop("rotate");
+			push(car(p1));
+			p1 = cdr(p1);
+			eval();
+			n = pop_integer();
+			rotate_check(n);
+			rotate_s(m, n);
+			continue;
+		}
+		if (OPCODE == symbol(V_LOWER)) {
+			rotate_v(n);
+			continue;
+		}
+		if (OPCODE == symbol(X_LOWER)) {
+			rotate_x(c, n);
+			continue;
+		}
+		if (OPCODE == symbol(Y_LOWER)) {
+			rotate_y(c, n);
+			continue;
+		}
+		if (OPCODE == symbol(Z_LOWER)) {
+			rotate_z(c, n);
+			continue;
+		}
+		stop("rotate");
+	}
+	push(PSI);
+}
+
+void
+rotate_check(int n)
+{
+	int i;
+	if (n < 0 || n > 11)
+		stop("rotate");
+	n = 1 << (n + 1);
+	if (n > N) {
+		T = alloc_tensor(n);
+		T->u.tensor->ndim = 1;
+		T->u.tensor->dim[0] = n;
+		for (i = 0; i < N; i++)
+			T->u.tensor->elem[i] = PSI->u.tensor->elem[i];
+		PSI = T;
+	}
+}
+
+void
+rotate_h(int n)
+{
+	int i;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if (i & n) {
+			push(KET0);
+			push(KET1);
+			add();
+			push_rational(1, 2);
+			sqrtv();
+			multiply();
+			push(KET0);
+			push(KET1);
+			subtract();
+			push_rational(1, 2);
+			sqrtv();
+			multiply();
+			KET1 = pop();
+			KET0 = pop();
+		}
+}
+
+void
+rotate_p(int c, int n)
+{
+	int i;
+	c = 1 << c;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if ((i & c) && (i & n)) {
+			push(KET1);
+			push(PHASE);
+			multiply();
+			KET1 = pop();
+		}
+}
+
+void
+rotate_s(int m, int n)
+{
+	int i;
+	m = 1 << m;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if ((i & m) && !(i & n)) {
+			push(PSI->u.tensor->elem[i]);
+			push(PSI->u.tensor->elem[i ^ m ^ n]);
+			PSI->u.tensor->elem[i] = pop();
+			PSI->u.tensor->elem[i ^ m ^ n] = pop();
+		}
+}
+
+void
+rotate_x(int c, int n)
+{
+	int i;
+	c = 1 << c;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if ((i & c) && (i & n)) {
+			push(KET0);
+			push(KET1);
+			KET0 = pop();
+			KET1 = pop();
+		}
+}
+
+void
+rotate_y(int c, int n)
+{
+	int i;
+	c = 1 << c;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if ((i & c) && (i & n)) {
+			push(imaginaryunit);
+			negate();
+			push(KET0);
+			multiply();
+			push(imaginaryunit);
+			push(KET1);
+			multiply();
+			KET0 = pop();
+			KET1 = pop();
+		}
+}
+
+void
+rotate_z(int c, int n)
+{
+	int i;
+	c = 1 << c;
+	n = 1 << n;
+	for (i = 0; i < N; i++)
+		if ((i & c) && (i & n)) {
+			push(KET1);
+			negate();
+			KET1 = pop();
+		}
+}
+
+// quantum fourier transform
+
+void
+rotate_q(int n)
+{
+	int i, j;
+	for (i = n; i >= 0; i--) {
+		rotate_h(i);
+		for (j = 0; j < i; j++) {
+			push_rational(1, 2);
+			push_integer(i - j);
+			power();
+			push(imaginaryunit);
+			push_symbol(PI);
+			eval();
+			multiply_factors(3);
+			exponential();
+			PHASE = pop();
+			rotate_p(j, i);
+		}
+	}
+	for (i = 0; i < (n + 1) / 2; i++)
+		rotate_s(i, n - i);
+}
+
+// inverse qft
+
+void
+rotate_v(int n)
+{
+	int i, j;
+	for (i = 0; i < (n + 1) / 2; i++)
+		rotate_s(i, n - i);
+	for (i = 0; i <= n; i++) {
+		for (j = i - 1; j >= 0; j--) {
+			push_rational(1, 2);
+			push_integer(i - j);
+			power();
+			push(imaginaryunit);
+			push_symbol(PI);
+			eval();
+			multiply_factors(3);
+			negate();
+			exponential();
+			PHASE = pop();
+			rotate_p(j, i);
+		}
+		rotate_h(i);
+	}
 }
 
 char *trace1;
@@ -18942,6 +19433,12 @@ simplify_pass2(void)
 	push(p1);
 }
 
+#undef X
+#undef Y
+
+#define X p5
+#define Y p6
+
 void
 eval_sin(void)
 {
@@ -18958,12 +19455,6 @@ ssin(void)
 	restore();
 }
 
-#undef X
-#undef Y
-
-#define X p5
-#define Y p6
-
 void
 ssin_nib(void)
 {
@@ -18971,6 +19462,11 @@ ssin_nib(void)
 	p1 = pop();
 	if (isdouble(p1)) {
 		push_double(sin(p1->u.d));
+		return;
+	}
+	// 0?
+	if (iszero(p1)) {
+		push_integer(0);
 		return;
 	}
 	// sin(z) = -i/2 (exp(i z) - exp(-i z))
@@ -19031,20 +19527,36 @@ ssin_nib(void)
 		power();
 		return;
 	}
-	// multiply by 180/pi
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	// n pi ?
+	push(p1);
 	push_symbol(PI);
 	divide();
-	n = pop_integer();
-	if (n == ERR) {
+	p2 = pop();
+	if (!isnum(p2)) {
 		push_symbol(SIN);
 		push(p1);
 		list(2);
 		return;
 	}
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(sin(p2->u.d * M_PI));
+		return;
+	}
+	push(p2); // nonnegative by sin(-x) = -sin(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+	if (!isinteger(p2)) {
+		push_symbol(SIN);
+		push(p1);
+		list(2);
+		return;
+	}
+	push(p2);
+	push_integer(360);
+	smod();
+	n = pop_integer();
+	switch (n) {
 	case 0:
 	case 180:
 		push_integer(0);
@@ -19464,6 +19976,8 @@ struct se stab[] = {
 	{ "bessely",		BESSELY,	eval_bessely		},
 	{ "binding",		BINDING,	eval_binding		},
 
+	{ "C",			C_UPPER,	NULL			},
+	{ "c",			C_LOWER,	NULL			},
 	{ "ceiling",		CEILING,	eval_ceiling		},
 	{ "check",		CHECK,		eval_check		},
 	{ "circexp",		CIRCEXP,	eval_circexp		},
@@ -19476,7 +19990,8 @@ struct se stab[] = {
 	{ "cos",		COS,		eval_cos		},
 	{ "cosh",		COSH,		eval_cosh		},
 
-	{ "d",			SYMBOL_D,	NULL			},
+	{ "D",			D_UPPER,	NULL			},
+	{ "d",			D_LOWER,	NULL			},
 	{ "defint",		DEFINT,		eval_defint		},
 	{ "deg",		DEGREE,		eval_degree		},
 	{ "denominator",	DENOMINATOR,	eval_denominator	},
@@ -19512,16 +20027,20 @@ struct se stab[] = {
 
 	{ "gcd",		GCD,		eval_gcd		},
 
+	{ "H",			H_UPPER,	NULL			},
+	{ "h",			H_LOWER,	NULL			},
 	{ "hadamard",		HADAMARD,	eval_hadamard		},
 
-	{ "i",			SYMBOL_I,	NULL			},
+	{ "I",			I_UPPER,	NULL			},
+	{ "i",			I_LOWER,	NULL			},
 	{ "imag",		IMAG,		eval_imag		},
 	{ "inner",		INNER,		eval_inner		},
 	{ "integral",		INTEGRAL,	eval_integral		},
 	{ "inv",		INV,		eval_inv		},
 	{ "isprime",		ISPRIME,	eval_isprime		},
 
-	{ "j",			SYMBOL_J,	NULL			},
+	{ "J",			J_UPPER,	NULL			},
+	{ "j",			J_LOWER,	NULL			},
 
 	{ "kronecker",		KRONECKER,	eval_kronecker		},
 
@@ -19549,12 +20068,16 @@ struct se stab[] = {
 	{ "or",			OR,		eval_or			},
 	{ "outer",		OUTER,		eval_outer		},
 
+	{ "p",			P_LOWER,	NULL			},
+	{ "P",			P_UPPER,	NULL			},
 	{ "pi",			PI,		NULL			},
 	{ "polar",		POLAR,		eval_polar		},
 	{ "prime",		PRIME,		eval_prime		},
 	{ "print",		PRINT,		eval_print		},
 	{ "product",		PRODUCT,	eval_product		},
 
+	{ "Q",			Q_UPPER,	NULL			},
+	{ "q",			Q_LOWER,	NULL			},
 	{ "quote",		QUOTE,		eval_quote		},
 	{ "quotient",		QUOTIENT,	eval_quotient		},
 
@@ -19563,9 +20086,11 @@ struct se stab[] = {
 	{ "real",		REAL,		eval_real		},
 	{ "rect",		RECTF,		eval_rect		},
 	{ "roots",		ROOTS,		eval_roots		},
+	{ "rotate",		ROTATE,		eval_rotate		},
 	{ "run",		RUN,		eval_run		},
 
-	{ "s",			SYMBOL_S,	NULL			},
+	{ "S",			S_UPPER,	NULL			},
+	{ "s",			S_LOWER,	NULL			},
 	{ "sgn",		SGN,		eval_sgn		},
 	{ "simplify",		SIMPLIFY,	eval_simplify		},
 	{ "sin",		SIN,		eval_sin		},
@@ -19577,7 +20102,8 @@ struct se stab[] = {
 	{ "subst",		SUBST,		eval_subst		},
 	{ "sum",		SUM,		eval_sum		},
 
-	{ "t",			SYMBOL_T,	NULL			},
+	{ "T",			T_UPPER,	NULL			},
+	{ "t",			T_LOWER,	NULL			},
 	{ "tan",		TAN,		eval_tan		},
 	{ "tanh",		TANH,		eval_tanh		},
 	{ "test",		TEST,		eval_test		},
@@ -19590,13 +20116,24 @@ struct se stab[] = {
 	{ "transpose",		TRANSPOSE,	eval_transpose		},
 	{ "tty",		TTY,		NULL			},
 
+	{ "U",			U_UPPER,	NULL			},
+	{ "u",			U_LOWER,	NULL			},
 	{ "unit",		UNIT,		eval_unit		},
 
-	{ "x",			SYMBOL_X,	NULL			},
+	{ "V",			V_UPPER,	NULL			},
+	{ "v",			V_LOWER,	NULL			},
 
-	{ "y",			SYMBOL_Y,	NULL			},
+	{ "W",			W_UPPER,	NULL			},
+	{ "w",			W_LOWER,	NULL			},
 
-	{ "z",			SYMBOL_Z,	NULL			},
+	{ "X",			X_UPPER,	NULL			},
+	{ "x",			X_LOWER,	NULL			},
+
+	{ "Y",			Y_UPPER,	NULL			},
+	{ "y",			Y_LOWER,	NULL			},
+
+	{ "Z",			Z_UPPER,	NULL			},
+	{ "z",			Z_LOWER,	NULL			},
 	{ "zero",		ZERO,		eval_zero		},
 
 	{ "+",			ADD,		eval_add		},
@@ -19684,6 +20221,11 @@ stan_nib(void)
 		push_double(tan(p1->u.d));
 		return;
 	}
+	// 0?
+	if (iszero(p1)) {
+		push_integer(0);
+		return;
+	}
 	if (isdoublez(p1)) {
 		push(p1);
 		ssin();
@@ -19710,20 +20252,36 @@ stan_nib(void)
 		divide();
 		return;
 	}
-	// multiply by 180/pi
-	push(p1); // nonnegative by code above
-	push_integer(180);
-	multiply();
+	// n pi ?
+	push(p1);
 	push_symbol(PI);
 	divide();
-	n = pop_integer();
-	if (n == ERR) {
+	p2 = pop();
+	if (!isnum(p2)) {
 		push_symbol(TAN);
 		push(p1);
 		list(2);
 		return;
 	}
-	switch (n % 360) {
+	if (isdouble(p2)) {
+		push_double(tan(p2->u.d * M_PI));
+		return;
+	}
+	push(p2); // nonnegative by tan(-x) = -tan(x) above
+	push_integer(180);
+	multiply();
+	p2 = pop();
+	if (!isinteger(p2)) {
+		push_symbol(TAN);
+		push(p1);
+		list(2);
+		return;
+	}
+	push(p2);
+	push_integer(360);
+	smod();
+	n = pop_integer();
+	switch (n) {
 	case 0:
 	case 180:
 		push_integer(0);
@@ -20632,7 +21190,7 @@ eval_user_function(void)
 	FUNC_DEFN = get_usrfunc(FUNC_NAME);
 	// undefined function?
 	if (FUNC_DEFN == symbol(NIL)) {
-		if (FUNC_NAME == symbol(SYMBOL_D)) {
+		if (FUNC_NAME == symbol(D_LOWER)) {
 			eval_derivative();
 			return;
 		}
