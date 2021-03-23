@@ -9,17 +9,27 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 
-w1=2+i
-w1
-w3=(2+i)* (-1/2+ sqrt(3)/2 i)
-w2=(2+i)* (-1/2- sqrt(3)/2 i)
+w=2+3i
+z=3-5i
+u = u1 + u2*i
+v = v1 + v2*i
 
-trace=1     -- trace=1=ON shows results in black
+ip(u,v) = real(u*conj(v))   -- inner product
+op(u,v) = imag(conj(u)*v)   -- outer product
 
-w1^3
-w2^3
-w3^3
+--a:
+ip(w,z)
+ip(z,z)
 
+op(w,z)
+op(w,w)
+
+-- b:
+real(u*conj(v))
+ip(u,v)
+
+-- c:
+ip(u, r*i*u)
 
 </textarea>
 </td><td>

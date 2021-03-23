@@ -9,17 +9,26 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 
-w1=2+i
-w1
-w3=(2+i)* (-1/2+ sqrt(3)/2 i)
-w2=(2+i)* (-1/2- sqrt(3)/2 i)
+z = 3+2i
 
-trace=1     -- trace=1=ON shows results in black
+-- a.:
+mag(3+2i)
+arg(3.+2i)  -- gives back decimal approximation
 
-w1^3
-w2^3
-w3^3
+phi = arg(3+2i)
+phi
+            --   phi/2*pi = alpha/360  
+            -- i.e. alpha = phi*180/pi
+            -- the angle measured in degrees:
 
+alpha=float(phi*180/pi)
+alpha       -- approx= 33.7°
+
+-- b:
+polar(3+2i)
+
+-- c.:
+rect(polar(3+2i))
 
 </textarea>
 </td><td>
