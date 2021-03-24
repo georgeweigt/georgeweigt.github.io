@@ -781,16 +781,29 @@ arg()
 
 	push(p1);
 	numerator();
-	arg_nib();
+	arg1();
 
 	push(p1);
 	denominator();
-	arg_nib();
+	arg1();
 
 	subtract();
 }
+
 function
-arg_nib()
+arg1()
+{
+	var p1;
+	arg1_nib();
+	p1 = pop();
+	if (lengthf(p1) == 3 && car(p1) == symbol(MULTIPLY) && isdouble(cadr(p1)) && caddr(p1) == symbol(PI))
+		push_double(cadr(p1).d * Math.PI);
+	else
+		push(p1);
+}
+
+function
+arg1_nib()
 {
 	var h, p1, RE, IM;
 

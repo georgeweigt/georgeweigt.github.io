@@ -1,4 +1,4 @@
-/* March 24, 2021
+/* March 19, 2021
 
 To build and run:
 
@@ -2292,6 +2292,11 @@ arg1(void)
 {
 	save();
 	arg1_nib();
+	p1 = pop();
+	if (length(p1) == 3 && car(p1) == symbol(MULTIPLY) && isdouble(cadr(p1)) && caddr(p1) == symbol(PI))
+		push_double(cadr(p1)->u.d * M_PI);
+	else
+		push(p1);
 	restore();
 }
 
