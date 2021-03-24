@@ -1,4 +1,4 @@
-/* March 19, 2021
+/* March 24, 2021
 
 To build and run:
 
@@ -554,6 +554,7 @@ int count_denominators(struct atom *p);
 int count_numerators(struct atom *p);
 int isdenominator(struct atom *p);
 int isnumerator(struct atom *p);
+int isfloatexpr(struct atom *p);
 void eval_cos(void);
 void scos(void);
 void scos_nib(void);
@@ -2293,10 +2294,9 @@ arg1(void)
 	save();
 	arg1_nib();
 	p1 = pop();
-	if (length(p1) == 3 && car(p1) == symbol(MULTIPLY) && isdouble(cadr(p1)) && caddr(p1) == symbol(PI))
-		push_double(cadr(p1)->u.d * M_PI);
-	else
-		push(p1);
+	push(p1);
+	if (iscons(p1) && isfloatexpr(p1))
+		floatv();
 	restore();
 }
 
@@ -4910,6 +4910,22 @@ isnumerator(struct atom *p)
 		return 0;
 	else
 		return 1;
+}
+
+int
+isfloatexpr(struct atom *p)
+{
+	if (isdouble(p))
+		return 1;
+	if (iscons(p)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (isfloatexpr(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+	}
+	return 0;
 }
 
 #undef X
