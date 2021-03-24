@@ -554,7 +554,7 @@ int count_denominators(struct atom *p);
 int count_numerators(struct atom *p);
 int isdenominator(struct atom *p);
 int isnumerator(struct atom *p);
-int isfloatexpr(struct atom *p);
+int isdoublesomewhere(struct atom *p);
 void eval_cos(void);
 void scos(void);
 void scos_nib(void);
@@ -2286,6 +2286,10 @@ arg_nib(void)
 	denominator();
 	arg1();
 	subtract();
+	p1 = pop();
+	push(p1);
+	if (iscons(p1) && isdoublesomewhere(p1))
+		floatv();
 }
 
 void
@@ -2293,10 +2297,6 @@ arg1(void)
 {
 	save();
 	arg1_nib();
-	p1 = pop();
-	push(p1);
-	if (iscons(p1) && isfloatexpr(p1))
-		floatv();
 	restore();
 }
 
@@ -4913,14 +4913,14 @@ isnumerator(struct atom *p)
 }
 
 int
-isfloatexpr(struct atom *p)
+isdoublesomewhere(struct atom *p)
 {
 	if (isdouble(p))
 		return 1;
 	if (iscons(p)) {
 		p = cdr(p);
 		while (iscons(p)) {
-			if (isfloatexpr(car(p)))
+			if (isdoublesomewhere(car(p)))
 				return 1;
 			p = cdr(p);
 		}
