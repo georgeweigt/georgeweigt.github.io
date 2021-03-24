@@ -1,4 +1,4 @@
-/* March 23, 2021
+/* March 24, 2021
 
 To build and run:
 
@@ -14288,7 +14288,15 @@ polar_nib(void)
 	push(imaginaryunit);
 	push(p1);
 	arg();
-	multiply();
+	p2 = pop();
+	if (isdouble(p2)) {
+		push_double(p2->u.d / M_PI);
+		push_symbol(PI);
+		multiply_factors(3);
+	} else {
+		push(p2);
+		multiply_factors(2);
+	}
 	exponential();
 	multiply();
 }
@@ -14742,7 +14750,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 	subtract();
 	push_integer(2);
 	multiply();
-	n = pop_integer(); // 2 * quotient
+	n = pop_integer(); // number of 1/4 turns
 	switch (n) {
 	case 0:
 		if (iszero(p2))
@@ -14822,16 +14830,15 @@ normalize_polar_rational_coeff(struct atom *coeff)
 void
 normalize_polar_double_coeff(double coeff)
 {
-	int q;
-	double r;
-	// mod 2
+	double n, r;
+	// coeff = coeff mod 2
 	coeff = fmod(coeff, 2.0);
 	// convert negative rotation to positive
 	if (coeff < 0.0)
 		coeff += 2.0;
-	q = 2.0 * coeff; // 2 * quotient
-	r = coeff - q / 2.0; // remainder
-	switch (q) {
+	n = floor(2.0 * coeff); // number of 1/4 turns
+	r = coeff - n / 2.0; // remainder
+	switch ((int) n) {
 	case 0:
 		if (r == 0.0)
 			push_integer(1);
