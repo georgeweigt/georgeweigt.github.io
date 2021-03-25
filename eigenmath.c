@@ -554,12 +554,12 @@ int isdenominator(struct atom *p);
 int isnumerator(struct atom *p);
 int isdoublesomewhere(struct atom *p);
 void eval_cos(void);
-void scos(void);
-void scos_nib(void);
-void scos_of_sum(void);
+void cosfunc(void);
+void cosfunc_nib(void);
+void cosfunc_sum(void);
 void eval_cosh(void);
-void scosh(void);
-void scosh_nib(void);
+void coshfunc(void);
+void coshfunc_nib(void);
 void eval_defint(void);
 void eval_defint_nib(void);
 void eval_degree(void);
@@ -1042,12 +1042,12 @@ void simplify_nib(void);
 void simplify_pass1(void);
 void simplify_pass2(void);
 void eval_sin(void);
-void ssin(void);
-void ssin_nib(void);
-void ssin_of_sum(void);
+void sinfunc(void);
+void sinfunc_nib(void);
+void sinfunc_sum(void);
 void eval_sinh(void);
-void ssinh(void);
-void ssinh_nib(void);
+void sinhfunc(void);
+void sinhfunc_nib(void);
 void push(struct atom *p);
 struct atom * pop(void);
 void save(void);
@@ -1066,12 +1066,12 @@ struct atom * get_usrfunc(struct atom *p);
 void init_symbol_table(void);
 void clear_symbols(void);
 void eval_tan(void);
-void stan(void);
-void stan_nib(void);
-void stan_of_sum(void);
+void tanfunc(void);
+void tanfunc_nib(void);
+void tanfunc_sum(void);
 void eval_tanh(void);
-void stanh(void);
-void stanh_nib(void);
+void tanhfunc(void);
+void tanhfunc_nib(void);
 void eval_tensor(void);
 void promote_tensor(void);
 void promote_tensor_nib(void);
@@ -2486,7 +2486,7 @@ besselj_nib(void)
 			push_rational(1, 2);
 			power();
 			push(X);
-			ssin();
+			sinfunc();
 			multiply();
 			return;
 		}
@@ -2500,7 +2500,7 @@ besselj_nib(void)
 			push_rational(1, 2);
 			power();
 			push(X);
-			scos();
+			cosfunc();
 			multiply();
 			return;
 		}
@@ -4938,19 +4938,19 @@ eval_cos(void)
 {
 	push(cadr(p1));
 	eval();
-	scos();
+	cosfunc();
 }
 
 void
-scos(void)
+cosfunc(void)
 {
 	save();
-	scos_nib();
+	cosfunc_nib();
 	restore();
 }
 
 void
-scos_nib(void)
+cosfunc_nib(void)
 {
 	int n;
 	p1 = pop();
@@ -4983,11 +4983,11 @@ scos_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		scos();
+		cosfunc();
 		return;
 	}
 	if (car(p1) == symbol(ADD)) {
-		scos_of_sum();
+		cosfunc_sum();
 		return;
 	}
 	// cos(arctan(y,x)) = x (x^2 + y^2)^(-1/2)
@@ -5109,7 +5109,7 @@ scos_nib(void)
 // cos(x + n/2 pi) = cos(x) cos(n/2 pi) - sin(x) sin(n/2 pi)
 
 void
-scos_of_sum(void)
+cosfunc_sum(void)
 {
 	int n;
 	p2 = cdr(p1);
@@ -5126,14 +5126,14 @@ scos_of_sum(void)
 			subtract();
 			p3 = pop();
 			push(p3);
-			scos();
+			cosfunc();
 			push(car(p2));
-			scos();
+			cosfunc();
 			multiply();
 			push(p3);
-			ssin();
+			sinfunc();
 			push(car(p2));
-			ssin();
+			sinfunc();
 			multiply();
 			subtract();
 			return;
@@ -5150,19 +5150,19 @@ eval_cosh(void)
 {
 	push(cadr(p1));
 	eval();
-	scosh();
+	coshfunc();
 }
 
 void
-scosh(void)
+coshfunc(void)
 {
 	save();
-	scosh_nib();
+	coshfunc_nib();
 	restore();
 }
 
 void
-scosh_nib(void)
+coshfunc_nib(void)
 {
 	p1 = pop();
 	// cosh(z) = 1/2 (exp(z) + exp(-z))
@@ -5185,7 +5185,7 @@ scosh_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		scosh();
+		coshfunc();
 		return;
 	}
 	if (car(p1) == symbol(ARCCOSH)) {
@@ -5706,7 +5706,7 @@ dsin(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	scos();
+	cosfunc();
 	multiply();
 }
 
@@ -5717,7 +5717,7 @@ dcos(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	ssin();
+	sinfunc();
 	multiply();
 	negate();
 }
@@ -5729,7 +5729,7 @@ dtan(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	scos();
+	cosfunc();
 	push_integer(-2);
 	power();
 	multiply();
@@ -5790,7 +5790,7 @@ dsinh(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	scosh();
+	coshfunc();
 	multiply();
 }
 
@@ -5801,7 +5801,7 @@ dcosh(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	ssinh();
+	sinhfunc();
 	multiply();
 }
 
@@ -5812,7 +5812,7 @@ dtanh(void)
 	push(p2);
 	derivative();
 	push(cadr(p1));
-	scosh();
+	coshfunc();
 	push_integer(-2);
 	power();
 	multiply();
@@ -15127,10 +15127,10 @@ power_natural_number(void)
 		}
 		push_double(exp(x));
 		push_double(y);
-		scos();
+		cosfunc();
 		push(imaginaryunit);
 		push_double(y);
-		ssin();
+		sinfunc();
 		multiply();
 		add();
 		multiply();
@@ -17726,10 +17726,10 @@ rect_nib(void)
 	arg();
 	p2 = pop();
 	push(p2);
-	scos();
+	cosfunc();
 	push(imaginaryunit);
 	push(p2);
-	ssin();
+	sinfunc();
 	multiply();
 	add();
 	multiply();
@@ -19433,19 +19433,19 @@ eval_sin(void)
 {
 	push(cadr(p1));
 	eval();
-	ssin();
+	sinfunc();
 }
 
 void
-ssin(void)
+sinfunc(void)
 {
 	save();
-	ssin_nib();
+	sinfunc_nib();
 	restore();
 }
 
 void
-ssin_nib(void)
+sinfunc_nib(void)
 {
 	int n;
 	p1 = pop();
@@ -19480,12 +19480,12 @@ ssin_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		ssin();
+		sinfunc();
 		negate();
 		return;
 	}
 	if (car(p1) == symbol(ADD)) {
-		ssin_of_sum();
+		sinfunc_sum();
 		return;
 	}
 	// sin(arctan(y,x)) = y (x^2 + y^2)^(-1/2)
@@ -19607,7 +19607,7 @@ ssin_nib(void)
 // sin(x + n/2 pi) = sin(x) cos(n/2 pi) + cos(x) sin(n/2 pi)
 
 void
-ssin_of_sum(void)
+sinfunc_sum(void)
 {
 	int n;
 	p2 = cdr(p1);
@@ -19624,14 +19624,14 @@ ssin_of_sum(void)
 			subtract();
 			p3 = pop();
 			push(p3);
-			ssin();
+			sinfunc();
 			push(car(p2));
-			scos();
+			cosfunc();
 			multiply();
 			push(p3);
-			scos();
+			cosfunc();
 			push(car(p2));
-			ssin();
+			sinfunc();
 			multiply();
 			add();
 			return;
@@ -19648,19 +19648,19 @@ eval_sinh(void)
 {
 	push(cadr(p1));
 	eval();
-	ssinh();
+	sinhfunc();
 }
 
 void
-ssinh(void)
+sinhfunc(void)
 {
 	save();
-	ssinh_nib();
+	sinhfunc_nib();
 	restore();
 }
 
 void
-ssinh_nib(void)
+sinhfunc_nib(void)
 {
 	p1 = pop();
 	// sinh(z) = 1/2 (exp(z) - exp(-z))
@@ -19683,7 +19683,7 @@ ssinh_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		ssinh();
+		sinhfunc();
 		negate();
 		return;
 	}
@@ -20190,19 +20190,19 @@ eval_tan(void)
 {
 	push(cadr(p1));
 	eval();
-	stan();
+	tanfunc();
 }
 
 void
-stan(void)
+tanfunc(void)
 {
 	save();
-	stan_nib();
+	tanfunc_nib();
 	restore();
 }
 
 void
-stan_nib(void)
+tanfunc_nib(void)
 {
 	int n;
 	p1 = pop();
@@ -20217,9 +20217,9 @@ stan_nib(void)
 	}
 	if (isdoublez(p1)) {
 		push(p1);
-		ssin();
+		sinfunc();
 		push(p1);
-		scos();
+		cosfunc();
 		divide();
 		return;
 	}
@@ -20227,12 +20227,12 @@ stan_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		stan();
+		tanfunc();
 		negate();
 		return;
 	}
 	if (car(p1) == symbol(ADD)) {
-		stan_of_sum();
+		tanfunc_sum();
 		return;
 	}
 	if (car(p1) == symbol(ARCTAN)) {
@@ -20323,7 +20323,7 @@ stan_nib(void)
 // tan(x + n pi) = tan(x)
 
 void
-stan_of_sum(void)
+tanfunc_sum(void)
 {
 	int n;
 	p2 = cdr(p1);
@@ -20336,7 +20336,7 @@ stan_of_sum(void)
 			push(p1);
 			push(car(p2));
 			subtract();
-			stan();
+			tanfunc();
 			return;
 		}
 		p2 = cdr(p2);
@@ -20351,26 +20351,26 @@ eval_tanh(void)
 {
 	push(cadr(p1));
 	eval();
-	stanh();
+	tanhfunc();
 }
 
 void
-stanh(void)
+tanhfunc(void)
 {
 	save();
-	stanh_nib();
+	tanhfunc_nib();
 	restore();
 }
 
 void
-stanh_nib(void)
+tanhfunc_nib(void)
 {
 	p1 = pop();
 	if (isdouble(p1) || isdoublez(p1)) {
 		push(p1);
-		ssinh();
+		sinhfunc();
 		push(p1);
-		scosh();
+		coshfunc();
 		divide();
 		return;
 	}
@@ -20382,7 +20382,7 @@ stanh_nib(void)
 	if (isnegative(p1)) {
 		push(p1);
 		negate();
-		stanh();
+		tanhfunc();
 		negate();
 		return;
 	}
