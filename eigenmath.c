@@ -1,4 +1,4 @@
-/* March 24, 2021
+/* March 25, 2021
 
 To build and run:
 
@@ -199,10 +199,11 @@ struct atom {
 #define I_UPPER		(8 * NSYM + 0)
 #define I_LOWER		(8 * NSYM + 1)
 #define IMAG		(8 * NSYM + 2)
-#define INNER		(8 * NSYM + 3)
-#define INTEGRAL	(8 * NSYM + 4)
-#define INV		(8 * NSYM + 5)
-#define ISPRIME		(8 * NSYM + 6)
+#define INFIXFORM	(8 * NSYM + 3)
+#define INNER		(8 * NSYM + 4)
+#define INTEGRAL	(8 * NSYM + 5)
+#define INV		(8 * NSYM + 6)
+#define ISPRIME		(8 * NSYM + 7)
 
 #define J_UPPER		(9 * NSYM + 0)
 #define J_LOWER		(9 * NSYM + 1)
@@ -213,8 +214,7 @@ struct atom {
 #define LATEX		(11 * NSYM + 1)
 #define LCM		(11 * NSYM + 2)
 #define LEADING		(11 * NSYM + 3)
-#define LISP		(11 * NSYM + 4)
-#define LOG		(11 * NSYM + 5)
+#define LOG		(11 * NSYM + 4)
 
 #define MAG		(12 * NSYM + 0)
 #define MATHJAX		(12 * NSYM + 1)
@@ -237,9 +237,10 @@ struct atom {
 #define P_LOWER		(15 * NSYM + 1)
 #define PI		(15 * NSYM + 2)
 #define POLAR		(15 * NSYM + 3)
-#define PRIME		(15 * NSYM + 4)
-#define PRINT		(15 * NSYM + 5)
-#define PRODUCT		(15 * NSYM + 6)
+#define PREFIXFORM	(15 * NSYM + 4)
+#define PRIME		(15 * NSYM + 5)
+#define PRINT		(15 * NSYM + 6)
+#define PRODUCT		(15 * NSYM + 7)
 
 #define Q_UPPER		(16 * NSYM + 0)
 #define Q_LOWER		(16 * NSYM + 1)
@@ -263,9 +264,8 @@ struct atom {
 #define SQRT		(18 * NSYM + 6)
 #define STATUS		(18 * NSYM + 7)
 #define STOP		(18 * NSYM + 8)
-#define STRING		(18 * NSYM + 9)
-#define SUBST		(18 * NSYM + 10)
-#define SUM		(18 * NSYM + 11)
+#define SUBST		(18 * NSYM + 9)
+#define SUM		(18 * NSYM + 10)
 
 #define T_UPPER		(19 * NSYM + 0)
 #define T_LOWER		(19 * NSYM + 1)
@@ -742,6 +742,29 @@ void imag_nib(void);
 void eval_index(void);
 void indexf(int k);
 void indexf_nib(int k);
+void eval_infixform(void);
+void print_infixform(struct atom *p);
+void infixform(struct atom *p);
+void infixform_subexpr(struct atom *p);
+void infixform_expr(struct atom *p);
+void infixform_expr_nib(struct atom *p);
+void infixform_term(struct atom *p);
+void infixform_term_nib(struct atom *p);
+void infixform_numerators(struct atom *p);
+void infixform_denominators(struct atom *p);
+void infixform_factor(struct atom *p);
+void infixform_power(struct atom *p);
+void infixform_reciprocal(struct atom *p);
+void infixform_factorial(struct atom *p);
+void infixform_index(struct atom *p);
+void infixform_arglist(struct atom *p);
+void infixform_rational(struct atom *p);
+void infixform_double(struct atom *p);
+void infixform_base(struct atom *p);
+void infixform_numeric_token(struct atom *p);
+void infixform_numeric_exponent(struct atom *p);
+void infixform_tensor(struct atom *p);
+void infixform_tensor_nib(struct atom *p, int j, int *k);
 void eval_inner(void);
 void inner(void);
 void inner_nib(void);
@@ -932,35 +955,15 @@ void power_numbers(void);
 void power_rationals(void);
 void power_rationals_nib(void);
 void sqrtv(void);
+void eval_prefixform(void);
+void print_prefixform(struct atom *p);
+void prefixform(struct atom *p);
 void eval_prime(void);
 void prime(void);
 void eval_print(void);
 void print_result(void);
 void print_result_nib(void);
 void prep_symbol_equals(void);
-void eval_string(void);
-void print(struct atom *p);
-void print_nib(struct atom *p);
-void print_subexpr(struct atom *p);
-void print_expr(struct atom *p);
-int sign_of_term(struct atom *p);
-void print_a_over_b(struct atom *p);
-void print_term(struct atom *p);
-void print_denom(struct atom *p, int d);
-void print_factor(struct atom *p);
-void print_index_function(struct atom *p);
-void print_factorial_function(struct atom *p);
-void print_tensor(struct atom *p);
-void print_tensor_inner(struct atom *p, int j, int *k);
-void print_function_definition(struct atom *p);
-void print_arg_list(struct atom *p);
-void print_multiply_sign(void);
-int is_denominator(struct atom *p);
-int any_denominators(struct atom *p);
-void print_number(struct atom *p);
-void eval_lisp(void);
-void print_lisp(struct atom *p);
-void print_lisp_nib(struct atom *p);
 void print_str(char *s);
 void print_char(int c);
 void eval_product(void);
@@ -6183,7 +6186,6 @@ display(void)
 		putchar('\n');
 	}
 	free(fmt_buf);
-	putchar('\n'); // double space
 	restore();
 }
 
@@ -6875,7 +6877,7 @@ fmt_term_nib(struct atom *p)
 	}
 	// no denominators
 	p = cdr(p);
-	if (isminusone(car(p)) && !isdouble(car(p)))
+	if (isminusone(car(p)))
 		p = cdr(p); // sign already emitted
 	fmt_factor(car(p));
 	p = cdr(p);
@@ -9932,6 +9934,483 @@ indexf_nib(int k)
 		p2->u.tensor->dim[i - 1] = p1->u.tensor->dim[i];
 	p2->u.tensor->ndim = n - 1;
 	push(p2);
+}
+
+void
+eval_infixform(void)
+{
+	push(cadr(p1));
+	eval();
+	p1 = pop();
+	outbuf_index = 0;
+	infixform(p1);
+	print_char('\0');
+	push_string(outbuf);
+}
+
+// for tty mode and debugging
+
+void
+print_infixform(struct atom *p)
+{
+	outbuf_index = 0;
+	infixform(p);
+	print_char('\n');
+	print_char('\0');
+	printbuf(outbuf, BLACK);
+}
+
+void
+infixform(struct atom *p)
+{
+	if (car(p) == symbol(SETQ)) {
+		infixform_expr(cadr(p));
+		print_str(" = ");
+		infixform_expr(caddr(p));
+	} else
+		infixform_expr(p);
+}
+
+void
+infixform_subexpr(struct atom *p)
+{
+	print_char('(');
+	infixform_expr(p);
+	print_char(')');
+}
+
+void
+infixform_expr(struct atom *p)
+{
+	if (isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p))))
+		print_char('-');
+	if (car(p) == symbol(ADD))
+		infixform_expr_nib(p);
+	else
+		infixform_term(p);
+}
+
+void
+infixform_expr_nib(struct atom *p)
+{
+	infixform_term(cadr(p));
+	p = cddr(p);
+	while (iscons(p)) {
+		if (isnegativeterm(car(p)))
+			print_str(" - ");
+		else
+			print_str(" + ");
+		infixform_term(car(p));
+		p = cdr(p);
+	}
+}
+
+void
+infixform_term(struct atom *p)
+{
+	if (car(p) == symbol(MULTIPLY))
+		infixform_term_nib(p);
+	else
+		infixform_factor(p);
+}
+
+void
+infixform_term_nib(struct atom *p)
+{
+	if (find_denominator(p)) {
+		infixform_numerators(p);
+		print_str(" / ");
+		infixform_denominators(p);
+		return;
+	}
+	// no denominators
+	p = cdr(p);
+	if (isminusone(car(p)))
+		p = cdr(p); // sign already emitted
+	infixform_factor(car(p));
+	p = cdr(p);
+	while (iscons(p)) {
+		print_char(' '); // space in between factors
+		infixform_factor(car(p));
+		p = cdr(p);
+	}
+}
+
+void
+infixform_numerators(struct atom *p)
+{
+	int k;
+	char *s;
+	struct atom *q;
+	k = 0;
+	p = cdr(p);
+	while (iscons(p)) {
+		q = car(p);
+		p = cdr(p);
+		if (!isnumerator(q))
+			continue;
+		if (++k > 1)
+			print_char(' '); // space in between factors
+		if (isrational(q)) {
+			s = mstr(q->u.q.a);
+			print_str(s);
+			continue;
+		}
+		infixform_factor(q);
+	}
+	if (k == 0)
+		print_char('1');
+}
+
+void
+infixform_denominators(struct atom *p)
+{
+	int k, n;
+	char *s;
+	struct atom *q;
+	n = count_denominators(p);
+	if (n > 1)
+		print_char('(');
+	k = 0;
+	p = cdr(p);
+	while (iscons(p)) {
+		q = car(p);
+		p = cdr(p);
+		if (!isdenominator(q))
+			continue;
+		if (++k > 1)
+			print_char(' '); // space in between factors
+		if (isrational(q)) {
+			s = mstr(q->u.q.b);
+			print_str(s);
+			continue;
+		}
+		if (isminusone(caddr(q))) {
+			q = cadr(q);
+			infixform_factor(q);
+		} else {
+			infixform_base(cadr(q));
+			print_char('^');
+			infixform_numeric_exponent(caddr(q)); // sign is not emitted
+		}
+	}
+	if (n > 1)
+		print_char(')');
+}
+
+void
+infixform_factor(struct atom *p)
+{
+	if (isrational(p)) {
+		infixform_rational(p);
+		return;
+	}
+	if (isdouble(p)) {
+		infixform_double(p);
+		return;
+	}
+	if (issymbol(p)) {
+		if (p == symbol(EXP1))
+			print_str("exp(1)");
+		else
+			print_str(printname(p));
+		return;
+	}
+	if (isstr(p)) {
+		print_str(p->u.str);
+		return;
+	}
+	if (istensor(p)) {
+		infixform_tensor(p);
+		return;
+	}
+	if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY)) {
+		infixform_subexpr(p);
+		return;
+	}
+	if (car(p) == symbol(POWER)) {
+		infixform_power(p);
+		return;
+	}
+	if (car(p) == symbol(FACTORIAL)) {
+		infixform_factorial(p);
+		return;
+	}
+	if (car(p) == symbol(INDEX)) {
+		infixform_index(p);
+		return;
+	}
+	// use d if for derivative if d not defined
+	if (car(p) == symbol(DERIVATIVE) && get_usrfunc(symbol(D_LOWER)) == symbol(NIL)) {
+		print_char('d');
+		infixform_arglist(p);
+		return;
+	}
+	if (car(p) == symbol(SETQ)) {
+		infixform_expr(cadr(p));
+		print_str(" = ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	if (car(p) == symbol(TESTEQ)) {
+		infixform_expr(cadr(p));
+		print_str(" == ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	if (car(p) == symbol(TESTGE)) {
+		infixform_expr(cadr(p));
+		print_str(" >= ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	if (car(p) == symbol(TESTGT)) {
+		infixform_expr(cadr(p));
+		print_str(" > ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	if (car(p) == symbol(TESTLE)) {
+		infixform_expr(cadr(p));
+		print_str(" <= ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	if (car(p) == symbol(TESTLT)) {
+		infixform_expr(cadr(p));
+		print_str(" < ");
+		infixform_expr(caddr(p));
+		return;
+	}
+	// other function
+	if (iscons(p)) {
+		infixform_base(car(p));
+		infixform_arglist(p);
+		return;
+	}
+	print_str(" ? ");
+}
+
+void
+infixform_power(struct atom *p)
+{
+	if (cadr(p) == symbol(EXP1)) {
+		print_str("exp(");
+		infixform_expr(caddr(p));
+		print_char(')');
+		return;
+	}
+	if (isimaginaryunit(p)) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
+			print_char('j');
+			return;
+		}
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
+			print_char('i');
+			return;
+		}
+	}
+	if (isnegativenumber(caddr(p))) {
+		infixform_reciprocal(p);
+		return;
+	}
+	infixform_base(cadr(p));
+	print_char('^');
+	p = caddr(p); // p now points to exponent
+	if (isnum(p))
+		infixform_numeric_exponent(p);
+	else if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY) || car(p) == symbol(POWER) || car(p) == symbol(FACTORIAL))
+		infixform_subexpr(p);
+	else
+		infixform_expr(p);
+}
+
+// p = y^x where x is a negative number
+
+void
+infixform_reciprocal(struct atom *p)
+{
+	print_str("1 / "); // numerator
+	if (isminusone(caddr(p))) {
+		p = cadr(p);
+		infixform_factor(p);
+	} else {
+		infixform_base(cadr(p));
+		print_char('^');
+		infixform_numeric_exponent(caddr(p)); // sign is not emitted
+	}
+}
+
+void
+infixform_factorial(struct atom *p)
+{
+	infixform_base(cadr(p));
+	print_char('!');
+}
+
+void
+infixform_index(struct atom *p)
+{
+	infixform_base(cadr(p));
+	print_char('[');
+	p = cddr(p);
+	if (iscons(p)) {
+		infixform_expr(car(p));
+		p = cdr(p);
+		while (iscons(p)) {
+			print_char(',');
+			infixform_expr(car(p));
+			p = cdr(p);
+		}
+	}
+	print_char(']');
+}
+
+void
+infixform_arglist(struct atom *p)
+{
+	print_char('(');
+	p = cdr(p);
+	if (iscons(p)) {
+		infixform_expr(car(p));
+		p = cdr(p);
+		while (iscons(p)) {
+			print_char(',');
+			infixform_expr(car(p));
+			p = cdr(p);
+		}
+	}
+	print_char(')');
+}
+
+// sign is not emitted
+
+void
+infixform_rational(struct atom *p)
+{
+	char *s;
+	s = mstr(p->u.q.a);
+	print_str(s);
+	s = mstr(p->u.q.b);
+	if (strcmp(s, "1") == 0)
+		return;
+	print_char('/');
+	print_str(s);
+}
+
+// sign is not emitted
+
+void
+infixform_double(struct atom *p)
+{
+	char buf[24], *s;
+	sprintf(buf, "%g", fabs(p->u.d));
+	s = buf;
+	while (*s && *s != 'E' && *s != 'e')
+		print_char(*s++);
+	if (!*s)
+		return;
+	s++;
+	print_str(" 10^");
+	if (*s == '-') {
+		print_str("(-");
+		s++;
+		while (*s == '0')
+			s++; // skip leading zeroes
+		print_str(s);
+		print_char(')');
+	} else {
+		if (*s == '+')
+			s++;
+		while (*s == '0')
+			s++; // skip leading zeroes
+		print_str(s);
+	}
+}
+
+void
+infixform_base(struct atom *p)
+{
+	if (isnum(p))
+		infixform_numeric_token(p);
+	else if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY) || car(p) == symbol(POWER) || car(p) == symbol(FACTORIAL))
+		infixform_subexpr(p);
+	else
+		infixform_expr(p);
+}
+
+// p is rational or double
+
+void
+infixform_numeric_token(struct atom *p)
+{
+	char buf[24];
+	if (isdouble(p)) {
+		if (p->u.d < 0.0)
+			infixform_subexpr(p);
+		else {
+			sprintf(buf, "%g", p->u.d);
+			if (strchr(buf, 'E') || strchr(buf, 'e'))
+				infixform_subexpr(p);
+			else
+				print_str(buf);
+		}
+		return;
+	}
+	if (p->sign == MPLUS && isinteger(p))
+		infixform_rational(p);
+	else
+		infixform_subexpr(p);
+}
+
+// p is rational or double, sign is not emitted
+
+void
+infixform_numeric_exponent(struct atom *p)
+{
+	char buf[24];
+	if (isdouble(p)) {
+		sprintf(buf, "%g", fabs(p->u.d));
+		if (strchr(buf, 'E') || strchr(buf, 'e')) {
+			print_char('(');
+			infixform_double(p);
+			print_char(')');
+		} else
+			print_str(buf);
+		return;
+	}
+	if (isinteger(p))
+		infixform_rational(p);
+	else {
+		print_char('(');
+		infixform_rational(p);
+		print_char(')');
+	}
+}
+
+void
+infixform_tensor(struct atom *p)
+{
+	int k = 0;
+	infixform_tensor_nib(p, 0, &k);
+}
+
+void
+infixform_tensor_nib(struct atom *p, int j, int *k)
+{
+	int i;
+	print_char('(');
+	for (i = 0; i < p->u.tensor->dim[j]; i++) {
+		if (j + 1 == p->u.tensor->ndim) {
+			infixform_expr(p->u.tensor->elem[*k]);
+			*k = *k + 1;
+		} else
+			infixform_tensor_nib(p, j + 1, k);
+		if (i + 1 < p->u.tensor->dim[j]) {
+			print_char(',');
+		}
+	}
+	print_char(')');
 }
 
 void
@@ -15149,10 +15628,10 @@ power_complex_number(void)
 		list(3);
 		return;
 	}
-	// lisp(2+3*i) = (add 2 (multiply 3 (power -1 1/2)))
-	// lisp(1+i) = (add 1 (power -1 1/2))
-	// lisp(3*i) = (multiply 3 (power -1 1/2))
-	// lisp(i) = (power -1 1/2)
+	// prefixform(2+3*i) = (add 2 (multiply 3 (power -1 1/2)))
+	// prefixform(1+i) = (add 1 (power -1 1/2))
+	// prefixform(3*i) = (multiply 3 (power -1 1/2))
+	// prefixform(i) = (power -1 1/2)
 	if (car(BASE) == symbol(ADD)) {
 		X = cadr(BASE);
 		if (caaddr(BASE) == symbol(MULTIPLY))
@@ -15522,6 +16001,83 @@ sqrtv(void)
 {
 	push_rational(1, 2);
 	power();
+}
+
+void
+eval_prefixform(void)
+{
+	push(cadr(p1));
+	eval();
+	p1 = pop();
+	outbuf_index = 0;
+	prefixform(p1);
+	print_char('\0');
+	push_string(outbuf);
+}
+
+// for debugging
+
+void
+print_prefixform(struct atom *p)
+{
+	outbuf_index = 0;
+	prefixform(p);
+	print_char('\n');
+	print_char('\0');
+	printbuf(outbuf, BLACK);
+}
+
+void
+prefixform(struct atom *p)
+{
+	char buf[24], *s;
+	switch (p->k) {
+	case CONS:
+		print_char('(');
+		prefixform(car(p));
+		p = cdr(p);
+		while (iscons(p)) {
+			print_str(" ");
+			prefixform(car(p));
+			p = cdr(p);
+		}
+		if (p != symbol(NIL)) {
+			print_str(" . ");
+			prefixform(p);
+		}
+		print_char(')');
+		break;
+	case STR:
+		print_char('"');
+		print_str(p->u.str);
+		print_char('"');
+		break;
+	case RATIONAL:
+		if (p->sign == MMINUS)
+			print_char('-');
+		s = mstr(p->u.q.a);
+		print_str(s);
+		s = mstr(p->u.q.b);
+		if (strcmp(s, "1") == 0)
+			break;
+		print_char('/');
+		print_str(s);
+		break;
+	case DOUBLE:
+		sprintf(buf, "%g", p->u.d);
+		print_str(buf);
+		break;
+	case KSYM:
+	case USYM:
+		print_str(printname(p));
+		break;
+	case TENSOR:
+		print_str("(tensor)");
+		break;
+	default:
+		print_str("(?)");
+		break;
+	}
 }
 
 //	Look up the nth prime
@@ -16838,7 +17394,7 @@ print_result_nib(void)
 		cmdisplay();
 		return;
 	}
-	print(p2);
+	print_infixform(p2);
 }
 
 void
@@ -16860,582 +17416,6 @@ prep_symbol_equals(void)
 }
 
 void
-eval_string(void)
-{
-	push(cadr(p1));
-	eval();
-	p1 = pop();
-	print_nib(p1);
-	print_char('\0');
-	push_string(outbuf);
-}
-
-void
-print(struct atom *p)
-{
-	print_nib(p);
-	print_char('\n');
-	print_char('\0');
-	printbuf(outbuf, BLACK);
-}
-
-void
-print_nib(struct atom *p)
-{
-	outbuf_index = 0;
-	if (car(p) == symbol(SETQ)) {
-		print_expr(cadr(p));
-		print_str(" = ");
-		print_expr(caddr(p));
-	} else
-		print_expr(p);
-}
-
-void
-print_subexpr(struct atom *p)
-{
-	print_char('(');
-	print_expr(p);
-	print_char(')');
-}
-
-void
-print_expr(struct atom *p)
-{
-	if (car(p) == symbol(ADD)) {
-		p = cdr(p);
-		if (sign_of_term(car(p)) == '-')
-			print_str("-");
-		print_term(car(p));
-		p = cdr(p);
-		while (iscons(p)) {
-			if (sign_of_term(car(p)) == '+')
-				print_str(" + ");
-			else
-				print_str(" - ");
-			print_term(car(p));
-			p = cdr(p);
-		}
-	} else {
-		if (sign_of_term(p) == '-')
-			print_str("-");
-		print_term(p);
-	}
-}
-
-int
-sign_of_term(struct atom *p)
-{
-	if (isnegativenumber(p) || (car(p) == symbol(MULTIPLY) && isnegativenumber(cadr(p))))
-		return '-';
-	else
-		return '+';
-}
-
-#undef A
-#undef B
-
-#define A p3
-#define B p4
-
-void
-print_a_over_b(struct atom *p)
-{
-	int flag, n, d;
-	struct atom *p1, *p2;
-	save();
-	// count numerators and denominators
-	n = 0;
-	d = 0;
-	p1 = cdr(p);
-	p2 = car(p1);
-	if (isrational(p2)) {
-		push(p2);
-		numerator();
-		absv();
-		A = pop();
-		push(p2);
-		denominator();
-		B = pop();
-		if (!isplusone(A))
-			n++;
-		if (!isplusone(B))
-			d++;
-		p1 = cdr(p1);
-	} else {
-		A = one;
-		B = one;
-	}
-	while (iscons(p1)) {
-		p2 = car(p1);
-		if (is_denominator(p2))
-			d++;
-		else
-			n++;
-		p1 = cdr(p1);
-	}
-	if (n == 0)
-		print_char('1');
-	else {
-		flag = 0;
-		p1 = cdr(p);
-		if (isrational(car(p1)))
-			p1 = cdr(p1);
-		if (!isplusone(A)) {
-			print_factor(A);
-			flag = 1;
-		}
-		while (iscons(p1)) {
-			p2 = car(p1);
-			if (is_denominator(p2))
-				;
-			else {
-				if (flag)
-					print_multiply_sign();
-				print_factor(p2);
-				flag = 1;
-			}
-			p1 = cdr(p1);
-		}
-	}
-	print_str(" / ");
-	if (d > 1)
-		print_char('(');
-	flag = 0;
-	p1 = cdr(p);
-	if (isrational(car(p1)))
-		p1 = cdr(p1);
-	if (!isplusone(B)) {
-		print_factor(B);
-		flag = 1;
-	}
-	while (iscons(p1)) {
-		p2 = car(p1);
-		if (is_denominator(p2)) {
-			if (flag)
-				print_multiply_sign();
-			print_denom(p2, d);
-			flag = 1;
-		}
-		p1 = cdr(p1);
-	}
-	if (d > 1)
-		print_char(')');
-	restore();
-}
-
-void
-print_term(struct atom *p)
-{
-	if (car(p) == symbol(MULTIPLY) && any_denominators(p)) {
-		print_a_over_b(p);
-		return;
-	}
-	if (car(p) == symbol(MULTIPLY)) {
-		p = cdr(p);
-		// coeff -1?
-		if (isminusone(car(p)))
-			p = cdr(p);
-		print_factor(car(p));
-		p = cdr(p);
-		while (iscons(p)) {
-			print_multiply_sign();
-			print_factor(car(p));
-			p = cdr(p);
-		}
-	} else
-		print_factor(p);
-}
-
-// prints stuff after the divide symbol "/"
-
-// d is the number of denominators
-
-#undef BASE
-#undef EXPO
-
-#define BASE p1
-#define EXPO p2
-
-void
-print_denom(struct atom *p, int d)
-{
-	save();
-	BASE = cadr(p);
-	EXPO = caddr(p);
-	// i.e. 1 / (2^(1/3))
-	if (d == 1 && !isminusone(EXPO))
-		print_char('(');
-	if (isfraction(BASE) || car(BASE) == symbol(ADD) || car(BASE) == symbol(MULTIPLY) || car(BASE) == symbol(POWER) || isnegativenumber(BASE)) {
-			print_char('(');
-			print_expr(BASE);
-			print_char(')');
-	} else
-		print_expr(BASE);
-	if (isminusone(EXPO)) {
-		restore();
-		return;
-	}
-	print_str("^");
-	push(EXPO);
-	negate();
-	EXPO = pop();
-	if (isfraction(EXPO) || car(EXPO) == symbol(ADD) || car(EXPO) == symbol(MULTIPLY) || car(EXPO) == symbol(POWER)) {
-		print_char('(');
-		print_expr(EXPO);
-		print_char(')');
-	} else
-		print_expr(EXPO);
-	if (d == 1)
-		print_char(')');
-	restore();
-}
-
-void
-print_factor(struct atom *p)
-{
-	if (isnum(p)) {
-		print_number(p);
-		return;
-	}
-	if (isstr(p)) {
-		print_str(p->u.str);
-		return;
-	}
-	if (istensor(p)) {
-		print_tensor(p);
-		return;
-	}
-	if (car(p) == symbol(ADD) || car(p) == symbol(MULTIPLY)) {
-		print_str("(");
-		print_expr(p);
-		print_str(")");
-		return;
-	}
-	if (car(p) == symbol(POWER)) {
-		if (isimaginaryunit(p)) {
-			if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
-				print_char('j');
-				return;
-			}
-			if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
-				print_char('i');
-				return;
-			}
-		}
-		if (cadr(p) == symbol(EXP1)) {
-			print_str("exp(");
-			print_expr(caddr(p));
-			print_str(")");
-			return;
-		}
-		if (isminusone(caddr(p))) {
-			print_str("1 / ");
-			if (iscons(cadr(p))) {
-				print_str("(");
-				print_expr(cadr(p));
-				print_str(")");
-			} else
-				print_expr(cadr(p));
-			return;
-		}
-		if (caadr(p) == symbol(ADD) || caadr(p) == symbol(MULTIPLY) || caadr(p) == symbol(POWER) || isnegativenumber(cadr(p))) {
-			print_str("(");
-			print_expr(cadr(p));
-			print_str(")");
-		} else if (isnum(cadr(p)) && (lessp(cadr(p), zero) || isfraction(cadr(p)))) {
-			print_str("(");
-			print_factor(cadr(p));
-			print_str(")");
-		} else
-			print_factor(cadr(p));
-		print_str("^");
-		if (iscons(caddr(p)) || isfraction(caddr(p)) || (isnum(caddr(p)) && lessp(caddr(p), zero))) {
-			print_str("(");
-			print_expr(caddr(p));
-			print_str(")");
-		} else
-			print_factor(caddr(p));
-		return;
-	}
-	if (car(p) == symbol(INDEX) && issymbol(cadr(p))) {
-		print_index_function(p);
-		return;
-	}
-	if (car(p) == symbol(FACTORIAL)) {
-		print_factorial_function(p);
-		return;
-	}
-	if (iscons(p)) {
-		print_factor(car(p));
-		p = cdr(p);
-		print_str("(");
-		if (iscons(p)) {
-			print_expr(car(p));
-			p = cdr(p);
-			while (iscons(p)) {
-				print_str(",");
-				print_expr(car(p));
-				p = cdr(p);
-			}
-		}
-		print_str(")");
-		return;
-	}
-	if (p == symbol(DERIVATIVE))
-		print_char('d');
-	else if (p == symbol(EXP1))
-		print_str("exp(1)");
-	else
-		print_str(printname(p));
-}
-
-void
-print_index_function(struct atom *p)
-{
-	p = cdr(p);
-	if (caar(p) == symbol(ADD) || caar(p) == symbol(MULTIPLY) || caar(p) == symbol(POWER) || caar(p) == symbol(FACTORIAL))
-		print_subexpr(car(p));
-	else
-		print_expr(car(p));
-	print_char('[');
-	p = cdr(p);
-	if (iscons(p)) {
-		print_expr(car(p));
-		p = cdr(p);
-		while(iscons(p)) {
-			print_char(',');
-			print_expr(car(p));
-			p = cdr(p);
-		}
-	}
-	print_char(']');
-}
-
-void
-print_factorial_function(struct atom *p)
-{
-	p = cadr(p);
-	if (isposint(p) || issymbol(p))
-		print_expr(p);
-	else
-		print_subexpr(p);
-	print_char('!');
-}
-
-void
-print_tensor(struct atom *p)
-{
-	int k = 0;
-	print_tensor_inner(p, 0, &k);
-}
-
-void
-print_tensor_inner(struct atom *p, int j, int *k)
-{
-	int i;
-	print_str("(");
-	for (i = 0; i < p->u.tensor->dim[j]; i++) {
-		if (j + 1 == p->u.tensor->ndim) {
-			print_expr(p->u.tensor->elem[*k]);
-			*k = *k + 1;
-		} else
-			print_tensor_inner(p, j + 1, k);
-		if (i + 1 < p->u.tensor->dim[j]) {
-			print_str(",");
-		}
-	}
-	print_str(")");
-}
-
-void
-print_function_definition(struct atom *p)
-{
-	print_str(printname(p));
-	print_arg_list(cadr(get_binding(p)));
-	print_str("=");
-	print_expr(caddr(get_binding(p)));
-	print_str("\n");
-}
-
-void
-print_arg_list(struct atom *p)
-{
-	print_str("(");
-	if (iscons(p)) {
-		print_str(printname(car(p)));
-		p = cdr(p);
-		while (iscons(p)) {
-			print_str(",");
-			print_str(printname(car(p)));
-			p = cdr(p);
-		}
-	}
-	print_str(")");
-}
-
-void
-print_multiply_sign(void)
-{
-	print_str(" ");
-}
-
-int
-is_denominator(struct atom *p)
-{
-	if (car(p) == symbol(POWER) && cadr(p) != symbol(EXP1) && isnegativeterm(caddr(p)))
-		return 1;
-	else
-		return 0;
-}
-
-int
-any_denominators(struct atom *p)
-{
-	struct atom *q;
-	p = cdr(p);
-	while (iscons(p)) {
-		q = car(p);
-		if (is_denominator(q))
-			return 1;
-		p = cdr(p);
-	}
-	return 0;
-}
-
-// sign has already been printed
-
-void
-print_number(struct atom *p)
-{
-	char buf[24], *s;
-	switch (p->k) {
-	case RATIONAL:
-		s = mstr(p->u.q.a);
-		print_str(s);
-		s = mstr(p->u.q.b);
-		if (strcmp(s, "1") == 0)
-			break;
-		print_char('/');
-		print_str(s);
-		break;
-	case DOUBLE:
-		sprintf(buf, "%g", fabs(p->u.d));
-		s = buf;
-		while (*s && *s != 'E' && *s != 'e')
-			print_char(*s++);
-		if (!*s)
-			break;
-		s++;
-		print_str(" 10^");
-		if (*s == '-') {
-			print_str("(-");
-			s++;
-			while (*s == '0')
-				s++; // skip leading zeroes
-			print_str(s);
-			print_char(')');
-		} else {
-			if (*s == '+')
-				s++;
-			while (*s == '0')
-				s++; // skip leading zeroes
-			print_str(s);
-		}
-		break;
-	default:
-		break;
-	}
-}
-
-void
-eval_lisp(void)
-{
-	push(cadr(p1));
-	eval();
-	p1 = pop();
-	outbuf_index = 0;
-	print_lisp_nib(p1);
-	print_char('\0');
-	push_string(outbuf);
-}
-
-void
-print_lisp(struct atom *p)
-{
-	outbuf_index = 0;
-	print_lisp_nib(p);
-	print_char('\n');
-	print_char('\0');
-	printbuf(outbuf, BLACK);
-}
-
-void
-print_lisp_nib(struct atom *p)
-{
-	int i;
-	char *s;
-	switch (p->k) {
-	case CONS:
-		print_str("(");
-		print_lisp_nib(car(p));
-		p = cdr(p);
-		while (iscons(p)) {
-			print_str(" ");
-			print_lisp_nib(car(p));
-			p = cdr(p);
-		}
-		if (p != symbol(NIL)) {
-			print_str(" . ");
-			print_lisp_nib(p);
-		}
-		print_str(")");
-		break;
-	case STR:
-		print_str("\"");
-		print_str(p->u.str);
-		print_str("\"");
-		break;
-	case RATIONAL:
-		if (p->sign == MMINUS)
-			print_char('-');
-		s = mstr(p->u.q.a);
-		print_str(s);
-		s = mstr(p->u.q.b);
-		if (strcmp(s, "1") == 0)
-			break;
-		print_char('/');
-		print_str(s);
-		break;
-	case DOUBLE:
-		sprintf(tbuf, "%g", p->u.d);
-		print_str(tbuf);
-		break;
-	case KSYM:
-	case USYM:
-		print_str(printname(p));
-		break;
-	case TENSOR:
-		print_str("(tensor");
-		sprintf(tbuf, " %d", p->u.tensor->ndim);
-		print_str(tbuf);
-		for (i = 0; i < p->u.tensor->ndim; i++) {
-			sprintf(tbuf, " %d", p->u.tensor->dim[i]);
-			print_str(tbuf);
-		}
-		for (i = 0; i < p->u.tensor->nelem; i++) {
-			print_str(" ");
-			print_lisp_nib(p->u.tensor->elem[i]);
-		}
-		print_str(")");
-		break;
-	default:
-		print_str("ERROR");
-		break;
-	}
-}
-
-void
 print_str(char *s)
 {
 	while (*s)
@@ -17446,7 +17426,7 @@ void
 print_char(int c)
 {
 	if (outbuf_index == outbuf_length) {
-		outbuf_length += 10000;
+		outbuf_length += 1000;
 		outbuf = (char *) realloc(outbuf, outbuf_length);
 		if (outbuf == NULL)
 			malloc_kaput();
@@ -20063,6 +20043,7 @@ struct se stab[] = {
 	{ "I",			I_UPPER,	NULL			},
 	{ "i",			I_LOWER,	NULL			},
 	{ "imag",		IMAG,		eval_imag		},
+	{ "infixform",		INFIXFORM,	eval_infixform		},
 	{ "inner",		INNER,		eval_inner		},
 	{ "integral",		INTEGRAL,	eval_integral		},
 	{ "inv",		INV,		eval_inv		},
@@ -20077,7 +20058,6 @@ struct se stab[] = {
 	{ "latex",		LATEX,		eval_latex		},
 	{ "lcm",		LCM,		eval_lcm		},
 	{ "leading",		LEADING,	eval_leading		},
-	{ "lisp",		LISP,		eval_lisp		},
 	{ "log",		LOG,		eval_log		},
 
 	{ "mag",		MAG,		eval_mag		},
@@ -20101,6 +20081,7 @@ struct se stab[] = {
 	{ "P",			P_UPPER,	NULL			},
 	{ "pi",			PI,		NULL			},
 	{ "polar",		POLAR,		eval_polar		},
+	{ "prefixform",		PREFIXFORM,	eval_prefixform		},
 	{ "prime",		PRIME,		eval_prime		},
 	{ "print",		PRINT,		eval_print		},
 	{ "product",		PRODUCT,	eval_product		},
@@ -20127,7 +20108,6 @@ struct se stab[] = {
 	{ "sqrt",		SQRT,		eval_sqrt		},
 	{ "status",		STATUS,		eval_status		},
 	{ "stop",		STOP,		eval_stop		},
-	{ "string",		STRING,		eval_string		},
 	{ "subst",		SUBST,		eval_subst		},
 	{ "sum",		SUM,		eval_sum		},
 
