@@ -1,4 +1,4 @@
-/* March 25, 2021
+/* github.com/georgeweigt/eigenmath
 
 To build and run:
 
@@ -6,8 +6,6 @@ To build and run:
 	./a.out
 
 Press ctrl-C to exit.
-
-See also github.com/georgeweigt/eigenmath
 
 
 BSD 2-Clause License
@@ -186,7 +184,7 @@ struct atom {
 #define FACTOR		(5 * NSYM + 0)
 #define FACTORIAL	(5 * NSYM + 1)
 #define FILTER		(5 * NSYM + 2)
-#define FLOATV		(5 * NSYM + 3)
+#define FLOATF		(5 * NSYM + 3)
 #define FLOOR		(5 * NSYM + 4)
 #define FOR		(5 * NSYM + 5)
 
@@ -385,8 +383,8 @@ struct tensor {
 extern int primetab[MAXPRIMETAB];
 
 void eval_abs(void);
-void absv(void);
-void absv_nib(void);
+void absfunc(void);
+void absfunc_nib(void);
 void eval_add(void);
 void add(void);
 void add_terms(int n);
@@ -717,12 +715,12 @@ void filter_main(void);
 void filter_sum(void);
 void filter_tensor(void);
 void eval_float(void);
-void floatv(void);
-void float_subst(void);
-void float_subst_nib(void);
+void floatfunc(void);
+void floatfunc_subst(void);
+void floatfunc_subst_nib(void);
 void eval_floor(void);
-void sfloor(void);
-void sfloor_nib(void);
+void floorfunc(void);
+void floorfunc_nib(void);
 void eval_for(void);
 void eval_gcd(void);
 void gcd(void);
@@ -880,10 +878,9 @@ void eval_minormatrix(void);
 void minormatrix(int row, int col);
 void minormatrix_nib(int row, int col);
 void eval_mod(void);
-void smod(void);
-void smod_nib(void);
-void smod_numbers(void);
-void smod_rationals(void);
+void modfunc(void);
+void modfunc_nib(void);
+void modfunc_rationals(void);
 void eval_multiply(void);
 void multiply(void);
 void multiply_factors(int n);
@@ -1175,19 +1172,19 @@ eval_abs(void)
 {
 	push(cadr(p1));
 	eval();
-	absv();
+	absfunc();
 }
 
 void
-absv(void)
+absfunc(void)
 {
 	save();
-	absv_nib();
+	absfunc_nib();
 	restore();
 }
 
 void
-absv_nib(void)
+absfunc_nib(void)
 {
 	int h;
 	p1 = pop();
@@ -1214,7 +1211,7 @@ absv_nib(void)
 	power();
 	p2 = pop();
 	push(p2);
-	floatv();
+	floatfunc();
 	p3 = pop();
 	if (isdouble(p3)) {
 		push(p2);
@@ -1226,7 +1223,7 @@ absv_nib(void)
 	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
 		push(p1);
 		reciprocate();
-		absv();
+		absfunc();
 		reciprocate();
 		return;
 	}
@@ -1236,7 +1233,7 @@ absv_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			absv();
+			absfunc();
 			p1 = cdr(p1);
 		}
 		multiply_factors(tos - h);
@@ -2137,7 +2134,7 @@ arctan_numerical_args(void)
 	push(Y);
 	push(X);
 	divide();
-	absv();
+	absfunc();
 	T = pop();
 	push(T);
 	numerator();
@@ -2291,7 +2288,7 @@ arg_nib(void)
 	p1 = pop();
 	push(p1);
 	if (iscons(p1) && isdoublesomewhere(p1))
-		floatv();
+		floatfunc();
 }
 
 void
@@ -5048,7 +5045,7 @@ scos_nib(void)
 	}
 	push(p2);
 	push_integer(360);
-	smod();
+	modfunc();
 	n = pop_integer();
 	switch (n) {
 	case 90:
@@ -7311,7 +7308,7 @@ eigen_check_arg(void)
 	int i, j;
 	push(cadr(p1));
 	eval();
-	floatv();
+	floatfunc();
 	p1 = pop();
 	if (!istensor(p1))
 		return 0;
@@ -9355,28 +9352,28 @@ eval_float(void)
 {
 	push(cadr(p1));
 	eval();
-	floatv();
+	floatfunc();
 }
 
 void
-floatv(void)
+floatfunc(void)
 {
-	float_subst();
+	floatfunc_subst();
 	eval();
-	float_subst(); // in case pi popped up
+	floatfunc_subst(); // in case pi popped up
 	eval();
 }
 
 void
-float_subst(void)
+floatfunc_subst(void)
 {
 	save();
-	float_subst_nib();
+	floatfunc_subst_nib();
 	restore();
 }
 
 void
-float_subst_nib(void)
+floatfunc_subst_nib(void)
 {
 	int h, i, n;
 	p1 = pop();
@@ -9398,7 +9395,7 @@ float_subst_nib(void)
 		push_symbol(POWER);
 		push_symbol(EXP1);
 		push(caddr(p1));
-		float_subst();
+		floatfunc_subst();
 		list(3);
 		return;
 	}
@@ -9409,7 +9406,7 @@ float_subst_nib(void)
 		push_symbol(POWER);
 		push(cadr(p1));
 		push(caddr(p1));
-		float_subst();
+		floatfunc_subst();
 		list(3);
 		list(3);
 		return;
@@ -9420,7 +9417,7 @@ float_subst_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			float_subst();
+			floatfunc_subst();
 			p1 = cdr(p1);
 		}
 		list(tos - h);
@@ -9433,7 +9430,7 @@ float_subst_nib(void)
 		n = p1->u.tensor->nelem;
 		for (i = 0; i < n; i++) {
 			push(p1->u.tensor->elem[i]);
-			float_subst();
+			floatfunc_subst();
 			p1->u.tensor->elem[i] = pop();
 		}
 		push(p1);
@@ -9447,19 +9444,19 @@ eval_floor(void)
 {
 	push(cadr(p1));
 	eval();
-	sfloor();
+	floorfunc();
 }
 
 void
-sfloor(void)
+floorfunc(void)
 {
 	save();
-	sfloor_nib();
+	floorfunc_nib();
 	restore();
 }
 
 void
-sfloor_nib(void)
+floorfunc_nib(void)
 {
 	double d;
 	p1 = pop();
@@ -12589,7 +12586,7 @@ mag1_nib(void)
 	p1 = pop();
 	if (isnum(p1)) {
 		push(p1);
-		absv();
+		absfunc();
 		return;
 	}
 	if (car(p1) == symbol(POWER) && equaln(cadr(p1), -1)) {
@@ -13752,40 +13749,32 @@ eval_mod(void)
 	eval();
 	push(caddr(p1));
 	eval();
-	smod();
+	modfunc();
 }
 
 void
-smod(void)
+modfunc(void)
 {
 	save();
-	smod_nib();
+	modfunc_nib();
 	restore();
 }
 
 void
-smod_nib(void)
-{
-	p2 = pop();
-	p1 = pop();
-	if (iszero(p2))
-		stop("mod: divide by zero");
-	if (isnum(p1) && isnum(p2)) {
-		smod_numbers();
-		return;
-	}
-	push_symbol(MOD);
-	push(p1);
-	push(p2);
-	list(3);
-}
-
-void
-smod_numbers(void)
+modfunc_nib(void)
 {
 	double d1, d2;
+	p2 = pop();
+	p1 = pop();
+	if (!isnum(p1) || !isnum(p2) || iszero(p2)) {
+		push_symbol(MOD);
+		push(p1);
+		push(p2);
+		list(3);
+		return;
+	}
 	if (isrational(p1) && isrational(p2)) {
-		smod_rationals();
+		modfunc_rationals();
 		return;
 	}
 	push(p1);
@@ -13796,7 +13785,7 @@ smod_numbers(void)
 }
 
 void
-smod_rationals(void)
+modfunc_rationals(void)
 {
 	if (isinteger(p1) && isinteger(p2)) {
 		push_rational_number(p1->sign, mmod(p1->u.q.a, p2->u.q.a), mint(1));
@@ -13806,8 +13795,8 @@ smod_rationals(void)
 	push(p1);
 	push(p2);
 	divide();
-	absv();
-	sfloor();
+	absfunc();
+	floorfunc();
 	push(p2);
 	multiply();
 	if (p1->sign == p2->sign)
@@ -14299,7 +14288,7 @@ reduce_radical_factors(int h)
 	if (i == n)
 		return; // no radicals
 	push(COEF);
-	absv();
+	absfunc();
 	p1 = pop();
 	push(p1);
 	numerator();
@@ -14316,7 +14305,7 @@ reduce_radical_factors(int h)
 		if (EXPO1->sign == MMINUS) {
 			push(NUMER);
 			push(BASE1);
-			smod();
+			modfunc();
 			p2 = pop();
 			if (iszero(p2)) {
 				push(NUMER);
@@ -14335,7 +14324,7 @@ reduce_radical_factors(int h)
 		} else {
 			push(DENOM);
 			push(BASE1);
-			smod();
+			modfunc();
 			p2 = pop();
 			if (iszero(p2)) {
 				push(DENOM);
@@ -14478,11 +14467,11 @@ eval_nroots(void)
 	for (i = 0; i < n; i++) {
 		push(stack[h + i]);
 		real();
-		floatv();
+		floatfunc();
 		p1 = pop();
 		push(stack[h + i]);
 		imag();
-		floatv();
+		floatfunc();
 		p2 = pop();
 		if (!isdouble(p1) || !isdouble(p2))
 			stop("nroots: coefficients?");
@@ -15220,38 +15209,38 @@ void
 normalize_polar_rational_coeff(struct atom *coeff)
 {
 	int n;
-	save();
-	// coeff = coeff mod 2
+	// R = coeff mod 2
 	push(coeff);
 	push_integer(2);
-	smod();
-	p1 = pop();
+	modfunc();
+	R = pop();
 	// convert negative rotation to positive
-	if (p1->sign == MMINUS) {
+	if (R->sign == MMINUS) {
+		push(R);
 		push_integer(2);
-		push(p1);
 		add();
-		p1 = pop();
+		R = pop();
 	}
-	push(p1);
-	push_rational(1, 2);
-	smod();
-	p2 = pop(); // remainder
-	push(p1);
-	push(p2);
-	subtract();
+	push(R);
 	push_integer(2);
 	multiply();
-	n = pop_integer(); // number of 1/4 turns
+	floorfunc();
+	n = pop_integer(); // number of 90 degree turns
+	push(R);
+	push_integer(n);
+	push_rational(1, 2);
+	multiply();
+	subtract();
+	R = pop(); // remainder
 	switch (n) {
 	case 0:
-		if (iszero(p2))
+		if (iszero(R))
 			push_integer(1);
 		else {
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
-			push(p2);
+			push(R);
 			push(imaginaryunit);
 			push_symbol(PI);
 			list(4);
@@ -15259,7 +15248,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 		}
 		break;
 	case 2:
-		if (iszero(p2))
+		if (iszero(R))
 			push_integer(-1);
 		else {
 			push_symbol(MULTIPLY);
@@ -15267,7 +15256,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
-			push(p2);
+			push(R);
 			push(imaginaryunit);
 			push_symbol(PI);
 			list(4);
@@ -15276,7 +15265,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 		}
 		break;
 	case 1:
-		if (iszero(p2))
+		if (iszero(R))
 			push(imaginaryunit);
 		else {
 			push_symbol(MULTIPLY);
@@ -15284,7 +15273,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
-			push(p2);
+			push(R);
 			push(imaginaryunit);
 			push_symbol(PI);
 			list(4);
@@ -15293,7 +15282,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 		}
 		break;
 	case 3:
-		if (iszero(p2)) {
+		if (iszero(R)) {
 			push_symbol(MULTIPLY);
 			push_integer(-1);
 			push(imaginaryunit);
@@ -15305,7 +15294,7 @@ normalize_polar_rational_coeff(struct atom *coeff)
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
-			push(p2);
+			push(R);
 			push(imaginaryunit);
 			push_symbol(PI);
 			list(4);
@@ -15314,7 +15303,6 @@ normalize_polar_rational_coeff(struct atom *coeff)
 		}
 		break;
 	}
-	restore();
 }
 
 // normalize exp(coeff i pi)
@@ -15328,7 +15316,7 @@ normalize_polar_double_coeff(double coeff)
 	// convert negative rotation to positive
 	if (coeff < 0.0)
 		coeff += 2.0;
-	n = floor(2.0 * coeff); // number of 1/4 turns
+	n = floor(2.0 * coeff); // number of 90 degree turns
 	r = coeff - n / 2.0; // remainder
 	switch ((int) n) {
 	case 0:
@@ -19555,7 +19543,7 @@ ssin_nib(void)
 	}
 	push(p2);
 	push_integer(360);
-	smod();
+	modfunc();
 	n = pop_integer();
 	switch (n) {
 	case 0:
@@ -20022,7 +20010,7 @@ struct se stab[] = {
 	{ "factor",		FACTOR,		eval_factor		},
 	{ "factorial",		FACTORIAL,	eval_factorial		},
 	{ "filter",		FILTER,		eval_filter		},
-	{ "float",		FLOATV,		eval_float		},
+	{ "float",		FLOATF,		eval_float		},
 	{ "floor",		FLOOR,		eval_floor		},
 	{ "for",		FOR,		eval_for		},
 
@@ -20280,7 +20268,7 @@ stan_nib(void)
 	}
 	push(p2);
 	push_integer(360);
-	smod();
+	modfunc();
 	n = pop_integer();
 	switch (n) {
 	case 0:
@@ -21059,7 +21047,7 @@ cmp_args(void)
 	p1 = pop();
 	if (!isnum(p1)) {
 		push(p1);
-		floatv(); // try converting pi and e
+		floatfunc(); // try converting pi and e
 		p1 = pop();
 		if (!isnum(p1))
 			stop("non-numerical comparison");
