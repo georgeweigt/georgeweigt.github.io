@@ -763,7 +763,7 @@ void infixform_base(struct atom *p);
 void infixform_numeric_token(struct atom *p);
 void infixform_numeric_exponent(struct atom *p);
 void infixform_tensor(struct atom *p);
-void infixform_tensor_nib(struct atom *p, int j, int *k);
+void infixform_tensor_nib(struct atom *p, int d, int k);
 void eval_inner(void);
 void inner(void);
 void inner_nib(void);
@@ -10379,24 +10379,28 @@ infixform_numeric_exponent(struct atom *p)
 void
 infixform_tensor(struct atom *p)
 {
-	int k = 0;
-	infixform_tensor_nib(p, 0, &k);
+	infixform_tensor_nib(p, 0, 0);
 }
 
 void
-infixform_tensor_nib(struct atom *p, int j, int *k)
+infixform_tensor_nib(struct atom *p, int d, int k)
 {
-	int i;
+	int i, n, span;
+	if (d == p->u.tensor->ndim) {
+		infixform_expr(p->u.tensor->elem[k]);
+		return;
+	}
+	span = 1;
+	n = p->u.tensor->ndim;
+	for (i = d + 1; i < n; i++)
+		span *= p->u.tensor->dim[i];
 	print_char('(');
-	for (i = 0; i < p->u.tensor->dim[j]; i++) {
-		if (j + 1 == p->u.tensor->ndim) {
-			infixform_expr(p->u.tensor->elem[*k]);
-			*k = *k + 1;
-		} else
-			infixform_tensor_nib(p, j + 1, k);
-		if (i + 1 < p->u.tensor->dim[j]) {
+	n = p->u.tensor->dim[d];
+	for (i = 0; i < n; i++) {
+		infixform_tensor_nib(p, d + 1, k);
+		if (i < n - 1)
 			print_char(',');
-		}
+		k += span;
 	}
 	print_char(')');
 }
