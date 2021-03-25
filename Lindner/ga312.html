@@ -9,6 +9,11 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 
+E = (1,0,0,0)
+I = (0,1,0,0)
+J = (0,0,1,0)
+K = (0,0,0,1)
+
 #  QUATERNION algebra multiplication 
 multQ(x,y)= (x[1]*y[1]-x[2]*y[2]-x[3]*y[3]-x[4]*y[4])*E + 
            (x[1]*y[2]+x[2]*y[1]+x[3]*y[4]-x[4]*y[3])*I + 
