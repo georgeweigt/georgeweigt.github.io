@@ -672,7 +672,7 @@ void eval_stop(void);
 void eval_subst(void);
 void expand_expr(void);
 void eval_exp(void);
-void exponential(void);
+void expfunc(void);
 void eval_expand(void);
 void expand(void);
 void expand_tensor(void);
@@ -3663,8 +3663,6 @@ ceiling_nib(void)
 	}
 }
 
-// change circular functions to exponentials
-
 void
 eval_circexp(void)
 {
@@ -3780,7 +3778,7 @@ exptan(void)
 	push_integer(2);
 	push(imaginaryunit);
 	multiply_factors(3);
-	exponential();
+	expfunc();
 	p1 = pop();
 	push(imaginaryunit);
 	push(imaginaryunit);
@@ -3808,10 +3806,10 @@ expcosh(void)
 	save();
 	p1 = pop();
 	push(p1);
-	exponential();
+	expfunc();
 	push(p1);
 	negate();
-	exponential();
+	expfunc();
 	add();
 	push_rational(1, 2);
 	multiply();
@@ -3832,10 +3830,10 @@ expsinh(void)
 	save();
 	p1 = pop();
 	push(p1);
-	exponential();
+	expfunc();
 	push(p1);
 	negate();
-	exponential();
+	expfunc();
 	subtract();
 	push_rational(1, 2);
 	multiply();
@@ -3856,7 +3854,7 @@ exptanh(void)
 	save();
 	push_integer(2);
 	multiply();
-	exponential();
+	expfunc();
 	p1 = pop();
 	push(p1);
 	push_integer(1);
@@ -4969,12 +4967,12 @@ cosfunc_nib(void)
 		push(imaginaryunit);
 		push(p1);
 		multiply();
-		exponential();
+		expfunc();
 		push(imaginaryunit);
 		negate();
 		push(p1);
 		multiply();
-		exponential();
+		expfunc();
 		add();
 		multiply();
 		return;
@@ -5169,10 +5167,10 @@ coshfunc_nib(void)
 	if (isdouble(p1) || isdoublez(p1)) {
 		push_rational(1, 2);
 		push(p1);
-		exponential();
+		expfunc();
 		push(p1);
 		negate();
-		exponential();
+		expfunc();
 		add();
 		multiply();
 		return;
@@ -5884,7 +5882,7 @@ derf(void)
 	power();
 	push_integer(-1);
 	multiply();
-	exponential();
+	expfunc();
 	push_symbol(PI);
 	push_rational(-1, 2);
 	power();
@@ -5905,7 +5903,7 @@ derfc(void)
 	power();
 	push_integer(-1);
 	multiply();
-	exponential();
+	expfunc();
 	push_symbol(PI);
 	push_rational(-1,2);
 	power();
@@ -7895,11 +7893,11 @@ eval_exp(void)
 {
 	push(cadr(p1));
 	eval();
-	exponential();
+	expfunc();
 }
 
 void
-exponential(void)
+expfunc(void)
 {
 	push_symbol(EXP1);
 	swap();
@@ -8405,8 +8403,6 @@ expand_get_AF(void)
 	}
 }
 
-// exponential cosine function
-
 void
 eval_expcos(void)
 {
@@ -8423,21 +8419,19 @@ expcos(void)
 	push(imaginaryunit);
 	push(p1);
 	multiply();
-	exponential();
+	expfunc();
 	push_rational(1, 2);
 	multiply();
 	push(imaginaryunit);
 	negate();
 	push(p1);
 	multiply();
-	exponential();
+	expfunc();
 	push_rational(1, 2);
 	multiply();
 	add();
 	restore();
 }
-
-// exponential sine function
 
 void
 eval_expsin(void)
@@ -8455,7 +8449,7 @@ expsin(void)
 	push(imaginaryunit);
 	push(p1);
 	multiply();
-	exponential();
+	expfunc();
 	push(imaginaryunit);
 	divide();
 	push_rational(1, 2);
@@ -8464,7 +8458,7 @@ expsin(void)
 	negate();
 	push(p1);
 	multiply();
-	exponential();
+	expfunc();
 	push(imaginaryunit);
 	divide();
 	push_rational(1, 2);
@@ -12598,7 +12592,7 @@ mag1_nib(void)
 		// exponential
 		push(caddr(p1));
 		real();
-		exponential();
+		expfunc();
 		return;
 	}
 	if (car(p1) == symbol(MULTIPLY)) {
@@ -14778,7 +14772,7 @@ polar_nib(void)
 		push(p2);
 		multiply_factors(2);
 	}
-	exponential();
+	expfunc();
 	multiply();
 }
 
@@ -15160,7 +15154,7 @@ simplify_polar_expr(void)
 				push(EXPO);
 				push(car(p3));
 				subtract();
-				exponential();
+				expfunc();
 				multiply();
 				return 1;
 			}
@@ -17989,7 +17983,7 @@ eval_rotate(void)
 			eval();
 			push(imaginaryunit);
 			multiply();
-			exponential();
+			expfunc();
 			PHASE = pop();
 			rotate_p(c, n);
 			continue;
@@ -18167,7 +18161,7 @@ rotate_q(int n)
 			push_symbol(PI);
 			eval();
 			multiply_factors(3);
-			exponential();
+			expfunc();
 			PHASE = pop();
 			rotate_p(j, i);
 		}
@@ -18194,7 +18188,7 @@ rotate_v(int n)
 			eval();
 			multiply_factors(3);
 			negate();
-			exponential();
+			expfunc();
 			PHASE = pop();
 			rotate_p(j, i);
 		}
@@ -19466,12 +19460,12 @@ sinfunc_nib(void)
 		push(imaginaryunit);
 		push(p1);
 		multiply();
-		exponential();
+		expfunc();
 		push(imaginaryunit);
 		negate();
 		push(p1);
 		multiply();
-		exponential();
+		expfunc();
 		subtract();
 		multiply();
 		return;
@@ -19667,10 +19661,10 @@ sinhfunc_nib(void)
 	if (isdouble(p1) || isdoublez(p1)) {
 		push_rational(1, 2);
 		push(p1);
-		exponential();
+		expfunc();
 		push(p1);
 		negate();
-		exponential();
+		expfunc();
 		subtract();
 		multiply();
 		return;
