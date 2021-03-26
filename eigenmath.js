@@ -9761,12 +9761,12 @@ negate()
 function
 normalize_polar(EXPO)
 {
-	var h, p3;
+	var h, p1;
 	if (car(EXPO) == symbol(ADD)) {
 		h = stack.length;
-		p3 = cdr(EXPO);
-		while (iscons(p3)) {
-			EXPO = car(p3);
+		p1 = cdr(EXPO);
+		while (iscons(p1)) {
+			EXPO = car(p1);
 			if (isdenormalpolar(EXPO))
 				normalize_polar_term(EXPO);
 			else {
@@ -9775,7 +9775,7 @@ normalize_polar(EXPO)
 				push(EXPO);
 				list(3);
 			}
-			p3 = cdr(p3);
+			p1 = cdr(p1);
 		}
 		multiply_factors(stack.length - h);
 	} else
@@ -9801,6 +9801,7 @@ normalize_polar_term(EXPO)
 	else
 		normalize_polar_term_double(R);
 }
+
 function
 normalize_polar_term_rational(R)
 {
