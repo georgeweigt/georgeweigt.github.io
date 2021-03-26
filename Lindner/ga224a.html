@@ -11,7 +11,7 @@
 1/abs((5,3))*(5.,3.)          -- (1) project z=5+3i on S^1
 
 g(t) = (t, sqrt(1-t^2))       -- (2) parametrize the S^1
-h = d(g(t))                   -- (3) velocity vector at t
+h = d(g(t),t)                 -- (3) velocity vector at t
 h
 h = sqrt(simplify(h[1]^2 + h[2]^2))
 h
