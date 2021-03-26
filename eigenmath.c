@@ -15444,7 +15444,7 @@ power_minusone(void)
 		list(3);
 		return;
 	}
-	// do this for better performance
+	// optimization
 	if (equalq(EXPO, 1, 2)) {
 		push(imaginaryunit);
 		return;
