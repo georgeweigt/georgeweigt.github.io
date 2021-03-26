@@ -553,6 +553,8 @@ int count_numerators(struct atom *p);
 int isdenominator(struct atom *p);
 int isnumerator(struct atom *p);
 int isdoublesomewhere(struct atom *p);
+int isdenormalpolar(struct atom *p);
+int isdenormalpolarterm(struct atom *p);
 void eval_cos(void);
 void cosfunc(void);
 void cosfunc_nib(void);
@@ -936,10 +938,10 @@ void power(void);
 void power_nib(void);
 int power_precheck(void);
 void power_natural_number(void);
-int simplify_polar_expr(void);
-int simplify_polar_term(struct atom *p);
-void simplify_polar_term_rational(struct atom *coeff);
-void simplify_polar_term_double(double coeff);
+void normalize_polar(void);
+void normalize_polar_term(void);
+void normalize_polar_term_rational(void);
+void normalize_polar_term_double(void);
 void power_sum(void);
 void power_minusone(void);
 void power_minusone_rational(void);
@@ -4925,6 +4927,42 @@ isdoublesomewhere(struct atom *p)
 		}
 	}
 	return 0;
+}
+
+int
+isdenormalpolar(struct atom *p)
+{
+	if (car(p) == symbol(ADD)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (isdenormalpolarterm(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+		return 0;
+	}
+	return isdenormalpolarterm(p);
+}
+
+int
+isdenormalpolarterm(struct atom *p)
+{
+	if (car(p) != symbol(MULTIPLY))
+		return 0;
+	if (length(p) == 3 && isimaginaryunit(cadr(p)) && caddr(p) == symbol(PI))
+		return 1;
+	if (length(p) != 4 || !isnum(cadr(p)) || !isimaginaryunit(caddr(p)) || cadddr(p) != symbol(PI))
+		return 0;
+	p = cadr(p); // p = coeff of term
+	if (isdouble(p))
+		return p->u.d < 0.0 || p->u.d >= 0.5;
+	if (p->sign == MMINUS)
+		return 1; // coeff less than zero
+	push(p);
+	push_rational(-1, 2);
+	add();
+	p = pop();
+	return p->sign == MPLUS; // MPLUS indicates coeff greater than or equal to 1/2
 }
 
 #undef X
@@ -15132,79 +15170,66 @@ power_natural_number(void)
 		multiply();
 		return;
 	}
-	// e^log(expr) -> expr
+	// e^log(expr) = expr
 	if (car(EXPO) == symbol(LOG)) {
 		push(cadr(EXPO));
 		return;
 	}
-	if (simplify_polar_expr())
+	if (isdenormalpolar(EXPO)) {
+		normalize_polar();
 		return;
-	// none of the above
+	}
 	push_symbol(POWER);
-	push(BASE);
+	push_symbol(EXP1);
 	push(EXPO);
 	list(3);
 }
 
-int
-simplify_polar_expr(void)
+void
+normalize_polar(void)
 {
+	int h;
 	if (car(EXPO) == symbol(ADD)) {
+		h = tos;
 		p3 = cdr(EXPO);
 		while (iscons(p3)) {
-			if (simplify_polar_term(car(p3))) {
+			EXPO = car(p3);
+			if (isdenormalpolar(EXPO))
+				normalize_polar_term();
+			else {
+				push_symbol(POWER);
+				push_symbol(EXP1);
 				push(EXPO);
-				push(car(p3));
-				subtract();
-				expfunc();
-				multiply();
-				return 1;
+				list(3);
 			}
 			p3 = cdr(p3);
 		}
-		return 0;
-	}
-	return simplify_polar_term(EXPO);
-}
-
-int
-simplify_polar_term(struct atom *p)
-{
-	if (car(p) != symbol(MULTIPLY))
-		return 0;
-	// exp(i pi) -> -1
-	if (length(p) == 3 && isimaginaryunit(cadr(p)) && caddr(p) == symbol(PI)) {
-		push_integer(-1);
-		return 1;
-	}
-	if (length(p) != 4 || !isnum(cadr(p)) || !isimaginaryunit(caddr(p)) || cadddr(p) != symbol(PI))
-		return 0;
-	p = cadr(p); // coeff
-	if (isdouble(p)) {
-		if (0.0 < p->u.d && p->u.d < 0.5)
-			return 0;
-		simplify_polar_term_double(p->u.d);
-		return 1;
-	}
-	// coeff is a rational number
-	if (p->sign == MPLUS) {
-		push(p);
-		push_rational(-1, 2);
-		add();
-		p0 = pop();
-		if (p0->sign == MMINUS)
-			return 0; // 0 < coeff < 1/2
-	}
-	simplify_polar_term_rational(p);
-	return 1;
+		multiply_factors(tos - h);
+	} else
+		normalize_polar_term();
 }
 
 void
-simplify_polar_term_rational(struct atom *coeff)
+normalize_polar_term(void)
+{
+	// exp(i pi) = -1
+	if (length(EXPO) == 3) {
+		push_integer(-1);
+		return;
+	}
+	R = cadr(EXPO); // R = coeff of term
+	if (isrational(R))
+		normalize_polar_term_rational();
+	else
+		normalize_polar_term_double();
+}
+
+void
+normalize_polar_term_rational(void)
 {
 	int n;
-	// R = coeff mod 2
-	push(coeff);
+	// R = R mod 2
+	push(R);
 	push_integer(2);
 	modfunc();
 	R = pop();
@@ -15300,9 +15325,10 @@ simplify_polar_term_rational(struct atom *coeff)
 }
 
 void
-simplify_polar_term_double(double coeff)
+normalize_polar_term_double(void)
 {
-	double n, r;
+	double coeff, n, r;
+	coeff = R->u.d;
 	// coeff = coeff mod 2
 	coeff = fmod(coeff, 2.0);
 	// convert negative rotation to positive

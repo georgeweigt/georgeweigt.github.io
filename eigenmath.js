@@ -8963,6 +8963,49 @@ isdenominator(p)
 		return 0;
 }
 function
+isdenormalpolar(p)
+{
+	if (car(p) == symbol(ADD)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (isdenormalpolarterm(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+		return 0;
+	}
+
+	return isdenormalpolarterm(p);
+}
+
+function
+isdenormalpolarterm(p)
+{
+	if (car(p) != symbol(MULTIPLY))
+		return 0;
+
+	if (lengthf(p) == 3 && isimaginaryunit(cadr(p)) && caddr(p) == symbol(PI))
+		return 1; // exp(i pi)
+
+	if (lengthf(p) != 4 || !isnum(cadr(p)) || !isimaginaryunit(caddr(p)) || cadddr(p) != symbol(PI))
+		return 0;
+
+	p = cadr(p); // p = coeff of term
+
+	if (isdouble(p))
+		return p.d < 0 || p.d >= 0.5;
+
+	if (p.a < 0)
+		return 1; // coeff less than zero
+
+	push(p);
+	push_rational(-1, 2);
+	add();
+	p = pop();
+
+	return p.a >= 0; // coeff greater than or equal to 1/2
+}
+function
 isdigit(s)
 {
 	var c = s.charCodeAt(0);
@@ -9716,6 +9759,256 @@ negate()
 	multiply();
 }
 function
+normalize_polar(EXPO)
+{
+	var h, p3;
+	if (car(EXPO) == symbol(ADD)) {
+		h = stack.length;
+		p3 = cdr(EXPO);
+		while (iscons(p3)) {
+			EXPO = car(p3);
+			if (isdenormalpolar(EXPO))
+				normalize_polar_term(EXPO);
+			else {
+				push_symbol(POWER);
+				push_symbol(EXP1);
+				push(EXPO);
+				list(3);
+			}
+			p3 = cdr(p3);
+		}
+		multiply_factors(stack.length - h);
+	} else
+		normalize_polar_term(EXPO);
+}
+
+function
+normalize_polar_term(EXPO)
+{
+	var R;
+
+	// exp(i pi) = -1
+
+	if (lengthf(EXPO) == 3) {
+		push_integer(-1);
+		return;
+	}
+
+	R = cadr(EXPO); // R = coeff of term
+
+	if (isrational(R))
+		normalize_polar_term_rational(R);
+	else
+		normalize_polar_term_double(R);
+}
+function
+normalize_polar_term_rational(R)
+{
+	var n;
+
+	// R = R mod 2
+
+	push(R);
+	push_integer(2);
+	mod();
+	R = pop();
+
+	// convert negative rotation to positive
+
+	if (R.a < 0) {
+		push(R);
+		push_integer(2);
+		add();
+		R = pop();
+	}
+
+	push(R);
+	push_integer(2);
+	multiply();
+	floor();
+	n = pop_integer(); // number of 90 degree turns
+
+	push(R);
+	push_integer(n);
+	push_rational(-1, 2);
+	multiply();
+	add();
+	R = pop(); // remainder
+
+	switch (n) {
+
+	case 0:
+		if (iszero(R))
+			push_integer(1);
+		else {
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(R);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+		}
+		break;
+
+	case 1:
+		if (iszero(R))
+			push(imaginaryunit);
+		else {
+			push_symbol(MULTIPLY);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(R);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+
+	case 2:
+		if (iszero(R))
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(R);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+
+	case 3:
+		if (iszero(R)) {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			list(3);
+		} else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push(R);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(4);
+		}
+		break;
+	}
+}
+
+function
+normalize_polar_term_double(R)
+{
+	var coeff, n, r;
+
+	coeff = R.d;
+
+	// coeff = coeff mod 2
+
+	coeff = coeff % 2;
+
+	// convert negative rotation to positive
+
+	if (coeff < 0)
+		coeff += 2;
+
+	n = Math.floor(2 * coeff); // number of 1/4 turns
+
+	r = coeff - n / 2; // remainder
+
+	switch (n) {
+
+	case 0:
+		if (r == 0)
+			push_integer(1);
+		else {
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+		}
+		break;
+
+	case 1:
+		if (r == 0)
+			push(imaginaryunit);
+		else {
+			push_symbol(MULTIPLY);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+
+	case 2:
+		if (r == 0)
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(3);
+		}
+		break;
+
+	case 3:
+		if (r == 0) {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			list(3);
+		} else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			push_symbol(POWER);
+			push_symbol(EXP1);
+			push_symbol(MULTIPLY);
+			push_double(r);
+			push(imaginaryunit);
+			push_symbol(PI);
+			list(4);
+			list(3);
+			list(4);
+		}
+		break;
+	}
+}
+function
 normalize_power_factors(h)
 {
 	var i, n, p1;
@@ -10000,7 +10293,7 @@ power()
 	// BASE = e ?
 
 	if (BASE == symbol(EXP1)) {
-		power_natural_number(BASE, EXPO);
+		power_natural_number(EXPO);
 		return;
 	}
 
@@ -10474,7 +10767,7 @@ power_minusone_double(EXPO)
 	}
 }
 function
-power_natural_number(BASE, EXPO)
+power_natural_number(EXPO)
 {
 	var x, y;
 
@@ -10500,20 +10793,20 @@ power_natural_number(BASE, EXPO)
 		return;
 	}
 
-	// e^log(expr) -> expr
+	// e^log(expr) = expr
 
 	if (car(EXPO) == symbol(LOG)) {
 		push(cadr(EXPO));
 		return;
 	}
 
-	if (simplify_polar_expr(EXPO))
+	if (isdenormalpolar(EXPO)) {
+		normalize_polar(EXPO);
 		return;
-
-	// none of the above
+	}
 
 	push_symbol(POWER);
-	push(BASE);
+	push_symbol(EXP1);
 	push(EXPO);
 	list(3);
 }
@@ -13632,277 +13925,6 @@ simplify_pass2()
 		p1 = p2;
 
 	push(p1);
-}
-function
-simplify_polar_expr(EXPO)
-{
-	var p1;
-
-	if (car(EXPO) == symbol(ADD)) {
-		p1 = cdr(EXPO);
-		while (iscons(p1)) {
-			if (simplify_polar_term(car(p1))) {
-				push(EXPO);
-				push(car(p1));
-				subtract();
-				exp();
-				multiply();
-				return 1;
-			}
-			p1 = cdr(p1);
-		}
-		return 0;
-	}
-
-	return simplify_polar_term(EXPO);
-}
-function
-simplify_polar_term(p)
-{
-	var p0;
-
-	if (car(p) != symbol(MULTIPLY))
-		return 0;
-
-	// exp(i pi) -> -1
-
-	if (lengthf(p) == 3 && isimaginaryunit(cadr(p)) && caddr(p) == symbol(PI)) {
-		push_integer(-1);
-		return 1;
-	}
-
-	if (lengthf(p) != 4 || !isnum(cadr(p)) || !isimaginaryunit(caddr(p)) || cadddr(p) != symbol(PI))
-		return 0;
-
-	p = cadr(p); // p = coeff
-
-	if (isdouble(p)) {
-		if (0 < p.d && p.d < 0.5)
-			return 0; // nothing to do
-		simplify_polar_term_double(p.d);
-		return 1;
-	}
-
-	// coeff is a rational number
-
-	if (p.a > 0) {
-		push(p);
-		push_rational(-1, 2);
-		add();
-		p0 = pop();
-		if (p0.a < 0)
-			return 0; // 0 < coeff < 1/2
-	}
-
-	simplify_polar_term_rational(p);
-
-	return 1;
-}
-
-function
-simplify_polar_term_rational(COEFF)
-{
-	var n, R;
-
-	// COEFF = COEFF mod 2
-
-	push(COEFF);
-	push_integer(2);
-	mod();
-	COEFF = pop();
-
-	// convert negative rotation to positive
-
-	if (COEFF.a < 0) {
-		push(COEFF);
-		push_integer(2);
-		add();
-		COEFF = pop();
-	}
-
-	push(COEFF);
-	push_integer(2);
-	multiply();
-	floor();
-	n = pop_integer(); // number of 90 degree turns
-
-	push(COEFF);
-	push_integer(n);
-	push_rational(-1, 2);
-	multiply();
-	add();
-	R = pop(); // remainder
-
-	switch (n) {
-
-	case 0:
-		if (iszero(R))
-			push_integer(1);
-		else {
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push(R);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-		}
-		break;
-
-	case 1:
-		if (iszero(R))
-			push(imaginaryunit);
-		else {
-			push_symbol(MULTIPLY);
-			push(imaginaryunit);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push(R);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(3);
-		}
-		break;
-
-	case 2:
-		if (iszero(R))
-			push_integer(-1);
-		else {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push(R);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(3);
-		}
-		break;
-
-	case 3:
-		if (iszero(R)) {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push(imaginaryunit);
-			list(3);
-		} else {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push(imaginaryunit);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push(R);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(4);
-		}
-		break;
-	}
-}
-
-function
-simplify_polar_term_double(coeff)
-{
-	var n, r;
-
-	// coeff = coeff mod 2
-
-	coeff = coeff % 2;
-
-	// convert negative rotation to positive
-
-	if (coeff < 0)
-		coeff += 2;
-
-	n = Math.floor(2 * coeff); // number of 1/4 turns
-
-	r = coeff - n / 2; // remainder
-
-	switch (n) {
-
-	case 0:
-		if (r == 0)
-			push_integer(1);
-		else {
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push_double(r);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-		}
-		break;
-
-	case 1:
-		if (r == 0)
-			push(imaginaryunit);
-		else {
-			push_symbol(MULTIPLY);
-			push(imaginaryunit);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push_double(r);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(3);
-		}
-		break;
-
-	case 2:
-		if (r == 0)
-			push_integer(-1);
-		else {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push_double(r);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(3);
-		}
-		break;
-
-	case 3:
-		if (r == 0) {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push(imaginaryunit);
-			list(3);
-		} else {
-			push_symbol(MULTIPLY);
-			push_integer(-1);
-			push(imaginaryunit);
-			push_symbol(POWER);
-			push_symbol(EXP1);
-			push_symbol(MULTIPLY);
-			push_double(r);
-			push(imaginaryunit);
-			push_symbol(PI);
-			list(4);
-			list(3);
-			list(4);
-		}
-		break;
-	}
 }
 function
 sin()
