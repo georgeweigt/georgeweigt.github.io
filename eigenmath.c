@@ -941,7 +941,9 @@ int simplify_polar_term(struct atom *p);
 void normalize_polar_rational_coeff(struct atom *coeff);
 void normalize_polar_double_coeff(double coeff);
 void power_sum(void);
-void power_imaginary_unit(void);
+void power_minusone(void);
+void power_minusone_rational(void);
+void power_minusone_double(void);
 void power_complex_number(void);
 void power_complex_plus(int n);
 void power_complex_minus(int n);
@@ -950,7 +952,7 @@ void power_complex_rational(void);
 void power_numbers(void);
 void power_rationals(void);
 void power_rationals_nib(void);
-void sqrtv(void);
+void sqrtfunc(void);
 void eval_prefixform(void);
 void print_prefixform(struct atom *p);
 void prefixform(struct atom *p);
@@ -15241,12 +15243,12 @@ normalize_polar_rational_coeff(struct atom *coeff)
 			list(3);
 		}
 		break;
-	case 2:
+	case 1:
 		if (iszero(R))
-			push_integer(-1);
+			push(imaginaryunit);
 		else {
 			push_symbol(MULTIPLY);
-			push_integer(-1);
+			push(imaginaryunit);
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
@@ -15258,12 +15260,12 @@ normalize_polar_rational_coeff(struct atom *coeff)
 			list(3);
 		}
 		break;
-	case 1:
+	case 2:
 		if (iszero(R))
-			push(imaginaryunit);
+			push_integer(-1);
 		else {
 			push_symbol(MULTIPLY);
-			push(imaginaryunit);
+			push_integer(-1);
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
@@ -15327,12 +15329,12 @@ normalize_polar_double_coeff(double coeff)
 			list(3);
 		}
 		break;
-	case 2:
+	case 1:
 		if (r == 0.0)
-			push_integer(-1);
+			push(imaginaryunit);
 		else {
 			push_symbol(MULTIPLY);
-			push_integer(-1);
+			push(imaginaryunit);
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
@@ -15344,12 +15346,12 @@ normalize_polar_double_coeff(double coeff)
 			list(3);
 		}
 		break;
-	case 1:
+	case 2:
 		if (r == 0.0)
-			push(imaginaryunit);
+			push_integer(-1);
 		else {
 			push_symbol(MULTIPLY);
-			push(imaginaryunit);
+			push_integer(-1);
 			push_symbol(POWER);
 			push_symbol(EXP1);
 			push_symbol(MULTIPLY);
@@ -15436,157 +15438,169 @@ power_sum(void)
 	}
 }
 
-// convert (-1)^(a/b) to c*(-1)^(x) where c=1 or c=-1 and -1/2 < (x) <= 1/2
-//
-// r = a mod b (remainder of a/b)
-//
-// q = (a/b - r) mod 2
-//
-// s = sign of a/b
-//
-// case			c	x
-//
-// s=1 q=0 r/b <= 1/2	1	r/b
-// s=1 q=0 r/b > 1/2	-1	-(b - r)/b
-//
-// s=1 q=1 r/b <= 1/2	-1	r/b
-// s=1 q=1 r/b > 1/2	1	-(b - r)/b
-//
-// s=-1 q=0 r/b < 1/2	1	-r/b
-// s=-1 q=0 r/b >= 1/2	-1	(b - r)/b
-//
-// s=-1 q=1 r/b < 1/2	-1	-r/b
-// s=-1 q=1 r/b >= 1/2	1	(b - r)/b
-//
-// q=1 flips sign of c
-//
-// s=-1 flips sign of x
-
 void
-power_imaginary_unit(void)
+power_minusone(void)
 {
-	int c, s;
-	uint32_t *a, *b, *q, *r, *t;
-	double theta, x, y;
 	if (!isnum(EXPO)) {
 		push_symbol(POWER);
 		push_integer(-1);
 		push(EXPO);
 		list(3);
-		if (isdouble(BASE)) {
-			// BASE = -1.0, keep double
-			push_symbol(MULTIPLY);
-			swap();
-			push_double(1.0);
-			swap();
-			list(3);
-		}
 		return;
 	}
-	if (equalq(EXPO, 1, 2)) {
-		push(imaginaryunit);
-		if (isdouble(BASE)) {
-			// BASE = -1.0, keep double
-			push_symbol(MULTIPLY);
-			swap();
-			push_double(1.0);
-			swap();
-			list(3);
-		}
-		return;
-	}
-	if (isdouble(EXPO)) {
-		theta = EXPO->u.d * M_PI; // pi is the polar angle for -1
-		x = cos(theta);
-		y = sin(theta);
-		if (fabs(x) < 1e-12)
-			x = 0.0;
-		if (fabs(y) < 1e-12)
-			y = 0.0;
-		push_double(x);
-		push_double(y);
-		push(imaginaryunit);
-		multiply();
+	if (isrational(EXPO))
+		power_minusone_rational();
+	else
+		power_minusone_double();
+}
+
+void
+power_minusone_rational(void)
+{
+	int n;
+	// R = EXPO mod 2
+	push(EXPO);
+	push_integer(2);
+	modfunc();
+	R = pop();
+	// convert negative rotation to positive
+	if (R->sign == MMINUS) {
+		push(R);
+		push_integer(2);
 		add();
-		return;
+		R = pop();
 	}
-	// integer exponent?
-	if (isinteger(EXPO)) {
-		if (EXPO->u.q.a[0] % 2 == 1) {
-			// odd exponent
-			if (isdouble(BASE))
-				push_double(-1.0); // BASE = -1.0, keep double
-			else
-				push_integer(-1);
-		} else {
-			// even exponent
-			if (isdouble(BASE))
-				push_double(1.0); // BASE = -1.0, keep double
-			else
-				push_integer(1);
-		}
-		return;
-	}
-	a = EXPO->u.q.a;
-	b = EXPO->u.q.b;
-	q = mdiv(a, b);
-	r = mmod(a, b);
-	t = madd(r, r);
-	switch (mcmp(t, b)) {
-	case -1:
-		a = mcopy(r);
-		c = 1;
-		s = 1;
-		break;
+	push(R);
+	push_integer(2);
+	multiply();
+	floorfunc();
+	n = pop_integer(); // number of 90 degree turns
+	push(R);
+	push_integer(n);
+	push_rational(1, 2);
+	multiply();
+	subtract();
+	R = pop(); // remainder
+	switch (n) {
 	case 0:
-		if (EXPO->sign == MPLUS) {
-			a = mcopy(r);
-			c = 1;
-			s = 1;
-		} else {
-			a = msub(b, r);
-			c = -1;
-			s = -1;
+		if (iszero(R))
+			push_integer(1);
+		else {
+			push_symbol(POWER);
+			push_integer(-1);
+			push(R);
+			list(3);
 		}
 		break;
 	case 1:
-		a = msub(b, r);
-		c = -1;
-		s = -1;
+		if (iszero(R))
+			push(imaginaryunit);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_integer(-1);
+			push(R);
+			push_rational(1, 2);
+			subtract();
+			list(3);
+			list(3);
+		}
+		break;
+	case 2:
+		if (iszero(R))
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_integer(-1);
+			push(R);
+			list(3);
+			list(3);
+		}
+		break;
+	case 3:
+		if (iszero(R)) {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			list(3);
+		} else {
+			push_symbol(POWER);
+			push_integer(-1);
+			push(R);
+			push_rational(1, 2);
+			subtract();
+			list(3);
+		}
 		break;
 	}
-	if (q[0] % 2 == 1)
-		c *= -1;
-	if (EXPO->sign == MMINUS)
-		s *= -1;
-	b = mcopy(b);
-	push_symbol(POWER);
-	push_integer(-1);
-	if (s == 1)
-		push_rational_number(MPLUS, a, b);
-	else
-		push_rational_number(MMINUS, a, b);
-	list(3);
-	if (c == -1) {
-		push_symbol(MULTIPLY);
-		swap();
-		if (isdouble(BASE))
-			push_double(-1.0); // BASE = -1.0, keep double
-		else
+}
+
+void
+power_minusone_double(void)
+{
+	double expo, n, r;
+	expo = EXPO->u.d;
+	// expo = expo mod 2
+	expo = fmod(expo, 2.0);
+	// convert negative rotation to positive
+	if (expo < 0.0)
+		expo += 2.0;
+	n = floor(2.0 * expo); // number of 90 degree turns
+	r = expo - n / 2.0; // remainder
+	switch ((int) n) {
+	case 0:
+		if (r == 0.0)
+			push_integer(1);
+		else {
+			push_symbol(POWER);
 			push_integer(-1);
-		swap();
-		list(3);
-	} else if (isdouble(BASE)) {
-		// BASE = -1.0, keep double
-		push_symbol(MULTIPLY);
-		swap();
-		push_double(1.0);
-		swap();
-		list(3);
+			push_double(r);
+			list(3);
+		}
+		break;
+	case 1:
+		if (r == 0.0)
+			push(imaginaryunit);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_integer(-1);
+			push_double(r - 0.5);
+			list(3);
+			list(3);
+		}
+		break;
+	case 2:
+		if (r == 0.0)
+			push_integer(-1);
+		else {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push_symbol(POWER);
+			push_integer(-1);
+			push_double(r);
+			list(3);
+			list(3);
+		}
+		break;
+	case 3:
+		if (r == 0.0) {
+			push_symbol(MULTIPLY);
+			push_integer(-1);
+			push(imaginaryunit);
+			list(3);
+		} else {
+			push_symbol(POWER);
+			push_integer(-1);
+			push_double(r - 0.5);
+			list(3);
+		}
+		break;
 	}
-	mfree(q);
-	mfree(r);
-	mfree(t);
 }
 
 // BASE is rectangular complex numerical
@@ -15787,7 +15801,7 @@ power_complex_rational(void)
 	push(EXPO);
 	multiply();
 	EXPO = pop();
-	power_imaginary_unit();
+	power_minusone();
 	// result = sqrt(X^2 + Y^2) ^ (1/2 * EXPO) * (-1) ^ (EXPO * arctan(Y, X) / pi)
 	multiply();
 }
@@ -15801,11 +15815,11 @@ power_numbers(void)
 	if (iszero(BASE) && isnegativenumber(EXPO))
 		stop("divide by zero");
 	if (equaln(BASE, -1)) {
-		power_imaginary_unit();
+		power_minusone();
 		return;
 	}
 	if (isnegativenumber(BASE)) {
-		power_imaginary_unit();
+		power_minusone();
 		push(BASE);
 		negate();
 		BASE = pop();
@@ -15971,7 +15985,7 @@ power_rationals_nib(void)
 }
 
 void
-sqrtv(void)
+sqrtfunc(void)
 {
 	push_rational(1, 2);
 	power();
@@ -18053,13 +18067,13 @@ rotate_h(int n)
 			push(KET1);
 			add();
 			push_rational(1, 2);
-			sqrtv();
+			sqrtfunc();
 			multiply();
 			push(KET0);
 			push(KET1);
 			subtract();
 			push_rational(1, 2);
-			sqrtv();
+			sqrtfunc();
 			multiply();
 			KET1 = pop();
 			KET0 = pop();
