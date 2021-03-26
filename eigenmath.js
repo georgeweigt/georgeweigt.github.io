@@ -10279,13 +10279,20 @@ power_complex_rational(BASE, EXPO, X, Y)
 	multiply();
 }
 function
-power_minusone(BASE, EXPO)
+power_minusone(EXPO)
 {
 	if (!isnum(EXPO)) {
 		push_symbol(POWER);
 		push_integer(-1);
 		push(EXPO);
 		list(3);
+		return;
+	}
+
+	// do this for better performance
+
+	if (equalq(EXPO, 1, 2)) {
+		push(imaginaryunit);
 		return;
 	}
 
@@ -10526,12 +10533,12 @@ power_numbers(BASE, EXPO)
 	}
 
 	if (isminusone(BASE)) {
-		power_minusone(BASE, EXPO);
+		power_minusone(EXPO);
 		return;
 	}
 
 	if (isnegativenumber(BASE)) {
-		power_minusone(BASE, EXPO);
+		power_minusone(EXPO);
 		push(BASE);
 		negate();
 		BASE = pop();
