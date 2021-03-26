@@ -955,6 +955,7 @@ void power_numbers(void);
 void power_rationals(void);
 void power_rationals_nib(void);
 void sqrtfunc(void);
+void power_tensor(void);
 void eval_prefixform(void);
 void print_prefixform(struct atom *p);
 void prefixform(struct atom *p);
@@ -1085,7 +1086,6 @@ void d_tensor_tensor(void);
 void d_scalar_tensor(void);
 void d_tensor_scalar(void);
 int compare_tensors(struct atom *p1, struct atom *p2);
-void power_tensor(void);
 void copy_tensor(void);
 void eval_dim(void);
 void eval_rank(void);
@@ -14991,6 +14991,8 @@ push_factor(uint32_t *d, int count)
 	}
 }
 
+#undef T1
+#undef T2
 #undef BASE
 #undef EXPO
 #undef R
@@ -14999,8 +15001,10 @@ push_factor(uint32_t *d, int count)
 #undef PX
 #undef PY
 
-#define BASE p1
-#define EXPO p2
+#define T1 p1
+#define T2 p2
+#define BASE p3
+#define EXPO p4
 #define R p5
 #define X p6
 #define Y p7
@@ -15084,12 +15088,12 @@ power_nib(void)
 	// (a * b) ^ c -> (a ^ c) * (b ^ c)
 	if (car(BASE) == symbol(MULTIPLY)) {
 		h = tos;
-		p3 = cdr(BASE);
-		while (iscons(p3)) {
-			push(car(p3));
+		T1 = cdr(BASE);
+		while (iscons(T1)) {
+			push(car(T1));
 			push(EXPO);
 			power();
-			p3 = cdr(p3);
+			T1 = cdr(T1);
 		}
 		multiply_factors(tos - h);
 		return;
@@ -15191,9 +15195,9 @@ normalize_polar(void)
 	int h;
 	if (car(EXPO) == symbol(ADD)) {
 		h = tos;
-		p3 = cdr(EXPO);
-		while (iscons(p3)) {
-			EXPO = car(p3);
+		T1 = cdr(EXPO);
+		while (iscons(T1)) {
+			EXPO = car(T1);
 			if (isdenormalpolar(EXPO))
 				normalize_polar_term();
 			else {
@@ -15202,7 +15206,7 @@ normalize_polar(void)
 				push(EXPO);
 				list(3);
 			}
-			p3 = cdr(p3);
+			T1 = cdr(T1);
 		}
 		multiply_factors(tos - h);
 	} else
@@ -15434,16 +15438,16 @@ power_sum(void)
 	}
 	// square the sum first (prevents infinite loop through multiply)
 	h = tos;
-	p3 = cdr(BASE);
-	while (iscons(p3)) {
-		p4 = cdr(BASE);
-		while (iscons(p4)) {
-			push(car(p3));
-			push(car(p4));
+	T1 = cdr(BASE);
+	while (iscons(T1)) {
+		T2 = cdr(BASE);
+		while (iscons(T2)) {
+			push(car(T1));
+			push(car(T2));
 			multiply();
-			p4 = cdr(p4);
+			T2 = cdr(T2);
 		}
-		p3 = cdr(p3);
+		T1 = cdr(T1);
 	}
 	add_terms(tos - h);
 	// continue up to power m
@@ -15907,24 +15911,24 @@ power_rationals(void)
 	// normalize factors
 	n = tos - h;
 	for (i = 0; i < n; i++) {
-		p3 = s[i];
-		if (car(p3) == symbol(POWER)) {
-			BASE = cadr(p3);
-			EXPO = caddr(p3);
+		T1 = s[i];
+		if (car(T1) == symbol(POWER)) {
+			BASE = cadr(T1);
+			EXPO = caddr(T1);
 			power_rationals_nib();
 			s[i] = pop(); // trick: fill hole
 		}
 	}
 	// multiply rationals
-	p4 = one;
+	T2 = one;
 	n = tos - h;
 	for (i = 0; i < n; i++) {
-		p3 = s[i];
-		if (p3->k == RATIONAL) {
-			push(p3);
-			push(p4);
+		T1 = s[i];
+		if (T1->k == RATIONAL) {
+			push(T1);
+			push(T2);
 			multiply();
-			p4 = pop();
+			T2 = pop();
 			for (j = i + 1; j < n; j++)
 				s[j - 1] = s[j];
 			i--;
@@ -15933,8 +15937,8 @@ power_rationals(void)
 		}
 	}
 	// finalize
-	if (!equaln(p4, 1))
-		push(p4);
+	if (!equaln(T2, 1))
+		push(T2);
 	n = tos - h;
 	if (n > 1) {
 		sort_factors(n);
@@ -16016,6 +16020,49 @@ sqrtfunc(void)
 {
 	push_rational(1, 2);
 	power();
+}
+
+void
+power_tensor(void)
+{
+	int i, k, n;
+	// first and last dims must be equal
+	k = BASE->u.tensor->ndim - 1;
+	if (BASE->u.tensor->dim[0] != BASE->u.tensor->dim[k]) {
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
+		return;
+	}
+	push(EXPO);
+	n = pop_integer();
+	if (n == ERR) {
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
+		return;
+	}
+	if (n == 0) {
+		n = BASE->u.tensor->dim[0];
+		T1 = alloc_matrix(n, n);
+		for (i = 0; i < n; i++)
+			T1->u.tensor->elem[n * i + i] = one;
+		push(T1);
+		return;
+	}
+	if (n < 0) {
+		n = -n;
+		push(BASE);
+		inv();
+		BASE = pop();
+	}
+	push(BASE);
+	for (i = 1; i < n; i++) {
+		push(BASE);
+		inner();
+	}
 }
 
 void
@@ -20648,51 +20695,6 @@ compare_tensors(struct atom *p1, struct atom *p2)
 			return 1;
 	}
 	return 0;
-}
-
-// tensor p1 to the power p2
-
-void
-power_tensor(void)
-{
-	int i, k, n;
-	// first and last dims must be equal
-	k = p1->u.tensor->ndim - 1;
-	if (p1->u.tensor->dim[0] != p1->u.tensor->dim[k]) {
-		push_symbol(POWER);
-		push(p1);
-		push(p2);
-		list(3);
-		return;
-	}
-	push(p2);
-	n = pop_integer();
-	if (n == ERR) {
-		push_symbol(POWER);
-		push(p1);
-		push(p2);
-		list(3);
-		return;
-	}
-	if (n == 0) {
-		n = p1->u.tensor->dim[0];
-		p1 = alloc_matrix(n, n);
-		for (i = 0; i < n; i++)
-			p1->u.tensor->elem[n * i + i] = one;
-		push(p1);
-		return;
-	}
-	if (n < 0) {
-		n = -n;
-		push(p1);
-		inv();
-		p1 = pop();
-	}
-	push(p1);
-	for (i = 1; i < n; i++) {
-		push(p1);
-		inner();
-	}
 }
 
 void
