@@ -445,8 +445,9 @@ void push_double(double d);
 double pop_double(void);
 int equaln(struct atom *p, int n);
 int equalq(struct atom *p, int a, int b);
-int compare_numbers(struct atom *a, struct atom *b);
-int compare_rationals(struct atom *a, struct atom *b);
+int cmpfunc(void);
+int cmp_numbers(struct atom *p1, struct atom *p2);
+int cmp_rationals(struct atom *a, struct atom *b);
 double convert_rational_to_double(struct atom *p);
 void convert_double_to_rational(double d);
 void best_rational_approximation(double x);
@@ -523,7 +524,7 @@ int complexity(struct atom *p);
 int equal(struct atom *p1, struct atom *p2);
 int lessp(struct atom *p1, struct atom *p2);
 void sort(int n);
-int sort_func(const void *q1, const void *q2);
+int sort_func(const void *p1, const void *p2);
 int cmp_expr(struct atom *p1, struct atom *p2);
 int sign(int n);
 int iszero(struct atom *p);
@@ -555,6 +556,7 @@ int isnumerator(struct atom *p);
 int isdoublesomewhere(struct atom *p);
 int isdenormalpolar(struct atom *p);
 int isdenormalpolarterm(struct atom *p);
+int isdenormalclock(struct atom *p);
 void eval_cos(void);
 void cosfunc(void);
 void cosfunc_nib(void);
@@ -944,8 +946,9 @@ void normalize_polar_term_rational(void);
 void normalize_polar_term_double(void);
 void power_sum(void);
 void power_minusone(void);
-void power_minusone_rational(void);
-void power_minusone_double(void);
+void normalize_clock(void);
+void normalize_clock_rational(void);
+void normalize_clock_double(void);
 void power_complex_number(void);
 void power_complex_plus(int n);
 void power_complex_minus(int n);
@@ -2725,28 +2728,38 @@ equalq(struct atom *p, int a, int b)
 }
 
 int
-compare_numbers(struct atom *a, struct atom *b)
+cmpfunc(void)
 {
-	double aa, bb;
-	if (isrational(a) && isrational(b))
-		return compare_rationals(a, b);
-	if (isdouble(a))
-		aa = a->u.d;
-	else
-		aa = convert_rational_to_double(a);
-	if (isdouble(b))
-		bb = b->u.d;
-	else
-		bb = convert_rational_to_double(b);
-	if (aa < bb)
+	int t;
+	save();
+	p2 = pop();
+	p1 = pop();
+	t = cmp_numbers(p1, p2);
+	restore();
+	return t;
+}
+
+int
+cmp_numbers(struct atom *p1, struct atom *p2)
+{
+	double d1, d2;
+	if (!isnum(p1) || !isnum(p2))
+		stop("compare");
+	if (isrational(p1) && isrational(p2))
+		return cmp_rationals(p1, p2);
+	push(p1);
+	d1 = pop_double();
+	push(p2);
+	d2 = pop_double();
+	if (d1 < d2)
 		return -1;
-	if (aa > bb)
+	if (d1 > d2)
 		return 1;
 	return 0;
 }
 
 int
-compare_rationals(struct atom *a, struct atom *b)
+cmp_rationals(struct atom *a, struct atom *b)
 {
 	int t;
 	uint32_t *ab, *ba;
@@ -4589,9 +4602,9 @@ sort(int n)
 }
 
 int
-sort_func(const void *q1, const void *q2)
+sort_func(const void *p1, const void *p2)
 {
-	return cmp_expr(*((struct atom **) q1), *((struct atom **) q2));
+	return cmp_expr(*((struct atom **) p1), *((struct atom **) p2));
 }
 
 int
@@ -4605,7 +4618,7 @@ cmp_expr(struct atom *p1, struct atom *p2)
 	if (p2 == symbol(NIL))
 		return 1;
 	if (isnum(p1) && isnum(p2))
-		return compare_numbers(p1, p2);
+		return cmp_numbers(p1, p2);
 	if (isnum(p1))
 		return -1;
 	if (isnum(p2))
@@ -4945,9 +4958,12 @@ isdenormalpolar(struct atom *p)
 	return isdenormalpolarterm(p);
 }
 
+// returns 1 if term is (coeff * i * pi) and coeff < 0 or coeff >= 1/2
+
 int
 isdenormalpolarterm(struct atom *p)
 {
+	int t;
 	if (car(p) != symbol(MULTIPLY))
 		return 0;
 	if (length(p) == 3 && isimaginaryunit(cadr(p)) && caddr(p) == symbol(PI))
@@ -4957,13 +4973,40 @@ isdenormalpolarterm(struct atom *p)
 	p = cadr(p); // p = coeff of term
 	if (isdouble(p))
 		return p->u.d < 0.0 || p->u.d >= 0.5;
-	if (p->sign == MMINUS)
-		return 1; // coeff less than zero
+	push(p);
+	push_rational(1, 2);
+	t = cmpfunc();
+	if (t >= 0)
+		return 1; // p >= 1/2
+	push(p);
+	push_integer(0);
+	t = cmpfunc();
+	if (t < 0)
+		return 1; // p < 0
+	return 0;
+}
+
+// returns 1 if p <= -1/2 or p > 1/2
+
+int
+isdenormalclock(struct atom *p)
+{
+	int t;
+	if (!isnum(p))
+		return 0;
+	if (isdouble(p))
+		return p->u.d <= -0.5 || p->u.d > 0.5;
+	push(p);
+	push_rational(1, 2);
+	t = cmpfunc();
+	if (t > 0)
+		return 1; // p > 1/2
 	push(p);
 	push_rational(-1, 2);
-	add();
-	p = pop();
-	return p->sign == MPLUS; // MPLUS indicates coeff greater than or equal to 1/2
+	t = cmpfunc();
+	if (t <= 0)
+		return 1; // p <= -1/2
+	return 0;
 }
 
 #undef X
@@ -15462,26 +15505,32 @@ power_sum(void)
 void
 power_minusone(void)
 {
-	if (!isnum(EXPO)) {
-		push_symbol(POWER);
-		push_integer(-1);
-		push(EXPO);
-		list(3);
-		return;
-	}
-	// optimization
+	// optimization for i
 	if (equalq(EXPO, 1, 2)) {
 		push(imaginaryunit);
 		return;
 	}
-	if (isrational(EXPO))
-		power_minusone_rational();
-	else
-		power_minusone_double();
+	if (isdenormalclock(EXPO)) {
+		normalize_clock();
+		return;
+	}
+	push_symbol(POWER);
+	push_integer(-1);
+	push(EXPO);
+	list(3);
 }
 
 void
-power_minusone_rational(void)
+normalize_clock(void)
+{
+	if (isrational(EXPO))
+		normalize_clock_rational();
+	else
+		normalize_clock_double();
+}
+
+void
+normalize_clock_rational(void)
 {
 	int n;
 	// R = EXPO mod 2
@@ -15565,7 +15614,7 @@ power_minusone_rational(void)
 }
 
 void
-power_minusone_double(void)
+normalize_clock_double(void)
 {
 	double expo, n, r;
 	expo = EXPO->u.d;
@@ -21067,33 +21116,11 @@ eval_or(void)
 int
 cmp_args(void)
 {
-	int t;
 	push(cadr(p1));
 	eval();
 	push(caddr(p1));
 	eval();
-	p2 = pop();
-	p1 = pop();
-	if (istensor(p1) || istensor(p2))
-		stop("tensor comparison");
-	push(p1);
-	push(p2);
-	subtract();
-	p1 = pop();
-	if (!isnum(p1)) {
-		push(p1);
-		floatfunc(); // try converting pi and e
-		p1 = pop();
-		if (!isnum(p1))
-			stop("non-numerical comparison");
-	}
-	if (iszero(p1))
-		t = 0;
-	else if (isrational(p1))
-		t = (p1->sign == MMINUS) ? -1 : 1;
-	else
-		t = (p1->u.d < 0.0) ? -1 : 1;
-	return t;
+	return cmpfunc();
 }
 
 // like eval() except '=' is evaluated as '=='

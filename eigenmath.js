@@ -1089,49 +1089,13 @@ clock()
 function
 cmp_args(p1)
 {
-	var p2;
-
-	p1 = cdr(p1);
-	push(car(p1));
+	push(cadr(p1));
 	evalf();
 
-	p1 = cdr(p1);
-	push(car(p1));
+	push(caddr(p1));
 	evalf();
 
-	p2 = pop();
-	p1 = pop();
-
-	if (istensor(p1) || istensor(p2))
-		stopf("tensor comparison");
-
-	push(p1);
-	push(p2);
-	subtract();
-	p1 = pop();
-
-	if (!isnum(p1)) {
-		push(p1);
-		floatf(); // try converting pi and e
-		p1 = pop();
-		if (!isnum(p1))
-			stopf("non-numerical comparison");
-	}
-
-	if (iszero(p1))
-		return 0;
-
-	if (isrational(p1)) {
-		if (p1.a > 0)
-			return 1;
-		else
-			return -1;
-	}
-
-	if (p1.d > 0)
-		return 1;
-	else
-		return -1;
+	return cmpfunc();
 }
 function
 cmp_expr(p1, p2)
@@ -1253,6 +1217,9 @@ cmp_numbers(p1, p2)
 {
 	var d1, d2;
 
+	if (!isnum(p1) || !isnum(p2))
+		stopf("compare");
+
 	if (isrational(p1) && isrational(p2))
 		return cmp_rationals(p1, p2);
 
@@ -1262,7 +1229,13 @@ cmp_numbers(p1, p2)
 	push(p2);
 	d2 = pop_double();
 
-	return d1 - d2;
+	if (d1 < d2)
+		return -1;
+
+	if (d1 > d2)
+		return 1;
+
+	return 0;
 }
 function
 cmp_rationals(p1, p2)
@@ -1369,6 +1342,14 @@ cmp_terms(p1, p2)
 		return -1; // length(p1) < length(p2)
 
 	return 0;
+}
+function
+cmpfunc()
+{
+	var p1, p2;
+	p2 = pop();
+	p1 = pop();
+	return cmp_numbers(p1, p2);
 }
 function
 combine_factors(h)
@@ -8962,6 +8943,33 @@ isdenominator(p)
 		return 0;
 }
 function
+isdenormalclock(p)
+{
+	var t;
+
+	if (!isnum(p))
+		return 0;
+
+	if (isdouble(p))
+		return p.d <= -0.5 || p.d > 0.5;
+
+	push(p);
+	push_rational(1, 2);
+	t = cmpfunc();
+
+	if (t > 0)
+		return 1; // p > 1/2
+
+	push(p);
+	push_rational(-1, 2);
+	t = cmpfunc();
+
+	if (t <= 0)
+		return 1; // p <= -1/2
+
+	return 0;
+}
+function
 isdenormalpolar(p)
 {
 	if (car(p) == symbol(ADD)) {
@@ -8980,6 +8988,8 @@ isdenormalpolar(p)
 function
 isdenormalpolarterm(p)
 {
+	var t;
+
 	if (car(p) != symbol(MULTIPLY))
 		return 0;
 
@@ -8994,15 +9004,21 @@ isdenormalpolarterm(p)
 	if (isdouble(p))
 		return p.d < 0 || p.d >= 0.5;
 
-	if (p.a < 0)
-		return 1; // coeff less than zero
+	push(p);
+	push_rational(1, 2);
+	t = cmpfunc();
+
+	if (t >= 0)
+		return 1; // p >= 1/2
 
 	push(p);
-	push_rational(-1, 2);
-	add();
-	p = pop();
+	push_integer(0);
+	t = cmpfunc();
 
-	return p.a >= 0; // coeff greater than or equal to 1/2
+	if (t < 0)
+		return 1; // p < 0
+
+	return 0;
 }
 function
 isdigit(s)
@@ -10574,29 +10590,35 @@ power_complex_rational(BASE, EXPO, X, Y)
 function
 power_minusone(EXPO)
 {
-	if (!isnum(EXPO)) {
-		push_symbol(POWER);
-		push_integer(-1);
-		push(EXPO);
-		list(3);
-		return;
-	}
-
-	// optimization
+	// optimization for i
 
 	if (equalq(EXPO, 1, 2)) {
 		push(imaginaryunit);
 		return;
 	}
 
-	if (isrational(EXPO))
-		power_minusone_rational(EXPO);
-	else
-		power_minusone_double(EXPO);
+	if (isdenormalclock(EXPO)) {
+		normalize_clock(EXPO);
+		return;
+	}
+
+	push_symbol(POWER);
+	push_integer(-1);
+	push(EXPO);
+	list(3);
 }
 
 function
-power_minusone_rational(EXPO)
+normalize_clock(EXPO)
+{
+	if (isrational(EXPO))
+		normalize_clock_rational(EXPO);
+	else
+		normalize_clock_double(EXPO);
+}
+
+function
+normalize_clock_rational(EXPO)
 {
 	var n, R;
 
@@ -10691,7 +10713,7 @@ power_minusone_rational(EXPO)
 }
 
 function
-power_minusone_double(EXPO)
+normalize_clock_double(EXPO)
 {
 	var expo, n, r;
 
