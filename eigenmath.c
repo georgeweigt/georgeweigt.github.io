@@ -821,8 +821,8 @@ void lcm_nib(void);
 void eval_leading(void);
 void leading(void);
 void eval_log(void);
-void logarithm(void);
-void log_nib(void);
+void logfunc(void);
+void logfunc_nib(void);
 void eval_mag(void);
 void mag(void);
 void mag_nib(void);
@@ -1757,7 +1757,7 @@ arccos_nib(void)
 		push_rational(1, 2);
 		power();
 		add();
-		logarithm();
+		logfunc();
 		multiply();
 		return;
 	}
@@ -1850,7 +1850,7 @@ arccosh_nib(void)
 		power();
 		push(p1);
 		add();
-		logarithm();
+		logfunc();
 		return;
 	}
 	if (equaln(p1, 1)) {
@@ -1906,7 +1906,7 @@ arcsin_nib(void)
 		push_rational(1, 2);
 		power();
 		add();
-		logarithm();
+		logfunc();
 		multiply();
 		return;
 	}
@@ -2001,7 +2001,7 @@ arcsinh_nib(void)
 		power();
 		push(p1);
 		add();
-		logarithm();
+		logfunc();
 		return;
 	}
 	if (iszero(p1)) {
@@ -2025,6 +2025,16 @@ arcsinh_nib(void)
 	list(2);
 }
 
+#undef T
+#undef X
+#undef Y
+#undef Z
+
+#define T p1
+#define X p2
+#define Y p3
+#define Z p4
+
 void
 eval_arctan(void)
 {
@@ -2038,16 +2048,6 @@ eval_arctan(void)
 	}
 	arctan();
 }
-
-#undef T
-#undef X
-#undef Y
-#undef Z
-
-#define T p1
-#define X p2
-#define Y p3
-#define Z p4
 
 void
 arctan(void)
@@ -2082,7 +2082,7 @@ arctan_nib(void)
 		push(Z);
 		subtract();
 		divide();
-		logarithm();
+		logfunc();
 		multiply();
 		return;
 	}
@@ -2209,11 +2209,11 @@ arctanh_nib(void)
 		push_double(1.0);
 		push(p1);
 		add();
-		logarithm();
+		logfunc();
 		push_double(1.0);
 		push(p1);
 		subtract();
-		logarithm();
+		logfunc();
 		subtract();
 		push_double(0.5);
 		multiply();
@@ -2267,7 +2267,7 @@ arg(void)
 void
 arg_nib(void)
 {
-	int i, n;
+	int i, n, t;
 	p1 = pop();
 	if (istensor(p1)) {
 		push(p1);
@@ -2282,6 +2282,7 @@ arg_nib(void)
 		push(p1);
 		return;
 	}
+	t = isdoublesomewhere(p1);
 	push(p1);
 	numerator();
 	arg1();
@@ -2291,7 +2292,7 @@ arg_nib(void)
 	subtract();
 	p1 = pop();
 	push(p1);
-	if (iscons(p1) && isdoublesomewhere(p1))
+	if (t)
 		floatfunc();
 }
 
@@ -5660,7 +5661,7 @@ dpower(void)
 	derivative();
 	multiply();
 	push(cadr(p1));		// log u
-	logarithm();
+	logfunc();
 	push(caddr(p1));	// dv/dx
 	push(p2);
 	derivative();
@@ -12432,26 +12433,24 @@ leading(void)
 	restore();
 }
 
-// natural log
-
 void
 eval_log(void)
 {
 	push(cadr(p1));
 	eval();
-	logarithm();
+	logfunc();
 }
 
 void
-logarithm(void)
+logfunc(void)
 {
 	save();
-	log_nib();
+	logfunc_nib();
 	restore();
 }
 
 void
-log_nib(void)
+logfunc_nib(void)
 {
 	int h, i;
 	p1 = pop();
@@ -12478,10 +12477,10 @@ log_nib(void)
 	if (isdoublez(p1)) {
 		push(p1);
 		mag();
-		logarithm();
-		push(imaginaryunit);
+		logfunc();
 		push(p1);
 		arg();
+		push(imaginaryunit);
 		multiply();
 		add();
 		return;
@@ -12499,7 +12498,7 @@ log_nib(void)
 	if (isnegativenumber(p1)) {
 		push(p1);
 		negate();
-		logarithm();
+		logfunc();
 		push(imaginaryunit);
 		push_symbol(PI);
 		multiply();
@@ -12533,7 +12532,7 @@ log_nib(void)
 	if (car(p1) == symbol(POWER)) {
 		push(caddr(p1));
 		push(cadr(p1));
-		logarithm();
+		logfunc();
 		multiply();
 		return;
 	}
@@ -12543,7 +12542,7 @@ log_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			logarithm();
+			logfunc();
 			p1 = cdr(p1);
 		}
 		add_terms(tos - h);
@@ -16124,6 +16123,9 @@ prefixform(struct atom *p)
 	case DOUBLE:
 		sprintf(buf, "%g", p->u.d);
 		print_str(buf);
+//		for debugging
+//		if (!strchr(buf, '.') && !strchr(buf, 'e') && !strchr(buf, 'E'))
+//			print_str(".0");
 		break;
 	case KSYM:
 	case USYM:
