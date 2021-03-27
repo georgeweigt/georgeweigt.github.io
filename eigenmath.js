@@ -58,7 +58,7 @@ abs()
 
 	p2 = pop();
 	push(p2);
-	floatf();
+	floatfunc();
 	p3 = pop();
 	if (isdouble(p3)) {
 		push(p2);
@@ -792,7 +792,7 @@ arg()
 	subtract();
 
 	if (t)
-		floatf();
+		floatfunc();
 }
 
 function
@@ -1091,9 +1091,11 @@ cmp_args(p1)
 {
 	push(cadr(p1));
 	evalf();
+	floatfunc();
 
 	push(caddr(p1));
 	evalf();
+	floatfunc();
 
 	return cmpfunc();
 }
@@ -5393,7 +5395,7 @@ eval_float(p1)
 {
 	push(cadr(p1));
 	evalf();
-	floatf();
+	floatfunc();
 }
 function
 eval_floor(p1)
@@ -6952,7 +6954,16 @@ flatten_terms(h)
 	}
 }
 function
-float_subst()
+floatfunc()
+{
+	floatfunc_subst();
+	evalf();
+	floatfunc_subst(); // in case pi popped up
+	evalf();
+}
+
+function
+floatfunc_subst()
 {
 	var h, i, n, p1;
 
@@ -6963,7 +6974,7 @@ float_subst()
 		n = p1.elem.length
 		for (i = 0; i < n; i++) {
 			push(p1.elem[i]);
-			float_subst();
+			floatfunc_subst();
 			p1.elem[i] = pop();
 		}
 		push(p1);
@@ -6991,7 +7002,7 @@ float_subst()
 		push_symbol(POWER);
 		push_symbol(EXP1);
 		push(caddr(p1));
-		float_subst();
+		floatfunc_subst();
 		list(3);
 		return;
 	}
@@ -7004,7 +7015,7 @@ float_subst()
 		push_symbol(POWER);
 		push(cadr(p1));
 		push(caddr(p1));
-		float_subst();
+		floatfunc_subst();
 		list(3);
 		list(3);
 		return;
@@ -7016,7 +7027,7 @@ float_subst()
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			float_subst();
+			floatfunc_subst();
 			p1 = cdr(p1);
 		}
 		list(stack.length - h);
@@ -7024,14 +7035,6 @@ float_subst()
 	}
 
 	push(p1);
-}
-function
-floatf()
-{
-	float_subst();
-	evalf();
-	float_subst(); // in case pi popped up
-	evalf();
 }
 const FONT_SIZE = 24;
 const SMALL_FONT_SIZE = 18;
@@ -12993,7 +12996,7 @@ sample(F, T, t)
 
 	push(F);
 	eval_nonstop();
-	floatf();
+	floatfunc();
 	p1 = pop();
 
 	if (istensor(p1)) {
@@ -13705,7 +13708,7 @@ setup_trange()
 	p1 = lookup("trange");
 	push(p1);
 	eval_nonstop();
-	floatf();
+	floatfunc();
 	p1 = pop();
 
 	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
@@ -13734,7 +13737,7 @@ setup_xrange()
 	p1 = lookup("xrange");
 	push(p1);
 	eval_nonstop();
-	floatf();
+	floatfunc();
 	p1 = pop();
 
 	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
@@ -13763,7 +13766,7 @@ setup_yrange()
 	p1 = lookup("yrange");
 	push(p1);
 	eval_nonstop();
-	floatf();
+	floatfunc();
 	p1 = pop();
 
 	if (!istensor(p1) || p1.dim.length != 1 || p1.dim[0] != 2)
