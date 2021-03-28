@@ -21118,10 +21118,16 @@ cmp_args(void)
 {
 	push(cadr(p1));
 	eval();
-	floatfunc();
+	p2 = pop();
+	push(p2);
+	if (!isnum(p2))
+		floatfunc();
 	push(caddr(p1));
 	eval();
-	floatfunc();
+	p2 = pop();
+	push(p2);
+	if (!isnum(p2))
+		floatfunc();
 	return cmpfunc();
 }
 
