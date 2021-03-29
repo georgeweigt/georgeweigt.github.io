@@ -12,9 +12,15 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- eigenvalues using QR method
 
+A = ((1,4,3),(5,3,7),(6,1,2))
+A
+
 p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
 
-f() = do(X = float(A),U = unit(3),for(k,1,100,
+X = float(A)
+U = unit(3)
+
+for(k,1,100,
   XT = transpose(X),
   a1 = XT[1],
   a2 = XT[2],
@@ -29,15 +35,7 @@ f() = do(X = float(A),U = unit(3),for(k,1,100,
   R = dot(transpose(Q),X),
   X = dot(R,Q),
   U = dot(U,Q)
-))
-
-A = ((7,3,4),(8,5,2),(2,0,3))
-A = A + transpose(A) -- symmetrize
-A
-
-f -- compute eigenvalues
-
--- dot(U,X,transpose(U)) -- same as A
+)
 
 "Eigenvalues"
 
@@ -49,7 +47,7 @@ lambda1
 lambda2
 lambda3
 
--- eigenvectors (for symmetric A)
+-- eigenvectors (only if A is symmetric)
 
 U = transpose(U)
 
