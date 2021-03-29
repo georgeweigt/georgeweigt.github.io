@@ -6196,7 +6196,7 @@ eval_test(p1)
 	var p2;
 	p1 = cdr(p1);
 	while (iscons(p1)) {
-		if (cdr(p1) == symbol(NIL)) {
+		if (!iscons(cdr(p1))) {
 			push(car(p1)); // default case
 			evalf();
 			return;
@@ -6211,7 +6211,7 @@ eval_test(p1)
 		}
 		p1 = cddr(p1);
 	}
-	push_integer(0);
+	push_symbol(NIL);
 }
 function
 eval_testeq(p1)
