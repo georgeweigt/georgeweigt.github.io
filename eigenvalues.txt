@@ -5,14 +5,14 @@ A
 
 p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
 
-X = float(A)
+A = float(A)
 V = unit(3)
 
 for(k,1,100,
-  XT = transpose(X),
-  a1 = XT[1],
-  a2 = XT[2],
-  a3 = XT[3],
+  AT = transpose(A),
+  a1 = AT[1],
+  a2 = AT[2],
+  a3 = AT[3],
   u1 = a1,
   u2 = a2 - p(a2,u1),
   u3 = a3 - p(a3,u1) - p(a3,u2),
@@ -20,15 +20,15 @@ for(k,1,100,
   u2 = u2 / abs(u2),
   u3 = u3 / abs(u3),
   U = transpose((u1,u2,u3)),
-  X = dot(transpose(U),X,U),
+  A = dot(transpose(U),A,U),
   V = dot(V,U)
 )
 
 "Eigenvalues"
 
-lambda1 = X[1,1]
-lambda2 = X[2,2]
-lambda3 = X[3,3]
+lambda1 = A[1,1]
+lambda2 = A[2,2]
+lambda3 = A[3,3]
 
 lambda1
 lambda2
