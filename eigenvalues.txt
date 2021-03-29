@@ -6,7 +6,7 @@ A
 p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
 
 X = float(A)
-U = unit(3)
+V = unit(3)
 
 for(k,1,100,
   XT = transpose(X),
@@ -19,10 +19,9 @@ for(k,1,100,
   u1 = u1 / abs(u1),
   u2 = u2 / abs(u2),
   u3 = u3 / abs(u3),
-  Q = transpose((u1,u2,u3)),
-  R = dot(transpose(Q),X),
-  X = dot(R,Q),
-  U = dot(U,Q)
+  U = transpose((u1,u2,u3)),
+  X = dot(transpose(U),X,U),
+  V = dot(V,U)
 )
 
 "Eigenvalues"
@@ -37,8 +36,8 @@ lambda3
 
 -- eigenvectors (only if A is symmetric)
 
-U = transpose(U)
+V = transpose(V)
 
-v1 = U[1]
-v2 = U[2]
-v3 = U[3]
+v1 = V[1]
+v2 = V[2]
+v3 = V[3]
