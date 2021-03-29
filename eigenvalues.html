@@ -15,10 +15,10 @@
 A = ((1,3,4),(3,1,2),(4,2,1))
 A
 
-p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
-
 A = float(A)
 V = unit(3)
+
+p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
 
 for(k,1,100,
   AT = transpose(A),
