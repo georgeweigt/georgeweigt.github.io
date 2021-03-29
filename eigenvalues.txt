@@ -1,0 +1,46 @@
+-- eigenvalues using QR method
+
+p(a,u) = u dot(u,a) / dot(u,u) -- projection of a onto u
+
+f() = do(X = float(A),U = unit(3),for(k,1,100,
+  XT = transpose(X),
+  a1 = XT[1],
+  a2 = XT[2],
+  a3 = XT[3],
+  u1 = a1,
+  u2 = a2 - p(a2,u1),
+  u3 = a3 - p(a3,u1) - p(a3,u2),
+  u1 = u1 / abs(u1),
+  u2 = u2 / abs(u2),
+  u3 = u3 / abs(u3),
+  Q = transpose((u1,u2,u3)),
+  R = dot(transpose(Q),X),
+  X = dot(R,Q),
+  U = dot(U,Q)
+))
+
+A = ((7,3,4),(8,5,2),(2,0,3))
+A = A + transpose(A) -- symmetrize
+A
+
+f -- compute eigenvalues
+
+-- dot(U,X,transpose(U)) -- same as A
+
+"Eigenvalues"
+
+lambda1 = X[1,1]
+lambda2 = X[2,2]
+lambda3 = X[3,3]
+
+lambda1
+lambda2
+lambda3
+
+-- eigenvectors (for symmetric A)
+
+U = transpose(U)
+
+v1 = U[1]
+v2 = U[2]
+v3 = U[3]

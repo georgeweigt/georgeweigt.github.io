@@ -60,3 +60,4 @@ demos:
 	cat 1.txt moller-scattering-3.txt 2.txt > moller-scattering-3.html
 	cat 1.txt bernstein-vazirani.txt 2.txt > bernstein-vazirani.html
 	cat 1.txt phase-estimation.txt 2.txt > phase-estimation.html
+	cat 1.txt eigenvalues.txt 2.txt > eigenvalues.html
