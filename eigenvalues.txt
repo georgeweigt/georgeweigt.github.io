@@ -1,4 +1,4 @@
--- compute eigenvalues using QR method
+-- Compute eigenvalues using QR method
 
 A = ((1,3,4),(3,1,2),(4,2,1))
 A
