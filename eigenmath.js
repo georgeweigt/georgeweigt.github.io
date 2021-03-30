@@ -4381,7 +4381,7 @@ draw_pass2(F, T)
 		dx = x2 - x1;
 		dy = y2 - y1;
 
-		m = Math.sqrt(dx * dx + dy * dy);
+		m = 0.5 * Math.sqrt(dx * dx + dy * dy);
 
 		m = Math.floor(m);
 
@@ -4763,7 +4763,7 @@ emit_points()
 		x = "cx='" + x + "'";
 		y = "cy='" + y + "'";
 
-		outbuf += "<circle " + x + y + "r='2' style='stroke:black;fill:black'/>";
+		outbuf += "<circle " + x + y + "r='1.5' style='stroke:black;fill:black'/>\n";
 	}
 }
 function
@@ -12500,39 +12500,6 @@ var primetab = [
 104593,104597,104623,104639,104651,104659,104677,104681,
 104683,104693,104701,104707,104711,104717,104723,104729,
 ];
-const BLACK = 1;
-const BLUE = 2;
-const RED = 3;
-
-function
-print_buf(s, color)
-{
-	s = s.replace(/&/g, "&amp;");
-	s = s.replace(/</g, "&lt;");
-	s = s.replace(/>/g, "&gt;");
-	s = s.replace(/\n/g, "<br>");
-	s = s.replace(/\r/g, "");
-
-	if (!s.endsWith("<br>"))
-		s += "<br>";
-
-	switch (color) {
-
-	case BLACK:
-		s = "<span style='color:black'>" + s + "</span>";
-		break;
-
-	case BLUE:
-		s = "<span style='color:blue;font-family:courier'>" + s + "</span>";
-		break;
-
-	case RED:
-		s = "<span style='color:red;font-family:courier'>" + s + "</span>";
-		break;
-	}
-
-	stdout.innerHTML += s;
-}
 function
 print_result()
 {
@@ -12547,6 +12514,39 @@ print_result()
 	prep_symbol_equals(p1, p2);
 
 	display();
+}
+const BLACK = 1;
+const BLUE = 2;
+const RED = 3;
+
+function
+printbuf(s, color)
+{
+	s = s.replace(/&/g, "&amp;");
+	s = s.replace(/</g, "&lt;");
+	s = s.replace(/>/g, "&gt;");
+	s = s.replace(/\n/g, "<br>");
+	s = s.replace(/\r/g, "");
+
+	if (!s.endsWith("<br>"))
+		s += "<br>";
+
+	switch (color) {
+
+	case BLACK:
+		s = "<span style='color:black;font-family:courier'>" + s + "</span>";
+		break;
+
+	case BLUE:
+		s = "<span style='color:blue;font-family:courier'>" + s + "</span>";
+		break;
+
+	case RED:
+		s = "<span style='color:red;font-family:courier'>" + s + "</span>";
+		break;
+	}
+
+	stdout.innerHTML += s;
 }
 function
 printname(p)
@@ -12964,7 +12964,7 @@ run()
 		if (errmsg.length > 0) {
 			if (trace1 < trace2 && inbuf[trace2 - 1] == '\n')
 				trace2--;
-			print_buf(inbuf.substring(trace1, trace2) + "\nStop: " + errmsg, RED);
+			printbuf(inbuf.substring(trace1, trace2) + "\nStop: " + errmsg, RED);
 		}
 	}
 }
@@ -13546,7 +13546,7 @@ scan_error(s)
 		t += instring.substring(token_index, scan_index);
 	}
 
-	print_buf(t, RED);
+	printbuf(t, RED);
 
 	stopf("");
 }
@@ -14589,7 +14589,7 @@ function
 trace_input()
 {
 	if (!iszero(get_binding(symbol(TRACE))))
-		print_buf(instring.substring(trace1, trace2), BLUE);
+		printbuf(instring.substring(trace1, trace2), BLUE);
 }
 function
 transpose(n, m)
