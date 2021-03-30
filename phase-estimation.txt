@@ -4,7 +4,7 @@ run("Downloads/q4.txt")
 
 "Theta is the value to estimate (range 0.0 to 1.0)"
 
-theta = 0.4
+theta = 0.7
 theta
 
 pi = float(pi) -- use numerical value of pi
