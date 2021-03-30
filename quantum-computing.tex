@@ -3,7 +3,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb} % mathbb
 \usepackage{graphicx}
-\usepackage{fancyvrb}
 
 \begin{document}
 
@@ -113,21 +112,21 @@ shows how to implement the QFT.
 \noindent
 This is how the QFT operator $Q$ is defined in q4.txt.
 
-\begin{Verbatim}
+\begin{verbatim}
 Q = dot(
-S03,
-S12,
-H0,
-P01(pi/2),
-H1,
-P12(pi/2),
-P02(pi/4),
-H2,
-P23(pi/2),
-P13(pi/4),
-P03(pi/8),
-H3)
-\end{Verbatim}
+S03,            -- Swap qubits 0 and 3
+S12,            -- Swap qubits 1 and 2
+H0,             -- Hadamard qubit 0
+P01(pi/2),      -- Controlled phase shift (0 control, 1 target)
+H1,             -- Hadamard on qubit 1
+P12(pi/2),      -- Controlled phase shift (1 control, 2 target)
+P02(pi/4),      -- Controlled phase shift (0 control, 2 target)
+H2,             -- Hadamard qubit 2
+P23(pi/2),      -- Controlled phase shift (2 control, 3 target)
+P13(pi/4),      -- Controlled phase shift (1 control, 3 target)
+P03(pi/8),      -- Controlled phase shift (0 control, 3 target)
+H3)             -- Hadamard qubit 3
+\end{verbatim}
 
 \noindent
 The inverse QFT operator $R$ is defined similarly except the operators appear in reverse order
