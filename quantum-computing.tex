@@ -102,8 +102,8 @@ Then the Bernstein-Vazirani algorithm for identifying $f$ is
 \end{equation*}
 
 \subsection*{Quantum Fourier transform}
-The following circuit diagram\footnote{\tt qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html}
-shows how to implement the QFT.
+The following circuit diagram shows how the QFT is implemented.\footnote
+{\tt qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html}
 
 \begin{center}
 \includegraphics[scale=0.5]{qft.png}
@@ -118,7 +118,7 @@ S03,            -- Swap qubits 0 and 3
 S12,            -- Swap qubits 1 and 2
 H0,             -- Hadamard qubit 0
 P01(pi/2),      -- Controlled phase shift (0 control, 1 target)
-H1,             -- Hadamard on qubit 1
+H1,             -- Hadamard qubit 1
 P12(pi/2),      -- Controlled phase shift (1 control, 2 target)
 P02(pi/4),      -- Controlled phase shift (0 control, 2 target)
 H2,             -- Hadamard qubit 2
