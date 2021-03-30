@@ -10,31 +10,24 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Quantum phase angle estimation demo
-
--- eigenmath.org/phase-estimation.txt
+-- Phase estimation demo
 
 run("Downloads/q4.txt")
 
--- input value, range 0.0 to 1.0
+"Theta is the value to estimate (range 0.0 to 1.0)"
 
 theta = 0.4
+theta
 
--- use numerical value of pi
+pi = float(pi) -- use numerical value of pi
 
-pi = float(pi)
+U = dot(
+P3(16 pi theta),
+P2(8 pi theta),
+P1(4 pi theta),
+P0(2 pi theta))
 
--- U is a unitary operator
-
-U = dot(P23(8 pi theta),P13(4 pi theta),P03(2 pi theta))
-
--- V is the inverse QFT for qubits 0, 1, and 2
-
-V = dot(H2,P02(-pi/4),P12(-pi/2),H1,P01(-pi/2),H0,S02)
-
--- psi is a ket
-
-psi = dot(V,U,X3,H2,H1,H0,ket0)
+psi = dot(R,U,H3,H2,H1,H0,ket0)
 
 "Probability distribution"
 
@@ -45,7 +38,7 @@ yrange = (0,1)
 draw(P[ceiling(x)],x)
 
 "Expectation value (estimate of theta)"
-sum(k,0,15,k/8 P[k + 1]) - 1
+1/16 sum(k,0,15,k P[k + 1])
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
