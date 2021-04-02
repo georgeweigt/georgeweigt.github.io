@@ -7978,7 +7978,7 @@ eval_do(void)
 {
 	int t = expanding;
 	expanding = 1;
-	push_integer(0);
+	push_symbol(NIL);
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		pop();
@@ -17710,7 +17710,9 @@ print_char(int c)
 void
 eval_product(void)
 {
-	int h, j, k;
+	int h, j, k, t;
+	t = expanding;
+	expanding = 1;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -17745,6 +17747,7 @@ eval_product(void)
 	}
 	multiply_factors(tos - h);
 	restore_symbol(p2);
+	expanding = t;
 }
 
 void
