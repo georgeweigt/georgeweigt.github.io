@@ -1,11 +1,13 @@
 -- Find r such that 7^r mod 15 = 1
+
 -- See https://qiskit.org/textbook/ch-algorithms/shor.html
 
 -- Uses experimental function 'rotate'
 
--- U for 7 mod 15
+-- 7 mod 15
 
-U(psi,k) = rotate(psi,
+U(psi,k) = rotate(
+  psi,          -- ket
   C,k,X,8,      -- conditional not bit 8
   C,k,X,9,      -- conditional not bit 9
   C,k,X,10,     -- conditional not bit 10
@@ -17,16 +19,17 @@ U(psi,k) = rotate(psi,
 
 -- initial state
 
-psi = rotate((1,0),
-  X,8,  -- not bit 8
-  H,0,  -- hadamard bit 0
-  H,1,	-- hadamard bit 1
-  H,2,  -- hadamard bit 2
-  H,3,  -- hadamard bit 3
-  H,4,  -- hadamard bit 4
-  H,5,  -- hadamard bit 5
-  H,6,  -- hadamard bit 6
-  H,7   -- hadamard bit 7
+psi = rotate(
+  (1,0), -- ket
+  X,8,   -- not bit 8
+  H,0,   -- hadamard bit 0
+  H,1,   -- hadamard bit 1
+  H,2,   -- hadamard bit 2
+  H,3,   -- hadamard bit 3
+  H,4,   -- hadamard bit 4
+  H,5,   -- hadamard bit 5
+  H,6,   -- hadamard bit 6
+  H,7    -- hadamard bit 7
 )
 
 for(k,1,1,psi = U(psi,0))
@@ -37,6 +40,8 @@ for(k,1,16,psi = U(psi,4))
 for(k,1,32,psi = U(psi,5))
 for(k,1,64,psi = U(psi,6))
 for(k,1,128,psi = U(psi,7))
+
+-- R is inverse QFT
 
 psi = rotate(psi,R,7)
 
