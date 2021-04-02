@@ -29,15 +29,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 function
 abs()
 {
-	var t = expanding;
-	expanding = 1;
-	abs_nib();
-	expanding = t;
-}
-
-function
-abs_nib()
-{
 	var h, p1, p2, p3;
 
 	p1 = pop();
@@ -4852,9 +4843,12 @@ erf()
 function
 eval_abs(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	abs();
+	expanding = t;
 }
 function
 eval_add(p1)
@@ -4871,12 +4865,24 @@ eval_add(p1)
 function
 eval_adj(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	adj();
+	expanding = t;
 }
 function
 eval_and(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_and_nib(p1);
+	expanding = t;
+}
+
+function
+eval_and_nib(p1)
 {
 	var p2;
 	p1 = cdr(p1);
@@ -4912,57 +4918,77 @@ eval_and_print_result()
 function
 eval_arccos(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arccos();
+	expanding = t;
 }
 function
 eval_arccosh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arccosh();
+	expanding = t;
 }
 function
 eval_arcsin(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arcsin();
+	expanding = t;
 }
 function
 eval_arcsinh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arcsinh();
+	expanding = t;
 }
 function
 eval_arctan(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
-	if (caddr(p1) == symbol(NIL))
-		push_integer(1);
-	else {
+	if (iscons(cddr(p1))) {
 		push(caddr(p1));
 		evalf();
-	}
+	} else
+		push_integer(1);
 	arctan();
+	expanding = t;
 }
 function
 eval_arctanh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arctanh();
+	expanding = t;
 }
 function
 eval_arg(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	arg();
+	expanding = t;
 }
 function
 eval_binding(p1)
@@ -4971,6 +4997,15 @@ eval_binding(p1)
 }
 function
 eval_ceiling(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_ceiling_nib(p1);
+	expanding = t;
+}
+
+function
+eval_ceiling_nib(p1)
 {
 	push(cadr(p1));
 	evalf();
@@ -4993,23 +5028,32 @@ eval_ceiling(p1)
 function
 eval_check(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalp();
 	p1 = pop();
 	if (iszero(p1))
 		stopf("check");
 	push_symbol(NIL); // no result is printed
+	expanding = t;
 }
 function
 eval_circexp(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	circexp();
+	expanding = t;
 }
 function
 eval_clear()
 {
+	var t = expanding;
+	expanding = 1;
+
 	save_symbol(symbol(TRACE));
 
 	binding = {};
@@ -5020,18 +5064,26 @@ eval_clear()
 	restore_symbol(symbol(TRACE));
 
 	push_symbol(NIL);
+
+	expanding = t;
 }
 function
 eval_clock(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	clock();
+	expanding = t;
 }
 function
 eval_cofactor(p1)
 {
-	var i, j, p2;
+	var i, j, p2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -5059,16 +5111,30 @@ eval_cofactor(p1)
 
 	if ((i + j) % 2)
 		negate();
+
+	expanding = t;
 }
 function
 eval_conj(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	conj();
+	expanding = t;
 }
 function
 eval_contract(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_contract_nib(p1);
+	expanding = t;
+}
+
+function
+eval_contract_nib(p1)
 {
 	push(cadr(p1));
 	evalf();
@@ -5094,16 +5160,22 @@ eval_contract(p1)
 function
 eval_cos(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	cos();
+	expanding = t;
 }
 function
 eval_cosh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	cosh();
+	expanding = t;
 }
 function
 eval_defint(p1)
@@ -5172,12 +5244,24 @@ eval_defint_nib(p1)
 function
 eval_denominator(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	denominator();
+	expanding = t;
 }
 function
 eval_derivative(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_derivative_nib(p1);
+	expanding = t;
+}
+
+function
+eval_derivative_nib(p1)
 {
 	var i, n, flag, X, Y;
 
@@ -5244,14 +5328,20 @@ eval_derivative(p1)
 function
 eval_det(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	det();
+	expanding = t;
 }
 function
 eval_dim(p1)
 {
-	var k = 1, p2;
+	var k, p2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -5263,17 +5353,22 @@ eval_dim(p1)
 		push(car(p1));
 		evalf();
 		k = pop_integer();
-	}
+	} else
+		k = 1;
 
 	if (!istensor(p2) || k < 1 || k > p2.dim.length)
-		stopf("dim: error");
+		stopf("dim");
 
 	push_integer(p2.dim[k - 1]);
+
+	expanding = t;
 }
 function
 eval_do(p1)
 {
-	push_integer(0);
+	var t = expanding;
+	expanding = 1;
+	push_symbol(NIL);
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		pop();
@@ -5281,6 +5376,7 @@ eval_do(p1)
 		evalf();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 function
 eval_dot(p1)
@@ -5289,6 +5385,15 @@ eval_dot(p1)
 }
 function
 eval_draw(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_draw_nib(p1);
+	expanding = t;
+}
+
+function
+eval_draw_nib(p1)
 {
 	var F, T;
 
@@ -5336,6 +5441,8 @@ eval_erf(p1)
 function
 eval_eval(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	p1 = cddr(p1);
@@ -5348,76 +5455,107 @@ eval_eval(p1)
 		p1 = cddr(p1);
 	}
 	evalf();
+	expanding = t;
 }
 function
 eval_exp(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	exp();
+	expanding = t;
 }
 function
 eval_expcos(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	expcos();
+	expanding = t;
 }
 function
 eval_expcosh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	expcosh();
+	expanding = t;
 }
 function
 eval_expsin(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	expsin();
+	expanding = t;
 }
 function
 eval_expsinh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	expsinh();
+	expanding = t;
 }
 function
 eval_exptan(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	exptan();
+	expanding = t;
 }
 function
 eval_exptanh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	exptanh();
+	expanding = t;
 }
 function
 eval_factorial(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	factorial();
+	expanding = t;
 }
 function
 eval_float(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	floatfunc();
+	expanding = t;
 }
 function
 eval_floor(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	floor();
+	expanding = t;
 }
 
 function
@@ -5444,7 +5582,10 @@ floor()
 function
 eval_for(p1)
 {
-	var j, k, p2, p3;
+	var j, k, p2, p3, t;
+
+	t = expanding;
+	expanding = 1;
 
 	p2 = cadr(p1);
 
@@ -5487,10 +5628,14 @@ eval_for(p1)
 	restore_symbol(p2);
 
 	push_symbol(NIL); // return value
+
+	expanding = t;
 }
 function
 eval_hadamard(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	p1 = cddr(p1);
@@ -5500,13 +5645,17 @@ eval_hadamard(p1)
 		hadamard();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 function
 eval_imag(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	imag();
+	expanding = t;
 }
 function
 eval_index(p1)
@@ -5542,6 +5691,8 @@ eval_infixform(p1)
 function
 eval_inner(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	p1 = cddr(p1);
@@ -5551,6 +5702,7 @@ eval_inner(p1)
 		inner();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 function
 eval_integral(p1)
@@ -5630,13 +5782,18 @@ eval_integral_nib(p1)
 function
 eval_inv(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	inv();
+	expanding = t;
 }
 function
 eval_kronecker(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	p1 = cddr(p1);
@@ -5646,25 +5803,35 @@ eval_kronecker(p1)
 		kronecker();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 function
 eval_log(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	log();
+	expanding = t;
 }
 function
 eval_mag(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	mag();
+	expanding = t;
 }
 function
 eval_minor(p1)
 {
-	var i, j, p2;
+	var i, j, p2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -5689,11 +5856,16 @@ eval_minor(p1)
 	minormatrix(i, j);
 
 	det();
+
+	expanding = t;
 }
 function
 eval_minormatrix(p1)
 {
-	var i, j, p2;
+	var i, j, p2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -5716,15 +5888,20 @@ eval_minormatrix(p1)
 	push(p2);
 
 	minormatrix(i, j);
+
+	expanding = t;
 }
 function
 eval_mod(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	push(caddr(p1));
 	evalf();
 	mod();
+	expanding = t;
 }
 function
 eval_multiply(p1)
@@ -5805,6 +5982,8 @@ eval_nonstop_nib()
 function
 eval_not(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalp();
 	p1 = pop();
@@ -5812,6 +5991,7 @@ eval_not(p1)
 		push_integer(1);
 	else
 		push_integer(0);
+	expanding = t;
 }
 function
 eval_number(p1)
@@ -5828,12 +6008,24 @@ eval_number(p1)
 function
 eval_numerator(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	numerator();
+	expanding = t;
 }
 function
 eval_or(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_or_nib(p1);
+	expanding = t;
+}
+
+function
+eval_or_nib(p1)
 {
 	var p2;
 	p1 = cdr(p1);
@@ -5852,6 +6044,8 @@ eval_or(p1)
 function
 eval_outer(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	p1 = cddr(p1);
@@ -5861,13 +6055,17 @@ eval_outer(p1)
 		outer();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 function
 eval_polar(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	polar();
+	expanding = t;
 }
 function
 eval_power(p1)
@@ -5907,6 +6105,8 @@ eval_prefixform(p1)
 function
 eval_print(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		push(car(p1));
@@ -5916,11 +6116,15 @@ eval_print(p1)
 		p1 = cdr(p1);
 	}
 	push_symbol(NIL);
+	expanding = t;
 }
 function
 eval_product(p1)
 {
-	var h, j, k, p2, p3;
+	var h, j, k, p2, p3, t;
+
+	t = expanding;
+	expanding = 1;
 
 	p2 = cadr(p1);
 
@@ -5960,6 +6164,8 @@ eval_product(p1)
 	multiply_factors(stack.length - h);
 
 	restore_symbol(p2);
+
+	expanding = t;
 }
 function
 eval_quote(p1)
@@ -5969,6 +6175,9 @@ eval_quote(p1)
 function
 eval_rank(p1)
 {
+	var t = expanding;
+	expanding = 1;
+
 	push(cadr(p1));
 	evalf();
 	p1 = pop();
@@ -5977,32 +6186,46 @@ eval_rank(p1)
 		push_integer(p1.dim.length);
 	else
 		push_integer(0);
+
+	expanding = t;
 }
 function
 eval_rationalize(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	rationalize();
+	expanding = t;
 }
 function
 eval_real(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	real();
+	expanding = t;
 }
 function
 eval_rect(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	rect();
+	expanding = t;
 }
 function
 eval_run(p1)
 {
-	var f, k, save_inbuf, save_trace1, save_trace2;
+	var f, k, save_inbuf, save_trace1, save_trace2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -6042,6 +6265,8 @@ eval_run(p1)
 	trace2 = save_trace2;
 
 	push_symbol(NIL);
+
+	expanding = t;
 }
 function
 eval_setq(p1)
@@ -6079,23 +6304,32 @@ eval_sgn(p1)
 function
 eval_simplify(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	simplify();
+	expanding = t;
 }
 function
 eval_sin(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	sin();
+	expanding = t;
 }
 function
 eval_sinh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	sinh();
+	expanding = t;
 }
 function
 eval_sqrt(p1)
@@ -6108,7 +6342,7 @@ eval_sqrt(p1)
 function
 eval_stop()
 {
-	stopf("stop function");
+	stopf("stop");
 }
 function
 eval_subst(p1)
@@ -6125,7 +6359,10 @@ eval_subst(p1)
 function
 eval_sum(p1)
 {
-	var h, j, k, p2, p3;
+	var h, j, k, p2, p3, t;
+
+	t = expanding;
+	expanding = 1;
 
 	p2 = cadr(p1);
 
@@ -6165,20 +6402,28 @@ eval_sum(p1)
 	add_terms(stack.length - h);
 
 	restore_symbol(p2);
+
+	expanding = t;
 }
 function
 eval_tan(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	tan();
+	expanding = t;
 }
 function
 eval_tanh(p1)
 {
+	var t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	tanh();
+	expanding = t;
 }
 function
 eval_tensor(p1)
@@ -6201,6 +6446,15 @@ eval_tensor(p1)
 }
 function
 eval_test(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_test_nib(p1);
+	expanding = t;
+}
+
+function
+eval_test_nib(p1)
 {
 	var p2;
 	p1 = cdr(p1);
@@ -6326,6 +6580,15 @@ eval_testlt(p1)
 function
 eval_transpose(p1)
 {
+	var t = expanding;
+	expanding = 1;
+	eval_transpose_nib(p1);
+	expanding = t;
+}
+
+function
+eval_transpose_nib(p1)
+{
 	var n, m, p2;
 
 	push(cadr(p1));
@@ -6361,6 +6624,15 @@ eval_transpose(p1)
 function
 eval_unit(p1)
 {
+	var t = expanding;
+	expanding = 1;
+	eval_unit_nib(p1);
+	expanding = t;
+}
+
+function
+eval_unit_nib(p1)
+{
 	var i, j, n;
 
 	push(cadr(p1));
@@ -6392,6 +6664,15 @@ eval_unit(p1)
 }
 function
 eval_user_function(p1)
+{
+	var t = expanding;
+	expanding = 1;
+	eval_user_function_nib(p1);
+	expanding = t;
+}
+
+function
+eval_user_function_nib(p1)
 {
 	var h, i, FUNC_NAME, FUNC_ARGS, FUNC_DEFN;
 
@@ -6493,7 +6774,10 @@ eval_user_symbol(p1)
 function
 eval_zero(p1)
 {
-	var i, m, n, p2;
+	var i, m, n, p2, t;
+
+	t = expanding;
+	expanding = 1;
 
 	p1 = cdr(p1);
 	p2 = alloc_tensor();
@@ -6505,7 +6789,7 @@ eval_zero(p1)
 		evalf();
 		n = pop_integer();
 		if (n < 2)
-			stopf("zero: index error");
+			stopf("zero");
 		p2.dim.push(n);
 		m *= n;
 		p1 = cdr(p1);
@@ -6515,6 +6799,8 @@ eval_zero(p1)
 		p2.elem[i] = zero;
 
 	push(p2);
+
+	expanding = t;
 }
 function
 evalf()
