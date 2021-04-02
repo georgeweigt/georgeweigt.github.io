@@ -1,0 +1,37 @@
+-- Find r such that 7^r mod 15 = 1
+-- See https://qiskit.org/textbook/ch-algorithms/shor.html
+
+U(psi,k) = rotate(psi,c,k,x,8,c,k,x,9,c,k,x,10,c,k,x,11,c,k,s,10,11,c,k,s,9,10,c,k,s,8,9) -- 7 mod 15
+
+psi = rotate(0,x,8,h,0,h,1,h,2,h,3,h,4,h,5,h,6,h,7)
+
+for(k,1,1,psi = U(psi,0))
+for(k,1,2,psi = U(psi,1))
+for(k,1,4,psi = U(psi,2))
+for(k,1,8,psi = U(psi,3))
+for(k,1,16,psi = U(psi,4))
+for(k,1,32,psi = U(psi,5))
+for(k,1,64,psi = U(psi,6))
+for(k,1,128,psi = U(psi,7))
+
+psi = rotate(psi,v,7)
+
+T = hadamard(psi,conj(psi))
+
+-- high order 4 bits are don't care
+
+P = zero(256)
+for(j,1,256,P[j] = sum(k,0,15,T[256 k + j]))
+
+-- display result in compact form
+
+"First row is probability"
+"Second row is observed phase"
+
+n = 0
+for(k,1,256,test(P[k],n=n+1))
+test(n==0,n=1)
+M = zero(2,n)
+n = 1
+for(k,1,256,test(P[k],do(M[1,n]=float(P[k]),M[2,n]=(k-1)/256,n=n+1)))
+M
