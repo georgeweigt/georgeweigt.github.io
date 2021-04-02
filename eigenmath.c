@@ -495,16 +495,17 @@ void expsinh(void);
 void eval_exptanh(void);
 void exptanh(void);
 void eval_clock(void);
-void clockf(void);
-void clockf_nib(void);
+void clockfunc(void);
+void clockfunc_nib(void);
 void eval_coeff(void);
 int coeff(void);
 void eval_cofactor(void);
 void eval_conj(void);
-void conjv(void);
-void conj_subst(void);
-void conj_subst_nib(void);
+void conjfunc(void);
+void conjfunc_subst(void);
+void conjfunc_subst_nib(void);
 void eval_contract(void);
+void eval_contract_nib(void);
 void contract(void);
 void contract_nib(void);
 struct atom * alloc(void);
@@ -573,6 +574,7 @@ void eval_denominator(void);
 void denominator(void);
 void denominator_nib(void);
 void eval_derivative(void);
+void eval_derivative_nib(void);
 void derivative(void);
 void d_scalar_scalar(void);
 void dsum(void);
@@ -1093,8 +1095,11 @@ void copy_tensor(void);
 void eval_dim(void);
 void eval_rank(void);
 void eval_unit(void);
+void eval_unit_nib(void);
 void eval_zero(void);
+void eval_zero_nib(void);
 void eval_test(void);
+void eval_test_nib(void);
 void eval_check(void);
 void eval_testeq(void);
 int testeq(struct atom *q1, struct atom *q2);
@@ -1108,13 +1113,17 @@ void eval_testle(void);
 void eval_testlt(void);
 void eval_not(void);
 void eval_and(void);
+void eval_and_nib(void);
 void eval_or(void);
+void eval_or_nib(void);
 int cmp_args(void);
 void evalp(void);
 void eval_transpose(void);
+void eval_transpose_nib(void);
 void transpose(void);
 void transpose_nib(void);
 void eval_user_function(void);
+void eval_user_function_nib(void);
 
 struct atom *mem[MAXBLOCKS];
 struct atom *free_list;
@@ -1177,9 +1186,12 @@ int outbuf_length;
 void
 eval_abs(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	absfunc();
+	expanding = t;
 }
 
 void
@@ -1204,7 +1216,7 @@ absfunc_nib(void)
 		}
 		push(p1);
 		push(p1);
-		conjv();
+		conjfunc();
 		inner();
 		push_rational(1, 2);
 		power();
@@ -1212,7 +1224,7 @@ absfunc_nib(void)
 	}
 	push(p1);
 	push(p1);
-	conjv();
+	conjfunc();
 	multiply();
 	push_rational(1, 2);
 	power();
@@ -1664,9 +1676,12 @@ subtract(void)
 void
 eval_adj(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	adj();
+	expanding = t;
 }
 
 void
@@ -1725,9 +1740,12 @@ adj_nib(void)
 void
 eval_arccos(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arccos();
+	expanding = t;
 }
 
 void
@@ -1821,9 +1839,12 @@ arccos_nib(void)
 void
 eval_arccosh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arccosh();
+	expanding = t;
 }
 
 void
@@ -1872,9 +1893,12 @@ arccosh_nib(void)
 void
 eval_arcsin(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arcsin();
+	expanding = t;
 }
 
 void
@@ -1972,9 +1996,12 @@ arcsin_nib(void)
 void
 eval_arcsinh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arcsinh();
+	expanding = t;
 }
 
 void
@@ -2041,15 +2068,17 @@ arcsinh_nib(void)
 void
 eval_arctan(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
-	if (caddr(p1) == symbol(NIL))
-		push_integer(1);
-	else {
+	if (iscons(cddr(p1))) {
 		push(caddr(p1));
 		eval();
-	}
+	} else
+		push_integer(1);
 	arctan();
+	expanding = t;
 }
 
 void
@@ -2180,9 +2209,12 @@ arctan_numerical_args(void)
 void
 eval_arctanh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arctanh();
+	expanding = t;
 }
 
 void
@@ -2252,9 +2284,12 @@ arctanh_nib(void)
 void
 eval_arg(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	arg();
+	expanding = t;
 }
 
 // use numerator and denominator to handle (a+i*b)/(c+i*d)
@@ -3649,9 +3684,12 @@ mprimef(uint32_t *n, uint32_t *q, int k)
 void
 eval_ceiling(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	ceiling_nib();
+	expanding = t;
 }
 
 void
@@ -3684,9 +3722,12 @@ ceiling_nib(void)
 void
 eval_circexp(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	circexp();
+	expanding = t;
 }
 
 void
@@ -3784,9 +3825,12 @@ circexp_subst_nib(void)
 void
 eval_exptan(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	exptan();
+	expanding = t;
 }
 
 void
@@ -3813,9 +3857,12 @@ exptan(void)
 void
 eval_expcosh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	expcosh();
+	expanding = t;
 }
 
 void
@@ -3837,9 +3884,12 @@ expcosh(void)
 void
 eval_expsinh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	expsinh();
+	expanding = t;
 }
 
 void
@@ -3861,9 +3911,12 @@ expsinh(void)
 void
 eval_exptanh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	exptanh();
+	expanding = t;
 }
 
 void
@@ -3887,21 +3940,24 @@ exptanh(void)
 void
 eval_clock(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
-	clockf();
+	clockfunc();
+	expanding = t;
 }
 
 void
-clockf(void)
+clockfunc(void)
 {
 	save();
-	clockf_nib();
+	clockfunc_nib();
 	restore();
 }
 
 void
-clockf_nib(void)
+clockfunc_nib(void)
 {
 	int i, n;
 	p1 = pop();
@@ -3912,7 +3968,7 @@ clockf_nib(void)
 		n = p1->u.tensor->nelem;
 		for (i = 0; i < n; i++) {
 			push(p1->u.tensor->elem[i]);
-			clockf();
+			clockfunc();
 			p1->u.tensor->elem[i] = pop();
 		}
 		push(p1);
@@ -4011,7 +4067,9 @@ coeff(void)
 void
 eval_cofactor(void)
 {
-	int i, j;
+	int i, j, t;
+	t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p2 = pop();
@@ -4030,33 +4088,37 @@ eval_cofactor(void)
 	det();
 	if ((i + j) % 2)
 		negate();
+	expanding = t;
 }
 
 void
 eval_conj(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
-	conjv();
+	conjfunc();
+	expanding = t;
 }
 
 void
-conjv(void)
+conjfunc(void)
 {
-	conj_subst();
+	conjfunc_subst();
 	eval();
 }
 
 void
-conj_subst(void)
+conjfunc_subst(void)
 {
 	save();
-	conj_subst_nib();
+	conjfunc_subst_nib();
 	restore();
 }
 
 void
-conj_subst_nib(void)
+conjfunc_subst_nib(void)
 {
 	int h, i, n;
 	p1 = pop();
@@ -4067,7 +4129,7 @@ conj_subst_nib(void)
 		n = p1->u.tensor->nelem;
 		for (i = 0; i < n; i++) {
 			push(p1->u.tensor->elem[i]);
-			conj_subst();
+			conjfunc_subst();
 			p1->u.tensor->elem[i] = pop();
 		}
 		push(p1);
@@ -4088,7 +4150,7 @@ conj_subst_nib(void)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			conj_subst();
+			conjfunc_subst();
 			p1 = cdr(p1);
 		}
 		list(tos - h);
@@ -4099,6 +4161,15 @@ conj_subst_nib(void)
 
 void
 eval_contract(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_contract_nib();
+	expanding = t;
+}
+
+void
+eval_contract_nib(void)
 {
 	push(cadr(p1));
 	eval();
@@ -5018,9 +5089,12 @@ isdenormalclock(struct atom *p)
 void
 eval_cos(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	cosfunc();
+	expanding = t;
 }
 
 void
@@ -5230,9 +5304,12 @@ cosfunc_sum(void)
 void
 eval_cosh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	coshfunc();
+	expanding = t;
 }
 
 void
@@ -5408,9 +5485,12 @@ degree_nib(struct atom *p)
 void
 eval_denominator(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	denominator();
+	expanding = t;
 }
 
 void
@@ -5452,6 +5532,15 @@ denominator_nib(void)
 
 void
 eval_derivative(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_derivative_nib();
+	expanding = t;
+}
+
+void
+eval_derivative_nib(void)
 {
 	int flag, i, n;
 	push(cadr(p1));
@@ -6085,9 +6174,12 @@ derivative_of_integral(void)
 void
 eval_det(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	det();
+	expanding = t;
 }
 
 void
@@ -7868,6 +7960,8 @@ eval_binding(void)
 void
 eval_clear(void)
 {
+	int t = expanding;
+	expanding = 1;
 	save_symbol(symbol(TRACE));
 	save_symbol(symbol(TTY));
 	clear_symbols();
@@ -7876,11 +7970,14 @@ eval_clear(void)
 	restore_symbol(symbol(TTY));
 	restore_symbol(symbol(TRACE));
 	push_symbol(NIL); // result
+	expanding = t;
 }
 
 void
 eval_do(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push_integer(0);
 	p1 = cdr(p1);
 	while (iscons(p1)) {
@@ -7889,6 +7986,7 @@ eval_do(void)
 		eval();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 
 // for example, eval(f,x,2)
@@ -7896,6 +7994,8 @@ eval_do(void)
 void
 eval_eval(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
@@ -7908,6 +8008,7 @@ eval_eval(void)
 		p1 = cddr(p1);
 	}
 	eval();
+	expanding = t;
 }
 
 void
@@ -7975,9 +8076,12 @@ expand_expr(void)
 void
 eval_exp(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	expfunc();
+	expanding = t;
 }
 
 void
@@ -8490,9 +8594,12 @@ expand_get_AF(void)
 void
 eval_expcos(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	expcos();
+	expanding = t;
 }
 
 void
@@ -8520,9 +8627,12 @@ expcos(void)
 void
 eval_expsin(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	expsin();
+	expanding = t;
 }
 
 void
@@ -8842,9 +8952,12 @@ factor_bignum(uint32_t *a)
 void
 eval_factorial(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	factorial();
+	expanding = t;
 }
 
 void
@@ -9428,9 +9541,12 @@ filter_tensor(void)
 void
 eval_float(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	floatfunc();
+	expanding = t;
 }
 
 void
@@ -9520,9 +9636,12 @@ floatfunc_subst_nib(void)
 void
 eval_floor(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	floorfunc();
+	expanding = t;
 }
 
 void
@@ -9563,7 +9682,9 @@ floorfunc_nib(void)
 void
 eval_for(void)
 {
-	int j, k;
+	int j, k, t;
+	t = expanding;
+	expanding = 1;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -9602,6 +9723,7 @@ eval_for(void)
 	}
 	restore_symbol(p2);
 	push_symbol(NIL); // return value
+	expanding = t;
 }
 
 void
@@ -9863,6 +9985,8 @@ gcd_numbers(void)
 void
 eval_hadamard(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
@@ -9872,6 +9996,7 @@ eval_hadamard(void)
 		hadamard();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 
 void
@@ -9916,9 +10041,12 @@ hadamard_nib(void)
 void
 eval_imag(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	imag();
+	expanding = t;
 }
 
 void
@@ -9954,7 +10082,7 @@ imag_nib(void)
 	push(imaginaryunit);
 	push(p1);
 	push(p1);
-	conjv();
+	conjfunc();
 	subtract();
 	multiply_factors(3);
 }
@@ -10483,6 +10611,8 @@ infixform_tensor_nib(struct atom *p, int d, int k)
 void
 eval_inner(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
@@ -10492,6 +10622,7 @@ eval_inner(void)
 		inner();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 
 void
@@ -11709,9 +11840,12 @@ partition_integrand(void)
 void
 eval_inv(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	inv();
+	expanding = t;
 }
 
 void
@@ -11755,6 +11889,8 @@ eval_isprime(void)
 void
 eval_kronecker(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
@@ -11764,6 +11900,7 @@ eval_kronecker(void)
 		kronecker();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 
 void
@@ -12479,9 +12616,12 @@ leading(void)
 void
 eval_log(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	logfunc();
+	expanding = t;
 }
 
 void
@@ -12605,9 +12745,12 @@ logfunc_nib(void)
 void
 eval_mag(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	mag();
+	expanding = t;
 }
 
 // use numerator and denominator to handle (a+i*b)/(c+i*d)
@@ -13728,7 +13871,9 @@ mml_mo(char *s)
 void
 eval_minor(void)
 {
-	int i, j;
+	int i, j, t;
+	t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p2 = pop();
@@ -13745,12 +13890,15 @@ eval_minor(void)
 	push(p2);
 	minormatrix(i, j);
 	det();
+	expanding = t;
 }
 
 void
 eval_minormatrix(void)
 {
-	int i, j;
+	int i, j, t;
+	t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p2 = pop();
@@ -13766,6 +13914,7 @@ eval_minormatrix(void)
 		stop("minormatrix");
 	push(p2);
 	minormatrix(i, j);
+	expanding = t;
 }
 
 void
@@ -13821,11 +13970,14 @@ minormatrix_nib(int row, int col)
 void
 eval_mod(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	push(caddr(p1));
 	eval();
 	modfunc();
+	expanding = t;
 }
 
 void
@@ -14697,9 +14849,12 @@ nroots_divpoly(int n)
 void
 eval_numerator(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	numerator();
+	expanding = t;
 }
 
 void
@@ -14729,6 +14884,8 @@ numerator_nib(void)
 void
 eval_outer(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = cddr(p1);
@@ -14738,6 +14895,7 @@ eval_outer(void)
 		outer();
 		p1 = cdr(p1);
 	}
+	expanding = t;
 }
 
 void
@@ -14809,9 +14967,12 @@ outer_nib(void)
 void
 eval_polar(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	polar();
+	expanding = t;
 }
 
 void
@@ -17470,6 +17631,8 @@ int primetab[10000] = {
 void
 eval_print(void)
 {
+	int t = expanding;
+	expanding = 1;
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		push(car(p1));
@@ -17479,6 +17642,7 @@ eval_print(void)
 		p1 = cdr(p1);
 	}
 	push_symbol(NIL);
+	expanding = t;
 }
 
 void
@@ -17674,9 +17838,12 @@ divpoly(void)
 void
 eval_rationalize(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	rationalize();
+	expanding = t;
 }
 
 void
@@ -17723,9 +17890,12 @@ rationalize_nib(void)
 void
 eval_real(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	real();
+	expanding = t;
 }
 
 void
@@ -17759,7 +17929,7 @@ real_nib(void)
 	p1 = pop();
 	push(p1);
 	push(p1);
-	conjv();
+	conjfunc();
 	add();
 	push_rational(1, 2);
 	multiply();
@@ -17774,9 +17944,12 @@ real_nib(void)
 void
 eval_rect(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	rect();
+	expanding = t;
 }
 
 void
@@ -18087,7 +18260,7 @@ eval_rotate(void)
 	}
 	p1 = cddr(p1);
 	while (iscons(p1)) {
-		if (length(p1) < 2)
+		if (!iscons(cdr(p1)))
 			stop("rotate");
 		OPCODE = car(p1);
 		push(cadr(p1));
@@ -18095,7 +18268,7 @@ eval_rotate(void)
 		c = pop_integer();
 		p1 = cddr(p1);
 		if (OPCODE == symbol(C_LOWER)) {
-			if (length(p1) < 2)
+			if (!iscons(cdr(p1)))
 				stop("rotate");
 			OPCODE = car(p1);
 			push(cadr(p1));
@@ -18111,7 +18284,7 @@ eval_rotate(void)
 			continue;
 		}
 		if (OPCODE == symbol(P_LOWER)) {
-			if (length(p1) < 1)
+			if (!iscons(p1))
 				stop("rotate");
 			push(car(p1));
 			p1 = cdr(p1);
@@ -18129,7 +18302,7 @@ eval_rotate(void)
 		}
 		if (OPCODE == symbol(S_LOWER)) {
 			m = n;
-			if (length(p1) < 1)
+			if (!iscons(p1))
 				stop("rotate");
 			push(car(p1));
 			p1 = cdr(p1);
@@ -18423,6 +18596,8 @@ eval_and_print_result(void)
 void
 eval_run(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = pop();
@@ -18430,6 +18605,7 @@ eval_run(void)
 		stop("run: file name expected");
 	run_file(p1->u.str);
 	push_symbol(NIL);
+	expanding = t;
 }
 
 void
@@ -19417,9 +19593,12 @@ sgn(void)
 void
 eval_simplify(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	simplify();
+	expanding = t;
 }
 
 void
@@ -19560,9 +19739,12 @@ simplify_pass2(void)
 void
 eval_sin(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	sinfunc();
+	expanding = t;
 }
 
 void
@@ -19775,9 +19957,12 @@ sinfunc_sum(void)
 void
 eval_sinh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	sinhfunc();
+	expanding = t;
 }
 
 void
@@ -19930,7 +20115,9 @@ push_string(char *s)
 void
 eval_sum(void)
 {
-	int h, j, k;
+	int h, j, k, t;
+	t = expanding;
+	expanding = 1;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -19965,6 +20152,7 @@ eval_sum(void)
 	}
 	add_terms(tos - h);
 	restore_symbol(p2);
+	expanding = t;
 }
 
 // symbol lookup, create symbol if not found
@@ -20317,9 +20505,12 @@ clear_symbols(void)
 void
 eval_tan(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	tanfunc();
+	expanding = t;
 }
 
 void
@@ -20478,9 +20669,12 @@ tanfunc_sum(void)
 void
 eval_tanh(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	tanhfunc();
+	expanding = t;
 }
 
 void
@@ -20763,7 +20957,9 @@ copy_tensor(void)
 void
 eval_dim(void)
 {
-	int n;
+	int n, t;
+	t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p2 = pop();
@@ -20779,11 +20975,14 @@ eval_dim(void)
 		push(p1);
 	else
 		push_integer(p2->u.tensor->dim[n - 1]);
+	expanding = t;
 }
 
 void
 eval_rank(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	eval();
 	p1 = pop();
@@ -20791,10 +20990,20 @@ eval_rank(void)
 		push_integer(p1->u.tensor->ndim);
 	else
 		push_integer(0);
+	expanding = t;
 }
 
 void
 eval_unit(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_unit_nib();
+	expanding = t;
+}
+
+void
+eval_unit_nib(void)
 {
 	int i, n;
 	push(cadr(p1));
@@ -20814,6 +21023,15 @@ eval_unit(void)
 
 void
 eval_zero(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_zero_nib();
+	expanding = t;
+}
+
+void
+eval_zero_nib(void)
 {
 	int dim[MAXDIM], i, m, n;
 	m = 1;
@@ -20845,6 +21063,15 @@ eval_zero(void)
 void
 eval_test(void)
 {
+	int t = expanding;
+	expanding = 1;
+	eval_test_nib();
+	expanding = t;
+}
+
+void
+eval_test_nib(void)
+{
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		if (!iscons(cdr(p1))) {
@@ -20868,12 +21095,15 @@ eval_test(void)
 void
 eval_check(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalp();
 	p1 = pop();
 	if (iszero(p1))
 		stop("check");
 	push_symbol(NIL); // no result is printed
+	expanding = t;
 }
 
 void
@@ -21070,6 +21300,8 @@ eval_testlt(void)
 void
 eval_not(void)
 {
+	int t = expanding;
+	expanding = 1;
 	push(cadr(p1));
 	evalp();
 	p1 = pop();
@@ -21077,10 +21309,20 @@ eval_not(void)
 		push_integer(1);
 	else
 		push_integer(0);
+	expanding = t;
 }
 
 void
 eval_and(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_and_nib();
+	expanding = t;
+}
+
+void
+eval_and_nib(void)
 {
 	p1 = cdr(p1);
 	while (iscons(p1)) {
@@ -21098,6 +21340,15 @@ eval_and(void)
 
 void
 eval_or(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_or_nib();
+	expanding = t;
+}
+
+void
+eval_or_nib(void)
 {
 	p1 = cdr(p1);
 	while (iscons(p1)) {
@@ -21149,6 +21400,15 @@ evalp(void)
 
 void
 eval_transpose(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_transpose_nib();
+	expanding = t;
+}
+
+void
+eval_transpose_nib(void)
 {
 	push(cadr(p1));
 	eval();
@@ -21242,6 +21502,15 @@ transpose_nib(void)
 
 void
 eval_user_function(void)
+{
+	int t = expanding;
+	expanding = 1;
+	eval_user_function_nib();
+	expanding = t;
+}
+
+void
+eval_user_function_nib(void)
 {
 	int h, i;
 	FUNC_NAME = car(p1);
