@@ -32,7 +32,7 @@ U(psi,k) = rotate(
 -- initial state
 
 psi = rotate(
-  (1,0), -- ket
+  (1,0), -- ket zero
   X,8,   -- not bit 8
   H,0,   -- hadamard bit 0
   H,1,   -- hadamard bit 1
@@ -61,12 +61,11 @@ psi = rotate(psi,R,7)
 
 -- probability
 
-T = hadamard(psi,conj(psi))
+P = hadamard(psi,conj(psi))
 
--- high order 4 bits are don't care
+-- high order 4 bits are don't care so combine probabilities
 
-P = zero(256)
-for(j,1,256,P[j] = sum(k,0,15,T[256 k + j]))
+for(j,1,256,P[j] = sum(k,0,15,P[256 k + j]))
 
 -- display result in compact form
 
