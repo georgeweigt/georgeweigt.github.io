@@ -245,13 +245,15 @@ struct atom {
 #define QUOTE		(16 * NSYM + 2)
 #define QUOTIENT	(16 * NSYM + 3)
 
-#define RANK		(17 * NSYM + 0)
-#define RATIONALIZE	(17 * NSYM + 1)
-#define REAL		(17 * NSYM + 2)
-#define RECTF		(17 * NSYM + 3)
-#define ROOTS		(17 * NSYM + 4)
-#define ROTATE		(17 * NSYM + 5)
-#define RUN		(17 * NSYM + 6)
+#define R_UPPER		(17 * NSYM + 0)
+#define R_LOWER		(17 * NSYM + 1)
+#define RANK		(17 * NSYM + 2)
+#define RATIONALIZE	(17 * NSYM + 3)
+#define REAL		(17 * NSYM + 4)
+#define RECTF		(17 * NSYM + 5)
+#define ROOTS		(17 * NSYM + 6)
+#define ROTATE		(17 * NSYM + 7)
+#define RUN		(17 * NSYM + 8)
 
 #define S_UPPER		(18 * NSYM + 0)
 #define S_LOWER		(18 * NSYM + 1)
@@ -993,12 +995,12 @@ void eval_rotate(void);
 void rotate_check(int n);
 void rotate_h(int n);
 void rotate_p(int c, int n);
-void rotate_s(int m, int n);
+void rotate_s(int c, int m, int n);
 void rotate_x(int c, int n);
 void rotate_y(int c, int n);
 void rotate_z(int c, int n);
 void rotate_q(int n);
-void rotate_v(int n);
+void rotate_r(int n);
 void run(char *s);
 void init(void);
 void prep(void);
@@ -18247,6 +18249,8 @@ mini_solve(void)
 #define KET0 PSI->u.tensor->elem[i ^ n]
 #define KET1 PSI->u.tensor->elem[i]
 
+#define POWEROF2(x) ((x & (x - 1)) == 0)
+
 void
 eval_rotate(void)
 {
@@ -18254,13 +18258,8 @@ eval_rotate(void)
 	push(cadr(p1));
 	eval();
 	PSI = pop();
-	if (!istensor(PSI)) {
-		PSI = alloc_tensor(2);
-		PSI->u.tensor->ndim = 1;
-		PSI->u.tensor->dim[0] = 2;
-		push_integer(1);
-		PSI->u.tensor->elem[0] = pop();
-	}
+	if (!istensor(PSI) || PSI->u.tensor->ndim > 1 || !POWEROF2(PSI->u.tensor->nelem))
+		stop("rotate");
 	p1 = cddr(p1);
 	while (iscons(p1)) {
 		if (!iscons(cdr(p1)))
@@ -18270,7 +18269,7 @@ eval_rotate(void)
 		eval();
 		c = pop_integer();
 		p1 = cddr(p1);
-		if (OPCODE == symbol(C_LOWER)) {
+		if (OPCODE == symbol(C_UPPER)) {
 			if (!iscons(cdr(p1)))
 				stop("rotate");
 			OPCODE = car(p1);
@@ -18282,11 +18281,11 @@ eval_rotate(void)
 			n = c;
 		rotate_check(c);
 		rotate_check(n);
-		if (OPCODE == symbol(H_LOWER)) {
+		if (OPCODE == symbol(H_UPPER)) {
 			rotate_h(n);
 			continue;
 		}
-		if (OPCODE == symbol(P_LOWER)) {
+		if (OPCODE == symbol(P_UPPER)) {
 			if (!iscons(p1))
 				stop("rotate");
 			push(car(p1));
@@ -18299,11 +18298,15 @@ eval_rotate(void)
 			rotate_p(c, n);
 			continue;
 		}
-		if (OPCODE == symbol(Q_LOWER)) {
+		if (OPCODE == symbol(Q_UPPER)) {
 			rotate_q(n);
 			continue;
 		}
-		if (OPCODE == symbol(S_LOWER)) {
+		if (OPCODE == symbol(R_UPPER)) {
+			rotate_r(n);
+			continue;
+		}
+		if (OPCODE == symbol(S_UPPER)) {
 			m = n;
 			if (!iscons(p1))
 				stop("rotate");
@@ -18312,22 +18315,18 @@ eval_rotate(void)
 			eval();
 			n = pop_integer();
 			rotate_check(n);
-			rotate_s(m, n);
+			rotate_s(c, m, n);
 			continue;
 		}
-		if (OPCODE == symbol(V_LOWER)) {
-			rotate_v(n);
-			continue;
-		}
-		if (OPCODE == symbol(X_LOWER)) {
+		if (OPCODE == symbol(X_UPPER)) {
 			rotate_x(c, n);
 			continue;
 		}
-		if (OPCODE == symbol(Y_LOWER)) {
+		if (OPCODE == symbol(Y_UPPER)) {
 			rotate_y(c, n);
 			continue;
 		}
-		if (OPCODE == symbol(Z_LOWER)) {
+		if (OPCODE == symbol(Z_UPPER)) {
 			rotate_z(c, n);
 			continue;
 		}
@@ -18393,13 +18392,14 @@ rotate_p(int c, int n)
 }
 
 void
-rotate_s(int m, int n)
+rotate_s(int c, int m, int n)
 {
 	int i;
+	c = 1 << c;
 	m = 1 << m;
 	n = 1 << n;
 	for (i = 0; i < N; i++)
-		if ((i & m) && !(i & n)) {
+		if ((i & c) && (i & m) && !(i & n)) {
 			push(PSI->u.tensor->elem[i]);
 			push(PSI->u.tensor->elem[i ^ m ^ n]);
 			PSI->u.tensor->elem[i] = pop();
@@ -18478,17 +18478,17 @@ rotate_q(int n)
 		}
 	}
 	for (i = 0; i < (n + 1) / 2; i++)
-		rotate_s(i, n - i);
+		rotate_s(i, i, n - i);
 }
 
 // inverse qft
 
 void
-rotate_v(int n)
+rotate_r(int n)
 {
 	int i, j;
 	for (i = 0; i < (n + 1) / 2; i++)
-		rotate_s(i, n - i);
+		rotate_s(i, i, n - i);
 	for (i = 0; i <= n; i++) {
 		for (j = i - 1; j >= 0; j--) {
 			push_rational(1, 2);
@@ -20391,6 +20391,8 @@ struct se stab[] = {
 	{ "quote",		QUOTE,		eval_quote		},
 	{ "quotient",		QUOTIENT,	eval_quotient		},
 
+	{ "R",			R_UPPER,	NULL			},
+	{ "r",			R_LOWER,	NULL			},
 	{ "rank",		RANK,		eval_rank		},
 	{ "rationalize",	RATIONALIZE,	eval_rationalize	},
 	{ "real",		REAL,		eval_real		},
