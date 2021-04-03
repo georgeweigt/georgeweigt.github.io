@@ -6223,7 +6223,10 @@ eval_rect(p1)
 function
 eval_rotate(p1)
 {
-	var c, m, n, opcode, phase, psi;
+	var c, m, n, opcode, phase, psi, t;
+
+	t = expanding;
+	expanding = 1;
 
 	push(cadr(p1));
 	evalf();
@@ -6319,6 +6322,8 @@ eval_rotate(p1)
 	}
 
 	push(psi);
+
+	expanding = t;
 }
 
 function
