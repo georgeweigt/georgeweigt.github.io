@@ -16,7 +16,7 @@
 
 -- Uses experimental function 'rotate'
 
--- 7 mod 15
+-- 7 mod 15 (from qiskit code)
 
 U(psi,k) = rotate(
   psi,          -- ket
@@ -44,6 +44,8 @@ psi = rotate(
   H,7    -- hadamard bit 7
 )
 
+-- U^(2^0) U^(2^1) U^(2^2) ... U^(2^7)
+
 for(k,1,1,psi = U(psi,0))
 for(k,1,2,psi = U(psi,1))
 for(k,1,4,psi = U(psi,2))
@@ -53,9 +55,11 @@ for(k,1,32,psi = U(psi,5))
 for(k,1,64,psi = U(psi,6))
 for(k,1,128,psi = U(psi,7))
 
--- R,7 is inverse QFT on bits 0-7
+-- inverse QFT on bits 0-7
 
 psi = rotate(psi,R,7)
+
+-- probability
 
 T = hadamard(psi,conj(psi))
 
