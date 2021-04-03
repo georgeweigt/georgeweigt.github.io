@@ -67,10 +67,7 @@ P = hadamard(psi,conj(psi))
 
 for(j,1,256,P[j] = sum(k,0,15,P[256 k + j]))
 
--- display result in compact form
-
-"First row is probability"
-"Second row is observed phase"
+"Row 1 is the probability of observing the phase in row 2"
 
 n = 0
 for(k,1,256,test(P[k],n=n+1))
@@ -79,6 +76,8 @@ M = zero(2,n)
 n = 1
 for(k,1,256,test(P[k],do(M[1,n]=float(P[k]),M[2,n]=(k-1)/256,n=n+1)))
 M
+
+"Observing 1/4 or 3/4 corresponds to the correct answer r = 4"
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
