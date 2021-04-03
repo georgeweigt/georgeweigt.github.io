@@ -19,7 +19,7 @@
 -- 7 mod 15 (from qiskit code)
 
 U(psi,k) = rotate(
-  psi,          -- ket
+  psi,
   C,k,S,10,11,  -- conditional swap bits 10 and 11
   C,k,S,9,10,   -- conditional swap bits 9 and 10
   C,k,S,8,9,    -- conditional swap bits 8 and 9
@@ -29,10 +29,13 @@ U(psi,k) = rotate(
   C,k,X,11      -- conditional not bit 11
 )
 
--- initial state
+-- initial state (12 bits, 2^12 = 4096 eigenstates)
+
+psi = zero(4096)
+psi[1] = 1 -- ket zero
 
 psi = rotate(
-  (1,0), -- ket zero
+  psi,
   X,8,   -- not bit 8
   H,0,   -- hadamard bit 0
   H,1,   -- hadamard bit 1
