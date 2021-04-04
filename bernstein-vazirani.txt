@@ -1,4 +1,6 @@
 -- Bernstein-Vazirani algorithm
+
+-- See https://qiskit.org/textbook/ch-algorithms/bernstein-vazirani.html
  
 run("Downloads/q4.txt")
 
