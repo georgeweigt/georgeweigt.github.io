@@ -26,7 +26,7 @@ psi = dot(H2,H1,H0,f,Z3,H3,H2,H1,H0,ket0)
 
 P = hadamard(psi,conj(psi))
 
--- Bit 3 is don't care so combine probabilities
+-- qubit 3 is don't care, hence sum probabilities over qubits 0-2
 
 for(k,1,8,P[k]=P[k]+P[k+8])
 

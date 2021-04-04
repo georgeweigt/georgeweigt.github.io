@@ -54,7 +54,7 @@ psi = rotate(psi,R,7)
 
 P = hadamard(psi,conj(psi))
 
--- high order 4 bits are don't care so combine probabilities
+-- qubits 8-11 are don't care, hence sum probabilities over qubits 0-7
 
 for(j,1,256,P[j] = sum(k,0,15,P[256 k + j]))
 
