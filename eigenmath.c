@@ -18268,8 +18268,9 @@ eval_rotate(void)
 		OPCODE = car(p1);
 		push(cadr(p1));
 		eval();
-		c = pop_integer();
-		if (c > 14 || (1 << c) >= PSI->u.tensor->nelem)
+		n = pop_integer();
+		c = n; // control bit
+		if (n > 14 || (1 << n) >= PSI->u.tensor->nelem)
 			stop("rotate");
 		p1 = cddr(p1);
 		if (OPCODE == symbol(C_UPPER)) {
@@ -18282,8 +18283,7 @@ eval_rotate(void)
 			if (n > 14 || (1 << n) >= PSI->u.tensor->nelem)
 				stop("rotate");
 			p1 = cddr(p1);
-		} else
-			n = c;
+		}
 		if (OPCODE == symbol(H_UPPER)) {
 			rotate_h(n);
 			continue;
