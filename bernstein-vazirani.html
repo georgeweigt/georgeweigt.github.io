@@ -11,14 +11,31 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Bernstein-Vazirani algorithm
-
+ 
 run("Downloads/q4.txt")
 
-psi = quote(dot(H2,H1,H0,f,Z3,H3,H2,H1,H0,ket0))
+"Secret value: 5"
 
-"s = 101"
 f = dot(X23,X03)
-M(psi)
+
+psi = dot(H2,H1,H0,f,Z3,H3,H2,H1,H0,ket0)
+
+-- probability
+
+P = hadamard(psi,conj(psi))
+
+-- Bit 3 is don't care so combine probabilities
+
+for(k,1,8,P[k]=P[k]+P[k+8])
+
+xrange = (0,8)
+yrange = (0,1)
+draw(P[ceiling(x)],x)
+
+M = zero(2,8)
+for(k,1,8,M[1,k]=P[k],M[2,k]=k-1)
+M
+"Row 1 is the probability of observing the value in row 2"
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
