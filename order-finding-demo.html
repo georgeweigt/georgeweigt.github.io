@@ -29,10 +29,10 @@ U(psi,k) = rotate(
   C,k,X,11      -- conditional not bit 11
 )
 
--- initial state (12 qubits, 2^12 = 4096 eigenstates)
+-- eigenstate zero (12 qubits, 2^12 = 4096 eigenstates)
 
 psi = zero(4096)
-psi[1] = 1 -- ket zero
+psi[1] = 1
 
 psi = rotate(
   psi,
