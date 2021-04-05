@@ -29,10 +29,15 @@ U(psi,k) = rotate(
   C,k,X,11      -- conditional not bit 11
 )
 
--- eigenstate zero (12 qubits, 2^12 = 4096 eigenstates)
+-- for 12 qubits there are 2^12 = 4096 eigenstates
 
 psi = zero(4096)
+
+-- initial state is eigenstate zero
+
 psi[1] = 1
+
+-- start computing
 
 psi = rotate(
   psi,
@@ -62,7 +67,7 @@ for(k,1,128,psi = U(psi,7))
 
 psi = rotate(psi,R,7)
 
--- probability
+-- result is a probability distribution
 
 P = hadamard(psi,conj(psi))
 
