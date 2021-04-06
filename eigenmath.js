@@ -10242,7 +10242,7 @@ multiply_factors(n) // n is number of factors on stack
 
 	flatten_factors(h);
 
-	T = tensor_factor(h);
+	T = multiply_tensor_factors(h);
 
 	multiply_scalar_factors(h);
 
@@ -10309,9 +10309,6 @@ multiply_scalar_factors(h)
 {
 	var n, COEFF;
 
-	if (stack.length - h < 2)
-		return;
-
 	COEFF = combine_numerical_factors(h, one);
 
 	if (iszero(COEFF) || h == stack.length) {
@@ -10354,6 +10351,29 @@ multiply_scalar_factors(h)
 		cons();
 		break;
 	}
+}
+function
+multiply_tensor_factors(h)
+{
+	var i, n, p1, T;
+	T = symbol(NIL);
+	n = stack.length;
+	for (i = h; i < n; i++) {
+		p1 = stack[i];
+		if (!istensor(p1))
+			continue;
+		if (istensor(T)) {
+			push(T);
+			push(p1);
+			hadamard();
+			T = pop();
+		} else
+			T = p1;
+		stack.splice(i, 1); // remove factor
+		i--; // use same index again
+		n--;
+	}
+	return T;
 }
 function
 negate()
@@ -15129,25 +15149,6 @@ tanh()
 	push_symbol(TANH);
 	push(p1);
 	list(2);
-}
-function
-tensor_factor(h)
-{
-	var i, n, p1, p2;
-	p2 = symbol(NIL);
-	n = stack.length;
-	for (i = h; i < n; i++) {
-		p1 = stack[i];
-		if (istensor(p1)) {
-			if (istensor(p2))
-				stopf("dot function is used for matrix products");
-			p2 = p1;
-			stack.splice(i, 1); // remove factor
-			i--; // use same index again
-			n--;
-		}
-	}
-	return p2;
 }
 function
 testeq(p1, p2)

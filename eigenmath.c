@@ -895,7 +895,7 @@ void multiply_factors(int n);
 void multiply_factors_nib(int n);
 void multiply_scalar_factors(int h);
 void flatten_factors(int h);
-void pop_tensor_factor(int h);
+void multiply_tensor_factors(int h);
 void combine_numerical_factors(int h);
 void combine_factors(int h);
 void sort_factors_provisional(int n);
@@ -14086,7 +14086,7 @@ multiply_factors_nib(int n)
 		return;
 	h = tos - n;
 	flatten_factors(h);
-	pop_tensor_factor(h);
+	multiply_tensor_factors(h);
 	multiply_scalar_factors(h);
 	if (istensor(TFACT)) {
 		push(TFACT);
@@ -14098,8 +14098,6 @@ void
 multiply_scalar_factors(int h)
 {
 	int n;
-	if (tos - h < 2)
-		return;
 	COEF = one;
 	combine_numerical_factors(h);
 	if (iszero(COEF) || h == tos) {
@@ -14154,24 +14152,28 @@ flatten_factors(int h)
 }
 
 void
-pop_tensor_factor(int h)
+multiply_tensor_factors(int h)
 {
 	int i, j, n = tos - h;
 	struct atom **s = stack + h;
 	TFACT = symbol(NIL);
 	for (i = 0; i < n; i++) {
 		p1 = s[i];
-		if (istensor(p1)) {
-			if (istensor(TFACT))
-				stop("tensor * tensor not supported, use dot or outer instead");
+		if (!istensor(p1))
+			continue;
+		if (istensor(TFACT)) {
+			push(TFACT);
+			push(p1);
+			hadamard();
+			TFACT = pop();
+		} else
 			TFACT = p1;
-			// remove the factor
-			for (j = i + 1; j < n; j++)
-				s[j - 1] = s[j];
-			i--;
-			n--;
-			tos--;
-		}
+		// remove the factor
+		for (j = i + 1; j < n; j++)
+			s[j - 1] = s[j];
+		i--;
+		n--;
+		tos--;
 	}
 }
 
