@@ -52,11 +52,11 @@ for(k,2,N - 1,
 P = P / sum(k,1,N,P[k]) -- normalize
 P
 
-"Verify probability density formula (1=ok)"
-
-F = -expcos(theta) - 8 expcos(theta) / expsin(theta)^2
+"Verify integral (1=ok)"
 
 f = (expcos(theta)^2 + 3)^2 / expsin(theta)^3
+
+F = -expcos(theta) - 8 expcos(theta) / expsin(theta)^2
 
 d(F,theta) == f
 </textarea>
