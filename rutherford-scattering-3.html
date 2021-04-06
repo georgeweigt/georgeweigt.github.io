@@ -12,19 +12,23 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Draw probability density for Rutherford scattering
 
--- eigenmath.org/rutherford-scattering-3.txt
-
 pi = float(pi) -- use numerical value of pi
 N = 4          -- number of bins
 a = pi / N
 
-I(theta) = 1 / (cos(theta) - 1)
+M = 1 / (cos(theta) - 1)^2
 
-C = I(pi) - I(a) -- normalization constant
+f = M sin(theta) -- unnormalized probability density
+
+-- compute normalization constant C
+
+dtheta = (pi - 2 a) / 100
+
+C = sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
 
 "Probability density"
 
-f = 1/C d(I,theta)
+f = M sin(theta) / C
 f
 
 xrange = (a,pi)
@@ -33,12 +37,19 @@ draw(f,theta)
 
 "Probability distribution"
 
+f = M sin(theta)
+
+I(a,b) = do(
+  dtheta = (b - a) / 100,
+  sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
+)
+
 P = zero(N)
 
 for(k,2,N,
   theta2 = k pi/N,
   theta1 = theta2 - pi/N,
-  P[k] = I(theta2) - I(theta1)
+  P[k] = I(theta1,theta2)
 )
 
 P = P / sum(k,1,N,P[k]) -- normalize
