@@ -9,29 +9,27 @@ M = (1 + cos(theta)) / (1 - cos(theta)) +
 
 f = M sin(theta) -- unnormalized probability density
 
--- compute normalization constant C
+-- integrate f from a to b
 
-dtheta = (pi - 2 a) / 100
-
-C = sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
+I(a,b) = do(
+  dtheta = (b - a) / 100,
+  sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
+)
 
 "Probability density"
+
+C = I(a, pi - a) -- normalization constant
 
 f = M sin(theta) / C
 f
 
-xrange = (a,pi - a)
+xrange = (a, pi - a)
 yrange = (0,1)
 draw(f,theta)
 
 "Probability distribution"
 
 f = M sin(theta)
-
-I(a,b) = do(
-  dtheta = (b - a) / 100,
-  sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
-)
 
 P = zero(N)
 

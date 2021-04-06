@@ -20,6 +20,8 @@ M = (cos(theta)^2 + 3)^2 / sin(theta)^4
 
 f = M sin(theta) -- unnormalized probability density
 
+-- integrate f from a to b
+
 I(a,b) = do(
   dtheta = (b - a) / 100,
   sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
