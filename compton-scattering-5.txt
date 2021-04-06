@@ -44,17 +44,17 @@ y = y "picobarn"
 
 y
 
-pie = float(pi)
+pi = float(pi)
 alpha = 0.0072973525693
-hbar = 6.582119569 10^(-25) GeV second
-c = 299792458 meter / second
-s = 40 GeV^2
+hbar = 6.582119569 10^(-25) "GeV" "second"
+c = 299792458 "meter" / "second"
+s = 40 "GeV"^2
 
 yhat = zero(N)
 
 for(k,1,N,
   M = (1 + x[k])/2 + 2/(1 + x[k]),
-  yhat[k] = pie/s alpha^2 M (hbar c)^2 10^40 "picobarn" / meter^2
+  yhat[k] = pi/s alpha^2 M (hbar c)^2 10^40 "picobarn" / "meter"^2
 )
 
 "Predicted cross section"
