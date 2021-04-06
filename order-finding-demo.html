@@ -69,7 +69,7 @@ psi = rotate(psi,R,7)
 
 -- result is a probability distribution
 
-P = hadamard(psi,conj(psi))
+P = psi conj(psi)
 
 -- qubits 8-11 are don't care, sum probabilities over eigenstates modulo 256
 
