@@ -35,16 +35,16 @@ y = y "nanobarn"
 y
 
 alpha = 0.0072973525693
-hbar = 6.582119569 10^(-25) GeV second
-c = 299792458 meter / second
-E = 7.0 GeV
+hbar = 6.582119569 10^(-25) "GeV" "second"
+c = 299792458 "meter" / "second"
+E = 7.0 "GeV"
 s = 4 E^2
 yhat = zero(N)
 
 for(k,1,N,
   t = -2 E^2 (1 - x[k]),
   u = -2 E^2 (1 + x[k]),
-  yhat[k] = 1/2 alpha^2 / s (u/t + t/u) (hbar c)^2 10^37 "nanobarn" / meter^2
+  yhat[k] = 1/2 alpha^2 / s (u/t + t/u) (hbar c)^2 10^37 "nanobarn" / "meter"^2
 )
 
 "Predicted cross section"

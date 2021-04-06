@@ -10,9 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Draw angular distributions for Compton scattering
-
--- eigenmath.org/compton-scattering-4.txt
+-- Draw probability density for Compton scattering
 
 pi = float(pi) -- use numerical value of pi
 
@@ -22,13 +20,14 @@ omegap = m omega / (m + omega (1 - cos(theta)))
 
 M = omega/omegap + omegap/omega + cos(theta)^2 - 1
 
--- f is the probability density function for Compton scattering (unnormalized)
-
-f = (omegap/omega)^2 M sin(theta)
+f = (omegap/omega)^2 M sin(theta) -- unnormalized probability debsity
 
 -- I integrates f numerically from a to b
 
-I(a,b) = 1/100 (b - a) sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100))
+I(a,b) = do(
+  dtheta = (b - a) / 100,
+  sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
+)
 
 xrange = (0,pi)
 yrange = (0,1)
@@ -51,10 +50,9 @@ omega = 5.0
 C = I(0,pi)
 draw(f/C,theta)
 
-"Scattering angle probability distribution 0.511 MeV"
+"Scattering angle probability distribution 5 MeV"
 
-omega = m
-
+omega = 5.0
 N = 4 -- number of bins
 P = zero(N)
 
