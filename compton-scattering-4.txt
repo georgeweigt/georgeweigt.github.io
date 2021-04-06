@@ -20,27 +20,27 @@ I(a,b) = do(
 xrange = (0,pi)
 yrange = (0,1)
 
-"Scattering angle probability density 0.05 MeV"
+"Scattering angle probability density (5 keV)"
+
+omega = 0.005
+C = I(0,pi)
+draw(f/C,theta)
+
+"Scattering angle probability density (50 keV)"
 
 omega = 0.05
 C = I(0,pi)
 draw(f/C,theta)
 
-"Scattering angle probability density 0.511 MeV"
+"Scattering angle probability density (500 keV)"
 
-omega = m
+omega = 0.5
 C = I(0,pi)
 draw(f/C,theta)
 
-"Scattering angle probability density 5 MeV"
+"Scattering angle probability distribution (500 keV)"
 
-omega = 5.0
-C = I(0,pi)
-draw(f/C,theta)
-
-"Scattering angle probability distribution 5 MeV"
-
-omega = 5.0
+omega = 0.5
 N = 4 -- number of bins
 P = zero(N)
 
