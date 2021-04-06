@@ -19,7 +19,7 @@ f = M sin(theta) / C
 f
 
 xrange = (alpha,pi - alpha)
-yrange = (0,1)
+yrange = (0,1.5)
 draw(f,theta)
 
 "Probability distribution"
