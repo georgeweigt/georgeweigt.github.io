@@ -62,3 +62,8 @@ demos:
 	cat 1.txt phase-estimation.txt 2.txt > phase-estimation.html
 	cat 1.txt eigenvalues.txt 2.txt > eigenvalues.html
 	cat 1.txt order-finding-demo.txt 2.txt > order-finding-demo.html
+	cat 1.txt annihilation-1.txt 2.txt > annihilation-1.html
+	cat 1.txt annihilation-2.txt 2.txt > annihilation-2.html
+	cat 1.txt annihilation-3.txt 2.txt > annihilation-3.html
+	cat 1.txt annihilation-4.txt 2.txt > annihilation-4.html
+
