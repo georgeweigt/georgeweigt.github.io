@@ -13,15 +13,15 @@
 -- Draw probability density for electron positron annihilation
 
 pi = float(pi) -- use numerical value of pi
-N = 6 -- number of bins
+N = 6          -- number of bins
 alpha = pi / N
 
 M = (1 + cos(theta)) / (1 - cos(theta)) +
     (1 - cos(theta)) / (1 + cos(theta))
 
-f = M sin(theta)
+f = M sin(theta) -- unnormalized probability density
 
--- compute normalization constant
+-- compute normalization constant C
 
 dtheta = (pi - 2 alpha) / 100
 
