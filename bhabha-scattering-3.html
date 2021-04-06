@@ -10,27 +10,25 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Draw angular distribution for Bhabha scattering
-
--- eigenmath.org/bhabha-scattering-3.txt
-
--- f is the probability density function for Bhabha scattering (unnormalized)
-
-f = (cos(theta)^2 + 3)^2 sin(theta) / sin(theta/2)^4
+-- Draw probability density for Bhabha scattering
 
 pi = float(pi) -- use numerical value of pi
 N = 4          -- number of bins
 a = pi / N
 
--- I integrates f numerically from a to b
+M = (cos(theta)^2 + 3)^2 / sin(theta/2)^4
 
-I(a,b) = 1/100 (b - a) sum(k,1,100,eval(f,theta,a + (k - 0.5) (b - a) / 100))
+f = M sin(theta) -- unnormalized probability density
 
-C = I(a,pi) -- normalization constant
+-- compute normalization constant C
+
+dtheta = (pi - a) / 100
+
+C = sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
 
 "Probability density"
 
-f = f / C
+f = M sin(theta) / C
 f
 
 xrange = (a,pi)
@@ -38,6 +36,13 @@ yrange = (0,4)
 draw(f,theta)
 
 "Probability distribution"
+
+f = M sin(theta)
+
+I(a,b) = do(
+  dtheta = (b - a) / 100,
+  sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
+)
 
 P = zero(N)
 
@@ -47,6 +52,7 @@ for(k,2,N,
   P[k] = I(theta1,theta2)
 )
 
+P = P / sum(k,1,N,P[k]) -- normalize
 P
 
 "Verify closed form of integral (1=ok)"
