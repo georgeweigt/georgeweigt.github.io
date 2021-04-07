@@ -73,7 +73,7 @@ gV = -0.0348
 mZ = 91.17 "GeV"
 G1 = 1.166 10^(-5) "GeV"^(-2) -- Fermi coupling constant
 
-s = 29.0^2 "GeV"^2
+s = (29.0 "GeV")^2
 
 F = alpha^2/4 (1 + gV^2/(sqrt(2) pi) mZ^2/(s - mZ^2) s G1/alpha +
     (gA^2 + gV^2)^2/(8 pi^2) (mZ^2/(s - mZ^2))^2 (s G1/alpha)^2)
