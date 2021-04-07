@@ -1,0 +1,50 @@
+################ (2021) Dr.W.G. Lindner,  Leichlingen DE
+###        gsBox        Gram-Schmidt box 
+################        for ortho/gonal/normalization
+
+proj(v,u) = dot(u,v)/dot(u,u)*u   -- project v on u
+
+normalize(u) = u / abs(u)
+
+-- round to n decimals after point
+rnd(u,n) = do( test(number(n),Fixnum=n,Fixnum=4),
+               float(floor(u*10^Fixnum+0.5)/10^Fixnum))
+
+-- rnd(123.567898765543,3)
+
+GramSchmidt2(B)= do( 
+    O=zero(2,2),
+    O[1]=B[1],
+    O[2]=B[2] - proj(B[2],O[1]),
+    O)        -- result as rows
+
+GramSchmidt3(B)= do( 
+  O=zero(3,3),
+  O[1]=B[1],
+  O[2]=B[2] - proj(B[2],O[1]),
+  O[3]=B[3] - proj(B[3],O[2]) - proj(B[3],O[1]),
+  O)
+
+GramSchmidt(B) = do(
+  Odim1 = dim(B,1),
+  Odim2 = dim(B,2),
+  O   = zero(Odim1,Odim2),
+  O[1]= B[1],
+  for( k,2,Odim1,
+       O[k] = B[k] - sum(j,1,k-1, proj(B[k],O[j]) ) ),
+  O)
+
+-- OrthoNormalBasis
+ONB(B) = do(onb  = B, 
+            odim = dim(B,1),
+            for(k,1,odim, onb[k] = B[k] / abs(B[k])), 
+            onb)  
+
+                            ## adapted from G. Weigt
+QR() = for(k,1,100,         -- QR iteration to compute eigenvalues and EV's
+    AT  = transpose(A),
+    ATo = GramSchmidt(AT),  -- make AT  orthogonal 
+    ATn = ONB(ATo),         -- make ATo orthonormal
+    U   = transpose(ATn),
+    A   = dot(transpose(U),A,U),
+    V   = dot(V,U) )
