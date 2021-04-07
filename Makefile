@@ -66,4 +66,11 @@ demos:
 	cat 1.txt annihilation-2.txt 2.txt > annihilation-2.html
 	cat 1.txt annihilation-3.txt 2.txt > annihilation-3.html
 	cat 1.txt annihilation-4.txt 2.txt > annihilation-4.html
+	cat 1.txt muon-production-1.txt 2.txt > muon-production-1.html
+	cat 1.txt muon-production-2.txt 2.txt > muon-production-2.html
+	cat 1.txt muon-production-5.txt 2.txt > muon-production-5.html
+	cat 1.txt muon-production-3.txt 2.txt > muon-production-3.html
+	cat 1.txt muon-production-4.txt 2.txt > muon-production-4.html
+
+
 

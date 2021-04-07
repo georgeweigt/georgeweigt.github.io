@@ -1,8 +1,8 @@
--- www.eigenmath.org/muon-production-3.txt
+-- Muon pair production data from SLAC PEP
 
--- Compute R-squared for muon pair production data.
+-- Compute R-squared for QED model
 
--- Data from www.hepdata.net/record/ins216031 (Table 1, 29.0 GeV)
+-- www.hepdata.net/record/ins216031 (Table 1, 29.0 GeV)
 
 N = 20 -- number of observations
 
@@ -54,18 +54,29 @@ y = (
 49.28,
 55.7)
 
-"predicted values"
+y = y "nanobarn" "GeV"^2
 
+"Observed cross section per bin"
+
+y
+
+"Predicted cross section"
+
+pi = float(pi)
 alpha = 0.0072973525693
-hbar = 6.582119569 10^(-25) -- GeV seconds
-c = 299792458 -- meters per second
+hbar = 6.582119569 10^(-25) "GeV" "second"
+c = 299792458 "meter" / "second"
+C = 10^37 "nanobarn" / "meter"^2 -- convert square meters to nanobarns
+
 yhat = zero(N)
 
-for(k,1,N,yhat[k] = 1/2 float(pi) alpha^2 (1 + x[k]^2) (hbar c)^2 10^37)
+for(k,1,N,
+  yhat[k] = C 1/2 pi alpha^2 (1 + x[k]^2) (hbar c)^2
+)
 
 yhat
 
-"coefficient of determination (R-squared)"
+"Coefficient of determination (R-squared)"
 
 ybar = 1/N sum(k,1,N,y[k])
 SSE = sum(k,1,N,(y[k] - yhat[k])^2)

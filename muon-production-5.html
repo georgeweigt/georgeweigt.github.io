@@ -1,3 +1,15 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Draw probability density for muon production
 
 pi = float(pi) -- use numerical value of pi
@@ -23,3 +35,13 @@ f
 xrange = (0,pi)
 yrange = (0,1)
 draw(f,theta)
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
