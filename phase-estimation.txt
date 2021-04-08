@@ -4,7 +4,7 @@
 
 run("Downloads/q4.txt")
 
-"Phase to estimate (in turns, 0.0 to 1.0)"
+"Phase to estimate (in turns, 0 to 1)"
 
 theta = 0.7
 theta
