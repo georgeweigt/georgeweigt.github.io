@@ -6233,14 +6233,14 @@ eval_rotate(p1)
 	psi = pop();
 
 	if (!istensor(psi) || psi.dim.length > 1 || psi.elem.length > 32768 || (psi.elem.length & (psi.elem.length - 1)) != 0)
-		stopf("rotate");
+		stopf("rotate error 1");
 
 	p1 = cddr(p1);
 
 	while (iscons(p1)) {
 
 		if (!iscons(cdr(p1)))
-			stopf("rotate");
+			stopf("rotate error 2");
 
 		opcode = car(p1);
 		push(cadr(p1));
@@ -6249,19 +6249,19 @@ eval_rotate(p1)
 		c = n; // control bit
 
 		if (n > 14 || (1 << n) >= psi.elem.length)
-			stopf("rotate");
+			stopf("rotate error 3");
 
 		p1 = cddr(p1);
 
 		if (opcode == symbol("C")) {
 			if (!iscons(cdr(p1)))
-				stopf("rotate");
+				stopf("rotate error 2");
 			opcode = car(p1);
 			push(cadr(p1));
 			evalf();
 			n = pop_integer();
 			if (n > 14 || (1 << n) >= psi.elem.length)
-				stopf("rotate");
+				stopf("rotate error 3");
 			p1 = cddr(p1);
 		}
 
@@ -6272,7 +6272,7 @@ eval_rotate(p1)
 
 		if (opcode == symbol("P")) {
 			if (!iscons(p1))
-				stopf("rotate");
+				stopf("rotate error 2");
 			push(car(p1));
 			p1 = cdr(p1);
 			evalf();
@@ -6297,13 +6297,13 @@ eval_rotate(p1)
 		if (opcode == symbol("S")) {
 			m = n;
 			if (!iscons(p1))
-				stopf("rotate");
+				stopf("rotate error 2");
 			push(car(p1));
 			p1 = cdr(p1);
 			evalf();
 			n = pop_integer();
 			if (n > 14 || (1 << n) >= psi.elem.length)
-				stopf("rotate");
+				stopf("rotate error 3");
 			rotate_s(psi, c, m, n);
 			continue;
 		}
@@ -6323,7 +6323,7 @@ eval_rotate(p1)
 			continue;
 		}
 
-		stopf("rotate");
+		stopf("rotate error 4");
 	}
 
 	push(psi);
