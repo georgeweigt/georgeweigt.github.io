@@ -59,7 +59,7 @@ P = psi conj(psi)
 
 -- qubits 8-11 are don't care, sum probabilities over eigenstates modulo 256
 
-for(j,1,256,P[j] = sum(k,0,15,P[256 k + j]))
+for(j,1,256, P[j] = sum(k,0,15,P[j + 256 k]))
 
 "Row 1 is the probability of observing the phase in row 2"
 
