@@ -38,36 +38,59 @@ Here is the same diagram with momentum and spinor labels.
 \noindent
 In a typical collider experiment the momentum vectors are
 \begin{equation*}
-p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}\qquad
-p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}\qquad
-p_3=\begin{pmatrix}
+\underset{\text{inbound positron}}
+{p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\quad
+\underset{\text{inbound electron}}
+{p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+\quad
+\underset{\text{outbound positron}}
+{p_3=\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
 p\sin\theta\sin\phi\\
 p\cos\theta
-\end{pmatrix}
-\qquad
-p_4=\begin{pmatrix}
+\end{pmatrix}}
+\quad
+\underset{\text{outbound electron}}
+{p_4=\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
 -p\sin\theta\sin\phi\\
 -p\cos\theta
-\end{pmatrix}
+\end{pmatrix}}
 \end{equation*}
 
 \noindent
 where $E=\sqrt{p^2+m^2}$.
+
+\bigskip
+\noindent
 The spinors are
 \begin{gather*}
-v_{11}=\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}\quad
-u_{21}=\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}\quad
-v_{31}=\begin{pmatrix}p_3^z\\p_3^x+ip_3^y\\E+m\\0\end{pmatrix}\quad
-u_{41}=\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}
+\underset{\text{inbound positron, spin up}}
+{v_{11}=\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}}
+\quad
+\underset{\text{inbound positron, spin down}}
+{v_{12}=\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}}
+\quad
+\underset{\text{inbound electron, spin up}}
+{u_{21}=\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
+\quad
+\underset{\text{inbound electron, spin down}}
+{u_{22}=\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \\
-v_{12}=\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}\quad
-u_{22}=\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}\quad
-v_{32}=\begin{pmatrix}p_3^x-ip_3^y\\-p_3^z\\0\\E+m\end{pmatrix}\quad
-u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
+\underset{\text{outbound positron, spin up}}
+{v_{31}=\begin{pmatrix}p_3^z\\p_3^x+ip_3^y\\E+m\\0\end{pmatrix}}
+\quad
+\underset{\text{outbound positron, spin down}}
+{v_{32}=\begin{pmatrix}p_3^x-ip_3^y\\-p_3^z\\0\\E+m\end{pmatrix}}
+\quad
+\underset{\text{outbound electron, spin up}}
+{u_{41}=\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}}
+\quad
+\underset{\text{outbound electron, spin down}}
+{u_{42}=\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}}
 \end{gather*}
 
 \noindent
@@ -77,33 +100,37 @@ will be used.
 
 \bigskip
 \noindent
-This is the probability density for Bhabha scattering.
-$$
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2=\frac{e^4}{N}
+The following formula computes a probability density $|\mathcal{M}_{abcd}|^2$
+for Bhabha scattering where $abcd$ are spin states.
+\begin{equation*}
+|\mathcal{M}_{abcd}|^2=\frac{e^4}{N}
 \left|
--\frac{1}{t}(\bar{v}_1\gamma^\mu v_3)(\bar{u}_4\gamma_\mu u_2)
-+\frac{1}{s}(\bar{v}_1\gamma^\nu u_2)(\bar{u}_4\gamma_\nu v_3)
+-\frac{1}{t}(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b})
++\frac{1}{s}(\bar{v}_{1a}\gamma^\nu u_{2b})(\bar{u}_{4d}\gamma_\nu v_{3c})
 \right|^2
-$$
+\end{equation*}
 
 \noindent
-Symbol $s_j$ selects the spin (up or down) of spinor $j$.
 Symbol $e$ is electron charge.
-Symbols $s$ and $t$ are Mandelstam variables $s=(p_1+p_2)^2$ and $t=(p_1-p_3)^2$.
+Symbols $s$ and $t$ are Mandelstam variables
+\begin{align*}
+s&=(p_1+p_2)^2
+\\
+t&=(p_1-p_3)^2
+\end{align*}
 
-\bigskip
 \noindent
 Let
 \begin{equation*}
-a_1=(\bar{v}_1\gamma^\mu v_3)(\bar{u}_4\gamma_\mu u_2)
+a_1=(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b})
 \qquad
-a_2=(\bar{v}_1\gamma^\nu u_2)(\bar{u}_4\gamma_\nu v_3)
+a_2=(\bar{v}_{1a}\gamma^\nu u_{2b})(\bar{u}_{4d}\gamma_\nu v_{3c})
 \end{equation*}
 
 \noindent
 Then
 \begin{align*}
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
+|\mathcal{M}_{abcd}|^2
 &=
 \frac{e^4}{N}\left|{-\frac{a_1}{t}} + \frac{a_2}{s}\right|^2\\
 &=
@@ -118,16 +145,15 @@ Then
 
 \noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed
-by summing $|\mathcal{M}|^2$ over all spin states and dividing by the number of inbound states.
+by summing $|\mathcal{M}_{abcd}|^2$ over all spin states and then dividing by the number of inbound states.
 There are four inbound states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=
-\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2\\
+\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+|\mathcal{M}_{abcd}|^2\\
 &=
-\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
-\frac{1}{N}
+\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
 \left(
 \frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{st} -
 \frac{a_1^*a_2}{st} + \frac{a_2a_2^*}{s^2}
@@ -371,7 +397,7 @@ I(\theta)=-\frac{1}{3}\cos(3\theta)
 \quad a\le\theta\le\pi
 \end{equation*}
 
-\subsection*{SLAC data}
+\subsection*{Data from SLAC SPEAR experiment}
 \noindent
 The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 
@@ -450,8 +476,8 @@ The result indicates that the model $\langle|\mathcal{M}|^2\rangle$ explains
 \noindent
 Run ``bhabha-scattering-4.txt'' to verify.
 
-\subsection*{DESY data}
-The following table shows DESY-PETRA Bhabha scattering data obtained from
+\subsection*{Data from DESY PETRA experiment}
+The following table shows DESY PETRA Bhabha scattering data obtained from
 HEP Data.\footnote{{\tt www.hepdata.net/record/ins191231} (Table 3, 14.0 GeV)}
 
 \begin{center}
@@ -562,7 +588,7 @@ The result indicates that the model $d\sigma$ explains 99.5\% of the variance in
 \noindent
 Run ``bhabha-scattering-5.txt'' to verify.
 
-\subsection*{Notes on Eigenmath scripts}
+\subsection*{Notes}
 Here are a few notes about how the Eigenmath scripts work.
 In component notation the trace operators of the Casimir trick become sums over the repeated index $\alpha$.
 \begin{align*}
