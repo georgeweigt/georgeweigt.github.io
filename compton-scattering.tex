@@ -447,7 +447,16 @@ I(\theta)
 \end{align*}
 
 \noindent
-Let $C$ be the normalization constant $C=I(\pi)-I(0)$.
+Assume $I(\theta)$ is computable by either symbolic or numerical integration.
+
+\bigskip
+\noindent
+Let $C$ be the normalization constant
+\begin{equation*}
+C=I(\pi)-I(0)
+\end{equation*}
+
+\noindent
 Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(0)}{C},
@@ -462,10 +471,10 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \noindent
-The probability density $f(\theta)$ is the derivative of $F(\theta)$.
+The probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}=C^{-1}\frac{dI(\theta)}{d\theta}
-=C^{-1}
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{1}{C}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
 \sin\theta

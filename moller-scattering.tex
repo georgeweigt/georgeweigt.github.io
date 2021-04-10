@@ -305,7 +305,12 @@ Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are
 
 \bigskip
 \noindent
-Let $C$ be the normalization constant $C=I(\pi-a)-I(a)$.
+Let $C$ be the normalization constant
+\begin{equation*}
+C=I(\pi-a)-I(a)
+\end{equation*}
+
+\noindent
 Then the cumulative distribution function $F(\theta)$ is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(a)}{C},\quad a\le\theta\le\pi-a
@@ -321,9 +326,9 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \noindent
 Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=C^{-1}\frac{dI(\theta)}{d\theta}
-=C^{-1}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
+f(\theta)
+=\frac{dF(\theta)}{d\theta}
+=\frac{1}{C}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
 \end{equation*}
 
 \noindent
