@@ -66,53 +66,57 @@ where $E=\sqrt{p^2+m^2}$.
 \noindent
 The spinors are
 \begin{equation*}
-u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+\underset{\text{inbound electron, spin up}}
+{u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
-u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
+\underset{\text{inbound electron, spin down}}
+{u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \qquad
-v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
+\underset{\text{inbound positron, spin up}}
+{v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
 \qquad
-v_{22}=\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
+\underset{\text{inbound positron, spin down}}
+{v_{22}=\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
 
 \noindent
-The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-Note that the spinors are not individually normalized.
+The spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
 \noindent
-This is the probability density for annihilation.
+The following formula computes a probability density $|\mathcal{M}_{ab}|^2$
+for annihilation where $a$ is the spin state of the inbound electron and
+$b$ is the spin state of the inbound positron.
 The formula is from Feynman diagrams.
 \begin{equation*}
-|\mathcal{M}(s_1,s_2)|^2
+|\mathcal{M}_{ab}|^2
 =
 \frac{e^4}{N}
 \left|
--\frac{\bar{v}_2\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_1}{t-m^2}
--\frac{\bar{v}_2\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_1}{u-m^2}
+-\frac{\bar{v}_{2b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{1a}}{t-m^2}
+-\frac{\bar{v}_{2b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{1a}}{u-m^2}
 \right|^2
 \end{equation*}
 
 \noindent
-Symbol $s_j$ selects the spin (up or down) of spinor $j$.
 Symbol $e$ is electron charge.
 Symbol $q_1=p_1-p_3$ and $q_2=p_1-p_4$.
-Symbols $t$ and $u$ are Mandelstam variables $t=q_1^2=(p_1-p_3)^2$ and $u=q_2^2=(p_1-p_4)^2$.
+Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2=q_1^2$ and $u=(p_1-p_4)^2=q_2^2$.
 
 \bigskip
 \noindent
 Let
 \begin{equation*}
-a_1=\bar{v}_2\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_1
+a_1=\bar{v}_{2b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{1a}
 \qquad
-a_2=\bar{v}_2\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_1
+a_2=\bar{v}_{2b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{1a}
 \end{equation*}
 
 \noindent
 Then
 \begin{align*}
-|\mathcal{M}(s_1,s_2)|^2&=\frac{e^4}{N}\left|-\frac{a_1}{t-m^2}-\frac{a_2}{u-m^2}\right|^2\\
+|\mathcal{M}_{ab}|^2&=\frac{e^4}{N}\left|-\frac{a_1}{t-m^2}-\frac{a_2}{u-m^2}\right|^2\\
 &=
 \frac{e^4}{N}
 \left(-\frac{a_1}{t-m^2}-\frac{a_2}{u-m^2}\right)
@@ -128,15 +132,15 @@ Then
 
 \noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$
-is computed by summing $|\mathcal{M}|^2$ over all spin and polarization states
+is computed by summing $|\mathcal{M}_{ab}|^2$ over all spin and polarization states
 and then dividing by the number of inbound states.
 There are four inbound states.
 The sum over polarization states is already accomplished by contraction
 of $aa^*$ over $\mu$ and $\nu$.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2|\mathcal{M}(s_1,s_2)|^2\\
-&=\frac{e^4}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2
+&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2\\
+&=\frac{e^4}{4}\sum_{a=1}^2\sum_{b=1}^2
 \frac{1}{N}\left(
 \frac{a_1a_1^*}{(t-m^2)^2}
 +\frac{a_1a_2^*}{(t-m^2)(u-m^2)}
@@ -148,17 +152,17 @@ of $aa^*$ over $\mu$ and $\nu$.
 \noindent
 Use the Casimir trick to replace sums over spins with matrix products.
 \begin{align*}
-f_{11}&=\frac{1}{N}\sum_\text{spins}a_1a_1^*=\mathop{\rm Tr}
+f_{11}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_1^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_2-m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
 \right)
 \\
-f_{12}&=\frac{1}{N}\sum_\text{spins}a_1a_2^*=\mathop{\rm Tr}
+f_{12}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_2^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_2-m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=\frac{1}{N}\sum_\text{spins}a_2a_2^*=\mathop{\rm Tr}
+f_{22}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_2a_2^*=\mathop{\rm Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_2-m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
 \right)
@@ -338,29 +342,26 @@ f(\theta)=\frac{dF(\theta)}{d\theta}=\frac{\sin(\theta)}{I(\pi)}
 \end{equation*}
 
 \noindent
-Run ``annihilation-4.txt" to plot $f(\theta)$ for $\alpha=\pi/180$.
+Run ``annihilation-4.txt" to plot $f(\theta)$ for $\alpha=\pi/6=30^\circ$.
 
 \begin{center}
-\includegraphics[scale=0.5]{annihilation-ss1.png}
+\includegraphics[scale=0.5]{annihilation.png}
 \end{center}
 
 \noindent
-Here is a probability distribution for $20^\circ$ bins with $\alpha=20^\circ$.
+This is the probability distribution for $30^\circ$ bins and $\alpha=30^\circ$.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
 $\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
 \hline
-$0^\circ$ & $20^\circ$ & -- \\
-$20^\circ$ & $40^\circ$ & 0.25 \\
-$40^\circ$ & $60^\circ$ & 0.13 \\
-$60^\circ$ & $80^\circ$ & 0.08 \\
-$80^\circ$ & $100^\circ$ & 0.07 \\
-$100^\circ$ & $120^\circ$ & 0.08 \\
-$120^\circ$ & $140^\circ$ & 0.13 \\
-$140^\circ$ & $160^\circ$ & 0.25 \\
-$160^\circ$ & $180^\circ$ & -- \\
+$0^\circ$ & $30^\circ$ & -- \\
+$30^\circ$ & $60^\circ$ & 0.33 \\
+$60^\circ$ & $90^\circ$ & 0.17 \\
+$90^\circ$ & $120^\circ$ & 0.17 \\
+$120^\circ$ & $150^\circ$ & 0.33 \\
+$150^\circ$ & $180^\circ$ & -- \\
 \hline
 \end{tabular}
 \end{center}
