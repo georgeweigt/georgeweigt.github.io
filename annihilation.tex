@@ -1,19 +1,9 @@
 \documentclass[12pt]{article}
-\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-%\usepackage{parskip}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{slashed}
 \usepackage{tikz}
-\usepackage{mathrsfs}
-
-% change margins
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
-
-\hyphenpenalty=10000
 
 \begin{document}
 
@@ -46,13 +36,17 @@ Here is the same diagram with momentum and spinor labels.
 \noindent
 In a typical collider experiment the momentum vectors are
 \begin{equation*}
-p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
-\qquad
-p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
-\qquad
-p_3=\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}
-\qquad
-p_4=\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}
+\underset{\text{inbound electron}}
+{p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\quad
+\underset{\text{inbound positron}}
+{p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+\quad
+\underset{\text{outbound photon}}
+{p_3=\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}}
+\quad
+\underset{\text{outbound photon}}
+{p_4=\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}}
 \end{equation*}
 
 \noindent
@@ -64,13 +58,13 @@ The spinors are
 \begin{equation*}
 \underset{\text{inbound electron, spin up}}
 {u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
-\qquad
+\quad
 \underset{\text{inbound electron, spin down}}
 {u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
-\qquad
+\quad
 \underset{\text{inbound positron, spin up}}
 {v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
-\qquad
+\quad
 \underset{\text{inbound positron, spin down}}
 {v_{22}=\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
@@ -96,11 +90,19 @@ The formula is from Feynman diagrams.
 \end{equation*}
 
 \noindent
-Symbol $e$ is electron charge.
-Symbol $q_1=p_1-p_3$ and $q_2=p_1-p_4$.
-Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2=q_1^2$ and $u=(p_1-p_4)^2=q_2^2$.
+Symbol $e$ is electron charge and
+\begin{align*}
+q_1&=p_1-p_3
+\\
+q_2&=p_1-p_4
+\end{align*}
+Symbols $t$ and $u$ are Mandelstam variables
+\begin{align*}
+t&=q_1^2=(p_1-p_3)^2
+\\
+u&=q_2^2=(p_1-p_4)^2
+\end{align*}
 
-\bigskip
 \noindent
 Let
 \begin{equation*}
@@ -393,10 +395,9 @@ $150^\circ$ & $180^\circ$ & -- \\
 \end{tabular}
 \end{center}
 
-\subsection*{DESY PETRA data}
+\subsection*{Data from DESY PETRA experiment}
 \noindent
-The following table shows DESY PETRA electron positron annihilation
-data.\footnote{{\tt www.hepdata.net/record/ins191231} (Table 2, 14.0 GeV)}
+See www.hepdata.net/record/ins191231, Table 2, 14.0 GeV.
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -564,7 +565,6 @@ a_1^{\mu\nu}a_{2\nu\mu}^*
 \text{\tt a12 = contract(dot(a1,gmunu,conj(a2),gmunu))}
 \end{equation*}
 
-\newpage
 \noindent
 In component notation, a trace operator becomes a sum over an index, in this case $\alpha$.
 \begin{align*}
