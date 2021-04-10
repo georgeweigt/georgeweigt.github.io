@@ -60,25 +60,27 @@ p_4=\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\thet
 \end{equation*}
 
 \noindent
-where $p=\sqrt{E^2-m^2}$.
+where $E=\sqrt{p^2+m^2}$.
+
+\bigskip
+\noindent
 The spinors are
-\begin{gather*}
+\begin{equation*}
 u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
 \qquad
-v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
-\\
 u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
 \qquad
+v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
+\qquad
 v_{22}=\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
-\end{gather*}
+\end{equation*}
 
 \noindent
 The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
 Note that the spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used
-where needed.
+Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
-\newpage
+\bigskip
 \noindent
 This is the probability density for annihilation.
 The formula is from Feynman diagrams.
@@ -95,8 +97,8 @@ The formula is from Feynman diagrams.
 \noindent
 Symbol $s_j$ selects the spin (up or down) of spinor $j$.
 Symbol $e$ is electron charge.
-Symbols $t$ and $u$ are Mandelstam variables $t=(p_1-p_3)^2$ and $u=(p_1-p_4)^2$.
 Symbol $q_1=p_1-p_3$ and $q_2=p_1-p_4$.
+Symbols $t$ and $u$ are Mandelstam variables $t=q_1^2=(p_1-p_3)^2$ and $u=q_2^2=(p_1-p_4)^2$.
 
 \bigskip
 \noindent
@@ -179,9 +181,10 @@ Hence
 \noindent
 Run ``annihilation-1.txt'' to verify the Casimir trick for electron positron annihilation.
 
-\newpage
+\bigskip
 \noindent
-These formulas compute probability densities from dot products.
+The following momentum formulas are equivalent to the Casimir trick.
+(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
 16 (p_1 \cdot p_1) (p_1 \cdot p_2) -
@@ -292,7 +295,7 @@ The resulting differential cross section is
 \noindent
 Run ``annihilation-2.txt'' to verify.
 
-\newpage
+\bigskip
 \noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 
