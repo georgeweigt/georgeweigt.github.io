@@ -2,12 +2,19 @@
 
 run("Downloads/q4.txt")
 
-psi = quote(dot(H2,H1,H0,f,H3,X3,H2,H1,H0,ket0))
+xrange = (0,8)
+yrange = (0,1)
 
 "Constant oracle"
 f = 1
-M(psi)
+psi = dot(H2,H1,H0,f,H3,X3,H2,H1,H0,ket0)
+P = hadamard(psi,conj(psi))
+for(k,1,8, P[k] = P[k] + P[k + 8]) -- bit 3 don't care
+draw(P[ceiling(x)],x)
 
 "Balanced oracle"
 f = dot(X23,X13,X03)
-M(psi)
+psi = dot(H2,H1,H0,f,H3,X3,H2,H1,H0,ket0)
+P = hadamard(psi,conj(psi))
+for(k,1,8, P[k] = P[k] + P[k + 8]) -- bit 3 don't care
+draw(P[ceiling(x)],x)
