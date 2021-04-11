@@ -8,9 +8,9 @@
 
 U(psi,k) = rotate(psi,
 
-  C,k,S,10,11,  -- conditional swap bits 10 and 11
-  C,k,S,9,10,   -- conditional swap bits 9 and 10
-  C,k,S,8,9,    -- conditional swap bits 8 and 9
+  C,k,W,10,11,  -- conditional swap bits 10 and 11
+  C,k,W,9,10,   -- conditional swap bits 9 and 10
+  C,k,W,8,9,    -- conditional swap bits 8 and 9
   C,k,X,8,      -- conditional not bit 8
   C,k,X,9,      -- conditional not bit 9
   C,k,X,10,     -- conditional not bit 10
@@ -51,7 +51,7 @@ for(k,1,128, psi = U(psi,7))
 
 -- inverse QFT on bits 0-7
 
-psi = rotate(psi,R,7)
+psi = rotate(psi,V,7)
 
 -- result is a probability distribution
 

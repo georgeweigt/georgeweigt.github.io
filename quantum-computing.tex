@@ -54,10 +54,10 @@ $P_{mn}(\phi)$ & Controlled phase shift, $m$ is the control bit, $n$ is the targ
 $Q$ & Quantum Fourier transform.
 \\
 \\
-$R$ & Inverse quantum Fourier transform.
+$V$ & Inverse quantum Fourier transform.
 \\
 \\
-$S_{mn}$ & Swap bits $m$ and $n$.
+$W_{mn}$ & Swap bits $m$ and $n$.
 \\
 \\
 $X_n$ & Pauli X (NOT) operator on bit $n$.
@@ -114,8 +114,8 @@ This is how the QFT operator $Q$ is defined in q4.txt.
 
 \begin{verbatim}
 Q = dot(
-S03,            -- Swap qubits 0 and 3
-S12,            -- Swap qubits 1 and 2
+W03,            -- Swap qubits 0 and 3
+W12,            -- Swap qubits 1 and 2
 H0,             -- Hadamard qubit 0
 P01(pi/2),      -- Controlled phase shift (0 control, 1 target)
 H1,             -- Hadamard qubit 1
@@ -129,7 +129,7 @@ H3)             -- Hadamard qubit 3
 \end{verbatim}
 
 \noindent
-The inverse QFT operator $R$ is defined similarly except the operators appear in reverse order
+The inverse QFT operator $V$ is defined similarly except the operators appear in reverse order
 and the phase shifts are negated.
 
 \end{document}
