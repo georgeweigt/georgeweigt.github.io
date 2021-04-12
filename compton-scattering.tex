@@ -284,13 +284,13 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \noindent
 For high energy experiments where $E\gg m$ the approximation $m=0$ can be used
 resulting in the following simplified probability density.
-\begin{equation*}
+\begin{equation}
 \langle|\mathcal{M}|^2\rangle
 =
 2e^4\left(
 \frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
 \right)
-\end{equation*}
+\end{equation}
 
 \noindent
 Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
@@ -521,10 +521,9 @@ Hence for $\omega\ll m$ the differential cross section is approximately
 \noindent
 which is the formula for Thomson scattering.
 
-\subsection*{LEP data}
-The following Compton scattering data is from the paper
-``Compton Scattering of Quasi-Real Virtual Photons at LEP''
-(\verb$arxiv.org/abs/hep-ex/0504012$).
+\subsection*{Data from LEP experiment}
+See ``Compton Scattering of Quasi-Real Virtual Photons at LEP,''
+arxiv.org/abs/hep-ex/0504012.
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -550,12 +549,42 @@ $\phantom{+}0.73$ & $\phantom{0}3330$\\
 \noindent
 The data are for the center of mass frame and have the following relationship with the differential cross section formula.
 \begin{equation*}
-x=\cos\theta\qquad y=\frac{d\sigma}{d\cos\theta}
+x=\cos\theta\qquad y=\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
 \end{equation*}
 
 \noindent
-This is the differential cross section formula for Compton scattering
-in the center of mass frame with high energy approximation $m=0$.
+From equation (3) we have for the center of mass frame
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=
+2e^4\left(
+\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\right)
+\end{equation*}
+
+\noindent
+The corresponding cross section formula is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
+=\frac{e^4}{32\pi^2s}
+\left(
+\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\right)
+\end{equation*}
+
+\noindent
+Substituting $e^4=16\pi^2\alpha^2$ yields
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{2s}
+\left(
+\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\right)
+\end{equation*}
+
+\noindent
+Multiply by $2\pi$ to obtain
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}
 =\frac{\pi\alpha^2}{s}\left(
@@ -613,8 +642,8 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.97
 \noindent
 The result indicates that the model $d\sigma$ explains 97\% of the variance in the data.
 
-\subsection*{Notes on Eigenmath scripts}
-Write $a_1$ and $a_2$ in full component form.
+\subsection*{Developer notes}
+Start by writing out $a_1$ and $a_2$ in full component form.
 \begin{equation*}
 a_1^{\mu\nu}
 =\bar{u}_{4\alpha}\gamma^{\mu\alpha}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\nu\rho}{}_\sigma u_2^\sigma
