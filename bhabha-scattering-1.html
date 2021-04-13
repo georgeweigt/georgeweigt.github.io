@@ -12,8 +12,6 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Verify Casimir trick for Bhabha scattering
 
--- eigenmath.org/bhabha-scattering-1.txt
-
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -67,20 +65,25 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 "Sum over spin states"
 
-S = 0
+a11 = 0
+a12 = 0
+a22 = 0
 
 for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
   X13 = dot(v1bar[a],gammaT,v3[c]),
   X42 = dot(u4bar[d],gammaL,u2[b]),
   X12 = dot(v1bar[a],gammaT,u2[b]),
   X43 = dot(u4bar[d],gammaL,v3[c]),
-  M = -1/t dot(X13,X42) + 1/s dot(X12,X43),  -- M is an amplitude
-  f = M conj(M),                             -- f = |M|^2
-  S = S + f
+  a1 = dot(X13,X42),
+  a2 = dot(X12,X43),
+  a11 = a11 + a1 conj(a1),
+  a12 = a12 + a1 conj(a2),
+  a22 = a22 + a2 conj(a2)
 ))))
 
-S = S / N  -- normalize
-S
+a11
+a12
+a22
 
 "Casimir trick"
 
@@ -105,12 +108,15 @@ T1 = contract(dot(X1,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-T = f11/t^2 - f12/(s t) - conj(f12)/(s t) + f22/s^2
-T
+f11
+f12
+f22
 
-"Does S = T?"
+"Verify Casimir trick (1=ok)"
 
-test(S == T,"yes","no")
+f11 == 1/N a11
+f12 == 1/N a12
+f22 == 1/N a22
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
