@@ -269,8 +269,15 @@ f_{22}&=
 \end{align*}
 
 \noindent
-In terms of Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, and $u=(p_1-p_4)^2$
-the formulas are
+Using Mandelstam variables
+\begin{align*}
+s&=(p_1+p_2)^2
+\\
+t&=(p_1-p_3)^2
+\\
+u&=(p_1-p_4)^2
+\end{align*}
+the momentum formulas are
 \begin{equation}
 \begin{aligned}
 f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
@@ -282,7 +289,10 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \end{equation}
 
 \noindent
-For high energy experiments where $E\gg m$ the approximation $m=0$ can be used
+Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
+
+\subsection*{High energy approximation}
+For high energy experiments that have $\omega\gg m$ the approximation $m=0$ can be used
 resulting in the following simplified probability density.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
@@ -307,9 +317,6 @@ Hence
 \frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
 \right)
 \end{equation}
-
-\noindent
-Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
 
 \subsection*{Lab frame}
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
@@ -610,8 +617,7 @@ Multiply by $2\pi$ to obtain
 
 \noindent
 To compute predicted values $\hat{y}$ from the above formula,
-use $s=40\,\text{GeV}^2$ to approximate the QED values in the paper.
-Multiply the result by $(\hbar c)^2$ to convert to SI
+multiply by $(\hbar c)^2$ to convert to SI
 and multiply by $10^{40}$ to convert square meters to picobarns.
 \begin{equation*}
 \hat{y}
@@ -626,7 +632,8 @@ and multiply by $10^{40}$ to convert square meters to picobarns.
 \end{equation*}
 
 \noindent
-The following table shows the predicted cross section $\hat{y}$.
+The following table shows the predicted cross section $\hat{y}$
+for $s=40\,\text{GeV}^2$ ($\omega=100\,\text{MeV}$).
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
