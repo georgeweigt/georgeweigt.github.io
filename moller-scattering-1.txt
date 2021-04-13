@@ -1,7 +1,5 @@
 -- Verify Casimir trick for Moller scattering
 
--- eigenmath.org/moller-scattering-1.txt
-
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -55,20 +53,23 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 "Sum over spin states"
 
-S = 0
+a11 = 0
+a12 = 0
+a22 = 0
 
 for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
-  X31 = dot(u3bar[c],gammaT,u1[a]),
-  X42 = dot(u4bar[d],gammaL,u2[b]),
-  X41 = dot(u4bar[d],gammaT,u1[a]),
-  X32 = dot(u3bar[c],gammaL,u2[b]),
-  M = 1/t dot(X31,X42) - 1/u dot(X41,X32),  -- M is an amplitude
-  f = M conj(M),                            -- f = |M|^2
-  S = S + f
+  a1 = dot(dot(u3bar[c],gammaT,u1[a]),
+           dot(u4bar[d],gammaL,u2[b])),
+  a2 = dot(dot(u4bar[d],gammaT,u1[a]),
+           dot(u3bar[c],gammaL,u2[b])),
+  a11 = a11 + a1 conj(a1),
+  a12 = a12 + a1 conj(a2),
+  a22 = a22 + a2 conj(a2)
 ))))
 
-S = S / N -- normalize
-S
+a11
+a12
+a22
 
 "Casimir trick"
 
@@ -93,9 +94,12 @@ T1 = contract(dot(X4,gammaT,X1,gammaT),1,4)
 T2 = contract(dot(X3,gammaL,X2,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-T = f11/t^2 - f12/(t u) - conj(f12)/(t u) + f22/u^2
-T
+f11
+f12
+f22
 
-"Does S = T?"
+"Verfiy Casimir trick (1=ok)"
 
-test(S == T,"yes","no")
+f11 == 1/N a11
+f12 == 1/N a12
+f22 == 1/N a22

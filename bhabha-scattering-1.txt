@@ -58,8 +58,10 @@ a12 = 0
 a22 = 0
 
 for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
-  a1 = dot(dot(v1bar[a],gammaT,v3[c]),dot(u4bar[d],gammaL,u2[b])),
-  a2 = dot(dot(v1bar[a],gammaT,u2[b]),dot(u4bar[d],gammaL,v3[c])),
+  a1 = dot(dot(v1bar[a],gammaT,v3[c]),
+           dot(u4bar[d],gammaL,u2[b])),
+  a2 = dot(dot(v1bar[a],gammaT,u2[b]),
+           dot(u4bar[d],gammaL,v3[c])),
   a11 = a11 + a1 conj(a1),
   a12 = a12 + a1 conj(a2),
   a22 = a22 + a2 conj(a2)
