@@ -25,15 +25,16 @@ u = dot(p1 - p4,gmunu,p1 - p4)
 
 f11 = 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
       64 m^2 dot(p1,gmunu,p2) -
-      32 m^2 dot(p1,gmunu,p4) -
-      32 m^2 dot(p2,gmunu,p4) + 64 m^4
+      32 m^2 dot(p1,gmunu,p3) -
+      32 m^2 dot(p1,gmunu,p4) + 32 m^4
 
-f12 = 16 m^2 dot(p1,gmunu,p2) - 16 m^2 dot(p1,gmunu,p4) + 32 m^4
+f12 = 16 m^2 dot(p1,gmunu,p2) -
+      16 m^2 dot(p1,gmunu,p4) + 32 m^4
 
-f22 = 32 dot(p2,gmunu,p3) dot(p3,gmunu,p4) -
-      64 m^2 dot(p2,gmunu,p3) -
-      32 m^2 dot(p2,gmunu,p4) +
-      32 m^2 dot(p3,gmunu,p4) + 64 m^4
+f22 = 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
+      32 m^2 dot(p1,gmunu,p2) -
+      32 m^2 dot(p1,gmunu,p3) -
+      64 m^2 dot(p1,gmunu,p4) + 32 m^4
 
 "Probability density formulas"
 
