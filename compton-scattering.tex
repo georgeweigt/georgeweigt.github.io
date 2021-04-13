@@ -142,10 +142,21 @@ and $b$ is the spin state of the outbound electron.
 \right|^2
 \end{equation*}
 Symbol $e$ is electron charge.
-Symbols $s$ and $u$ are Mandelstam variables $s=(p_1+p_2)^2$ and $u=(p_1-p_4)^2$.
-Symbol $q_1=p_1+p_2$ and $q_2=p_2-p_3$.
+Symbols $q_1$ and $q_2$ are
+\begin{align*}
+q_1&=p_1+p_2
+\\
+q_2&=p_1-p_4
+\end{align*}
 
-\bigskip
+\noindent
+Symbols $s$ and $u$ are Mandelstam variables
+\begin{align*}
+s&=q_1^2=(p_1+p_2)^2
+\\
+u&=q_2^2=(p_1-p_4)^2
+\end{align*}
+
 \noindent
 Let
 \begin{equation*}
@@ -180,8 +191,8 @@ The sum over polarizations is already accomplished by contraction of $aa^*$ over
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2\\
-&=\frac{e^4}{4}\sum_{a=1}^2\sum_{b=1}^2
-\frac{1}{N}\left(
+&=\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2
+\left(
 \frac{a_1a_1^*}{(s-m^2)^2}
 +\frac{a_1a_2^*}{(s-m^2)(u-m^2)}
 +\frac{a_1^*a_2}{(s-m^2)(u-m^2)}
@@ -231,41 +242,29 @@ The following momentum formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
--16 (p_1 \cdot p_1) (p_2 \cdot p_4) +
  32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
- 32 (p_1 \cdot p_4) (p_2 \cdot p_2) +
- 16 (p_2 \cdot p_2) (p_2 \cdot p_4) %+
-\\ &\phantom{=}\qquad{}+
- 64 m^2 (p_1 \cdot p_1) +
  64 m^2 (p_1 \cdot p_2) -
- 64 m^2 (p_1 \cdot p_4) -
- 48 m^2 (p_2 \cdot p_4) + 64 m^4
+ 32 m^2 (p_1 \cdot p_4) -
+ 32 m^2 (p_2 \cdot p_4) + 64 m^4
 \\
 f_{12}&=
--32 (p_1 \cdot p_2) (p_2 \cdot p_4) +
- 32 (p_1 \cdot p_3) (p_2 \cdot p_4) -
- 32 (p_2 \cdot p_2) (p_2 \cdot p_4) +
- 32 (p_2 \cdot p_3) (p_2 \cdot p_4) %+
- \\ &\phantom{=}\qquad{}+
- 32 m^2 (p_1 \cdot p_2) -
- 16 m^2 (p_1 \cdot p_3) +
- 16 m^2 (p_1 \cdot p_4) %+
- \\ &\phantom{=}\qquad{}+
- 48 m^2 (p_2 \cdot p_2) -
- 32 m^2 (p_2 \cdot p_3) +
- 48 m^2 (p_2 \cdot p_4) -
- 16 m^2 (p_3 \cdot p_4) - 32 m^4
+-32 (p_1\cdot p_2) (p_2\cdot p_4) +
+ 32 (p_1\cdot p_3) (p_2\cdot p_4) +
+ 32 (p_2\cdot p_3) (p_2\cdot p_4)
+\\ &\phantom{=}\qquad{}+
+ 32 m^2 (p_1\cdot p_2) -
+ 16 m^2 (p_1\cdot p_3) +
+ 16 m^2 (p_1\cdot p_4)
+\\ &\phantom{=}\qquad{}-
+ 32 m^2 (p_2\cdot p_3) +
+ 16 m^2 (p_2\cdot p_4) +
+ 48 m^2 (p_3\cdot p_4) - 16 m^4
 \\
 f_{22}&=
-16 (p_2 \cdot p_2) (p_2 \cdot p_4) -
-32 (p_2 \cdot p_2) (p_3 \cdot p_4) +
 32 (p_2 \cdot p_3) (p_3 \cdot p_4) -
-16 (p_2 \cdot p_4) (p_3 \cdot p_3) %-\\
-\\ &\phantom{=}\qquad{}-
-64 m^2 (p_2 \cdot p_3) -
-48 m^2 (p_2 \cdot p_4) +
-64 m^2 (p_3 \cdot p_3) +
-64 m^2 (p_3 \cdot p_4) + 64 m^4
+320 m^2 (p_2 \cdot p_3) -
+32 m^2 (p_2 \cdot p_4) +
+32 m^2 (p_3 \cdot p_4) + 320 m^4
 \end{align*}
 
 \noindent
@@ -282,9 +281,9 @@ the momentum formulas are
 \begin{aligned}
 f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
 \\
-f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
+f_{12}&=40 s m^2 + 8 u m^2 - 48 m^4
 \\
-f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+f_{22}&=-8 s u + 8 s m^2 + 152 u m^2 + 136 m^4
 \end{aligned}
 \end{equation}
 
