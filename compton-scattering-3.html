@@ -12,8 +12,6 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Verify lab frame formulas for Compton scattering
 
--- eigenmath.org/compton-scattering-3.txt
-
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 
 -- momentum vectors in center of mass frame
@@ -37,35 +35,17 @@ s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
 u = dot(p1 - p4,gmunu,p1 - p4)
 
-f11 = -16 dot(p1,gmunu,p1) dot(p2,gmunu,p4) +
-       32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
-       32 dot(p1,gmunu,p4) dot(p2,gmunu,p2) +
-       16 dot(p2,gmunu,p2) dot(p2,gmunu,p4) +
-       64 m^2 dot(p1,gmunu,p1) +
-       64 m^2 dot(p1,gmunu,p2) -
-       64 m^2 dot(p1,gmunu,p4) -
-       48 m^2 dot(p2,gmunu,p4) + 64 m^4
+f11 = 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
+      64 m^2 dot(p1,gmunu,p2) -
+      32 m^2 dot(p1,gmunu,p4) -
+      32 m^2 dot(p2,gmunu,p4) + 64 m^4
 
-f12 = -32 dot(p1,gmunu,p2) dot(p2,gmunu,p4) +
-       32 dot(p1,gmunu,p3) dot(p2,gmunu,p4) -
-       32 dot(p2,gmunu,p2) dot(p2,gmunu,p4) +
-       32 dot(p2,gmunu,p3) dot(p2,gmunu,p4) +
-       32 m^2 dot(p1,gmunu,p2) -
-       16 m^2 dot(p1,gmunu,p3) +
-       16 m^2 dot(p1,gmunu,p4) +
-       48 m^2 dot(p2,gmunu,p2) -
-       32 m^2 dot(p2,gmunu,p3) +
-       48 m^2 dot(p2,gmunu,p4) -
-       16 m^2 dot(p3,gmunu,p4) - 32 m^4
+f12 = 16 m^2 dot(p1,gmunu,p2) - 16 m^2 dot(p1,gmunu,p4) + 32 m^4
 
-f22 = 16 dot(p2,gmunu,p2) dot(p2,gmunu,p4) -
-      32 dot(p2,gmunu,p2) dot(p3,gmunu,p4) +
-      32 dot(p2,gmunu,p3) dot(p3,gmunu,p4) -
-      16 dot(p2,gmunu,p4) dot(p3,gmunu,p3) -
+f22 = 32 dot(p2,gmunu,p3) dot(p3,gmunu,p4) -
       64 m^2 dot(p2,gmunu,p3) -
-      48 m^2 dot(p2,gmunu,p4) +
-      64 m^2 dot(p3,gmunu,p3) +
-      64 m^2 dot(p3,gmunu,p4) + 64 m^4
+      32 m^2 dot(p2,gmunu,p4) +
+      32 m^2 dot(p3,gmunu,p4) + 64 m^4
 
 "Probability density formulas"
 

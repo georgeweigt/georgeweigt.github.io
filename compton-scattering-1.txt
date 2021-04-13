@@ -1,6 +1,4 @@
--- Verify Casimir trick for Compton scattering (25-70 seconds)
-
--- eigenmath.org/compton-scattering-1.txt
+-- Verify Casimir trick for Compton scattering (run time 25-70 seconds)
 
 E = sqrt(omega^2 + m^2)
 
@@ -45,33 +43,28 @@ gammaL = transpose(dot(gmunu,gamma))
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 q1 = p1 + p2
-q2 = p1 - p4
+q2 = p4 - p1
 
 qslash1 = dot(q1,gmunu,gamma)
 qslash2 = dot(q2,gmunu,gamma)
 
-s = dot(q1,gmunu,q1)
-u = dot(q2,gmunu,q2)
-
-C1 = s - m^2
-C2 = u - m^2
-
 "Sum over spin states"
 
-S = 0
+a11 = 0
+a12 = 0
+a22 = 0
 
 for(a,1,2,for(b,1,2,
-  a1 = -1/C1 dot(u4bar[b],gammaT,qslash1 + m I,gammaT,u2[a]),
-  a2 = -1/C2 dot(u4bar[b],gammaT,qslash2 + m I,gammaT,u2[a]),
-  a11 = contract(dot(a1,gmunu,transpose(conj(a1)),gmunu)),
-  a12 = contract(dot(a1,gmunu,conj(a2),gmunu)),
-  a22 = contract(dot(a2,gmunu,transpose(conj(a2)),gmunu)),
-  f = a11 + a12 + conj(a12) + a22,
-  S = S + f
+  a1 = -dot(u4bar[b],gammaT,qslash1 + m I,gammaT,u2[a]),
+  a2 = -dot(u4bar[b],gammaT,qslash2 + m I,gammaT,u2[a]),
+  a11 = a11 + contract(dot(a1,gmunu,transpose(conj(a1)),gmunu)),
+  a12 = a12 + contract(dot(a1,gmunu,conj(a2),gmunu)),
+  a22 = a22 + contract(dot(a2,gmunu,transpose(conj(a2)),gmunu))
 ))
 
-S = S / N -- normalize
-S
+a11
+a12
+a22
 
 "Casimir trick"
 
@@ -93,9 +86,12 @@ f12 = contract(contract(contract(T,3,5),2,3))
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
 f22 = contract(contract(contract(T,3,4),2,3))
 
-T = f11/C1^2 + f12/(C1 C2) + conj(f12)/(C1 C2) + f22/C2^2
-T
+f11
+f12
+f22
 
-"Does S equal T?"
+"Verify Casimir trick (1=ok)"
 
-test(S == T,"yes","no")
+f11 == 1/N a11
+f12 == 1/N a12
+f22 == 1/N a22

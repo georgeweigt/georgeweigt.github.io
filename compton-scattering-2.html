@@ -10,9 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Verify momentum formulas for Compton scattering (20-45 seconds)
-
--- eigenmath.org/compton-scattering-2.txt
+-- Verify momentum formulas for Compton scattering (run time 20-45 seconds)
 
 E = sqrt(omega^2 + m^2)
 
@@ -46,7 +44,7 @@ gammaL = transpose(dot(gmunu,gamma))
 "Probability density formulas"
 
 q1 = p1 + p2
-q2 = p1 - p4
+q2 = p4 - p1
 
 qslash1 = dot(q1,gmunu,gamma)
 qslash2 = dot(q2,gmunu,gamma)
@@ -80,17 +78,12 @@ f11 == 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
        32 m^2 dot(p1,gmunu,p4) -
        32 m^2 dot(p2,gmunu,p4) + 64 m^4
 
-f12 == 32 m^2 dot(p1,gmunu,p2) -
-       16 m^2 dot(p1,gmunu,p3) +
-       16 m^2 dot(p1,gmunu,p4) -
-       32 m^2 dot(p2,gmunu,p3) +
-       16 m^2 dot(p2,gmunu,p4) +
-       48 m^2 dot(p3,gmunu,p4) - 16 m^4
+f12 == 16 m^2 dot(p1,gmunu,p2) - 16 m^2 dot(p1,gmunu,p4) + 32 m^4
 
 f22 == 32 dot(p2,gmunu,p3) dot(p3,gmunu,p4) -
-       320 m^2 dot(p2,gmunu,p3) -
+       64 m^2 dot(p2,gmunu,p3) -
        32 m^2 dot(p2,gmunu,p4) +
-       32 m^2 dot(p3,gmunu,p4) + 320 m^4
+       32 m^2 dot(p3,gmunu,p4) + 64 m^4
 
 "Verify Mandelstam formulas (1=ok)"
 
@@ -99,8 +92,8 @@ t = dot(p1 - p3,gmunu,p1 - p3)
 u = dot(p1 - p4,gmunu,p1 - p4)
 
 f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
-f12 == 40 s m^2 + 8 u m^2 - 48 m^4
-f22 == -8 s u + 8 s m^2 + 152 u m^2 + 136 m^4
+f12 == 8 s m^2 + 8 u m^2 + 16 m^4
+f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 
 "Verify probability density for center of mass frame (1=ok)"
 
@@ -110,11 +103,11 @@ d11 = (s - m^2)^2
 d12 = (s - m^2) (u - m^2)
 d22 = (u - m^2)^2
 
-f = 1/4 (f11/d11 + 2 f12/d12 + f22/d22)
+A = 1/4 (f11/d11 + 2 f12/d12 + f22/d22)
 
-g = 2 ((1 + expcos(theta)) / 2 + 2 / (1 + expcos(theta)))
+B = 2 ((1 + expcos(theta)) / 2 + 2 / (1 + expcos(theta)))
 
-f == g
+A == B
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
