@@ -1,4 +1,4 @@
--- Verify formulas for Compton scattering
+-- Verify formulas for Compton scattering (run time 20-40 seconds)
 
 E = sqrt(omega^2 + m^2)
 
