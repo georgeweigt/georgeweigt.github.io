@@ -10,7 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Verify momentum and Mandelstam formulas for Moller scattering
+-- Verify formulas for Moller scattering
 
 E = sqrt(p^2 + m^2)
 
@@ -87,13 +87,13 @@ f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
 f12 == -8 s^2 + 64 s m^2 - 96 m^4
 f22 == 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
 
-"Verify probability density (1=ok)"
-
 m = 0
 
 s == 4 E^2
 t == 2 E^2 (expcos(theta) - 1)
 u == -2 E^2 (expcos(theta) + 1)
+
+"Verify probability density (1=ok)"
 
 A = 1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2)
 
