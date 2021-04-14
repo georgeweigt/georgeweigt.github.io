@@ -51,9 +51,6 @@ qslash2 = dot(q2,gmunu,gamma)
 t = dot(q1,gmunu,q1)
 u = dot(q2,gmunu,q2)
 
-C1 = t - m^2
-C2 = u - m^2
-
 "Sum over spin states"
 
 a11 = 0
