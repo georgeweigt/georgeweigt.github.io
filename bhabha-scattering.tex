@@ -281,7 +281,7 @@ u&=-2E^2(\cos\theta+1)
 \end{align*}
 
 \noindent
-The corresponding expected probability density is
+Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=2e^4
@@ -319,7 +319,7 @@ This is the differential cross section for Bhabha scattering.
 =\frac{e^4}{64\pi^2s}
 \left(
 \frac{\cos^2\theta+3}{\cos\theta-1}
-\right)^2
+\right)^2,\quad s\gg m
 \end{equation*}
 
 \noindent
@@ -449,23 +449,31 @@ The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 \end{center}
 
 \noindent
-Data column $y$ is the observed number of scattering events per bin.
+Data column $x$ is $\cos\theta$ of scattering angle $\theta$,
+data column $y$ is number of scattering events.
 
 \bigskip
 \noindent
-To compute predicted counts $\hat{y}$, integrate probability density function $f(\theta)$
-over each bin and multiply by the total number of counts.
+To compute predicted values $\hat{y}$, start by integrating
+the probability density function over each bin.
 \begin{equation*}
-P_k=\frac{1}{C}\int_{\arccos(x_k)}^{\arccos(x_{k+1})}
+I_k=\int_{\arccos(x_k)}^{\arccos(x_{k+1})}
 \left(
 \frac{\cos^2\theta+3}{\cos\theta-1}
 \right)^2\sin\theta\,d\theta
 \end{equation*}
+
+\noindent
+Normalize $I_k$ to obtain probability $P_k$.
 \begin{equation*}
-\hat{y}_k=P_k\sum y
+P_k=\frac{I_k}{N},\quad N=\sum_{j=1}^{12}I_j
 \end{equation*}
 
 \noindent
+Multiply $P_k$ by total counts to obtain $\hat{y}_k$.
+\begin{equation*}
+\hat{y}_k=P_k T,\quad T=\sum_{j=1}^{12}y_j=15773
+\end{equation*}
 
 \begin{center}
 \begin{tabular}{|r|c|c|c|}
