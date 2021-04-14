@@ -50,12 +50,7 @@ T1 = contract(dot(X1,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-"Probability density"
-
-f = 1/4 (f11/t^2 - f12/(s t) - conj(f12)/(s t) + f22/s^2)
-f
-
-"Checking momentum formulas (1=ok)"
+"Verify momentum formulas (1=ok)"
 
 f11 == 32 dot(p1,gmunu,p2)^2 +
        32 dot(p1,gmunu,p4)^2 -
@@ -70,7 +65,7 @@ f22 == 32 dot(p1,gmunu,p3)^2 +
        32 dot(p1,gmunu,p4)^2 +
        64 m^2 dot(p1,gmunu,p2) + 64 m^4
 
-"Checking Mandelstam formulas (1=ok)"
+"Verify Mandelstam formulas (1=ok)"
 
 s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
@@ -83,10 +78,16 @@ f22 == 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
 m = 0
 
 s == 4 E^2
-t == -2 E^2 (1 - expcos(theta))
-u == -2 E^2 (1 + expcos(theta))
+t == 2 E^2 (expcos(theta) - 1)
+u == -2 E^2 (expcos(theta) + 1)
 
 t == -4 E^2 expsin(theta/2)^2
 u == -4 E^2 expcos(theta/2)^2
 
-f == 2 ((s^2 + u^2)/t^2 + 2 u^2/(s t) + (t^2 + u^2)/s^2)
+"Verify probability density (1=ok)"
+
+f = 1/4 (f11 / t^2 - 2 f12 / (s t) + f22 / s^2)
+
+f == 2 ((s^2 + u^2) / t^2 + 2 u^2 / (s t) + (t^2 + u^2) / s^2)
+
+f == (expcos(theta)^2 + 3)^2 / (expcos(theta) - 1)^2

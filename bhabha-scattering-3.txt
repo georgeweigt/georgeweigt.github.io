@@ -4,7 +4,7 @@ pi = float(pi) -- use numerical value of pi
 N = 4          -- number of bins
 a = pi / N
 
-M = (cos(theta)^2 + 3)^2 / sin(theta/2)^4
+M = (cos(theta)^2 + 3)^2 / (cos(theta) - 1)^2
 
 f = M sin(theta) -- unnormalized probability density
 
@@ -40,15 +40,3 @@ for(k,2,N,
 
 P = P / sum(k,1,N,P[k]) -- normalize
 P
-
-"Verify integral (1=ok)"
-
-f = M sin(theta)
-
-F = -1/3 cos(3 theta) - 2 cos(2 theta) - 111/3 cos(theta) -
-     32/sin(theta/2)^2 - 128 log(sin(theta/2))
-
-f = circexp(f)
-F = circexp(F)
-
-d(F,theta) == f
