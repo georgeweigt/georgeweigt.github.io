@@ -10,7 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- Verify momentum formulas for electron positron annihilation
+-- Verify formulas for electron-positron annihilation
 
 E = sqrt(p^2 + m^2)
 
@@ -67,35 +67,18 @@ f22 = contract(contract(contract(T,3,4),2,3))
 
 "Verify momentum formulas (1=ok)"
 
-f11 == 16 dot(p1,gmunu,p1) dot(p1,gmunu,p2) -
-       32 dot(p1,gmunu,p1) dot(p2,gmunu,p3) -
-       16 dot(p1,gmunu,p2) dot(p3,gmunu,p3) +
-       32 dot(p1,gmunu,p3) dot(p2,gmunu,p3) -
-       48 m^2 dot(p1,gmunu,p2) +
+f11 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
+       32 m^2 dot(p1,gmunu,p2) +
        64 m^2 dot(p1,gmunu,p3) +
-       64 m^2 dot(p2,gmunu,p3) -
-       64 m^2 dot(p3,gmunu,p3) - 64 m^4
+       32 m^2 dot(p1,gmunu,p4) - 64 m^4
 
-f12 == -32 dot(p1,gmunu,p1) dot(p1,gmunu,p2) +
-        32 dot(p1,gmunu,p2) dot(p1,gmunu,p3) +
-        32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) -
-        32 dot(p1,gmunu,p2) dot(p3,gmunu,p4) -
-        48 m^2 dot(p1,gmunu,p1) +
-        48 m^2 dot(p1,gmunu,p2) +
-        32 m^2 dot(p1,gmunu,p3) +
-        32 m^2 dot(p1,gmunu,p4) -
-        16 m^2 dot(p2,gmunu,p3) -
-        16 m^2 dot(p2,gmunu,p4) -
-        16 m^2 dot(p3,gmunu,p4) + 32 m^4
+f12 == 16 m^2 dot(p1,gmunu,p3) +
+       16 m^2 dot(p1,gmunu,p4) - 32 m^4
 
-f22 == 16 dot(p1,gmunu,p1) dot(p1,gmunu,p2) -
-       32 dot(p1,gmunu,p1) dot(p2,gmunu,p4) -
-       16 dot(p1,gmunu,p2) dot(p4,gmunu,p4) +
-       32 dot(p1,gmunu,p4) dot(p2,gmunu,p4) -
-       48 m^2 dot(p1,gmunu,p2) +
-       64 m^2 dot(p1,gmunu,p4) +
-       64 m^2 dot(p2,gmunu,p4) -
-       64 m^2 dot(p4,gmunu,p4) - 64 m^4
+f22 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
+       32 m^2 dot(p1,gmunu,p2) +
+       32 m^2 dot(p1,gmunu,p3) +
+       64 m^2 dot(p1,gmunu,p4) - 64 m^4
 
 "Verify Mandelstam formulas (1=ok)"
 
@@ -110,11 +93,19 @@ f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
 m = 0
 
 s == 4 E^2
-t == -2 E^2 (1 - expcos(theta))
-u == -2 E^2 (1 + expcos(theta))
+t == 2 E^2 (expcos(theta) - 1)
+u == -2 E^2 (expcos(theta) + 1)
 
-t == -4 E^2 expsin(theta/2)^2
-u == -4 E^2 expcos(theta/2)^2
+"Verify probability density (1=ok)"
+
+A = 1/4 (f11 / t^2 + 2 f12 / (t u) + f22 / u^2)
+
+a = 1 + expcos(theta)
+b = 1 - expcos(theta)
+
+B = 2 (a / b + b / a)
+
+A == B
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
