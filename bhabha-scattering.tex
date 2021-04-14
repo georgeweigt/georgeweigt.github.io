@@ -271,6 +271,14 @@ Hence
 \end{align*}
 
 \noindent
+In the following steps we require a common denominator.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4
+\left(\frac{s^2\left(s^2+u^2\right)+2stu^2+t^2\left(t^2+u^2\right)}{s^2t^2}\right)
+\end{equation*}
+
+\noindent
 For $m=0$ the Mandelstam variables are
 \begin{align*}
 s&=4E^2
@@ -284,14 +292,6 @@ u&=-2E^2(\cos\theta+1)
 Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=2e^4
-\left(
-\frac{s^2+u^2}{t^2} + \frac{2u^2}{st} + \frac{t^2+u^2}{s^2}
-\right)
-\\
-&=2e^4
-\left(\frac{s^2\left(s^2+u^2\right)+2stu^2+t^2\left(t^2+u^2\right)}{s^2t^2}\right)
-\\
 &=2e^4
 \left(
 \frac{32E^8\cos^4\theta+192E^8\cos^2\theta+288E^8}{64E^8(\cos\theta-1)^2}
@@ -312,7 +312,7 @@ Hence
 Run ``bhabha-scattering-2.txt'' to verify.
 
 \subsection*{Cross section}
-This is the differential cross section for Bhabha scattering.
+The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
@@ -354,7 +354,7 @@ d\sigma=\frac{\alpha^2}{4s}
 Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{align*}
 I(\theta)
-&=\left(\frac{4s}{\alpha^2}\right)\frac{1}{2\pi}
+&=\frac{4s}{2\pi\alpha^2}
 \int_0^{2\pi}\int d\sigma
 \\
 &=\int
