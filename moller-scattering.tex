@@ -211,27 +211,32 @@ The following momentum formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
-32 (p_1\cdot p_2) (p_3\cdot p_4) +
-32 (p_1\cdot p_4) (p_2\cdot p_3) -
-32 m^2 (p_1\cdot p_3) -
-32 m^2 (p_2\cdot p_4) +
-64 m^4
+32 (p_1\cdot p_2)^2 +
+32 (p_1\cdot p_4)^2 -
+64 m^2 (p_1\cdot p_3) + 64 m^4
 \\
 f_{12}&=
--32 (p_1\cdot p_2) (p_3\cdot p_4)
-+ 16 m^2 (p_1\cdot p_2) + 16 m^2 (p_1\cdot p_3) + 16 m^2 (p_1\cdot p_4) \\
-&\phantom{=}\qquad{} + 16 m^2 (p_2\cdot p_3) + 16 m^2 (p_2\cdot p_4) + 16 m^2 (p_3\cdot p_4) - 32 m^4
+-32 (p_1\cdot p_2)^2 +
+32 m^2 (p_1\cdot p_2) +
+32 m^2 (p_1\cdot p_3) +
+32 m^2 (p_1\cdot p_4) - 32m^4
 \\
 f_{22}&=
-32 (p_1\cdot p_2) (p_3\cdot p_4) +
-32 (p_1\cdot p_3) (p_2\cdot p_4) -
-32 m^2 (p_1\cdot p_4) -
-32 m^2 (p_2\cdot p_3) +
-64 m^4
+32 (p_1\cdot p_2)^2 +
+32 (p_1\cdot p_3)^2 -
+64 m^2 (p_1\cdot p_4) + 64 m^4
 \end{align*}
 
 \noindent
-In Mandelstam variables $s=(p_1+p_2)^2$, $t=(p_1-p_3)^2$, and $u=(p_1-p_4)^2$ the formulas are
+In Mandelstam variables
+\begin{align*}
+s&=(p_1+p_2)^2
+\\
+t&=(p_1-p_3)^2
+\\
+u&=(p_1-p_4)^2
+\end{align*}
+the formulas are
 \begin{align*}
 f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
 \\
@@ -239,6 +244,9 @@ f_{12} &= -8 s^2 + 64 s m^2 - 96 m^4
 \\
 f_{22} &= 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
 \end{align*}
+
+\noindent
+Run ``moller-scattering-2.txt'' to verify.
 
 \subsection*{High energy approximation}
 When $E\gg m$ a useful approximation is to set $m=0$ and obtain
@@ -249,64 +257,75 @@ f_{22}&=8s^2+8t^2
 \end{align*}
 
 \noindent
-For $m=0$ the Mandelstam variables are
-\begin{align*}
-s&=4E^2
-\\
-t&=-2E^2(1-\cos\theta)%=-4E^2\sin^2(\theta/2)
-\\
-u&=-2E^2(1+\cos\theta)%=-4E^2\cos^2(\theta/2)
-\end{align*}
-
-\noindent
-It follows that
-\begin{equation*}
-t^2u^2=16E^8\sin^4\theta
-\end{equation*}
-
-\noindent
-The corresponding expected probability density is
+Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=\frac{e^4}{4}
 \left(
-\frac{f_{11}}{t^2}-\frac{f_{12}}{tu}-\frac{f_{12}^*}{tu}+\frac{f_{22}}{u^2}
+\frac{8s^2+8u^2}{t^2}-\frac{-8s^2}{tu}-\frac{-8s^2}{tu}+\frac{8s^2+8t^2}{u^2}
 \right)
 \\
-&=\frac{e^4}{4t^2u^2}
+&=2e^4
 \left(
-u^2f_{11}-tuf_{12}-tuf_{12}^*+t^2f_{22}
+\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
 \right)
-\\
-&=\frac{e^4}{4t^2u^2}
-\left(
-u^2\left(8s^2+8u^2\right)+16s^2tu+t^2\left(8s^2+8t^2\right)
-\right)
-\\
-&=\frac{e^4}{64E^8\sin^4\theta}
-\left(256 E^8\cos^4\theta+1536 E^8\cos^2\theta+2304 E^8\right)
-\\
-&=\frac{4e^4}{\sin^4\theta}
-\left(\cos^4\theta+6\cos^2\theta+9\right)
-\\
-&=4e^4\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
 \end{align*}
 
 \noindent
-Run ``moller-scattering-2.txt'' to verify.
+In the following steps we require a common denominator.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4
+\left(
+\frac{u^2(s^2+u^2)+2s^2tu+t^2(s^2+t^2)}{t^2u^2}
+\right)
+\end{equation*}
+
+\noindent
+For $m=0$ the Mandelstam variables are
+\begin{align*}
+s&=4E^2
+\\
+t&=2E^2(\cos\theta-1)
+\\
+u&=-2E^2(\cos\theta+1)
+\end{align*}
+
+\noindent
+Hence
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=2e^4
+\left(
+\frac{32E^8\cos^4\theta+192E^8\cos^2\theta+288E^8}{16E^8(\cos\theta-1)^2(\cos\theta+1)^2}
+\right)
+\\
+&=4e^4\frac{\left(\cos^2\theta+3\right)^2}{(\cos\theta-1)^2(\cos\theta+1)^2}
+\\
+&=4e^4
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
+\end{align*}
 
 \subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{e^4}{64\pi^2E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
+=\frac{e^4}{16\pi^2s}
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
 \end{equation*}
 
 \noindent
 Substituting $e^4=16\pi^2\alpha^2$ yields
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{s}
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
 \end{equation*}
 
 \noindent
@@ -317,22 +336,29 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{4E^2}\,\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta\,d\theta\,d\phi
+d\sigma=\frac{\alpha^2}{s}
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
+\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{align*}
-I(\theta)&=\left(\frac{4E^2}{\alpha^2}\right)\frac{1}{2\pi}\int_0^{2\pi}\int d\sigma
+I(\theta)&=\frac{s}{2\pi\alpha^2}\int_0^{2\pi}\int d\sigma
 \\
-&=\int\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta\,d\theta
-\\
-&=-\cos\theta-\frac{8\cos\theta}{\sin^2\theta},
+&=\int
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
+\sin\theta\,d\theta,
 \quad a\le\theta\le\pi-a
 \end{align*}
 
 \noindent
 Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
+Assume that $I(\theta)-I(a)$ is computable given $\theta$ by either symbolic or numerical integration.
 
 \bigskip
 \noindent
@@ -359,7 +385,11 @@ Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
 \begin{equation*}
 f(\theta)
 =\frac{dF(\theta)}{d\theta}
-=\frac{1}{C}\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
+=\frac{1}{C}
+\left(
+\frac{\cos^2\theta+3}{\cos^2\theta-1}
+\right)^2
+\sin\theta
 \end{equation*}
 
 \noindent
@@ -386,7 +416,7 @@ $150^\circ$ & $180^\circ$ & -- \\
 \end{tabular}
 \end{center}
 
-\subsection*{Notes on Eigenmath scripts}
+\subsection*{Notes}
 In component notation, the trace operators of the Casimir trick become sums over
 a repeated index, in this case $\alpha$.
 \begin{align*}

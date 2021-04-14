@@ -16,7 +16,7 @@ pi = float(pi) -- use numerical value of pi
 N = 6          -- number of bins
 a = pi / N
 
-M = (cos(theta)^2 + 3)^2 / sin(theta)^4
+M = (cos(theta)^2 + 3)^2 / (cos(theta)^2 - 1)^2
 
 f = M sin(theta) -- unnormalized probability density
 
@@ -51,14 +51,6 @@ for(k,2,N - 1,
 
 P = P / sum(k,1,N,P[k]) -- normalize
 P
-
-"Verify integral (1=ok)"
-
-f = (expcos(theta)^2 + 3)^2 / expsin(theta)^3
-
-F = -expcos(theta) - 8 expcos(theta) / expsin(theta)^2
-
-d(F,theta) == f
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>

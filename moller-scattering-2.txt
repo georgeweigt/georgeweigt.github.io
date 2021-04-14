@@ -1,7 +1,5 @@
 -- Verify momentum and Mandelstam formulas for Moller scattering
 
--- eigenmath.org/moller-scattering-2.txt
-
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -54,26 +52,18 @@ f22 = contract(dot(T1,transpose(T2)))
 
 "Verify momentum formulas (1=ok)"
 
-f11 == 32 dot(p1,gmunu,p2) dot(p3,gmunu,p4) +
-       32 dot(p1,gmunu,p4) dot(p2,gmunu,p3) -
-       32 m^2 dot(p1,gmunu,p3) -
-       32 m^2 dot(p2,gmunu,p4) +
-       64 m^4
+f11 == 32 dot(p1,gmunu,p2)^2 +
+       32 dot(p1,gmunu,p4)^2 -
+       64 m^2 dot(p1,gmunu,p3) + 64 m^4
 
-f12 == -32 dot(p1,gmunu,p2) dot(p3,gmunu,p4) +
-        16 m^2 dot(p1,gmunu,p2) +
-        16 m^2 dot(p1,gmunu,p3) +
-        16 m^2 dot(p1,gmunu,p4) +
-        16 m^2 dot(p2,gmunu,p3) +
-        16 m^2 dot(p2,gmunu,p4) +
-        16 m^2 dot(p3,gmunu,p4) -
-        32 m^4
+f12 == -32 dot(p1,gmunu,p2)^2 +
+        32 m^2 dot(p1,gmunu,p2) +
+        32 m^2 dot(p1,gmunu,p3) +
+        32 m^2 dot(p1,gmunu,p4) - 32 m^4
 
-f22 == 32 dot(p1,gmunu,p2) dot(p3,gmunu,p4) +
-       32 dot(p1,gmunu,p3) dot(p2,gmunu,p4) -
-       32 m^2 dot(p1,gmunu,p4) -
-       32 m^2 dot(p2,gmunu,p3) +
-       64 m^4
+f22 == 32 dot(p1,gmunu,p2)^2 +
+       32 dot(p1,gmunu,p3)^2 -
+       64 m^2 dot(p1,gmunu,p4) + 64 m^4
 
 "Verify Mandelstam formulas (1=ok)"
 
@@ -85,23 +75,16 @@ f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
 f12 == -8 s^2 + 64 s m^2 - 96 m^4
 f22 == 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
 
+"Verify probability density (1=ok)"
+
 m = 0
 
 s == 4 E^2
-t == -2 E^2 (1 - expcos(theta))
-u == -2 E^2 (1 + expcos(theta))
+t == 2 E^2 (expcos(theta) - 1)
+u == -2 E^2 (expcos(theta) + 1)
 
-t == -4 E^2 expsin(theta/2)^2
-u == -4 E^2 expcos(theta/2)^2
+A = 1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2)
 
-t^2 u^2 == 16 E^8 expsin(theta)^4
-
-"Verify final probability density (1=ok)"
-
-t = -2 E^2 (1 - cos(theta))
-u = -2 E^2 (1 + cos(theta))
-
-A = u^2 (8 s^2 + 8 u^2) + 16 s^2 t u + t^2 (8 s^2 + 8 t^2)
-B = 256 E^8 (cos(theta)^4 + 6 cos(theta)^2 + 9)
+B = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
 
 A == B
