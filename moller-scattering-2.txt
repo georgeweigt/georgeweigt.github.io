@@ -83,7 +83,11 @@ u == -2 E^2 (expcos(theta) + 1)
 
 "Verify probability density (1=ok)"
 
-A = 1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2)
+d11 = t^2
+d12 = t u
+d22 = u^2
+
+A = 1/4 (f11/d11 - 2 f12/d12 + f22/d22)
 
 B = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
 
