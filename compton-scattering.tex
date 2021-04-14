@@ -238,7 +238,7 @@ Run ``compton-scattering-1.txt'' to verify the Casimir trick for Compton scatter
 
 \bigskip
 \noindent
-The following momentum formulas are equivalent to the Casimir trick.
+The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
@@ -265,7 +265,7 @@ t&=(p_1-p_3)^2
 \\
 u&=(p_1-p_4)^2
 \end{align*}
-the momentum formulas are
+the formulas are
 \begin{equation}
 \begin{aligned}
 f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
@@ -280,8 +280,18 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 Run ``compton-scattering-2.txt'' to verify momentum formulas for Compton scattering.
 
 \subsection*{High energy approximation}
-For high energy experiments that have $\omega\gg m$ the approximation $m=0$ can be used
-resulting in the following simplified probability density.
+For high energy experiments that have $\omega\gg m$ a useful approximation
+is to set $m=0$ and obtain
+\begin{align*}
+f_{11}&=-8su
+\\
+f_{12}&=0
+\\
+f_{22}&=-8su
+\end{align*}
+
+\noindent
+Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=\frac{e^4}{4}
@@ -296,13 +306,13 @@ Also for $m=0$ the Mandelstam variables $s$ and $u$ are
 \begin{align*}
 s&=4\omega^2
 \\
-u&=-2\omega^2(1+\cos\theta)
+u&=-2\omega^2(\cos\theta+1)
 \end{align*}
 Hence
 \begin{equation}
 \langle|\mathcal{M}|^2\rangle
 =2e^4\left(
-\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
 \right)
 \end{equation}
 
@@ -569,7 +579,7 @@ From equation (3) we have for the center of mass frame
 \langle|\mathcal{M}|^2\rangle
 =
 2e^4\left(
-\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
 \right)
 \end{equation*}
 
@@ -580,8 +590,8 @@ The corresponding cross section formula is
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
 =\frac{e^4}{32\pi^2s}
 \left(
-\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
-\right)
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
+\right),\quad s\gg m
 \end{equation*}
 
 \noindent
@@ -590,7 +600,7 @@ Substituting $e^4=16\pi^2\alpha^2$ yields
 \frac{d\sigma}{d\Omega}
 =\frac{\alpha^2}{2s}
 \left(
-\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
 \right)
 \end{equation*}
 
@@ -599,7 +609,7 @@ Multiply by $2\pi$ to obtain
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}
 =\frac{\pi\alpha^2}{s}\left(
-\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
 \right)
 \end{equation*}
 
@@ -612,15 +622,15 @@ and multiply by $10^{40}$ to convert square meters to picobarns.
 =
 \frac{\pi\alpha^2}{s}
 \left(
-\frac{1+x}{2}+
-\frac{2}{1+x}
+\frac{x+1}{2}+
+\frac{2}{x+1}
 \right)
 \times(\hbar c)^2
 \times10^{40}
 \end{equation*}
 
 \noindent
-The following table shows the predicted cross section $\hat{y}$
+The following table shows predicted cross section $\hat{y}$
 for $s=40\,\text{GeV}^2$ ($\omega=100\,\text{MeV}$).
 
 \begin{center}
