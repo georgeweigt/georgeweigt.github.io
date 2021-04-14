@@ -98,12 +98,16 @@ u == -2 E^2 (expcos(theta) + 1)
 
 "Verify probability density (1=ok)"
 
-A = 1/4 (f11 / t^2 + 2 f12 / (t u) + f22 / u^2)
+d11 = (t - m^2)^2
+d12 = (t - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
+A = 1/4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 a = 1 + expcos(theta)
 b = 1 - expcos(theta)
 
-B = 2 (a / b + b / a)
+B = 2 (a/b + b/a)
 
 A == B
 </textarea>
