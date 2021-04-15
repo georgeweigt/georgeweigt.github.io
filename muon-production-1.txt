@@ -1,4 +1,4 @@
--- Verify Casimir trick for muon production
+-- Verify Casimir trick for muon pair production
 
 p = sqrt(E^2 - m^2)
 

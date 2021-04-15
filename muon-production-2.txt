@@ -1,4 +1,4 @@
--- Verify momentum formulas for muon production
+-- Verify formulas for muon pair production
 
 p = sqrt(E^2 - m^2)
 
