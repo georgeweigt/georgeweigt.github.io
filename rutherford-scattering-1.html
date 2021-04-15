@@ -12,8 +12,6 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Verify formulas for Rutherford scattering
 
--- eigenmath.org/rutherford-scattering-1.txt
-
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -60,7 +58,6 @@ for(a,1,2,for(b,1,2,
   S = S + f
 ))
 
-S = S / N -- normalize
 S
 
 "Casimir trick"
@@ -68,9 +65,9 @@ S
 T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
 T
 
-"Does S equal T?"
+"Verify Casimir trick (1=ok)"
 
-test(S == T,"yes","no")
+1/N S == T
 
 "Verify additional formulas (1=ok)"
 
