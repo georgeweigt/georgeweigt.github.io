@@ -14,17 +14,20 @@
 
 -- See https://qiskit.org/textbook/ch-algorithms/bernstein-vazirani.html
  
-run("Downloads/q4.txt")
-
 "Secret value: 5"
 
-f = dot(X23,X03)
+psi = zero(16)
+psi[1] = 1
 
-psi = dot(H2,H1,H0,f,Z3,H3,H2,H1,H0,ket0)
+psi = rotate(psi,H,0,H,1,H,2,H,3,Z,3)
+
+psi = rotate(psi,C,0,X,3,C,2,X,3) -- secret value 5
+
+psi = rotate(psi,H,0,H,1,H,2)
 
 -- result is a probability distribution
 
-P = hadamard(psi,conj(psi))
+P = psi conj(psi)
 
 -- qubit 3 is don't care, sum probabilities over eigenstates modulo 8
 

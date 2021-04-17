@@ -3,133 +3,161 @@
 \usepackage{amsmath}
 \usepackage{amssymb} % mathbb
 \usepackage{graphicx}
+\usepackage{xcolor}
 
 \begin{document}
 
 \noindent
-The file q4.txt defines kets, operators, and a measurement function
-for simulating a four bit quantum computer.
-See eigenmath.org/q.c for the program that generates q4.txt.
+A quantum computer can be simulated by applying rotations to a
+unit vector
+$u\in\mathbb{C}^{2^n}$ where $n$ is the number of qubits.
+For example, four qubits would have $u\in\mathbb{C}^{16}$.
+The dimension is $2^n$ because a register with $n$ qubits
+has $2^n$ eigenstates.
+Quantum operations are ``rotations'' because they preserve $|u|=1$.
 
 \bigskip
 \noindent
-Kets are unit vectors in $\mathbb{C}^{16}$.
-The dimension is 16 because a four bit quantum computer has $2^4=16$ eigenstates.
-The following kets that represent eigenstates are defined in q4.txt.
-\begin{align*}
-&|0\rangle=|0000_2\rangle=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|1\rangle=|0001_2\rangle=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|2\rangle=|0010_2\rangle=(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&|3\rangle=|0011_2\rangle=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
-\\
-&\vdots
-\\
-&|15\rangle=|1111_2\rangle=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
-\end{align*}
-
-\noindent
-Operators are $16\times16$ matrices that rotate ket vectors.
-The following operators and the measurement function $M(\psi)$ are defined in q4.txt.
-
-\bigskip
-\begin{tabular}{l l}
-$H_n$ & Hadamard operator on bit $n$.
-\\
-\\
-$I$ & Identity matrix.
-\\
-\\
-$M(\psi)$ & Measurement function (not an operator).
-\\
-\\
-$P_n(\phi)$ & Phase shift $\phi$ on bit $n$.
-\\
-\\
-$P_{mn}(\phi)$ & Controlled phase shift, $m$ is the control bit, $n$ is the target bit, $\phi$ is the phase.
-\\
-\\
-$Q$ & Quantum Fourier transform.
-\\
-\\
-$V$ & Inverse quantum Fourier transform.
-\\
-\\
-$W_{mn}$ & Swap bits $m$ and $n$.
-\\
-\\
-$X_n$ & Pauli X (NOT) operator on bit $n$.
-\\
-\\
-$X_{mn}$ & Controlled X (CNOT) operator, $m$ is the control bit, $n$ is the target bit.
-\\
-\\
-$Y_n$ & Pauli Y operator on bit $n$.
-\\
-\\
-$Z_n$ & Pauli Z operator on bit $n$.
-\end{tabular}
-
-\bigskip
-\noindent
-Measurement function $M(\psi)$ shows, for all $k=0\ldots15$, the probability $P_k$ of observing eigenstate $k$
-given that the quantum computer is in state $\psi$.
-\begin{equation*}
-\psi=\sum_{k=0}^{15}c_k|k\rangle,\quad|\psi|=1,\quad P_k=c_kc_k^*
-\end{equation*}
-
-\noindent
-Quantum algorithms are expressed as sequences of operators applied
-to the initial state $|0\rangle$.
-The operator sequence should be read backwards, from right to left,
-although the direction makes no difference mathematically.
-
-\subsection*{Deutsch-Jozsa algorithm}
-Let $f(q_0,q_1,q_2)$ be an operator ($16\times16$ matrix) that operates on $q_3$
-in a manner consistent with a constant or balanced oracle.
-Then the Deutsch-Jozsa algorithm for identifying $f$ is
-\begin{equation*}
-\psi = H_2 \; H_1 \; H_0 \; f(q_0,q_1,q_2) \; H_3 \; X_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
-\end{equation*}
-
-\subsection*{Bernstein-Vazirani algorithm}
-Let $f(q_0,q_1,q_2)$ be an operator ($16\times16$ matrix) that operates on $q_3$.
-Then the Bernstein-Vazirani algorithm for identifying $f$ is
-\begin{equation*}
-\psi = H_2 \; H_1 \; H_0 \; f(q_0,q_1,q_2) \; Z_3 \; H_3 \; H_2 \; H_1 \; H_0 \; |0\rangle
-\end{equation*}
-
-\subsection*{Quantum Fourier transform}
-The following circuit diagram shows how the QFT is implemented.\footnote
-{\tt qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html}
+The Eigenmath function
+$rotate(u,s,k,\ldots)$ rotates vector $u$ and returns the result.
+Vector $u$ is required to have $2^n$ elements where $n$ is an
+integer from 1 to 15.
+Arguments $s,k,\ldots$ are a sequence of rotation codes
+where $s$ is an upper case letter and $k$ is a qubit number
+from 0 to $n-1$.
+Rotations are evaluated from left to right.
+The available rotation codes are
 
 \begin{center}
-\includegraphics[scale=0.5]{qft.png}
+\begin{tabular}{ll}
+$C,k$ & Control prefix
+\\
+$H,k$ & Hadamard
+\\
+$P,k,\phi$ & Phase modifier
+\\
+$Q,k$ & Quantum Fourier transform
+\\
+$V,k$ & Inverse quantum Fourier transform
+\\
+$W,k,j$ & Swap bits
+\\
+$X,k$ & Pauli X
+\\
+$Y,k$ & Pauli Y
+\\
+$Z,k$ & Pauli Z
+\end{tabular}
 \end{center}
 
 \noindent
-This is how the QFT operator $Q$ is defined in q4.txt.
+Control prefix $C,k$ modifies the next rotation code so that it
+is a controlled rotation with $k$ is the controlling qubit.
+Fourier rotations $Q,k$ and $V,k$ are applied to qubits 0 through $k$.
+($Q$ and $V$ ignore any control prefix.)
 
-\begin{verbatim}
-Q = dot(
-W03,            -- Swap qubits 0 and 3
-W12,            -- Swap qubits 1 and 2
-H0,             -- Hadamard qubit 0
-P01(pi/2),      -- Controlled phase shift (0 control, 1 target)
-H1,             -- Hadamard qubit 1
-P12(pi/2),      -- Controlled phase shift (1 control, 2 target)
-P02(pi/4),      -- Controlled phase shift (0 control, 2 target)
-H2,             -- Hadamard qubit 2
-P23(pi/2),      -- Controlled phase shift (2 control, 3 target)
-P13(pi/4),      -- Controlled phase shift (1 control, 3 target)
-P03(pi/8),      -- Controlled phase shift (0 control, 3 target)
-H3)             -- Hadamard qubit 3
-\end{verbatim}
+\bigskip
+\noindent
+Error codes
+\begin{itemize}
+\item[1] Argument $u$ is not a vector or does not have $2^n$ elements where $n=1,2,\ldots,15$.
+\item[2] Unexpected end of argument list (i.e., missing argument).
+\item[3] Bit number format error or range error.
+\item[4] Unknown rotation code.
+\end{itemize}
+
+\bigskip
+\noindent
+Eigenstates $|j\rangle$ are represented by the following vectors.
+(Each vector has $2^n$ elements.)
+\begin{align*}
+&|0\rangle=(1,0,0,\dots,0)
+\\
+&|1\rangle=(0,1,0,\ldots,0)
+\\
+&|2\rangle=(0,0,1,\ldots,0)
+\\
+&\vdots
+\\
+&|2^n-1\rangle=(0,0,0,\ldots,1)
+\end{align*}
 
 \noindent
-The inverse QFT operator $V$ is defined similarly except the operators appear in reverse order
-and the phase shifts are negated.
+A quantum computing algorithm is a sequence of rotations
+applied to the initial state $|0\rangle$.
+(Mathematically, the sequence can be collapsed into a single rotation.)
+Let $\psi$ be the final state of the quantum computer
+after all the rotations have been applied.
+Like any other state, $\psi$ is a linear combination of eigenstates.
+\begin{equation*}
+\psi=\sum_{j=0}^{2^n-1}c_j|j\rangle,\quad|\psi|=1
+\end{equation*}
+The final step is to measure $\psi$ which will
+change it to an eigenstate $|j\rangle$ with
+probability
+\begin{equation*}
+P_j=c_jc_j^*
+\end{equation*}
+The output from a real quantum computer is always an eigenstate.
+For example, the result of a two qubit quantum computer
+is either $|0\rangle$, $|1\rangle$, $|2\rangle$, or $|3\rangle$.
+In general the $c_j$'s cannot be observed directly.
+However, we can run the same calculation multiple times
+to obtain a probability distribution.
+From the probability distribution we can estimate
+$c_jc_j^*$ for each eigenstate.
+
+\bigskip
+\noindent
+Eigenmath code snippets for before and after {\it rotate}:
+
+\bigskip
+\noindent
+Initialize $\psi=|0\rangle$.
+{\color{blue}
+\begin{verbatim}
+n = 4           -- number of qubits
+N = 2^n         -- number of eigenstates
+psi = zero(N)
+psi[1] = 1
+\end{verbatim}}
+
+\noindent
+Compute the probability distribution for state $\psi$.
+{\color{blue}
+\begin{verbatim}
+P = psi conj(psi)
+\end{verbatim}}
+
+\noindent
+Hence
+\begin{align*}
+&\text{\tt P[1]}=\text{probability that $|0\rangle$ will be the result}
+\\
+&\text{\tt P[2]}=\text{probability that $|1\rangle$ will be the result}
+\\
+&\text{\tt P[3]}=\text{probability that $|2\rangle$ will be the result}
+\\
+&\vdots
+\\
+&\text{\tt P[N]}=\text{probability that $|N-1\rangle$ will be the result}
+\end{align*}
+
+\noindent
+Draw the probability distribution.
+{\color{blue}
+\begin{verbatim}
+xrange = (0,N)
+yrange = (0,1)
+draw(P[ceiling(x)],x)
+\end{verbatim}}
+
+\noindent
+Compute an expectation value.
+{\color{blue}
+\begin{verbatim}
+sum(k,1,N, (k - 1) P[k])
+\end{verbatim}}
+\noindent
 
 \end{document}

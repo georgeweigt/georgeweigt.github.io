@@ -14,8 +14,6 @@
 
 -- See https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html
 
-run("Downloads/q4.txt")
-
 "Phase to estimate (range 0 to 1 turns)"
 
 theta = 0.7
@@ -23,17 +21,24 @@ theta
 
 pi = float(pi) -- use numerical value of pi
 
-U = dot(
-P3(16 pi theta),
-P2(8 pi theta),
-P1(4 pi theta),
-P0(2 pi theta))
+U(psi) = rotate(psi,
+  P,0,  2 pi theta,
+  P,1,  4 pi theta,
+  P,2,  8 pi theta,
+  P,3, 16 pi theta)
 
-psi = dot(V,U,H3,H2,H1,H0,ket0)
+psi = zero(16)
+psi[1] = 1
+
+psi = rotate(psi,H,0,H,1,H,2,H,3)
+
+psi = U(psi)
+
+psi = rotate(psi,V,3)
 
 "Probability distribution"
 
-P = hadamard(psi,conj(psi))
+P = psi conj(psi)
 
 xrange = (0,16)
 yrange = (0,1)
