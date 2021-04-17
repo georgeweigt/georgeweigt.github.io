@@ -57,9 +57,12 @@ psi = rotate(psi,V,7)
 
 P = psi conj(psi)
 
--- qubits 8-11 are don't care, sum probabilities over eigenstates modulo 256
+-- qubits 8-11 are don't care
 
-for(j,1,256, P[j] = sum(k,0,15,P[j + 256 k]))
+for(k,1,2048, P[k] = P[k] + P[k + 2048])
+for(k,1,1024, P[k] = P[k] + P[k + 1024])
+for(k,1, 512, P[k] = P[k] + P[k +  512])
+for(k,1, 256, P[k] = P[k] + P[k +  256])
 
 "Row 1 is the probability of observing the phase in row 2"
 

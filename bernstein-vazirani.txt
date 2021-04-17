@@ -17,15 +17,17 @@ psi = rotate(psi,H,0,H,1,H,2)
 
 P = psi conj(psi)
 
--- qubit 3 is don't care, sum probabilities over eigenstates modulo 8
+-- qubit 3 is don't care
 
-for(k,1,8,P[k]=P[k]+P[k+8])
+for(k,1,8, P[k] = P[k] + P[k + 8])
 
 xrange = (0,8)
 yrange = (0,1)
 draw(P[ceiling(x)],x)
 
-M = zero(2,8)
-for(k,1,8,M[1,k]=P[k],M[2,k]=k-1)
+M = zero(2,8) -- 2 rows, 8 columns
+
+for(k,1,8, M[1,k] = P[k], M[2,k] = k - 1)
 M
+
 "Row 1 is the probability of observing the value in row 2"
