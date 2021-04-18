@@ -1,6 +1,6 @@
 -- Phase estimation demo
 
--- See https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html
+-- See qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html
 
 "Phase to estimate (range 0 to 1 turns)"
 

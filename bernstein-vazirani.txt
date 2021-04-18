@@ -1,6 +1,6 @@
 -- Bernstein-Vazirani algorithm
 
--- See https://qiskit.org/textbook/ch-algorithms/bernstein-vazirani.html
+-- See qiskit.org/textbook/ch-algorithms/bernstein-vazirani.html
  
 "Secret value: 5"
 

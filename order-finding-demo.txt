@@ -1,8 +1,6 @@
 -- Find r such that 7^r mod 15 = 1
 
--- See https://qiskit.org/textbook/ch-algorithms/shor.html
-
--- This script uses a new Eigenmath function 'rotate'
+-- See qiskit.org/textbook/ch-algorithms/shor.html
 
 -- 7 mod 15 (from qiskit code)
 
