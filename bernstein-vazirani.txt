@@ -4,12 +4,16 @@
  
 "Secret value: 5"
 
+U(psi) = rotate(psi,
+  C,0,X,3, -- control bit 0, target bit 3
+  C,2,X,3) -- control bit 2, target bit 3
+
 psi = zero(16)
 psi[1] = 1
 
 psi = rotate(psi,H,0,H,1,H,2,H,3,Z,3)
 
-psi = rotate(psi,C,0,X,3,C,2,X,3) -- secret value 5
+psi = U(psi)
 
 psi = rotate(psi,H,0,H,1,H,2)
 
