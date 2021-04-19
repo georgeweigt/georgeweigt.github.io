@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Verify full adder
+ 
+--  Input   Output
+--  0000    0000
+--  0001    0101
+--  0010    0110
+--  0011    1011   (1 + 1 = 2)
+
+UADD(psi) = rotate(psi,
+  C,0,X,2,      -- cnot
+  C,1,X,2,      -- cnot
+  H,3,          -- hadamard
+  C,1,X,3,      -- cnot
+  P,3,-pi/4,    -- phase
+  C,0,X,3,      -- cnot
+  P,3,pi/4,     -- phase
+  C,1,X,3,      -- cnot
+  P,3,-pi/4,    -- phase
+  C,0,X,3,      -- cnot
+  P,3,pi/4,     -- phase
+  H,3,          -- hadamard
+  P,1,pi/4,     -- phase
+  C,0,X,1,      -- cnot
+  P,1,-pi/4,    -- phase
+  P,0,pi/4,     -- phase
+  C,0,X,1)      -- cnot
+
+ket0000 = (1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0001 = (0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0010 = (0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0011 = (0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0100 = (0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0)
+ket0101 = (0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0)
+ket0110 = (0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0)
+ket0111 = (0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0)
+ket1000 = (0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0)
+ket1001 = (0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0)
+ket1010 = (0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0)
+ket1011 = (0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0)
+ket1100 = (0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0)
+ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
+ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
+ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+
+UADD(ket0000) == ket0000
+UADD(ket0001) == ket0101
+UADD(ket0010) == ket0110
+UADD(ket0011) == ket1011
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>

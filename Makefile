@@ -71,6 +71,6 @@ demos:
 	cat 1.txt muon-production-5.txt 2.txt > muon-production-5.html
 	cat 1.txt muon-production-3.txt 2.txt > muon-production-3.html
 	cat 1.txt muon-production-4.txt 2.txt > muon-production-4.html
-
+	cat 1.txt full-adder.txt 2.txt > full-adder.html
 
 
