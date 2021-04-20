@@ -1,4 +1,4 @@
-"Verify addition (1=ok)"
+"Verify addition truth table (1=ok)"
 
 --  Input   Output
 --  0000    0000
