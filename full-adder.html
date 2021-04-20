@@ -22,21 +22,7 @@
 UADD(psi) = rotate(psi,
   C,0,X,2,      -- cnot
   C,1,X,2,      -- cnot
-  H,3,          -- hadamard
-  C,1,X,3,      -- cnot
-  P,3,-pi/4,    -- phase
-  C,0,X,3,      -- cnot
-  P,3,pi/4,     -- phase
-  C,1,X,3,      -- cnot
-  P,3,-pi/4,    -- phase
-  C,0,X,3,      -- cnot
-  P,3,pi/4,     -- phase
-  H,3,          -- hadamard
-  P,1,pi/4,     -- phase
-  C,0,X,1,      -- cnot
-  P,1,-pi/4,    -- phase
-  P,0,pi/4,     -- phase
-  C,0,X,1)      -- cnot
+  C,0,C,1,X,3)  -- toffoli
 
 ket0000 = (1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 ket0001 = (0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
