@@ -10,13 +10,13 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
-"Verify the following truth table for addition (1=ok)"
+-- Verify the following truth table for addition
 
---  Input   Output
---  0000    0000
---  0001    0101
---  0010    0110
---  0011    1011   (1 + 1 = 2)
+-- Input Output
+-- 0000  0000
+-- 0001  0101
+-- 0010  0110
+-- 0011  1011   (1 + 1 = 2)
 
 UADD(psi) = rotate(psi,
   C,0,X,2,      -- cnot
@@ -53,6 +53,8 @@ ket1100 = (0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0)
 ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
 ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
 ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+
+"Verify addition (1=ok)"
 
 UADD(ket0000) == ket0000
 UADD(ket0001) == ket0101
