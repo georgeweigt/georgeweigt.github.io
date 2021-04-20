@@ -1,5 +1,5 @@
--- Verify full adder
- 
+"Verify add circuit (1=ok)"
+
 --  Input   Output
 --  0000    0000
 --  0001    0101
