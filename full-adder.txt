@@ -1,4 +1,4 @@
-"Verify add circuit (1=ok)"
+"Verify addition (1=ok)"
 
 --  Input   Output
 --  0000    0000
