@@ -746,8 +746,7 @@ void eval_imag(void);
 void imag(void);
 void imag_nib(void);
 void eval_index(void);
-void indexf(int k);
-void indexf_nib(int k);
+void indexfunc(int h);
 void eval_infixform(void);
 void print_infixform(struct atom *p);
 void infixform_subexpr(struct atom *p);
@@ -10088,55 +10087,76 @@ imag_nib(void)
 	multiply_factors(3);
 }
 
+#undef T
+#define T p3
+
 void
 eval_index(void)
 {
-	int k;
-	push(cadr(p1));
-	eval();
+	int h, n;
+	T = cadr(p1);
 	p1 = cddr(p1);
+	h = tos;
 	while (iscons(p1)) {
 		push(car(p1));
 		eval();
-		k = pop_integer();
-		indexf(k);
 		p1 = cdr(p1);
 	}
-}
-
-void
-indexf(int k)
-{
-	save();
-	indexf_nib(k);
-	restore();
-}
-
-void
-indexf_nib(int k)
-{
-	int i, n;
-	p1 = pop();
-	if (!istensor(p1)) {
-		push(p1); // quirky, but EVA2.txt depends on it
+	// try to optimize by indexing before eval
+	if (isusersymbol(T)) {
+		p1 = get_binding(T);
+		n = tos - h;
+		if (istensor(p1) && n <= p1->u.tensor->ndim) {
+			T = p1;
+			indexfunc(h);
+			eval();
+			return;
+		}
+	}
+	push(T);
+	eval();
+	T = pop();
+	if (!istensor(T)) {
+		tos = h; // pop all
+		push(T); // quirky, but EVA2.txt depends on it
 		return;
 	}
-	if (k < 1 || k > p1->u.tensor->dim[0])
+	indexfunc(h);
+}
+
+void
+indexfunc(int h)
+{
+	int i, k, m, n, r, t, w;
+	m = T->u.tensor->ndim;
+	n = tos - h;
+	r = m - n; // rank of result
+	if (r < 0)
 		stop("index error");
-	k--; // make zero based
-	n = p1->u.tensor->nelem / p1->u.tensor->dim[0];
-	if (n == 1) {
-		push(p1->u.tensor->elem[k]);
+	k = 0;
+	for (i = 0; i < n; i++) {
+		push(stack[h + i]);
+		t = pop_integer();
+		if (t < 1 || t > T->u.tensor->dim[i])
+			stop("index error");
+		k = k * T->u.tensor->dim[i] + t - 1;
+	}
+	tos = h; // pop all
+	if (r == 0) {
+		push(T->u.tensor->elem[k]); // scalar result
 		return;
 	}
-	p2 = alloc_tensor(n);
-	for (i = 0; i < n; i++)
-		p2->u.tensor->elem[i] = p1->u.tensor->elem[k * n + i];
-	n = p1->u.tensor->ndim;
-	for (i = 1; i < n; i++)
-		p2->u.tensor->dim[i - 1] = p1->u.tensor->dim[i];
-	p2->u.tensor->ndim = n - 1;
-	push(p2);
+	w = 1;
+	for (i = n; i < m; i++)
+		w *= T->u.tensor->dim[i];
+	k *= w;
+	p1 = alloc_tensor(w);
+	for (i = 0; i < w; i++)
+		p1->u.tensor->elem[i] = T->u.tensor->elem[k + i];
+	p1->u.tensor->ndim = r;
+	for (i = 0; i < r; i++)
+		p1->u.tensor->dim[i] = T->u.tensor->dim[n + i];
+	push(p1);
 }
 
 void
