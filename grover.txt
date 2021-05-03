@@ -2,20 +2,15 @@
 
 -- See qiskit.org/textbook/ch-algorithms/grover.html
 
+I = unit(256) -- identity matrix
+
 "Location in database (range 1 to 256)"
 
 w = 255
 w
 
-Uf = unit(256)
+Uf = I
 Uf[w,w] = -1
-
-Us(psi) = rotate(psi,
-  H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7,
-  X,0,X,1,X,2,X,3,X,4,X,5,X,6,X,7,
-  C,7,C,6,C,5,C,4,C,3,C,2,C,1,Z,0,
-  X,0,X,1,X,2,X,3,X,4,X,5,X,6,X,7,
-  H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
 psi = zero(256)
 psi[1] = 1
@@ -24,9 +19,11 @@ psi = float(psi) -- floating point is faster
 
 psi = rotate(psi,H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
+Us = 2 outer(psi,psi) - I
+
 for(k,1,12,
   psi = dot(Uf,psi),
-  psi = Us(psi)
+  psi = dot(Us,psi)
 )
 
 P = psi conj(psi)
