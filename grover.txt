@@ -18,7 +18,7 @@ Us(psi) = rotate(psi,
   H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
 psi = zero(256)
-psi[1] = 1
+psi[1] = 1.0
 
 psi = rotate(psi,H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
@@ -27,7 +27,7 @@ for(k,1,12,
   psi = Us(psi)
 )
 
-P = float(psi conj(psi))
+P = psi conj(psi)
 
 "Probability of success after 12 iterations"
 
