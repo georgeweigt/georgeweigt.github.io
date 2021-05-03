@@ -30,7 +30,9 @@ Us(psi) = rotate(psi,
   H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
 psi = zero(256)
-psi[1] = 1.0
+psi[1] = 1
+
+psi = float(psi) -- floating point is faster
 
 psi = rotate(psi,H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
