@@ -6,7 +6,7 @@ I = unit(256) -- identity matrix
 
 "Location in database (range 1 to 256)"
 
-w = 255
+w = 250
 w
 
 Uf = I
