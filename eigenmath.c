@@ -15295,6 +15295,20 @@ power_nib(void)
 		power_numbers();
 		return;
 	}
+	// BASE is a fraction?
+	if (isfraction(BASE)) {
+		push(BASE);
+		numerator();
+		push(EXPO);
+		power();
+		push(BASE);
+		denominator();
+		push(EXPO);
+		negate();
+		power();
+		multiply();
+		return;
+	}
 	// BASE = e ?
 	if (BASE == symbol(EXP1)) {
 		power_natural_number();
