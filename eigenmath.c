@@ -948,7 +948,6 @@ void normalize_polar_term_rational(void);
 void normalize_polar_term_double(void);
 void power_sum(void);
 void power_minusone(void);
-void normalize_clock(void);
 void normalize_clock_rational(void);
 void normalize_clock_double(void);
 void power_complex_number(void);
@@ -5056,6 +5055,8 @@ isdenormalpolarterm(struct atom *p)
 	return 0;
 }
 
+#if 0
+
 // returns 1 if p <= -1/2 or p > 1/2
 
 int
@@ -5078,6 +5079,8 @@ isdenormalclock(struct atom *p)
 		return 1; // p <= -1/2
 	return 0;
 }
+
+#endif
 
 #undef X
 #undef Y
@@ -15320,6 +15323,18 @@ power_nib(void)
 		power_numbers();
 		return;
 	}
+	// BASE is a negative number?
+	if (isnegativenumber(BASE) && !isminusone(BASE)) {
+		push_integer(-1);
+		push(EXPO);
+		power();
+		push(BASE);
+		negate();
+		push(EXPO);
+		power();
+		multiply();
+		return;
+	}
 	// BASE is a fraction?
 	if (isfraction(BASE)) {
 		push(BASE);
@@ -15702,23 +15717,19 @@ power_minusone(void)
 		push(imaginaryunit);
 		return;
 	}
-	if (isdenormalclock(EXPO)) {
-		normalize_clock();
+	if (isrational(EXPO)) {
+		normalize_clock_rational();
+		return;
+	}
+	if (isdouble(EXPO)) {
+		normalize_clock_double();
+		rect();
 		return;
 	}
 	push_symbol(POWER);
 	push_integer(-1);
 	push(EXPO);
 	list(3);
-}
-
-void
-normalize_clock(void)
-{
-	if (isrational(EXPO))
-		normalize_clock_rational();
-	else
-		normalize_clock_double();
 }
 
 void
@@ -16087,7 +16098,7 @@ power_numbers(void)
 		multiply();
 		return;
 	}
-	if (BASE->k == RATIONAL && EXPO->k == RATIONAL) {
+	if (isrational(BASE) && isrational(EXPO)) {
 		power_rationals();
 		return;
 	}
@@ -16153,7 +16164,7 @@ power_rationals(void)
 	n = tos - h;
 	for (i = 0; i < n; i++) {
 		p1 = s[i];
-		if (p1->k == RATIONAL) {
+		if (isrational(p1)) {
 			push(p1);
 			push(p2);
 			multiply();

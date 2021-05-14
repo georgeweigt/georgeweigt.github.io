@@ -9580,33 +9580,6 @@ isdenominator(p)
 		return 0;
 }
 function
-isdenormalclock(p)
-{
-	var t;
-
-	if (!isnum(p))
-		return 0;
-
-	if (isdouble(p))
-		return p.d <= -0.5 || p.d > 0.5;
-
-	push(p);
-	push_rational(1, 2);
-	t = cmpfunc();
-
-	if (t > 0)
-		return 1; // p > 1/2
-
-	push(p);
-	push_rational(-1, 2);
-	t = cmpfunc();
-
-	if (t <= 0)
-		return 1; // p <= -1/2
-
-	return 0;
-}
-function
 isdenormalpolar(p)
 {
 	if (car(p) == symbol(ADD)) {
@@ -11000,6 +10973,20 @@ power()
 		return;
 	}
 
+	// BASE is a negative number?
+
+	if (isnegativenumber(BASE) && !isminusone(BASE)) {
+		push_integer(-1);
+		push(EXPO);
+		power();
+		push(BASE);
+		negate();
+		push(EXPO);
+		power();
+		multiply();
+		return;
+	}
+
 	// BASE is a fraction?
 
 	if (isfraction(BASE)) {
@@ -11299,8 +11286,14 @@ power_minusone(EXPO)
 		return;
 	}
 
-	if (isdenormalclock(EXPO)) {
-		normalize_clock(EXPO);
+	if (isrational(EXPO)) {
+		normalize_clock_rational(EXPO);
+		return;
+	}
+
+	if (isdouble(EXPO)) {
+		normalize_clock_double(EXPO);
+		rect();
 		return;
 	}
 
@@ -11308,15 +11301,6 @@ power_minusone(EXPO)
 	push_integer(-1);
 	push(EXPO);
 	list(3);
-}
-
-function
-normalize_clock(EXPO)
-{
-	if (isrational(EXPO))
-		normalize_clock_rational(EXPO);
-	else
-		normalize_clock_double(EXPO);
 }
 
 function
