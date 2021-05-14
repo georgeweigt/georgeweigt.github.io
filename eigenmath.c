@@ -941,7 +941,6 @@ void push_factor(uint32_t *d, int count);
 void eval_power(void);
 void power(void);
 void power_nib(void);
-int power_precheck(void);
 void power_natural_number(void);
 void normalize_polar(void);
 void normalize_polar_term(void);
@@ -15288,8 +15287,34 @@ power_nib(void)
 		push_double(M_PI);
 		BASE = pop();
 	}
-	if (power_precheck())
+	// 1^expr = expr^0 = 1
+	if (equaln(BASE, 1) || equaln(EXPO, 0)) {
+		if (isdouble(BASE) || isdouble(EXPO))
+			push_double(1.0);
+		else
+			push_integer(1);
 		return;
+	}
+	// expr^1 = expr
+	if (equaln(EXPO, 1)) {
+		push(BASE);
+		return;
+	}
+	// 0^expr
+	if (equaln(BASE, 0)) {
+		if (isnum(EXPO)) {
+			if (isdouble(BASE) || isdouble(EXPO))
+				push_double(0.0);
+			else
+				push_integer(0);
+		} else {
+			push_symbol(POWER);
+			push(BASE);
+			push(EXPO);
+			list(3);
+		}
+		return;
+	}
 	// BASE and EXPO numerical?
 	if (isnum(BASE) && isnum(EXPO)) {
 		power_numbers();
@@ -15351,40 +15376,6 @@ power_nib(void)
 	push(BASE);
 	push(EXPO);
 	list(3);
-}
-
-int
-power_precheck(void)
-{
-	// 1^expr = expr^0 = 1
-	if (equaln(BASE, 1) || equaln(EXPO, 0)) {
-		if (isdouble(BASE) || isdouble(EXPO))
-			push_double(1.0);
-		else
-			push_integer(1);
-		return 1;
-	}
-	// expr^1 = expr
-	if (equaln(EXPO, 1)) {
-		push(BASE);
-		return 1;
-	}
-	// 0^expr
-	if (equaln(BASE, 0)) {
-		if (isnum(EXPO)) {
-			if (isdouble(BASE) || isdouble(EXPO))
-				push_double(0.0);
-			else
-				push_integer(0);
-		} else {
-			push_symbol(POWER);
-			push(BASE);
-			push(EXPO);
-			list(3);
-		}
-		return 1;
-	}
-	return 0;
 }
 
 // BASE = e
@@ -15879,7 +15870,7 @@ normalize_clock_double(void)
 	}
 }
 
-// BASE is rectangular complex numerical
+// BASE is rectangular complex numerical, EXPO is numerical
 
 void
 power_complex_number(void)
