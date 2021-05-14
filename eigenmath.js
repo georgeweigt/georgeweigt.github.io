@@ -10994,7 +10994,7 @@ power()
 
 	// do this before checking for (a + b)^n
 
-	if (iscomplexnumber(BASE)) {
+	if (iscomplexnumber(BASE) && isnum(EXPO)) {
 		power_complex_number(BASE, EXPO);
 		return;
 	}
@@ -11136,14 +11136,6 @@ function
 power_complex_number(BASE, EXPO)
 {
 	var n, X, Y;
-
-	if (!isnum(EXPO)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
 
 	// lisp(2+3*i) = (add 2 (multiply 3 (power -1 1/2)))
 

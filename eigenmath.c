@@ -15315,7 +15315,7 @@ power_nib(void)
 		return;
 	}
 	// do this before checking for (a + b)^n
-	if (iscomplexnumber(BASE)) {
+	if (iscomplexnumber(BASE) && isnum(EXPO)) {
 		power_complex_number();
 		return;
 	}
@@ -15885,13 +15885,6 @@ void
 power_complex_number(void)
 {
 	int n;
-	if (!isnum(EXPO)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
 	// prefixform(2+3*i) = (add 2 (multiply 3 (power -1 1/2)))
 	// prefixform(1+i) = (add 1 (power -1 1/2))
 	// prefixform(3*i) = (multiply 3 (power -1 1/2))
