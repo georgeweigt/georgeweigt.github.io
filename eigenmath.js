@@ -10409,15 +10409,6 @@ negate()
 	push_integer(-1);
 	multiply();
 }
-
-function
-negate_expand()
-{
-	var t = expanding;
-	expanding = 1;
-	negate();
-	expanding = t;
-}
 function
 normalize_polar(EXPO)
 {
@@ -10978,13 +10969,16 @@ power()
 	// BASE and EXPO numerical?
 
 	if (isnum(BASE) && isnum(EXPO)) {
+		expanding++;
 		power_numbers(BASE, EXPO);
+		expanding--;
 		return;
 	}
 
 	// BASE is an integer? (EXPO is not numerical)
 
 	if (isinteger(BASE)) {
+		expanding++;
 		h = stack.length;
 		push(BASE);
 		factor();
@@ -10996,7 +10990,7 @@ power()
 				push(cadr(p1)); // base
 				push(caddr(p1)); // expo
 				push(EXPO);
-				multiply_expand();
+				multiply();
 				list(3);
 			} else {
 				push_symbol(POWER);
@@ -11013,12 +11007,14 @@ power()
 			swap();
 			cons();
 		}
+		expanding--;
 		return;
 	}
 
 	// BASE is a fraction? (EXPO is not numerical)
 
 	if (isfraction(BASE)) {
+		expanding++;
 		push(BASE);
 		numerator();
 		push(EXPO);
@@ -11026,9 +11022,10 @@ power()
 		push(BASE);
 		denominator();
 		push(EXPO);
-		negate_expand();
+		negate();
 		power();
-		multiply_expand();
+		multiply();
+		expanding--;
 		return;
 	}
 

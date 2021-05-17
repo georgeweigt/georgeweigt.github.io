@@ -915,7 +915,6 @@ void multiply_expand(void);
 void multiply_noexpand(void);
 void multiply_factors_noexpand(int n);
 void negate(void);
-void negate_expand(void);
 void negate_noexpand(void);
 void reciprocate(void);
 void divide(void);
@@ -14647,16 +14646,6 @@ negate(void)
 }
 
 void
-negate_expand(void)
-{
-	int t;
-	t = expanding;
-	expanding = 1;
-	negate();
-	expanding = t;
-}
-
-void
 negate_noexpand(void)
 {
 	int t;
@@ -15331,11 +15320,14 @@ power_nib(void)
 	}
 	// BASE and EXPO numerical?
 	if (isnum(BASE) && isnum(EXPO)) {
+		expanding++;
 		power_numbers();
+		expanding--;
 		return;
 	}
 	// BASE is an integer? (EXPO is not numerical)
 	if (isinteger(BASE)) {
+		expanding++;
 		h = tos;
 		push(BASE);
 		factor_factor();
@@ -15347,7 +15339,7 @@ power_nib(void)
 				push(cadr(p1)); // base
 				push(caddr(p1)); // expo
 				push(EXPO);
-				multiply_expand();
+				multiply();
 				list(3);
 			} else {
 				push_symbol(POWER);
@@ -15364,10 +15356,12 @@ power_nib(void)
 			swap();
 			cons();
 		}
+		expanding--;
 		return;
 	}
 	// BASE is a fraction? (EXPO is not numerical)
 	if (isfraction(BASE)) {
+		expanding++;
 		push(BASE);
 		numerator();
 		push(EXPO);
@@ -15375,9 +15369,10 @@ power_nib(void)
 		push(BASE);
 		denominator();
 		push(EXPO);
-		negate_expand();
+		negate();
 		power();
-		multiply_expand();
+		multiply();
+		expanding--;
 		return;
 	}
 	// BASE = e ?
