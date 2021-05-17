@@ -10409,6 +10409,15 @@ negate()
 	push_integer(-1);
 	multiply();
 }
+
+function
+negate_expand()
+{
+	var t = expanding;
+	expanding = 1;
+	negate();
+	expanding = t;
+}
 function
 normalize_polar(EXPO)
 {
@@ -11017,9 +11026,9 @@ power()
 		push(BASE);
 		denominator();
 		push(EXPO);
-		negate();
+		negate_expand();
 		power();
-		multiply();
+		multiply_expand();
 		return;
 	}
 

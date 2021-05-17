@@ -915,6 +915,7 @@ void multiply_expand(void);
 void multiply_noexpand(void);
 void multiply_factors_noexpand(int n);
 void negate(void);
+void negate_expand(void);
 void negate_noexpand(void);
 void reciprocate(void);
 void divide(void);
@@ -14646,6 +14647,16 @@ negate(void)
 }
 
 void
+negate_expand(void)
+{
+	int t;
+	t = expanding;
+	expanding = 1;
+	negate();
+	expanding = t;
+}
+
+void
 negate_noexpand(void)
 {
 	int t;
@@ -15364,9 +15375,9 @@ power_nib(void)
 		push(BASE);
 		denominator();
 		push(EXPO);
-		negate();
+		negate_expand();
 		power();
-		multiply();
+		multiply_expand();
 		return;
 	}
 	// BASE = e ?
