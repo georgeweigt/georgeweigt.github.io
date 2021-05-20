@@ -15290,23 +15290,28 @@ power_nib(void)
 		push_double(M_PI);
 		BASE = pop();
 	}
-	// 1^expr = expr^0 = 1
-	if (equaln(BASE, 1) || equaln(EXPO, 0)) {
-		if (isdouble(BASE) || isdouble(EXPO))
+	if (isrational(BASE) && isdouble(EXPO)) {
+		push(BASE);
+		push_double(pop_double());
+		BASE = pop();
+	}
+	if (isdouble(BASE) && isrational(EXPO)) {
+		push(EXPO);
+		push_double(pop_double());
+		EXPO = pop();
+	}
+	// expr^0
+	if (iszero(EXPO)) {
+		if (isdouble(BASE))
 			push_double(1.0);
 		else
 			push_integer(1);
 		return;
 	}
-	// expr^1 = expr
-	if (equaln(EXPO, 1)) {
-		push(BASE);
-		return;
-	}
 	// 0^expr
-	if (equaln(BASE, 0)) {
+	if (iszero(BASE)) {
 		if (isnum(EXPO)) {
-			if (isdouble(BASE) || isdouble(EXPO))
+			if (isdouble(BASE))
 				push_double(0.0);
 			else
 				push_integer(0);
@@ -15316,6 +15321,16 @@ power_nib(void)
 			push(EXPO);
 			list(3);
 		}
+		return;
+	}
+	// expr^1
+	if (isplusone(EXPO)) {
+		push(BASE);
+		return;
+	}
+	// 1^expr
+	if (isplusone(BASE)) {
+		push(BASE);
 		return;
 	}
 	// BASE and EXPO numerical?
