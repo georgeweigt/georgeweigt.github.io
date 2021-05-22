@@ -9684,9 +9684,7 @@ fmt_draw_table(int x, int y, struct atom *p)
 void
 eval_for(void)
 {
-	int j, k, t;
-	t = expanding;
-	expanding = 1;
+	int j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -9725,7 +9723,6 @@ eval_for(void)
 	}
 	restore_symbol(p2);
 	push_symbol(NIL); // return value
-	expanding = t;
 }
 
 void
@@ -17786,9 +17783,7 @@ print_char(int c)
 void
 eval_product(void)
 {
-	int h, j, k, t;
-	t = expanding;
-	expanding = 1;
+	int h, j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -17823,7 +17818,6 @@ eval_product(void)
 	}
 	multiply_factors(tos - h);
 	restore_symbol(p2);
-	expanding = t;
 }
 
 void
@@ -20202,9 +20196,7 @@ push_string(char *s)
 void
 eval_sum(void)
 {
-	int h, j, k, t;
-	t = expanding;
-	expanding = 1;
+	int h, j, k;
 	p1 = cdr(p1);
 	p2 = car(p1);
 	if (!isusersymbol(p2))
@@ -20239,7 +20231,6 @@ eval_sum(void)
 	}
 	add_terms(tos - h);
 	restore_symbol(p2);
-	expanding = t;
 }
 
 // symbol lookup, create symbol if not found

@@ -3096,6 +3096,8 @@ emit_list(p)
 {
 	var t = stack.length;
 	emit_expr(p);
+	if (t == stack.length)
+		emit_roman_string(" ");
 	emit_update_list(t);
 }
 
@@ -5583,10 +5585,7 @@ floor()
 function
 eval_for(p1)
 {
-	var j, k, p2, p3, t;
-
-	t = expanding;
-	expanding = 1;
+	var j, k, p2, p3;
 
 	p2 = cadr(p1);
 
@@ -5629,8 +5628,6 @@ eval_for(p1)
 	restore_symbol(p2);
 
 	push_symbol(NIL); // return value
-
-	expanding = t;
 }
 function
 eval_hadamard(p1)
@@ -6192,10 +6189,7 @@ eval_print(p1)
 function
 eval_product(p1)
 {
-	var h, j, k, p2, p3, t;
-
-	t = expanding;
-	expanding = 1;
+	var h, j, k, p2, p3;
 
 	p2 = cadr(p1);
 
@@ -6235,8 +6229,6 @@ eval_product(p1)
 	multiply_factors(stack.length - h);
 
 	restore_symbol(p2);
-
-	expanding = t;
 }
 function
 eval_quote(p1)
@@ -6728,10 +6720,7 @@ eval_subst(p1)
 function
 eval_sum(p1)
 {
-	var h, j, k, p2, p3, t;
-
-	t = expanding;
-	expanding = 1;
+	var h, j, k, p2, p3;
 
 	p2 = cadr(p1);
 
@@ -6771,8 +6760,6 @@ eval_sum(p1)
 	add_terms(stack.length - h);
 
 	restore_symbol(p2);
-
-	expanding = t;
 }
 function
 eval_tan(p1)
