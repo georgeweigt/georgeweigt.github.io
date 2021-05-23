@@ -21,7 +21,7 @@ main()
 	printf("\\usepackage{slashed}\n");
 	printf("\\usepackage{tikz}\n");
 	printf("\\usepackage{fancyvrb}\n");
-	printf("\\usepackage{verbatim}\n");
+//	printf("\\usepackage{verbatim}\n");
 	printf("\\usepackage{hyperref}\n");
 	printf("\\usepackage{slashed}\n");
 	printf("\\usepackage{xcolor}\n");
