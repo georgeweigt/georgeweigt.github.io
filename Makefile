@@ -11,7 +11,7 @@ default:
 	rm -f *.aux *.log *.out *.synctex.gz *.toc
 
 clean:
-	rm -f *.aux *.log *.out *.synctex.gz *.toc
+	rm -f *.aux *.log *.out *.synctex.gz *.toc tmp tmp.pdf
 
 demos:
 	cat 1.txt angmomop.txt 2.txt > angmomop.html
