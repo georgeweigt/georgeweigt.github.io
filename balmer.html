@@ -12,10 +12,9 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Compute Balmer coefficient using linear regression
 
-m = (3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
+x = (3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
 
-x = zero(25)
-for(j,1,25, x[j] = m[j]^2 / (m[j]^2 - 4))
+for(j,1,25, x[j] = x[j]^2 / (x[j]^2 - 4))
 
 y = (
 6565.60, 6562.10, 6561.62, 6560.70, 6559.50,
