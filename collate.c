@@ -16,14 +16,13 @@ main()
 	printf("\\documentclass[12pt]{article}\n");
 	printf("\\usepackage[margin=2cm]{geometry}\n");
 	printf("\\usepackage{amsmath}\n");
-	printf("\\usepackage{amssymb}\n");
+	printf("\\usepackage{amssymb}\n"); // mathbb
 	printf("\\usepackage{mathrsfs}\n"); // mathscr
 	printf("\\usepackage{slashed}\n");
 	printf("\\usepackage{tikz}\n");
-	printf("\\usepackage{fancyvrb}\n");
+//	printf("\\usepackage{fancyvrb}\n");
 //	printf("\\usepackage{verbatim}\n");
-	printf("\\usepackage{hyperref}\n");
-	printf("\\usepackage{slashed}\n");
+//	printf("\\usepackage{hyperref}\n");
 	printf("\\usepackage{xcolor}\n");
 	printf("\\begin{document}\n");
 
