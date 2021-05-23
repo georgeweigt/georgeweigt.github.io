@@ -560,6 +560,7 @@ int isdoublesomewhere(struct atom *p);
 int isdenormalpolar(struct atom *p);
 int isdenormalpolarterm(struct atom *p);
 int isdenormalclock(struct atom *p);
+int issquarematrix(struct atom *p);
 void eval_cos(void);
 void cosfunc(void);
 void cosfunc_nib(void);
@@ -5081,6 +5082,12 @@ isdenormalclock(struct atom *p)
 }
 
 #endif
+
+int
+issquarematrix(struct atom *p)
+{
+	return istensor(p) && p->u.tensor->ndim == 2 && p->u.tensor->dim[0] == p->u.tensor->dim[1];
+}
 
 #undef X
 #undef Y
@@ -16303,16 +16310,7 @@ sqrtfunc(void)
 void
 power_tensor(void)
 {
-	int i, k, n;
-	// first and last dims must be equal
-	k = BASE->u.tensor->ndim - 1;
-	if (BASE->u.tensor->dim[0] != BASE->u.tensor->dim[k]) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
+	int i, n;
 	push(EXPO);
 	n = pop_integer();
 	if (n == ERR) {
@@ -16323,6 +16321,8 @@ power_tensor(void)
 		return;
 	}
 	if (n == 0) {
+		if (!issquarematrix(BASE))
+			stop("square matrix expected");
 		n = BASE->u.tensor->dim[0];
 		p1 = alloc_matrix(n, n);
 		for (i = 0; i < n; i++)
@@ -16339,7 +16339,7 @@ power_tensor(void)
 	push(BASE);
 	for (i = 1; i < n; i++) {
 		push(BASE);
-		inner();
+		hadamard();
 	}
 }
 
