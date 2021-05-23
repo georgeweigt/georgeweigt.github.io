@@ -56,7 +56,7 @@ $m=$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11
 \end{center}
 
 \noindent
-Just for the fun of it, use linear modeling in R to verify the model coefficient.
+Just for the fun of it, use linear regression in R to compute the model coefficient.
 {\footnotesize\color{blue}
 \begin{verbatim}
 m = c(3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
@@ -73,7 +73,7 @@ y = c(6565.6,6562.1,6561.62,6560.7,6559.5,
 3795,3795,
 3767.5,3769)
 
-lm(y ~ 0 + x)
+coef(lm(y ~ 0 + x))
 \end{verbatim}
 }
 
@@ -82,12 +82,8 @@ lm(y ~ 0 + x)
 The result is
 {\footnotesize
 \begin{verbatim}
-Call:
-lm(formula = y ~ 0 + x)
-
-Coefficients:
-   x  
-3645
+       x 
+3645.296 
 \end{verbatim}
 }
 

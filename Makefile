@@ -71,4 +71,5 @@ demos:
 	cat 1.txt muon-production-4.txt 2.txt > muon-production-4.html
 	cat 1.txt full-adder.txt 2.txt > full-adder.html
 	cat 1.txt grover.txt 2.txt > grover.html
+	cat 1.txt balmer.txt 2.txt > balmer.html
 
