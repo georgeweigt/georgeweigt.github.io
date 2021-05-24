@@ -19,14 +19,13 @@ gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
 omega = sqrt(kx^2 + ky^2 + kz^2 + m^2)
 
-f1 = exp(i kx x + i ky y + i kz z - i omega t) -- positive frequency
+f1 = exp(+i (kx x + ky y + kz z - omega t))
+f2 = exp(-i (kx x + ky y + kz z - omega t))
 
 psi1 = f1 (omega + m, 0, kz, kx + i ky)
 psi2 = f1 (0, omega + m, kx - i ky, -kz)
 psi3 = f1 (kz, kx + i ky, omega - m, 0)
 psi4 = f1 (kx - i ky, -kz, 0, omega - m)
-
-f2 = exp(-i kx x - i ky y - i kz z + i omega t) -- negative frequency
 
 psi5 = f2 (omega - m, 0, kz, kx + i ky)
 psi6 = f2 (0, omega - m, kx - i ky, -kz)
