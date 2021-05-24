@@ -53,7 +53,7 @@ emit_file(char *filename)
 	FILE *f;
 	static char s[1000];
 
-	printf("%% %s\n", filename);
+	printf("\\subsection*{%s}\n", filename);
 
 	f = fopen(filename, "r");
 
