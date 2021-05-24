@@ -19,19 +19,19 @@ gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
 omega = sqrt(kx^2 + ky^2 + kz^2 + m^2)
 
-f = exp(i kx x + i ky y + i kz z - i omega t) -- positive frequency
+f1 = exp(i kx x + i ky y + i kz z - i omega t) -- positive frequency
 
-psi1 = f (omega + m, 0, kz, kx + i ky)
-psi2 = f (0, omega + m, kx - i ky, -kz)
-psi3 = f (kz, kx + i ky, omega - m, 0)
-psi4 = f (kx - i ky, -kz, 0, omega - m)
+psi1 = f1 (omega + m, 0, kz, kx + i ky)
+psi2 = f1 (0, omega + m, kx - i ky, -kz)
+psi3 = f1 (kz, kx + i ky, omega - m, 0)
+psi4 = f1 (kx - i ky, -kz, 0, omega - m)
 
-f = exp(-i kx x - i ky y - i kz z + i omega t) -- negative frequency
+f2 = exp(-i kx x - i ky y - i kz z + i omega t) -- negative frequency
 
-psi5 = f (omega - m, 0, kz, kx + i ky)
-psi6 = f (0, omega - m, kx - i ky, -kz)
-psi7 = f (kz, kx + i ky, omega + m, 0)
-psi8 = f (kx - i ky, -kz, 0, omega + m)
+psi5 = f2 (omega - m, 0, kz, kx + i ky)
+psi6 = f2 (0, omega - m, kx - i ky, -kz)
+psi7 = f2 (kz, kx + i ky, omega + m, 0)
+psi8 = f2 (kx - i ky, -kz, 0, omega + m)
 
 D(psi) = dot(gamma0,d(psi,t)) +
          dot(gamma1,d(psi,x)) +
