@@ -392,7 +392,7 @@ void add(void);
 void add_terms(int n);
 void add_terms_nib(int n);
 void flatten_terms(int h);
-void combine_terms(int h);
+void combine_tensors(int h);
 void combine_terms(int h);
 int combine_terms_nib(int i, int j);
 void sort_terms(int n);
@@ -1267,6 +1267,9 @@ absfunc_nib(void)
 	list(2);
 }
 
+#undef T
+#define T p5
+
 void
 eval_add(void)
 {
@@ -1297,25 +1300,41 @@ add_terms(int n)
 void
 add_terms_nib(int n)
 {
-	int h = tos - n;
+	int i, h;
 	if (n < 2)
 		return;
+	h = tos - n;
 	flatten_terms(h);
+	combine_tensors(h);
 	combine_terms(h);
 	n = tos - h;
-	switch (n) {
-	case 0:
-		push_integer(0); // all terms canceled
-		break;
-	case 1:
-		break;
-	default:
+	if (n == 0) {
+		if (istensor(T))
+			push(T);
+		else
+			push_integer(0);
+		return;
+	}
+	if (n > 1) {
 		list(n);
 		push_symbol(ADD);
 		swap();
 		cons();
-		break;
 	}
+	if (!istensor(T))
+		return;
+	p1 = pop();
+	push(T);
+	copy_tensor();
+	T = pop();
+	n = p1->u.tensor->nelem;
+	for (i = 0; i < n; i++) {
+		push(T->u.tensor->elem[i]);
+		push(p1);
+		add();
+		T->u.tensor->elem[i] = pop();
+	}
+	push(T);
 }
 
 void
@@ -1336,7 +1355,28 @@ flatten_terms(int h)
 	}
 }
 
-// congruent terms are combined by adding numerical coefficients
+void
+combine_tensors(int h)
+{
+	int i, j;
+	T = symbol(NIL);
+	for (i = h; i < tos; i++) {
+		p1 = stack[i];
+		if (istensor(p1)) {
+			if (istensor(T)) {
+				push(T);
+				push(p1);
+				add_tensors();
+				T = pop();
+			} else
+				T = p1;
+			for (j = i + 1; j < tos; j++)
+				stack[j - 1] = stack[j];
+			tos--;
+			i--; // use same index again
+		}
+	}
+}
 
 void
 combine_terms(int h)
@@ -1345,61 +1385,26 @@ combine_terms(int h)
 	sort_terms(tos - h);
 	for (i = h; i < tos - 1; i++) {
 		if (combine_terms_nib(i, i + 1)) {
-			if (!istensor(stack[i]) && iszero(stack[i])) {
+			if (iszero(stack[i])) {
 				for (j = i + 2; j < tos; j++)
-					stack[j - 2] = stack[j]; // remove 2
+					stack[j - 2] = stack[j]; // remove 2 terms
 				tos -= 2;
 			} else {
 				for (j = i + 2; j < tos; j++)
-					stack[j - 1] = stack[j]; // remove 1
+					stack[j - 1] = stack[j]; // remove 1 term
 				tos -= 1;
 			}
 			i--; // use same index again
 		}
 	}
-	if (tos - h == 1 && !istensor(stack[h]) && iszero(stack[h]))
-		tos = h; // all terms canceled
 }
-
-#if 0 // brute force method
-void
-combine_terms(int h)
-{
-	int i, j, k;
-	for (i = h; i < tos - 1; i++) {
-		for (j = i + 1; j < tos; j++) {
-			if (combine_terms_nib(i, j)) {
-				for (k = j + 1; k < tos; k++)
-					stack[k - 1] = stack[k]; // remove jth element
-				j--; // use same index again
-				tos--;
-				if (!istensor(stack[i]) && iszero(stack[i])) {
-					for (k = i + 1; k < tos; k++)
-						stack[k - 1] = stack[k]; // remove ith element
-					j = i; // start over
-					tos--;
-				}
-			}
-		}
-	}
-}
-#endif
 
 int
 combine_terms_nib(int i, int j)
 {
-	int denorm = 0;
+	int denorm;
 	p1 = stack[i];
 	p2 = stack[j];
-	if (istensor(p1) && istensor(p2)) {
-		push(p1);
-		push(p2);
-		add_tensors();
-		stack[i] = pop();
-		return 1;
-	}
-	if (istensor(p1) || istensor(p2))
-		stop("incompatible tensor arithmetic");
 	if (iszero(p2))
 		return 1;
 	if (iszero(p1)) {
@@ -1417,6 +1422,7 @@ combine_terms_nib(int i, int j)
 	p4 = p2;
 	p1 = one;
 	p2 = one;
+	denorm = 0;
 	if (car(p3) == symbol(MULTIPLY)) {
 		p3 = cdr(p3);
 		denorm = 1;
@@ -16311,36 +16317,17 @@ void
 power_tensor(void)
 {
 	int i, n;
-	push(EXPO);
-	n = pop_integer();
-	if (n == ERR) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
-	if (n == 0) {
-		if (!issquarematrix(BASE))
-			stop("square matrix expected");
-		n = BASE->u.tensor->dim[0];
-		p1 = alloc_matrix(n, n);
-		for (i = 0; i < n; i++)
-			p1->u.tensor->elem[n * i + i] = one;
-		push(p1);
-		return;
-	}
-	if (n < 0) {
-		n = -n;
-		push(BASE);
-		inv();
-		BASE = pop();
-	}
 	push(BASE);
-	for (i = 1; i < n; i++) {
-		push(BASE);
-		hadamard();
+	copy_tensor();
+	p1 = pop();
+	n = p1->u.tensor->nelem;
+	for (i = 0; i < n; i++) {
+		push(p1->u.tensor->elem[i]);
+		push(EXPO);
+		power();
+		p1->u.tensor->elem[i] = pop();
 	}
+	push(p1);
 }
 
 void

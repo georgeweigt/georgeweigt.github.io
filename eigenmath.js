@@ -151,9 +151,12 @@ add_rationals(p1, p2)
 	push_rational(a, b);
 }
 function
-add_tensors(p1, p2)
+add_tensors()
 {
-	var i, n;
+	var i, n, p1, p2;
+
+	p2 = pop();
+	p1 = pop();
 
 	if (!compatible_dimensions(p1, p2))
 		stopf("incompatible tensor arithmetic");
@@ -174,7 +177,7 @@ add_tensors(p1, p2)
 function
 add_terms(n) // n is number of terms on stack
 {
-	var h;
+	var h, i, p1, T;
 
 	if (n < 2)
 		return;
@@ -183,23 +186,44 @@ add_terms(n) // n is number of terms on stack
 
 	flatten_terms(h);
 
+	T = combine_tensors(h);
+
 	combine_terms(h);
 
 	n = stack.length - h;
 
-	switch (n) {
-	case 0:
-		push_integer(0); // all terms canceled
-		break;
-	case 1:
-		break;
-	default:
+	if (n == 0) {
+		if (istensor(T))
+			push(T);
+		else
+			push_integer(0);
+		return;
+	}
+
+	if (n > 1) {
 		list(n);
 		push_symbol(ADD);
 		swap();
 		cons();
-		break;
 	}
+
+	if (!istensor(T))
+		return;
+
+	p1 = pop();
+
+	T = copy_tensor(T);
+
+	n = T.elem.length;
+
+	for (i = 0; i < n; i++) {
+		push(T.elem[i]);
+		push(p1);
+		add();
+		T.elem[i] = pop();
+	}
+
+	push(T);
 }
 function
 adj()
@@ -1436,26 +1460,41 @@ combine_numerical_factors(h, COEFF)
 
 	return COEFF;
 }
-// congruent terms are combined by adding numerical coefficients
-
+function
+combine_tensors(h)
+{
+	var i, p1, T;
+	T = symbol(NIL);
+	for (i = h; i < stack.length; i++) {
+		p1 = stack[i];
+		if (istensor(p1)) {
+			if (istensor(T)) {
+				push(T);
+				push(p1);
+				add_tensors();
+				T = pop();
+			} else
+				T = p1;
+			stack.splice(i, 1);
+			i--; // use same index again
+		}
+	}
+	return T;
+}
 function
 combine_terms(h)
 {
-	var i, n;
+	var i;
 	sort_terms(h);
-	n = stack.length;
-	for (i = h; i < n - 1; i++) {
+	for (i = h; i < stack.length - 1; i++) {
 		if (combine_terms_nib(i, i + 1)) {
-			if (!istensor(stack[i]) && iszero(stack[i]))
-				stack.splice(i, 2); // remove 2
+			if (iszero(stack[i]))
+				stack.splice(i, 2); // remove 2 terms
 			else
-				stack.splice(i + 1, 1); // remove 1
+				stack.splice(i + 1, 1); // remove 1 term
 			i--; // use same index again
-			n = stack.length;
 		}
 	}
-	if (stack.length - h == 1 && !istensor(stack[h]) && iszero(stack[h]))
-		stack.splice(h); // all terms canceled
 }
 function
 combine_terms_nib(i, j)
@@ -1464,15 +1503,6 @@ combine_terms_nib(i, j)
 
 	p1 = stack[i];
 	p2 = stack[j];
-
-	if (istensor(p1) && istensor(p2)) {
-		add_tensors(p1, p2);
-		stack[i] = pop();
-		return 1;
-	}
-
-	if (istensor(p1) || istensor(p2))
-		stopf("incompatible tensor arithmetic");
 
 	if (iszero(p2))
 		return 1;
@@ -11809,60 +11839,20 @@ power_sum(BASE, EXPO)
 function
 power_tensor(BASE, EXPO)
 {
-	var i, j, k, n;
+	var i, n, p1;
 
-	if (!isnum(EXPO)) {
-		push_symbol(POWER);
-		push(BASE);
+	p1 = copy_tensor(BASE);
+
+	n = p1.elem.length;
+
+	for (i = 0; i < n; i++) {
+		push(p1.elem[i]);
 		push(EXPO);
-		list(3);
-		return;
+		power();
+		p1.elem[i] = pop();
 	}
 
-	if (isrational(EXPO))
-		n = EXPO.a / EXPO.b;
-	else
-		n = EXPO.d;
-
-	if (n != Math.floor(n)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
-
-	if (n == 0) {
-		if (!issquarematrix(BASE))
-			stopf("square matrix expected");
-		n = BASE.dim[0];
-		BASE = alloc_tensor();
-		BASE.dim[0] = n;
-		BASE.dim[1] = n;
-		k = 0;
-		for (i = 0; i < n; i++)
-			for (j = 0; j < n; j++)
-				if (i == j)
-					BASE.elem[k++] = one;
-				else
-					BASE.elem[k++] = zero;
-		push(BASE);
-		return;
-	}
-
-	if (n < 0) {
-		n = -n;
-		push(BASE);
-		inv();
-		BASE = pop();
-	}
-
-	push(BASE);
-
-	for (i = 1; i < n; i++) {
-		push(BASE);
-		hadamard();
-	}
+	push(p1);
 }
 function
 prefixform(p)
