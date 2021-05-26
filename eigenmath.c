@@ -1379,6 +1379,29 @@ combine_tensors(int h)
 }
 
 void
+add_tensors(void)
+{
+	int i, n;
+	save();
+	p2 = pop();
+	p1 = pop();
+	if (!compatible_dimensions(p1, p2))
+		stop("incompatible tensor arithmetic");
+	push(p1);
+	copy_tensor();
+	p1 = pop();
+	n = p1->u.tensor->nelem;
+	for (i = 0; i < n; i++) {
+		push(p1->u.tensor->elem[i]);
+		push(p2->u.tensor->elem[i]);
+		add();
+		p1->u.tensor->elem[i] = pop();
+	}
+	push(p1);
+	restore();
+}
+
+void
 combine_terms(int h)
 {
 	int i, j;
@@ -20871,32 +20894,6 @@ compatible_dimensions(struct atom *p, struct atom *q)
 		if (p->u.tensor->dim[i] != q->u.tensor->dim[i])
 			return 0;
 	return 1;
-}
-
-void
-add_tensors(void)
-{
-	int i, nelem;
-	struct atom **a, **b;
-	save();
-	p2 = pop();
-	p1 = pop();
-	if (!compatible_dimensions(p1, p2))
-		stop("incompatible tensor arithmetic");
-	push(p1);
-	copy_tensor();
-	p1 = pop();
-	a = p1->u.tensor->elem;
-	b = p2->u.tensor->elem;
-	nelem = p1->u.tensor->nelem;
-	for (i = 0; i < nelem; i++) {
-		push(a[i]);
-		push(b[i]);
-		add();
-		a[i] = pop();
-	}
-	push(p1);
-	restore();
 }
 
 // gradient of tensor p1 wrt vector p2
