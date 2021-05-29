@@ -7,7 +7,7 @@
 \noindent
 This is the Dirac equation.
 \begin{equation*}
-i\hbar\left(
+i\hbar\left(\frac{1}{c}
 \gamma^0\frac{\partial}{\partial t}+
 \gamma^1\frac{\partial}{\partial x}+
 \gamma^2\frac{\partial}{\partial y}+
@@ -30,7 +30,7 @@ The following set of gamma matrices are known as the ``Dirac representation.''
 \noindent
 Let
 \begin{equation*}
-\phi(x,y,z,t)=p_xx+p_yy+p_zz-\frac{Et}{c}
+\phi(x,y,z,t)=p_xx+p_yy+p_zz-Et
 \end{equation*}
 where
 \begin{equation*}
@@ -90,5 +90,65 @@ $\psi_7$ & Anti-fermion, spin up\\
 $\psi_8$ & Anti-fermion, spin down
 \end{tabular}
 \end{center}
+
+\noindent
+Here is a check of physical units.
+The momenta $p_x$, $p_y$, and $p_z$ have units of
+\begin{equation*}
+\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+p_xx\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+\noindent
+For the time-dependent term
+\begin{equation*}
+Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
+=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+\noindent
+We have for the reduced Planck constant
+\begin{equation*}
+\hbar\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+\noindent
+Hence $\phi/\hbar$ is dimensionless which is required.
+\begin{equation*}
+\frac{p_xx-Et}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
+\end{equation*}
+
+\noindent
+The derivatives introduce inverse units.
+\begin{equation*}
+\frac{\partial\phi}{\partial t}\propto\frac{1}{\text{second}}
+\qquad
+\frac{\partial\phi}{\partial x}\propto\frac{1}{\text{meter}}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+\frac{\hbar}{c}\frac{\partial\phi}{\partial t}
+\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\end{equation*}
+
+\noindent
+and
+\begin{equation*}
+\hbar\frac{\partial\phi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\end{equation*}
+
+\noindent
+The resulting units match the right-hand side of the Dirac equation.
+\begin{equation*}
+mc\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\end{equation*}
 
 \end{document}
