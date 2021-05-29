@@ -5,19 +5,19 @@ gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
-F = px x + py y + pz z - E t
+phi = px x + py y + pz z - E t
 
 E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
-psi1 = exp(i F / hbar) (E + m c^2, 0, pz c, px c + i py c)
-psi2 = exp(i F / hbar) (0, E + m c^2, px c - i py c, -pz c)
-psi3 = exp(i F / hbar) (pz c, px c + i py c, E - m c^2, 0)
-psi4 = exp(i F / hbar) (px c - i py c, -pz c, 0, E - m c^2)
+psi1 = exp(i phi / hbar) (E + m c^2, 0, pz c, px c + i py c)
+psi2 = exp(i phi / hbar) (0, E + m c^2, px c - i py c, -pz c)
+psi3 = exp(i phi / hbar) (pz c, px c + i py c, E - m c^2, 0)
+psi4 = exp(i phi / hbar) (px c - i py c, -pz c, 0, E - m c^2)
 
-psi5 = exp(-i F / hbar) (E - m c^2, 0, pz c, px c + i py c)
-psi6 = exp(-i F / hbar) (0, E - m c^2, px c - i py c, -pz c)
-psi7 = exp(-i F / hbar) (pz c, px c + i py c, E + m c^2, 0)
-psi8 = exp(-i F / hbar) (px c - i py c, -pz c, 0, E + m c^2)
+psi5 = exp(-i phi / hbar) (E - m c^2, 0, pz c, px c + i py c)
+psi6 = exp(-i phi / hbar) (0, E - m c^2, px c - i py c, -pz c)
+psi7 = exp(-i phi / hbar) (pz c, px c + i py c, E + m c^2, 0)
+psi8 = exp(-i phi / hbar) (px c - i py c, -pz c, 0, E + m c^2)
 
 D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma1,d(psi,x)) +
