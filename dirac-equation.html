@@ -17,36 +17,35 @@ gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
-omega = sqrt(kx^2 + ky^2 + kz^2 + m^2)
+F = px x + py y + pz z - E t
 
-f1 = exp(+i (kx x + ky y + kz z - omega t))
-f2 = exp(-i (kx x + ky y + kz z - omega t))
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
-psi1 = f1 (omega + m, 0, kz, kx + i ky)
-psi2 = f1 (0, omega + m, kx - i ky, -kz)
-psi3 = f1 (kz, kx + i ky, omega - m, 0)
-psi4 = f1 (kx - i ky, -kz, 0, omega - m)
+psi1 = exp(i F / hbar) (E + m c^2, 0, pz c, px c + i py c)
+psi2 = exp(i F / hbar) (0, E + m c^2, px c - i py c, -pz c)
+psi3 = exp(i F / hbar) (pz c, px c + i py c, E - m c^2, 0)
+psi4 = exp(i F / hbar) (px c - i py c, -pz c, 0, E - m c^2)
 
-psi5 = f2 (omega - m, 0, kz, kx + i ky)
-psi6 = f2 (0, omega - m, kx - i ky, -kz)
-psi7 = f2 (kz, kx + i ky, omega + m, 0)
-psi8 = f2 (kx - i ky, -kz, 0, omega + m)
+psi5 = exp(-i F / hbar) (E - m c^2, 0, pz c, px c + i py c)
+psi6 = exp(-i F / hbar) (0, E - m c^2, px c - i py c, -pz c)
+psi7 = exp(-i F / hbar) (pz c, px c + i py c, E + m c^2, 0)
+psi8 = exp(-i F / hbar) (px c - i py c, -pz c, 0, E + m c^2)
 
-D(psi) = dot(gamma0,d(psi,t)) +
+D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma1,d(psi,x)) +
          dot(gamma2,d(psi,y)) +
          dot(gamma3,d(psi,z))
 
 "Verify solutions (1=ok)"
 
-i D(psi1) == m psi1
-i D(psi2) == m psi2
-i D(psi3) == m psi3
-i D(psi4) == m psi4
-i D(psi5) == m psi5
-i D(psi6) == m psi6
-i D(psi7) == m psi7
-i D(psi8) == m psi8
+i hbar D(psi1) == m c psi1
+i hbar D(psi2) == m c psi2
+i hbar D(psi3) == m c psi3
+i hbar D(psi4) == m c psi4
+i hbar D(psi5) == m c psi5
+i hbar D(psi6) == m c psi6
+i hbar D(psi7) == m c psi7
+i hbar D(psi8) == m c psi8
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>

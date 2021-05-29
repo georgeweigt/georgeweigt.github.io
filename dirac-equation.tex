@@ -5,20 +5,19 @@
 \begin{document}
 
 \noindent
-This is the Dirac equation with $c=1$ and $\hbar=1$.
+This is the Dirac equation.
 \begin{equation*}
-i\left(
+i\hbar\left(\frac{1}{c}
 \gamma^0\frac{\partial}{\partial t}+
 \gamma^1\frac{\partial}{\partial x}+
 \gamma^2\frac{\partial}{\partial y}+
 \gamma^3\frac{\partial}{\partial z}
 \right)\psi
-=m\psi
+=mc\psi
 \end{equation*}
 
 \noindent
-There are lots of ways to choose the gamma matrices.
-The following gamma matrices are the ``Dirac representation.''
+The following set of gamma matrices are known as the ``Dirac representation.''
 {\small
 \begin{gather*}
 \gamma^0=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}\quad
@@ -29,48 +28,55 @@ The following gamma matrices are the ``Dirac representation.''
 }
 
 \noindent
-The wave function $\psi$ has angular frequency $\omega$ equal to the energy of the particle.
-$$
-\omega=\sqrt{k_x^2+k_y^2+k_z^2+m^2}
-$$
+Let
+\begin{equation*}
+F(x,y,z,t)=p_xx+p_yy+p_zz-Et
+\end{equation*}
+where
+\begin{equation*}
+E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
+\end{equation*}
 
 \noindent
-There are four positive frequency solutions that are linearly independent.
+The four positive wave solutions to the Dirac equation are
 {\small
 \begin{gather*}
-\psi_1=\begin{pmatrix}\omega+m\\0\\k_z\\k_x+ik_y\end{pmatrix}
-\exp(ik_xx+ik_yy+ik_zz-i\omega t)
+\psi_1=\begin{pmatrix}E+mc^2\\0\\p_zc\\p_xc+ip_yc\end{pmatrix}
+\exp\left(\frac{iF}{\hbar}\right)
 \quad
-\psi_2=\begin{pmatrix}0\\ \omega+m\\k_x-ik_y\\-k_z\end{pmatrix}
-\exp(ik_xx+ik_yy+ik_zz-i\omega t)
+\psi_2=\begin{pmatrix}0\\E+mc^2\\p_xc-ip_yc\\-p_zc\end{pmatrix}
+\exp\left(\frac{iF}{\hbar}\right)
 \\
-\psi_3=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega-m\\0\end{pmatrix}
-\exp(ik_xx+ik_yy+ik_zz-i\omega t)
+\psi_3=\begin{pmatrix}p_zc\\p_xc+ip_yc\\E-mc^2\\0\end{pmatrix}
+\exp\left(\frac{iF}{\hbar}\right)
 \quad
-\psi_4=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega-m\end{pmatrix}
-\exp(ik_xx+ik_yy+ik_zz-i\omega t)
+\psi_4=\begin{pmatrix}p_xc-ip_yc\\-p_zc\\0\\E-mc^2\end{pmatrix}
+\exp\left(\frac{iF}{\hbar}\right)
 \end{gather*}
 }
 
 \noindent
-There are four negative frequency solutions that are linearly independent.
-The negative frequency solutions flip the sign of $m$.
+The four negative wave solutions are
 {\small
 \begin{gather*}
-\psi_5=\begin{pmatrix}\omega-m\\0\\k_z\\k_x+ik_y\end{pmatrix}
-\exp(-ik_xx-ik_yy-ik_zz+i\omega t)
+\psi_5=\begin{pmatrix}E-mc^2\\0\\p_zc\\p_xc+ip_yc\end{pmatrix}
+\exp\left(-\frac{iF}{\hbar}\right)
 \quad
-\psi_6=\begin{pmatrix}0\\ \omega-m\\k_x-ik_y\\-k_z\end{pmatrix}
-\exp(-ik_xx-ik_yy-ik_zz+i\omega t)
+\psi_6=\begin{pmatrix}0\\E-mc^2\\p_xc-ip_yc\\-p_zc\end{pmatrix}
+\exp\left(-\frac{iF}{\hbar}\right)
 \\
-\psi_7=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega+m\\0\end{pmatrix}
-\exp(-ik_xx-ik_yy-ik_zz+i\omega t)
+\psi_7=\begin{pmatrix}p_zc\\p_xc+ip_yc\\E+mc^2\\0\end{pmatrix}
+\exp\left(-\frac{iF}{\hbar}\right)
 \quad
-\psi_8=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega+m\end{pmatrix}
-\exp(-ik_xx-ik_yy-ik_zz+i\omega t)
+\psi_8=\begin{pmatrix}p_xc-ip_yc\\-p_zc\\0\\E+mc^2\end{pmatrix}
+\exp\left(-\frac{iF}{\hbar}\right)
 \end{gather*}
 }
 
+\noindent
+The negative wave solutions flip the sign of the $mc^2$ term.
+
+\bigskip
 \noindent
 The following solutions are used by quantum electrodynamics.
 \begin{center}

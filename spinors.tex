@@ -1,41 +1,51 @@
 \documentclass[12pt]{article}
-\usepackage{fancyvrb,amsmath,amsfonts,amssymb,graphicx,listings}
-\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-%\usepackage{parskip}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
 \usepackage{slashed}
-
-% change margins
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
-
-\hyphenpenalty=10000
 
 \begin{document}
 
-\begin{center}
-{\sc spinors}
-\end{center}
+\noindent
+Let
+\begin{equation*}
+f(x,y,z,t)=p_xx+p_yy+p_zz-Et
+\end{equation*}
+where
+\begin{equation*}
+E=\sqrt{p_x^2+p_y^2+p_z^2+m}
+\end{equation*}
 
 \noindent
-Recall that the following wave functions are solutions to the Dirac equation.
-\begin{gather*}
-\psi_1=\begin{pmatrix}\omega+m\\0\\k_z\\k_x+ik_y\end{pmatrix}
-\exp[i(k_xx+k_yy+k_zz-\omega t)]
-\quad
-\psi_7=\begin{pmatrix}k_z\\k_x+ik_y\\ \omega+m\\0\end{pmatrix}
-\exp[-i(k_xx+k_yy+k_zz-\omega t)]
-\\
-\psi_2=\begin{pmatrix}0\\ \omega+m\\k_x-ik_y\\-k_z\end{pmatrix}
-\exp[i(k_xx+k_yy+k_zz-\omega t)]
-\quad
-\psi_8=\begin{pmatrix}k_x-ik_y\\-k_z\\0\\ \omega+m\end{pmatrix}
-\exp[-i(k_xx+k_yy+k_zz-\omega t)]
-\end{gather*}
-%
-A spinor is the vector part of a Dirac wave function.
+The following solutions to the Dirac equation are used for quantum electrodynamics.
+\begin{equation*}
+\underset{\text{fermion spin up}}
+{
+\psi_1=\begin{pmatrix}E+m\\0\\p_z\\p_x+ip_y\end{pmatrix}
+\exp(if(x,y,z,t))
+}
+\qquad
+\underset{\text{fermion spin down}}
+{
+\psi_2=\begin{pmatrix}0\\E+m\\p_x-ip_y\\-p_z\end{pmatrix}
+\exp(if(x,y,z,t))
+}
+\end{equation*}
+\begin{equation*}
+\underset{\text{anti-fermion spin up}}
+{
+\psi_7=\begin{pmatrix}p_z\\p_x+ip_y\\E+m\\0\end{pmatrix}
+\exp(-if(x,y,z,t))
+}
+\qquad
+\underset{\text{anti-fermion spin down}}
+{
+\psi_8=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E+m\end{pmatrix}
+\exp(-if(x,y,z,t))
+}
+\end{equation*}
+
+\noindent
+A spinor is the vector part of each solution.
 The following eight spinors are used for scattering calculations.
 The $u$ spinors are fermions from $\psi_1$ and $\psi_2$.
 The $v$ spinors are anti-fermions from $\psi_7$ and $\psi_8$.
@@ -70,10 +80,5 @@ v_{21}\bar{v}_{21}+v_{22}\bar{v}_{22}=(E_2+m_2)(\slashed{p}_2-m_2)
 $$
 The adjoint of a spinor is $\bar{u}=u^\dag\gamma^0$.
 The adjoint is a row vector hence $u\bar{u}$ is an outer product.
-
-\newpage
-\noindent
-This script verifies all eight spinors.
-\VerbatimInput[formatcom=\color{blue}]{spinors.txt}
 
 \end{document}

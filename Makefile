@@ -45,7 +45,6 @@ demos:
 	cat 1.txt super.txt 2.txt > super.html
 	cat 1.txt wavefuncop1.txt 2.txt > wavefuncop1.html
 	cat 1.txt wavefuncop2.txt 2.txt > wavefuncop2.html
-	cat 1.txt bell-state.txt 2.txt > bell-state.html
 	cat 1.txt deutsch-jozsa.txt 2.txt > deutsch-jozsa.html
 	cat 1.txt quaternions.txt 2.txt > quaternions.html
 	cat 1.txt octonions.txt 2.txt > octonions.html
