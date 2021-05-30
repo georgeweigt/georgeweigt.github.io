@@ -14,7 +14,7 @@ default:
 	cat 1 $*.txt 2 > $*.html
 
 demos:
-	for file in $$(ls *.txt | sed -e "s/*Box*.txt//" -e "s/\.txt/\.html/") ; do make $$file ; done
+	for file in $$(ls *.txt | sed -e "s/.*Box.*//" -e "s/\.txt/\.html/") ; do make $$file ; done
 
 clean:
 	rm -f *.aux *.log *.out *.synctex.gz *.toc tmp tmp.pdf
