@@ -37,6 +37,8 @@ C = sqrt(hbar omega/(2 epsilon0)) exp(i k z)
 
 Ehat(psi) = C a(psi) + conj(C) a1(psi)
 
+"Compute E"
+
 E = dot(conj(psi),Ehat(psi))
 E
 
