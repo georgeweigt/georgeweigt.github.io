@@ -21,7 +21,7 @@ U = ((0,  sqrt(n - 1),        0,            0),
 a(psi) = dot(U,psi)
 a1(psi) = dot(transpose(U),psi)
 
-"Verify lowering operator (1 = ok)"
+"Verify lowering operator (1=ok)"
 
 a((0,1,0,0)) == sqrt(n - 1) (1,0,0,0)
 a((0,0,1,0)) == sqrt(n + 0) (0,1,0,0)
