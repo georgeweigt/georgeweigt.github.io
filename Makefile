@@ -73,4 +73,5 @@ demos:
 	cat 1.txt balmer.txt 2.txt > balmer.html
 	cat 1.txt dirac-equation.txt 2.txt > dirac-equation.html
 	cat 1.txt stefan-boltzmann-law.txt 2.txt > stefan-boltzmann-law.html
+	cat 1.txt quantum-electric-field-1.txt 2.txt > quantum-electric-field-1.html
 

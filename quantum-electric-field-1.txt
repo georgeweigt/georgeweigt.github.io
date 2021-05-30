@@ -1,6 +1,4 @@
--- www.eigenmath.org/quantum-electric-field-1.txt
-
--- Check EM field wave function and ladder operators.
+-- quantum-electric-field-1.txt
 
 -- (1,0,0,0) = |n - 3/2>
 -- (0,1,0,0) = |n - 1/2>
@@ -23,13 +21,13 @@ U = ((0,  sqrt(n - 1),        0,            0),
 a(psi) = dot(U,psi)
 a1(psi) = dot(transpose(U),psi)
 
-"check lowering operator (1 = ok)"
+"Verify lowering operator (1 = ok)"
 
 a((0,1,0,0)) == sqrt(n - 1) (1,0,0,0)
 a((0,0,1,0)) == sqrt(n + 0) (0,1,0,0)
 a((0,0,0,1)) == sqrt(n + 1) (0,0,1,0)
 
-"check raising operator (1 = ok)"
+"Verify raising operator (1 = ok)"
 
 a1((1,0,0,0)) == sqrt(n - 1) (0,1,0,0)
 a1((0,1,0,0)) == sqrt(n + 0) (0,0,1,0)
@@ -42,11 +40,11 @@ Ehat(psi) = C a(psi) + conj(C) a1(psi)
 Efield = dot(conj(psi),Ehat(psi))
 Efield
 
-"check Efield (1 = ok)"
+"Verify Efield (1 = ok)"
 
 Efield == sqrt(2 n hbar omega/epsilon0) expcos(k z - omega t)
 
-"check Hamiltonian operator (1 = ok)"
+"Verify Hamiltonian operator (1 = ok)"
 
 H(psi) = 1/2 hbar omega (a1(a(psi)) + a(a1(psi)))
 
