@@ -39,7 +39,7 @@ a((0,1,0,0)) == sqrt(n - 1) (1,0,0,0)
 a((0,0,1,0)) == sqrt(n + 0) (0,1,0,0)
 a((0,0,0,1)) == sqrt(n + 1) (0,0,1,0)
 
-"Verify raising operator (1 = ok)"
+"Verify raising operator"
 
 a1((1,0,0,0)) == sqrt(n - 1) (0,1,0,0)
 a1((0,1,0,0)) == sqrt(n + 0) (0,0,1,0)
@@ -49,14 +49,14 @@ C = sqrt(hbar omega/(2 epsilon0)) exp(i k z)
 
 Ehat(psi) = C a(psi) + conj(C) a1(psi)
 
-Efield = dot(conj(psi),Ehat(psi))
-Efield
+E = dot(conj(psi),Ehat(psi))
+E
 
-"Verify Efield (1 = ok)"
+"Verify E"
 
-Efield == sqrt(2 n hbar omega/epsilon0) expcos(k z - omega t)
+E == sqrt(2 n hbar omega/epsilon0) expcos(k z - omega t)
 
-"Verify Hamiltonian operator (1 = ok)"
+"Verify Hamiltonian operator"
 
 H(psi) = 1/2 hbar omega (a1(a(psi)) + a(a1(psi)))
 
