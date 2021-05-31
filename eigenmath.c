@@ -1327,7 +1327,7 @@ add_terms_nib(int n)
 	push(T);
 	copy_tensor();
 	T = pop();
-	n = p1->u.tensor->nelem;
+	n = T->u.tensor->nelem;
 	for (i = 0; i < n; i++) {
 		push(T->u.tensor->elem[i]);
 		push(p1);
