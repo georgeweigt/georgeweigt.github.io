@@ -30,10 +30,9 @@ yhat = beta x
 
 "Coefficient of determination (R squared)"
 
-u = y^0
-ybar = dot(y,u) / dim(y)
-SSE = dot((y - yhat)^2,u)
-SST = dot((y - ybar)^2,u)
+ybar = sum(y) / dim(y)
+SSE = sum((y - yhat)^2)
+SST = sum((y - ybar)^2)
 1 - SSE/SST
 </textarea>
 </td><td>
