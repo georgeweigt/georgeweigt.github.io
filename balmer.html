@@ -31,9 +31,9 @@ yhat = beta x
 "Coefficient of determination (R squared)"
 
 ybar = sum(y) / dim(y)
-SSE = sum((y - yhat)^2)
-SST = sum((y - ybar)^2)
-1 - SSE/SST
+ESS = sum((y - yhat)^2)
+TSS = sum((y - ybar)^2)
+1 - ESS / TSS
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
