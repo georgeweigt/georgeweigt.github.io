@@ -18,9 +18,8 @@ yhat = beta x
 
 "Coefficient of determination (R squared)"
 
-N = 25
 u = y^0
-ybar = 1/N dot(y,u)
+ybar = dot(y,u) / dim(y)
 SSE = dot((y - yhat)^2,u)
 SST = dot((y - ybar)^2,u)
 1 - SSE/SST
