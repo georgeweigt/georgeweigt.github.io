@@ -35,7 +35,7 @@ B&=\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
 \noindent
 The electric field operator is
 \begin{equation*}
-\hat{\mathscr{E}}=C\hat{a}+C^*\hat{a}^\dagger
+\hat{\mathscr{E}}=C\hat{a}+\bar{C}\hat{a}^\dagger
 \end{equation*}
 
 \noindent
@@ -48,7 +48,7 @@ a^\dagger\left|n-\tfrac{1}{2}\right\rangle&=\sqrt{n}\,\left|n+\tfrac{1}{2}\right
 \noindent
 The quantity $C$ is
 \begin{equation*}
-C=\sqrt{\frac{\hbar\omega}{2V\varepsilon_0}}\,\exp(ikz)
+C=\sqrt{\frac{\hbar\omega}{2V\varepsilon_0}}\,\exp(ikz),
 \end{equation*}
 
 \noindent
@@ -59,9 +59,9 @@ where $V$ is a unit volume.
 Apply electric field operator $\hat{\mathscr{E}}$ to wave function $\psi$.
 \begin{align*}
 \hat{\mathscr{E}}\psi
-&=C\hat{a}\psi+C^*\hat{a}^\dagger\psi\\
+&=C\hat{a}\psi+\bar{C}\hat{a}^\dagger\psi\\
 &=CA\sqrt{n-1}\,\left|n-\tfrac{3}{2}\right\rangle+CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
-+C^*A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle+C^*B\sqrt{n+1}\,\left|n+\tfrac{3}{2}\right\rangle
++\bar{C}A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle+\bar{C}B\sqrt{n+1}\,\left|n+\tfrac{3}{2}\right\rangle
 \end{align*}
 
 \noindent
@@ -69,9 +69,9 @@ The observed electric field is the eigenvalue $\mathscr{E}$ such that $\hat{\mat
 \begin{align*}
 \mathscr{E}
 &=\psi^\dagger\hat{\mathscr{E}}\psi\\
-&=\left\langle n-\tfrac{1}{2}\right|A^*CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
-+\left\langle n+\tfrac{1}{2}\right|B^*C^*A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle\\
-&=\sqrt{n}\,C\exp(-i\omega t)+\sqrt{n}\,C^*\exp(i\omega t)\\
+&=\left\langle n-\tfrac{1}{2}\right|\bar{A}CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
++\left\langle n+\tfrac{1}{2}\right|\bar{B}\bar{C}A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle\\
+&=\sqrt{n}\,C\exp(-i\omega t)+\sqrt{n}\,\bar{C}\exp(i\omega t)\\
 &=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}\cos(kz-\omega t)
 \end{align*}
 
