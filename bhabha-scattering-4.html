@@ -67,7 +67,7 @@ for(k,1,N,
   P[k] = I(theta1,theta2) -- probability per bin
 )
 
-P = P / sum(k,1,N,P[k]) -- normalize
+P = P / sum(P) -- normalize
 
 "Predicted counts"
 
@@ -76,14 +76,14 @@ T = sum(k,1,N,y[k]) -- total counts
 yhat = P T
 yhat
 
-"Coefficient of determination (R-squared)"
+"Coefficient of determination (R squared)"
 
-ybar = 1/N sum(k,1,N,y[k])
+ybar = sum(y) / dim(y)
 
-SSE = sum(k,1,N,(y[k] - yhat[k])^2)
-SST = sum(k,1,N,(y[k] - ybar)^2)
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
 
-1 - SSE/SST
+1 - RSS / TSS
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>

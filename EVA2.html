@@ -36,7 +36,7 @@ isInteger(u)=test(isinteger(u),1,         errmsg(msg5,u))
 isNumber(u)=test(number(u),1,             errmsg(msg4,u))    
 isScalar(u)=test(u==grade(u,0), 1,u=0,1   errmsg(msg3,u))    
 isVector(u)=test(u==grade(u,1), 1,u=0,1   errmsg(msg2,u))    
-isMvector(u)=test(dim(u)==Cldim,1,u=0,1,  errmsg(msg1,u))    
+isMvector(u)=test(dim(u,1)==Cldim,1,u=0,1,  errmsg(msg1,u))    
 isGradeover(n)=do(isNumber(n),test(n>Clmax, errmsg(msg7,u),n<0, errmsg(msg7,u))) #  n < 0 or > Clmax
 isGT1(u)=test(u[1] >= 1, 1,               errmsg(msg8,u))    
 isPos(u)=test(u[1] >= 0, 1,               errmsg(msg9,u))    
@@ -59,7 +59,7 @@ msg12=" |u[1]| must be <= 1 : "
 errmsg(msg,object)=do(print(msg,object),stop())               # print msg and stop
 
 tty=1
-cl(p,q1)=do(q=0,q00=0,test(number(q1),q=q1,q00=1),Clmax=p+q,Cldim=2^Clmax,test(Clmax=1,Signature=(0,0),Signature=zero(Clmax)),check(p>=0),check(q>=0),for(i,1,Clmax,Signature[i]="+"),test(q>0,for(i,p+1,Clmax,Signature[i]="-")),sig00=zero(dim(Signature)),for(i,1,Clmax,test(Signature[i]=="+",sig00[i]=1,sig00[i]=-1)),Base(Clmax),Index(Clmax),consGtab(Cldim),consOtab(Cldim),Signature)
+cl(p,q1)=do(q=0,q00=0,test(number(q1),q=q1,q00=1),Clmax=p+q,Cldim=2^Clmax,test(Clmax=1,Signature=(0,0),Signature=zero(Clmax)),check(p>=0),check(q>=0),for(i,1,Clmax,Signature[i]="+"),test(q>0,for(i,p+1,Clmax,Signature[i]="-")),sig00=zero(dim(Signature,1)),for(i,1,Clmax,test(Signature[i]=="+",sig00[i]=1,sig00[i]=-1)),Base(Clmax),Index(Clmax),consGtab(Cldim),consOtab(Cldim),Signature)
 
 basisVectors=("e0,e1","e0,e1,e2,e12","e0,e1,e2,e3,e12,e13,e23,e123","e0,e1,e2,e3,e4,e12,e13,e14,e23,e24,e34,e123,e124,e134,e234,e1234","e0,e1,e2,e3,e4,e5,e12,e13,e14,e15,e23,e24,e25,e34,e35,e45,e123,e124,e125,e134,e135,e145,e234,e235,e245,e345,e1234,e1235,e1245,e1345,e2345,e12345")
 isomorph=("isomorphic with R + R","isomorphic with R(2)","isomorphic with C(2)","isomorphic with H(2)","isomorphic with H(2) + H(2)")
@@ -116,8 +116,8 @@ consOtab53(u)=do(for(i,17,26,for(k,17,i,test(range(abs(Otab[i,k]),7,16),Otab[i,k
 consOtab54(u)=do(for(i,2,26,for(k,2,i,test(range(abs(Otab[i,k]),17,26),Otab[i,k]=0))))  
 consOtab55(u)=do(for(i,27,32,for(k,17,i,test(range(abs(Otab[i,k]),17,26),Otab[i,k]=0))))
 
-Gtable(u)=  do(d=dim(Gtab),tab=zero(d,d), for(i,1,d,for(k,1,d,do(indx=Gtab[i,k],aindx=abs(indx),tab[i,k]=(u[aindx])*sgn(indx)))),tab)
-Otable(u)=do(d=dim(Otab),tab=zero(d,d), for(i,1,d,for(k,1,i,do(indx=Otab[i,k],aindx=abs(indx),test(aindx>0 ,tab[i,k]=(u[aindx])*sgn(indx))))),tab)
+Gtable(u)=  do(d=dim(Gtab,1),tab=zero(d,d), for(i,1,d,for(k,1,d,do(indx=Gtab[i,k],aindx=abs(indx),tab[i,k]=(u[aindx])*sgn(indx)))),tab)
+Otable(u)=do(d=dim(Otab,1),tab=zero(d,d), for(i,1,d,for(k,1,i,do(indx=Otab[i,k],aindx=abs(indx),test(aindx>0 ,tab[i,k]=(u[aindx])*sgn(indx))))),tab)
 
 gp(u,v)= do(isMvector(u),isMvector(v),rnd(dot(Gtable(float(u)),float(v)),7))
 inverse(u)=test(number(u),1/u,rnd(do(isMvector(u),inv(transpose(Gtable(float(u))))[1]),7))

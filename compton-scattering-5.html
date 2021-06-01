@@ -72,12 +72,14 @@ for(k,1,N, yhat[k] = C ((x[k]+1)/2 + 2/(x[k]+1)))
 
 yhat
 
-"Coefficient of determination (R-squared)"
+"Coefficient of determination (R squared)"
 
-ybar = 1/N sum(k,1,N,y[k])
-SSE = sum(k,1,N,(y[k] - yhat[k])^2)
-SST = sum(k,1,N,(y[k] - ybar)^2)
-1 - SSE/SST
+ybar = sum(y) / dim(y)
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
