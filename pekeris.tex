@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{align*}
+r_1&=\sqrt{x_1^2+y_1^2+z_1^2}
+\\
+r_2&=\sqrt{x_2^2+y_2^2+z_2^2}
+\\
+r_{12}&=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}
+\end{align*}
+
+\noindent
+The Halleraas coordinates are
+\begin{align*}
+s&=r_1+r_2
+\\
+t&=r_2-r_1
+\\
+u&=r_{12}
+\end{align*}
+
+\noindent
+Hence
+\begin{equation*}
+\frac{\partial s}{\partial x_1}=\frac{x_1}{r_1}
+\qquad
+\frac{\partial t}{\partial x_1}=-\frac{x_1}{r_1}
+\qquad
+\frac{\partial u}{\partial x_1}=\frac{x_1-x_2}{r_{12}}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial s}{\partial y_1}=\frac{y_1}{r_1}
+\qquad
+\frac{\partial t}{\partial y_1}=-\frac{y_1}{r_1}
+\qquad
+\frac{\partial u}{\partial y_1}=\frac{y_1-y_2}{r_{12}}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial s}{\partial z_1}=\frac{z_1}{r_1}
+\qquad
+\frac{\partial t}{\partial z_1}=-\frac{z_1}{r_1}
+\qquad
+\frac{\partial u}{\partial z_1}=\frac{z_1-z_2}{r_{12}}
+\end{equation*}
+
+\noindent
+Start by converting the Laplacian terms to Halleraas coordinates.
+The first Laplacian is
+\begin{equation*}
+\nabla_1^2\psi
+=\left(\frac{\partial\psi}{\partial x_1}\right)^2
++\left(\frac{\partial\psi}{\partial y_1}\right)^2
++\left(\frac{\partial\psi}{\partial z_1}\right)^2
+\end{equation*}
+
+\noindent
+By the chain rule
+\begin{equation*}
+\frac{\partial\psi}{\partial x_1}
+=\frac{\partial\psi}{\partial s}\frac{\partial s}{\partial x_1}
++\frac{\partial\psi}{\partial t}\frac{\partial t}{\partial x_1}
++\frac{\partial\psi}{\partial t}\frac{\partial t}{\partial x_1}
+\end{equation*}
+
+\noindent
+Hence by (?)
+\begin{equation*}
+\frac{\partial\psi}{\partial x_1}
+=\frac{x_1}{r_1}\frac{\partial\psi}{\partial s}
+-\frac{x_1}{r_1}\frac{\partial\psi}{\partial t}
+-\frac{x_2-x_1}{u}\frac{\partial\psi}{\partial u}
+\end{equation*}
+
+\noindent
+And by symmetry for $y_1$ and $z_1$.
+\begin{align*}
+\frac{\partial\psi}{\partial y_1}
+&=\frac{y_1}{r_1}\frac{\partial\psi}{\partial s}
+-\frac{y_1}{r_1}\frac{\partial\psi}{\partial t}
+-\frac{y_2-y_1}{u}\frac{\partial\psi}{\partial u}
+\\
+\frac{\partial\psi}{\partial z_1}
+&=\frac{z_1}{r_1}\frac{\partial\psi}{\partial s}
+-\frac{z_1}{r_1}\frac{\partial\psi}{\partial t}
+-\frac{z_2-z_1}{u}\frac{\partial\psi}{\partial u}
+\end{align*}
+
+\noindent
+Hence
+\begin{equation*}
+\nabla_1^2\psi
+=\left(\frac{\partial\psi}{\partial s}\right)^2
++\left(\frac{\partial\psi}{\partial t}\right)^2
++\left(\frac{\partial\psi}{\partial u}\right)^2
+-2\frac{\partial\psi}{\partial s}\frac{\partial\psi}{\partial t}
++2\left(\frac{\partial\psi}{\partial s}\frac{\partial\psi}{\partial u}
++\frac{\partial\psi}{\partial t}\frac{\partial\psi}{\partial u}\right)
+\left(\text{more stuff here}\right)
+\end{equation*}
+
+
+\end{document}
