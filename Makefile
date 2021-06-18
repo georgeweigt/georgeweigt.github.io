@@ -1,4 +1,4 @@
-.PHONY: default clean demos
+.PHONY: default demos clean collate
 
 %.pdf: %.tex
 	pdflatex $<
@@ -18,3 +18,9 @@ demos:
 
 clean:
 	rm -f *.aux *.log *.out *.synctex.gz *.toc tmp tmp.pdf
+
+collate:
+	gcc collate.c
+	./a.out >tmp
+	pdflatex tmp
+	rm a.out tmp tmp.pdf
