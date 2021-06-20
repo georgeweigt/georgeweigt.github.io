@@ -10,9 +10,7 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
--- www.eigenmath.org/spinors.txt
-
--- Verify Dirac spinor properties.
+"Verify spinor formulas (1=ok)"
 
 E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
 E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
@@ -52,8 +50,6 @@ pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
 
-"checking dirac equation (1=ok)"
-
 dot(pslash1 - m1 I,u11) == 0
 dot(pslash1 - m1 I,u12) == 0
 dot(pslash2 + m2 I,v21) == 0
@@ -63,7 +59,7 @@ dot(pslash3 - m3 I,u32) == 0
 dot(pslash4 + m4 I,v41) == 0
 dot(pslash4 + m4 I,v42) == 0
 
-"checking completeness (1=ok)"
+"Verify completeness (1=ok)"
 
 adjoint(u) = dot(conj(u),gamma0)
 
