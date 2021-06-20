@@ -5,8 +5,7 @@
 \begin{document}
 
 \noindent
-The script ``static-spherical-metric.txt''
-computes the Einstein tensor $G_{\mu\nu}$ for the metric
+Let $g_{\mu\nu}$ be the following metric.
 $$
 g_{\mu\nu}=
 \begin{pmatrix}
@@ -16,7 +15,7 @@ g_{\mu\nu}=
 0 & 0 & 0 & r^2\sin^2\theta
 \end{pmatrix}
 $$
-and verifies that
+Verify that
 $$
 G_{\mu\nu}=\begin{pmatrix}
 G_{tt} & 0 & 0 & 0\\
@@ -35,6 +34,8 @@ G_{\theta\theta}&=r^2e^{-2\Lambda}\left[\Phi''+(\Phi')^2+\Phi'/r-\Phi'\Lambda'-\
 \\[2ex]
 G_{\phi\phi}&=G_{\theta\theta}\sin^2\theta
 \end{align*}
+
+\noindent
 The $\Phi$ and $\Lambda$ are unspecified functions of radius $r$.
 See ``A First Course in General Relativity'' p.~255.
 
