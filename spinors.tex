@@ -20,26 +20,26 @@ The following solutions to the Dirac equation are used to model fermions.
 \begin{equation*}
 \underset{\text{fermion spin up}}
 {
-\psi_1=\begin{pmatrix}E+mc^2\\0\\p_zc\\p_xc+ip_yc\end{pmatrix}
+\psi_1=\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
 }
 \qquad
 \underset{\text{fermion spin down}}
 {
-\psi_2=\begin{pmatrix}0\\E+mc^2\\p_xc-ip_yc\\-p_zc\end{pmatrix}
+\psi_2=\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
 }
 \end{equation*}
 \begin{equation*}
 \underset{\text{anti-fermion spin up}}
 {
-\psi_7=\begin{pmatrix}p_zc\\p_xc+ip_yc\\E+mc^2\\0\end{pmatrix}
+\psi_7=\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
 }
 \qquad
 \underset{\text{anti-fermion spin down}}
 {
-\psi_8=\begin{pmatrix}p_xc-ip_yc\\-p_zc\\0\\E+mc^2\end{pmatrix}
+\psi_8=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
 }
 \end{equation*}
@@ -51,34 +51,36 @@ The $u$ spinors are fermions from $\psi_1$ and $\psi_2$.
 The $v$ spinors are anti-fermions from $\psi_7$ and $\psi_8$.
 The last digit of the $u$ or $v$ subscript is 1 for spin up and 2 for spin down.
 \begin{gather*}
-u_{11}=\begin{pmatrix}E_1+m_1c^2\\0\\p_{1z}c\\p_{1x}c+ip_{1y}c\end{pmatrix}\quad
-v_{21}=\begin{pmatrix}p_{2z}c\\p_{2x}c+ip_{2y}c\\E_2+m_2c^2\\0\end{pmatrix}\quad
-u_{31}=\begin{pmatrix}E_3+m_3c^2\\0\\p_{3z}c\\p_{3x}c+ip_{3y}c\end{pmatrix}\quad
-v_{41}=\begin{pmatrix}p_{4z}c\\p_{4x}c+ip_{4y}c\\E_4+m_4c^2\\0\end{pmatrix}\\
-u_{12}=\begin{pmatrix}0\\E_1+m_1c^2\\p_{1x}c-ip_{1y}c\\-p_{1z}c\end{pmatrix}\quad
-v_{22}=\begin{pmatrix}p_{2x}c-ip_{2y}c\\-p_{2z}c\\0\\E_2+m_2c^2\end{pmatrix}\quad
-u_{32}=\begin{pmatrix}0\\E_3+m_3c^2\\p_{3x}c-ip_{3y}c\\-p_{3z}c\end{pmatrix}\quad
-v_{42}=\begin{pmatrix}p_{4x}c-ip_{4y}c\\-p_{4z}c\\0\\E_4+m_4c^2\end{pmatrix}
+u_{11}=\begin{pmatrix}E_1/c+m_1c\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}\quad
+v_{21}=\begin{pmatrix}p_{2z}\\p_{2x}+ip_{2y}\\E_2/c+m_2c\\0\end{pmatrix}\quad
+u_{31}=\begin{pmatrix}E_3/c+m_3c\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}\quad
+v_{41}=\begin{pmatrix}p_{4z}\\p_{4x}+ip_{4y}\\E_4/c+m_4c\\0\end{pmatrix}
+\\
+u_{12}=\begin{pmatrix}0\\E_1/c+m_1c\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}\quad
+v_{22}=\begin{pmatrix}p_{2x}-ip_{2y}\\-p_{2z}\\0\\E_2/c+m_2c\end{pmatrix}\quad
+u_{32}=\begin{pmatrix}0\\E_3/c+m_3c\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}\quad
+v_{42}=\begin{pmatrix}p_{4x}-ip_{4y}\\-p_{4z}\\0\\E_4/c+m_4c\end{pmatrix}
 \end{gather*}
-%
+
+\noindent
 These are the associated momentum vectors.
 $$
-p_1=\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\quad
-p_2=\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\quad
-p_3=\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}\quad
-p_4=\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}
+p_1=\begin{pmatrix}E_1/c\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\quad
+p_2=\begin{pmatrix}E_2/c\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\quad
+p_3=\begin{pmatrix}E_3/c\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}\quad
+p_4=\begin{pmatrix}E_4/c\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}
 $$
 Spinors are solutions to the following momentum-space Dirac equation with
-$\slashed{p}=p\cdot(c^{-1}\gamma^0,\gamma^1,\gamma^2,\gamma^3)$.
+$\slashed{p}=p\cdot(\gamma^0,\gamma^1,\gamma^2,\gamma^3)$.
 $$
 (\slashed{p}-mc)u=0\qquad(\slashed{p}+mc)v=0
 $$
 Up and down spinors have the following ``completeness property.''
 $$
-u_{11}\bar{u}_{11}+u_{12}\bar{u}_{12}=(E_1+m_1c^2)(\slashed{p}_1+m_1c)\qquad
-v_{21}\bar{v}_{21}+v_{22}\bar{v}_{22}=(E_2+m_2c^2)(\slashed{p}_2-m_2c)
+u_{11}\bar{u}_{11}+u_{12}\bar{u}_{12}=(E_1/c+m_1c)(\slashed{p}_1+m_1c)\qquad
+v_{21}\bar{v}_{21}+v_{22}\bar{v}_{22}=(E_2/c+m_2c)(\slashed{p}_2-m_2c)
 $$
-The adjoint of a spinor is $\bar{u}=c^{-1}u^\dag\gamma^0$.
+The adjoint of a spinor is $\bar{u}=u^\dag\gamma^0$.
 The adjoint is a row vector hence $u\bar{u}$ is an outer product.
 
 \end{document}
