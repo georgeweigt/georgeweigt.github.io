@@ -1495,7 +1495,7 @@ combine_terms(h)
 			i--; // use same index again
 		}
 	}
-	if (i == stack.length - 1 && iszero(stack[i]))
+	if (h < stack.length && iszero(stack[stack.length - 1]))
 		stack.pop();
 }
 function

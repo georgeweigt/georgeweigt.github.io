@@ -1420,6 +1420,8 @@ combine_terms(int h)
 			i--; // use same index again
 		}
 	}
+	if (h < tos && iszero(stack[tos - 1]))
+		tos--;
 }
 
 int
