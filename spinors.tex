@@ -49,20 +49,19 @@ A spinor is the vector part of $\psi$.
 The following spinors are used for scattering calculations.
 Symbol $u$ indicates a fermion and symbol $v$ indicates an anti-fermion.
 \begin{equation*}
-u_1=\underset{\text{fermion spin up}}{\begin{pmatrix}E_1/c+mc\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}}
+u_1=\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 \quad
-u_2=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E_1/c+mc\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}}
+u_2=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \quad
-v_1=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_{2z}\\p_{2x}+ip_{2y}\\E_2/c+mc\\0\end{pmatrix}}
+v_1=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 \quad
-v_2=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_{2x}-ip_{2y}\\-p_{2z}\\0\\E_2/c+mc\end{pmatrix}}
+v_2=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{equation*}
 
 \noindent
-These are the associated momentum vectors.
+This is the corresponding space-time momentum vector.
 $$
-p_1=\begin{pmatrix}E_1/c\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}\quad
-p_2=\begin{pmatrix}E_2/c\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}\quad
+p=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
 $$
 
 \noindent
@@ -73,10 +72,10 @@ $$
 $$
 Up and down spinors have the following ``completeness property.''
 $$
-u_1\bar{u}_1+u_2\bar{u}_2=(E_1/c+mc)(\slashed{p}_1+mc)\qquad
-v_1\bar{v}_1+v_2\bar{v}_2=(E_2/c+mc)(\slashed{p}_2-mc)
+u_1\bar{u}_1+u_2\bar{u}_2=(E/c+mc)(\slashed{p}+mc)\qquad
+v_1\bar{v}_1+v_2\bar{v}_2=(E/c+mc)(\slashed{p}-mc)
 $$
-The adjoint of a spinor is $\bar{u}=u^\dag\gamma^0$.
-The adjoint is a row vector hence $u\bar{u}$ is an outer product.
+The spinor adjoints are $\bar{u}=u^\dag\gamma^0$ and $\bar{v}=v^\dag\gamma^0$.
+The adjoint is a row vector hence $u\bar{u}$ and $v\bar{v}$ are outer products.
 
 \end{document}

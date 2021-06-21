@@ -1,16 +1,14 @@
 "Verify spinor formulas (1=ok)"
 
-E1 = sqrt(p1x^2 c^2 + p1y^2 c^2 + p1z^2 c^2 + m^2 c^4)
-E2 = sqrt(p2x^2 c^2 + p2y^2 c^2 + p2z^2 c^2 + m^2 c^4)
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
-p1 = (E1/c, p1x, p1y, p1z)
-p2 = (E2/c, p2x, p2y, p2z)
+u1 = (E/c + m c, 0, pz, px + i py)
+u2 = (0, E/c + m c, px - i py, -pz)
 
-u1 = (E1/c + m c, 0, p1z, p1x + i p1y)
-u2 = (0, E1/c + m c, p1x - i p1y, -p1z)
+v1 = (pz, px + i py, E/c + m c, 0)
+v2 = (px - i py, -pz, 0, E/c + m c)
 
-v1 = (p2z, p2x + i p2y, E2/c + m c, 0)
-v2 = (p2x - i p2y, -p2z, 0, E2/c + m c)
+p = (E/c, px, py, pz)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -23,17 +21,16 @@ gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
-pslash1 = dot(p1,gmunu,gamma)
-pslash2 = dot(p2,gmunu,gamma)
+pslash = dot(p,gmunu,gamma)
 
-dot(pslash1,u1) == m c u1
-dot(pslash1,u2) == m c u2
-dot(pslash2,v1) == -m c v1
-dot(pslash2,v2) == -m c v2
+dot(pslash,u1) == m c u1
+dot(pslash,u2) == m c u2
+dot(pslash,v1) == -m c v1
+dot(pslash,v2) == -m c v2
 
 "Verify completeness (1=ok)"
 
 adjoint(u) = dot(conj(u),gamma0)
 
-outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == (E1/c + m c) (pslash1 + m c I)
-outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == (E2/c + m c) (pslash2 - m c I)
+outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == (E/c + m c) (pslash + m c I)
+outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == (E/c + m c) (pslash - m c I)
