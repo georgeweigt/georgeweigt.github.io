@@ -12,27 +12,27 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 "Verify spinor formulas (1=ok)"
 
-E1 = sqrt(p1x^2 c^2 + p1y^2 c^2 + p1z^2 c^2 + m1^2 c^4)
-E2 = sqrt(p2x^2 c^2 + p2y^2 c^2 + p2z^2 c^2 + m2^2 c^4)
-E3 = sqrt(p3x^2 c^2 + p3y^2 c^2 + p3z^2 c^2 + m3^2 c^4)
-E4 = sqrt(p4x^2 c^2 + p4y^2 c^2 + p4z^2 c^2 + m4^2 c^4)
+E1 = sqrt(p1x^2 c^2 + p1y^2 c^2 + p1z^2 c^2 + m^2 c^4)
+E2 = sqrt(p2x^2 c^2 + p2y^2 c^2 + p2z^2 c^2 + m^2 c^4)
+E3 = sqrt(p3x^2 c^2 + p3y^2 c^2 + p3z^2 c^2 + m^2 c^4)
+E4 = sqrt(p4x^2 c^2 + p4y^2 c^2 + p4z^2 c^2 + m^2 c^4)
 
 p1 = (E1/c, p1x, p1y, p1z)
 p2 = (E2/c, p2x, p2y, p2z)
 p3 = (E3/c, p3x, p3y, p3z)
 p4 = (E4/c, p4x, p4y, p4z)
 
-u11 = (E1/c + m1 c, 0, p1z, p1x + i p1y)
-u12 = (0, E1/c + m1 c, p1x - i p1y, -p1z)
+u11 = (E1/c + m c, 0, p1z, p1x + i p1y)
+u12 = (0, E1/c + m c, p1x - i p1y, -p1z)
 
-v21 = (p2z, p2x + i p2y, E2/c + m2 c, 0)
-v22 = (p2x - i p2y, -p2z, 0, E2/c + m2 c)
+v21 = (p2z, p2x + i p2y, E2/c + m c, 0)
+v22 = (p2x - i p2y, -p2z, 0, E2/c + m c)
 
-u31 = (E3/c + m3 c, 0, p3z, p3x + i p3y)
-u32 = (0, E3/c + m3 c, p3x - i p3y, -p3z)
+u31 = (E3/c + m c, 0, p3z, p3x + i p3y)
+u32 = (0, E3/c + m c, p3x - i p3y, -p3z)
 
-v41 = (p4z, p4x + i p4y, E4/c + m4 c, 0)
-v42 = (p4x - i p4y, -p4z, 0, E4/c + m4 c)
+v41 = (p4z, p4x + i p4y, E4/c + m c, 0)
+v42 = (p4x - i p4y, -p4z, 0, E4/c + m c)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -50,23 +50,23 @@ pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
 
-dot(pslash1 - m1 c I,u11) == 0
-dot(pslash1 - m1 c I,u12) == 0
-dot(pslash2 + m2 c I,v21) == 0
-dot(pslash2 + m2 c I,v22) == 0
-dot(pslash3 - m3 c I,u31) == 0
-dot(pslash3 - m3 c I,u32) == 0
-dot(pslash4 + m4 c I,v41) == 0
-dot(pslash4 + m4 c I,v42) == 0
+dot(pslash1,u11) == m c u11
+dot(pslash1,u12) == m c u12
+dot(pslash2,v21) == -m c v21
+dot(pslash2,v22) == -m c v22
+dot(pslash3,u31) == m c u31
+dot(pslash3,u32) == m c u32
+dot(pslash4,v41) == -m c v41
+dot(pslash4,v42) == -m c v42
 
 "Verify completeness (1=ok)"
 
 adjoint(u) = dot(conj(u),gamma0)
 
-outer(u11,adjoint(u11)) + outer(u12,adjoint(u12)) == (E1/c + m1 c) (pslash1 + m1 c I)
-outer(v21,adjoint(v21)) + outer(v22,adjoint(v22)) == (E2/c + m2 c) (pslash2 - m2 c I)
-outer(u31,adjoint(u31)) + outer(u32,adjoint(u32)) == (E3/c + m3 c) (pslash3 + m3 c I)
-outer(v41,adjoint(v41)) + outer(v42,adjoint(v42)) == (E4/c + m4 c) (pslash4 - m4 c I)
+outer(u11,adjoint(u11)) + outer(u12,adjoint(u12)) == (E1/c + m c) (pslash1 + m c I)
+outer(v21,adjoint(v21)) + outer(v22,adjoint(v22)) == (E2/c + m c) (pslash2 - m c I)
+outer(u31,adjoint(u31)) + outer(u32,adjoint(u32)) == (E3/c + m c) (pslash3 + m c I)
+outer(v41,adjoint(v41)) + outer(v42,adjoint(v42)) == (E4/c + m c) (pslash4 - m c I)
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
