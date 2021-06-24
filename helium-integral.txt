@@ -1,4 +1,4 @@
-"Verify helium formulas (1=ok)"
+"Verify helium integral results (1=ok)"
 
 -- integral over V2
 
