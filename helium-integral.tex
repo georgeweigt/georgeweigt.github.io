@@ -53,13 +53,13 @@ Expand the denominator in Legendre polynomials.
 \begin{equation*}
 I(r_1)=\left\{
 \begin{aligned}
-&2\alpha^3\int\limits_0^\pi\int\limits_0^\infty
+&2\alpha^3\int\limits_0^\pi\int
 \exp(-2\alpha r_2)
 \left(\sum_{k=0}^\infty\frac{r_2^k}{r_1^{k+1}}P_k(\cos\theta_2)\right)
 r_2^2\sin\theta_2\,dr_2\,d\theta_2,
 & r_2<r_1\\
 \\
-&2\alpha^3\int\limits_0^\pi\int\limits_0^\infty
+&2\alpha^3\int\limits_0^\pi\int
 \exp(-2\alpha r_2)
 \left(\sum_{k=0}^\infty\frac{r_1^k}{r_2^{k+1}}P_k(\cos\theta_2)\right)
 r_2^2\sin\theta_2\,dr_2\,d\theta_2,
@@ -85,11 +85,11 @@ Hence
 \begin{equation*}
 I(r_1)=\left\{
 \begin{aligned}
-&\frac{4\alpha^3}{r_1}\int\limits_0^\infty
+&\frac{4\alpha^3}{r_1}\int
 \exp(-2\alpha r_2)\,r_2^2\,dr_2,
 & r_2<r_1\\
 \\
-&4\alpha^3\int\limits_0^\infty
+&4\alpha^3\int
 \exp(-2\alpha r_2)\,r_2\,dr_2,
 & r_2>r_1
 \end{aligned}
@@ -157,7 +157,7 @@ I=
 \noindent
 The result vanishes for $r_1=\infty$ hence
 \begin{equation*}
-I=0-(-\alpha+\tfrac{1}{4}\alpha+\tfrac{1}{8}\alpha)=\tfrac{5}{8}\alpha
+I=0-\left(-\alpha+\tfrac{1}{4}\alpha+\tfrac{1}{8}\alpha\right)=\tfrac{5}{8}\alpha
 \end{equation*}
 
 \end{document}
