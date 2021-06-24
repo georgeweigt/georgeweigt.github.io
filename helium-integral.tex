@@ -49,24 +49,20 @@ I(r_1)=
 \end{equation*}
 
 \noindent
-Expand the denominator in Legendre polynomials.
-\begin{equation*}
-I(r_1)=\left\{
-\begin{aligned}
-&2\alpha^3\int\limits_0^\pi\int
+Expand $1/r_{12}$ in Legendre polynomials.
+The first integral is over $r_2<r_1$ and the second is over $r_2>r_1$.
+\begin{multline*}
+I(r_1)=
+2\alpha^3\int\limits_0^\pi\int\limits_0^{r_1}
 \exp(-2\alpha r_2)
 \left(\sum_{k=0}^\infty\frac{r_2^k}{r_1^{k+1}}P_k(\cos\theta_2)\right)
-r_2^2\sin\theta_2\,dr_2\,d\theta_2,
-& r_2<r_1\\
+r_2^2\sin\theta_2\,dr_2\,d\theta_2
 \\
-&2\alpha^3\int\limits_0^\pi\int
++2\alpha^3\int\limits_0^\pi\int\limits_{r_1}^\infty
 \exp(-2\alpha r_2)
 \left(\sum_{k=0}^\infty\frac{r_1^k}{r_2^{k+1}}P_k(\cos\theta_2)\right)
-r_2^2\sin\theta_2\,dr_2\,d\theta_2,
-& r_2>r_1
-\end{aligned}
-\right.
-\end{equation*}
+r_2^2\sin\theta_2\,dr_2\,d\theta_2
+\end{multline*}
 
 \noindent
 It turns out that
@@ -82,22 +78,6 @@ It turns out that
 
 \noindent
 Hence
-\begin{equation*}
-I(r_1)=\left\{
-\begin{aligned}
-&\frac{4\alpha^3}{r_1}\int
-\exp(-2\alpha r_2)\,r_2^2\,dr_2,
-& r_2<r_1\\
-\\
-&4\alpha^3\int
-\exp(-2\alpha r_2)\,r_2\,dr_2,
-& r_2>r_1
-\end{aligned}
-\right.
-\end{equation*}
-
-\noindent
-Integrate piecewise.
 \begin{equation*}
 I(r_1)=
 \frac{4\alpha^3}{r_1}\int\limits_0^{r_1}\exp(-2\alpha r_2)\,r_2^2\,dr_2
