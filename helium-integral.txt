@@ -27,11 +27,11 @@ I = 0 - eval(I,r1,0)
 
 I == 5/8 alpha
 
-"Verify integrals of Legendre (1=ok)"
+"Verify selected integrals of Legendre (1=ok)"
 
 P(f,n) = eval(1 / (2^n n!) d((x^2 - 1)^n,x,n), x, f)
 
 defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2
 defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0
 defint(P(expcos(theta),2) expsin(theta), theta, 0, pi) == 0
-defint(P(expcos(theta),4) expsin(theta), theta, 0, pi) == 0
+defint(P(expcos(theta),10) expsin(theta), theta, 0, pi) == 0
