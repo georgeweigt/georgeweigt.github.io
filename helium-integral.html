@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+"Verify helium formulas (1=ok)"
+
+-- integral over V2
+
+I1 = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
+I2 = 4 alpha^3 integral(exp(-2 alpha r2) r2, r2)
+
+I1 = eval(I1,r2,r1) - eval(I1,r2,0)
+I2 = 0 - eval(I2,r2,r1)
+
+I = I1 + I2
+
+I == 1/r1 - 1/r1 exp(-2 alpha r1) - alpha exp(-2 alpha r1)
+
+-- integral over V1
+
+I = 4 alpha^3 integral(exp(-2 alpha r1) I r1^2, r1)
+
+I = 0 - eval(I,r1,0)
+
+I == 5/8 alpha
+
+-- Legendre
+
+P(f,n) = eval(1 / (2^n n!) d((x^2 - 1)^n,x,n), x, f)
+
+defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2
+defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0
+defint(P(expcos(theta),2) expsin(theta), theta, 0, pi) == 0
+defint(P(expcos(theta),3) expsin(theta), theta, 0, pi) == 0
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
