@@ -1,0 +1,21 @@
+<!--
+<br>
+<br>
+
+Notes
+<br>
+LEP was the Large Electron Positron collider at CERN in Geneva, Switzerland.
+<br>
+PEP was the Positron Electron Project collider at the Stanford Linear Accelerator Center (SLAC) in Menlo Park, California.
+<br>
+PETRA was the Positron Electron Tandem Ring Accelerator at DESY in Hamburg, Germany.
+<br>
+SPEAR was the Stanford Positron Electron Asymmetric Ring collider at SLAC.
+<br>
+R&sup2; is coefficient of determination, a statistic that measures the predictive accuracy of a mathematical model.
+<br>
+To run Eigenmath in a terminal window, download <a href="eigenmath.c">eigenmath.c</a> and follow the build instructions.
+See also <a href="https://github.com/georgeweigt/eigenmath">github</a>.
+<br>
+Please send bug reports to yo&#55;&#51;&#49;&#51;&#55;@gmail.com
+-->
