@@ -29,7 +29,7 @@ I == 5/8 alpha
 
 "Verify selected integrals of Legendre"
 
-P(f,n) = eval(1 / (2^n n!) d((x^2 - 1)^n,x,n), x, f)
+P(f,n) = eval(d((x^2 - 1)^n, x, n), x, f) / (2^n n!) -- Rodrigues's formula
 
 defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2
 defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0
