@@ -92,3 +92,13 @@ A = 1/4 (f11/d11 - 2 f12/d12 + f22/d22)
 B = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
 
 A == B
+
+-- Zee formula
+
+A = 2 ((1 + expcos(theta/2)^4) / expsin(theta/2)^4 +
+    2 / (expsin(theta/2)^2 expcos(theta/2)^2) +
+    (1 + expsin(theta/2)^4) / expcos(theta/2)^4)
+
+B = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
+
+A == B
