@@ -39,15 +39,15 @@ Here is the same diagram with momentum labels $p$ and Dirac spinor labels $u$.
 In center of mass coordinates the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\\ \text{particle 1}}}
+\underset{\substack{\phantom{0}\\ \text{particle 1}}}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 &
 p_2&=
-\underset{\substack{\\ \text{particle 2}}}
+\underset{\substack{\phantom{0}\\ \text{particle 2}}}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 &
 p_3&=
-\underset{\substack{\\ \text{particle 3}}}
+\underset{\substack{\phantom{0}\\ \text{particle 3}}}
 {\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
@@ -56,7 +56,7 @@ p\cos\theta
 \end{pmatrix}}
 &
 p_4&=
-\underset{\substack{\\ \text{particle 4}}}
+\underset{\substack{\phantom{0}\\ \text{particle 4}}}
 {\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
@@ -77,35 +77,35 @@ Azimuth angle $\phi$ cancels out in scattering calculations.
 The spinors are
 \begin{align*}
 u_{11}&=
-\underset{\substack{\\ \text{particle 1}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{particle 1}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 &
 u_{12}&=
-\underset{\substack{\\ \text{particle 1}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{particle 1}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 &
 u_{21}&=
-\underset{\substack{\\ \text{particle 2}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{particle 2}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 &
 u_{22}&=
-\underset{\substack{\\ \text{particle 2}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{particle 2}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \\[2ex]
 u_{31}&=
-\underset{\substack{\\ \text{particle 3}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{particle 3}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 &
 u_{32}&=
-\underset{\substack{\\ \text{particle 3}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{particle 3}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 &
 u_{41}&=
-\underset{\substack{\\ \text{particle 4}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{particle 4}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 &
 u_{42}&=
-\underset{\substack{\\ \text{particle 4}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{particle 4}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{align*}
 
@@ -121,10 +121,10 @@ for Moller scattering where the subscripts $abcd$ are the spin states of the ele
 \begin{equation*}
 |\mathcal{M}_{abcd}|^2=\frac{e^4}{N}
 \left|
-\underset{\substack{\text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{no electron interchange}}}
+\underset{\substack{\phantom{0}\\ \text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{no electron interchange}}}
 {\frac{1}{t}(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})}
 -
-\underset{\substack{\text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{electron interchange}}}
+\underset{\substack{\phantom{0}\\ \text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{electron interchange}}}
 {\frac{1}{u}(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})}
 \right|^2
 \end{equation*}
@@ -338,10 +338,13 @@ The following equivalent formula can also be used.
 \right)
 \\
 =2e^4\left(
-\underset{\substack{\text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{no electron interchange}}}
-{\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}+
-\underset{\text{interaction term}}{\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}}+
-\underset{\substack{\text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{electron interchange}}}
+\underset{\substack{\phantom{0}\\ \text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{no electron interchange}}}
+{\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}
++
+\underset{\substack{\phantom{0}\\ \text{interaction term}}}
+{\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}}
++
+\underset{\substack{\phantom{0}\\ \text{from Feynman diagram with}\\ \text{photon exchange}\\ \text{electron interchange}}}
 {\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
 \right)
 \end{multline*}
