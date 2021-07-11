@@ -1,0 +1,44 @@
+"Verify LRL vector (1=ok)"
+
+r = sqrt(x^2 + y^2 + z^2)
+
+Px(f) = -i hbar d(f,x)
+Py(f) = -i hbar d(f,y)
+Pz(f) = -i hbar d(f,z)
+
+Lx(f) = y Pz(f) - z Py(f)
+Ly(f) = z Px(f) - x Pz(f)
+Lz(f) = x Py(f) - y Px(f)
+
+Lx(f) = -i hbar (y d(f,z) - z d(f,y))
+Ly(f) = -i hbar (z d(f,x) - x d(f,z))
+Lz(f) = -i hbar (x d(f,y) - y d(f,x))
+
+Ax(f) = 1 / m (Py(Lz(f)) - Pz(Ly(f))) -
+        i hbar / m Px(f) - Z / r x f
+
+Ay(f) = 1 / m (Pz(Lx(f)) - Px(Lz(f))) -
+        i hbar / m Py(f) - Z / r y f
+
+Az(f) = 1 / m (Px(Ly(f)) - Py(Lx(f))) -
+        i hbar / m Pz(f) - Z / r z f
+
+P2(f) = Px(Px(f)) + Py(Py(f)) + Pz(Pz(f))
+L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
+A2(f) = Ax(Ax(f)) + Ay(Ay(f)) + Az(Az(f))
+
+psi = f(x,y,z)
+
+Ax(Lx(psi)) + Ay(Ly(psi)) + Az(Lz(psi)) == 0
+
+Lx(Ax(psi)) + Ly(Ay(psi)) + Lz(Az(psi)) == 0
+
+-- hamiltonian operator
+
+H(psi) = 1 / (2 m) P2(psi) - Z / r psi
+
+H(Ax(psi)) - Ax(H(psi)) == 0
+H(Ay(psi)) - Ay(H(psi)) == 0
+H(Az(psi)) - Az(H(psi)) == 0
+
+A2(psi) == 2 / m H(L2(psi) + hbar^2 psi) + Z^2 psi
