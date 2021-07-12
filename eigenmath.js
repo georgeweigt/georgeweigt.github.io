@@ -3937,6 +3937,23 @@ divisor(p)
 
 	return divisor_term(p);
 }
+
+function
+divisor_term(p)
+{
+	if (car(p) == symbol(MULTIPLY)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (divisor_factor(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+		return 0;
+	}
+
+	return divisor_factor(p);
+}
+
 function
 divisor_factor(p)
 {
@@ -3961,21 +3978,6 @@ divisor_factor(p)
 	}
 
 	return 0;
-}
-function
-divisor_term(p)
-{
-	if (car(p) == symbol(MULTIPLY)) {
-		p = cdr(p);
-		while (iscons(p)) {
-			if (divisor_factor(car(p)))
-				return 1;
-			p = cdr(p);
-		}
-		return 0;
-	}
-
-	return divisor_factor(p);
 }
 function
 dlog(p1, p2)
