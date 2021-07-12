@@ -22,14 +22,14 @@ Lx(f) = y Pz(f) - z Py(f)
 Ly(f) = z Px(f) - x Pz(f)
 Lz(f) = x Py(f) - y Px(f)
 
-Ax(f) = 1 / m (Py(Lz(f)) - Pz(Ly(f))) -
-        i hbar / m Px(f) - Z / R x f
+Ax(f) = (Py(Lz(f)) - Pz(Ly(f)) - Ly(Pz(f)) + Lz(Py(f))) / (2m) -
+        Z / R x f
 
-Ay(f) = 1 / m (Pz(Lx(f)) - Px(Lz(f))) -
-        i hbar / m Py(f) - Z / R y f
+Ay(f) = (Pz(Lx(f)) - Px(Lz(f)) - Lz(Px(f)) + Lx(Pz(f))) / (2m) -
+        Z / R y f
 
-Az(f) = 1 / m (Px(Ly(f)) - Py(Lx(f))) -
-        i hbar / m Pz(f) - Z / R z f
+Az(f) = (Px(Ly(f)) - Py(Lx(f)) - Lx(Py(f)) + Ly(Px(f))) / (2m) -
+        Z / R z f
 
 P2(f) = Px(Px(f)) + Py(Py(f)) + Pz(Pz(f))
 L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
