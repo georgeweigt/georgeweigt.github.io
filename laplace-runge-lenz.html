@@ -14,13 +14,19 @@
 
 R = sqrt(x^2 + y^2 + z^2)
 
+-- linear momentum operators
+
 Px(f) = -i hbar d(f,x)
 Py(f) = -i hbar d(f,y)
 Pz(f) = -i hbar d(f,z)
 
+-- angular momentum operators
+
 Lx(f) = y Pz(f) - z Py(f)
 Ly(f) = z Px(f) - x Pz(f)
 Lz(f) = x Py(f) - y Px(f)
+
+-- Laplace-Runge-Lenz operators
 
 Ax(f) = 1 / (2 m) *
         (Py(Lz(f)) - Pz(Ly(f)) - Ly(Pz(f)) + Lz(Py(f))) -
@@ -33,6 +39,8 @@ Ay(f) = 1 / (2 m) *
 Az(f) = 1 / (2 m) *
         (Px(Ly(f)) - Py(Lx(f)) - Lx(Py(f)) + Ly(Px(f))) -
         Z / R z f
+
+-- squared operators
 
 P2(f) = Px(Px(f)) + Py(Py(f)) + Pz(Pz(f))
 L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
