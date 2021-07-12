@@ -22,13 +22,16 @@ Lx(f) = y Pz(f) - z Py(f)
 Ly(f) = z Px(f) - x Pz(f)
 Lz(f) = x Py(f) - y Px(f)
 
-Ax(f) = (Py(Lz(f)) - Pz(Ly(f)) - Ly(Pz(f)) + Lz(Py(f))) / (2m) -
+Ax(f) = 1 / (2 m) *
+        (Py(Lz(f)) - Pz(Ly(f)) - Ly(Pz(f)) + Lz(Py(f))) -
         Z / R x f
 
-Ay(f) = (Pz(Lx(f)) - Px(Lz(f)) - Lz(Px(f)) + Lx(Pz(f))) / (2m) -
+Ay(f) = 1 / (2 m) *
+        (Pz(Lx(f)) - Px(Lz(f)) - Lz(Px(f)) + Lx(Pz(f))) -
         Z / R y f
 
-Az(f) = (Px(Ly(f)) - Py(Lx(f)) - Lx(Py(f)) + Ly(Px(f))) / (2m) -
+Az(f) = 1 / (2 m) *
+        (Px(Ly(f)) - Py(Lx(f)) - Lx(Py(f)) + Ly(Px(f))) -
         Z / R z f
 
 P2(f) = Px(Px(f)) + Py(Py(f)) + Pz(Pz(f))
