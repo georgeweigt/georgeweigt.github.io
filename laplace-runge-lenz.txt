@@ -1,4 +1,4 @@
-"Verify LRL vector (1=ok)"
+"Verify quantum LRL operators (1=ok)"
 
 R = sqrt(x^2 + y^2 + z^2)
 
@@ -14,7 +14,7 @@ Lx(f) = y Pz(f) - z Py(f)
 Ly(f) = z Px(f) - x Pz(f)
 Lz(f) = x Py(f) - y Px(f)
 
--- Laplace-Runge-Lenz operators
+-- Laplace-Runge-Lenz (LRL) operators
 
 Ax(f) = 1 / (2 m) *
         (Py(Lz(f)) - Pz(Ly(f)) - Ly(Pz(f)) + Lz(Py(f))) -
