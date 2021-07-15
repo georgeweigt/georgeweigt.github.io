@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+"Verify equation (1)"
+
+f = sin(theta1) sin(theta2)
+
+I = defint(f,theta1,0,pi,theta2,0,pi,phi1,0,2pi,phi2,0,2pi)
+
+I == 16 pi^2
+
+"Verify integral over V2"
+
+I1 = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
+I2 = 4 alpha^3 integral(exp(-2 alpha r2) r2, r2)
+
+I1 == 4 alpha^3 / r1 exp(-2 alpha r2) *
+      (-r2^2 / (2 alpha) - r2 / (2 alpha^2) - 1 / (4 alpha^3))
+
+I2 == 4 alpha^3 exp(-2 alpha r2) (-r2 / (2 alpha) - 1 / (4 alpha^2))
+
+I1 = eval(I1,r2,r1) - eval(I1,r2,0)
+I2 = 0 - eval(I2,r2,r1)
+
+I = I1 + I2
+
+I == 1/r1 - 1/r1 exp(-2 alpha r1) - alpha exp(-2 alpha r1)
+
+"Verify integral over V1"
+
+I = 4 alpha^3 integral(exp(-2 alpha r1) I r1^2, r1)
+
+I == exp(-2 alpha r1) (-2 alpha^2 r1 - alpha) -
+     exp(-4 alpha r1) (-alpha^2 r1 - 1/4 alpha) -
+     exp(-4 alpha r1) (-alpha^3 r1^2 - 1/2 alpha^2 r1 - 1/8 alpha)
+
+I = 0 - eval(I,r1,0)
+
+I == 5/8 alpha
+
+"Verify selected integrals of Legendre"
+
+P(f,n) = eval(d((x^2 - 1)^n, x, n), x, f) / (2^n n!) -- Rodrigues's formula
+
+defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2
+defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0
+defint(P(expcos(theta),2) expsin(theta), theta, 0, pi) == 0
+defint(P(expcos(theta),10) expsin(theta), theta, 0, pi) == 0
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
