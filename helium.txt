@@ -6,6 +6,32 @@ I = defint(f,theta1,0,pi,theta2,0,pi,phi1,0,2pi,phi2,0,2pi)
 
 I == 16 pi^2
 
+"Verify equation (2)"
+
+psi = alpha^3 / pi exp(-alpha (r1 + r2))
+
+Laplacian(psi) = 1 / r1^2 d(r1^2 d(psi, r1), r1)
+
+f = -1/2 psi Laplacian(psi) r1^2 r2^2
+
+I = 16 pi^2 integral(f,r1,r2)
+
+I = 0 - eval(I,r1,0) -- I evaluated at r1 = infinity is zero
+I = 0 - eval(I,r2,0) -- I evaluated at r2 = infinity is zero
+
+I == 1/2 alpha^2
+
+"Verify equation (3)"
+
+f = -psi (Z / r1) psi r1^2 r2^2
+
+I = 16 pi^2 integral(f,r1,r2)
+
+I = 0 - eval(I,r1,0) -- I evaluated at r1 = infinity is zero
+I = 0 - eval(I,r2,0) -- I evaluated at r2 = infinity is zero
+
+I == -Z alpha
+
 "Verify integral over V2"
 
 I1 = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
