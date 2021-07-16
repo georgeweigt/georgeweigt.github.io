@@ -5,7 +5,30 @@
 \begin{document}
 
 \noindent
-Find the expected energy $\langle E\rangle$ for the following wave function.
+Consider the time independent Schroedinger equation
+\begin{equation*}
+\hat{H}\psi=E\psi
+\end{equation*}
+
+\noindent
+For a wave function $\psi$ that is an exact solution, $E$ is a number.
+However, when $\psi$ is an approximate solution, $E$ varies from point to point.
+For example, a two-electron atom does not have an exact solution,
+hence for an approximate solution we have
+\begin{equation*}
+\hat{H}\psi=E(\vec{r}_1,\vec{r}_2)\psi
+\end{equation*}
+
+\noindent
+where $E(\vec{r}_1,\vec{r}_2)$ is a function of the electron coordinates.
+We still want a single number for the energy, so we use the expected energy $\langle E\rangle$.
+The expected energy is basically the average energy for the wave function.
+If the wave function $\psi$ is a good approximation,
+then the errors should average out and $\langle E\rangle$ will be close to the observed energy.
+
+\bigskip
+\noindent
+For a helium atom, find the expected energy $\langle E\rangle$ given the following approximate wave function.
 \begin{equation*}
 \psi=\frac{\alpha^3}{\pi}\exp\left(-\alpha (r_1+r_2)\right)
 \end{equation*}
