@@ -32,24 +32,24 @@ I = 0 - eval(I,r2,0) -- I evaluated at r2 = infinity is zero
 
 I == -Z alpha
 
-"Verify integral over V2"
+"Verify equation (6)"
 
-I1 = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
-I2 = 4 alpha^3 integral(exp(-2 alpha r2) r2, r2)
+A = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
+B = 4 alpha^3 integral(exp(-2 alpha r2) r2, r2)
 
-I1 == 4 alpha^3 / r1 exp(-2 alpha r2) *
+A == 4 alpha^3 / r1 exp(-2 alpha r2) *
       (-r2^2 / (2 alpha) - r2 / (2 alpha^2) - 1 / (4 alpha^3))
 
-I2 == 4 alpha^3 exp(-2 alpha r2) (-r2 / (2 alpha) - 1 / (4 alpha^2))
+B == 4 alpha^3 exp(-2 alpha r2) (-r2 / (2 alpha) - 1 / (4 alpha^2))
 
-I1 = eval(I1,r2,r1) - eval(I1,r2,0)
-I2 = 0 - eval(I2,r2,r1)
+A = eval(A,r2,r1) - eval(A,r2,0)
+B = 0 - eval(B,r2,r1)
 
-I = I1 + I2
+I = A + B
 
 I == 1/r1 - 1/r1 exp(-2 alpha r1) - alpha exp(-2 alpha r1)
 
-"Verify integral over V1"
+"Verify equation (7)"
 
 I = 4 alpha^3 integral(exp(-2 alpha r1) I r1^2, r1)
 
@@ -61,7 +61,7 @@ I = 0 - eval(I,r1,0)
 
 I == 5/8 alpha
 
-"Verify selected integrals of Legendre"
+"Verify equation (5)"
 
 P(f,n) = eval(d((x^2 - 1)^n, x, n), x, f) / (2^n n!) -- Rodrigues's formula
 

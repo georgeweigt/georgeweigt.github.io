@@ -176,7 +176,7 @@ Convert hartrees to electron volts.
 \noindent
 It turns out that $\langle E\rangle$ is about 2\% higher than the observed value $-79.0052\,\text{eV}$.
 \begin{equation*}
-1-\frac{(-77.4888\,\text{eV})}{(-79.0052\,\text{eV})}=0.019
+\frac{(-77.4888)-(-79.0052)}{|-79.0052|}=0.019
 \end{equation*}
 
 \noindent
@@ -247,6 +247,7 @@ It turns out that, after integrating over $\theta_2$, all summands vanish except
 \\
 &0, & k>0
 \end{aligned}\right.
+\tag{5}
 \end{equation*}
 
 \noindent
@@ -272,6 +273,7 @@ I(r_1)=
 Evaluate per limits.
 \begin{equation*}
 I(r_1)=\frac{1}{r_1}-\frac{1}{r_1}\exp(-2\alpha r_1)-\alpha\exp(-2\alpha r_1)
+\tag{6}
 \end{equation*}
 
 \noindent
@@ -309,6 +311,7 @@ I=\exp(-2\alpha r_1)\left(-2\alpha^2r_1-\alpha\right)\bigg|_0^\infty
 The result vanishes for $r_1=\infty$ hence
 \begin{equation*}
 I=0-\left(-\alpha+\tfrac{1}{4}\alpha+\tfrac{1}{8}\alpha\right)=\tfrac{5}{8}\alpha
+\tag{7}
 \end{equation*}
 
 \end{document}
