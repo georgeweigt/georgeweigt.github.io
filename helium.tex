@@ -11,7 +11,7 @@ Consider the time independent Schroedinger equation
 \end{equation*}
 
 \noindent
-For a wave function $\psi$ that is an exact solution, $E$ is a number.
+For an eigenfunction $\psi$ that is an exact solution, $E$ is a number.
 However, when $\psi$ is an approximate solution, $E$ varies over the coordinates of $\psi$.
 For example, a two-electron atom does not have an exact solution,
 hence for an approximate $\psi$ we have
@@ -23,25 +23,26 @@ hence for an approximate $\psi$ we have
 where $E(\vec{r}_1,\vec{r}_2)$ is a function of the electron coordinates.
 We still want a single number for the energy, so we use the expected energy $\langle E\rangle$.
 The expected energy is basically the average value of $E(\vec{r}_1,\vec{r}_2)$.
-If the wave function $\psi$ is a good approximation
+If the eigenfunction $\psi$ is a good approximation
 then $\langle E\rangle$ should be close to the actual energy determined by experiment.
 
 \bigskip
 \noindent
-For a helium atom, find the expected energy $\langle E\rangle$ given the following approximate wave function.
+For a helium atom, find the expected energy $\langle E\rangle$ given the following approximate eigenfunction.
 \begin{equation*}
 \psi=\frac{\alpha^3}{\pi}\exp\left(-\alpha (r_1+r_2)\right)
 \end{equation*}
 
 \noindent
-Recall that $\psi^2$ is a probability density function.
+Recall that $|\psi|^2=\psi^*\psi$ is a probability density function.
 Hence the expected energy is
 \begin{equation*}
-\langle E\rangle=\int E\psi^2\,dV_1\,dV_2
+\langle E\rangle=\int E\,|\psi|^2\,dV_1\,dV_2
 \end{equation*}
 
 \noindent
 Reorder factors.
+(For the eigenfunction given above, $\psi^*=\psi$.)
 \begin{equation*}
 \langle E\rangle=\int\psi E\psi\,dV_1\,dV_2
 \end{equation*}
