@@ -1,0 +1,40 @@
+-- theta is polar angle (0 to pi)
+-- phi is azimuth (0 to 2 pi)
+
+F = r sin(theta)
+G = r cos(theta)
+
+x = F cos(phi)
+y = F sin(phi)
+z = G
+
+simplify(x^2 + y^2 + z^2)
+
+S = (x,y,z)
+
+Nx = -d(G,theta) cos(phi)
+Ny = -d(G,theta) sin(phi)
+Nz = d(F,theta)
+
+N = (Nx,Ny,Nz)
+
+N = N / sqrt(d(F,theta)^2 + d(G,theta)^2) -- normalize
+
+N = simplify(N)
+N
+
+"Verify (1=ok)"
+
+theta = 0
+N == (0,0,1)
+
+theta = pi
+N == (0,0,-1)
+
+theta = pi/2
+phi = 0
+N == (1,0,0)
+
+theta = pi/2
+phi = pi/2
+N == (0,1,0)
