@@ -1,0 +1,40 @@
+"Rydberg unit of energy"
+
+-- planck constant (exact since 2019)
+
+h = 6.62607015 10^(-34) joule second
+
+-- electron mass
+
+me = 9.1093837015 10^(-31) kilogram
+
+-- elementary charge
+
+e = 1.602176634 10^(-19) coulomb
+
+-- vacuum electric permittivity
+
+epsilon0 = 8.8541878128 10^(-12) farad / meter
+
+-- derived units
+
+joule = kilogram meter^2 / second^2
+coulomb = ampere second
+volt = joule / coulomb
+farad = coulomb / volt
+
+-- base units (for printing)
+
+ampere = "ampere"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+-- rydberg unit of energy
+
+Ry = me e^4 / (8 h^2 epsilon0^2)
+
+-- convert to electron volts
+
+Ry = Ry 1/e coulomb / joule "eV"
+Ry
