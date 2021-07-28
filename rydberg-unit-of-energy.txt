@@ -1,6 +1,6 @@
 "Rydberg unit of energy"
 
--- planck constant (exact since 2019)
+-- planck constant (exact value since 2019 definition of kilogram)
 
 h = 6.62607015 10^(-34) joule second
 
