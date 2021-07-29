@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+The transition rate from state $n$ to $m$ is
+\begin{equation*}
+A_{nm}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{nm}^3\,|\langle r_{nm}\rangle|^2
+\end{equation*}
+where
+\begin{equation*}
+\omega_{nm}=\frac{1}{\hbar}(E_n-E_m),\qquad
+E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
+\end{equation*}
+Symbol $\mu$ is the reduced electron mass.
+
+\bigskip
+\noindent
+The radial density is
+\begin{equation*}
+|\langle r_{nm}\rangle|^2
+=|\langle x_{nm}\rangle|^2
++|\langle y_{nm}\rangle|^2
++|\langle z_{nm}\rangle|^2
+\end{equation*}
+where
+\begin{align*}
+\langle x_{nm}\rangle&=\int\psi_m^*\,(r\sin\theta\cos\phi)\,\psi_n\,dV
+\\
+\langle y_{nm}\rangle&=\int\psi_m^*\,(r\sin\theta\sin\phi)\,\psi_n\,dV
+\\
+\langle z_{nm}\rangle&=\int\psi_m^*\,(r\cos\theta)\,\psi_n\,dV
+\end{align*}
+
+\noindent
+Let us compute $A_{21}$ for the hydrogen atom.
+For $n=2$ there are four possible states.
+\begin{center}
+\begin{tabular}{rrr}
+$n$ & $\ell$ & $m$\\
+2 & 1 & 1 \\
+2 & 1 & $-1$ \\
+2 & 1 & 0 \\
+2 & 0 & 0
+\end{tabular}
+\end{center}
+
+\noindent
+The following table shows calculations for every possible transition.
+\begin{center}
+\begin{tabular}{rcccc}
+& {\footnotesize$(2,1,1)\rightarrow(1,0,0)$}
+& {\footnotesize$(2,1,-1)\rightarrow(1,0,0)$}
+& {\footnotesize$(2,1,0)\rightarrow(1,0,0)$}
+& {\footnotesize$(2,0,0)\rightarrow(1,0,0)$}
+\\[2ex]
+$\langle x_{nm}\rangle=$ & $-\frac{128}{243}\,a_0$ & $\frac{128}{243}\,a_0$ & 0 & 0
+\\[1ex]
+$\langle y_{nm}\rangle=$ & $-\frac{128}{243}i\,a_0$ & $-\frac{128}{243}i\,a_0$ & 0 & 0
+\\[1ex]
+$\langle z_{nm}\rangle=$ & 0 & 0 & $\frac{128}{243}\sqrt{2}\,a_0$ & 0
+\\[1ex]
+$|\langle r_{nm}\rangle|^2=$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & 0
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent
+Note that the transition $(2,0,0)\rightarrow(1,0,0)$ is not allowed.
+For the allowed transitions, the result is independent of $\ell$ and $m$.
+
+\bigskip
+\noindent
+Symbol $a_0$ is the Bohr radius
+\begin{equation*}
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}
+\end{equation*}
+
+\bigskip
+\noindent
+We have
+\begin{equation*}
+\omega_{12}=\frac{1}{\hbar}(E_2-E_1)=\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+A_{12}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}
+\underset{\substack{\\[1ex]\omega_{12}}}
+{\left(\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}\right)^3}
+\,
+\underset{\substack{\\[1ex]|\langle r_{12}\rangle|^2}}
+{\frac{32768}{59049}\left(\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}\right)^2}
+=
+\frac{e^{10}\mu}{26244\pi^5\varepsilon_0^5\hbar^6 c^3}
+=6.27\times10^{-8}\,\text{second}^{-1}
+\end{equation*}
+
+\end{document}
