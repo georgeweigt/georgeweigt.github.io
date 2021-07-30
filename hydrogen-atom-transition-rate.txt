@@ -66,7 +66,9 @@ rbar4 = conj(xbar4) xbar4 + conj(ybar4) ybar4 + conj(zbar4) zbar4
 
 -- print
 
-(("","2,1,1","2,1,-1","2,1,0","2,0,0"),
+psi = quote(psi)
+
+(("",psi(2,1,1),psi(2,1,-1),psi(2,1,0),psi(2,0,0)),
  (x,xbar1,xbar2,xbar3,xbar4),
  (y,ybar1,ybar2,ybar3,ybar4),
  (z,zbar1,zbar2,zbar3,zbar4),
