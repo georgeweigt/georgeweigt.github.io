@@ -17,8 +17,8 @@ default:
 clean:
 	rm -f *.aux *.log *.out *.synctex.gz *.toc a.out tmp tmp.pdf
 
-collate:
-	gcc collate.c
+combo:
+	gcc combo.c
 	./a.out >tmp
 	pdflatex tmp
 	rm a.out tmp
