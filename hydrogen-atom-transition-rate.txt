@@ -101,11 +101,11 @@ second = "second"
 
 pi = float(pi)
 
-a0 = 4 pi epsilon0 hbar^2 / (e^2 me)
+a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
 a0
 
 omega21 = 1/hbar (E(2) - E(1))
 omega21
 
-Anm = e^10 mu^3 / (26244 pi^5 epsilon0^5 hbar^6 c^3 me^2)
+Anm = e^10 mu / (26244 pi^5 epsilon0^5 hbar^6 c^3)
 Anm
