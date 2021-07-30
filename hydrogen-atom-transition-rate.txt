@@ -21,7 +21,7 @@ Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
 P(f,n,m) = eval(1 / (2^n n!) (1 - x^2)^(m/2) *
            d((x^2 - 1)^n,x,n + m),x,f)
 
--- H is the Hamiltonian
+-- H is for Hamiltonian
 
 H(psi) = -hbar^2 Lap(psi) / (2 mu) - e^2 / (4 pi epsilon0 r) psi
 
@@ -29,7 +29,7 @@ Lap(f) = 1/r^2 d(r^2 d(f,r),r) +
          1/(r^2 expsin(theta)) d(expsin(theta) d(f,theta),theta) +
          1/(r expsin(theta))^2 d(f,phi,2)
 
--- E returns the energy eigenvalue
+-- E(n) returns the nth energy eigenvalue
 
 E(n) = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
 
