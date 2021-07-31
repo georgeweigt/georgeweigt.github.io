@@ -4804,8 +4804,24 @@ emit_points()
 function
 equal(p1, p2)
 {
+	var i, n;
+
 	if (p1 == p2)
 		return 1;
+
+	if (istensor(p1) && istensor(p2)) {
+		if (p1.dim.length != p2.dim.length)
+			return 0;
+		n = p1.dim.length;
+		for (i = 0; i < n; i++)
+			if (p1.dim[i] != p2.dim[i])
+				return 0;
+		n = p1.elem.length;
+		for (i = 0; i < n; i++)
+			if (!equal(p1.elem[i], p2.elem[i]))
+				return 0;
+		return 1;
+	}
 
 	if (iscons(p1) && iscons(p2)) {
 		while (iscons(p1) && iscons(p2)) {
@@ -6923,6 +6939,15 @@ eval_testeq(p1)
 		push_integer(1);
 		return;
 	}
+
+	// for trivial equality
+
+	if (equal(p1, p2)) {
+		push_integer(1);
+		return;
+	}
+
+	// otherwise use simplify
 
 	if (!istensor(p1) && !istensor(p2)) {
 		push(p1);
