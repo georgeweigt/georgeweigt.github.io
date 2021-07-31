@@ -6,7 +6,7 @@
 
 \noindent
 This is the transition rate $A_{nm}$
-for a spontaneous emission process $\psi_n\rightarrow\psi_m$.
+for the spontaneous emission process $\psi_n\rightarrow\psi_m$.
 \begin{equation*}
 A_{nm}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{nm}^3\,|\langle r_{nm}\rangle|^2
 \end{equation*}
@@ -15,14 +15,6 @@ The transition frequency is
 \omega_{nm}=\frac{1}{\hbar}(E_n-E_m)
 \end{equation*}
 
-\noindent
-The energy levels for hydrogen are
-\begin{equation*}
-E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
-\end{equation*}
-where $\mu$ is reduced electron mass.
-
-\bigskip
 \noindent
 The radial density is
 \begin{equation*}
@@ -41,8 +33,16 @@ where
 \end{align*}
 
 \noindent
-Let us compute $A_{21}$ for a hydrogen atom.
-For $n=2$ there are four possible states.
+Let us compute $A_{21}$ for hydrogen.
+The energy levels for hydrogen are
+\begin{equation*}
+E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
+\end{equation*}
+where $\mu$ is reduced electron mass.
+
+\bigskip
+\noindent
+For $n=2$ there are four eigenstates.
 \begin{center}
 \begin{tabular}{rrr}
 $n$ & $\ell$ & $m$\\
@@ -90,7 +90,8 @@ a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2 \mu}
 \noindent
 For the transition frequency we have
 \begin{equation*}
-\omega_{21}=\frac{1}{\hbar}(E_2-E_1)=\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}
+\omega_{21}=\frac{1}{\hbar}(E_2-E_1)
+%=\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}
 =1.55\times10^{16}\,\text{second}^{-1}
 \end{equation*}
 
