@@ -8,7 +8,7 @@
 Let $A_{nm}$ be the transition rate for the process $\psi_n\rightarrow\psi_m$ where $E_n>E_m$.
 Heisenberg gives us
 \begin{equation*}
-A_{nm}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{nm}^3\,|\langle r_{nm}\rangle|^2
+A_{nm}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{nm}^3\,|r_{nm}|^2
 \end{equation*}
 Bohr's frequency condition gives
 \begin{equation*}
@@ -16,20 +16,20 @@ Bohr's frequency condition gives
 \end{equation*}
 
 \noindent
-The radial density is
+The radial probability density is
 \begin{equation*}
-|\langle r_{nm}\rangle|^2
-=|\langle x_{nm}\rangle|^2
-+|\langle y_{nm}\rangle|^2
-+|\langle z_{nm}\rangle|^2
+|r_{nm}|^2
+=|x_{nm}|^2
++|y_{nm}|^2
++|z_{nm}|^2
 \end{equation*}
 where
 \begin{align*}
-\langle x_{nm}\rangle&=\int\psi_m^*\,(r\sin\theta\cos\phi)\,\psi_n\,dV
+x_{nm}&=\int\psi_m^*\,(r\sin\theta\cos\phi)\,\psi_n\,dV
 \\
-\langle y_{nm}\rangle&=\int\psi_m^*\,(r\sin\theta\sin\phi)\,\psi_n\,dV
+y_{nm}&=\int\psi_m^*\,(r\sin\theta\sin\phi)\,\psi_n\,dV
 \\
-\langle z_{nm}\rangle&=\int\psi_m^*\,(r\cos\theta)\,\psi_n\,dV
+z_{nm}&=\int\psi_m^*\,(r\cos\theta)\,\psi_n\,dV
 \end{align*}
 
 \noindent
@@ -54,7 +54,7 @@ $n$ & $\ell$ & $m_\ell$\\
 \end{center}
 
 \noindent
-The following table shows the radial density for every possible transition.
+The following table shows the radial probability density for every possible transition.
 \begin{center}
 \begin{tabular}{rcccc}
 & $\psi_{2,1,1}\rightarrow\psi_{1,0,0}$
@@ -62,21 +62,21 @@ The following table shows the radial density for every possible transition.
 & $\psi_{2,1,0}\rightarrow\psi_{1,0,0}$
 & $\psi_{2,0,0}\rightarrow\psi_{1,0,0}$
 \\[2ex]
-$\langle x_{21}\rangle=$ & $-\frac{128}{243}\,a_0$ & $\frac{128}{243}\,a_0$ & 0 & 0
+$x_{21}=$ & $-\frac{128}{243}\,a_0$ & $\frac{128}{243}\,a_0$ & 0 & 0
 \\[2ex]
-$\langle y_{21}\rangle=$ & $-\frac{128}{243}i\,a_0$ & $-\frac{128}{243}i\,a_0$ & 0 & 0
+$y_{21}=$ & $-\frac{128}{243}i\,a_0$ & $-\frac{128}{243}i\,a_0$ & 0 & 0
 \\[2ex]
-$\langle z_{21}\rangle=$ & 0 & 0 & $\frac{128}{243}\sqrt{2}\,a_0$ & 0
+$z_{21}=$ & 0 & 0 & $\frac{128}{243}\sqrt{2}\,a_0$ & 0
 \\[2ex]
-$|\langle r_{21}\rangle|^2=$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & 0
+$|r_{21}|^2=$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & $\frac{32768}{59049}\,a_0^2$ & 0
 \end{tabular}
 \end{center}
 
 \medskip
 \noindent
 Note that the transition rate of $\psi_{2,0,0}\rightarrow\psi_{1,0,0}$ is zero.
-For the allowed transitions, the radial density
-$|\langle r_{21}\rangle|^2$ is independent of $m_\ell$.
+For the allowed transitions, the radial probability density
+$|r_{21}|^2$ is independent of $m_\ell$.
 
 \bigskip
 \noindent
@@ -114,7 +114,7 @@ A_{21}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}
 \underset{\substack{\\[1ex]\omega_{21}^3}}
 {\left(\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}\right)^3}
 \times
-\underset{\substack{\\[1ex]|\langle r_{21}\rangle|^2}}
+\underset{\substack{\\[1ex]|r_{21}|^2}}
 {\frac{32768}{59049}
 \left(\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}\right)^2}
 =\frac{e^{10}\mu}{26244\,\pi^5\varepsilon_0^5\hbar^6 c^3}
@@ -126,7 +126,7 @@ The parameters $n=2$ and $m=1$ contribute the following numerical factor to $A_{
 \underset{\substack{\\[1ex]\text{from $(E_2-E_1)^3$}}}
 {\left(-\frac{1}{2^2}+\frac{1}{1^2}\right)^3}
 \times
-\underset{\substack{\\[1ex]\text{from $|\langle r_{21}\rangle|^2$}}}
+\underset{\substack{\\[1ex]\text{from $|r_{21}|^2$}}}
 {\frac{32768}{59049}}
 =\frac{512}{2187}=\frac{2^9}{3^7}
 \end{equation*}
