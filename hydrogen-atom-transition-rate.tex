@@ -36,7 +36,26 @@ z_{nm}&=\int\psi_m^*\,(r\cos\theta)\,\psi_n\,dV
 
 \noindent
 Let us compute $A_{21}$ for hydrogen.
-For $n=2$ there are four eigenstates.
+The energy levels for hydrogen are
+\begin{equation*}
+E_n=-\frac{e^2}{8\pi\varepsilon_0 a_0n^2}
+\end{equation*}
+where $a_0$ is the Bohr radius
+\begin{equation*}
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2 m_e}
+=5.29\times10^{-11}\,\text{meter}
+\end{equation*}
+
+\noindent
+For the transition frequency we have
+\begin{equation*}
+\omega_{21}=\frac{1}{\hbar}(E_2-E_1)
+=1.55\times10^{16}\,\text{second}^{-1}
+\end{equation*}
+
+\noindent
+To compute the transition probability $|r_{21}|^2$ we need to
+consider all four eigenstates for $n=2$.
 \begin{center}
 \begin{tabular}{rrr}
 $n$ & $\ell$ & $m_\ell$\\
@@ -74,26 +93,7 @@ $|r_{21}|^2$ is independent of $m_\ell$.
 
 \bigskip
 \noindent
-The energy levels for hydrogen are
-\begin{equation*}
-E_n=-\frac{e^2}{8\pi\varepsilon_0 a_0n^2}
-\end{equation*}
-where $a_0$ is the Bohr radius
-\begin{equation*}
-a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2 m_e}
-=5.29\times10^{-11}\,\text{meter}
-\end{equation*}
-
-\noindent
-For the transition frequency we have
-\begin{equation*}
-\omega_{21}=\frac{1}{\hbar}(E_2-E_1)
-%=\frac{3e^4\mu}{128\pi^2\varepsilon_0^2\hbar^3}
-=1.55\times10^{16}\,\text{second}^{-1}
-\end{equation*}
-
-\noindent
-Hence
+Now that we have $|r_{21}|^2$ we can compute a numerical value for $A_{21}$.
 \begin{equation*}
 A_{21}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}
 \times
