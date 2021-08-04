@@ -114,16 +114,20 @@ Divide through by $\BMN p_m$ and rearrange terms.
 Solve for energy density $\rho(\nu)$.
 \begin{equation*}
 \rho(\nu)=\frac
-{\displaystyle(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-{\displaystyle\exp\left(-\frac{\varepsilon_n}{kT}\right)-\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-=\frac{\AMN/\BMN}{\displaystyle\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+{(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+{\exp\left(-\frac{\varepsilon_n}{kT}\right)-\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+=\frac{\AMN/\BMN}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
 \end{equation*}
 
 \noindent
 From Wien's law
-$\rho(\nu)=\alpha\nu^3\exp(-h\nu/kT)$ which is accurate for large $\nu$, we have
 \begin{equation*}
-\AMN/\BMN=\alpha\nu^3
+\rho(\nu)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
+\end{equation*}
+which is accurate for large $\nu$, we have
+%$\rho(\nu)=\alpha\nu^3\exp(-h\nu/kT)$ which is accurate for large $\nu$, we have
+\begin{equation*}
+\AMN/\BMN=\frac{2h\nu^3}{c^2}
 \end{equation*}
 and
 \begin{equation*}
@@ -133,7 +137,7 @@ and
 \noindent
 Planck's law follows directly.
 \begin{equation*}
-\rho(\nu)=\frac{\alpha\nu^3}{\displaystyle\exp\left(\frac{h\nu}{kT}\right)-1}
+\rho(\nu)=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
 \end{equation*}
 
 \end{document}
