@@ -112,22 +112,31 @@ Divide through by $\BMN p_m$ and rearrange terms.
 
 \noindent
 Solve for energy density $\rho(\nu)$.
-\begin{equation*}
-\rho(\nu)=\frac
-{(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\begin{align*}
+\rho(\nu)
+&=\frac{\AMN}{\BMN}\,
+\frac
+{\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 {\exp\left(-\frac{\varepsilon_n}{kT}\right)-\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-=\frac{\AMN/\BMN}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+\\[2ex]
+&=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+\end{align*}
+
+\noindent
+We now consider the limit of $\rho(\nu)$ for large $\nu$.
+\begin{equation*}
+\lim_{\nu\rightarrow\infty}\rho(\nu)
+=\frac{\AMN}{\BMN}\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)
 \end{equation*}
 
 \noindent
-From Wien's law
+Then by equivalence with Wien's law (which is accurate for large $\nu$)
 \begin{equation*}
-\rho(\nu)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
+\rho_\text{wien}(\nu)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
 \end{equation*}
-which is accurate for large $\nu$, we have
-%$\rho(\nu)=\alpha\nu^3\exp(-h\nu/kT)$ which is accurate for large $\nu$, we have
+we have
 \begin{equation*}
-\AMN/\BMN=\frac{2h\nu^3}{c^2}
+\frac{\AMN}{\BMN}=\frac{2h\nu^3}{c^2}
 \end{equation*}
 and
 \begin{equation*}
@@ -135,9 +144,12 @@ and
 \end{equation*}
 
 \noindent
-Planck's law follows directly.
-\begin{equation*}
-\rho(\nu)=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
-\end{equation*}
+Substitution yields Planck's law.
+\begin{align*}
+\rho(\nu)
+&=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+\\[2ex]
+&=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
+\end{align*}
 
 \end{document}
