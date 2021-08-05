@@ -16,18 +16,6 @@ h = 2 pi hbar
 
 e = quote(e) -- clear e (needed for elementary charge)
 
--- Planck's law
-
-rho(nu) = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
-
--- E(n) is the nth energy level for hydrogen
-
-E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
-
--- nu is transition frequency
-
-nu = (E(2) - E(1)) / h
-
 -- spontaneous emission
 
 A21 = e^10 me / (26244 pi^5 epsilon0^5 hbar^6 c^3)
@@ -54,8 +42,14 @@ B12
 
 "Verify Einstein equilibrium formula (1=ok)"
 
-B12 rho(nu) p1 exp(-E(1) / (k T)) ==
-B21 rho(nu) p2 exp(-E(2) / (k T)) + A21 p2 exp(-E(2) / (k T))
+rho = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
+
+E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
+
+nu = (E(2) - E(1)) / h
+
+B12 rho p1 exp(-E(1) / (k T)) ==
+B21 rho p2 exp(-E(2) / (k T)) + A21 p2 exp(-E(2) / (k T))
 
 -- physical constants (h and k are exact values)
 
@@ -88,6 +82,8 @@ second = "second"
 pi = float(pi)
 
 a0 = 4 pi epsilon0 hbar^2 / (e^2 me)
+
+nu = quote(nu)
 
 A21
 B21
