@@ -1,10 +1,14 @@
 -- Verify Einstein's equilibrium formula for Lyman-alpha line
 
+h = 2 pi hbar
+
+e = quote(e) -- clear e (needed for elementary charge)
+
 -- Planck's law
 
 rho(nu) = 2 h nu^3 / (c^2 (exp(h nu / (k T)) - 1))
 
-e = quote(e) -- clear e (needed for elementary charge)
+-- E(n) is the nth energy level for hydrogen
 
 E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
 
