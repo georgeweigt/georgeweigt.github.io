@@ -41,3 +41,39 @@ B12
 
 B12 rho(nu) p1 exp(-E(1) / (k T)) ==
 B21 rho(nu) p2 exp(-E(2) / (k T)) + A21 p2 exp(-E(2) / (k T))
+
+-- physical constants (h and k are exact values)
+
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+k = 1.380649 10^(-23) joule / kelvin
+me = 9.1093837015 10^(-31) kilogram
+mp = 1.67262192369 10^(-27) kilogram
+mu = me mp / (me + mp)
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878128 10^(-12) farad / meter
+c = 299792458.0 meter / second
+
+-- derived units
+
+joule = kilogram meter^2 / second^2
+coulomb = ampere second
+volt = joule / coulomb
+farad = coulomb / volt
+
+-- base units (for printing)
+
+ampere = "ampere"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+"Numerical values"
+
+pi = float(pi)
+
+a0 = 4 pi epsilon0 hbar^2 / (e^2 me)
+
+A21
+B21
+B12
