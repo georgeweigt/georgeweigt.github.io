@@ -2,9 +2,9 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 
-\newcommand\BNM{B_n} % absorption
-\newcommand\BMN{B_m} % induced emission
-\newcommand\AMN{A_m} % spontaneous emission
+\newcommand\BNM{B_{nm}} % absorption
+\newcommand\BMN{B_{mn}} % induced emission
+\newcommand\AMN{A_{mn}} % spontaneous emission
 
 \newcommand\ABSORPTION{\substack{\phantom{0}\\ \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
 \newcommand\INDUCED{\substack{\phantom{0}\\ \text{induced emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
@@ -90,12 +90,13 @@ Energy density $\rho(\nu)$ increases with temperature $T$
 hence $\AMN p_m/\rho(\nu)$ vanishes for $T\rightarrow\infty$ leaving
 \begin{equation*}
 \BNM p_n=\BMN p_m
+\tag{1}
 \end{equation*}
 
 \noindent
 Einstein reasoned that the above relation is true in general based on the assumption that
 the factors involved do not depend on $T$.
-By substitution in the absorption term we can now eliminate $B_np_n$ and obtain
+By substitution in the absorption term we can now eliminate $\BNM p_n$ and obtain
 \begin{equation*}
 \underset{\ABSORPTION}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_n}{kT}\right)}
 =\underset{\INDUCED}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
@@ -137,6 +138,7 @@ Then by equivalence with Wien's law (which is accurate for large $\nu$)
 we have
 \begin{equation*}
 \frac{\AMN}{\BMN}=\frac{2h\nu^3}{c^2}
+\tag{2}
 \end{equation*}
 and
 \begin{equation*}
@@ -151,5 +153,23 @@ Substitution yields Planck's law.
 \\[2ex]
 &=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
 \end{align*}
+
+\noindent
+Coefficient $\AMN$ can be computed from first principles of quantum mechanics.
+Then $\BMN$ can be obtained using equation (2).
+\begin{equation*}
+\BMN=\frac{c^2}{2h\nu^3}\,\AMN
+\end{equation*}
+
+\noindent
+Then $\BNM$ can be computed from equation (1).
+\begin{equation*}
+\BNM=\frac{p_m}{p_n}\,\BMN
+\end{equation*}
+
+\noindent
+The ratio $p_m/p_n$ is equal to the multiplicity ratio
+and hence is determined by the atomic species.
+Note that $\BMN$ and $\BNM$ depend on frequency $\nu$.
 
 \end{document}
