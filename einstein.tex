@@ -66,9 +66,17 @@ Divide through by $N$ to obtain
 \end{equation*}
 
 \noindent
+Multiply both sides by $\exp(\varepsilon_m/kT)$.
+\begin{equation*}
+\underset{\ABSORPTION}{\BNM\rho(\nu)p_n\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\rho(\nu)p_m}
++\underset{\SPONTANEOUS}{\AMN p_m}
+\end{equation*}
+
+\noindent
 Note that for increasing $T$ we have
 \begin{equation*}
-\lim_{T\rightarrow\infty}\exp\left(-\frac{\varepsilon_n}{kT}\right)=1
+\lim_{T\rightarrow\infty}\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)=1
 \end{equation*}
 
 \noindent
@@ -82,7 +90,7 @@ It follows that for $T\rightarrow\infty$ the equilibrium formula is
 \noindent
 Divide through by $\rho(\nu)$.
 \begin{equation*}
-\BNM p_n=\BMN p_m+\AMN p_m/\rho(\nu)
+\BNM p_n=\BMN p_m+\frac{\AMN p_m}{\rho(\nu)}
 \end{equation*}
 
 \noindent
@@ -94,40 +102,48 @@ hence $\AMN p_m/\rho(\nu)$ vanishes for $T\rightarrow\infty$ leaving
 \end{equation*}
 
 \noindent
-Einstein reasoned that the above relation is true in general based on the assumption that
+Einstein reasoned that equation (1) is true in general based on the assumption that
 the factors involved do not depend on $T$.
 By substitution in the absorption term we can now eliminate $\BNM p_n$ and obtain
 \begin{equation*}
-\underset{\ABSORPTION}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-+\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\underset{\ABSORPTION}{\BMN\rho(\nu)p_m\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\rho(\nu)p_m}
++\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
 \noindent
-Divide through by $\BMN p_m$ and rearrange terms.
+Divide both sides by $\BMN p_m$.
 \begin{equation*}
-\underset{\ABSORPTION}{\rho(\nu)\exp\left(-\frac{\varepsilon_n}{kT}\right)}
--\underset{\INDUCED}{\rho(\nu)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-=\underset{\SPONTANEOUS}{(\AMN/\BMN)\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\underset{\ABSORPTION}{\rho(\nu)\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\rho(\nu)}+\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
+\end{equation*}
+
+\noindent
+Rearrange terms.
+\begin{equation*}
+\underset{\ABSORPTION}{\rho(\nu)\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+-\underset{\INDUCED}{\rho(\nu)}=\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
+\end{equation*}
+
+\noindent
+Factor out $\rho(\nu)$.
+\begin{equation*}
+\rho(\nu)\left(\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1\right)
+=\frac{\AMN}{\BMN}
 \end{equation*}
 
 \noindent
 Solve for energy density $\rho(\nu)$.
-\begin{align*}
+\begin{equation*}
 \rho(\nu)
-&=\frac{\AMN}{\BMN}\,
-\frac
-{\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-{\exp\left(-\frac{\varepsilon_n}{kT}\right)-\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-\\[2ex]
-&=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
-\end{align*}
+=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
+\end{equation*}
 
 \noindent
-We now consider the limit of $\rho(\nu)$ for large $\varepsilon_m-\varepsilon_n$.
+We now consider the limit of $\rho(\nu)$ as $\varepsilon_m-\varepsilon_n\rightarrow\infty$.
 \begin{equation*}
-\lim\rho(\nu)
-=\frac{\AMN}{\BMN}\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)
+\lim_{\varepsilon_m-\varepsilon_n\rightarrow\infty}\rho(\nu)
+=\frac{\AMN}{\BMN}\exp\left(-\frac{\varepsilon_m-\varepsilon_n}{kT}\right)
 \end{equation*}
 
 \noindent
@@ -146,7 +162,7 @@ and
 \end{equation*}
 
 \noindent
-Substitution yields Planck's law.
+Then by substitution we obtain Planck's law.
 \begin{align*}
 \rho(\nu)
 &=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
@@ -157,20 +173,28 @@ Substitution yields Planck's law.
 \bigskip
 \noindent
 Coefficient $\AMN$ can be computed from first principles of quantum mechanics.
-Then $\BMN$ can be obtained using equation (2).
+For example, for hydrogen we have
+\begin{equation*}
+A_{21}=\frac{e^{10}m_e}{26244\,\pi^5\varepsilon_0^5\hbar^6 c^3}
+=6.27\times10^8\,\text{second}^{-1}
+\end{equation*}
+
+\noindent
+The coefficient for induced emission can be obtained from equation (2).
 \begin{equation*}
 \BMN=\frac{c^2}{2h\nu^3}\,\AMN
 \end{equation*}
 
 \noindent
-Then $\BNM$ can be computed from equation (1).
+The coefficient for absorption can be computed from equation (1).
 \begin{equation*}
 \BNM=\frac{p_m}{p_n}\,\BMN
 \end{equation*}
 
 \noindent
-The ratio $p_m/p_n$ is equal to the multiplicity ratio
-and hence is determined by the atomic species.
-Note that $\BMN$ and $\BNM$ depend on frequency $\nu$.
+The ratio $p_m/p_n$ is equal to $g_m/g_n$
+where $g_m$ is the multiplicity (number of degenerate states)
+associated with energy level $m$.
+Hence $p_m/p_n$ is determined by the atomic species.
 
 \end{document}
