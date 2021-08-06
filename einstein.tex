@@ -38,9 +38,9 @@ The processes are absorption, induced emission, and spontaneous emission.
 Let $\varepsilon_m$ be an energy level such that $\varepsilon_m>\varepsilon_n$.
 Let $\BNM$, $\BMN$, and $\AMN$ be coefficients of transition rates such that
 \begin{equation*}
-\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM\RHO N_n}
+\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM N_n \RHO}
 \qquad
-\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN\RHO N_m}
+\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN N_m \RHO}
 \qquad
 \underset{\SPONTANEOUS}{\frac{dN_m}{dt}=\AMN N_m}
 \end{equation*}
@@ -53,24 +53,24 @@ The $A$ and $B$ coefficients are presumed to not depend on temperature $T$.
 \noindent
 At equilibrium, transition rates between $\varepsilon_m$ and $\varepsilon_n$ are equal.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\RHO N_n}
-=\underset{\INDUCED}{\BMN\RHO N_m}
+\underset{\ABSORPTION}{\BNM N_n \RHO}
+=\underset{\INDUCED}{\BMN N_m \RHO}
 +\underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
 \noindent
 Divide through by $N$ to obtain
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\RHO p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\RHO p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(-\frac{\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN p_m \RHO\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 +\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 \end{equation*}
 
 \noindent
 Multiply both sides by $\exp(\varepsilon_m/kT)$.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\RHO p_n\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\RHO p_m}
+\underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN p_m \RHO}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
@@ -83,8 +83,8 @@ Note that for increasing $T$ we have
 \noindent
 It follows that for $T\rightarrow\infty$ the equilibrium formula is
 \begin{equation*}
-\BNM\RHO p_n
-=\BMN\RHO p_m
+\BNM p_n \RHO
+=\BMN p_m \RHO
 +\AMN p_m
 \end{equation*}
 
@@ -107,8 +107,8 @@ Einstein reasoned that equation (1) is true in general based on the assumption t
 the factors involved do not depend on $T$.
 By substitution in the absorption term we can now eliminate $\BNM p_n$ and obtain
 \begin{equation*}
-\underset{\ABSORPTION}{\BMN\RHO p_m\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\RHO p_m}
+\underset{\ABSORPTION}{\BMN p_m \RHO\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN p_m \RHO}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
