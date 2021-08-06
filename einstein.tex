@@ -5,6 +5,7 @@
 \newcommand\BNM{B_{nm}} % absorption
 \newcommand\BMN{B_{mn}} % induced emission
 \newcommand\AMN{A_{mn}} % spontaneous emission
+\newcommand\RHO{\rho(\nu,T)}
 
 \newcommand\ABSORPTION{\substack{\phantom{0}\\ \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
 \newcommand\INDUCED{\substack{\phantom{0}\\ \text{induced emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
@@ -37,39 +38,39 @@ The processes are absorption, induced emission, and spontaneous emission.
 Let $\varepsilon_m$ be an energy level such that $\varepsilon_m>\varepsilon_n$.
 Let $\BNM$, $\BMN$, and $\AMN$ be coefficients of transition rates such that
 \begin{equation*}
-\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM\rho(\nu)N_n}
+\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM\RHO N_n}
 \qquad
-\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN\rho(\nu)N_m}
+\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN\RHO N_m}
 \qquad
 \underset{\SPONTANEOUS}{\frac{dN_m}{dt}=\AMN N_m}
 \end{equation*}
-Absorption and induced emission are proportional to $\rho(\nu)$
+Absorption and induced emission are proportional to $\RHO$
 which is the radiant energy density of the gas
-as a function of radiant frequency $\nu$.
+as a function of radiant frequency $\nu$ and temperature $T$.
 The $A$ and $B$ coefficients are presumed to not depend on temperature $T$.
 
 \bigskip
 \noindent
 At equilibrium, transition rates between $\varepsilon_m$ and $\varepsilon_n$ are equal.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\rho(\nu)N_n}
-=\underset{\INDUCED}{\BMN\rho(\nu)N_m}
+\underset{\ABSORPTION}{\BNM\RHO N_n}
+=\underset{\INDUCED}{\BMN\RHO N_m}
 +\underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
 \noindent
 Divide through by $N$ to obtain
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\rho(\nu)p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\rho(\nu)p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
+\underset{\ABSORPTION}{\BNM\RHO p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\RHO p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 +\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 \end{equation*}
 
 \noindent
 Multiply both sides by $\exp(\varepsilon_m/kT)$.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM\rho(\nu)p_n\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\rho(\nu)p_m}
+\underset{\ABSORPTION}{\BNM\RHO p_n\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\RHO p_m}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
@@ -82,20 +83,20 @@ Note that for increasing $T$ we have
 \noindent
 It follows that for $T\rightarrow\infty$ the equilibrium formula is
 \begin{equation*}
-\BNM\rho(\nu)p_n
-=\BMN\rho(\nu)p_m
+\BNM\RHO p_n
+=\BMN\RHO p_m
 +\AMN p_m
 \end{equation*}
 
 \noindent
-Divide through by $\rho(\nu)$.
+Divide through by $\RHO$.
 \begin{equation*}
-\BNM p_n=\BMN p_m+\frac{\AMN p_m}{\rho(\nu)}
+\BNM p_n=\BMN p_m+\frac{\AMN p_m}{\RHO}
 \end{equation*}
 
 \noindent
-Energy density $\rho(\nu)$ increases with temperature $T$
-hence $\AMN p_m/\rho(\nu)$ vanishes for $T\rightarrow\infty$ leaving
+Energy density $\RHO$ increases with temperature $T$
+hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \begin{equation*}
 \BNM p_n=\BMN p_m
 \tag{1}
@@ -106,50 +107,50 @@ Einstein reasoned that equation (1) is true in general based on the assumption t
 the factors involved do not depend on $T$.
 By substitution in the absorption term we can now eliminate $\BNM p_n$ and obtain
 \begin{equation*}
-\underset{\ABSORPTION}{\BMN\rho(\nu)p_m\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN\rho(\nu)p_m}
+\underset{\ABSORPTION}{\BMN\RHO p_m\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\BMN\RHO p_m}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
 \noindent
 Divide both sides by $\BMN p_m$.
 \begin{equation*}
-\underset{\ABSORPTION}{\rho(\nu)\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
-=\underset{\INDUCED}{\rho(\nu)}+\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
+\underset{\ABSORPTION}{\RHO\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+=\underset{\INDUCED}{\RHO}+\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
 \end{equation*}
 
 \noindent
 Rearrange terms.
 \begin{equation*}
-\underset{\ABSORPTION}{\rho(\nu)\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
--\underset{\INDUCED}{\rho(\nu)}=\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
+\underset{\ABSORPTION}{\RHO\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)}
+-\underset{\INDUCED}{\RHO}=\underset{\SPONTANEOUS}{\frac{\AMN}{\BMN}}
 \end{equation*}
 
 \noindent
-Factor out $\rho(\nu)$.
+Factor out $\RHO$.
 \begin{equation*}
-\rho(\nu)\left(\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1\right)
+\RHO\left(\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1\right)
 =\frac{\AMN}{\BMN}
 \end{equation*}
 
 \noindent
-Solve for energy density $\rho(\nu)$.
+Solve for $\RHO$.
 \begin{equation*}
-\rho(\nu)
+\RHO
 =\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
 \end{equation*}
 
 \noindent
-We now consider the limit of $\rho(\nu)$ as $\varepsilon_m-\varepsilon_n\rightarrow\infty$.
+We now consider the limit of $\RHO$ as $\varepsilon_m-\varepsilon_n\rightarrow\infty$.
 \begin{equation*}
-\lim_{\varepsilon_m-\varepsilon_n\rightarrow\infty}\rho(\nu)
+\lim_{\varepsilon_m-\varepsilon_n\rightarrow\infty}\RHO
 =\frac{\AMN}{\BMN}\exp\left(-\frac{\varepsilon_m-\varepsilon_n}{kT}\right)
 \end{equation*}
 
 \noindent
 Then by equivalence with Wien's law (which is accurate for large $\nu$)
 \begin{equation*}
-\rho_\text{wien}(\nu)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
+\rho_\text{wien}(\nu,T)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
 \end{equation*}
 we have
 \begin{equation*}
@@ -164,7 +165,7 @@ and
 \noindent
 Then by substitution we obtain Planck's law.
 \begin{align*}
-\rho(\nu)
+\RHO
 &=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
 \\[2ex]
 &=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
@@ -172,7 +173,7 @@ Then by substitution we obtain Planck's law.
 
 \bigskip
 \noindent
-Coefficient $\AMN$ can be computed from first principles of quantum mechanics.
+The coefficient for spontaneous emission can be computed from first principles of quantum mechanics.
 For example, for hydrogen we have
 \begin{equation*}
 A_{21}=\frac{e^{10}m_e}{26244\,\pi^5\varepsilon_0^5\hbar^6 c^3}
