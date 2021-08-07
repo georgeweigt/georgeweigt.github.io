@@ -39,11 +39,13 @@ The coefficient $p_n$ is a statistical weighting factor that does not depend on 
 Let us now consider the processes by which an atom or molecule transitions between energy levels.
 The processes are absorption, induced emission, and spontaneous emission.
 Let $E_m$ and $E_n$ be energy levels such that $E_m>E_n$.
-Let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
+Let $N_{m\rightarrow n}$ be the number of atoms are molecules that change from energy level $E_m$ to $E_n$.
+Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \begin{equation*}
-\frac{dN_n}{dt}=\underset{\ABSORPTION}{\BNM N_n \RHO},
+\frac{N_{n\rightarrow m}}{\Delta t}
+=\underset{\ABSORPTION}{\BNM N_n \RHO},
 \qquad
-\frac{dN_m}{dt}
+\frac{N_{m\rightarrow n}}{\Delta t}
 =\underset{\INDUCED}{\BMN N_m \RHO}
 +
 \underset{\SPONTANEOUS}{\AMN N_m}
@@ -57,9 +59,9 @@ The $A$ and $B$ coefficients are presumed to not depend on temperature $T$.
 
 \bigskip
 \noindent
-At equilibrium, transition rates between $E_m$ and $E_n$ are equal.
+At equilibrium, transition rates are equal.
 \begin{equation*}
-\frac{dN_n}{dt}=\frac{dN_m}{dt}
+\frac{N_{n\rightarrow m}}{\Delta t}=\frac{N_{m\rightarrow n}}{\Delta t}
 \end{equation*}
 
 \noindent
