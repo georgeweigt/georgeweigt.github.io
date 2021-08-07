@@ -1,4 +1,4 @@
--- Verify Einstein's equilibrium formula (1) for Lyman-alpha line
+-- Verify Einstein's equilibrium formula (2) for Lyman-alpha line
 
 h = 2 pi hbar
 

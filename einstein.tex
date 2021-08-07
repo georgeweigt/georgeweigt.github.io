@@ -27,7 +27,10 @@ and let $N_n$ be the number of molecules with internal energy $\varepsilon_n$.
 By the Maxwell-Boltzmann distribution we have
 \begin{equation*}
 \frac{N_n}{N}=p_n\exp\left(-\frac{\varepsilon_n}{kT}\right)
+\tag{1}
 \end{equation*}
+
+\noindent
 where $k$ is Boltzmann's constant.
 The coefficient $p_n$ is a statistical weighting factor that does not depend on $T$.
 
@@ -44,6 +47,8 @@ Let $\BNM$, $\BMN$, and $\AMN$ be coefficients of transition rates such that
 \qquad
 \underset{\SPONTANEOUS}{\frac{dN_m}{dt}=\AMN N_m}
 \end{equation*}
+
+\noindent
 Absorption and induced emission are proportional to $\RHO$
 which is the radiant energy density of the gas
 as a function of radiant frequency $\nu$ and temperature $T$.
@@ -59,12 +64,20 @@ At equilibrium, transition rates between $\varepsilon_m$ and $\varepsilon_n$ are
 \end{equation*}
 
 \noindent
-Divide through by $N$ to obtain
+Divide through by $N$.
+\begin{equation*}
+\underset{\ABSORPTION}{\BNM \frac{N_n}{N} \RHO}
+=\underset{\INDUCED}{\BMN \frac{N_m}{N} \RHO}
++\underset{\SPONTANEOUS}{\AMN \frac{N_m}{N}}
+\end{equation*}
+
+\noindent
+Then by the Maxwell-Boltzmann distribution (1) we have
 \begin{equation*}
 \underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(-\frac{\varepsilon_n}{kT}\right)}
 =\underset{\INDUCED}{\BMN p_m \RHO\exp\left(-\frac{\varepsilon_m}{kT}\right)}
 +\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{\varepsilon_m}{kT}\right)}
-\tag{1}
+\tag{2}
 \end{equation*}
 
 \noindent
@@ -100,7 +113,7 @@ Energy density $\RHO$ increases with temperature $T$
 hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \begin{equation*}
 \BNM p_n=\BMN p_m
-\tag{2}
+\tag{3}
 \end{equation*}
 
 \noindent
@@ -156,7 +169,7 @@ Then by equivalence with Wien's law (which is accurate for large $\nu$)
 we have
 \begin{equation*}
 \frac{\AMN}{\BMN}=\frac{2h\nu^3}{c^2}
-\tag{3}
+\tag{4}
 \end{equation*}
 and
 \begin{equation*}
@@ -168,12 +181,12 @@ Then by substitution we obtain Planck's law.
 \begin{align*}
 \RHO
 &=\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{\varepsilon_m-\varepsilon_n}{kT}\right)-1}
-\\[2ex]
+\\[1.5ex]
 &=\frac{2h\nu^3}{c^2}\,\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
 \end{align*}
 
-\bigskip
 \noindent
+Let us now consider the values of the $A$ and $B$ coefficients.
 The coefficient for spontaneous emission can be computed from quantum mechanics.
 For example, for hydrogen we have
 \begin{equation*}
@@ -182,13 +195,13 @@ A_{21}=\frac{e^{10}m_e}{26244\,\pi^5\varepsilon_0^5\hbar^6 c^3}
 \end{equation*}
 
 \noindent
-The coefficient for induced emission can be obtained from equation (3).
+The coefficient for induced emission can be obtained from equation (4).
 \begin{equation*}
 \BMN=\frac{c^2}{2h\nu^3}\,\AMN
 \end{equation*}
 
 \noindent
-The coefficient for absorption can be computed from equation (2).
+The coefficient for absorption can be computed from equation (3).
 \begin{equation*}
 \BNM=\frac{p_m}{p_n}\,\BMN
 \end{equation*}
