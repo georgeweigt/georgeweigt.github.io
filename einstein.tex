@@ -7,9 +7,13 @@
 \newcommand\AMN{A_{mn}} % spontaneous emission
 \newcommand\RHO{\rho(\nu,T)}
 
-\newcommand\ABSORPTION{\substack{\\[1ex] \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
-\newcommand\INDUCED{\substack{\\[1ex] \text{induced}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
-\newcommand\SPONTANEOUS{\substack{\\[1ex] \text{spontaneous}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+%\newcommand\ABSORPTION{\substack{\\[1ex] \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
+%\newcommand\INDUCED{\substack{\\[1ex] \text{induced}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+%\newcommand\SPONTANEOUS{\substack{\\[1ex] \text{spontaneous}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+
+\newcommand\ABSORPTION{\substack{\\[1ex] \text{absorption}}}
+\newcommand\INDUCED{\substack{\\[1ex] \text{induced}\\ \text{emission}}}
+\newcommand\SPONTANEOUS{\substack{\\[1ex] \text{spontaneous}\\ \text{emission}}}
 
 \begin{document}
 
@@ -38,10 +42,10 @@ The coefficient $p_n$ is a statistical weighting factor that does not depend on 
 \noindent
 Let us now consider the processes by which an atom or molecule transitions between energy levels.
 The processes are absorption, induced emission, and spontaneous emission.
-Let $\varepsilon_m$ be an energy level such that $\varepsilon_m>\varepsilon_n$.
+Let $\varepsilon_m$ and $\varepsilon_n$ be energy levels such that $\varepsilon_m>\varepsilon_n$.
 Let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \begin{equation*}
-\frac{dN_n}{dt}=\underset{\ABSORPTION}{\BNM N_n \RHO}
+\frac{dN_n}{dt}=\underset{\ABSORPTION}{\BNM N_n \RHO},
 \qquad
 \frac{dN_m}{dt}
 =\underset{\INDUCED}{\BMN N_m \RHO}
