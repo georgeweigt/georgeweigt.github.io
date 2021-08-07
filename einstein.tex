@@ -7,9 +7,9 @@
 \newcommand\AMN{A_{mn}} % spontaneous emission
 \newcommand\RHO{\rho(\nu,T)}
 
-\newcommand\ABSORPTION{\substack{\phantom{0}\\ \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
-\newcommand\INDUCED{\substack{\phantom{0}\\ \text{induced emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
-\newcommand\SPONTANEOUS{\substack{\phantom{0}\\ \text{spontaneous emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+\newcommand\ABSORPTION{\substack{\\[1ex] \text{absorption}\\ \varepsilon_n\rightarrow\varepsilon_m}}
+\newcommand\INDUCED{\substack{\\[1ex] \text{induced}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
+\newcommand\SPONTANEOUS{\substack{\\[1ex] \text{spontaneous}\\ \text{emission}\\ \varepsilon_m\rightarrow\varepsilon_n}}
 
 \begin{document}
 
@@ -36,16 +36,17 @@ The coefficient $p_n$ is a statistical weighting factor that does not depend on 
 
 \bigskip
 \noindent
-Let us now consider the processes by which a molecule transitions between energy levels.
+Let us now consider the processes by which an atom or molecule transitions between energy levels.
 The processes are absorption, induced emission, and spontaneous emission.
 Let $\varepsilon_m$ be an energy level such that $\varepsilon_m>\varepsilon_n$.
-Let $\BNM$, $\BMN$, and $\AMN$ be coefficients of transition rates such that
+Let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \begin{equation*}
-\underset{\ABSORPTION}{\frac{dN_n}{dt}=\BNM N_n \RHO}
+\frac{dN_n}{dt}=\underset{\ABSORPTION}{\BNM N_n \RHO}
 \qquad
-\underset{\INDUCED}{\frac{dN_m}{dt}=\BMN N_m \RHO}
-\qquad
-\underset{\SPONTANEOUS}{\frac{dN_m}{dt}=\AMN N_m}
+\frac{dN_m}{dt}
+=\underset{\INDUCED}{\BMN N_m \RHO}
++
+\underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
 \noindent
@@ -57,6 +58,12 @@ The $A$ and $B$ coefficients are presumed to not depend on temperature $T$.
 \bigskip
 \noindent
 At equilibrium, transition rates between $\varepsilon_m$ and $\varepsilon_n$ are equal.
+\begin{equation*}
+\frac{dN_n}{dt}=\frac{dN_m}{dt}
+\end{equation*}
+
+\noindent
+Hence
 \begin{equation*}
 \underset{\ABSORPTION}{\BNM N_n \RHO}
 =\underset{\INDUCED}{\BMN N_m \RHO}
