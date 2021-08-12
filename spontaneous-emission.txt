@@ -68,25 +68,27 @@ psi = quote(psi)
 
 -- physical constants
 
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878128 10^(-12) farad / meter
 h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
+k = 1.380649 10^(-23) joule / kelvin
 me = 9.1093837015 10^(-31) kilogram
 mp = 1.67262192369 10^(-27) kilogram
 mu = me mp / (me + mp)
-e = 1.602176634 10^(-19) coulomb
-epsilon0 = 8.8541878128 10^(-12) farad / meter
-c = 299792458.0 meter / second
 
 -- derived units
 
-joule = kilogram meter^2 / second^2
 coulomb = ampere second
-volt = joule / coulomb
 farad = coulomb / volt
+joule = kilogram meter^2 / second^2
+volt = joule / coulomb
 
 -- base units (for printing)
 
 ampere = "ampere"
+kelvin = "kelvin"
 kilogram = "kilogram"
 meter = "meter"
 second = "second"
