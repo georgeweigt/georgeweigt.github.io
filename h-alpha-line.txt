@@ -1,3 +1,5 @@
+-- Compute spontaneous emission coefficients for H-alpha
+
 -- psi returns a hydrogen atom eigenfunction
 
 psi(n,l,m) = R(n,l) Y(l,m)
