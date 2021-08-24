@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- psi returns a hydrogen atom eigenfunction
+
+psi(n,l,m) = R(n,l) Y(l,m)
+
+-- R returns a radial eigenfunction
+ 
+R(n,l) = 2 / n^2 *
+         a0^(-3/2) *
+         sqrt((n - l - 1)! / (n + l)!) *
+         (2 r / (n a0))^l *
+         L(2 r / (n a0),n - l - 1,2 l + 1) *
+         exp(-r / (n a0))
+
+L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
+
+-- Y returns a spherical harmonic eigenfunction
+
+Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(cos(theta),l,m) exp(i m phi)
+
+P(f,n,m) = eval(1 / (2^n n!) (1 - x^2)^(m/2) *
+           d((x^2 - 1)^n,x,n + m),x,f)
+
+-- E(n) returns the nth energy eigenvalue
+
+E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
+
+-- integrate f
+
+I(f) = do(
+  f = f r^2 sin(theta), -- multiply by volume element
+  f = eval(f,sqrt(1 - cos(theta)^2),sin(theta)),     -- simplify
+  f = eval(f,1/sqrt(1 - cos(theta)^2),1/sin(theta)), -- simplify
+  f = eval(f, 1 / (1 - cos(theta)^2),        1 / sin(theta)^2), -- simplify
+  f = eval(f, 1 / (1 - cos(theta)^2)^(3/2),  1 / sin(theta)^3), -- simplify
+  f = eval(f, cos(theta)^2, 1 - sin(theta)^2),     -- expand
+  f = eval(f, cos(theta)^4, (1 - sin(theta)^2)^2), -- expand
+  f = eval(f, cos(theta)^6, (1 - sin(theta)^2)^3), -- expand
+  f = defint(f,theta,0,pi,phi,0,2pi),
+  f = integral(f,r),
+  0 - eval(f,r,0)
+)
+
+F(f2,f1) = do(
+  Fx = I(conj(f2) r sin(theta) cos(phi) f1),
+  Fy = I(conj(f2) r sin(theta) sin(phi) f1),
+  Fz = I(conj(f2) r cos(theta) f1),
+  conj(Fx) Fx + conj(Fy) Fy + conj(Fz) Fz
+)
+
+X3s2p = F(psi(2,1,1),psi(3,0,0)) +
+        F(psi(2,1,0),psi(3,0,0)) +
+        F(psi(2,1,-1),psi(3,0,0))
+
+X3p2s = 1/3 F(psi(2,0,0),psi(3,1,1)) +
+        1/3 F(psi(2,0,0),psi(3,1,0)) +
+        1/3 F(psi(2,0,0),psi(3,1,-1))
+
+X3d2p = 1/5 F(psi(2,1,1),psi(3,2,2)) +
+        1/5 F(psi(2,1,1),psi(3,2,1)) +
+        1/5 F(psi(2,1,1),psi(3,2,0)) +
+        1/5 F(psi(2,1,1),psi(3,2,-1)) +
+        1/5 F(psi(2,1,1),psi(3,2,-1)) +
+
+        1/5 F(psi(2,1,0),psi(3,2,2)) +
+        1/5 F(psi(2,1,0),psi(3,2,1)) +
+        1/5 F(psi(2,1,0),psi(3,2,0)) +
+        1/5 F(psi(2,1,0),psi(3,2,-1)) +
+        1/5 F(psi(2,1,0),psi(3,2,-1)) +
+
+        1/5 F(psi(2,1,-1),psi(3,2,2)) +
+        1/5 F(psi(2,1,-1),psi(3,2,1)) +
+        1/5 F(psi(2,1,-1),psi(3,2,0)) +
+        1/5 F(psi(2,1,-1),psi(3,2,-1)) +
+        1/5 F(psi(2,1,-1),psi(3,2,-1))
+
+-- physical constants
+
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+me = 9.1093837015 10^(-31) kilogram
+mp = 1.67262192369 10^(-27) kilogram
+mu = me mp / (me + mp)
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878128 10^(-12) farad / meter
+c = 299792458.0 meter / second
+
+-- derived units
+
+joule = kilogram meter^2 / second^2
+coulomb = ampere second
+volt = joule / coulomb
+farad = coulomb / volt
+
+-- base units (for printing)
+
+ampere = "ampere"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+pi = float(pi)
+
+a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
+
+omega32 = 1/hbar (E(3) - E(2))
+
+A3s2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3s2p
+A3s2p
+
+A3p2s = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3p2s
+A3p2s
+
+A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p
+A3d2p
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
