@@ -103,7 +103,16 @@ Finally, there are fifteen processes for the transition $3d\rightarrow2p$.
 \end{align*}
 
 \noindent
-For each process, $A_{ki}$ can be computed using the following Heisenberg formula.
+An average $A_{ki}$ is obtained by summing $A_{ki}$ for individual processes
+and dividing by the number of distinct initial states.
+
+\bigskip
+\noindent
+For example, $3d\rightarrow2p$ has five distinct initial states, so the divisor is five.
+
+\bigskip
+\noindent
+$A_{ki}$ can be computed using the following Heisenberg formula.
 \begin{equation*}
 A_{ki}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{ki}^3\,|r_{ki}|^2
 \end{equation*}
@@ -132,11 +141,6 @@ z_{ki}&=\int\psi_k^*\,(r\cos\theta)\,\psi_i\,dV
 \end{align*}
 
 \noindent
-The average $A_{ki}$ is obtained by summing over $m_\ell$ states
-and dividing by the number of distinct initial states.
-
-\bigskip
-\noindent
 Using Eigenmath we obtain
 \begin{align*}
 A_{3s2p}&=6.31358\times10^6\,\text{second}^{-1}
@@ -149,8 +153,16 @@ which is very close to the values shown in the table.
 
 \bigskip
 \noindent
-These are the $|r_{ki}|^2$ for $3s\rightarrow2p$ (multiply all by $a_0^2$).
+Some of the transition probabilities $|r_{ki}|^2$ are zero.
 
+\bigskip
+\noindent
+The following tables show $|r_{ki}|^2$ for each process (multiply all by $a_0^2$).
+
+\bigskip
+\noindent
+Each row is an initial state $\psi_i$ and each column is a final state $\psi_k$.
+%
 \begin{center}
 \begin{tabular}{lccc}
 & $\psi_{2,1,1}$ & $\psi_{2,1,0}$ & $\psi_{2,1,-1}$
@@ -158,9 +170,7 @@ These are the $|r_{ki}|^2$ for $3s\rightarrow2p$ (multiply all by $a_0^2$).
 $\psi_{3,0,0}$ & 0.293534 & 0.293534 & 0.293534
 \end{tabular}
 \end{center}
-
-\noindent
-These are the $|r_{ki}|^2$ for $3p\rightarrow2s$.
+%
 \begin{center}
 \begin{tabular}{lc}
 & $\psi_{2,0,0}$
@@ -172,9 +182,7 @@ $\psi_{3,1,0}$ & 3.13103
 $\psi_{3,1,-1}$ & 3.13103
 \end{tabular}
 \end{center}
-
-\noindent
-These are the $|r_{ki}|^2$ for $3d\rightarrow2p$.
+%
 \begin{center}
 \begin{tabular}{lccc}
 & $\psi_{2,1,1}$ & $\psi_{2,1,0}$ & $\psi_{2,1,-1}$
