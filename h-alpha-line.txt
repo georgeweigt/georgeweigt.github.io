@@ -40,38 +40,38 @@ I(f) = do(
   0 - eval(f,r,0)
 )
 
-F(f2,f1) = do(
-  Fx = I(conj(f2) r sin(theta) cos(phi) f1),
-  Fy = I(conj(f2) r sin(theta) sin(phi) f1),
-  Fz = I(conj(f2) r cos(theta) f1),
-  conj(Fx) Fx + conj(Fy) Fy + conj(Fz) Fz
+X(fk,fi) = do(
+  ax = I(conj(fk) r sin(theta) cos(phi) fi),
+  ay = I(conj(fk) r sin(theta) sin(phi) fi),
+  az = I(conj(fk) r cos(theta) fi),
+  conj(ax) ax + conj(ay) ay + conj(az) az
 )
 
-X3s2p = F(psi(2,1,1),psi(3,0,0)) +
-        F(psi(2,1,0),psi(3,0,0)) +
-        F(psi(2,1,-1),psi(3,0,0))
+X3s2p = X(psi(2,1,1),psi(3,0,0)) +
+        X(psi(2,1,0),psi(3,0,0)) +
+        X(psi(2,1,-1),psi(3,0,0))
 
-X3p2s = 1/3 F(psi(2,0,0),psi(3,1,1)) +
-        1/3 F(psi(2,0,0),psi(3,1,0)) +
-        1/3 F(psi(2,0,0),psi(3,1,-1))
+X3p2s = 1/3 X(psi(2,0,0),psi(3,1,1)) +
+        1/3 X(psi(2,0,0),psi(3,1,0)) +
+        1/3 X(psi(2,0,0),psi(3,1,-1))
 
-X3d2p = 1/5 F(psi(2,1,1),psi(3,2,2)) +
-        1/5 F(psi(2,1,1),psi(3,2,1)) +
-        1/5 F(psi(2,1,1),psi(3,2,0)) +
-        1/5 F(psi(2,1,1),psi(3,2,-1)) +
-        1/5 F(psi(2,1,1),psi(3,2,-1)) +
+X3d2p = 1/5 X(psi(2,1,1),psi(3,2,2)) +
+        1/5 X(psi(2,1,1),psi(3,2,1)) +
+        1/5 X(psi(2,1,1),psi(3,2,0)) +
+        1/5 X(psi(2,1,1),psi(3,2,-1)) +
+        1/5 X(psi(2,1,1),psi(3,2,-1)) +
 
-        1/5 F(psi(2,1,0),psi(3,2,2)) +
-        1/5 F(psi(2,1,0),psi(3,2,1)) +
-        1/5 F(psi(2,1,0),psi(3,2,0)) +
-        1/5 F(psi(2,1,0),psi(3,2,-1)) +
-        1/5 F(psi(2,1,0),psi(3,2,-1)) +
+        1/5 X(psi(2,1,0),psi(3,2,2)) +
+        1/5 X(psi(2,1,0),psi(3,2,1)) +
+        1/5 X(psi(2,1,0),psi(3,2,0)) +
+        1/5 X(psi(2,1,0),psi(3,2,-1)) +
+        1/5 X(psi(2,1,0),psi(3,2,-1)) +
 
-        1/5 F(psi(2,1,-1),psi(3,2,2)) +
-        1/5 F(psi(2,1,-1),psi(3,2,1)) +
-        1/5 F(psi(2,1,-1),psi(3,2,0)) +
-        1/5 F(psi(2,1,-1),psi(3,2,-1)) +
-        1/5 F(psi(2,1,-1),psi(3,2,-1))
+        1/5 X(psi(2,1,-1),psi(3,2,2)) +
+        1/5 X(psi(2,1,-1),psi(3,2,1)) +
+        1/5 X(psi(2,1,-1),psi(3,2,0)) +
+        1/5 X(psi(2,1,-1),psi(3,2,-1)) +
+        1/5 X(psi(2,1,-1),psi(3,2,-1))
 
 -- physical constants
 
