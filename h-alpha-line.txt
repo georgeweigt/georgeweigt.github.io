@@ -31,13 +31,10 @@ E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
 
 I(f) = do(
   f = f r^2 sin(theta), -- multiply by volume element
-  f = eval(f,sqrt(1 - cos(theta)^2),sin(theta)),     -- simplify
-  f = eval(f,1/sqrt(1 - cos(theta)^2),1/sin(theta)), -- simplify
+  f = eval(f, sqrt(1 - cos(theta)^2),        sin(theta)),       -- simplify
+  f = eval(f, 1 / sqrt(1 - cos(theta)^2),    1 / sin(theta)),   -- simplify
   f = eval(f, 1 / (1 - cos(theta)^2),        1 / sin(theta)^2), -- simplify
   f = eval(f, 1 / (1 - cos(theta)^2)^(3/2),  1 / sin(theta)^3), -- simplify
-  f = eval(f, cos(theta)^2, 1 - sin(theta)^2),     -- expand
-  f = eval(f, cos(theta)^4, (1 - sin(theta)^2)^2), -- expand
-  f = eval(f, cos(theta)^6, (1 - sin(theta)^2)^3), -- expand
   f = defint(f,theta,0,pi,phi,0,2pi),
   f = integral(f,r),
   0 - eval(f,r,0)
