@@ -1,0 +1,71 @@
+-- Matrix elements for quantum harmonic oscillator
+
+psi(n) = (m omega / (pi hbar))^(1/4) *
+         exp(-1/2 m omega x^2 / hbar) *
+         1 / sqrt(2^n n!) *
+         Hermite(n, sqrt(m omega / hbar) x)
+
+Hermite(n,f,x) = eval((-1)^n exp(x^2) d(exp(-x^2),x,n),x,f)
+
+phat(psi) = -i hbar d(psi,x)
+
+Hhat(psi) = phat(phat(psi)) / (2 m) + 1/2 m omega^2 x^2 psi
+
+E(n) = hbar omega (n + 1/2)
+
+psi0 = psi(0)
+psi1 = psi(1)
+psi2 = psi(2)
+psi3 = psi(3)
+
+-- integral of f from -inf to +inf
+
+I(f) = do(
+  f = integral(f,x),
+  f = subst(0, exp(-m omega x^2 / hbar, 0), f),
+  subst( 1, erf(sqrt(m omega / hbar) x), f) -
+  subst(-1, erf(sqrt(m omega / hbar) x), f)
+)
+
+X = ((I(conj(psi0) x psi0),
+      I(conj(psi0) x psi1),
+      I(conj(psi0) x psi2),
+      I(conj(psi0) x psi3)),
+
+     (I(conj(psi1) x psi0),
+      I(conj(psi1) x psi1),
+      I(conj(psi1) x psi2),
+      I(conj(psi1) x psi3)),
+
+     (I(conj(psi2) x psi0),
+      I(conj(psi2) x psi1),
+      I(conj(psi2) x psi2),
+      I(conj(psi2) x psi3)),
+
+     (I(conj(psi3) x psi0),
+      I(conj(psi3) x psi1),
+      I(conj(psi3) x psi2),
+      I(conj(psi3) x psi3)))
+
+P = ((I(conj(psi0) phat(psi0)),
+      I(conj(psi0) phat(psi1)),
+      I(conj(psi0) phat(psi2)),
+      I(conj(psi0) phat(psi3))),
+
+     (I(conj(psi1) phat(psi0)),
+      I(conj(psi1) phat(psi1)),
+      I(conj(psi1) phat(psi2)),
+      I(conj(psi1) phat(psi3))),
+
+     (I(conj(psi2) phat(psi0)),
+      I(conj(psi2) phat(psi1)),
+      I(conj(psi2) phat(psi2)),
+      I(conj(psi2) phat(psi3))),
+
+     (I(conj(psi3) phat(psi0)),
+      I(conj(psi3) phat(psi1)),
+      I(conj(psi3) phat(psi2)),
+      I(conj(psi3) phat(psi3))))
+
+X
+P
