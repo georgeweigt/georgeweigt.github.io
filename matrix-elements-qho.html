@@ -17,7 +17,7 @@ psi(n) = (m omega / (pi hbar))^(1/4) *
          1 / sqrt(2^n n!) *
          Hermite(n, sqrt(m omega / hbar) x)
 
-Hermite(n,f,x) = eval((-1)^n exp(x^2) d(exp(-x^2),x,n),x,f)
+Hermite(n,f) = eval((-1)^n exp(x^2) d(exp(-x^2),x,n), x, f)
 
 phat(psi) = -i hbar d(psi,x)
 
@@ -34,9 +34,9 @@ psi3 = psi(3)
 
 I(f) = do(
   f = integral(f,x),
-  f = subst(0, exp(-m omega x^2 / hbar, 0), f),
-  subst( 1, erf(sqrt(m omega / hbar) x), f) -
-  subst(-1, erf(sqrt(m omega / hbar) x), f)
+  f = eval(f, exp(-m omega x^2 / hbar), 0),
+  eval(f, erf(sqrt(m omega / hbar) x), 1) -
+  eval(f, erf(sqrt(m omega / hbar) x), -1)
 )
 
 X = ((I(conj(psi0) x psi0),
@@ -81,6 +81,9 @@ P = ((I(conj(psi0) phat(psi0)),
 
 X
 P
+
+H = dot(P,P) / (2 m) + 1/2 m omega^2 dot(X,X)
+H
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
