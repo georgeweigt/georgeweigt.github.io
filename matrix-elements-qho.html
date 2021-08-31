@@ -19,9 +19,9 @@ psi(n) = (m omega / (pi hbar))^(1/4) *
 
 Hermite(n,f) = eval((-1)^n exp(x^2) d(exp(-x^2),x,n), x, f)
 
-phat(psi) = -i hbar d(psi,x)
-
 Hhat(psi) = phat(phat(psi)) / (2 m) + 1/2 m omega^2 x^2 psi
+
+phat(psi) = -i hbar d(psi,x)
 
 E(n) = hbar omega (n + 1/2)
 
