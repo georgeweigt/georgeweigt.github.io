@@ -115,5 +115,5 @@ A3p2s
 A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p
 A3d2p
 
-"Wavelength"
-h c / (E(3) - E(2)) 10^10 "Angstrom" / meter
+-- "Wavelength"
+-- h c / (E(3) - E(2)) 10^10 "Angstrom" / meter
