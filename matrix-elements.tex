@@ -8,8 +8,47 @@
 X_{kj}&=\int_{-\infty}^\infty \psi_k\,x\,\psi_j\,dx
 \\[1ex]
 P_{kj}&=\int_{-\infty}^\infty \psi_k\left(-i\hbar\frac{d}{dx}\right)\psi_j\,dx
+\end{align*}
+
+\noindent
+For $4\times4$ matrices we have
+\begin{align*}
+X&=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
+\begin{pmatrix}
+0 & 1 & 0 & 0
+\\
+1 & 0 & \sqrt{2} & 0
+\\
+0 & \sqrt{2} & 0 & \sqrt{3}
+\\
+0 & 0 & \sqrt{3} & 0
+\end{pmatrix}
+\\[1ex]
+P&=i\left(\frac{\hbar m\omega}{2}\right)^{1/2}
+\begin{pmatrix}
+0 & -1 & 0 & 0
+\\
+1 & 0 & -\sqrt{2} & 0
+\\
+0 & \sqrt{2} & 0 & -\sqrt{3}
+\\
+0 & 0 & \sqrt{3} & 0
+\end{pmatrix}
 \\[1ex]
 H&=\frac{P^2}{2m}+\frac{1}{2}m\omega^2 X^2
+=\begin{pmatrix}
+\tfrac{1}{2}\hbar\omega & 0 & 0 & 0
+\\
+0 & \tfrac{3}{2}\hbar\omega & 0 & 0
+\\
+0 & 0 & \tfrac{5}{2}\hbar\omega & 0
+\\
+0 & 0 & 0 & \tfrac{7}{2}\hbar\omega
+\end{pmatrix}
 \end{align*}
+
+\noindent
+$H^4{}_4$ cannot be computed using $4\times4$ matrices.
+The value shown is the corrected eigenvalue.
 
 \end{document}
