@@ -50,7 +50,53 @@ H&=\frac{P^2}{2m}+\frac{1}{2}m\omega^2 X^2
 \end{align*}
 
 \noindent
-$H^4{}_4$ cannot be computed using $4\times4$ matrices.
-The value shown is the corrected eigenvalue.
+$H_{33}$ cannot be computed using $4\times4$ matrices.
+The value $\tfrac{7}{2}\hbar\omega$ is the corrected eigenvalue.
+
+\bigskip
+\noindent
+Consider the following eigenfunction.
+\begin{equation*}
+\Psi=\sum_{k=0}^3c_k\psi_k
+\end{equation*}
+
+\noindent
+Let us compute the expected value of $x$ for a system in state $\Psi$.
+\begin{equation*}
+\langle x\rangle=\int_{-\infty}^\infty \Psi^* x\Psi\,dx
+\end{equation*}
+
+\noindent
+Expand the integrand.
+\begin{align*}
+\langle x\rangle
+&=\int_{-\infty}^\infty
+\left(\sum_{k=0}^3c_k^*\psi_k^*\right) x \left(\sum_{j=0}^3c_j\psi_j\right)
+\\
+&=\sum_{k=0}^3\sum_{j=0}^3c_k^*c_j\int_{-\infty}^\infty\psi_k^*\,x\,\psi_j\,dx
+\\
+&=\sum_{k=0}^3\sum_{j=0}^3c_k^*c_j X_{kj}\tag{1}
+\end{align*}
+
+\noindent
+Noting that $X_{kj}=0$ for $|k-j|\ne1$ we have
+\begin{equation*}
+\langle x\rangle=\sum_{k=0}^2\left(c_k^*c_{k+1}X_{k,k+1}+c_{k+1}^*c_kX_{k+1,k}\right)
+\end{equation*}
+
+\noindent
+Noting that $X_{k,k+1}=X_{k+1,k}$ we have
+\begin{align*}
+\langle x\rangle&=\sum_{k=0}^2\left(c_k^*c_{k+1}+c_{k+1}^*c_k\right)X_{k,k+1}
+\\
+&=(c_0^*c_1+c_1^*c_0)X_{01}+(c_1^*c_2+c_2^*c_1)X_{12}+(c_2^*c_3+c_3^*c_2)X_{23}
+\end{align*}
+
+\noindent
+From equation (1) above, the expected value of $x$ can also be computed this way.
+\begin{equation*}
+\langle x\rangle=\begin{pmatrix}c_0^* & c_1^* & c_2^* & c_3^*\end{pmatrix}
+X\begin{pmatrix}c_0\\ c_1\\ c_2\\ c_3\end{pmatrix}
+\end{equation*}
 
 \end{document}
