@@ -57,7 +57,7 @@ The value $\tfrac{7}{2}\hbar\omega$ is the corrected eigenvalue.
 \noindent
 Consider the following eigenfunction.
 \begin{equation*}
-\Psi=\sum_{k=0}^3c_k\psi_k
+\Psi=\sum_k c_k\psi_k
 \end{equation*}
 
 \noindent
@@ -71,12 +71,23 @@ Expand the integrand.
 \begin{align*}
 \langle x\rangle
 &=\int_{-\infty}^\infty
-\left(\sum_{k=0}^3c_k^*\psi_k^*\right) x \left(\sum_{j=0}^3c_j\psi_j\right)
+\left(\sum_kc_k^*\psi_k^*\right) x \left(\sum_j c_j\psi_j\right)
 \\
-&=\sum_{k=0}^3\sum_{j=0}^3c_k^*c_j\int_{-\infty}^\infty\psi_k^*\,x\,\psi_j\,dx
+&=\sum_k\sum_jc_k^*c_j\int_{-\infty}^\infty\psi_k^*\,x\,\psi_j\,dx
 \\
-&=\sum_{k=0}^3\sum_{j=0}^3c_k^*c_j X_{kj}\tag{1}
+&=\sum_k\sum_jc_k^*c_j X_{kj}
 \end{align*}
+
+\noindent
+Hence
+\begin{equation*}
+\langle x\rangle=
+\begin{pmatrix}c_0^* & c_1^* & c_2^* & \ldots\end{pmatrix}
+X
+\begin{pmatrix}c_0\\ c_1\\ c_2\\ \vdots\end{pmatrix}
+\end{equation*}
+
+\end{document}
 
 \noindent
 Noting that $X_{kj}=0$ for $|k-j|\ne1$ we have
