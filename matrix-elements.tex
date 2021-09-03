@@ -82,32 +82,14 @@ Expand the integrand.
 Hence
 \begin{equation*}
 \langle x\rangle=
-\begin{pmatrix}c_0^* & c_1^* & c_2^* & \ldots\end{pmatrix}
-X
-\begin{pmatrix}c_0\\ c_1\\ c_2\\ \vdots\end{pmatrix}
-\end{equation*}
-
-\end{document}
-
-\noindent
-Noting that $X_{kj}=0$ for $|k-j|\ne1$ we have
-\begin{equation*}
-\langle x\rangle=\sum_{k=0}^2\left(c_k^*c_{k+1}X_{k,k+1}+c_{k+1}^*c_kX_{k+1,k}\right)
-\end{equation*}
-
-\noindent
-Noting that $X_{k,k+1}=X_{k+1,k}$ we have
-\begin{align*}
-\langle x\rangle&=\sum_{k=0}^2\left(c_k^*c_{k+1}+c_{k+1}^*c_k\right)X_{k,k+1}
-\\
-&=(c_0^*c_1+c_1^*c_0)X_{01}+(c_1^*c_2+c_2^*c_1)X_{12}+(c_2^*c_3+c_3^*c_2)X_{23}
-\end{align*}
-
-\noindent
-From equation (1) above, the expected value of $x$ can also be computed this way.
-\begin{equation*}
-\langle x\rangle=\begin{pmatrix}c_0^* & c_1^* & c_2^* & c_3^*\end{pmatrix}
-X\begin{pmatrix}c_0\\ c_1\\ c_2\\ c_3\end{pmatrix}
+\begin{pmatrix}c_0^* & c_1^* & c_2^* & c_3^*\end{pmatrix}
+\begin{pmatrix}
+X_{00} & X_{01} & X_{02} & X_{03}\\
+X_{10} & X_{11} & X_{12} & X_{13}\\
+X_{20} & X_{21} & X_{22} & X_{23}\\
+X_{30} & X_{31} & X_{32} & X_{33}
+\end{pmatrix}
+\begin{pmatrix}c_0\\ c_1\\ c_2\\ c_3\end{pmatrix}
 \end{equation*}
 
 \end{document}
