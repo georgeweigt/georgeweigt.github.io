@@ -75,15 +75,3 @@ H = dot(P,P) / (2 m) + 1/2 m omega^2 dot(X,X)
 H[4,4] = E(3) -- correction for finite matrices
 
 H
-
-c0 = x0 + i y0
-c1 = x1 + i y1
-c2 = x2 + i y2
-c3 = x3 + i y3
-
-Psi = (c0,c1,c2,c3)
-
-dot(conj(Psi),X,Psi) ==
-(conj(c0) c1 + conj(c1) c0) X[1,2] +
-(conj(c1) c2 + conj(c2) c1) X[2,3] +
-(conj(c2) c3 + conj(c3) c2) X[3,4]
