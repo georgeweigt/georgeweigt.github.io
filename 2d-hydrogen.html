@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+"Verify 2d hydrogen eigenfunctions (1=ok)"
+
+psi(n,m) = sqrt((n - abs(m))! / (n + abs(m))! / pi / (n + 1/2)) *
+           exp(-r / a0 / (n + 1/2)) *
+           L(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
+           (2 r / a0 / (n + 1/2))^abs(m) exp(i m theta)
+
+a0 = hbar^2 / (k mu)
+
+-- Laguerre polynomials
+
+L(f,n,m,x) =
+  eval(
+   x^(-m) exp(x) / n! d(exp(-x) x^(n + m), x, n),
+  x, f)
+
+E(n) = -1/2 k^2 mu / hbar^2 / (n + 1/2)^2
+
+psi1 = psi(1,0)
+psi2 = psi(2,0)
+psi3 = psi(3,0)
+psi4 = psi(4,0)
+
+psi1
+psi2
+psi3
+psi4
+
+Laplacian(psi) = d(psi,r,2) +
+                 d(psi,r) / r +
+                 d(psi,theta,2) / r^2
+
+-hbar^2 / (2 mu) Laplacian(psi1) - k psi1 / r == E(1) psi1
+-hbar^2 / (2 mu) Laplacian(psi2) - k psi2 / r == E(2) psi2
+-hbar^2 / (2 mu) Laplacian(psi3) - k psi3 / r == E(3) psi3
+-hbar^2 / (2 mu) Laplacian(psi4) - k psi4 / r == E(4) psi4
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
