@@ -10,12 +10,16 @@
 
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
-"Verify 2d hydrogen eigenfunctions (1=ok)"
+-- 2d hydrogen eigenfunctions
 
-psi(n,m) = sqrt((n - abs(m))! / (n + abs(m))! / pi / (n + 1/2)) *
-           exp(-r / a0 / (n + 1/2)) *
+-- range of m is -n...n
+
+psi(n,m) = 1 / sqrt(pi a0 (n + 1/2)) *
+           sqrt((n - abs(m))! / (n + abs(m))!) *
+           (2 r / a0 / (n + 1/2))^abs(m) *
            L(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
-           (2 r / a0 / (n + 1/2))^abs(m) exp(i m phi)
+           exp(-r / a0 / (n + 1/2)) *
+           exp(i m phi)
 
 a0 = hbar^2 / (k mu)
 
@@ -28,15 +32,17 @@ L(f,n,m,x) =
 
 E(n) = -1/2 k^2 mu / hbar^2 / (n + 1/2)^2
 
-psi1 = psi(1,1)
+psi1 = psi(1,0)
 psi2 = psi(2,1)
-psi3 = psi(3,1)
-psi4 = psi(4,1)
+psi3 = psi(3,2)
+psi4 = psi(4,3)
 
 psi1
 psi2
 psi3
 psi4
+
+"Verify Schroedinger equation (1=ok)"
 
 Laplacian(psi) = d(psi,r,2) +
                  d(psi,r) / r +
@@ -46,6 +52,19 @@ Laplacian(psi) = d(psi,r,2) +
 -hbar^2 / (2 mu) Laplacian(psi2) - k psi2 / r == E(2) psi2
 -hbar^2 / (2 mu) Laplacian(psi3) - k psi3 / r == E(3) psi3
 -hbar^2 / (2 mu) Laplacian(psi4) - k psi4 / r == E(4) psi4
+
+"Verify normalization (1=ok)"
+
+I(f) = do(
+  f = defint(f, phi, 0, 2 pi),
+  f = integral(f,r),
+  0 - eval(f,r,0)
+)
+
+I(conj(psi1) psi1)
+I(conj(psi2) psi2)
+I(conj(psi3) psi3)
+I(conj(psi4) psi4)
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
