@@ -15,7 +15,7 @@
 psi(n,m) = sqrt((n - abs(m))! / (n + abs(m))! / pi / (n + 1/2)) *
            exp(-r / a0 / (n + 1/2)) *
            L(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
-           (2 r / a0 / (n + 1/2))^abs(m) exp(i m theta)
+           (2 r / a0 / (n + 1/2))^abs(m) exp(i m phi)
 
 a0 = hbar^2 / (k mu)
 
@@ -28,10 +28,10 @@ L(f,n,m,x) =
 
 E(n) = -1/2 k^2 mu / hbar^2 / (n + 1/2)^2
 
-psi1 = psi(1,0)
-psi2 = psi(2,0)
-psi3 = psi(3,0)
-psi4 = psi(4,0)
+psi1 = psi(1,1)
+psi2 = psi(2,1)
+psi3 = psi(3,1)
+psi4 = psi(4,1)
 
 psi1
 psi2
@@ -40,7 +40,7 @@ psi4
 
 Laplacian(psi) = d(psi,r,2) +
                  d(psi,r) / r +
-                 d(psi,theta,2) / r^2
+                 d(psi,phi,2) / r^2
 
 -hbar^2 / (2 mu) Laplacian(psi1) - k psi1 / r == E(1) psi1
 -hbar^2 / (2 mu) Laplacian(psi2) - k psi2 / r == E(2) psi2
