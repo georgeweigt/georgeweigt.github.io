@@ -12,7 +12,7 @@ psi(n,m) = 1 / a0 / sqrt(pi) *
 
 a0 = hbar^2 / (k mu)
 
--- Laguerre polynomial of x (y is a local variable)
+-- Laguerre polynomial (y is a local variable)
 
 L(x,n,m,y) = eval(y^(-m) exp(y) / n! d(exp(-y) y^(n + m), y, n), y, x)
 
