@@ -2,7 +2,8 @@
 
 -- range of m is -n...n
 
-psi(n,m) = 1 / sqrt(pi a0 (n + 1/2)) *
+psi(n,m) = 1 / a0 / sqrt(pi) *
+           (n + 1/2)^(-3/2) *
            sqrt((n - abs(m))! / (n + abs(m))!) *
            (2 r / a0 / (n + 1/2))^abs(m) *
            L(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
@@ -41,6 +42,7 @@ Laplacian(psi) = d(psi,r,2) +
 "Verify normalization (1=ok)"
 
 I(f) = do(
+  f = f r, -- for integrating over polar coordinates
   f = defint(f, phi, 0, 2 pi),
   f = integral(f,r),
   0 - eval(f,r,0)
