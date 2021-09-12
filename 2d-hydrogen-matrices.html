@@ -12,9 +12,9 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Compute matrices for 2d hydrogen
 
-e = quote(e) -- clear e
-
 E(n) = -k^2 mu / (2 hbar^2 (n + 1/2)^2)
+
+e = quote(e) -- clear e
 
 k = e^2 / (4 pi epsilon0)
 
@@ -32,7 +32,7 @@ psi(n,m) =
   exp(-r / a0 / (n + 1/2)) *
   exp(i m phi)
 
-a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
+a0 = hbar^2 / (k mu)
 
 -- Laguerre polynomial (y is a local variable)
 

@@ -1,22 +1,23 @@
--- 2d hydrogen eigenfunctions
+-- Verify eigenfunctions for 2d hydrogen
+
+E(n) = -k^2 mu / (2 hbar^2 (n + 1/2)^2)
 
 -- range of m is -n...n
 
-psi(n,m) = 1 / a0 / sqrt(pi) *
-           (n + 1/2)^(-3/2) *
-           sqrt((n - abs(m))! / (n + abs(m))!) *
-           (2 r / a0 / (n + 1/2))^abs(m) *
-           L(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
-           exp(-r / a0 / (n + 1/2)) *
-           exp(i m phi)
+psi(n,m) =
+  1 / a0 / sqrt(pi) *
+  (n + 1/2)^(-3/2) *
+  sqrt((n - abs(m))! / (n + abs(m))!) *
+  (2 r / a0 / (n + 1/2))^abs(m) *
+  Laguerre(2 r / a0 / (n + 1/2), n - abs(m), 2 abs(m)) *
+  exp(-r / a0 / (n + 1/2)) *
+  exp(i m phi)
 
 a0 = hbar^2 / (k mu)
 
 -- Laguerre polynomial (y is a local variable)
 
-L(x,n,m,y) = eval(y^(-m) exp(y) / n! d(exp(-y) y^(n + m), y, n), y, x)
-
-E(n) = -1/2 k^2 mu / hbar^2 / (n + 1/2)^2
+Laguerre(x,n,m,y) = eval(y^(-m) exp(y) / n! d(exp(-y) y^(n + m), y, n), y, x)
 
 psi1 = psi(1,0)
 psi2 = psi(2,1)
@@ -30,9 +31,10 @@ psi4
 
 "Verify Schroedinger equation (1=ok)"
 
-Laplacian(psi) = d(psi,r,2) +
-                 d(psi,r) / r +
-                 d(psi,phi,2) / r^2
+Laplacian(psi) =
+  d(psi,r,2) +
+  d(psi,r) / r +
+  d(psi,phi,2) / r^2
 
 -hbar^2 / (2 mu) Laplacian(psi1) - k psi1 / r == E(1) psi1
 -hbar^2 / (2 mu) Laplacian(psi2) - k psi2 / r == E(2) psi2
