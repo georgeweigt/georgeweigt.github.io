@@ -1,4 +1,6 @@
-e = quote(e)
+-- Compute matrices for 2d hydrogen
+
+e = quote(e) -- clear e
 
 E(n) = -k^2 mu / (2 hbar^2 (n + 1/2)^2)
 
@@ -31,15 +33,12 @@ psi3 = psi(3,0)
 psi4 = psi(4,0)
 
 I(f) = do(
-  f = f r,
-  f = defint(f, phi, 0, 2 pi),
+  f = defint(f r, phi, 0, 2 pi),
   f = integral(f,r),
   0 - eval(f,r,0)
 )
 
-phat(psi) = -hbar^2 d2(psi)
-
-d2(psi) = d(psi,r,2) + d(psi,r) / r + d(psi,phi,2) / r^2
+phat(psi) = -hbar^2 (d(psi,r,2) + d(psi,r) / r + d(psi,phi,2) / r^2)
 
 P2 = ((I(conj(psi1) phat(psi1)),
        I(conj(psi1) phat(psi2)),
