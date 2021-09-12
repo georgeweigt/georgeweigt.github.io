@@ -107,7 +107,7 @@ kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
-pi = float(pi)
+pi = float(pi) -- use numerical value of pi
 
 H
 P2
