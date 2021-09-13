@@ -23,13 +23,11 @@ psi0 = psi(0,0)
 psi1 = psi(1,0)
 psi2 = psi(2,0)
 psi3 = psi(3,0)
-psi4 = psi(4,0)
 
 psi0
 psi1
 psi2
 psi3
-psi4
 
 "Verify Schroedinger equation (1=ok)"
 
@@ -42,7 +40,6 @@ Laplacian(psi) =
 -hbar^2 / (2 mu) Laplacian(psi1) - k psi1 / r == E(1) psi1
 -hbar^2 / (2 mu) Laplacian(psi2) - k psi2 / r == E(2) psi2
 -hbar^2 / (2 mu) Laplacian(psi3) - k psi3 / r == E(3) psi3
--hbar^2 / (2 mu) Laplacian(psi4) - k psi4 / r == E(4) psi4
 
 "Verify normalization (1=ok)"
 
@@ -57,4 +54,3 @@ I(conj(psi0) psi0)
 I(conj(psi1) psi1)
 I(conj(psi2) psi2)
 I(conj(psi3) psi3)
-I(conj(psi4) psi4)
