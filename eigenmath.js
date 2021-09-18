@@ -27,81 +27,6 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 function
-abs()
-{
-	var h, p1, p2, p3;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		if (p1.dim.length > 1) {
-			push_symbol(ABS);
-			push(p1);
-			list(2);
-			return;
-		}
-		push(p1);
-		push(p1);
-		conj();
-		inner();
-		push_rational(1, 2);
-		power();
-		return;
-	}
-
-	push(p1);
-	push(p1);
-	conj();
-	multiply();
-	push_rational(1, 2);
-	power();
-
-	p2 = pop();
-	push(p2);
-	floatfunc();
-	p3 = pop();
-	if (isdouble(p3)) {
-		push(p2);
-		if (isnegativenumber(p3))
-			negate();
-		return;
-	}
-
-	// abs(1/a) evaluates to 1/abs(a)
-
-	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
-		push(p1);
-		reciprocate();
-		abs();
-		reciprocate();
-		return;
-	}
-
-	// abs(a*b) evaluates to abs(a)*abs(b)
-
-	if (car(p1) == symbol(MULTIPLY)) {
-		h = stack.length;
-		p1 = cdr(p1);
-		while (iscons(p1)) {
-			push(car(p1));
-			abs();
-			p1 = cdr(p1);
-		}
-		multiply_factors(stack.length - h);
-		return;
-	}
-
-	if (isnegativeterm(p1) || (car(p1) == symbol(ADD) && isnegativeterm(cadr(p1)))) {
-		push(p1);
-		negate();
-		p1 = pop();
-	}
-
-	push_symbol(ABS);
-	push(p1);
-	list(2);
-}
-function
 add()
 {
 	add_terms(2);
@@ -124,31 +49,76 @@ add_numbers(p1, p2)
 
 	push_double(a + b);
 }
+
 function
 add_rationals(p1, p2)
 {
-	var a, b, c;
+	var a, ab, b, ba, d, sign;
 
-	a = p1.a * p2.b + p1.b * p2.a;
-	b = p1.b * p2.b;
-
-	if (a == 0) {
-		push_integer(0);
+	if (isinteger(p1) && isinteger(p2)) {
+		add_integers(p1, p2);
 		return;
 	}
 
-	if (Math.abs(a) > MAXINT || b > MAXINT) {
-		push_double(a / b);
-		return;
+	ab = bignum_mul(p1.a, p2.b);
+	ba = bignum_mul(p1.b, p2.a);
+
+	if (p1.sign == p2.sign) {
+		a = bignum_add(ab, ba);
+		sign = p1.sign;
+	} else {
+		switch (bignum_cmp(ab, ba)) {
+		case 1:
+			a = bignum_sub(ab, ba);
+			sign = p1.sign;
+			break;
+		case 0:
+			push_integer(0);
+			return;
+		case -1:
+			a = bignum_sub(ba, ab);
+			sign = p2.sign;
+			break;
+		}
 	}
 
-	if (b > 1) {
-		c = gcd_integers(a, b);
-		a /= c;
-		b /= c;
+	b = bignum_mul(p1.b, p2.b);
+
+	d = bignum_gcd(a, b);
+
+	a = bignum_div(a, d);
+	b = bignum_div(b, d);
+
+	push_bignum(sign, a, b);
+}
+
+function
+add_integers(p1, p2)
+{
+	var a, b, sign;
+
+	if (p1.sign == p2.sign) {
+		a = bignum_add(p1.a, p2.a);
+		sign = p1.sign;
+	} else {
+		switch (bignum_cmp(p1.a, p2.a)) {
+		case 1:
+			a = bignum_sub(p1.a, p2.a);
+			sign = p1.sign;
+			break;
+		case 0:
+			push_integer(0);
+			return;
+		case -1:
+			a = bignum_sub(p2.a, p1.a);
+			sign = p2.sign;
+			break;
+		}
 	}
 
-	push_rational(a, b);
+	b = bignum_int(1);
+
+	push_bignum(sign, a, b);
 }
 function
 add_tensors()
@@ -498,10 +468,15 @@ arcsin()
 	multiply();
 	p2 = pop();
 
-	if (isinteger(p2))
-		n = p2.a;
-	else
-		n = 99;
+	if (!isinteger(p2)) {
+		push_symbol(ARCSIN);
+		push(p1);
+		list(2);
+		return;
+	}
+
+	push(p2);
+	n = pop_integer();
 
 	switch (n) {
 
@@ -660,20 +635,20 @@ arctan_numbers(X, Y)
 	// X and Y are rational numbers
 
 	if (iszero(Y)) {
-		if (X.a >= 0)
-			push_integer(0);
-		else
+		if (isnegativenumber(X)) {
 			push_integer(-1);
-		push_symbol(PI);
-		multiply();
+			push_symbol(PI);
+			multiply();
+		} else
+			push_integer(0);
 		return;
 	}
 
 	if (iszero(X)) {
-		if (Y.a >= 0)
-			push_rational(1, 2);
-		else
+		if (isnegativenumber(Y))
 			push_rational(-1, 2);
+		else
+			push_rational(1, 2);
 		push_symbol(PI);
 		multiply();
 		return;
@@ -684,24 +659,24 @@ arctan_numbers(X, Y)
 	push(Y);
 	push(X);
 	divide();
-	abs();
+	absfunc();
 	T = pop();
 
 	push(T);
 	numerator();
-	if (Y.a < 0)
+	if (isnegativenumber(Y))
 		negate();
 	Y = pop();
 
 	push(T);
 	denominator();
-	if (X.a < 0)
+	if (isnegativenumber(X))
 		negate();
 	X = pop();
 
 	// compare numerators and denominators, ignore signs
 
-	if (Math.abs(X.a) != Math.abs(Y.a) || X.b != Y.b) {
+	if (bignum_cmp(X.a, Y.a) != 0 || bignum_cmp(X.b, Y.b) != 0) {
 		// not equal
 		push_symbol(ARCTAN);
 		push(Y);
@@ -712,16 +687,16 @@ arctan_numbers(X, Y)
 
 	// X == Y (modulo sign)
 
-	if (X.a >= 0)
-		if (Y.a >= 0)
-			push_rational(1, 4);
-		else
-			push_rational(-1, 4);
-	else
-		if (Y.a >= 0)
-			push_rational(3, 4);
-		else
+	if (isnegativenumber(X))
+		if (isnegativenumber(Y))
 			push_rational(-3, 4);
+		else
+			push_rational(3, 4);
+	else
+		if (isnegativenumber(Y))
+			push_rational(-1, 4);
+		else
+			push_rational(1, 4);
 
 	push_symbol(PI);
 	multiply();
@@ -827,20 +802,19 @@ arg1()
 	p1 = pop();
 
 	if (isrational(p1)) {
-		if (p1.a >= 0)
-			push_integer(0);
-		else {
+		if (isnegativenumber(p1)) {
 			push_symbol(PI);
 			negate();
-		}
+		} else
+			push_integer(0);
 		return;
 	}
 
 	if (isdouble(p1)) {
-		if (p1.d >= 0.0)
-			push_double(0.0);
-		else
+		if (p1.d < 0)
 			push_double(-Math.PI);
+		else
+			push_double(0);
 		return;
 	}
 
@@ -890,6 +864,605 @@ arg1()
 	}
 
 	push_integer(0); // p1 is real
+}
+const BIGM = 0x1000000; // 24 bits
+
+function
+bignum_int(n)
+{
+	var u = [];
+
+	if (n < BIGM)
+		u[0] = n;
+	else {
+		u[0] = n % BIGM;
+		u[1] = Math.floor(n / BIGM);
+	}
+
+	return u;
+}
+
+function
+bignum_copy(u)
+{
+	var i, v = [];
+	for (i = 0; i < u.length; i++)
+		v[i] = u[i];
+	return v;
+}
+
+// remove leading zeroes
+
+function
+bignum_norm(u)
+{
+	while (u.length > 1 && u[u.length - 1] == 0)
+		u.pop();
+}
+
+function
+bignum_iszero(u)
+{
+	return bignum_equal(u, 0);
+}
+
+function
+bignum_equal(u, n)
+{
+	return u.length == 1 && u[0] == n;
+}
+
+function
+bignum_odd(u)
+{
+	return u[0] % 2 == 1;
+}
+
+function
+bignum_float(u)
+{
+	var d, i;
+
+	d = 0;
+
+	for (i = u.length - 1; i >= 0; i--)
+		d = BIGM * d + u[i];
+
+	if (!isFinite(d))
+		stopf("floating point nan or infinity");
+
+	return d;
+}
+
+// returns 32-bit value
+
+function
+bignum_smallnum(u)
+{
+	if (u.length == 1)
+		return u[0];
+
+	if (u.length == 2 && u[1] < 256)
+		return BIGM * u[1] + u[0];
+
+	return null;
+}
+
+function
+push_bignum(sign, a, b)
+{
+	push({sign:sign, a:a, b:b});
+}
+function
+bignum_add(u, v)
+{
+	var i, nu, nv, nw, t, w = [];
+
+	nu = u.length;
+	nv = v.length;
+
+	if (nu > nv)
+		nw = nu + 1;
+	else
+		nw = nv + 1;
+
+	for (i = 0; i < nu; i++)
+		w[i] = u[i];
+
+	for (i = nu; i < nw; i++)
+		w[i] = 0;
+
+	t = 0;
+
+	for (i = 0; i < nv; i++) {
+		t += w[i] + v[i];
+		w[i] = t % BIGM;
+		t = Math.floor(t / BIGM);
+	}
+
+	for (i = nv; i < nw; i++) {
+		t += w[i];
+		w[i] = t % BIGM;
+		t = Math.floor(t / BIGM);
+	}
+
+	bignum_norm(w);
+
+	return w;
+}
+function
+bignum_atoi(s)
+{
+	var m, n, t, u;
+
+	u = bignum_int(0);
+
+	if (s.length <= 7) {
+		u[0] = Number(s);
+		return u;
+	}
+
+	m = bignum_int(10000000); // m = 10^7
+	t = bignum_int(0);
+
+	n = s.length % 7;
+
+	if (n == 0)
+		u[0] = 0;
+	else {
+		u[0] = Number(s.substring(0, n));
+		s = s.substring(n);
+	}
+
+	while (s.length) {
+		t[0] = Number(s.substring(0, 7));
+		s = s.substring(7);
+		u = bignum_mul(u, m);
+		u = bignum_add(u, t);
+	}
+
+	return u;
+}
+function
+bignum_cmp(u, v)
+{
+	var i;
+
+	if (u.length < v.length)
+		return -1; // u < v
+
+	if (u.length > v.length)
+		return 1; // u > v
+
+	for (i = u.length - 1; i >= 0; i--) {
+		if (u[i] < v[i])
+			return -1; // u < v
+		if (u[i] > v[i])
+			return 1; // u > v
+	}
+
+	return 0; // u = v
+}
+// floor(u / v)
+
+function
+bignum_div(u, v)
+{
+	var a, b, i, k, nu, nv, q, qhat, t, w;
+
+	nu = u.length;
+	nv = v.length;
+
+	if (nv == 1 && v[0] == 0)
+		stopf("divide by zero in bignum_div");
+
+	if (nu == 1 && nv == 1)
+		return bignum_int(Math.floor(u[0] / v[0]));
+
+	k = nu - nv;
+
+	if (k < 0)
+		return bignum_int(0); // u < v
+
+	u = bignum_copy(u);
+
+	b = v[nv - 1];
+
+	q = [];
+	w = [];
+
+	do {
+		q[k] = 0;
+
+		while (nu >= nv + k) {
+
+			// estimate partial quotient
+
+			a = u[nu - 1];
+
+			if (nu > nv + k)
+				a = BIGM * a + u[nu - 2];
+
+			if (a < b)
+				break;
+
+			qhat = Math.floor(a / (b + 1)) % BIGM;
+
+			if (qhat == 0)
+				qhat = 1;
+
+			// w = qhat * v
+
+			t = 0;
+
+			for (i = 0; i < nv; i++) {
+				t += qhat * v[i];
+				w[i] = t % BIGM;
+				t = Math.floor(t / BIGM);
+			}
+
+			w[nv] = t;
+
+			// u = u - w
+
+			t = 0;
+
+			for (i = k; i < nu; i++) {
+				t += u[i] - w[i - k];
+				u[i] = t % BIGM;
+				if (u[i] < 0)
+					u[i] += BIGM;
+				t = Math.floor(t / BIGM);
+			}
+
+			if (t) {
+				// u is negative, restore u and break
+				t = 0;
+				for (i = k; i < nu; i++) {
+					t += u[i] + w[i - k];
+					u[i] = t % BIGM;
+					t = Math.floor(t / BIGM);
+				}
+				break;
+			}
+
+			bignum_norm(u);
+			nu = u.length;
+
+			q[k] += qhat;
+		}
+
+	} while (--k >= 0);
+
+	bignum_norm(q);
+
+	return q;
+}
+function
+bignum_gcd(u, v)
+{
+	var r;
+
+	if (u.length == 1 && v.length == 1) {
+		u = u[0];
+		v = v[0];
+		while (v) {
+			r = u % v;
+			u = v;
+			v = r;
+		}
+		return bignum_int(u);
+	}
+
+	while (!bignum_iszero(v)) {
+		r = bignum_mod(u, v);
+		u = v;
+		v = r;
+	}
+
+	return bignum_copy(u);
+}
+function
+bignum_itoa(u)
+{
+	var d, r, s;
+
+	if (u.length == 1)
+		return String(u[0]);
+
+	d = bignum_int(10000000); // d = 10^7
+
+	s = "";
+
+	while (u.length > 1 || u[0] >= 10000000) {
+
+		r = bignum_mod(u, d);
+		u = bignum_div(u, d);
+
+		s = String(r[0]).concat(s);
+
+		while (s.length % 7)
+			s = "0".concat(s); // add leading zeroes
+	}
+
+	s = String(u[0]).concat(s);
+
+	return s;
+}
+// u mod v
+
+function
+bignum_mod(u, v)
+{
+	var a, b, i, k, nu, nv, qhat, t, w;
+
+	nu = u.length;
+	nv = v.length;
+
+	if (nv == 1 && v[0] == 0)
+		stopf("divide by zero");
+
+	if (nu == 1 && nv == 1)
+		return bignum_int(u[0] % v[0]);
+
+	u = bignum_copy(u);
+
+	k = nu - nv;
+
+	if (k < 0)
+		return u; // u < v
+
+	b = v[nv - 1];
+
+	w = [];
+
+	do {
+		while (nu >= nv + k) {
+
+			// estimate partial quotient
+
+			a = u[nu - 1];
+
+			if (nu > nv + k)
+				a = BIGM * a + u[nu - 2];
+
+			if (a < b)
+				break;
+
+			qhat = Math.floor(a / (b + 1)) % BIGM;
+
+			if (qhat == 0)
+				qhat = 1;
+
+			// w = qhat * v
+
+			t = 0;
+
+			for (i = 0; i < nv; i++) {
+				t += qhat * v[i];
+				w[i] = t % BIGM;
+				t = Math.floor(t / BIGM);
+			}
+
+			w[nv] = t;
+
+			// u = u - w
+
+			t = 0;
+
+			for (i = k; i < nu; i++) {
+				t += u[i] - w[i - k];
+				u[i] = t % BIGM;
+				if (u[i] < 0)
+					u[i] += BIGM;
+				t = Math.floor(t / BIGM);
+			}
+
+			if (t) {
+				// u is negative, restore u and break
+				t = 0;
+				for (i = k; i < nu; i++) {
+					t += u[i] + w[i - k];
+					u[i] = t % BIGM;
+					t = Math.floor(t / BIGM);
+				}
+				break;
+			}
+
+			bignum_norm(u);
+			nu = u.length;
+		}
+
+	} while (--k >= 0);
+
+	return u;
+}
+function
+bignum_mul(u, v)
+{
+	var i, j, nu, nv, nw, t, w = [];
+
+	nu = u.length;
+	nv = v.length;
+
+	nw = nu + nv;
+
+	for (i = 0; i < nw; i++)
+		w[i] = 0;
+
+	for (i = 0; i < nu; i++) {
+		t = 0;
+		for (j = 0; j < nv; j++) {
+			t += u[i] * v[j] + w[i + j];
+			w[i + j] = t % BIGM;
+			t = Math.floor(t / BIGM);
+		}
+		w[i + j] = t;
+	}
+
+	bignum_norm(w);
+
+	return w;
+}
+// u ^ v
+
+function
+bignum_pow(u, v)
+{
+	var w;
+
+	if (v.length == 1 && v[0] == 0)
+		return bignum_int(1); // v = 0
+
+	if (u.length == 1 && u[0] == 1)
+		return bignum_int(1); // u = 1
+
+	if (u.length == 1 && u[0] == 0)
+		return bignum_int(0); // u = 0
+
+	if (v.length == 1 && v[0] == 1)
+		return bignum_copy(u); // v = 1
+
+	v = bignum_copy(v);
+
+	w = bignum_int(1);
+
+	for (;;) {
+
+		if (v[0] % 2)
+			w = bignum_mul(w, u);
+
+		bignum_shr(v);
+
+		if (v.length == 1 && v[0] == 0)
+			break; // v = 0
+
+		u = bignum_mul(u, u);
+	}
+
+	return w;
+}
+
+// shift right
+
+function
+bignum_shr(u)
+{
+	var i;
+	for (i = 0; i < u.length - 1; i++) {
+		u[i] = Math.floor(u[i] / 2);
+		if (u[i + 1] % 2)
+			u[i] += 0x800000;
+	}
+	u[i] = Math.floor(u[i] / 2);
+	bignum_norm(u);
+}
+// returns null if not perfect root, otherwise returns u^(1/v)
+
+function
+bignum_root(u, v)
+{
+	var i, j, k, m, r, t;
+
+	if (v.length > 1)
+		return null; // v must be 24 bits or less
+
+	if (v[0] == 0)
+		return null; // divide by zero
+
+	// k is bit length of u
+
+	k = 24 * (u.length - 1);
+
+	m = u[u.length - 1];
+
+	while (m) {
+		m = Math.floor(m / 2);
+		k++;
+	}
+
+	if (k == 0)
+		return bignum_int(0); // u = 0
+
+	// initial guess of index of ms bit in result
+
+	k = Math.floor((k - 1) / v[0]);
+
+	j = Math.floor(k / 24) + 1; // k is bit index, not number of bits
+
+	r = [];
+
+	for (i = 0; i < j; i++)
+		r[i] = 0;
+
+	while (k >= 0) {
+
+		i = Math.floor(k / 24);
+		m = Math.pow(2, k % 24);
+
+		r[i] += m; // set bit
+
+		bignum_norm(r);
+
+		t = bignum_pow(r, v);
+
+		switch (bignum_cmp(t, u)) {
+		case -1:
+			break;
+		case 0:
+			return r;
+		case 1:
+			r[i] -= m; // clear bit
+			break;
+		}
+
+		k--;
+	}
+
+	return null;
+}
+// u is greater than or equal to v
+
+function
+bignum_sub(u, v)
+{
+	var i, nu, nv, nw, t, w = [];
+
+	nu = u.length;
+	nv = v.length;
+
+	if (nu > nv)
+		nw = nu;
+	else
+		nw = nv;
+
+	for (i = 0; i < nu; i++)
+		w[i] = u[i];
+
+	for (i = nu; i < nw; i++)
+		w[i] = 0;
+
+	t = 0;
+
+	for (i = 0; i < nv; i++) {
+		t += w[i] - v[i];
+		w[i] = t % BIGM;
+		if (w[i] < 0)
+			w[i] += BIGM;
+		t = Math.floor(t / BIGM);
+	}
+
+	for (i = nv; i < nw; i++) {
+		t += w[i];
+		w[i] = t % BIGM;
+		if (w[i] < 0)
+			w[i] += BIGM;
+		t = Math.floor(t / BIGM);
+	}
+
+	bignum_norm(w);
+
+	return w;
 }
 function
 caaddr(p)
@@ -993,6 +1566,7 @@ circexp()
 	circexp_subst();
 	evalf();
 }
+
 function
 circexp_subst()
 {
@@ -1249,9 +1823,6 @@ cmp_numbers(p1, p2)
 {
 	var d1, d2;
 
-	if (!isnum(p1) || !isnum(p2))
-		stopf("compare");
-
 	if (isrational(p1) && isrational(p2))
 		return cmp_rationals(p1, p2);
 
@@ -1269,15 +1840,31 @@ cmp_numbers(p1, p2)
 
 	return 0;
 }
+
 function
 cmp_rationals(p1, p2)
 {
 	var a, b;
 
-	a = p1.a * p2.b;
-	b = p2.a * p1.b;
+	if (isnegativenumber(p1) && !isnegativenumber(p2))
+		return -1;
 
-	return a - b;
+	if (!isnegativenumber(p1) && isnegativenumber(p2))
+		return 1;
+
+	if (isinteger(p1) && isinteger(p2))
+		if (isnegativenumber(p1))
+			return bignum_cmp(p2.a, p1.a);
+		else
+			return bignum_cmp(p1.a, p2.a);
+
+	a = bignum_mul(p1.a, p2.b);
+	b = bignum_mul(p1.b, p2.a);
+
+	if (isnegativenumber(p1))
+		return bignum_cmp(b, a);
+	else
+		return bignum_cmp(a, b);
 }
 function
 cmp_strings(s1, s2)
@@ -1805,8 +2392,6 @@ const ARG6 = "$6";
 const ARG7 = "$7";
 const ARG8 = "$8";
 const ARG9 = "$9";
-
-const MAXINT = 1e15;
 function
 contract()
 {
@@ -2087,9 +2672,10 @@ cos()
 		return;
 	}
 
-	n = p2.a % 360;
+	push(p2);
+	n = pop_integer();
 
-	switch (n) {
+	switch (n % 360) {
 	case 90:
 	case 270:
 		push_integer(0);
@@ -2524,7 +3110,7 @@ denominator()
 	p1 = pop();
 
 	if (isrational(p1)) {
-		push_integer(p1.b);
+		push_bignum(1, bignum_copy(p1.b), bignum_int(1));
 		return;
 	}
 
@@ -2780,7 +3366,7 @@ emit_base(p)
 function
 emit_denominators(p)
 {
-	var n, q, t;
+	var n, q, s, t;
 
 	t = stack.length;
 	n = count_denominators(p);
@@ -2798,7 +3384,8 @@ emit_denominators(p)
 			emit_medium_space();
 
 		if (isrational(q)) {
-			emit_roman_string(q.b.toFixed(0));
+			s = bignum_itoa(q.b);
+			emit_roman_string(s);
 			continue;
 		}
 
@@ -3181,7 +3768,7 @@ emit_medium_space()
 function
 emit_numerators(p)
 {
-	var n, q, t;
+	var n, q, s, t;
 
 	t = stack.length;
 	n = count_numerators(p);
@@ -3199,7 +3786,8 @@ emit_numerators(p)
 			emit_medium_space();
 
 		if (isrational(q)) {
-			emit_roman_string(Math.abs(q.a).toFixed(0));
+			s = bignum_itoa(q.a);
+			emit_roman_string(s);
 			continue;
 		}
 
@@ -3220,17 +3808,19 @@ emit_numerators(p)
 function
 emit_numeric_exponent(p)
 {
-	var t;
+	var s, t;
 
 	emit_level++;
 
 	t = stack.length;
 
 	if (isrational(p)) {
-		emit_roman_string(Math.abs(p.a).toFixed(0));
-		if (p.b != 1) {
+		s = bignum_itoa(p.a);
+		emit_roman_string(s);
+		if (isfraction(p)) {
 			emit_roman_string("/");
-			emit_roman_string(p.b.toFixed(0));
+			s = bignum_itoa(p.b);
+			emit_roman_string(s);
 		}
 	} else
 		emit_double(p);
@@ -3274,21 +3864,24 @@ emit_power(p)
 function
 emit_rational(p)
 {
-	var t;
+	var s, t;
 
-	if (p.b == 1) {
-		emit_roman_string(Math.abs(p.a).toFixed(0));
+	if (isinteger(p)) {
+		s = bignum_itoa(p.a);
+		emit_roman_string(s);
 		return;
 	}
 
 	emit_level++;
 
 	t = stack.length;
-	emit_roman_string(Math.abs(p.a).toFixed(0));
+	s = bignum_itoa(p.a);
+	emit_roman_string(s);
 	emit_update_list(t);
 
 	t = stack.length;
-	emit_roman_string(p.b.toFixed(0));
+	s = bignum_itoa(p.b);
+	emit_roman_string(s);
 	emit_update_list(t);
 
 	emit_level--;
@@ -3957,10 +4550,12 @@ divisor_term(p)
 function
 divisor_factor(p)
 {
+	if (isinteger(p))
+		return 0;
+
 	if (isrational(p)) {
-		if (isinteger(p))
-			return 0;
-		push_integer(p.b);
+		push(p);
+		denominator();
 		return 1;
 	}
 
@@ -4833,17 +5428,8 @@ equal(p1, p2)
 		return p1 == symbol(NIL) && p2 == symbol(NIL);
 	}
 
-	if (isrational(p1) && isrational(p2))
-		return p1.a == p2.a && p1.b == p2.b;
-
-	if (isrational(p1) && isdouble(p2))
-		return p1.a / p1.b == p2.d;
-
-	if (isdouble(p1) && isrational(p2))
-		return p1.d == p2.a / p2.b;
-
-	if (isdouble(p1) && isdouble(p1))
-		return p1.d == p2.d;
+	if (isnum(p1) && isnum(p2))
+		return cmp_numbers(p1, p2) == 0;
 
 	if (issymbol(p1) && issymbol(p2))
 		return p1.printname == p2.printname;
@@ -4851,27 +5437,29 @@ equal(p1, p2)
 	if (isstring(p1) && isstring(p2))
 		return p1.string == p2.string;
 
-	return 0; // no need to compare tensors
+	return 0;
 }
 function
 equaln(p, n)
 {
-	if (isrational(p))
-		return p.a == n && p.b == 1;
-	else if (isdouble(p))
-		return p.d == n;
-	else
-		return 0;
+	return equalq(p, n, 1);
 }
 function
 equalq(p, a, b)
 {
-	if (isrational(p))
-		return p.a == a && p.b == b;
-	else if (isdouble(p))
+	if (isrational(p)) {
+		if (isnegativenumber(p) && a >= 0)
+			return 0;
+		if (!isnegativenumber(p) && a < 0)
+			return 0;
+		a = Math.abs(a);
+		return bignum_equal(p.a, a) && bignum_equal(p.b, b);
+	}
+
+	if (isdouble(p))
 		return p.d == a / b;
-	else
-		return 0;
+
+	return 0;
 }
 function
 erf()
@@ -4898,8 +5486,91 @@ eval_abs(p1)
 	expanding = 1;
 	push(cadr(p1));
 	evalf();
-	abs();
+	absfunc();
 	expanding = t;
+}
+
+function
+absfunc()
+{
+	var h, p1, p2, p3;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		if (p1.dim.length > 1) {
+			push_symbol(ABS);
+			push(p1);
+			list(2);
+			return;
+		}
+		push(p1);
+		push(p1);
+		conj();
+		inner();
+		push_rational(1, 2);
+		power();
+		return;
+	}
+
+	if (isnum(p1)) {
+		push(p1);
+		if (isnegativenumber(p1))
+			negate();
+		return;
+	}
+
+	push(p1);
+	push(p1);
+	conj();
+	multiply();
+	push_rational(1, 2);
+	power();
+
+	p2 = pop();
+	push(p2);
+	floatfunc();
+	p3 = pop();
+	if (isdouble(p3)) {
+		push(p2);
+		if (isnegativenumber(p3))
+			negate();
+		return;
+	}
+
+	// abs(1/a) evaluates to 1/abs(a)
+
+	if (car(p1) == symbol(POWER) && isnegativeterm(caddr(p1))) {
+		push(p1);
+		reciprocate();
+		absfunc();
+		reciprocate();
+		return;
+	}
+
+	// abs(a*b) evaluates to abs(a)*abs(b)
+
+	if (car(p1) == symbol(MULTIPLY)) {
+		h = stack.length;
+		p1 = cdr(p1);
+		while (iscons(p1)) {
+			push(car(p1));
+			absfunc();
+			p1 = cdr(p1);
+		}
+		multiply_factors(stack.length - h);
+		return;
+	}
+
+	if (isnegativeterm(p1) || (car(p1) == symbol(ADD) && isnegativeterm(cadr(p1)))) {
+		push(p1);
+		negate();
+		p1 = pop();
+	}
+
+	push_symbol(ABS);
+	push(p1);
+	list(2);
 }
 function
 eval_add(p1)
@@ -5049,31 +5720,36 @@ eval_binding(p1)
 function
 eval_ceiling(p1)
 {
-	var t = expanding;
-	expanding = 1;
-	eval_ceiling_nib(p1);
-	expanding = t;
+	push(cadr(p1));
+	evalf();
+	ceiling();
 }
 
 function
-eval_ceiling_nib(p1)
+ceiling()
 {
-	push(cadr(p1));
-	evalf();
-	p1 = pop();
+	var a, b, p;
 
-	if (isrational(p1)) {
-		push_integer(Math.ceil(p1.a / p1.b));
+	p = pop();
+
+	if (isrational(p)) {
+		a = bignum_div(p.a, p.b);
+		b = bignum_int(1);
+		push_bignum(p.sign, a, b);
+		if (!isnegativenumber(p)) {
+			push_integer(1);
+			add();
+		}
 		return;
 	}
 
-	if (isdouble(p1)) {
-		push_double(Math.ceil(p1.d));
+	if (isdouble(p)) {
+		push_double(Math.ceil(p.d));
 		return;
 	}
 
 	push_symbol(CEILING);
-	push(p1);
+	push(p);
 	list(2);
 }
 function
@@ -5600,33 +6276,36 @@ eval_float(p1)
 function
 eval_floor(p1)
 {
-	var t = expanding;
-	expanding = 1;
 	push(cadr(p1));
 	evalf();
 	floor();
-	expanding = t;
 }
 
 function
 floor()
 {
-	var p1;
+	var a, b, p;
 
-	p1 = pop();
+	p = pop();
 
-	if (isrational(p1)) {
-		push_integer(Math.floor(p1.a / p1.b));
+	if (isrational(p)) {
+		a = bignum_div(p.a, p.b);
+		b = bignum_int(1);
+		push_bignum(p.sign, a, b);
+		if (isnegativenumber(p)) {
+			push_integer(-1);
+			add();
+		}
 		return;
 	}
 
-	if (isdouble(p1)) {
-		push_double(Math.floor(p1.d));
+	if (isdouble(p)) {
+		push_double(Math.floor(p.d));
 		return;
 	}
 
 	push_symbol(FLOOR);
-	push(p1);
+	push(p);
 	list(2);
 }
 function
@@ -7517,18 +8196,17 @@ factor()
 		numer = BASE.a;
 		denom = BASE.b;
 
-		if (numer < 0) {
+		if (isnegativenumber(BASE)) {
 			push_symbol(POWER);
 			push_integer(-1);
 			push(EXPO);
 			list(3); // leave on stack
-			numer = -numer;
 		}
 
-		if (numer != 1)
+		if (!bignum_equal(numer, 1))
 			factor_number(numer, EXPO);
 
-		if (denom != 1) {
+		if (!bignum_equal(denom, 1)) {
 			// flip sign of exponent
 			push(EXPO);
 			negate();
@@ -7547,23 +8225,35 @@ factor()
 	numer = INPUT.a;
 	denom = INPUT.b;
 
-	if (numer < 0) {
+	if (isnegativenumber(INPUT))
 		push_integer(-1);
-		numer = -numer;
-	}
 
-	if (numer != 1)
+	if (!bignum_equal(numer, 1))
 		factor_number(numer, one);
 
-	if (denom != 1)
+	if (!bignum_equal(denom, 1))
 		factor_number(denom, minusone);
 }
-// n is a number, exponent is a rational
+// N is bignum, EXPO is rational
 
 function
-factor_number(n, exponent)
+factor_number(N, EXPO)
 {
-	var d, k, m, t;
+	var d, k, m, n, t;
+
+	n = bignum_smallnum(N);
+
+	if (n == null) {
+		// more than 32 bits
+		push_bignum(1, bignum_copy(N), bignum_int(1));
+		if (!isplusone(EXPO)) {
+			push_symbol(POWER);
+			swap();
+			push(EXPO);
+			list(3);
+		}
+		return;
+	}
 
 	for (k = 0; k < 10000; k++) {
 
@@ -7585,7 +8275,7 @@ factor_number(n, exponent)
 		push_integer(d);
 
 		push_integer(m);
-		push(exponent);
+		push(EXPO);
 		multiply();
 		t = pop();
 
@@ -7599,10 +8289,10 @@ factor_number(n, exponent)
 
 	if (n > 1) {
 		push_integer(n);
-		if (!isplusone(exponent)) {
+		if (!isplusone(EXPO)) {
 			push_symbol(POWER);
 			swap();
-			push(exponent);
+			push(EXPO);
 			list(3);
 		}
 	}
@@ -7614,26 +8304,29 @@ factorial()
 
 	p = pop();
 
-	if (isrational(p) && p.a >= 0 && p.b == 1)
-		n = p.a;
-	else if (isdouble(p) && p.d >= 0 && Math.floor(p.d) == p.d)
-		n = p.d;
-	else {
-		push_symbol(FACTORIAL);
+	if (isposint(p)) {
 		push(p);
-		list(2);
+		n = pop_integer();
+		push_integer(1);
+		for (i = 2; i <= n; i++) {
+			push_integer(i);
+			multiply();
+		}
 		return;
 	}
 
-	m = 1;
-
-	for (i = 2; i <= n; i++)
-		m *= i;
-
-	if (isrational(p))
-		push_integer(m);
-	else
+	if (isdouble(p) && p.d >= 0 && Math.floor(p.d) == p.d) {
+		n = p.d;
+		m = 1;
+		for (i = 2; i <= n; i++)
+			m *= i;
 		push_double(m);
+		return;
+	}
+
+	push_symbol(FACTORIAL);
+	push(p);
+	list(2);
 }
 function
 find_denominator(p)
@@ -7725,7 +8418,7 @@ floatfunc()
 function
 floatfunc_subst()
 {
-	var h, i, n, p1;
+	var a, b, h, i, n, p1;
 
 	p1 = pop();
 
@@ -7752,7 +8445,11 @@ floatfunc_subst()
 	}
 
 	if (isrational(p1)) {
-		push_double(p1.a / p1.b);
+		a = bignum_float(p1.a);
+		b = bignum_float(p1.b);
+		if (isnegativenumber(p1))
+			a = -a;
+		push_double(a / b);
 		return;
 	}
 
@@ -8005,19 +8702,6 @@ get_operator_height(font_num)
 	return get_cap_height(font_num) / 2;
 }
 function
-gcd_integers(a, b)
-{
-	var t;
-	a = Math.abs(a);
-	b = Math.abs(b);
-	while (b) {
-		t = b;
-		b = a % b;
-		a = t;
-	}
-	return a;
-}
-function
 get_binding(p)
 {
 	p = binding[p.printname];
@@ -8192,7 +8876,7 @@ infixform_numerators(p)
 			infixform_write(" "); // space in between factors
 
 		if (isrational(q)) {
-			s = Math.abs(q.a).toFixed(0);
+			s = bignum_itoa(q.a);
 			infixform_write(s);
 			continue;
 		}
@@ -8230,7 +8914,7 @@ infixform_denominators(p)
 			infixform_write(" "); // space in between factors
 
 		if (isrational(q)) {
-			s = q.b.toFixed(0);
+			s = bignum_itoa(q.b);
 			infixform_write(s);
 			continue;
 		}
@@ -8466,15 +9150,15 @@ infixform_rational(p)
 {
 	var s;
 
-	s = Math.abs(p.a).toFixed(0);
+	s = bignum_itoa(p.a);
 	infixform_write(s);
 
-	if (p.b == 1)
+	if (isinteger(p))
 		return;
 
 	infixform_write("/");
 
-	s = p.b.toFixed(0);
+	s = bignum_itoa(p.b);
 	infixform_write(s);
 }
 
@@ -8562,7 +9246,7 @@ infixform_numeric_token(p)
 		return;
 	}
 
-	if (p.a >= 0 && isinteger(p))
+	if (!isnegativenumber(p) && isinteger(p))
 		infixform_rational(p);
 	else
 		infixform_subexpr(p);
@@ -9910,10 +10594,11 @@ isdenominator(p)
 {
 	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
 		return 1;
-	else if (isrational(p) && p.b != 1)
+
+	if (isrational(p) && !bignum_equal(p.b, 1))
 		return 1;
-	else
-		return 0;
+
+	return 0;
 }
 function
 isdenormalpolar(p)
@@ -10070,7 +10755,7 @@ isimaginaryunit(p)
 function
 isinteger(p)
 {
-	return ("b" in p) && p.b == 1;
+	return isrational(p) && bignum_equal(p.b, 1);
 }
 function
 iskeyword(p)
@@ -10095,7 +10780,7 @@ isnegative(p)
 function
 isnegativenumber(p)
 {
-	return (isrational(p) && p.a < 0) || (isdouble(p) && p.d < 0);
+	return (isrational(p) && p.sign == -1) || (isdouble(p) && p.d < 0);
 }
 function
 isnegativeterm(p)
@@ -10105,20 +10790,18 @@ isnegativeterm(p)
 function
 isnum(p)
 {
-	if ("d" in p || "a" in p)
-		return 1;
-	else
-		return 0;
+	return isrational(p) || isdouble(p);
 }
 function
 isnumerator(p)
 {
 	if (car(p) == symbol(POWER) && isnegativenumber(caddr(p)))
 		return 0;
-	else if (isrational(p) && Math.abs(p.a) == 1)
+
+	if (isrational(p) && bignum_equal(p.a, 1))
 		return 0;
-	else
-		return 1;
+
+	return 1;
 }
 function
 isoneoversqrttwo(p)
@@ -10133,7 +10816,7 @@ isplusone(p)
 function
 isposint(p)
 {
-	return isinteger(p) && p.a > 0;
+	return isinteger(p) && !isnegativenumber(p);
 }
 function
 isradical(p)
@@ -10176,7 +10859,7 @@ iszero(p)
 	var i, n;
 
 	if (isrational(p))
-		return p.a == 0;
+		return bignum_iszero(p.a);
 
 	if (isdouble(p))
 		return p.d == 0;
@@ -10414,7 +11097,7 @@ mag()
 
 	if (isnum(p1)) {
 		push(p1);
-		abs();
+		absfunc();
 		return;
 	}
 
@@ -10556,11 +11239,11 @@ mod()
 		push(p1);
 		push(p2);
 		divide();
-		abs();
+		absfunc();
 		floor();
 		push(p2);
 		multiply();
-		if ((p1.a < 0 && p2.a < 0) || (p1.a >= 0 && p2.a >= 0))
+		if (p1.sign == p2.sign)
 			negate(); // p1 and p2 have same sign
 		add();
 		return;
@@ -10577,7 +11260,12 @@ mod()
 function
 mod_integers(p1, p2)
 {
-	push_integer(p1.a % p2.a);
+	var a, b;
+
+	a = bignum_mod(p1.a, p2.a);
+	b = bignum_int(1);
+
+	push_bignum(p1.sign, a, b);
 }
 function
 multiply()
@@ -10641,31 +11329,47 @@ multiply_numbers(p1, p2)
 
 	push_double(a * b);
 }
+
 function
 multiply_rationals(p1, p2)
 {
-	var a, b, c;
+	var a, b, d, sign;
 
-	a = p1.a * p2.a;
-	b = p1.b * p2.b;
-
-	if (a == 0) {
-		push_integer(0);
+	if (isinteger(p1) && isinteger(p2)) {
+		multiply_integers(p1, p2);
 		return;
 	}
 
-	if (Math.abs(a) > MAXINT || b > MAXINT) {
-		push_double(a / b);
-		return;
-	}
+	if (p1.sign == p2.sign)
+		sign = 1;
+	else
+		sign = -1;
 
-	if (b > 1) {
-		c = gcd_integers(a, b)
-		a /= c;
-		b /= c;
-	}
+	a = bignum_mul(p1.a, p2.a);
+	b = bignum_mul(p1.b, p2.b);
 
-	push_rational(a, b);
+	d = bignum_gcd(a, b);
+
+	a = bignum_div(a, d);
+	b = bignum_div(b, d);
+
+	push_bignum(sign, a, b);
+}
+
+function
+multiply_integers(p1, p2)
+{
+	var a, b, sign;
+
+	if (p1.sign == p2.sign)
+		sign = 1;
+	else
+		sign = -1;
+
+	a = bignum_mul(p1.a, p2.a);
+	b = bignum_int(1);
+
+	push_bignum(sign, a, b);
 }
 function
 multiply_scalar_factors(h)
@@ -10698,7 +11402,7 @@ multiply_scalar_factors(h)
 
 	COEFF = reduce_radical_factors(h, COEFF);
 
-	if (!isplusone(COEFF) || isdouble(COEFF))
+	if (!isplusone(COEFF) || isdouble(COEFF)) //FIXME would like to get rid of pushing 1.0
 		push(COEFF);
 
 	if (expanding)
@@ -10808,7 +11512,7 @@ normalize_polar_term_rational(R)
 
 	// convert negative rotation to positive
 
-	if (R.a < 0) {
+	if (isnegativenumber(R)) {
 		push(R);
 		push_integer(2);
 		add();
@@ -11029,20 +11733,20 @@ normalize_power_factors(h)
 function
 numerator()
 {
-	var p1 = pop();
+	var p = pop();
 
-	if (isrational(p1)) {
-		push_integer(p1.a);
+	if (isrational(p)) {
+		push_bignum(p.sign, bignum_copy(p.a), bignum_int(1));
 		return;
 	}
 
-	while (divisor(p1)) {
-		push(p1);
+	while (divisor(p)) {
+		push(p);
 		cancel_factor();
-		p1 = pop();
+		p = pop();
 	}
 
-	push(p1);
+	push(p);
 }
 //  1   number
 //  2   number to power (root)
@@ -11224,26 +11928,41 @@ pop()
 function
 pop_double()
 {
-	var p = pop();
+	var a, b, p;
 
-	if (isrational(p))
-		return p.a / p.b;
+	p = pop();
+
+	if (isrational(p)) {
+		a = bignum_float(p.a);
+		b = bignum_float(p.b);
+		if (isnegativenumber(p))
+			a = -a;
+		return a / b;
+	}
 
 	if (isdouble(p))
 		return p.d;
 
-	return 0;
+	stopf("number expected");
 }
 function
 pop_integer()
 {
-	var p1 = pop();
+	var n, p;
 
-	if (isrational(p1) && p1.b == 1)
-		return p1.a;
+	p = pop();
 
-	if (isdouble(p1) && Math.floor(p1.d) == p1.d)
-		return p1.d;
+	if (isinteger(p)) {
+		n = bignum_smallnum(p.a);
+		if (n == null)
+			stopf("bignum exceeds 4294967295");
+		if (isnegativenumber(p))
+			n = -n;
+		return n;
+	}
+
+	if (isdouble(p) && Math.floor(p.d) == p.d)
+		return p.d;
 
 	stopf("integer expected");
 }
@@ -11260,9 +11979,6 @@ power()
 		return;
 	}
 
-	if (iszero(BASE) && isnegativenumber(EXPO))
-		stopf("divide by zero");
-
 	if (BASE == symbol(EXP1) && isdouble(EXPO)) {
 		push_double(Math.E);
 		BASE = pop();
@@ -11273,42 +11989,25 @@ power()
 		BASE = pop();
 	}
 
-	if (isrational(BASE) && isdouble(EXPO)) {
-		push(BASE);
-		push_double(pop_double());
-		BASE = pop();
-	}
-
-	if (isdouble(BASE) && isrational(EXPO)) {
-		push(EXPO);
-		push_double(pop_double());
-		EXPO = pop();
+	if (isnum(BASE) && isnum(EXPO)) {
+		power_numbers(BASE, EXPO);
+		return;
 	}
 
 	// expr^0
 
 	if (iszero(EXPO)) {
-		if (isdouble(BASE))
-			push_double(1.0);
-		else
-			push_integer(1);
+		push_integer(1);
 		return;
 	}
 
 	// 0^expr
 
 	if (iszero(BASE)) {
-		if (isnum(EXPO)) {
-			if (isdouble(BASE))
-				push_double(0.0);
-			else
-				push_integer(0);
-		} else {
-			push_symbol(POWER);
-			push(BASE);
-			push(EXPO);
-			list(3);
-		}
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
 		return;
 	}
 
@@ -11322,16 +12021,7 @@ power()
 	// 1^expr
 
 	if (isplusone(BASE)) {
-		push(BASE);
-		return;
-	}
-
-	// BASE and EXPO numerical?
-
-	if (isnum(BASE) && isnum(EXPO)) {
-		expanding++;
-		power_numbers(BASE, EXPO);
-		expanding--;
+		push_integer(1);
 		return;
 	}
 
@@ -11541,13 +12231,13 @@ power_complex_number(BASE, EXPO)
 {
 	var n, X, Y;
 
-	// lisp(2+3*i) = (add 2 (multiply 3 (power -1 1/2)))
+	// prefixform(2 + 3 i) = (add 2 (multiply 3 (power -1 1/2)))
 
-	// lisp(1+i) = (add 1 (power -1 1/2))
+	// prefixform(1 + i) = (add 1 (power -1 1/2))
 
-	// lisp(3*i) = (multiply 3 (power -1 1/2))
+	// prefixform(3 i) = (multiply 3 (power -1 1/2))
 
-	// lisp(i) = (power -1 1/2)
+	// prefixform(i) = (power -1 1/2)
 
 	if (car(BASE) == symbol(ADD)) {
 		X = cadr(BASE);
@@ -11573,15 +12263,8 @@ power_complex_number(BASE, EXPO)
 		return;
 	}
 
-	if (!isinteger(EXPO)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
-
-	n = EXPO.a;
+	push(EXPO);
+	n = pop_integer();
 
 	if (n > 0)
 		power_complex_plus(X, Y, n);
@@ -11703,7 +12386,7 @@ normalize_clock_rational(EXPO)
 
 	// convert negative rotation to positive
 
-	if (R.a < 0) {
+	if (isnegativenumber(R)) {
 		push(R);
 		push_integer(2);
 		add();
@@ -11909,13 +12592,48 @@ power_natural_number(EXPO)
 function
 power_numbers(BASE, EXPO)
 {
-	var base, expo;
+	var a, b;
 
-	if (iszero(BASE) && isnegativenumber(EXPO))
-		stopf("divide by zero");
+	if (iszero(EXPO)) {
+		push_integer(1); // 0^0 = 1
+		return;
+	}
 
-	if (isinteger(EXPO)) {
-		power_simple(BASE, EXPO);
+	if (iszero(BASE)) {
+		if (isnegativenumber(EXPO))
+			stopf("divide by zero in power_numbers");
+		push_integer(0);
+		return;
+	}
+
+	if (isplusone(BASE)) {
+		push_integer(1);
+		return;
+	}
+
+	if (isplusone(EXPO)) {
+		push(BASE);
+		return;
+	}
+
+	if (isdouble(BASE) || isdouble(EXPO)) {
+		power_double(BASE, EXPO);
+		return;
+	}
+
+	if (isrational(BASE) && isinteger(EXPO)) {
+		a = bignum_pow(BASE.a, EXPO.a);
+		b = bignum_pow(BASE.b, EXPO.a);
+		if (isnegativenumber(BASE) && bignum_odd(EXPO.a))
+			if (isnegativenumber(EXPO))
+				push_bignum(-1, b, a); // reciprocate
+			else
+				push_bignum(-1, a, b);
+		else
+			if (isnegativenumber(EXPO))
+				push_bignum(1, b, a); // reciprocate
+			else
+				push_bignum(1, a, b);
 		return;
 	}
 
@@ -11929,28 +12647,20 @@ power_numbers(BASE, EXPO)
 		push(BASE);
 		negate();
 		BASE = pop();
-		power_numbers(BASE, EXPO);
+		power_rationals(BASE, EXPO);
 		multiply();
 		return;
 	}
 
-	if (isrational(BASE) && isrational(EXPO)) {
-		power_rationals(BASE, EXPO);
-		return;
-	}
-
-	push(BASE);
-	base = pop_double();
-
-	push(EXPO);
-	expo = pop_double();
-
-	push_double(Math.pow(base, expo));
+	power_rationals(BASE, EXPO);
 }
+
+// BASE is nonnegative
+
 function
 power_rationals(BASE, EXPO)
 {
-	var d, h, i, n, base, expo, p1, COEFF;
+	var h, i, n, p1, COEFF;
 
 	h = stack.length;
 
@@ -11961,7 +12671,7 @@ power_rationals(BASE, EXPO)
 	push(EXPO);
 	list(3);
 
-	factor();
+	factor(); // factor detects POWER and applies EXPO to factors of BASE
 
 	// normalize factors
 
@@ -11996,31 +12706,11 @@ power_rationals(BASE, EXPO)
 		}
 	}
 
-	// float radicals if COEFF is double (can happen due to auto conversion of rational to double)
-
-	n = stack.length;
-
-	if (isdouble(COEFF) && n - h > 0) {
-		d = COEFF.d;
-		n = stack.length;
-		for (i = h; i < n; i++) {
-			p1 = stack[i];
-			BASE = cadr(p1);
-			EXPO = caddr(p1);
-			base = BASE.a / BASE.b;
-			expo = EXPO.a / EXPO.b;
-			d *= Math.pow(base, expo);
-		}
-		stack.splice(h); // pop all
-		push_double(d);
-		COEFF = pop();
-	}
-
 	// finalize
 
 	n = stack.length - h;
 
-	if (n == 0 || !isplusone(COEFF) || isdouble(COEFF)) {
+	if (n == 0 || !isplusone(COEFF) /* || isdouble(COEFF) */) { //FIXME
 		push(COEFF);
 		n++;
 	}
@@ -12034,68 +12724,89 @@ power_rationals(BASE, EXPO)
 	swap();
 	cons();
 }
+
+// BASE is nonnegative integer, EXPO is signed rational
+
 function
-power_rationals_nib(BASE, EXPO) // BASE is prime number, EXPO is rational
+power_rationals_nib(BASE, EXPO)
 {
-	var n, q, r;
+	var a, b, n, q, r;
 
 	// integer power?
 
-	if (EXPO.b == 1) {
+	if (isinteger(EXPO)) {
 
-		n = Math.pow(BASE.a, Math.abs(EXPO.a));
-
-		if (EXPO.a < 0)
-			push_rational(1, n); // reciprocate
-		else
-			push_rational(n, 1);
-
-		return;
-	}
-
-	q = Math.floor(Math.abs(EXPO.a) / EXPO.b);
-	r = Math.abs(EXPO.a) % EXPO.b;
-
-	// whole part
-
-	if (q > 0) {
-
-		n = Math.pow(BASE.a, q);
-
-		if (EXPO.a < 0)
-			push_rational(1, n); // reciprocate
-		else
-			push_rational(n, 1);
-	}
-
-	// remainder (BASE is prime hence no roots)
-
-	if (EXPO.a < 0)
-		r = -r;
-
-	push_symbol(POWER);
-	push(BASE);
-	push_rational(r, EXPO.b);
-	list(3);
-}
-function
-power_simple(BASE, EXPO) // EXPO is an integer
-{
-	var a, b, base, expo;
-
-	if (isrational(BASE) && isrational(EXPO)) {
-
-		a = Math.pow(BASE.a, Math.abs(EXPO.a));
-		b = Math.pow(BASE.b, Math.abs(EXPO.a));
+		a = bignum_pow(BASE.a, EXPO.a);
+		b = bignum_int(1);
 
 		if (isnegativenumber(EXPO))
-			push_rational(b, a); // reciprocate
+			push_bignum(1, b, a); // reciprocate
 		else
-			push_rational(a, b);
+			push_bignum(1, a, b);
 
 		return;
-
 	}
+
+	// EXPO.a          r
+	// ------ == q + ------
+	// EXPO.b        EXPO.b
+
+	q = bignum_div(EXPO.a, EXPO.b);
+	r = bignum_mod(EXPO.a, EXPO.b);
+
+	// process q
+
+	if (!bignum_iszero(q)) {
+
+		a = bignum_pow(BASE.a, q);
+		b = bignum_int(1);
+
+		if (isnegativenumber(EXPO))
+			push_bignum(1, b, a); // reciprocate
+		else
+			push_bignum(1, a, b);
+	}
+
+	// process r
+
+	n = bignum_smallnum(BASE.a);
+
+	if (n != null) {
+		// BASE is 32 bits or less, hence a prime number, no root
+		push_symbol(POWER);
+		push(BASE);
+		push_bignum(EXPO.sign, r, bignum_copy(EXPO.b));
+		list(3);
+		return;
+	}
+
+	// BASE was too big to factor, try finding root
+
+	n = bignum_root(BASE.a, EXPO.b);
+
+	if (n == null) {
+		// no root
+		push_symbol(POWER);
+		push(BASE);
+		push_bignum(EXPO.sign, r, bignum_copy(EXPO.b));
+		list(3);
+		return;
+	}
+
+	// raise root to rth power
+
+	n = bignum_pow(n, r);
+
+	if (isnegativenumber(EXPO))
+		push_bignum(1, bignum_int(1), n); // reciprocate
+	else
+		push_bignum(1, n, bignum_int(1));
+}
+
+function
+power_double(BASE, EXPO)
+{
+	var base, d, expo;
 
 	push(BASE);
 	base = pop_double();
@@ -12103,14 +12814,37 @@ power_simple(BASE, EXPO) // EXPO is an integer
 	push(EXPO);
 	expo = pop_double();
 
-	push_double(Math.pow(base, expo));
+	if (base > 0 || expo == Math.floor(expo)) {
+		d = Math.pow(base, expo);
+		push_double(d);
+		return;
+	}
+
+	// BASE is negative and EXPO is fractional
+
+	power_minusone(EXPO);
+
+	if (base == -1)
+		return;
+
+	d = Math.pow(-base, expo);
+	push_double(d);
+
+	multiply();
 }
+// BASE is a sum of terms
+
 function
 power_sum(BASE, EXPO)
 {
 	var h, i, n, p3, p4;
 
-	if (expanding == 0 || !isnum(EXPO)) {
+	if (iszero(EXPO)) {
+		push_integer(1);
+		return;
+	}
+
+	if (expanding == 0 || !isnum(EXPO) || isnegativenumber(EXPO) || isfraction(EXPO) || (isdouble(EXPO) && EXPO.d != Math.floor(EXPO.d))) {
 		push_symbol(POWER);
 		push(BASE);
 		push(EXPO);
@@ -12118,18 +12852,8 @@ power_sum(BASE, EXPO)
 		return;
 	}
 
-	if (isrational(EXPO))
-		n = EXPO.a / EXPO.b;
-	else
-		n = EXPO.d;
-
-	if (n < 0 || n != Math.floor(n)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
+	push(EXPO);
+	n = pop_integer();
 
 	// square the sum first (prevents infinite loop through multiply)
 
@@ -12188,11 +12912,13 @@ prefixform(p)
 			p = cdr(p);
 		}
 		outbuf += ")";
-	} else if (isinteger(p))
-		outbuf += p.a.toFixed(0);
-	else if (isrational(p))
-		outbuf += p.a.toFixed(0) + "/" + p.b.toFixed(0);
-	else if (isdouble(p))
+	} else if (isrational(p)) {
+		if (isnegativenumber(p))
+			outbuf += '-';
+		outbuf += bignum_itoa(p.a);
+		if (isfraction(p))
+			outbuf += "/" + bignum_itoa(p.b);
+	} else if (isdouble(p))
 		outbuf += p.d.toPrecision(6);
 	else if (issymbol(p))
 		outbuf += p.printname;
@@ -13610,26 +14336,24 @@ push_double(d)
 function
 push_integer(n)
 {
-	push({a:n, b:1});
+	push_rational(n, 1);
 }
 function
 push_rational(a, b)
 {
-	if (b == 0)
-		stopf("divide by zero");
+	var sign;
 
-	if (a == 0)
-		b = 1;
-
-	if (b < 0) {
-		a = -a;
-		b = -b;
-	}
-
-	if (Math.abs(a) > MAXINT || b > MAXINT)
-		push_double(a / b);
+	if (a < 0)
+		sign = -1;
 	else
-		push({a:a, b:b});
+		sign = 1;
+
+	a = Math.abs(a);
+
+	a = bignum_int(a);
+	b = bignum_int(b);
+
+	push_bignum(sign, a, b);
 }
 function
 push_string(s)
@@ -13858,7 +14582,7 @@ reduce_radical_rational(h, COEFF)
 		return COEFF; // COEFF has no factors, no cancellation is possible
 
 	push(COEFF);
-	abs();
+	absfunc();
 	p1 = pop();
 
 	push(p1);
@@ -14201,7 +14925,7 @@ scan_power()
 function
 scan_factor()
 {
-	var h, n;
+	var a, b, d, h;
 
 	h = stack.length;
 
@@ -14220,17 +14944,15 @@ scan_factor()
 		break;
 
 	case T_INTEGER:
-		n = parseFloat(token_buf);
-		if (n > MAXINT)
-			push_double(n);
-		else
-			push_integer(n);
+		a = bignum_atoi(token_buf);
+		b = bignum_int(1);
+		push_bignum(1, a, b);
 		get_token();
 		break;
 
 	case T_DOUBLE:
-		n = parseFloat(token_buf);
-		push_double(n);
+		d = parseFloat(token_buf);
+		push_double(d);
 		get_token();
 		break;
 
@@ -15043,9 +15765,10 @@ sin()
 		return;
 	}
 
-	n = p2.a % 360;
+	push(p2);
+	n = pop_integer();
 
-	switch (n) {
+	switch (n % 360) {
 	case 0:
 	case 180:
 		push_integer(0);
@@ -15423,9 +16146,10 @@ tan()
 		return;
 	}
 
-	n = p2.a % 360;
+	push(p2);
+	n = pop_integer();
 
-	switch (n) {
+	switch (n % 360) {
 	case 0:
 	case 180:
 		push_integer(0);

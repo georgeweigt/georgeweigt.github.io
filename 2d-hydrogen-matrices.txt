@@ -82,6 +82,10 @@ V = ((I(conj(psi0) 1/r psi0),
 P2 = simplify(P2)
 V = simplify(V)
 
+"Verify symbolic matrices (1=ok)"
+
+H == P2 / (2 mu) - k V
+
 -- physical constants (h and kB are exact values)
 
 c = 299792458.0 meter / second
