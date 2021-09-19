@@ -82,9 +82,15 @@ V = ((I(conj(psi0) 1/r psi0),
 P2 = simplify(P2)
 V = simplify(V)
 
+H
+P2
+V
+
 "Verify symbolic matrices (1=ok)"
 
 H == P2 / (2 mu) - k V
+
+"Compute numerical values..."
 
 -- physical constants (h and kB are exact values)
 
