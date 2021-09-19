@@ -1054,7 +1054,7 @@ bignum_div(u, v)
 	nv = v.length;
 
 	if (nv == 1 && v[0] == 0)
-		stopf("divide by zero in bignum_div");
+		stopf("divide by zero");
 
 	if (nu == 1 && nv == 1)
 		return bignum_int(Math.floor(u[0] / v[0]));
@@ -12011,13 +12011,6 @@ power()
 		return;
 	}
 
-	// expr^1
-
-	if (isplusone(EXPO)) {
-		push(BASE);
-		return;
-	}
-
 	// 1^expr
 
 	if (isplusone(BASE)) {
@@ -12025,10 +12018,17 @@ power()
 		return;
 	}
 
+	// expr^1
+
+	if (isplusone(EXPO)) {
+		push(BASE);
+		return;
+	}
+
 	// BASE is an integer? (EXPO is not numerical)
 
 	if (isinteger(BASE)) {
-		expanding++;
+		// raise each factor in BASE to power EXPO
 		h = stack.length;
 		push(BASE);
 		factor();
@@ -12057,14 +12057,13 @@ power()
 			swap();
 			cons();
 		}
-		expanding--;
 		return;
 	}
 
-	// BASE is a fraction? (EXPO is not numerical)
+	// BASE is a numerical fraction? (EXPO is not numerical)
 
 	if (isfraction(BASE)) {
-		expanding++;
+		// power numerator, power denominator
 		push(BASE);
 		numerator();
 		push(EXPO);
@@ -12075,7 +12074,6 @@ power()
 		negate();
 		power();
 		multiply();
-		expanding--;
 		return;
 	}
 
@@ -12592,24 +12590,32 @@ power_natural_number(EXPO)
 function
 power_numbers(BASE, EXPO)
 {
-	var a, b;
+	var a, b, h, i, n, p1, p2;
+
+	// n^0
 
 	if (iszero(EXPO)) {
-		push_integer(1); // 0^0 = 1
+		push_integer(1);
 		return;
 	}
+
+	// 0^n
 
 	if (iszero(BASE)) {
 		if (isnegativenumber(EXPO))
-			stopf("divide by zero in power_numbers");
+			stopf("divide by zero");
 		push_integer(0);
 		return;
 	}
+
+	// 1^n
 
 	if (isplusone(BASE)) {
 		push_integer(1);
 		return;
 	}
+
+	// n^1
 
 	if (isplusone(EXPO)) {
 		push(BASE);
@@ -12621,7 +12627,9 @@ power_numbers(BASE, EXPO)
 		return;
 	}
 
-	if (isrational(BASE) && isinteger(EXPO)) {
+	// integer exponent?
+
+	if (isinteger(EXPO)) {
 		a = bignum_pow(BASE.a, EXPO.a);
 		b = bignum_pow(BASE.b, EXPO.a);
 		if (isnegativenumber(BASE) && bignum_odd(EXPO.a))
@@ -12637,30 +12645,7 @@ power_numbers(BASE, EXPO)
 		return;
 	}
 
-	if (isminusone(BASE)) {
-		power_minusone(EXPO);
-		return;
-	}
-
-	if (isnegativenumber(BASE)) {
-		power_minusone(EXPO);
-		push(BASE);
-		negate();
-		BASE = pop();
-		power_rationals(BASE, EXPO);
-		multiply();
-		return;
-	}
-
-	power_rationals(BASE, EXPO);
-}
-
-// BASE is nonnegative
-
-function
-power_rationals(BASE, EXPO)
-{
-	var h, i, n, p1, COEFF;
+	// exponent is a root
 
 	h = stack.length;
 
@@ -12671,38 +12656,35 @@ power_rationals(BASE, EXPO)
 	push(EXPO);
 	list(3);
 
-	factor(); // factor detects POWER and applies EXPO to factors of BASE
+	factor();
 
 	// normalize factors
 
-	n = stack.length;
+	n = stack.length - h; // fix n now, stack can grow
 
-	for (i = h; i < n; i++) {
-		p1 = stack[i];
+	for (i = 0; i < n; i++) {
+		p1 = stack[h + i];
 		if (car(p1) == symbol(POWER)) {
 			BASE = cadr(p1);
 			EXPO = caddr(p1);
-			power_rationals_nib(BASE, EXPO);
-			stack[i] = pop(); // 1 or 2 factors on stack, fill hole with tos
+			power_numbers_factor(BASE, EXPO);
+			stack[h + i] = pop(); // fill hole
 		}
 	}
 
 	// combine numbers (leaves radicals on stack)
 
-	COEFF = one;
+	p1 = one;
 
-	n = stack.length;
-
-	for (i = h; i < n; i++) {
-		p1 = stack[i];
-		if (isnum(p1)) {
-			push(COEFF);
+	for (i = h; i < stack.length; i++) {
+		p2 = stack[i];
+		if (isnum(p2)) {
 			push(p1);
+			push(p2);
 			multiply();
-			COEFF = pop();
+			p1 = pop();
 			stack.splice(i, 1);
 			i--;
-			n--;
 		}
 	}
 
@@ -12710,8 +12692,8 @@ power_rationals(BASE, EXPO)
 
 	n = stack.length - h;
 
-	if (n == 0 || !isplusone(COEFF) /* || isdouble(COEFF) */) { //FIXME
-		push(COEFF);
+	if (n == 0 || !isplusone(p1)) {
+		push(p1);
 		n++;
 	}
 
@@ -12725,14 +12707,17 @@ power_rationals(BASE, EXPO)
 	cons();
 }
 
-// BASE is nonnegative integer, EXPO is signed rational
+// BASE is an integer factor
 
 function
-power_rationals_nib(BASE, EXPO)
+power_numbers_factor(BASE, EXPO)
 {
 	var a, b, n, q, r;
 
-	// integer power?
+	if (isminusone(BASE)) {
+		power_minusone(EXPO);
+		return;
+	}
 
 	if (isinteger(EXPO)) {
 
@@ -12772,7 +12757,7 @@ power_rationals_nib(BASE, EXPO)
 	n = bignum_smallnum(BASE.a);
 
 	if (n != null) {
-		// BASE is 32 bits or less, hence a prime number, no root
+		// BASE is 32 bits or less, hence BASE is a prime number, no root
 		push_symbol(POWER);
 		push(BASE);
 		push_bignum(EXPO.sign, r, bignum_copy(EXPO.b));
@@ -12793,7 +12778,7 @@ power_rationals_nib(BASE, EXPO)
 		return;
 	}
 
-	// raise root to rth power
+	// raise n to rth power
 
 	n = bignum_pow(n, r);
 
