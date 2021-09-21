@@ -934,18 +934,25 @@ bignum_float(u)
 	return d;
 }
 
-// returns 32-bit value
+// returns 31-bit value
 
 function
 bignum_smallnum(u)
 {
-	if (u.length == 1)
-		return u[0];
-
-	if (u.length == 2 && u[1] < 256)
-		return BIGM * u[1] + u[0];
+	if (bignum_issmallnum(u)) {
+		if (u.length == 1)
+			return u[0];
+		else
+			return BIGM * u[1] + u[0];
+	}
 
 	return null;
+}
+
+function
+bignum_issmallnum(u)
+{
+	return u.length == 1 || (u.length == 2 && u[1] < 128);
 }
 
 function
@@ -6866,25 +6873,27 @@ eval_power(p1)
 {
 	var t, p2;
 
-	push(caddr(p1)); // exponent
+	// evaluate exponent
+
+	push(caddr(p1));
 	evalf();
 	p2 = pop();
 
+	// if exponent is negative then evaluate base without expanding
+
+	push(cadr(p1));
+
 	if (isnegativenumber(p2)) {
-		// don't expand in denominators
 		t = expanding;
 		expanding = 0;
-		push(cadr(p1)); // base
 		evalf();
-		push(p2);
-		power();
 		expanding = t;
-	} else {
-		push(cadr(p1)); // base
+	} else
 		evalf();
-		push(p2);
-		power();
-	}
+
+	push(p2);
+
+	power();
 }
 function
 eval_prefixform(p1)
@@ -10758,6 +10767,11 @@ isinteger(p)
 	return isrational(p) && bignum_equal(p.b, 1);
 }
 function
+isinteger1(p)
+{
+	return isinteger(p) && isplusone(p);
+}
+function
 iskeyword(p)
 {
 	return issymbol(p) && p.func != eval_user_symbol;
@@ -10827,6 +10841,17 @@ function
 isrational(p)
 {
 	return "a" in p;
+}
+function
+issmallinteger(p)
+{
+	if (isinteger(p))
+		return bignum_issmallnum(p.a);
+
+	if (isdouble(p))
+		return p.d == Math.floor(p.d) && Math.abs(p.d) < 0x80000000;
+
+	return 0;
 }
 function
 issquarematrix(p)
@@ -11955,7 +11980,7 @@ pop_integer()
 	if (isinteger(p)) {
 		n = bignum_smallnum(p.a);
 		if (n == null)
-			stopf("bignum exceeds 4294967295");
+			stopf("value exceeds 2^31 - 1");
 		if (isnegativenumber(p))
 			n = -n;
 		return n;
@@ -12832,14 +12857,9 @@ power_double(BASE, EXPO)
 function
 power_sum(BASE, EXPO)
 {
-	var h, i, n, p3, p4;
+	var h, i, n, p1, p2;
 
-	if (iszero(EXPO)) {
-		push_integer(1);
-		return;
-	}
-
-	if (expanding == 0 || !isnum(EXPO) || isnegativenumber(EXPO) || isfraction(EXPO) || (isdouble(EXPO) && EXPO.d != Math.floor(EXPO.d))) {
+	if (expanding == 0 || !isnum(EXPO) || isnegativenumber(EXPO) || isfraction(EXPO) || !issmallinteger(EXPO)) {
 		push_symbol(POWER);
 		push(BASE);
 		push(EXPO);
@@ -12854,17 +12874,17 @@ power_sum(BASE, EXPO)
 
 	h = stack.length;
 
-	p3 = cdr(BASE);
+	p1 = cdr(BASE);
 
-	while (iscons(p3)) {
-		p4 = cdr(BASE);
-		while (iscons(p4)) {
-			push(car(p3));
-			push(car(p4));
+	while (iscons(p1)) {
+		p2 = cdr(BASE);
+		while (iscons(p2)) {
+			push(car(p1));
+			push(car(p2));
 			multiply();
-			p4 = cdr(p4);
+			p2 = cdr(p2);
 		}
-		p3 = cdr(p3);
+		p1 = cdr(p1);
 	}
 
 	add_terms(stack.length - h);
@@ -15960,7 +15980,8 @@ static_reciprocate()
 	// save divide by zero error for runtime
 
 	if (iszero(p2)) {
-		push(p1);
+		if (!isinteger1(p1))
+			push(p1);
 		push_symbol(POWER);
 		push(p2);
 		push_integer(-1);
@@ -15976,13 +15997,27 @@ static_reciprocate()
 	}
 
 	if (isnum(p2)) {
-		push(p1);
+		if (!isinteger1(p1))
+			push(p1);
 		push(p2);
 		reciprocate();
 		return;
 	}
 
-	push(p1);
+	if (car(p2) == symbol(POWER) && isnum(caddr(p2))) {
+		if (!isinteger1(p1))
+			push(p1);
+		push_symbol(POWER);
+		push(cadr(p2));
+		push(caddr(p2));
+		negate();
+		list(3);
+		return;
+	}
+
+	if (!isinteger1(p1))
+		push(p1);
+
 	push_symbol(POWER);
 	push(p2);
 	push_integer(-1);
