@@ -1,4 +1,4 @@
--- muon mean lifetime
+-- Compute muon lifetime
 
 GF = 1.1663787 10^(-5) GeV^(-2)
 mmu = 1.883531627 10^(-28) kilogram
