@@ -9186,7 +9186,7 @@ infixform_double(p)
 {
 	var i, j, k, s;
 
-	s = Math.abs(p.d).toPrecision(6);
+	s = fmtnum(p.d);
 
 	k = 0;
 
@@ -9255,11 +9255,15 @@ infixform_numeric_token(p)
 	var s;
 
 	if (isdouble(p)) {
-		s = p.d.toPrecision(6);
-		if (p.d >= 0 && s.indexOf("E") == -1 && s.indexOf("e") == -1)
-			infixform_double(p);
-		else
+		if (p.d < 0)
 			infixform_subexpr(p);
+		else {
+			s = fmtnum(p.d);
+			if (s.indexOf("E") < 0 && s.indexOf("e") < 0)
+				infixform_double(p);
+			else
+				infixform_subexpr(p);
+		}
 		return;
 	}
 
@@ -9277,8 +9281,8 @@ infixform_numeric_exponent(p)
 	var s;
 
 	if (isdouble(p)) {
-		s = Math.abs(p.d).toPrecision(6);
-		if (s.indexOf("E") == -1 && s.indexOf("e") == -1)
+		s = fmtnum(p.d);
+		if (s.indexOf("E") < 0 && s.indexOf("e") < 0)
 			infixform_double(p);
 		else {
 			infixform_write("(");
