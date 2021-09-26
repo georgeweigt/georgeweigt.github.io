@@ -3416,7 +3416,7 @@ emit_double(p)
 {
 	var i, j, k, s, t;
 
-	s = Math.abs(p.d).toPrecision(6);
+	s = fmtnum(p.d);
 
 	k = 0;
 
@@ -6891,7 +6891,7 @@ eval_power(p1)
 	} else
 		evalf();
 
-	push(p2);
+	push(p2); // push exponent
 
 	power();
 }
@@ -8501,6 +8501,14 @@ floatfunc_subst()
 	}
 
 	push(p1);
+}
+function
+fmtnum(n)
+{
+	if (Math.abs(n) < 0.0001)
+		return Math.abs(n).toExponential(5);
+	else
+		return Math.abs(n).toPrecision(6);
 }
 const FONT_SIZE = 24;
 const SMALL_FONT_SIZE = 18;
