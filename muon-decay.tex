@@ -2,6 +2,7 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{slashed}
 
 \begin{document}
 
@@ -215,6 +216,39 @@ Muon lifetime $\tau$ is the inverse of decay rate.
 In physical units for $c$ and $h$ we have
 \begin{equation*}
 \tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
+\end{equation*}
+
+\noindent
+It is of historical interest to note that $\langle|\mathcal{M}|^2\rangle$ can also be computed
+using the following ``Casimir trick.''
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{G_F^2}{4}
+\mathop{\text{Tr}}
+\left(\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right)
+\mathop{\text{Tr}}
+\left(\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right)
+\end{equation*}
+
+\noindent
+The slashed symbols are $4\times4$ matrices computed as
+\begin{equation*}
+\slashed{p}=p\cdot\gamma
+=p^0\gamma^0-p^1\gamma^1-p^2\gamma^2-p^3\gamma^3
+\end{equation*}
+
+\noindent
+For example,
+\begin{equation*}
+\slashed{p}_1=\begin{pmatrix}
+E_1 & 0 & -p_{1z} & -p_{1x} + ip_{1y}
+\\[1ex]
+0 & E_1 & -p_{1x} - ip_{1y} & p_{1z}
+\\[1ex]
+p_{1z} & p_{1x} - i p_{1y} & -E_1 & 0
+\\[1ex]
+p_{1x} + ip_{1y} & -p_{1z} & 0 & -E_1
+\end{pmatrix}
 \end{equation*}
 
 \end{document}

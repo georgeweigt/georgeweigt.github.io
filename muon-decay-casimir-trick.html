@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Verify Casimir trick for muon decay
+
+p1 = (E1, p1x, p1y, p1z) -- muon
+p2 = (E2, p2x, p2y, p2z) -- muon neutrino
+p3 = (E3, p3x, p3y, p3z) -- electron antineutrino
+p4 = (E4, p4x, p4y, p4z) -- electron
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+pslash3 = dot(p3,gmunu,gamma)
+pslash4 = dot(p4,gmunu,gamma)
+
+-- T1 is the first trace matrix
+T1 = contract(dot(pslash4,gammaT,I - gamma5,pslash3,gammaT,I - gamma5),1,4)
+
+-- T2 is the second trace matrix
+T2 = contract(dot(pslash2,gammaL,I - gamma5,pslash1,gammaL,I - gamma5),1,4)
+
+-- T is the product of T1 and T2
+T = contract(dot(T1,transpose(T2)))
+
+"Result"
+T
+
+"Verify (1=ok)"
+
+1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
