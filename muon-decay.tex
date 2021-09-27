@@ -90,7 +90,7 @@ p_4=
 \end{equation*}
 
 \noindent
-And we will use the following Dirac spinors.
+And we will also use the following Dirac spinors.
 \begin{align*}
 u_{11}&=\begin{pmatrix}E_1+m_1\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}
 &
@@ -115,6 +115,18 @@ v_{32}&=
 u_{42}&=
 \underset{\substack{\\[1ex] e^-}}
 {\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
+\end{align*}
+
+\noindent
+The energy terms are total energy.
+\begin{align*}
+E_1&=\sqrt{(p_{1x})^2+(p_{1y})^2+(p_{1z})^2+m_1^2}
+\\[1ex]
+E_2&=\sqrt{(p_{2x})^2+(p_{2y})^2+(p_{2z})^2+m_2^2}
+\\[1ex]
+E_3&=\sqrt{(p_{3x})^2+(p_{3y})^2+(p_{3z})^2+m_3^2}
+\\[1ex]
+E_4&=\sqrt{(p_{4x})^2+(p_{4y})^2+(p_{4z})^2+m_4^2}
 \end{align*}
 
 \noindent
@@ -176,6 +188,29 @@ g_{\mu\nu}=\begin{pmatrix}
 0 & 0 & -1 & 0\\
 0 & 0 & 0 & -1
 \end{pmatrix}
+\end{equation*}
+
+\noindent
+Muon decay rate $\Gamma$ is the average over all possible momenta.
+\begin{equation*}
+\Gamma=\int\langle|\mathcal{M}|^2\rangle\,dp
+\end{equation*}
+
+\noindent
+It can be shown that
+\begin{equation*}
+\Gamma=\frac{G_F^2 m_\mu^5}{192\pi^3}
+\end{equation*}
+where $m_\mu=m_1$.
+Muon lifetime $\tau$ is the inverse of decay rate.
+\begin{equation*}
+\tau=\frac{192\pi^3}{G_F^2 m_\mu^5}
+\end{equation*}
+
+\noindent
+In physical units for $c$ and $h$ we have
+\begin{equation*}
+\tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 \end{equation*}
 
 \end{document}
