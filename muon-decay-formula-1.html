@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Verify muon decay formula (1)
+
+-- Run time is about 1 minute
+
+E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
+E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
+E3 = sqrt(p3x^2 + p3y^2 + p3z^2 + m3^2)
+E4 = sqrt(p4x^2 + p4y^2 + p4z^2 + m4^2)
+
+p1 = (E1, p1x, p1y, p1z)
+p2 = (E2, p2x, p2y, p2z)
+p3 = (E3, p3x, p3y, p3z)
+p4 = (E4, p4x, p4y, p4z)
+
+u11 = (E1 + m1, 0, p1z, p1x + i p1y)
+u12 = (0, E1 + m1, p1x - i p1y, -p1z)
+
+u21 = (E2 + m2, 0, p2z, p2x + i p2y)
+u22 = (0, E2 + m2, p2x - i p2y, -p2z)
+
+v31 = (p3z, p3x + i p3y, E3 + m3, 0)
+v32 = (p3x - i p3y, -p3z, 0, E3 + m3)
+
+u41 = (E4 + m4, 0, p4z, p4x + i p4y)
+u42 = (0, E4 + m4, p4x - i p4y, -p4z)
+
+u1 = (u11,u12)
+u2 = (u21,u22)
+v3 = (v31,v32)
+u4 = (u41,u42)
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+pslash3 = dot(p3,gmunu,gamma)
+pslash4 = dot(p4,gmunu,gamma)
+
+u2bar = dot(conj(u2),gamma0) -- adjoint of u2
+u4bar = dot(conj(u4),gamma0) -- adjoint of u4
+
+-- S is the sum over spin states
+
+S = 0
+
+for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
+  X21 = dot(u2bar[b],gammaT,I-gamma5,u1[a]),
+  X43 = dot(u4bar[d],gammaL,I-gamma5,v3[c]),
+  M = dot(X43,X21),
+  S = S + M conj(M)
+))))
+
+"Sum over spin states"
+S
+
+"Verify (1=ok)"
+
+N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
+
+1/4 S / N == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
