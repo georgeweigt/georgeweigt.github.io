@@ -201,13 +201,13 @@ g_{\mu\nu}=\begin{pmatrix}
 
 \noindent
 Muon decay rate $\Gamma$ is an average over all possible values of momentum.
-In the muon rest frame $p_1=(m_1,0,0,0)$ we have
+In the muon rest frame $p_1=(m_\mu,0,0,0)$ we have by Fermi's golden rule the following formula.
 \begin{equation*}
-\Gamma=\frac{(2\pi)^4}{2m_1}
+\Gamma=\frac{(2\pi)^4}{2m_\mu}
 \int
 \langle|\mathcal{M}|^2\rangle
 \,\delta(p_1-p_2-p_3-p_4)
-\,\frac{d^3p_2}{(2\pi)^32E_2}\,\frac{d^3p_3}{(2\pi)^32E_3}\,\frac{d^3p_4}{(2\pi)^32E_4}
+\,\frac{d^3p_2}{2(2\pi)^3E_2}\,\frac{d^3p_3}{2(2\pi)^3E_3}\,\frac{d^3p_4}{2(2\pi)^3E_4}
 \end{equation*}
 
 \noindent
@@ -215,14 +215,15 @@ It can be shown that
 \begin{equation*}
 \Gamma=\frac{G_F^2 m_\mu^5}{192\pi^3}
 \end{equation*}
-where $m_\mu=m_1$.
+
+\noindent
 Muon lifetime $\tau$ is the inverse of decay rate.
 \begin{equation*}
 \tau=\frac{1}{\Gamma}=\frac{192\pi^3}{G_F^2 m_\mu^5}
 \end{equation*}
 
 \noindent
-Converting from natural units to physical units yields
+Converting from natural units to physical values for $h$ and $c$ yields
 \begin{equation*}
 \tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 \end{equation*}
