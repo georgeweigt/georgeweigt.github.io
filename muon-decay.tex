@@ -134,13 +134,13 @@ E_4&=\sqrt{(p_{4x})^2+(p_{4y})^2+(p_{4z})^2+m_4^2}
 From the Feynman diagram above we have the following amplitude $\mathcal{M}_{abcd}$
 where each letter in $abcd$ can be either 1 (spin up) or 2 (spin down).
 \begin{equation*}
-\mathcal{M}_{abcd}=\frac{G_F}{\sqrt{N}}
+\mathcal{M}_{abcd}=\frac{G_F}{\sqrt{2}\sqrt{N}}
 \left(\bar{u}_{4d}\gamma^\mu(1-\gamma^5)v_{3c}\right)
 \left(\bar{u}_{2b}\gamma_\mu(1-\gamma^5)u_{1a}\right)
 \end{equation*}
 
 \noindent
-Symbol $N$ is the following normalization constant.
+Symbol $N$ is the following spinor normalization constant.
 \begin{equation*}
 N=(E_1+m_1)(E_2+m_2)(E_3+m_3)(E_4+m_4)
 \end{equation*}
@@ -154,15 +154,11 @@ Recall that the magnitude squared of an amplitude is a probability density and a
 \noindent
 In a typical muon decay experiment the spins are not observed.
 Consequently, the experimental result is an average of spin states.
-The average is computed by summing over all spin states and dividing by the number of inbound spin states,
-in this case four.
-(In the Feynman diagram, two particles have arrows pointing into vertices,
-these are the inbound particles.
-There are two spin states for $\mu^-$ and two spin states for $\bar{\nu}_e$.
-Hence there are $2\times2=4$ inbound spin states.)
+The average is computed by summing over all spin states and dividing by the number of initial spin states.
+The muon has two spin states hence the divisor is two.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=
-\frac{1}{4}
+\frac{1}{2}
 \sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
 |\mathcal{M}_{abcd}|^2
 \end{equation*}
@@ -193,23 +189,34 @@ g_{\mu\nu}=\begin{pmatrix}
 
 \noindent
 Muon decay rate $\Gamma$ is an average over all possible momenta.
-(The measure $dp$ represents a lengthy product of factors.)
+(The delta function restricts the integration space to values that conserve energy and momentum.)
 \begin{equation*}
 \Gamma=
-\underset{\text{12 integrals}}
-{\int\cdots\int}
-\langle|\mathcal{M}|^2\rangle\,dp
+\int\int\int\int
+\langle|\mathcal{M}|^2\rangle
+\,\delta(p_1-p_2-p_3-p_4)
+\,\frac{d^3p_1}{E_1}\,\frac{d^3p_2}{E_2}\,\frac{d^3p_3}{E_3}\,\frac{d^3p_4}{E_4}
 \end{equation*}
 
 \noindent
-It can be shown that
+In the muon rest frame $p_1=(m_1,0,0,0)$ this immediately simplifies to
+\begin{equation*}
+\Gamma=\frac{1}{m_1}
+\int\int\int
+\langle|\mathcal{M}|^2\rangle
+\,\delta(p_1-p_2-p_3-p_4)
+\,\frac{d^3p_2}{E_2}\,\frac{d^3p_3}{E_3}\,\frac{d^3p_4}{E_4}
+\end{equation*}
+
+\noindent
+It can be shown that for the muon rest frame we have
 \begin{equation*}
 \Gamma=\frac{G_F^2 m_\mu^5}{192\pi^3}
 \end{equation*}
 where $m_\mu=m_1$.
 Muon lifetime $\tau$ is the inverse of decay rate.
 \begin{equation*}
-\tau=\frac{192\pi^3}{G_F^2 m_\mu^5}
+\tau=\frac{1}{\Gamma}=\frac{192\pi^3}{G_F^2 m_\mu^5}
 \end{equation*}
 
 \noindent
