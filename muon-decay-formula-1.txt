@@ -7,10 +7,10 @@ E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
 E3 = sqrt(p3x^2 + p3y^2 + p3z^2 + m3^2)
 E4 = sqrt(p4x^2 + p4y^2 + p4z^2 + m4^2)
 
-p1 = (E1, p1x, p1y, p1z)
-p2 = (E2, p2x, p2y, p2z)
-p3 = (E3, p3x, p3y, p3z)
-p4 = (E4, p4x, p4y, p4z)
+p1 = (E1, p1x, p1y, p1z) -- muon
+p2 = (E2, p2x, p2y, p2z) -- muon neutrino
+p3 = (E3, p3x, p3y, p3z) -- electron antineutrino
+p4 = (E4, p4x, p4y, p4z) -- electron
 
 u11 = (E1 + m1, 0, p1z, p1x + i p1y)
 u12 = (0, E1 + m1, p1x - i p1y, -p1z)
@@ -51,13 +51,12 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 -- transpose to put the 1st index in the middle
 
-Y21 = transpose(dot(gamma, I - gamma5))
-Y43 = transpose(dot(gmunu, gamma, I - gamma5))
+X = transpose(dot(gamma, I - gamma5))
 
 M2(a,b,c,d) = do(
-  X21 = dot(u2bar[b], Y21, u1[a]),
-  X43 = dot(u4bar[d], Y43, v3[c]),
-  M = GF / sqrt(2) dot(X43,X21),
+  X1 = dot(u2bar[b], X, u1[a]),
+  X2 = dot(u4bar[d], X, v3[c]),
+  M = GF / sqrt(2) dot(X2, gmunu, X1),
   M conj(M)
 )
 
