@@ -52,22 +52,22 @@ pslash4 = dot(p4,gmunu,gamma)
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
--- S is the sum over spin states
-
-S = 0
-
-for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
+M2(a,b,c,d) = do(
   X21 = dot(u2bar[b],gammaT,I-gamma5,u1[a]),
   X43 = dot(u4bar[d],gammaL,I-gamma5,v3[c]),
-  M = dot(X43,X21) / sqrt(2),
-  S = S + M conj(M)
-))))
+  M = GF / sqrt(2) dot(X43,X21),
+  M conj(M)
+)
+
+S = sum(a,1,2, sum(b,1,2, sum(c,1,2, sum(d,1,2, M2(a,b,c,d)))))
 
 "Sum over spin states"
 S
 
-"Verify (1=ok)"
-
 N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
 
-1/2 S / N == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+M2avg = 1/2 S / N
+
+"Verify (1=ok)"
+
+M2avg == 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
