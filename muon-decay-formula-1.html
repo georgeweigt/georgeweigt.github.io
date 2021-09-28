@@ -66,9 +66,9 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 X = transpose(dot(gamma, I - gamma5))
 
 M2(a,b,c,d) = do(
-  X1 = dot(u2bar[b], X, u1[a]),
-  X2 = dot(u4bar[d], X, v3[c]),
-  M = GF / sqrt(2) dot(X2, gmunu, X1),
+  V1 = dot(u2bar[b], X, u1[a]), -- 1st vertex
+  V2 = dot(u4bar[d], X, v3[c]), -- 2nd vertex
+  M = GF / sqrt(2) dot(V2, gmunu, V1),
   M conj(M)
 )
 
