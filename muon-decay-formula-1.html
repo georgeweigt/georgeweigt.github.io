@@ -61,8 +61,10 @@ pslash4 = dot(p4,gmunu,gamma)
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
-Y21 = dot(transpose(gamma), I - gamma5)
-Y43 = dot(transpose(dot(gmunu,gamma)), I - gamma5)
+-- transpose to put the 1st index in the middle
+
+Y21 = transpose(dot(gamma, I - gamma5))
+Y43 = transpose(dot(gmunu, gamma, I - gamma5))
 
 M2(a,b,c,d) = do(
   X21 = dot(u2bar[b], Y21, u1[a]),
