@@ -41,9 +41,6 @@ gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
-gammaT = transpose(gamma)
-gammaL = transpose(dot(gmunu,gamma))
-
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
@@ -52,9 +49,12 @@ pslash4 = dot(p4,gmunu,gamma)
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
+Y21 = dot(transpose(gamma), I - gamma5)
+Y43 = dot(transpose(dot(gmunu,gamma)), I - gamma5)
+
 M2(a,b,c,d) = do(
-  X21 = dot(u2bar[b],gammaT,I-gamma5,u1[a]),
-  X43 = dot(u4bar[d],gammaL,I-gamma5,v3[c]),
+  X21 = dot(u2bar[b], Y21, u1[a]),
+  X43 = dot(u4bar[d], Y43, v3[c]),
   M = GF / sqrt(2) dot(X43,X21),
   M conj(M)
 )
