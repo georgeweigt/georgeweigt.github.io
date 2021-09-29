@@ -29,22 +29,26 @@ gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
-gammaT = transpose(gamma)
-gammaL = transpose(dot(gmunu,gamma))
-
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
 
+-- transpose to put 1st index in middle
+
+X = transpose(dot(gamma, I - gamma5))
+
 -- T1 is the first trace matrix
-T1 = contract(dot(pslash4,gammaT,I - gamma5,pslash3,gammaT,I - gamma5),1,4)
+
+T1 = contract(dot(pslash4, X, pslash3, X), 1,4)
 
 -- T2 is the second trace matrix
-T2 = contract(dot(pslash2,gammaL,I - gamma5,pslash1,gammaL,I - gamma5),1,4)
+
+T2 = contract(dot(pslash2, X, pslash1, X), 1,4)
 
 -- T is the product of T1 and T2
-T = contract(dot(T1,transpose(T2)))
+
+T = contract(dot(T1, gmunu, transpose(T2), gmunu))
 
 "Result"
 T
