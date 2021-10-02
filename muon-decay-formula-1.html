@@ -65,25 +65,25 @@ u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
 X = transpose(dot(gamma, I - gamma5))
 
-M2(a,b,c,d) = do(
+MM(a,b,c,d) = do(
   V1 = dot(u2bar[b], X, u1[a]), -- 1st vertex
   V2 = dot(u4bar[d], X, v3[c]), -- 2nd vertex
   M = GF / sqrt(2) dot(V2, gmunu, V1),
   M conj(M)
 )
 
-S = sum(a,1,2, sum(b,1,2, sum(c,1,2, sum(d,1,2, M2(a,b,c,d)))))
+S = sum(a,1,2, sum(b,1,2, sum(c,1,2, sum(d,1,2, MM(a,b,c,d)))))
 
 "Sum over spin states"
 S
 
 N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
 
-M2avg = 1/2 S / N
+MMavg = 1/2 S / N
 
 "Verify (1=ok)"
 
-M2avg == 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+MMavg == 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
