@@ -14,11 +14,6 @@
 
 -- Run time is about 1 minute
 
-E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
-E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
-E3 = sqrt(p3x^2 + p3y^2 + p3z^2 + m3^2)
-E4 = sqrt(p4x^2 + p4y^2 + p4z^2 + m4^2)
-
 p1 = (E1, p1x, p1y, p1z) -- muon
 p2 = (E2, p2x, p2y, p2z) -- muon neutrino
 p3 = (E3, p3x, p3y, p3z) -- electron antineutrino
@@ -40,6 +35,11 @@ u1 = (u11,u12)
 u2 = (u21,u22)
 v3 = (v31,v32)
 u4 = (u41,u42)
+
+E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
+E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
+E3 = sqrt(p3x^2 + p3y^2 + p3z^2 + m3^2)
+E4 = sqrt(p4x^2 + p4y^2 + p4z^2 + m4^2)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
