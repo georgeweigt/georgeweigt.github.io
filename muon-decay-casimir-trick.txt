@@ -22,7 +22,7 @@ pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
 
--- transpose to put 1st index in middle
+-- transpose to put 1st index in the middle
 
 X = transpose(dot(gamma, I - gamma5))
 
