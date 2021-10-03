@@ -2,7 +2,7 @@
 
 -- See qiskit.org/textbook/ch-algorithms/grover.html
 
-I = unit(256) -- identity matrix
+I = unit(256) -- 256 x 256 identity matrix
 
 "Location in database (range 1 to 256)"
 
@@ -12,7 +12,7 @@ w
 Uf = I
 Uf[w,w] = -1
 
-psi = zero(256)
+psi = zero(256) -- zero vector (256 elements)
 psi[1] = 1
 
 psi = float(psi) -- floating point is faster
@@ -21,13 +21,13 @@ psi = rotate(psi,H,0,H,1,H,2,H,3,H,4,H,5,H,6,H,7)
 
 Us = 2 outer(psi,psi) - I
 
-for(k,1,12,
+for(k,1,10,
   psi = dot(Uf,psi),
   psi = dot(Us,psi)
 )
 
 P = psi conj(psi)
 
-"Probability of success after 12 iterations"
+"Probability of success after 10 iterations"
 
 P[w]
