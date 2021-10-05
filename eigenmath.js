@@ -952,7 +952,7 @@ bignum_smallnum(u)
 function
 bignum_issmallnum(u)
 {
-	return u.length == 1 || (u.length == 2 && u[1] < 256);
+	return u.length == 1 || (u.length == 2 && u[1] < 128);
 }
 
 function
@@ -10840,7 +10840,7 @@ issmallinteger(p)
 		return bignum_issmallnum(p.a);
 
 	if (isdouble(p))
-		return p.d == Math.floor(p.d) && Math.abs(p.d) < 0x80000000;
+		return p.d == Math.floor(p.d) && Math.abs(p.d) <= 0x7fffffff;
 
 	return 0;
 }
@@ -11968,19 +11968,17 @@ pop_integer()
 
 	p = pop();
 
-	if (isinteger(p)) {
+	if (!issmallinteger(p))
+		stopf("small integer expected");
+
+	if (isrational(p)) {
 		n = bignum_smallnum(p.a);
-		if (n == null)
-			stopf("value exceeds 2^31 - 1");
 		if (isnegativenumber(p))
 			n = -n;
-		return n;
-	}
+	} else
+		n = p.d;
 
-	if (isdouble(p) && Math.floor(p.d) == p.d)
-		return p.d;
-
-	stopf("integer expected");
+	return n;
 }
 function
 power()
