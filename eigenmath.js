@@ -934,7 +934,7 @@ bignum_float(u)
 	return d;
 }
 
-// returns 31-bit value
+// returns 32-bit value
 
 function
 bignum_smallnum(u)
@@ -952,7 +952,7 @@ bignum_smallnum(u)
 function
 bignum_issmallnum(u)
 {
-	return u.length == 1 || (u.length == 2 && u[1] < 128);
+	return u.length == 1 || (u.length == 2 && u[1] < 256);
 }
 
 function
@@ -12277,6 +12277,14 @@ power_complex_number(BASE, EXPO)
 		return;
 	}
 
+	if (!issmallinteger(EXPO)) {
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
+		return;
+	}
+
 	push(EXPO);
 	n = pop_integer();
 
@@ -12351,9 +12359,8 @@ power_complex_rational(BASE, EXPO, X, Y)
 	divide();
 	push(EXPO);
 	multiply();
-
 	EXPO = pop();
-	power_minusone(BASE, EXPO);
+	power_minusone(EXPO);
 
 	// result = sqrt(X^2 + Y^2) ^ (1/2 * EXPO) * (-1) ^ (EXPO * arctan(Y, X) / pi)
 
@@ -12908,6 +12915,7 @@ power_tensor(BASE, EXPO)
 function
 prefixform(p)
 {
+	var s;
 	if (iscons(p)) {
 		outbuf += "(";
 		prefixform(car(p));
@@ -12924,9 +12932,17 @@ prefixform(p)
 		outbuf += bignum_itoa(p.a);
 		if (isfraction(p))
 			outbuf += "/" + bignum_itoa(p.b);
-	} else if (isdouble(p))
-		outbuf += p.d.toPrecision(6);
-	else if (issymbol(p))
+	} else if (isdouble(p)) {
+		s = p.d.toPrecision(6);
+		if (s.indexOf("E") < 0 && s.indexOf("e") < 0 && s.indexOf(".") >= 0) {
+			// remove trailing zeroes
+			while (s.charAt(s.length - 1) == "0")
+				s = s.substring(0, s.length - 1);
+			if (s.charAt(s.length - 1) == '.')
+				s += "0";
+		}
+		outbuf += s;
+	} else if (issymbol(p))
 		outbuf += p.printname;
 	else if (isstring(p))
 		outbuf += "'" + p.string + "'";
