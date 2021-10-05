@@ -8226,14 +8226,14 @@ factor()
 		}
 
 		if (!bignum_equal(numer, 1))
-			factor_number(numer, EXPO);
+			factor_bignum(numer, EXPO);
 
 		if (!bignum_equal(denom, 1)) {
 			// flip sign of exponent
 			push(EXPO);
 			negate();
 			EXPO = pop();
-			factor_number(denom, EXPO);
+			factor_bignum(denom, EXPO);
 		}
 
 		return;
@@ -8251,15 +8251,15 @@ factor()
 		push_integer(-1);
 
 	if (!bignum_equal(numer, 1))
-		factor_number(numer, one);
+		factor_bignum(numer, one);
 
 	if (!bignum_equal(denom, 1))
-		factor_number(denom, minusone);
+		factor_bignum(denom, minusone);
 }
 // N is bignum, EXPO is rational
 
 function
-factor_number(N, EXPO)
+factor_bignum(N, EXPO)
 {
 	var d, k, m, n, t;
 
