@@ -1,7 +1,0 @@
--- www.eigenmath.org/example5.txt
-sigmax = ((0,1),(1,0))
-sigmay = ((0,-i),(i,0))
-sigmaz = ((1,0),(0,-1))
-sigma = (sigmax,sigmay,sigmaz)
-k = (kx,ky,kz)
-dot(k,sigma)

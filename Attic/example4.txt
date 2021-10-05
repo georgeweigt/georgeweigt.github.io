@@ -1,5 +1,0 @@
--- www.eigenmath.org/example4.txt
-omega = sqrt(kx^2 + ky^2 + kz^2 + m^2)
-psi = exp(i kx x + i ky y + i kz z - i omega t)
--- result should be zero
-d(psi,t,t) - d(psi,x,x) - d(psi,y,y) - d(psi,z,z) + m^2 psi

@@ -1,8 +1,0 @@
--- www.eigenmath.org/example3.txt
-k = omega/c
-E = (A sin(k z - omega t + phi), 0, 0)
-B = (0, A sin(k z - omega t + phi), 0)
-div(E)
-div(B)
-curl(E) + d(B,t)/c
-curl(B) - d(E,t)/c
