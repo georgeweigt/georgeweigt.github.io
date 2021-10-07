@@ -302,7 +302,7 @@ arccos()
 		return;
 	}
 
-	// if p1 == 1/sqrt(2) then return 1/4*pi (45 degrees)
+	// arccos(1 / sqrt(2)) = 1/4 pi
 
 	if (isoneoversqrttwo(p1)) {
 		push_rational(1, 4);
@@ -311,7 +311,7 @@ arccos()
 		return;
 	}
 
-	// if p1 == -1/sqrt(2) then return 3/4*pi (135 degrees)
+	// arccos(-1 / sqrt(2)) = 3/4 pi
 
 	if (isminusoneoversqrttwo(p1)) {
 		push_rational(3, 4);
@@ -331,7 +331,7 @@ arccos()
 
 	// arccos(1/2) = 1/3 pi
 
-	if (equalq(p1, 1 ,2)) {
+	if (isequalq(p1, 1 ,2)) {
 		push_rational(1, 3);
 		push_symbol(PI);
 		multiply();
@@ -340,14 +340,14 @@ arccos()
 
 	// arccos(1) = 0
 
-	if (equaln(p1, 1)) {
+	if (isequaln(p1, 1)) {
 		push_integer(0);
 		return;
 	}
 
 	// arccos(-1/2) = 2/3 pi
 
-	if (equalq(p1, -1, 2)) {
+	if (isequalq(p1, -1, 2)) {
 		push_rational(2, 3);
 		push_symbol(PI);
 		multiply();
@@ -356,7 +356,7 @@ arccos()
 
 	// arccos(-1) = pi
 
-	if (equaln(p1, -1)) {
+	if (isequaln(p1, -1)) {
 		push_symbol(PI);
 		return;
 	}
@@ -408,7 +408,7 @@ arccosh()
 function
 arcsin()
 {
-	var n, p1, p2;
+	var p1;
 
 	p1 = pop();
 
@@ -438,7 +438,7 @@ arcsin()
 		return;
 	}
 
-	// if p1 == 1/sqrt(2) then return 1/4*pi (45 degrees)
+	// arcsin(1 / sqrt(2)) = 1/4 pi
 
 	if (isoneoversqrttwo(p1)) {
 		push_rational(1, 4);
@@ -447,7 +447,7 @@ arcsin()
 		return;
 	}
 
-	// if p1 == -1/sqrt(2) then return -1/4*pi (-45 degrees)
+	// arcsin(-1 / sqrt(2)) = -1/4 pi
 
 	if (isminusoneoversqrttwo(p1)) {
 		push_rational(-1, 4);
@@ -456,64 +456,52 @@ arcsin()
 		return;
 	}
 
-	if (!isrational(p1)) {
-		push_symbol(ARCSIN);
-		push(p1);
-		list(2);
-		return;
-	}
+	// arcsin(-1) = -1/2 pi)
 
-	push(p1);
-	push_integer(2);
-	multiply();
-	p2 = pop();
-
-	if (!isinteger(p2)) {
-		push_symbol(ARCSIN);
-		push(p1);
-		list(2);
-		return;
-	}
-
-	push(p2);
-	n = pop_integer();
-
-	switch (n) {
-
-	case -2:
+	if (isequaln(p1, -1)) {
 		push_rational(-1, 2);
 		push_symbol(PI);
 		multiply();
-		break;
+		return;
+	}
 
-	case -1:
+	// arcsin(-1/2) = -1/6 pi)
+
+	if (isequalq(p1, -1, 2)) {
 		push_rational(-1, 6);
 		push_symbol(PI);
 		multiply();
-		break;
+		return;
+	}
 
-	case 0:
+	// arcsin(0) = 0
+
+	if (iszero(p1)) {
 		push_integer(0);
-		break;
+		return;
+	}
 
-	case 1:
+	// arcsin(1/2) = 1/6 pi
+
+	if (isequalq(p1, 1, 2)) {
 		push_rational(1, 6);
 		push_symbol(PI);
 		multiply();
-		break;
+		return;
+	}
 
-	case 2:
+	// arcsin(1) = 1/2 pi
+
+	if (isequaln(p1, 1)) {
 		push_rational(1, 2);
 		push_symbol(PI);
 		multiply();
-		break;
-
-	default:
-		push_symbol(ARCSIN);
-		push(p1);
-		list(2);
-		break;
+		return;
 	}
+
+	push_symbol(ARCSIN);
+	push(p1);
+	list(2);
 }
 function
 arcsinh()
@@ -5473,28 +5461,6 @@ equal(p1, p2)
 	return 0;
 }
 function
-equaln(p, n)
-{
-	return equalq(p, n, 1);
-}
-function
-equalq(p, a, b)
-{
-	if (isrational(p)) {
-		if (isnegativenumber(p) && a >= 0)
-			return 0;
-		if (!isnegativenumber(p) && a < 0)
-			return 0;
-		a = Math.abs(a);
-		return bignum_equal(p.a, a) && bignum_equal(p.b, b);
-	}
-
-	if (isdouble(p))
-		return p.d == a / b;
-
-	return 0;
-}
-function
 erf()
 {
 	var p1 = pop();
@@ -8223,7 +8189,7 @@ factor()
 			return;
 		}
 
-		if (equaln(BASE, -1)) {
+		if (isequaln(BASE, -1)) {
 			push(INPUT); // -1 to the M
 			return;
 		}
@@ -10733,13 +10699,35 @@ isdoublez(p)
 	if (car(p) != symbol(POWER))
 		return 0;
 
-	if (!equaln(cadr(p), -1))
+	if (!isequaln(cadr(p), -1))
 		return 0;
 
-	if (!equalq(caddr(p), 1, 2))
+	if (!isequalq(caddr(p), 1, 2))
 		return 0;
 
 	return 1;
+}
+function
+isequaln(p, n)
+{
+	return isequalq(p, n, 1);
+}
+function
+isequalq(p, a, b)
+{
+	if (isrational(p)) {
+		if (isnegativenumber(p) && a >= 0)
+			return 0;
+		if (!isnegativenumber(p) && a < 0)
+			return 0;
+		a = Math.abs(a);
+		return bignum_equal(p.a, a) && bignum_equal(p.b, b);
+	}
+
+	if (isdouble(p))
+		return p.d == a / b;
+
+	return 0;
 }
 function
 isfraction(p)
@@ -10776,7 +10764,7 @@ isimaginaryterm(p)
 function
 isimaginaryunit(p)
 {
-	return car(p) == symbol(POWER) && isminusone(cadr(p)) && equalq(caddr(p), 1, 2);
+	return car(p) == symbol(POWER) && isminusone(cadr(p)) && isequalq(caddr(p), 1, 2);
 }
 function
 isinteger(p)
@@ -10796,7 +10784,7 @@ iskeyword(p)
 function
 isminusone(p)
 {
-	return equaln(p, -1);
+	return isequaln(p, -1);
 }
 function
 isminusoneoversqrttwo(p)
@@ -10837,12 +10825,12 @@ isnumerator(p)
 function
 isoneoversqrttwo(p)
 {
-	return car(p) == symbol(POWER) && equaln(cadr(p), 2) && equalq(caddr(p), -1, 2);
+	return car(p) == symbol(POWER) && isequaln(cadr(p), 2) && isequalq(caddr(p), -1, 2);
 }
 function
 isplusone(p)
 {
-	return equaln(p, 1);
+	return isequaln(p, 1);
 }
 function
 isposint(p)
@@ -12395,7 +12383,7 @@ power_minusone(EXPO)
 {
 	// optimization for i
 
-	if (equalq(EXPO, 1, 2)) {
+	if (isequalq(EXPO, 1, 2)) {
 		push(imaginaryunit);
 		return;
 	}
