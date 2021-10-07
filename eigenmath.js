@@ -438,37 +438,20 @@ arcsin()
 		return;
 	}
 
+	// arcsin(-x) = -arcsin(x)
+
+	if (isnegativeterm(p1)) {
+		push(p1);
+		negate();
+		arcsin();
+		negate();
+		return;
+	}
+
 	// arcsin(1 / sqrt(2)) = 1/4 pi
 
 	if (isoneoversqrttwo(p1)) {
 		push_rational(1, 4);
-		push_symbol(PI);
-		multiply();
-		return;
-	}
-
-	// arcsin(-1 / sqrt(2)) = -1/4 pi
-
-	if (isminusoneoversqrttwo(p1)) {
-		push_rational(-1, 4);
-		push_symbol(PI);
-		multiply();
-		return;
-	}
-
-	// arcsin(-1) = -1/2 pi)
-
-	if (isequaln(p1, -1)) {
-		push_rational(-1, 2);
-		push_symbol(PI);
-		multiply();
-		return;
-	}
-
-	// arcsin(-1/2) = -1/6 pi)
-
-	if (isequalq(p1, -1, 2)) {
-		push_rational(-1, 6);
 		push_symbol(PI);
 		multiply();
 		return;
@@ -536,7 +519,7 @@ arcsinh()
 
 	// arcsinh(-x) = -arcsinh(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		arcsinh();
@@ -730,7 +713,7 @@ arctanh()
 
 	// arctanh(-x) = -arctanh(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		arctanh();
@@ -2591,13 +2574,6 @@ cos()
 		return;
 	}
 
-	// 0?
-
-	if (iszero(p1)) {
-		push_integer(1);
-		return;
-	}
-
 	// cos(z) = 1/2 (exp(i z) + exp(-i z))
 
 	if (isdoublez(p1)) {
@@ -2618,7 +2594,7 @@ cos()
 
 	// cos(-x) = cos(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		cos();
@@ -2816,7 +2792,7 @@ cosh()
 
 	// cosh(-x) = cosh(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		cosh();
@@ -10792,11 +10768,6 @@ isminusoneoversqrttwo(p)
 	return lengthf(p) == 3 && car(p) == symbol(MULTIPLY) && isminusone(cadr(p)) && isoneoversqrttwo(caddr(p));
 }
 function
-isnegative(p)
-{
-	return isnegativeterm(p) || (car(p) == symbol(ADD) && isnegativeterm(cadr(p)));
-}
-function
 isnegativenumber(p)
 {
 	return (isrational(p) && p.sign == -1) || (isdouble(p) && p.d < 0);
@@ -15707,13 +15678,6 @@ sin()
 		return;
 	}
 
-	// 0?
-
-	if (iszero(p1)) {
-		push_integer(0);
-		return;
-	}
-
 	// sin(z) = -i/2 (exp(i z) - exp(-i z))
 
 	if (isdoublez(p1)) {
@@ -15736,7 +15700,7 @@ sin()
 
 	// sin(-x) = -sin(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		sin();
@@ -15935,7 +15899,7 @@ sinh()
 
 	// sinh(-x) -> -sinh(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		sinh();
@@ -16139,13 +16103,6 @@ tan()
 		return;
 	}
 
-	// 0?
-
-	if (iszero(p1)) {
-		push_integer(0);
-		return;
-	}
-
 	if (isdoublez(p1)) {
 		push(p1);
 		sin();
@@ -16157,7 +16114,7 @@ tan()
 
 	// tan(-x) = -tan(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		tan();
@@ -16304,7 +16261,7 @@ tanh()
 
 	// tanh(-x) = -tanh(x)
 
-	if (isnegative(p1)) {
+	if (isnegativeterm(p1)) {
 		push(p1);
 		negate();
 		tanh();
