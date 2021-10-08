@@ -274,12 +274,14 @@ any_radical_factors(h)
 function
 arccos()
 {
-	var p1;
+	var d, p1;
 
 	p1 = pop();
 
 	if (isdouble(p1)) {
-		push_double(Math.acos(p1.d));
+		push(p1);
+		d = pop_double();
+		push_double(Math.acos(d));
 		return;
 	}
 
@@ -341,7 +343,7 @@ arccos()
 
 	// arccos(1) = 0
 
-	if (isequaln(p1, 1)) {
+	if (isplusone(p1)) {
 		push_integer(0);
 		return;
 	}
@@ -357,7 +359,7 @@ arccos()
 
 	// arccos(-1) = pi
 
-	if (isequaln(p1, -1)) {
+	if (isminusone(p1)) {
 		push_symbol(PI);
 		return;
 	}
@@ -414,12 +416,14 @@ arccosh()
 function
 arcsin()
 {
-	var p1;
+	var d, p1;
 
 	p1 = pop();
 
 	if (isdouble(p1)) {
-		push_double(Math.asin(p1.d));
+		push(p1);
+		d = pop_double();
+		push_double(Math.asin(d));
 		return;
 	}
 
@@ -481,7 +485,7 @@ arcsin()
 
 	// arcsin(1) = 1/2 pi
 
-	if (isequaln(p1, 1)) {
+	if (isplusone(p1)) {
 		push_rational(1, 2);
 		push_symbol(PI);
 		multiply();
@@ -8195,7 +8199,7 @@ factor()
 			return;
 		}
 
-		if (isequaln(BASE, -1)) {
+		if (isminusone(BASE)) {
 			push(INPUT); // -1 to the M
 			return;
 		}
@@ -10705,7 +10709,7 @@ isdoublez(p)
 	if (car(p) != symbol(POWER))
 		return 0;
 
-	if (!isequaln(cadr(p), -1))
+	if (!isminusone(cadr(p)))
 		return 0;
 
 	if (!isequalq(caddr(p), 1, 2))
