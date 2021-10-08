@@ -369,14 +369,20 @@ arccos()
 function
 arccosh()
 {
-	var p1 = pop();
+	var d, p1;
 
-	if (isdouble(p1) && p1.d >= 1.0) {
-		push_double(Math.acosh(p1.d));
-		return;
+	p1 = pop();
+
+	if (isdouble(p1)) {
+		push(p1);
+		d = pop_double();
+		if (d >= 1.0) {
+			push_double(Math.acosh(d));
+			return;
+		}
 	}
 
-	// arccosh(z) = log(z + sqrt(z^2 - 1))
+	// arccosh(z) = log(sqrt(z^2 - 1) + z)
 
 	if (isdouble(p1) || isdoublez(p1)) {
 		push(p1);
@@ -384,8 +390,7 @@ arccosh()
 		multiply();
 		push_double(-1.0);
 		add();
-		push_rational(1, 2);
-		power();
+		sqrtfunc();
 		push(p1);
 		add();
 		log();
@@ -490,14 +495,18 @@ arcsin()
 function
 arcsinh()
 {
-	var p1 = pop();
+	var d, p1;
+
+	p1 = pop();
 
 	if (isdouble(p1)) {
-		push_double(Math.asinh(p1.d));
+		push(p1);
+		d = pop_double();
+		push_double(Math.asinh(d));
 		return;
 	}
 
-	// arcsinh(z) = log(z + sqrt(z^2 + 1))
+	// arcsinh(z) = log(sqrt(z^2 + 1) + z)
 
 	if (isdoublez(p1)) {
 		push(p1);
@@ -505,8 +514,7 @@ arcsinh()
 		multiply();
 		push_double(1.0);
 		add();
-		push_rational(1, 2);
-		power();
+		sqrtfunc();
 		push(p1);
 		add();
 		log();
@@ -695,16 +703,25 @@ arctan_numbers(X, Y)
 function
 arctanh()
 {
-	var p1 = pop();
+	var d, p1;
+
+	p1 = pop();
+
+	if (isplusone(p1) || isminusone(p1))
+		stopf("arctanh");
 
 	if (isdouble(p1)) {
-		push_double(Math.atanh(p1.d));
-		return;
+		push(p1);
+		d = pop_double();
+		if (-1 < d && d < 1) {
+			push_double(Math.atanh(d));
+			return;
+		}
 	}
 
 	// arctanh(z) = 1/2 log(1 + z) - 1/2 log(1 - z)
 
-	if (isdoublez(p1)) {
+	if (isdouble(p1) || isdoublez(p1)) {
 		push_double(1.0);
 		push(p1);
 		add();
@@ -10964,6 +10981,9 @@ log()
 	var d, h, i, n, p1, p2;
 
 	p1 = pop();
+
+	if (iszero(p1))
+		stopf("log of zero");
 
 	if (isdouble(p1)) {
 		push(p1);
