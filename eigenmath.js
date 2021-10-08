@@ -697,13 +697,6 @@ arctanh()
 {
 	var p1 = pop();
 
-	if (isplusone(p1) || isminusone(p1)) {
-		push_symbol(ARCTANH);
-		push(p1);
-		list(2);
-		return;
-	}
-
 	if (isdouble(p1)) {
 		push_double(Math.atanh(p1.d));
 		return;
@@ -14753,6 +14746,9 @@ sample(F, T, t)
 
 	push(Y);
 	y = pop_double();
+
+	if (!isFinite(x) || !isFinite(y))
+		return;
 
 	x = DRAW_WIDTH * (x - xmin) / (xmax - xmin);
 	y = DRAW_HEIGHT * (y - ymin) / (ymax - ymin);
