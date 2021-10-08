@@ -379,8 +379,9 @@ arccosh()
 	if (isdouble(p1)) {
 		push(p1);
 		d = pop_double();
-		if (d >= 1.0) {
-			push_double(Math.acosh(d));
+		if (d >= 1) {
+			d = Math.acosh(d);
+			push_double(d);
 			return;
 		}
 	}
@@ -508,7 +509,8 @@ arcsinh()
 	if (isdouble(p1)) {
 		push(p1);
 		d = pop_double();
-		push_double(Math.asinh(d));
+		d = Math.asinh(d);
+		push_double(d);
 		return;
 	}
 
@@ -720,7 +722,8 @@ arctanh()
 		push(p1);
 		d = pop_double();
 		if (-1 < d && d < 1) {
-			push_double(Math.atanh(d));
+			d = Math.atanh(d);
+			push_double(d);
 			return;
 		}
 	}
@@ -2811,11 +2814,21 @@ cos_sum(p1) // cos(x + n/2 pi) = cos(x) cos(n/2 pi) - sin(x) sin(n/2 pi)
 function
 cosh()
 {
-	var p1 = pop();
+	var d, p1;
+
+	p1 = pop();
+
+	if (isdouble(p1)) {
+		push(p1);
+		d = pop_double();
+		d = Math.cosh(d);
+		push_double(d);
+		return;
+	}
 
 	// cosh(z) = 1/2 exp(z) + 1/2 exp(-z)
 
-	if (isdouble(p1) || isdoublez(p1)) {
+	if (isdoublez(p1)) {
 		push_rational(1, 2);
 		push(p1);
 		exp();
@@ -15917,11 +15930,21 @@ sin_sum(p1) // sin(x + n/2 pi) = sin(x) cos(n/2 pi) + cos(x) sin(n/2 pi)
 function
 sinh()
 {
-	var p1 = pop();
+	var d, p1;
+
+	p1 = pop();
+
+	if (isdouble(p1)) {
+		push(p1);
+		d = pop_double();
+		d = Math.sinh(d);
+		push_double(d);
+		return;
+	}
 
 	// sinh(z) = 1/2 exp(z) - 1/2 exp(-z)
 
-	if (isdouble(p1) || isdoublez(p1)) {
+	if (isdoublez(p1)) {
 		push_rational(1, 2);
 		push(p1);
 		exp();
@@ -16290,9 +16313,19 @@ tan_sum(p1) // tan(x + n pi) = tan(x)
 function
 tanh()
 {
-	var p1 = pop();
+	var d, p1;
 
-	if (isdouble(p1) || isdoublez(p1)) {
+	p1 = pop();
+
+	if (isdouble(p1)) {
+		push(p1);
+		d = pop_double();
+		d = Math.tanh(d);
+		push_double(d);
+		return;
+	}
+
+	if (isdoublez(p1)) {
 		push(p1);
 		sinh();
 		push(p1);
