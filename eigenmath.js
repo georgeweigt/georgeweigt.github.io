@@ -7858,15 +7858,6 @@ eval_unit_nib(p1)
 function
 eval_user_function(p1)
 {
-	var t = expanding;
-	expanding = 1;
-	eval_user_function_nib(p1);
-	expanding = t;
-}
-
-function
-eval_user_function_nib(p1)
-{
 	var h, i, FUNC_NAME, FUNC_ARGS, FUNC_DEFN;
 
 	FUNC_NAME = car(p1);
