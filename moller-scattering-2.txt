@@ -1,4 +1,4 @@
--- Verify formulas for Moller scattering
+-- Verify formulas for electron scattering
 
 E = sqrt(p^2 + m^2)
 
