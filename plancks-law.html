@@ -18,16 +18,17 @@ rho = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
 rho
 
 T = 3000 kelvin
-c = 299792458 meter/second
+c = 299792458 meter / second
 h = 6.62607004 10^(-34) joule second
-k = 1.38064852 10^(-23) joule/kelvin
+k = 1.38064852 10^(-23) joule / kelvin
 
-hertz = 1/second
+hertz = 1 / second
 joule = kilogram meter^2 / second^2
 
-"At 3000 K we have"
+"At 3000 K we have (in joules per square meter)"
 
-rho = eval(rho,nu,nu hertz) meter^2 / joule
+rho = eval(rho, nu, nu hertz) -- replace nu with nu times hertz
+rho = rho meter^2 / joule -- cancel physical units
 rho
 
 -- x axis: radiant frequency (hertz)
