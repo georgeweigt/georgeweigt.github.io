@@ -13,7 +13,7 @@ k = 1.38064852 10^(-23) joule/kelvin
 hertz = 1/second
 joule = kilogram meter^2 / second^2
 
-"For T = 3000 K we have"
+"At 3000 K we have"
 
 rho = eval(rho,nu,nu hertz) meter^2 / joule
 rho
