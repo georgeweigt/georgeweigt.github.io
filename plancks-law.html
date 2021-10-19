@@ -12,9 +12,10 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Draw black-body spectrum for 3000 Kelvin
 
--- rho is Planck's law
+"Planck's law"
 
 rho = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
+rho
 
 T = 3000 kelvin
 c = 299792458 meter/second
@@ -24,17 +25,18 @@ k = 1.38064852 10^(-23) joule/kelvin
 hertz = 1/second
 joule = kilogram meter^2 / second^2
 
--- "x axis: radiant frequency (hertz)"
--- "y axis: radiant exposure (joules per square meter)"
+"For T = 3000 K we have"
 
--- y cancels physical units so rho can be drawn
+rho = eval(rho,nu,nu hertz) meter^2 / joule
+rho
 
-y = eval(rho,nu,x hertz) meter^2 / joule
+-- x axis: radiant frequency (hertz)
+-- y axis: radiant exposure (joules per square meter)
 
 xrange = (0,10^15)
 yrange = (0,10^(-8))
 
-draw(y,x)
+draw(rho,nu)
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
