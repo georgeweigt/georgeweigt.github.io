@@ -12,13 +12,12 @@ k = 1.38064852 10^(-23) joule/kelvin
 hertz = 1/second
 joule = kilogram meter^2 / second^2
 
-"x axis: radiant frequency (hertz)"
-"y axis: radiant exposure (joules per square meter)"
+-- "x axis: radiant frequency (hertz)"
+-- "y axis: radiant exposure (joules per square meter)"
 
 -- y cancels physical units so rho can be drawn
 
 y = eval(rho,nu,x hertz) meter^2 / joule
-y
 
 xrange = (0,10^15)
 yrange = (0,10^(-8))

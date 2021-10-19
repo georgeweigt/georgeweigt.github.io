@@ -8,37 +8,39 @@
 
 <script src="eigenmath.js"></script>
 
-<table><tr><td>
-
-<textarea
-id="stdin"
-rows="24"
-cols="80"
-style="font-family:courier;font-size:12pt"
-placeholder="Enter a script here or click Demo for a default script"
-onchange="clearf()">
+<table>
+<tr>
+<td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt" placeholder="Select a demo, then click Run">
 </textarea>
-
-</td><td>
-
+</td>
+<td>
+<input type="submit" value="Demo 1" onclick="readfile('plancks-law.txt')">
+<br>
+<br>
+<input type="submit" value="Demo 2" onclick="readfile('schwarzschild-metric.txt')">
+<br>
+<br>
+<input type="submit" value="Demo 3" onclick="readfile('draw-demo.txt')">
+<br>
+<br>
+<input type="file" id="choosefile">
+<br>
+<br>
 <button onclick="run()" style="font-size:20pt">Run</button>
-
-</td><td>
-
-<button onclick="demo()" style="font-size:20pt">Demo</button>
-
-</td><td>
-
-<input type="file" id="openfile">
-
-</td></tr></table>
+</td>
+</tr>
+</table>
 
 <p>
 <div id="stdout"></div>
 
 <script>
-document.getElementById("openfile").addEventListener("change",
-function()
+
+document.getElementById("choosefile").addEventListener("change", choosefile);
+
+function
+choosefile()
 {
 	var f = new FileReader();
 	f.onload = function()
@@ -47,31 +49,24 @@ function()
 		document.getElementById("stdout").innerHTML = "";
 	}
 	f.readAsText(this.files[0]);
-});
-
-function
-clearf()
-{
-//	document.getElementById("openfile").value = "";
-//	document.getElementById("stdout").innerHTML = "";
 }
 
-var foo;
-
-function demo()
+function
+readfile(s)
 {
-	clearf();
 	foo = new XMLHttpRequest();
-	foo.open("GET", "https://georgeweigt.github.io/schwarzschild-metric.txt");
-	foo.addEventListener("load", transferComplete);
+	foo.open('GET', s);
+	foo.addEventListener("load", readfile_complete);
 	foo.send();
 }
 
-function transferComplete(event)
+function
+readfile_complete(event)
 {
 	document.getElementById("stdin").value = foo.responseText;
+	document.getElementById("stdout").innerHTML = "";
 }
-</script>
 
+</script>
 </body>
 </html>
