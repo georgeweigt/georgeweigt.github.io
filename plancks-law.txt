@@ -24,6 +24,6 @@ rho
 xrange = (0,10^15)
 yrange = (0,10^(-8))
 
-"Radiant exposure vs frequency"
+"Radiant energy vs frequency"
 
 draw(rho,nu)
