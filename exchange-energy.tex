@@ -5,13 +5,19 @@
 \begin{document}
 
 \noindent
-Let $\psi(x,y)$ be the antisymmetrized wave function of two electrons in a one dimensional box of length $L$.
+Let $\psi(x,y)$ be the wave function of two electrons in a one dimensional box of length $L$.
 \begin{align*}
 \psi(x,y)&=\frac{1}{\sqrt{2}}
 \big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)
 \\[2ex]
 \phi_n(x)&=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
 \end{align*}
+
+\noindent
+Wave function $\psi(x,y)$ is antisymmetric under exchange of electrons.
+\begin{equation*}
+\psi(x,y)=-\psi(y,x)
+\end{equation*}
 
 \noindent
 For $L=10^{-9}$ meter the expected potential energy is
@@ -21,9 +27,9 @@ V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L\frac{\psi^*(x,y)\psi(x,y)}{|x-y|}\,
 \end{equation*}
 
 \noindent
-Next calculate the potential energy for a wave function that is not antisymmetrized.
+Next calculate the potential energy for a wave function that is symmetric.
 \begin{equation*}
-V_0=\frac{e^2}{4\pi\epsilon_0}
+V_s=\frac{e^2}{4\pi\epsilon_0}
 \int_0^L\int_0^L\frac{\phi_1^*(x)\phi_2^*(y)\phi_1(x)\phi_2(y)}{|x-y|}\,dx\,dy
 =12.80\,\text{eV}
 \end{equation*}
@@ -31,13 +37,13 @@ V_0=\frac{e^2}{4\pi\epsilon_0}
 \noindent
 The difference is the exchange energy.
 \begin{equation*}
-V_{ex}=V-V_0=-8.13\,\text{eV}
+V_{ex}=V-V_s=-8.13\,\text{eV}
 \end{equation*}
 
 \noindent
-Note that the formula for $V_0$ has a singularity at $x=y$.
+Note that the formula for $V_s$ has a singularity at $x=y$.
 The computed value shown above is the result of an arbitrary cutoff in numerical integration.
-The actual value of $V_0$ goes to infinity.
+The actual value of $V_s$ goes to infinity.
 
 \bigskip
 \noindent
