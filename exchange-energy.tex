@@ -20,16 +20,16 @@ Wave function $\psi(x,y)$ is antisymmetric with respect to interchange of electr
 \end{equation*}
 
 \noindent
-For $L=10^{-9}$ meter the expected potential energy is
+For $L=10^{-9}$ meter the expected potential energy $\langle V\rangle$ is
 \begin{equation*}
-V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L\frac{\psi^*(x,y)\psi(x,y)}{|x-y|}\,dx\,dy
+\langle V\rangle=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L\frac{\psi^*(x,y)\psi(x,y)}{|x-y|}\,dx\,dy
 =4.67\,\text{eV}
 \end{equation*}
 
 \noindent
-Next calculate the potential energy for a wave function that is symmetric.
+Next calculate the expected potential energy $\langle V_s\rangle$ for a symmetric wave function.
 \begin{equation*}
-V_s=\frac{e^2}{4\pi\epsilon_0}
+\langle V_s\rangle=\frac{e^2}{4\pi\epsilon_0}
 \int_0^L\int_0^L\frac{\phi_1^*(x)\phi_2^*(y)\phi_1(x)\phi_2(y)}{|x-y|}\,dx\,dy
 =12.80\,\text{eV}
 \end{equation*}
@@ -37,17 +37,17 @@ V_s=\frac{e^2}{4\pi\epsilon_0}
 \noindent
 The difference is the exchange energy.
 \begin{equation*}
-V_{ex}=V-V_s=-8.13\,\text{eV}
+\langle V_{ex}\rangle=\langle V\rangle-\langle V_s\rangle=-8.13\,\text{eV}
 \end{equation*}
 
 \noindent
-Note that the formula for $V_s$ has a singularity at $x=y$.
+Note that the formula for $\langle V_s\rangle$ has a singularity at $x=y$.
 The computed value shown above is the result of an arbitrary cutoff in numerical integration.
-The actual value of $V_s$ goes to infinity.
+The actual value of $\langle V_s\rangle$ goes to infinity.
 
 \bigskip
 \noindent
-Note also that there is a singularity at $x=y$ in the formula for $V$.
+Note also that there is a singularity at $x=y$ in the formula for $\langle V\rangle$.
 However, due to antisymmetry we have $\psi(x,x)=0$ and hence the integral converges.
 
 \end{document}
