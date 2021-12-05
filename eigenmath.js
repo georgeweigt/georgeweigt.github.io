@@ -12148,21 +12148,14 @@ power()
 		return;
 	}
 
-	// do this before checking for (a + b)^n
-
-	if (iscomplexnumber(BASE) && isnum(EXPO)) {
-		power_complex_number(BASE, EXPO);
-		return;
-	}
-
-	// (a + b)^n -> (a + b) * (a + b) ...
+	// (a + b) ^ c
 
 	if (car(BASE) == symbol(ADD)) {
 		power_sum(BASE, EXPO);
 		return;
 	}
 
-	// (a * b) ^ c -> (a ^ c) * (b ^ c)
+	// (a b) ^ c  -->  (a ^ c) (b ^ c)
 
 	if (car(BASE) == symbol(MULTIPLY)) {
 		h = stack.length;
@@ -12177,7 +12170,7 @@ power()
 		return;
 	}
 
-	// (a^b)^c -> a^(b * c)
+	// (a ^ b) ^ c  -->  a ^ (b c)
 
 	if (car(BASE) == symbol(POWER)) {
 		push(cadr(BASE));
@@ -12904,6 +12897,11 @@ function
 power_sum(BASE, EXPO)
 {
 	var h, i, n, p1, p2;
+
+	if (iscomplexnumber(BASE) && isnum(EXPO)) {
+		power_complex_number(BASE, EXPO);
+		return;
+	}
 
 	if (expanding == 0 || !issmallinteger(EXPO)|| isnegativenumber(EXPO)) {
 		push_symbol(POWER);
