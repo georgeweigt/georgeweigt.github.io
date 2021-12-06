@@ -1,4 +1,4 @@
--- Draw black-body spectrum for 3000 Kelvin
+-- Draw black-body spectrum for 3000 Kelvin (4940 Fahrenheit)
 
 "Planck's law"
 
