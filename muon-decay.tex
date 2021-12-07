@@ -7,7 +7,7 @@
 \begin{document}
 
 \noindent
-The following muon data is from Particle Data Group.%\footnote{\tt https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
+The following muon data table is from Particle Data Group.%\footnote{\tt https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
 
 \begin{center}
 \includegraphics[scale=0.5]{muon-mean-life.png}
@@ -196,11 +196,11 @@ In component notation we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=64G_F^2
 \bigg((p_1)^\mu \; g_{\mu\nu}\; (p_3)^\nu\bigg)
-\bigg((p_2)^\mu \; g_{\mu\nu} \; (p_4)^\nu\bigg)
+\bigg((p_2)^\alpha \; g_{\alpha\beta} \; (p_4)^\beta\bigg)
 \end{equation*}
 where
 \begin{equation*}
-g_{\mu\nu}=\begin{pmatrix}
+g_{\mu\nu}=g_{\alpha\beta}=\begin{pmatrix}
 1 & 0 & 0 & 0\\
 0 & -1 & 0 & 0\\
 0 & 0 & -1 & 0\\
@@ -214,12 +214,17 @@ over all possible values of momentum.
 In the muon rest frame $p_1=(m_\mu,0,0,0)$ we have by Fermi's golden rule the following formula.
 \begin{equation*}
 \Gamma=\frac{(2\pi)^4}{2m_\mu}
-\int
+\int\limits_{-\infty}^\infty \cdots \int\limits_{-\infty}^\infty
 \langle|\mathcal{M}|^2\rangle
 \,\delta(p_1-p_2-p_3-p_4)
 \,\frac{d^3p_2}{2(2\pi)^3E_2}\,\frac{d^3p_3}{2(2\pi)^3E_3}\,\frac{d^3p_4}{2(2\pi)^3E_4}
 \end{equation*}
 
+\noindent
+Altogether there are nine integrals, three for each of $p_2$, $p_3$, and $p_4$.
+The delta function restricts the integration space to values that conserve energy.
+
+\bigskip
 \noindent
 It can be shown that
 \begin{equation*}
