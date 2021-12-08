@@ -15,15 +15,12 @@
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Feynman and Hibbs problem 3-5
 
-psi = sqrt(m / 2 / pi / i / hbar / (tc - ta)) *
-      exp(i m (xc - xa)^2 / 2 / hbar / (tc - ta))
-
 K0 = sqrt(m / 2 / pi / i / hbar / (t - tc)) *
      exp(i m (x - xc)^2 / 2 / hbar / (t - tc))
 
-I = K0 psi
+K = K0 psi(xc,tc)
 
-d(I,t) == -i / hbar (-hbar^2 / 2 / m d(I,x,x))
+d(K,t) == -i / hbar (-hbar^2 / 2 / m d(K,x,x))
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>

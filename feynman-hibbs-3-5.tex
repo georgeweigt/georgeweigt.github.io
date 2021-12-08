@@ -4,38 +4,50 @@
 \begin{document}
 
 \noindent
-Use problem 3-2 and equation 3.42 to show that
+Use problem 3-2 and equation 3.42 to show that for a free particle wave function $\psi$
 \begin{equation*}
 \frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}
-\left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)\eqno{(1)}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)
 \end{equation*}
 
 \noindent
-From 3.42 we have
+From 3.42
 \begin{equation*}
-\psi(x,t)=\int_{-\infty}^\infty K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\eqno{(2)}
+\psi(x,t)=\int_{-\infty}^\infty K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c
 \end{equation*}
 
 \noindent
-Let
+By linearity of differentiation
+\begin{align*}
+\frac{\partial\psi}{\partial t}
+&=\int_{-\infty}^\infty \frac{\partial}{\partial t} \bigg(K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\bigg)
+\\
+\frac{\partial^2\psi}{\partial x^2}
+&=\int_{-\infty}^\infty \frac{\partial^2}{\partial x^2} \bigg(K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\bigg)
+\end{align*}
+
+\noindent
+By indepedence of $\psi(x_c,t_c)$ and $dx_c$
+\begin{align*}
+\frac{\partial\psi}{\partial t}
+&=\int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
+\\
+\frac{\partial^2\psi}{\partial x^2}
+&=\int_{-\infty}^\infty \frac{\partial^2 K_0}{\partial x^2}\psi(x_c,t_c)\,dx_c
+\end{align*}
+
+\noindent
+From problem 3-2
 \begin{equation*}
-\psi(x_c,t_c)=K_0(x_c,t_c;x_a,t_a)
+\frac{\partial K_0}{\partial t}=-\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x^2}\right)
 \end{equation*}
 
 \noindent
-and let $I$ be the integrand
+Hence by linearity
 \begin{equation*}
-I=K_0(x,t;x_c,t_c)\psi(x_c,t_c)
+\frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)
 \end{equation*}
-
-\noindent
-Since $\psi(x_c,t_c)$ does not depend on $x$ or $t$ we have by problem 3-2
-\begin{equation*}
-\frac{\partial I}{\partial t}=-\frac{i}{\hbar}
-\left(-\frac{\hbar^2}{2m}\frac{\partial^2 I}{\partial x^2}\right)
-\end{equation*}
-
-\noindent
-Then (1) follows from (2) by linearity of differentiation.
 
 \end{document}
