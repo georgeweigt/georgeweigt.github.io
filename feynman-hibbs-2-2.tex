@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+This is the Lagrangian for a harmonic oscillator.
+\begin{equation*}
+L=\frac{m}{2}(\dot{x}^2-\omega^2 x^2)
+\end{equation*}
+
+\noindent
+Let $T=t_b-t_a$.
+Show that the classical action is
+\begin{equation*}
+S_{cl}=\frac{m\omega}{2\sin\omega T}
+\bigg((x_b^2+x_a^2)\cos(\omega T)-2x_b x_a\bigg)
+\end{equation*}
+
+\noindent
+This is the equation of motion.
+\begin{equation*}
+x(t)=x_a+\frac{x_b-x_a}{2}\sin(\omega t)
+\end{equation*}
+
+\noindent
+From equation 2.1
+\begin{equation*}
+S_{cl}=\frac{m}{2}\int_{t_a}^{t_b} (\dot{x}^2-\omega^2 x^2)\,dt
+\end{equation*}
+
+\noindent
+Rewrite as two integrals.
+\begin{equation*}
+S_{cl}=\frac{m}{2}\int_{t_a}^{t_b} \dot{x}^2\,dt
+-\frac{m}{2}\int_{t_a}^{t_b}\omega^2 x^2\,dt
+\end{equation*}
+
+
+\end{document}
