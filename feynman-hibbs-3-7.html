@@ -17,12 +17,12 @@
 
 -- Verify equation (4)
 
--- Use I instead of i to avoid branch cuts
+i = quote(i) -- Clear symbol i to avoid branch cuts
 
-A = sqrt(m / 2 / pi / I / hbar / (t + s))
-B = sqrt(m / 2 / pi / I / hbar / t)
-C = sqrt(m / 2 / pi / I / hbar / s)
-D = sqrt(2 pi I hbar t s / m / (t + s))
+A = sqrt(m / 2 / pi / i / hbar / (t + s))
+B = sqrt(m / 2 / pi / i / hbar / t)
+C = sqrt(m / 2 / pi / i / hbar / s)
+D = sqrt(2 pi i hbar t s / m / (t + s))
 
 A == B C D
 </textarea>
