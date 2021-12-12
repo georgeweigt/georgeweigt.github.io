@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+Using equations (3.52) and (2.31),
+express $F(t+s)$ in terms of $F(t)$ and $F(s)$,
+where $t=t_b-t_c$ and $s=t_c-t_a$.
+
+\bigskip
+\noindent
+From equation (3.52)
+\begin{equation*}
+K(b,a)=F(t_b-t_a)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar (t_b-t_a)}\right)
+\end{equation*}
+
+\noindent
+It follows that
+\begin{equation*}
+K(b,a)=F(t+s)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar (t+s)}\right)
+\eqno{(1)}
+\end{equation*}
+
+\noindent
+From equation (2.31)
+\begin{equation*}
+K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+K(b,a)=F(t)F(s)\int_{-\infty}^\infty
+\exp\left(\frac{im(x_b-x_c)^2}{2\hbar t}\right)
+\exp\left(\frac{im(x_c-x_a)^2}{2\hbar s}\right)
+\,dx_c
+\end{equation*}
+
+\noindent
+Solve the integral.
+\begin{equation*}
+K(b,a)=F(t)F(s)
+\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t+s)}\right)
+\eqno{(2)}
+\end{equation*}
+
+\noindent
+Equating (1) with (2) causes the exponentials to cancel leaving
+\begin{equation*}
+F(t+s)=F(t)F(s)\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}\eqno{(3)}
+\end{equation*}
+
+\noindent
+Show that if
+\begin{equation*}
+F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} f(t)
+\end{equation*}
+then the new function $f(t)$ must satisfy
+\begin{equation*}
+f(t+s)=f(t)f(s)
+\end{equation*}
+
+\noindent
+By substitution
+\begin{equation*}
+F(t+s)=\left(\frac{m}{2\pi i\hbar (t+s)}\right)^{1/2} f(t+s)
+\end{equation*}
+and
+\begin{equation*}
+F(t)F(s)=
+\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}
+\left(\frac{m}{2\pi i\hbar s}\right)^{1/2}
+f(t)f(s)
+\end{equation*}
+
+\noindent
+Then by (3) we have
+\begin{multline*}
+\left(\frac{m}{2\pi i\hbar(t+s)}\right)^{1/2}
+f(t+s)=
+\\
+\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}
+\left(\frac{m}{2\pi i\hbar s}\right)^{1/2}
+f(t)f(s)
+\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\end{multline*}
+
+\noindent
+The coefficients cancel leaving
+\begin{equation*}
+f(t+s)=f(t)f(s)
+\end{equation*}
+
+\end{document}
