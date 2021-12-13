@@ -12,13 +12,13 @@ Feynman and Hibbs problem 3-9
 Find the kernel for a particle in a constant external field $f$
 where the Lagrangian is
 \begin{equation*}
-L=\frac{m}{2}\dot x^2+fx
+L=\frac{m}{2}\dot x(t)^2+fx(t)
 \end{equation*}
 
 
 We have
 \begin{equation*}
-\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=m\ddot x
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=m\ddot x(t)
 \end{equation*}
 and
 \begin{equation*}
@@ -32,7 +32,7 @@ By equation (2.7) which is
 \end{equation*}
 we have
 \begin{equation*}
-\ddot x=0
+\ddot x(t)=0
 \end{equation*}
 
 \noindent
@@ -85,7 +85,7 @@ K(b,a)=F(t_b-t_a)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}+\frac{i(x_b+x_a
 \end{equation*}
 
 
-We now proceed to compute $F$. By equation (2.31)
+We now proceed to compute $F$. By equation (2.31) which is
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
 \end{equation*}
@@ -120,7 +120,7 @@ C&=\frac{f}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{m}{2\hbar}
 \end{align*}
 
 
-From the formula
+From the following integral solution formula
 \begin{equation*}
 \int_{-\infty}^{\infty}\exp(iAx_c^2+iBx_c+iC)\,dx_c
 =\left(-\frac{\pi}{iA}\right)^{1/2}
@@ -175,7 +175,7 @@ F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} g(t)
 \end{equation*}
 
 
-Substitute (12) into (11).
+Substitute (12) into (11) to obtain
 \begin{align*}
 &\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2} g(t_b-t_a)
 \\
