@@ -1,5 +1,7 @@
 -- Feynman and Hibbs problem 3-9
 
+Tba = Tbc + Tca
+
 "Verify equation (2)"
 
 x = (xb - xa) / (tb - ta) (t - ta) + xa
@@ -15,7 +17,7 @@ T = i m (xb - xc)^2 / (2 hbar Tbc) + i (xb + xc) Tbc f / (2 hbar) +
 
 A = m (1 / Tbc + 1 / Tca) / (2 hbar)
 
-B = f (Tbc + Tca) / (2 hbar) - m (xb / Tbc + xa / Tca) / hbar
+B = f Tba / (2 hbar) - m (xb / Tbc + xa / Tca) / hbar
 
 C = f (xb Tbc + xa Tca) / (2 hbar) +
     m (xb^2 / Tbc + xa^2 / Tca) / (2 hbar)
@@ -26,15 +28,15 @@ check(T == i A xc^2 + i B xc + i C)
 
 "Verify equation (9)"
 
-check(-pi / (i A) == -2 pi hbar Tbc Tca / (i m (Tbc + Tca)))
+check(-pi / (i A) == -2 pi hbar Tbc Tca / (i m Tba))
 
 T = -i B^2 / (4 A) + i C
 
-T1 = i m (xb - xa)^2 / (2 hbar (Tbc + Tca))
+T1 = i m (xb - xa)^2 / (2 hbar Tba)
 
-T2 = i f (xb + xa) (Tbc + Tca) / (2 hbar)
+T2 = i f (xb + xa) Tba / (2 hbar)
 
-T3 = -i f^2 (Tbc + Tca) Tbc Tca / (8 hbar m)
+T3 = -i f^2 Tba Tbc Tca / (8 hbar m)
 
 check(T == T1 + T2 + T3)
 
