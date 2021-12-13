@@ -40,7 +40,7 @@ check(T == T1 + T2 + T3)
 
 "ok"
 
-"Verify equation (13)"
+"Verify equation (13) cancellation of coefficients"
 
 T1 = m / (2 pi i hbar Tba)
 T2 = m / (2 pi i hbar Tbc)
@@ -58,7 +58,7 @@ check((tb - ta)^3 ==
 
 "ok"
 
-"Verify equation (15)"
+"Verify equation (15) complete the cube"
 
 T1 = -(tb - ta) (tb - tc) (tc - ta) / (8 hbar m)
 T2 = -(tb - tc)^3 / (24 hbar m)
