@@ -8,11 +8,13 @@
 Feynman and Hibbs problem 3-9
 
 
+\bigskip
 Find the kernel for a particle in a constant external field $f$
 where the Lagrangian is
 \begin{equation*}
 L=\frac{m}{2}\dot x^2+fx
 \end{equation*}
+
 
 We have
 \begin{equation*}
@@ -26,7 +28,7 @@ and
 \noindent
 By equation (2.7)
 \begin{equation*}
-\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)-\frac{\partial L}{\partial x}=0
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=\frac{\partial L}{\partial x}
 \end{equation*}
 we have
 \begin{equation*}
@@ -40,7 +42,6 @@ x(t)=\left(\frac{x_b-x_a}{t_b-t_a}\right)(t-t_a)+x_a
 \end{equation*}
 
 \noindent
-Compute the action $S_{cl}$.
 From equation (2.1)
 \begin{equation*}
 S_{cl}=\int_{t_a}^{t_b}\frac{m}{2}\dot x(t)^2\,dt
@@ -95,7 +96,7 @@ F(t_b-t_c)\exp\left(\frac{im(x_b-x_c)^2}{2\hbar(t_b-t_c)}+\frac{i(x_b+x_c)(t_b-t
 \end{multline*}
 
 
-Rewrite as
+Rewrite equation (4) as
 \begin{equation*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
 \exp(iAx_c^2+iBx_c+iC)
@@ -103,7 +104,7 @@ K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
 \end{equation*}
 where
 \begin{align*}
-A&=\frac{m(t_b-t_a)}{2\hbar(t_b-t_c)(t_c-t_a)}
+A&=\frac{m}{2\hbar}\left(\frac{1}{t_b-t_c}+\frac{1}{t_c-t_a}\right)
 \tag{6}
 \\
 B&=\frac{(t_b-t_a)f}{2\hbar}-\frac{m}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
@@ -132,11 +133,12 @@ we have
 +\frac{i(x_b+x_a)(t_b-t_a)f}{2\hbar}
 -\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}
 \right)
+\tag{9}
 \end{multline*}
 }
 
 
-Hence
+Substitute (9) into (5).
 {\footnotesize
 \begin{multline*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)
@@ -147,38 +149,37 @@ K(b,a)=F(t_b-t_c)F(t_c-t_a)
 +\frac{i(x_b+x_a)(t_b-t_a)f}{2\hbar}
 -\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}
 \right)
-\tag{9}
+\tag{10}
 \end{multline*}
 }
 
 
-Equating (3) with (9) reduces to
+Equating (3) with (10) reduces to
 {\footnotesize
 \begin{multline*}
 F(t_b-t_a)=F(t_b-t_c)F(t_c-t_a)
-\\
-{}\times
 \left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
-\exp\left(-\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}\right)
-\tag{10}
+\\
+{}\times\exp\left(-\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}\right)
+\tag{11}
 \end{multline*}
 }
 
 
 From problem 3-7, let
 \begin{equation*}
-F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}\exp(at)
-\tag{11}
+F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} g(t)
+\tag{12}
 \end{equation*}
 
 
-Then substituting (11) in (10) yields
+Substite (12) into (11).
 {\footnotesize
 \begin{align*}
-&\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}\exp(a(t_b-t_a))
+&\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2} g(t_b-t_a)
 \\
-&\qquad{}=\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{1/2}\exp(a(t_b-t_c))
-\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^{1/2}\exp(a(t_c-t_a))
+&\qquad{}=\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{1/2} g(t_b-t_c)
+\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^{1/2} g(t_c-t_a)
 \\
 &\qquad\qquad{}\times\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
 \exp\left(-\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}\right)
@@ -187,12 +188,45 @@ Then substituting (11) in (10) yields
 
 
 The coefficients cancel leaving
-\begin{multline*}
-\exp(a(t_b-t_a))=\exp(a(t_b-t_c))\exp(a(t_c-t_a))
-\\
-{}\times
-\exp\left(-\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}\right)
-\end{multline*}
+\begin{equation*}
+g(t_b-t_a)=g(t_b-t_c)g(t_c-t_a)\exp\left(-\frac{i(t_b-t_a)(t_b-t_c)(t_c-t_a)f^2}{8\hbar m}\right)
+\tag{13}
+\end{equation*}
 
+
+Note that
+\begin{equation*}
+(t_b-t_a)^3=
+(t_b-t_c)^3
++3(t_b-t_a)(t_b-t_c)(t_c-t_a)
++(t_c-t_a)^3
+\tag{14}
+\end{equation*}
+
+
+Solve for $g(t)$ by completing the cube.
+\begin{equation*}
+g(t)=\exp\left(-\frac{it^3f^2}{24\hbar m}\right)
+\tag{15}
+\end{equation*}
+
+
+Substitute (15) into (12).
+\begin{equation*}
+F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} \exp\left(-\frac{it^3f^2}{24\hbar m}\right)
+\tag{16}
+\end{equation*}
+
+
+Substitute (16) into (3).
+\begin{multline*}
+K(b,a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\\
+{}\times\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
++\frac{i(x_b+x_a)(t_b-t_a)f}{2\hbar}
+-\frac{i(t_b-t_a)^3f^2}{24\hbar m}
+\right)
+\end{multline*}
 
 \end{document}
