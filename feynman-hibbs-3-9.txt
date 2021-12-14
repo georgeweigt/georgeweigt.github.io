@@ -1,5 +1,9 @@
 -- Feynman and Hibbs problem 3-9
 
+-- Tba is tb - ta
+-- Tbc is tb - tc
+-- Tca is tc - ta
+
 Tba = Tbc + Tca
 
 "Verify equation (2)"
