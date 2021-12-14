@@ -64,7 +64,7 @@ T2 = m / (2 pi i hbar Tbc)
 T3 = m / (2 pi i hbar Tca)
 T4 = -2 pi hbar Tbc Tca / (i m Tba)
 
-check(T1 == T2 T3 T4)
+check(sqrt(T1) == sqrt(T2 T3 T4))
 
 "ok"
 
