@@ -1,0 +1,7 @@
+-- Feynman and Hibbs problem 2-1
+
+v = (xb - xa) / (tb - ta)
+
+L = 1/2 m v^2
+
+defint(L, t, ta, tb) == 1/2 m (xb - xa)^2 / (tb - ta)
