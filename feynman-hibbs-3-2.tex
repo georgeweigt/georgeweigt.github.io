@@ -1,20 +1,19 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 
+\parindent=0pt
+
 \begin{document}
 
-\noindent
 Feynman and Hibbs problem 3-2
 
 \bigskip
-\noindent
 Given the free particle kernel
 \begin{equation*}
 K_0(b,a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
 \exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
 \end{equation*}
 
-\noindent
 show that
 \begin{equation*}
 \frac{\partial K_0}{\partial t_b}
@@ -25,14 +24,6 @@ show that
 \right)
 \end{equation*}
 
-\bigskip
-\noindent
-Eigenmath solution
-\begin{verbatim}
-K0 = sqrt(m / 2 / pi / i / hbar / (tb - ta)) *
-     exp(i m (xb - xa)^2 / 2 / hbar / (tb - ta))
-
-d(K0,tb) == -i / hbar (-hbar^2 / 2 / m d(K0,xb,xb))
-\end{verbatim}
+See Eigenmath solution.
 
 \end{document}
