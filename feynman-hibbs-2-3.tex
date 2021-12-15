@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+Feynman and Hibbs problem 2-3
+
+\bigskip
+Find $S_{cl}$ for a particle under a constant force $f$, that is,
+\begin{equation*}
+L=\frac{m}{2}\dot x^2+fx
+\end{equation*}
+
+For the above Lagrangian we have
+\begin{equation*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=m\ddot x
+\end{equation*}
+and
+\begin{equation*}
+\frac{\partial L}{\partial x}=f
+\end{equation*}
+
+By equation (2.7) which is
+\begin{equation*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=\frac{\partial L}{\partial x}
+\end{equation*}
+we have
+\begin{equation*}
+\ddot x=\frac{f}{m}
+\end{equation*}
+
+Hence $x(t)$ must have the following quadratic form.
+\begin{equation*}
+x(t)=\frac{f}{2m}t^2+Bt+C
+\end{equation*}
+
+We have the following boundary conditions.
+\begin{align*}
+x(t_a)=x_a\\
+x(t_b)=x_b
+\end{align*}
+
+Subtract to cancel $C$.
+\begin{equation*}
+x(t_b)-x(t_a)=\frac{f}{2m}\left(t_b^2-t_a^2\right)+B(t_b-t_a)=x_b-x_a
+\end{equation*}
+
+Solve for $B$.
+\begin{equation*}
+B=\frac{x_b-x_a}{t_b-t_a}-\frac{f\,\left(t_b^2-t_a^2\right)}{2m(t_b-t_a)}
+\end{equation*}
+
+Solve for C.
+\begin{align*}
+C&=x_a-\frac{f}{2m}t_a^2-Bt_a
+\\[1ex]
+&=\frac{f\,\left(t_a t_b^2 - t_a^2 t_b\right)}{2 m (t_b - t_a)} + \frac{t_b x_a - t_a x_b}{t_b - t_a}
+\end{align*}
+
+Altogether we have
+\begin{equation*}
+x(t)=
+\frac{f}{2m}t^2
++\left(\frac{x_b-x_a}{t_b-t_a}-\frac{f\,\left(t_b^2-t_a^2\right)}{2m(t_b-t_a)}\right)t
++\frac{f\,\left(t_a t_b^2 - t_a^2 t_b\right)}{2 m (t_b - t_a)} + \frac{t_b x_a - t_a x_b}{t_b - t_a}
+\tag{1}
+\end{equation*}
+
+Equation (1) is too complicated to continue so we now translate the time coordinate so that
+\begin{align*}
+t_a=0
+\\
+t_b=T
+\end{align*}
+We now have
+\begin{equation*}
+x(t)=\frac{ft^2}{2m}+\left(\frac{x_b-x_a}{T}-\frac{fT}{2m}\right)t+x_a
+\tag{2}
+\end{equation*}
+
+Differentiate $x(t)$ to obtain $\dot x(t)$.
+\begin{equation*}
+\dot x(t)=
+\frac{d}{dt}x(t)=\frac{ft}{m}-\frac{fT}{2m}+\frac{x_b-x_a}{T}
+\tag{3}
+\end{equation*}
+
+The new Lagrangian is
+{\footnotesize
+\begin{align*}
+L&=\frac{m}{2}\dot x(t)^2+fx(t)
+\\[1ex]
+&=\frac{f^2}{m}t^2
++\left(\frac{2f\,(x_b-x_a)}{T}-\frac{f^2T}{m}\right)t
++\frac{f^2T^2}{8m}
++\frac{m(x_b-x_a)^2}{2T^2}
++\frac{f\,(3x_a-x_b)}{2}
+\tag{4}
+\end{align*}
+}
+
+Hence
+\begin{equation*}
+S_{cl}=\int_0^T L\,dt
+=\frac{m(x_b-x_a)^2}{2T}+\frac{fT(x_b+x_a)}{2}-\frac{f^2T^3}{24m}
+\tag{5}
+\end{equation*}
+where $T=t_b-t_a$.
+
+\end{document}
