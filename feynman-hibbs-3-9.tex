@@ -16,12 +16,14 @@ L=\frac{m}{2}\dot x^2+fx
 
 From problem 2-3 we have
 \begin{equation*}
-S(b,a)=\frac{m(x_b-x_a)^2}{2(t_b-t_a)}+\frac{f\,(t_b-t_a)(x_b+x_a)}{2}-\frac{f^2(t_b-t_a)^3}{24m}
+S(b,a)=\frac{m(x_b-x_a)^2}{2T}+\frac{fT(x_b+x_a)}{2}-\frac{f^2T^3}{24m}
 \end{equation*}
+where $T=t_b-t_a$.
 
+\bigskip
 By equation (3.51) which is
 \begin{equation*}
-K(b,a)=F(t_b-t_a)\exp\left(\frac{iS(b,a)}{\hbar}\right)
+K(b,a)=F(T)\exp\left(\frac{iS(b,a)}{\hbar}\right)
 \end{equation*}
 we have
 \begin{equation*}
@@ -33,9 +35,7 @@ F(T)\exp\left(
 \right)
 \tag{1}
 \end{equation*}
-where $T=t_b-t_a$.
 
-\bigskip
 We now proceed to compute $F$. By equation (2.31) which is
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
@@ -158,7 +158,7 @@ Substitute (10) into (9) to obtain
 
 The coefficients cancel leaving
 \begin{equation*}
-g(t_b-t_a)=g(t_b-t_c)g(t_c-t_a)
+g(T)=g(t_b-t_c)g(t_c-t_a)
 \tag{11}
 \end{equation*}
 
