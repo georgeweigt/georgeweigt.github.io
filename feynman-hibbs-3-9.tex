@@ -24,17 +24,18 @@ By equation (3.51) which is
 K(b,a)=F(t_b-t_a)\exp\left(\frac{iS(b,a)}{\hbar}\right)
 \end{equation*}
 we have
-\begin{multline*}
+\begin{equation*}
 K(b,a)=
-\\
-F(t_b-t_a)\exp\left(
-\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
-+\frac{if\,(t_b-t_a)(x_b+x_a)}{2\hbar}
--\frac{if^2(t_b-t_a)^3}{24\hbar m}
+F(T)\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
 \right)
 \tag{1}
-\end{multline*}
+\end{equation*}
+where $T=t_b-t_a$.
 
+\bigskip
 We now proceed to compute $F$. By equation (2.31) which is
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
@@ -62,7 +63,7 @@ where
 A&=\frac{m}{2\hbar}\left(\frac{1}{t_b-t_c}+\frac{1}{t_c-t_a}\right)
 \tag{3}
 \\
-B&=\frac{(t_b-t_a)f}{2\hbar}-\frac{m}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
+B&=\frac{fT}{2\hbar}-\frac{m}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
 \tag{4}
 \\
 C&=\frac{f}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{m}{2\hbar}
@@ -82,63 +83,60 @@ From the following formula
 \exp\left(-\frac{iB^2}{4A}+iC\right)
 \end{equation*}
 we have
-{\footnotesize
 \begin{multline*}
 \int_{-\infty}^{\infty}\exp(iAx_c^2+iBx_c+iC)\,dx_c
-=\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
+=\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
 \\
 {}\times\exp\left(
-\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
-+\frac{if\,(t_b-t_a)(x_b+x_a)}{2\hbar}
--\frac{if^2(t_b-t_a)(t_b-t_c)(t_c-t_a)}{8\hbar m}
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T(t_b-t_c)(t_c-t_a)}{8\hbar m}
 \right)
 \tag{6}
 \end{multline*}
-}
 
-\bigskip
 Substitute (6) into (2) to obtain
-{\footnotesize
 \begin{align*}
 &K(b,a)=F(t_b-t_c)F(t_c-t_a)
 \exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
 \\
 &\quad{}\times
-\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
 \\
 &\quad{}\times
 \exp\left(
-\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
-+\frac{if\,(t_b-t_a)(x_b+x_a)}{2\hbar}
--\frac{if^2(t_b-t_a)(t_b-t_c)(t_c-t_a)}{8\hbar m}
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T(t_b-t_c)(t_c-t_a)}{8\hbar m}
 \right)
 \end{align*}
-}
 
 Note that
 \begin{equation*}
-(t_b-t_a)^3=(t_b-t_c)^3+(t_c-t_a)^3+3(t_b-t_a)(t_b-t_c)(t_c-t_a)
+T^3=(t_b-t_c)^3+(t_c-t_a)^3+3T(t_b-t_c)(t_c-t_a)
 \tag{7}
 \end{equation*}
 
 Use (7) to combine exponentials involving $f^2$.
-\begin{multline*}
-K(b,a)=F(t_b-t_c)F(t_c-t_a)
-\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
+\begin{align*}
+&K(b,a)=F(t_b-t_c)F(t_c-t_a)
 \\
-{}\times
+&\quad{}\times
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\\
+&\quad{}\times
 \exp\left(
-\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
-+\frac{if\,(t_b-t_a)(x_b+x_a)}{2\hbar}
--\frac{if^2(t_b-t_a)^3}{24\hbar m}
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
 \right)
 \tag{8}
-\end{multline*}
+\end{align*}
 
 Equating (1) with (8) cancels the exponentials and leaves
 \begin{equation*}
-F(t_b-t_a)=F(t_b-t_c)F(t_c-t_a)
-\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
+F(T)=F(t_b-t_c)F(t_c-t_a)
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
 \tag{9}
 \end{equation*}
 
@@ -150,12 +148,12 @@ F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} g(t)
 
 Substitute (10) into (9) to obtain
 \begin{multline*}
-\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2} g(t_b-t_a)
+\left(\frac{m}{2\pi i\hbar T}\right)^{1/2} g(T)
 =\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{1/2} g(t_b-t_c)
 \\
 {}\times
 \left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^{1/2} g(t_c-t_a)
-\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
 \end{multline*}
 
 The coefficients cancel leaving
@@ -170,19 +168,18 @@ g(t)=1
 \end{equation*}
 and
 \begin{equation*}
-F(t_b-t_a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+F(T)=\left(\frac{m}{2\pi i\hbar T}\right)^{1/2}
 \tag{12}
 \end{equation*}
 
 Substitute (12) into (1).
-\begin{multline*}
-K(b,a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
-\\
-{}\times\exp\left(
-\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}
-+\frac{if\,(t_b-t_a)(x_b+x_a)}{2\hbar}
--\frac{if^2(t_b-t_a)^3}{24\hbar m}
+\begin{equation*}
+K(b,a)=\left(\frac{m}{2\pi i\hbar T}\right)^{1/2}
+\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
 \right)
-\end{multline*}
+\end{equation*}
 
 \end{document}
