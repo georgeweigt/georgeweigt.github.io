@@ -30,7 +30,7 @@ D = -i B^2 / (4 A) + i C
 
 A = i m (xb - xa)^2 / (2 hbar Tba)
 
-B = i f (xb + xa) Tba / (2 hbar)
+B = i f Tba (xb + xa) / (2 hbar)
 
 C = -i f^2 Tba Tbc Tca / (8 hbar m)
 
