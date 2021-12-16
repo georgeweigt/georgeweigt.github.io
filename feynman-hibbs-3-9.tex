@@ -40,10 +40,16 @@ We now proceed to compute $F$. By equation (2.31) which is
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
 \end{equation*}
 we have
+\begin{equation*}
+K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
+\exp\left(\frac{iS(b,c)}{\hbar}+\frac{iS(c,a)}{\hbar}\right)
+\,dx_c
+\end{equation*}
+
+Reorganize the exponential as quadratic in $x_c$ to obtain
 \begin{multline*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)
-\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}\right)
-\exp\left(-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
+\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
 \\[1ex]
 {}\times
 \int_{-\infty}^\infty
@@ -64,7 +70,7 @@ C&=\frac{f}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{m}{2\hbar}
 \end{align*}
 
 \bigskip
-Note that two exponentials have been moved outside the integral because they are independent of $x_c$.
+Note that the exponential moved outside the integral is independent of $x_c$.
 
 \bigskip
 From the following formula
@@ -93,8 +99,7 @@ Substitute (6) into (2) to obtain
 {\footnotesize
 \begin{align*}
 &K(b,a)=F(t_b-t_c)F(t_c-t_a)
-\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}\right)
-\exp\left(-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
+\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
 \\
 &\quad{}\times
 \left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{im(t_b-t_a)}\right)^{1/2}
