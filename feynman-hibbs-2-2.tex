@@ -96,25 +96,19 @@ S_{cl}&=\frac{m}{2}\int_0^T (\dot{x}^2-\omega^2 x^2)\,dt
 -\int_0^T\omega^2x^2\,dt\right)
 \end{align*}
 
-Let
-\begin{align*}
-u=\dot x
-\\
-v=\dot x
-\end{align*}
-and note that
+Let $u=v=\dot x$ and note that
 \begin{align*}
 \dot u&=\ddot x
 \\
 \int v\,dt&=x
 \end{align*}
 
-Use integration by parts to obtain
+Apply integration by parts to the integral of $\dot x^2$.
 \begin{align*}
 \int_0^T \dot x^2\,dt
 &=\int_0^T uv\,dt
 \\
-&=\left(u\int v\,dt\right)_0^T
+&=\left(u\int v\,dt\right)\big|_0^T
 -\int_0^T\dot u\left(\int v\,dt\right)\,dt
 \\
 &=\dot xx\bigg|_0^T-\int_0^T \ddot xx\,dt
@@ -128,12 +122,12 @@ S_{cl}=\frac{m}{2}\left(
 \right)
 \end{equation*}
 
-From (1) we have
+The integrals cancel by equation (1) which affirms that
 \begin{equation*}
 \ddot xx=-\omega^2 x^2
 \end{equation*}
 
-Hence the remaining integrals cancel leaving
+We now have
 \begin{align*}
 S_{cl}&=\frac{m}{2}\dot xx\bigg|_0^T
 \\
