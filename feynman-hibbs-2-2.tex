@@ -69,12 +69,15 @@ A=\frac{x(T)-B\cos(\omega T)}{\sin(\omega T)}=
 
 Hence the equation of motion is
 \begin{equation*}
-x(t)=\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)} \sin(\omega t)+x_a\cos(\omega t)
+x(t)=\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\sin(\omega t)+x_a\cos(\omega t)
 \end{equation*}
 
 Differentiate $x(t)$ to obtain velocity $\dot x(t)$.
 \begin{equation*}
-\dot x(t)=\frac{d}{dt}x(t)=\frac{\omega(x_b-x_a)\cos(\omega T)}{\sin(\omega T)} \cos(\omega t)-\omega x_a\sin(\omega t)
+\dot x(t)=\frac{d}{dt}x(t)=
+\omega\left(
+\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\cos(\omega t)-x_a\sin(\omega t)
+\right)
 \end{equation*}
 
 Using the action integral
