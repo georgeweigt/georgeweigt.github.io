@@ -80,8 +80,53 @@ we have for the classical action
 \begin{align*}
 S_{cl}&=\frac{m}{2}\int_0^T (\dot{x}^2-\omega^2 x^2)\,dt
 \\[1ex]
-&=\frac{m\omega}{2\sin(\omega T)}
-\bigg((x_b^2+x_a^2)\cos(\omega T)-2x_b x_a\bigg)
+&=\frac{m}{2}\left(
+\int_0^T\dot{x}^2\,dt
+-\int_0^T\omega^2x^2\,dt\right)
 \end{align*}
+
+Let
+\begin{align*}
+u=\dot x
+\\
+v=\dot x
+\end{align*}
+
+Use integration by parts to obtain
+\begin{align*}
+\int_0^T \dot x^2\,dt
+&=\int_0^T uv\,dt
+\\
+&=\left(u\int v\,dt\right)_0^T
+-\int_0^T\dot u\left(\int v\,dt\right)\,dt
+\\
+&=\dot xx\bigg|_0^T-\int_0^T \ddot xx\,dt
+\end{align*}
+
+Hence
+\begin{equation*}
+S_{cl}=\frac{m}{2}\left(
+\dot xx\bigg|_0^T-\int_0^T \ddot xx\,dt
+-\int_0^T\omega^2x^2\,dt
+\right)
+\end{equation*}
+
+From (1) we have
+\begin{equation*}
+\ddot xx=-\omega^2 x^2
+\end{equation*}
+
+Hence the remaining integrals cancel and we have
+\begin{align*}
+S_{cl}&=\frac{m}{2}\dot xx\bigg|_0^T
+\\
+&=\frac{m}{2}\bigg(\dot x(T)x(T)-\dot x(0)x(0)\bigg)
+\end{align*}
+
+Then by substitution
+\begin{equation*}
+S_{cl}=\frac{m\omega}{2\sin(\omega T)}
+\bigg((x_b^2+x_a^2)\cos(\omega T)-2x_b x_a\bigg)
+\end{equation*}
 
 \end{document}
