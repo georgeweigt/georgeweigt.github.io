@@ -8,12 +8,13 @@
 Feynman and Hibbs problem 3-12
 
 \bigskip
-If the wave function for a harmonic oscillator (at $t=0$) is
+Let the wave function for a harmonic oscillator at $t=0$ be
 \begin{equation*}
 \psi(x,0)=\exp\left(-\frac{m\omega}{2\hbar}(x-a)^2\right)
 \end{equation*}
 
-then, using equation (3.42) and the results of problem 3-8, show that
+Using equation (3.42) and the results of problem 3-8 show that
+at $t=T$ the wave function is
 \begin{multline*}
 \psi(x,T)=
 \\
@@ -23,15 +24,12 @@ then, using equation (3.42) and the results of problem 3-8, show that
 \right)
 \end{multline*}
 
-and find the probability density $|\psi|^2$.
-
-\bigskip
-Adapted from equation (3.42)
+From equation (3.42)
 \begin{equation*}
 \psi(x,T)=\int_{-\infty}^\infty K(x,T;x_c,0)\psi(x_c,0)\,dx_c
 \end{equation*}
 
-Adapted from problem 3-8
+From problem 3-8
 \begin{equation*}
 K=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
 \exp\left(
@@ -55,20 +53,17 @@ Hence
 Rewrite as
 \begin{equation*}
 \psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
-\int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)
+\int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)\,dx_c
 \tag{1}
 \end{equation*}
 
 where
 \begin{align*}
 A&=\frac{m\omega}{2\hbar}\left(\frac{i\cos(\omega T)}{\sin(\omega T)}-1\right)
-\tag{2}
 \\
 B&=\frac{m\omega}{\hbar}\left(a-\frac{ix}{\sin(\omega T)}\right)
-\tag{3}
 \\
 C&=\frac{m\omega}{2\hbar}\left(\frac{ix^2\cos(\omega T)}{\sin(\omega T)}-a^2\right)
-\tag{4}
 \end{align*}
 
 Solve the integral.
@@ -79,12 +74,12 @@ Solve the integral.
 \\
 -\frac{\pi}{A}
 =-\frac{2\pi\hbar\sin(\omega T)}{im\omega\cos(\omega T)-m\omega\sin(\omega T)}
-\tag{5}
+\tag{2}
 \\
 -\frac{B^2}{4A}+C
 =-\frac{m\omega}{2\hbar}
 \left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
-\tag{6}
+\tag{3}
 \end{gather*}
 
 It can be shown that
@@ -94,7 +89,7 @@ It can be shown that
 \times
 \left(-\frac{\pi}{A}\right)
 =\exp(-i\omega T)
-\tag{7}
+\tag{4}
 \end{equation*}
 
 Hence from equation (1)

@@ -15,32 +15,32 @@ A = W - B - C
 A = eval(A, xc, 1)
 B = eval(B, xc, 1)
 
-"Verify equation (2)"
+"Verify coefficient A"
 
 check(A == m omega / (2 hbar) (i cos(omega T) / sin(omega T) - 1))
 
 "ok"
 
-"Verify equation (3)"
+"Verify coefficient B"
 
 check(B == m omega / hbar (a - i x / sin(omega T)))
 
 "ok"
 
-"Verify equation (4)"
+"Verify coefficient C"
 
 check(C == m omega / (2 hbar) (i x^2 cos(omega T) / sin(omega T) - a^2))
 
 "ok"
 
-"Verify equation (5)"
+"Verify equation (2)"
 
 check(-pi / A ==
 -2 pi hbar sin(omega T) / (i m omega cos(omega T) - m omega sin(omega T)))
 
 "ok"
 
-"Verify equation (6)"
+"Verify equation (3)"
 
 check(-B^2 / (4 A) + C ==
 -m omega / (2 hbar) *
@@ -48,7 +48,7 @@ check(-B^2 / (4 A) + C ==
 
 "ok"
 
-"Verify equation (7)"
+"Verify equation (4)"
 
 check(m omega / (2 pi i hbar sin(omega T)) (-pi / A) == exp(-i omega T))
 
