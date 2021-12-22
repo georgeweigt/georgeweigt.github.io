@@ -1,0 +1,55 @@
+-- Feynman and Hibbs problem 3-12
+
+-- Determine coefficients A, B, and C
+
+Q = i m omega / (2 hbar sin(omega T)) *
+    ((x^2 + xc^2) cos(omega T) - 2 x xc) -
+    m omega / (2 hbar) (xc - a)^2
+
+C = eval(Q, xc, 0)
+
+B = eval(Q - C, xc^2, 0)
+
+A = Q - B - C
+
+A = eval(A, xc, 1)
+B = eval(B, xc, 1)
+
+"Verify equation (1)"
+
+check(A == m omega / (2 hbar) (i cos(omega T) / sin(omega T) - 1))
+
+"ok"
+
+"Verify equation (2)"
+
+check(B == m omega / hbar (a - i x / sin(omega T)))
+
+"ok"
+
+"Verify equation (3)"
+
+check(C == m omega / (2 hbar) (i x^2 cos(omega T) / sin(omega T) - a^2))
+
+"ok"
+
+"Verify equation (4)"
+
+check(-pi / A ==
+-2 pi hbar sin(omega T) / (i m omega cos(omega T) - m omega sin(omega T)))
+
+"ok"
+
+"Verify equation (5)"
+
+check(-B^2 / (4 A) + C ==
+-m omega / (2 hbar) *
+(x^2 - 2 a x exp(-i omega T) + a^2 cos(omega T) exp(-i omega T)))
+
+"ok"
+
+"Verify equation (6)"
+
+check(m omega / (2 pi i hbar sin(omega T)) (-pi / A) == exp(-i omega T))
+
+"ok"
