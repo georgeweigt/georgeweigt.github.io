@@ -56,18 +56,19 @@ Rewrite as
 \begin{equation*}
 \psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
 \int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)
+\tag{1}
 \end{equation*}
 
 where
 \begin{align*}
 A&=\frac{m\omega}{2\hbar}\left(\frac{i\cos(\omega T)}{\sin(\omega T)}-1\right)
-\tag{1}
-\\
-B&=\frac{m\omega}{\hbar}\left(a-\frac{ix}{\sin(\omega T)}\right)
 \tag{2}
 \\
-C&=\frac{m\omega}{2\hbar}\left(\frac{ix^2\cos(\omega T)}{\sin(\omega T)}-a^2\right)
+B&=\frac{m\omega}{\hbar}\left(a-\frac{ix}{\sin(\omega T)}\right)
 \tag{3}
+\\
+C&=\frac{m\omega}{2\hbar}\left(\frac{ix^2\cos(\omega T)}{\sin(\omega T)}-a^2\right)
+\tag{4}
 \end{align*}
 
 Solve the integral.
@@ -78,25 +79,25 @@ Solve the integral.
 \\
 -\frac{\pi}{A}
 =-\frac{2\pi\hbar\sin(\omega T)}{im\omega\cos(\omega T)-m\omega\sin(\omega T)}
-\tag{4}
+\tag{5}
 \\
 -\frac{B^2}{4A}+C
 =-\frac{m\omega}{2\hbar}
 \left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
-\tag{5}
+\tag{6}
 \end{gather*}
 
 It can be shown that
 \begin{equation*}
-\underset{\substack{\\[1ex]\text{from $K$}}}
+\underset{\substack{\\[1ex]\text{from equation (1)}}}
 {\frac{m\omega}{2\pi i\hbar\sin(\omega T)}}
 \times
 \left(-\frac{\pi}{A}\right)
 =\exp(-i\omega T)
-\tag{6}
+\tag{7}
 \end{equation*}
 
-Hence
+Hence from equation (1)
 \begin{multline*}
 \psi(x,T)=\exp\left(-\frac{i\omega T}{2}\right)
 \\
