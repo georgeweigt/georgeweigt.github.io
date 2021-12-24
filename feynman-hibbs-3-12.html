@@ -33,7 +33,7 @@ B = eval(B, xc, 1)
 
 "Verify coefficient A"
 
-check(A == m omega / (2 hbar) (i cos(omega T) / sin(omega T) - 1))
+check(A == i m omega exp(i omega T) / (2 hbar sin(omega T)))
 
 "ok"
 
@@ -51,8 +51,7 @@ check(C == m omega / (2 hbar) (i x^2 cos(omega T) / sin(omega T) - a^2))
 
 "Verify equation (2)"
 
-check(-pi / A ==
--2 pi hbar sin(omega T) / (i m omega cos(omega T) - m omega sin(omega T)))
+check(-pi / A == 2 pi i hbar sin(omega T) / (m omega exp(i omega T)))
 
 "ok"
 

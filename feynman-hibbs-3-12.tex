@@ -60,6 +60,7 @@ Rewrite as
 where
 \begin{align*}
 A&=\frac{m\omega}{2\hbar}\left(\frac{i\cos(\omega T)}{\sin(\omega T)}-1\right)
+=\frac{im\omega\exp(i\omega T)}{2\hbar\sin(\omega T)}
 \\
 B&=\frac{m\omega}{\hbar}\left(a-\frac{ix}{\sin(\omega T)}\right)
 \\
@@ -73,7 +74,7 @@ Solve the integral.
 \exp\left(-\frac{B^2}{4A}+C\right)
 \\
 -\frac{\pi}{A}
-=-\frac{2\pi\hbar\sin(\omega T)}{im\omega\cos(\omega T)-m\omega\sin(\omega T)}
+=\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}
 \tag{2}
 \\
 -\frac{B^2}{4A}+C
@@ -82,12 +83,13 @@ Solve the integral.
 \tag{3}
 \end{gather*}
 
-It can be shown that
+Note that
 \begin{equation*}
 \underset{\substack{\\[1ex]\text{from equation (1)}}}
 {\frac{m\omega}{2\pi i\hbar\sin(\omega T)}}
 \times
-\left(-\frac{\pi}{A}\right)
+\underset{\substack{\\[1ex]\text{from equation (2)}}}
+{\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}}
 =\exp(-i\omega T)
 \tag{4}
 \end{equation*}
