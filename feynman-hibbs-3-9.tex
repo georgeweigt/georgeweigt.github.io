@@ -47,26 +47,26 @@ K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
 \,dx_c
 \end{equation*}
 
-Reorganize the exponential as quadratic in $x_c$.
+Reorganize as powers of $x_c$.
 \begin{multline*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)
 \exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
 \\[1ex]
 {}\times
 \int_{-\infty}^\infty
-\exp\left(iAx_c^2+iBx_c+iC\right)
+\exp\left(Ax_c^2+Bx_c+C\right)
 \,dx_c
 \tag{2}
 \end{multline*}
 where
 \begin{align*}
-A&=\frac{m}{2\hbar}\left(\frac{1}{t_b-t_c}+\frac{1}{t_c-t_a}\right)
+A&=\frac{im}{2\hbar}\left(\frac{1}{t_b-t_c}+\frac{1}{t_c-t_a}\right)
 \tag{3}
 \\
-B&=\frac{fT}{2\hbar}-\frac{m}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
+B&=\frac{ifT}{2\hbar}-\frac{im}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
 \tag{4}
 \\
-C&=\frac{f}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{m}{2\hbar}
+C&=\frac{if}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{im}{2\hbar}
 \left(\frac{x_b^2}{t_b-t_c}+\frac{x_a^2}{t_c-t_a}\right)
 \tag{5}
 \end{align*}
@@ -76,25 +76,21 @@ Note that the exponential involving $f^2$ is independent of $x_c$
 and is factored out of the integrand in (2) by the distributive law.
 
 \bigskip
-Now solve the integral in (2).
-From the following formula
-\begin{equation*}
-\int_{-\infty}^{\infty}\exp(iAx_c^2+iBx_c+iC)\,dx_c
-=\left(-\frac{\pi}{iA}\right)^{1/2}
-\exp\left(-\frac{iB^2}{4A}+iC\right)
-\end{equation*}
-we have
-\begin{multline*}
-\int_{-\infty}^{\infty}\exp(iAx_c^2+iBx_c+iC)\,dx_c
-=\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+Solve the integral in (2).
+\begin{align*}
+&\int_{-\infty}^{\infty}\exp(Ax_c^2+Bx_c+C)\,dx_c
+=\left(-\frac{\pi}{A}\right)^{1/2}
+\exp\left(-\frac{B^2}{4A}+C\right)
 \\
-{}\times\exp\left(
+&\quad{}=\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\\
+&\quad{}\times\exp\left(
 \frac{im(x_b-x_a)^2}{2\hbar T}
 +\frac{ifT(x_b+x_a)}{2\hbar}
 -\frac{if^2T(t_b-t_c)(t_c-t_a)}{8\hbar m}
 \right)
 \tag{6}
-\end{multline*}
+\end{align*}
 
 Substitute (6) into (2) to obtain
 \begin{align*}

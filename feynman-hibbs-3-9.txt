@@ -11,22 +11,22 @@ Tba = Tbc + Tca
 D = i m (xb - xc)^2 / (2 hbar Tbc) + i (xb + xc) Tbc f / (2 hbar) +
     i m (xc - xa)^2 / (2 hbar Tca) + i (xc + xa) Tca f / (2 hbar)
 
-A = m (1 / Tbc + 1 / Tca) / (2 hbar)
+A = i m (1 / Tbc + 1 / Tca) / (2 hbar)
 
-B = f Tba / (2 hbar) - m (xb / Tbc + xa / Tca) / hbar
+B = i f Tba / (2 hbar) - i m (xb / Tbc + xa / Tca) / hbar
 
-C = f (xb Tbc + xa Tca) / (2 hbar) +
-    m (xb^2 / Tbc + xa^2 / Tca) / (2 hbar)
+C = i f (xb Tbc + xa Tca) / (2 hbar) +
+    i m (xb^2 / Tbc + xa^2 / Tca) / (2 hbar)
 
-check(D == i A xc^2 + i B xc + i C)
+check(D == A xc^2 + B xc + C)
 
 "ok"
 
 "Verify equation (6) definite integral"
 
-check(-pi / (i A) == -2 pi hbar Tbc Tca / (i m Tba))
+check(-pi / A == -2 pi hbar Tbc Tca / (i m Tba))
 
-D = -i B^2 / (4 A) + i C
+D = -B^2 / (4 A) + C
 
 A = i m (xb - xa)^2 / (2 hbar Tba)
 
