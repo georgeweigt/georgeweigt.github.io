@@ -1,3 +1,5 @@
+-- Feynman and Hibbs problem 4-1
+
 -- From integral (13)
 
 U = sqrt(2 pi i hbar epsilon / m)
