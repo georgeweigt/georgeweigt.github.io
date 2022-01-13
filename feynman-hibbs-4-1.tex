@@ -25,14 +25,16 @@ L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2-V(\mathbf{x},t)\tag{1}
 Extend equation (4.3) from one dimension to three dimensions.
 \begin{equation*}
 \psi(\mathbf{x},t+\epsilon)
-=\frac{1}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
+=\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(
-\frac{i}{\hbar}\epsilon L
+\frac{i\epsilon}{\hbar}L
 \left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\right)
 \right)\psi(\mathbf{y},t)\,dy_1\,dy_2\,dy_3
+\end{equation*}
+where
+\begin{equation*}
+\int_{\mathbb R^3}
+\equiv\int_{-\infty}^\infty\int_{-\infty}^\infty\int_{-\infty}^\infty
 \end{equation*}
 
 From (1) we have
@@ -45,16 +47,10 @@ L\left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\ri
 Hence
 \begin{multline*}
 \psi(\mathbf{x},t+\epsilon)=
-\frac{1}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(
-\frac{i}{\hbar}
-\left(
-\frac{m}{2\epsilon}(\mathbf{x}-\mathbf{y})^2
--\epsilon V\left(\frac{\mathbf{x}+\mathbf{y}}{2},t\right)
-\right)
+\frac{im}{2\hbar\epsilon}(\mathbf{x}-\mathbf{y})^2
+-\frac{i\epsilon}{\hbar}V\left(\frac{\mathbf{x}+\mathbf{y}}{2},t\right)
 \right)
 \\
 {}\times\psi(\mathbf{y},t)\,dy_1\,dy_2\,dy_3
@@ -77,16 +73,10 @@ and
 Hence
 \begin{multline*}
 \psi(\mathbf{x},t+\epsilon)=
-\frac{1}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(
-\frac{i}{\hbar}
-\left(
-\frac{m}{2\epsilon}\boldsymbol\eta^2
--\epsilon V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
-\right)
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
+-\frac{i\epsilon}{\hbar} V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
 \right)
 \\
 {}\times\psi(\mathbf{x}+\boldsymbol\eta,t)\,d\eta_1\,d\eta_2\,d\eta_3
@@ -95,10 +85,7 @@ Hence
 Factor the exponential.
 \begin{multline*}
 \psi(\mathbf{x},t+\epsilon)=
-\frac{1}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
 \\
@@ -106,7 +93,7 @@ Factor the exponential.
 \tag{2}
 \end{multline*}
 
-Now we are going to use an approximation for the second exponential.
+Now we are going to use an approximation for the exponential of $V$.
 From the identity $\exp(i\theta)=\cos(\theta)+i\sin(\theta)$ we have
 \begin{multline*}
 \exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)=
@@ -115,7 +102,7 @@ From the identity $\exp(i\theta)=\cos(\theta)+i\sin(\theta)$ we have
 +i\sin\left(-\frac{\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
 \end{multline*}
 
-For very small $\epsilon$ we have the approximation
+For small $\epsilon$ we have the approximation
 \begin{equation*}
 \exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)\approx
 1-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
@@ -133,10 +120,7 @@ Hence
 Substituting (3) into (2) yields
 \begin{multline*}
 \psi(\mathbf{x},t+\epsilon)=
-\frac{1}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \left(1-\frac{i\epsilon}{\hbar}V\left(\mathbf x,t\right)\right)
 \\
@@ -178,9 +162,6 @@ Substitute the approximations (5) into (4).
 \begin{multline*}
 \psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}=
 \frac{1}{A}\int_{\mathbb R^3}
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \left(1-\frac{i\epsilon}{\hbar}V\left(\mathbf x,t\right)\right)
 \\
@@ -188,6 +169,7 @@ Substitute the approximations (5) into (4).
 \psi(\mathbf x,t)+\boldsymbol\eta\cdot\nabla\psi
 +\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \right)\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{6}
 \end{multline*}
 
 Expand the right-hand side.
@@ -195,52 +177,76 @@ Expand the right-hand side.
 &\frac{\psi(\mathbf x,t)}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
+\tag{7}
 \\
 &\quad{}+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
-\tag{6}
+\tag{8}
 \\
 &\quad{}+\frac{1}{2A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
-\tag{7}
+\tag{9}
 \\
 &\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\psi(\mathbf x,t)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
+\tag{10}
 \\
 &\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
-\tag{8}
+\tag{11}
 \\
 &\quad{}-\frac{i\epsilon}{2A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
-\tag{9}
+\tag{12}
 \end{align*}
 
 We will use the following integrals provided by the authors.
 \begin{align*}
 &\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)\,dx
 =\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
-\tag{10}
+\tag{13}
 \\
 &\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x\,dx
 =0
-\tag{11}
+\tag{14}
 \\
 &\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x^2\,dx
 =\left(-\frac{2\pi i\hbar^3\epsilon^3}{m^3}\right)^{1/2}
-\tag{12}
+\tag{15}
 \end{align*}
 
-Rewrite the integral in (6) and (8) in component notation.
+Rewrite the integral in (7) and (10) in component notation.
+\begin{multline*}
+\int_{\mathbb R^3}
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+{}=\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Then by equation (13)
+\begin{equation*}
+\int_{\mathbb R^3}
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\tag{16}
+\end{equation*}
+
+Rewrite the integral in (8) and (11) in component notation.
 \begin{align*}
 &\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
@@ -256,29 +262,30 @@ Rewrite the integral in (6) and (8) in component notation.
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
-\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
 \eta_2\frac{\partial\psi}{\partial x_2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
-\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
 \eta_3\frac{\partial\psi}{\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \end{align*}
 
-Then by (11)
+Then by equation (14)
 \begin{equation*}
 \int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3=0
+\tag{17}
 \end{equation*}
 
-Rewrite the integral in (7) and (9) in component notation.
+Rewrite the integral in (9) and (12) in component notation.
 \begin{align*}
 &\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
@@ -310,31 +317,64 @@ Rewrite the integral in (7) and (9) in component notation.
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
+2\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
+2\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
+2\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \end{align*}
 
-By equation (10)
+By equations (13) and (15)
+\begin{align*}
+&\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_1^2\frac{\partial\psi^2}{\partial x_1^2}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{\partial^2\psi}{\partial x_1^2}
+\\
+&\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_2^2\frac{\partial\psi^2}{\partial x_2^2}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{\partial^2\psi}{\partial x_2^2}
+\\
+&\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_2^2\frac{\partial\psi^2}{\partial x_2^2}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{\partial^2\psi}{\partial x_3^2}
+\end{align*}
+
+By equation (14)
 \begin{align*}
 \int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
+2\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \\
@@ -342,7 +382,7 @@ By equation (10)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
+2\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \\
@@ -350,11 +390,76 @@ By equation (10)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
+2\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \end{align*}
 
+Hence
+\begin{multline*}
+\int_{\mathbb R^3}
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\left(
+\frac{\partial^2}{\partial x_1^2}+
+\frac{\partial^2}{\partial x_2^2}+
+\frac{\partial^2}{\partial x_3^2}
+\right)\psi(\mathbf x,t)
+\tag{18}
+\end{multline*}
+
+Substitute the solved integrals into (6) to obtain
+\begin{align*}
+&\psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}
+\\
+&\qquad{}=\frac{1}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
+\tag*{\text{from (7) and (16)}}
+\\
+&\qquad\qquad{}+\frac{i\hbar\epsilon}{2Am}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\nabla^2\psi(\mathbf x,t)
+\tag*{\text{from (9) and (18)}}
+\\
+&\qquad\qquad{}-\frac{i\epsilon}{A\hbar}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}V(\mathbf x,t)\psi(\mathbf x,t)
+\tag*{\text{from (10) and (16)}}
+\\
+&\qquad\qquad{}+\frac{\epsilon^2}{2Am}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+V(\mathbf x,t)\nabla^2\psi(\mathbf x,t)
+\tag*{\text{from (12) and (18)}}
+\end{align*}
+
+In the limit as $\epsilon\rightarrow0$ we have
+\begin{equation*}
+\psi(\mathbf{x},t)=\frac{1}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
+\end{equation*}
+
+Hence
+\begin{equation*}
+A=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\end{equation*}
+
+Cancel $A$ and drop the order $\epsilon^2$ term.
+\begin{equation*}
+\psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}
+=\psi(\mathbf{x},t)
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi(\mathbf{x},t)
+-\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
+\end{equation*}
+
+The $\psi(\mathbf x,t)$ terms cancel.
+\begin{equation*}
+\epsilon\frac{\partial\psi}{\partial t}
+=\frac{i\hbar\epsilon}{2m}\nabla^2\psi(\mathbf{x},t)
+-\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
+\end{equation*}
+
+Divide through by $\epsilon$.
+\begin{equation*}
+\frac{\partial\psi}{\partial t}
+=\frac{i\hbar}{2m}\nabla^2\psi(\mathbf{x},t)
+-\frac{i}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
+\end{equation*}
 
 \end{document}
 
