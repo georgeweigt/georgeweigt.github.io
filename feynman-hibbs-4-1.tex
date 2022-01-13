@@ -1,0 +1,341 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+Feynman and Hibbs problem 4-1
+
+\bigskip
+Show that for a single particle moving in three dimensions
+in a potential energy $V(\mathbf x,t)$ the Schrodinger equation is
+\begin{equation*}
+\frac{\partial\psi(\mathbf x,t)}{\partial t}
+=-\frac{i}{\hbar}\left(
+-\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x,t)+V(\mathbf x,t)\psi(\mathbf x,t)\right)
+\end{equation*}
+
+This is the Lagrangian.
+\begin{equation*}
+L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2-V(\mathbf{x},t)\tag{1}
+\end{equation*}
+
+Extend equation (4.3) from one dimension to three dimensions.
+\begin{equation*}
+\psi(\mathbf{x},t+\epsilon)
+=\frac{1}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(
+\frac{i}{\hbar}\epsilon L
+\left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\right)
+\right)\psi(\mathbf{y},t)\,dy_1\,dy_2\,dy_3
+\end{equation*}
+
+From (1) we have
+\begin{equation*}
+L\left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\right)
+=\frac{m}{2\epsilon^2}(\mathbf{x}-\mathbf{y})^2
+-V\left(\frac{\mathbf{x}+\mathbf{y}}{2},t\right)
+\end{equation*}
+
+Hence
+\begin{multline*}
+\psi(\mathbf{x},t+\epsilon)=
+\frac{1}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(
+\frac{i}{\hbar}
+\left(
+\frac{m}{2\epsilon}(\mathbf{x}-\mathbf{y})^2
+-\epsilon V\left(\frac{\mathbf{x}+\mathbf{y}}{2},t\right)
+\right)
+\right)
+\\
+{}\times\psi(\mathbf{y},t)\,dy_1\,dy_2\,dy_3
+\end{multline*}
+
+Let
+\begin{equation*}
+\mathbf y=\mathbf x+\boldsymbol\eta
+\end{equation*}
+
+Then
+\begin{equation*}
+(\mathbf x-\mathbf y)^2=\boldsymbol\eta^2
+\end{equation*}
+and
+\begin{equation*}
+\frac{\mathbf x+\mathbf y}{2}=\mathbf{x}+\tfrac{1}{2}\boldsymbol\eta
+\end{equation*}
+
+Hence
+\begin{multline*}
+\psi(\mathbf{x},t+\epsilon)=
+\frac{1}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(
+\frac{i}{\hbar}
+\left(
+\frac{m}{2\epsilon}\boldsymbol\eta^2
+-\epsilon V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\right)
+\\
+{}\times\psi(\mathbf{x}+\boldsymbol\eta,t)\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Factor the exponential.
+\begin{multline*}
+\psi(\mathbf{x},t+\epsilon)=
+\frac{1}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+{}\times\psi(\mathbf{x}+\boldsymbol\eta,t)\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{2}
+\end{multline*}
+
+Now we are going to use an approximation for the second exponential.
+From the identity $\exp(i\theta)=\cos(\theta)+i\sin(\theta)$ we have
+\begin{multline*}
+\exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)=
+\\
+\cos\left(-\frac{\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
++i\sin\left(-\frac{\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\end{multline*}
+
+For very small $\epsilon$ we have the approximation
+\begin{equation*}
+\exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)\approx
+1-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\end{equation*}
+
+The authors write that the $\tfrac{1}{2}\boldsymbol\eta$ term can be dropped
+``because the error is of higher order than $\epsilon$.''
+Hence
+\begin{equation*}
+\exp\left(-\frac{i\epsilon}{\hbar}V\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)\approx
+1-\frac{i\epsilon}{\hbar}V\left(\mathbf x,t\right)
+\tag{3}
+\end{equation*}
+
+Substituting (3) into (2) yields
+\begin{multline*}
+\psi(\mathbf{x},t+\epsilon)=
+\frac{1}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\left(1-\frac{i\epsilon}{\hbar}V\left(\mathbf x,t\right)\right)
+\\
+{}\times\psi(\mathbf x+\boldsymbol\eta,t)\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{4}
+\end{multline*}
+
+Next we will use the following Taylor series approximations.
+\begin{equation*}
+\begin{aligned}
+\psi(\mathbf x,t+\epsilon)&\approx\psi(\mathbf x,t)+\epsilon\frac{\partial\psi}{\partial t}
+\\
+\psi(\mathbf x+\boldsymbol\eta,t)&\approx\psi(\mathbf x,t)+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\end{aligned}
+\tag{5}
+\end{equation*}
+
+Note: In component notation
+\begin{equation*}
+\boldsymbol\eta\cdot\nabla\psi=
+\eta_1\frac{\partial\psi}{\partial x_1}+
+\eta_2\frac{\partial\psi}{\partial x_2}+
+\eta_2\frac{\partial\psi}{\partial x_2}
+\end{equation*}
+and
+\begin{multline*}
+\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)=
+\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
++\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
++\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
+\\
+{}+2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1\partial x_2}
++2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1\partial x_3}
++2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2\partial x_3}
+\end{multline*}
+
+Substitute the approximations (5) into (4).
+\begin{multline*}
+\psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}=
+\frac{1}{A}\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\left(1-\frac{i\epsilon}{\hbar}V\left(\mathbf x,t\right)\right)
+\\
+{}\times\left(
+\psi(\mathbf x,t)+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\right)\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Expand the integral.
+\begin{align*}
+&\psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}=
+\frac{\psi(\mathbf x,t)}{A}\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\quad{}+\frac{1}{A}\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{6}
+\\
+&\quad{}+\frac{1}{2A}\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\psi(\mathbf x,t)\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{8}
+\\
+&\quad{}-\frac{i\epsilon}{2A\hbar}V\left(\mathbf x,t\right)\int_V
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+%\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{align*}
+
+From the identity
+\begin{equation*}
+\int_{-\infty}^\infty\exp(ax^2)x\,dx=0
+\end{equation*}
+the integrals (6) and (8) are zero.
+\begin{align*}
+&\int_{\mathbb R^3}
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad{}=
+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)\eta_1\frac{\partial\psi}{\partial x_1}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad\qquad{}+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)\eta_2\frac{\partial\psi}{\partial x_2}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad\qquad{}+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)\eta_3\frac{\partial\psi}{\partial x_3}
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&\qquad{}=0
+\end{align*}
+
+\end{document}
+
+
+
+
+
+
+
+From the terms involving $\psi(\mathbf x,t)$ we have
+\begin{multline*}
+\psi(\mathbf{x},t)=
+\frac{\psi(\mathbf x,t)}{A}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+{}-\frac{i\epsilon\psi(\mathbf x,t)}{A\hbar}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+V\left(\mathbf x,t\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Solve the first integral.
+\begin{multline*}
+\psi(\mathbf{x},t)=\frac{\psi(\mathbf x,t)}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\\
+{}-\frac{i\epsilon\psi(\mathbf x,t)}{A\hbar}
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+V\left(\mathbf x,t\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+In the limit $\epsilon\rightarrow0$ the rightmost term drops out leaving
+\begin{equation*}
+\psi(\mathbf{x},t)=\frac{\psi(\mathbf x,t)}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+A=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\end{equation*}
+
+It can be shown that
+\begin{equation*}
+\frac{1}{A}\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)\boldsymbol\eta
+\,d\eta_1\,d\eta_2\,d\eta_3
+=(0,0,0)
+\end{equation*}
+and
+\begin{equation*}
+\frac{1}{A}\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)\boldsymbol\eta^2
+\,d\eta_1\,d\eta_2\,d\eta_3
+=\left(\frac{i\hbar\epsilon}{m}\right)^3
+\end{equation*}
+
+\end{document}
