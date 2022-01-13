@@ -209,35 +209,38 @@ Expand the right-hand side.
 \tag{7}
 \\
 &\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\psi(\mathbf x,t)\int_{\mathbb R^3}
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{8}
 \\
 &\quad{}-\frac{i\epsilon}{2A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
-%\int\limits_{-\infty}^\infty
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
+\tag{9}
 \end{align*}
 
-From the identity
-\begin{equation*}
-\int_{-\infty}^\infty\exp(ax^2)x\,dx=0
-\end{equation*}
-the integrals (6) and (8) are zero.
+We will use the following integrals provided by the authors.
+\begin{align*}
+&\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)\,dx
+=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
+\tag{10}
+\\
+&\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x\,dx
+=0
+\tag{11}
+\\
+&\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x^2\,dx
+=\left(-\frac{2\pi i\hbar^3\epsilon^3}{m^3}\right)^{1/2}
+\tag{12}
+\end{align*}
+
+Rewrite the integral in (6) and (8) in component notation.
 \begin{align*}
 &\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
@@ -265,14 +268,14 @@ the integrals (6) and (8) are zero.
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
 \eta_3\frac{\partial\psi}{\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
-\\
-&\qquad{}=0
 \end{align*}
 
-From equation (4.10)
+Then by (11)
 \begin{equation*}
-\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x^2\,dx
-=\left(-\frac{2\pi i\hbar^3\epsilon^3}{m^3}\right)^{1/2}
+\int_{\mathbb R^3}
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\eta_1\,d\eta_2\,d\eta_3=0
 \end{equation*}
 
 Rewrite the integral in (7) and (9) in component notation.
@@ -323,6 +326,33 @@ Rewrite the integral in (7) and (9) in component notation.
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
 \eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
+\end{align*}
+
+By equation (10)
+\begin{align*}
+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
+\,d\eta_1\,d\eta_2\,d\eta_3
+&=0
+\\
+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
+\,d\eta_1\,d\eta_2\,d\eta_3
+&=0
+\\
+\int_{\mathbb R^3}
+\exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
+\exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
+\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
+\,d\eta_1\,d\eta_2\,d\eta_3
+&=0
 \end{align*}
 
 
