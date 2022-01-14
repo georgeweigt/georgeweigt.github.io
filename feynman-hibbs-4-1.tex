@@ -209,7 +209,7 @@ Expand the right-hand side.
 \tag{12}
 \end{align*}
 
-We will use the following integrals provided by the authors.
+To solve the above integrals, we will use the following formulas provided by the authors.
 \begin{align*}
 &\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)\,dx
 =\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
@@ -296,42 +296,42 @@ Rewrite the integral in (9) and (12) in component notation.
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1^2\frac{\partial\psi^2}{\partial x_1^2}
+\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_2^2\frac{\partial\psi^2}{\partial x_2^2}
+\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_3^2\frac{\partial\psi^2}{\partial x_3^2}
+\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
+2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1\partial x_2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
+2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad\qquad{}+\int_{\mathbb R^3}
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
+2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \end{align*}
 
@@ -341,7 +341,7 @@ By equations (13) and (15)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_1^2\frac{\partial\psi^2}{\partial x_1^2}
+\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
@@ -351,7 +351,7 @@ By equations (13) and (15)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_2^2\frac{\partial\psi^2}{\partial x_2^2}
+\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
@@ -361,7 +361,7 @@ By equations (13) and (15)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-\eta_2^2\frac{\partial\psi^2}{\partial x_2^2}
+\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &\qquad{}=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
@@ -374,7 +374,7 @@ By equation (14)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_1\eta_2\frac{\partial\psi^2}{\partial x_1\partial x_2}
+2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1\partial x_2}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \\
@@ -382,7 +382,7 @@ By equation (14)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_1\eta_3\frac{\partial\psi^2}{\partial x_1\partial x_3}
+2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \\
@@ -390,7 +390,7 @@ By equation (14)
 \exp\left(\frac{im\eta_1^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_2^2}{2\hbar\epsilon}\right)
 \exp\left(\frac{im\eta_3^2}{2\hbar\epsilon}\right)
-2\eta_2\eta_3\frac{\partial\psi^2}{\partial x_2\partial x_3}
+2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2\partial x_3}
 \,d\eta_1\,d\eta_2\,d\eta_3
 &=0
 \end{align*}
