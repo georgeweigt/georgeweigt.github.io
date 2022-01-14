@@ -12783,7 +12783,7 @@ power_numbers(BASE, EXPO)
 	cons();
 }
 
-// BASE is an integer factor
+// BASE is an integer
 
 function
 power_numbers_factor(BASE, EXPO)
