@@ -174,35 +174,36 @@ Substitute the approximations (5) into (4).
 
 Expand the right-hand side.
 \begin{align*}
-&\frac{\psi(\mathbf x,t)}{A}\int_{\mathbb R^3}
+&\psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}
+=\frac{\psi(\mathbf x,t)}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{7}
 \\
-&\quad{}+\frac{1}{A}\int_{\mathbb R^3}
+&\qquad{}+\frac{1}{A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{8}
 \\
-&\quad{}+\frac{1}{2A}\int_{\mathbb R^3}
+&\qquad{}+\frac{1}{2A}\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{9}
 \\
-&\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\psi(\mathbf x,t)\int_{\mathbb R^3}
+&\qquad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\psi(\mathbf x,t)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{10}
 \\
-&\quad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
+&\qquad{}-\frac{i\epsilon}{A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
 \tag{11}
 \\
-&\quad{}-\frac{i\epsilon}{2A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
+&\qquad{}-\frac{i\epsilon}{2A\hbar}V\left(\mathbf x,t\right)\int_{\mathbb R^3}
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
