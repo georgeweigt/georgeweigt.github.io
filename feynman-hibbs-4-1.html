@@ -18,19 +18,19 @@ This script can be pasted into the Eigenmath app.
 
 -- From integral (13)
 
-U = sqrt(2 pi i hbar epsilon / m)
+A = sqrt(2 pi i hbar epsilon / m)
 
 -- From integral (15)
 
-V = sqrt(-2 pi i hbar^3 epsilon^3 / m^3)
+B = i hbar epsilon / m sqrt(2 pi i hbar epsilon / m)
 
 -- From equation (18)
 
-W = (i hbar epsilon / m) (2 pi i hbar epsilon / m)^(3/2)
+C = i hbar epsilon / m (2 pi i hbar epsilon / m)^(3/2)
 
 "Verify the coefficient in equation (18)"
 
-check(U U V == W)
+check(A A B == C)
 
 "ok"
 </textarea>
