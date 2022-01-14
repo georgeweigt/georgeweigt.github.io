@@ -14,8 +14,12 @@ second = "second"
 
 pi = float(pi) -- use numerical value of pi
 
+"Muon lifetime"
+
 tau = 96 pi^2 h / (GF^2 (mmu c^2)^5)
 tau
+
+"Fraction of PDG value"
 
 T = 2.1969811 10^(-6) second
 
