@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+Feynman and Hibbs problem 4-2
+
+\bigskip
+For a particle of charge $e$ in a magnetic field the Lagrangian is
+\begin{equation*}
+L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2
++\frac{e}{c}\dot{\mathbf x}\cdot\mathbf A(\mathbf x,t)-e\phi(\mathbf x,t)
+\end{equation*}
+where $\dot{\mathbf x}$ is the velocity vector,
+$c$ is the velocity of light, and $\mathbf A$ and $\phi$
+are the vector and scalar potentials.
+Show that the corresponding Schrodinger equation is
+\begin{equation*}
+\frac{\partial\psi}{\partial t}
+=-\frac{i}{\hbar}\left(
+\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)
+\cdot
+\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)\psi
++e\phi\psi
+\right)
+\tag{1}
+\end{equation*}
+
+From equation (4.3)
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)=\frac{1}{A}\INT\exp\left(
+\frac{i\epsilon}{\hbar}L\left(\frac{\mathbf x-\mathbf y}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
+\right)\psi(\mathbf y,t)
+\,dy_1\,dy_2\,dy_3
+\end{equation*}
+
+By substitution
+\begin{multline*}
+L\left(\frac{\mathbf x-\mathbf y}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
+\\
+=\frac{m}{2\epsilon^2}(\mathbf x-\mathbf y)^2
++\frac{e}{c\epsilon}(\mathbf x-\mathbf y)\cdot\mathbf A\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+-e\phi\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+\end{multline*}
+
+Hence
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=\frac{1}{A}\INT
+\\
+&\quad\exp
+\left(
+\frac{im}{2\hbar\epsilon}(\mathbf x-\mathbf y)^2
++\frac{ie}{\hbar c}(\mathbf x-\mathbf y)\cdot\mathbf A\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+-\frac{ie\epsilon}{\hbar}\phi\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+\right)
+\\
+&\quad\quad{}\times\psi(\mathbf y,t)
+\,dy_1\,dy_2\,dy_3
+\end{align*}
+
+Let
+\begin{equation*}
+\mathbf y=\mathbf x+\boldsymbol\eta
+\end{equation*}
+
+Then
+\begin{equation*}
+\mathbf x-\mathbf y=\boldsymbol\eta,\quad
+\frac{\mathbf x+\mathbf y}{2}=\mathbf{x}+\tfrac{1}{2}\boldsymbol\eta,\quad
+dy_1\,dy_2\,dy_3=d\eta_1\,d\eta_2\,d\eta_3
+\end{equation*}
+
+Hence
+\begin{multline*}
+\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\INT\exp
+\left(
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
++\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\\
+{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+
+
+
+
+
+\end{document}
