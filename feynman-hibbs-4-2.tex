@@ -28,7 +28,6 @@ Show that the corresponding Schrodinger equation is
 \left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)\psi
 +e\phi\psi
 \right)
-\tag{1}
 \end{equation*}
 
 From equation (4.3)
@@ -37,9 +36,10 @@ From equation (4.3)
 \frac{i\epsilon}{\hbar}L\left(\frac{\mathbf x-\mathbf y}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
 \right)\psi(\mathbf y,t)
 \,dy_1\,dy_2\,dy_3
+\tag{1}
 \end{equation*}
 
-By substitution
+By substitution of the given Lagrangian
 \begin{multline*}
 L\left(\frac{\mathbf x-\mathbf y}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
 \\
@@ -48,7 +48,7 @@ L\left(\frac{\mathbf x-\mathbf y}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
 -e\phi\left(\frac{\mathbf x+\mathbf y}{2},t\right)
 \end{multline*}
 
-Hence
+Then from equation (1)
 \begin{align*}
 &\psi(\mathbf x,t+\epsilon)=\frac{1}{A}\INT
 \\
@@ -89,6 +89,115 @@ Hence
 \,d\eta_1\,d\eta_2\,d\eta_3
 \end{multline*}
 
+Factor the exponential.
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\INT
+\\
+&\quad{}\exp
+\left(
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
++\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+&\quad\quad{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{2}
+\end{align*}
+
+From the identity $\exp(i\theta)=\cos(\theta)+i\sin(\theta)$ we have
+\begin{multline*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+=\cos\left(-\frac{e\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
++i\sin\left(-\frac{e\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\end{multline*}
+
+Then for small $\epsilon$
+\begin{equation*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+1-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\end{equation*}
+
+The authors write that the $\boldsymbol\eta$ term can be dropped
+``because the error is of higher order than $\epsilon$.''
+Hence
+\begin{equation*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+1-\frac{ie\epsilon}{\hbar}\phi(\mathbf x,t)
+\tag{3}
+\end{equation*}
+
+Substitute (3) into (2).
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\INT
+\\
+&\quad{}\exp
+\left(
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
++\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\left(1-\frac{ie\epsilon}{\hbar}\phi(\mathbf x,t)\right)
+\\
+&\quad\quad{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{4}
+\end{align*}
+
+Next we will use the following Taylor series approximations.
+\begin{equation*}
+\begin{aligned}
+\psi(\mathbf x,t+\epsilon)&\approx\psi(\mathbf x,t)+\epsilon\frac{\partial\psi}{\partial t}
+\\
+\psi(\mathbf x+\boldsymbol\eta,t)&\approx\psi(\mathbf x,t)+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\end{aligned}
+\tag{5}
+\end{equation*}
+
+Note: In component notation
+\begin{equation*}
+\boldsymbol\eta\cdot\nabla\psi=
+\eta_1\frac{\partial\psi}{\partial x_1}+
+\eta_2\frac{\partial\psi}{\partial x_2}+
+\eta_2\frac{\partial\psi}{\partial x_2}
+\end{equation*}
+and
+\begin{multline*}
+\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)=
+\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
++\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
++\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
+\\
+{}+2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1\partial x_2}
++2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1\partial x_3}
++2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2\partial x_3}
+\end{multline*}
+
+Substitute the approximations (5) into (4).
+\begin{align*}
+&\psi(\mathbf x,t)+\epsilon\frac{\partial\psi}{\partial t}=
+\frac{1}{A}\INT
+\\
+&\quad{}\exp
+\left(
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
++\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\left(1-\frac{ie\epsilon}{\hbar}\phi(\mathbf x,t)\right)
+\\
+&\quad\quad{}\times
+\left(
+\psi(\mathbf x,t)+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{6}
+\end{align*}
 
 
 
