@@ -1,0 +1,125 @@
+-- Feynman and Hibbs problem 4-2
+
+-- Note: (-1)^(-1/4) == -sqrt(-i)
+
+e = quote(e)
+
+-- from equation (13)
+
+I1 = -sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A1^2 epsilon / (2 m hbar c^2))
+
+I2 = -sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A2^2 epsilon / (2 m hbar c^2))
+
+I3 = -sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A3^2 epsilon / (2 m hbar c^2))
+
+-- from equation (14)
+
+I4 = -e epsilon A1 / (m c) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A1^2 epsilon / (2 m hbar c^2))
+
+I5 = -e epsilon A2 / (m c) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A2^2 epsilon / (2 m hbar c^2))
+
+I6 = -e epsilon A3 / (m c) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A3^2 epsilon / (2 m hbar c^2))
+
+-- from equation (15)
+
+I7 = (e^2 epsilon^2 A1^2 / (m^2 c^2) + i hbar epsilon / m) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A1^2 epsilon / (2 m hbar c^2))
+
+I8 = (e^2 epsilon^2 A2^2 / (m^2 c^2) + i hbar epsilon / m) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A2^2 epsilon / (2 m hbar c^2))
+
+I9 = (e^2 epsilon^2 A3^2 / (m^2 c^2) + i hbar epsilon / m) *
+     sqrt(2 pi i hbar epsilon / m) *
+     exp(-i e^2 A3^2 epsilon / (2 m hbar c^2))
+
+"Verify equation (16)"
+
+A = I1 I2 I3
+
+B = -(2 pi i hbar epsilon / m)^(3/2) *
+    exp(-i e^2 epsilon (A1^2 + A2^2 + A3^2) / (2 m hbar c^2))
+
+check(A == B)
+
+"ok"
+
+"Verify equation (17)"
+
+A = I4 I2 I3 d(psi(),x1) +
+    I1 I5 I3 d(psi(),x2) +
+    I1 I2 I6 d(psi(),x3)
+
+B = -e epsilon / (m c) (2 pi i hbar epsilon / m)^(3/2) *
+    exp(-i e^2 epsilon (A1^2 + A2^2 + A3^2) / (2 m hbar c^2)) *
+    dot(d(psi(),(x1,x2,x3)),(A1,A2,A3))
+
+check(A == B)
+
+"ok"
+
+"Verify equation (18)"
+
+A = I7 I2 I3 d(psi(),x1,x1) +
+    I1 I8 I3 d(psi(),x2,x2) +
+    I1 I2 I9 d(psi(),x3,x3) +
+
+    I7 I8 I3 d(psi(),x1,x2) +
+    I7 I2 I9 d(psi(),x1,x3) +
+    I1 I8 I9 d(psi(),x2,x3)
+
+A = eval(A,epsilon^(11/2),0)
+A = eval(A,epsilon^(9/2),0)
+A = eval(A,epsilon^(7/2),0)
+
+B = i hbar epsilon / m (2 pi i hbar epsilon / m)^(3/2) *
+    exp(-i e^2 epsilon (A1^2 + A2^2 + A3^2) / (2 m hbar c^2)) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+check(A == B)
+
+"Verify final result"
+
+A = I1 I2 I3 psi() +
+
+    I4 I2 I3 d(psi(),x1) +
+    I1 I5 I3 d(psi(),x2) +
+    I1 I2 I6 d(psi(),x3) +
+
+    I7 I2 I3 d(psi(),x1,x1) +
+    I1 I8 I3 d(psi(),x2,x2) +
+    I1 I2 I9 d(psi(),x3,x3) +
+
+    I7 I8 I3 d(psi(),x1,x2) +
+    I7 I2 I9 d(psi(),x1,x3) +
+    I1 I8 I9 d(psi(),x2,x3)
+
+A = eval(A,epsilon^(11/2),0)
+A = eval(A,epsilon^(9/2),0)
+A = eval(A,epsilon^(7/2),0)
+
+B = psi() -
+
+    e epsilon / (m c) *
+    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
+
+    i hbar epsilon / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+B = B (2 pi i hbar epsilon / m)^(3/2)
+B = B exp(-i e^2 epsilon (A1^2 + A2^2 + A3^2) / (2 m hbar c^2))
+
+A
+B
+
+"ok"
