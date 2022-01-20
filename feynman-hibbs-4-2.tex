@@ -234,13 +234,16 @@ K_k&=\int_{-\infty}^\infty\eta_k^2\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\ri
 \end{align*}
 
 Hence
-\begin{multline*}
+\begin{align*}
+&
 \INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)\psi(\mathbf x,t)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
-{}=I_1 I_2 I_3 \psi(\mathbf x,t)
-=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
-\end{multline*}
+&{}=I_1 I_2 I_3 \psi(\mathbf x,t)
+\\
+&{}=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
+\tag{7}
+\end{align*}
 
 \begin{align*}
 &
@@ -398,8 +401,86 @@ Hence
 \tag{13}
 \end{align*}
 
+\begin{align*}
+&
+\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\frac{1}{2}
+\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
+(\boldsymbol\eta\cdot\nabla\psi)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\&
+{}=\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\left(-\frac{e^2}{2\hbar^2 c^2}\right)
+\\
+&{}\times
+(\eta_1A_1+\eta_2A_2+\eta_3A_3)^2
+\left(
+ \eta_1\frac{\partial\psi}{\partial x_1}
++\eta_2\frac{\partial\psi}{\partial x_2}
++\eta_3\frac{\partial\psi}{\partial x_3}
+\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&{}=0
+\tag{14}
+\end{align*}
 
+\begin{align*}
+&
+\INT
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\frac{1}{2}
+\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
+\left(\tfrac{1}{2}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\psi)\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\\
+&{}=\INT
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\left(-\frac{e^2}{2\hbar^2c^2}\right)
+(\eta_1A_1+\eta_2A_2+\eta_3A_3)^2
+\\
+&{}\times
+\left(
+ \tfrac{1}{2}\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
++\tfrac{1}{2}\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
++\tfrac{1}{2}\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
++\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1x_2}
++\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1x_3}
++\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2x_3}
+\right)
+\\
+&{}
+=0
+\tag{15}
+\end{align*}
 
+Substitute the solved integrals into (6).
+\begin{equation*}
+\psi(\mathbf x,t)+\epsilon\frac{\partial\psi}{\partial t}
+=\frac{1}{A}
+\left(1-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x,t\right)\right) I
+\end{equation*}
+where
+\begin{align*}
+I&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
+\tag*{\text{from (7)}}
+\\
+&\quad{}+\frac{i\hbar\epsilon}{2m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\nabla^2\psi
+\tag*{\text{from (9)}}
+\\
+&\quad{}+\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{ie}{\hbar c}(\mathbf A(\mathbf x,t)\cdot\nabla\psi)
+\tag*{\text{from (11)}}
+\\
+&\quad{}+\frac{i\hbar\epsilon}{m}
+\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\left(-\frac{e^2}{2\hbar^2 c^2}\right)
+(\mathbf A\cdot\mathbf A)\psi(\mathbf x,t)
+\tag*{\text{from (13)}}
+\end{align*}
 
+Rewrite $I$ in terms of operators.
+\begin{equation*}
+I=
 
 \end{document}
