@@ -88,38 +88,53 @@ B = i hbar epsilon / m (2 pi i hbar epsilon / m)^(3/2) *
 
 check(A == B)
 
-"Verify final result"
+"ok"
+
+"Verify equation (19)"
 
 A = I1 I2 I3 psi() +
 
-    I4 I2 I3 d(psi(),x1) +
+    I4 I2 I3 d(psi(),x1) + 
     I1 I5 I3 d(psi(),x2) +
     I1 I2 I6 d(psi(),x3) +
 
-    I7 I2 I3 d(psi(),x1,x1) +
-    I1 I8 I3 d(psi(),x2,x2) +
-    I1 I2 I9 d(psi(),x3,x3) +
+    1/2 I7 I2 I3 d(psi(),x1,x1) +
+    1/2 I1 I8 I3 d(psi(),x2,x2) +
+    1/2 I1 I2 I9 d(psi(),x3,x3)
 
-    I7 I8 I3 d(psi(),x1,x2) +
-    I7 I2 I9 d(psi(),x1,x3) +
-    I1 I8 I9 d(psi(),x2,x3)
+--    I7 I8 I3 d(psi(),x1,x2) +
+--    I7 I2 I9 d(psi(),x1,x3) +
+--    I1 I8 I9 d(psi(),x2,x3)
 
-A = eval(A,epsilon^(11/2),0)
-A = eval(A,epsilon^(9/2),0)
-A = eval(A,epsilon^(7/2),0)
+-- A = eval(A,epsilon^(11/2),0)
+-- A = eval(A,epsilon^(9/2),0)
+-- A = eval(A,epsilon^(7/2),0)
 
-B = psi() -
+A = A (1 - i e epsilon / hbar phi())
 
-    e epsilon / (m c) *
+B = -psi() +
+
+    (-1) e epsilon / (m c) *
     (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
 
     i hbar epsilon / (2 m) *
-    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+
+    i e epsilon / hbar psi() phi() +
+
+    i e^2 epsilon^2 / (m hbar c) *
+    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) phi() +
+
+    e epsilon^2 / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) phi()
 
 B = B (2 pi i hbar epsilon / m)^(3/2)
 B = B exp(-i e^2 epsilon (A1^2 + A2^2 + A3^2) / (2 m hbar c^2))
 
-A
-B
+check(A == B)
 
 "ok"
+
+A = quote(A)
+
+-i / hbar (1 / (2 m) (hbar / i D - e / c A)^2 psi + e phi psi)
