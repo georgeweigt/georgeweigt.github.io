@@ -154,9 +154,9 @@ Factor out the term involving $\phi$.
 
 Let
 \begin{equation*}
-T=\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)
+T=-\frac{ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)
 \end{equation*}
-and use the approximation
+and use the approximation (need to justify this)
 \begin{equation*}
 \exp\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
 \approx
@@ -225,15 +225,15 @@ To solve the above integral, we will use the following formulas provided by the 
 \begin{align*}
 I_k&=\int_{-\infty}^\infty\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
 =\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
-\tag*{\text{from F\&H (4.7)}}
+\tag*{\text{FH (4.7)}}
 \\
 J_k&=\int_{-\infty}^\infty\eta_k\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
 =0
-\tag*{\text{from F\&H (4.9)}}
+\tag*{\text{FH (4.9)}}
 \\
 K_k&=\int_{-\infty}^\infty\eta_k^2\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
 =\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
-\tag*{\text{from F\&H (4.10)}}
+\tag*{\text{FH (4.10)}}
 \end{align*}
 
 Hence
@@ -287,14 +287,14 @@ Hence
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \psi(\mathbf x,t)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}
-=J_1 I_2 I_3 \frac{ie}{\hbar c} A_1 \psi
-+I_1 J_2 I_3 \frac{ie}{\hbar c} A_2 \psi
-+I_1 I_2 J_3 \frac{ie}{\hbar c} A_3 \psi
+=J_1 I_2 I_3\frac{-ie}{\hbar c}A_1 \psi
++I_1 J_2 I_3\frac{-ie}{\hbar c}A_2 \psi
++I_1 I_2 J_3\frac{-ie}{\hbar c}A_3 \psi
 \\
 &{}
 =0
@@ -304,7 +304,7 @@ Hence
 \begin{align*}
 &
 \INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 (\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
@@ -312,7 +312,7 @@ Hence
 =\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \\
 &{}\times
-\frac{ie}{\hbar c}
+\frac{-ie}{\hbar c}
 (\eta_1A_1+\eta_2A_2+\eta_3A_3)
 \left(
  \eta_1\frac{\partial\psi}{\partial x_1}
@@ -322,22 +322,22 @@ Hence
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}
-=K_1 I_2 I_3 \frac{ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_1}
-+J_1 J_2 I_3 \frac{ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_2}
-+J_1 I_2 J_3 \frac{ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_3}
+=K_1 I_2 I_3 \frac{-ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_1}
++J_1 J_2 I_3 \frac{-ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_2}
++J_1 I_2 J_3 \frac{-ieA_1}{\hbar c} \frac{\partial\psi}{\partial x_3}
 \\
 &{}
-+J_1 J_2 I_3 \frac{ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_1}
-+I_1 K_2 I_3 \frac{ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_2}
-+I_1 J_2 J_3 \frac{ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_3}
++J_1 J_2 I_3 \frac{-ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_1}
++I_1 K_2 I_3 \frac{-ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_2}
++I_1 J_2 J_3 \frac{-ieA_2}{\hbar c} \frac{\partial\psi}{\partial x_3}
 \\
 &{}
-+J_1 I_2 J_3 \frac{ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_1}
-+I_1 J_2 J_3 \frac{ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_2}
-+I_1 I_2 K_3 \frac{ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_3}
++J_1 I_2 J_3 \frac{-ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_1}
++I_1 J_2 J_3 \frac{-ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_2}
++I_1 I_2 K_3 \frac{-ieA_3}{\hbar c} \frac{\partial\psi}{\partial x_3}
 \\
 &{}
-=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\frac{ie}{\hbar c}
+=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\frac{-ie}{\hbar c}
 \left(
  A_1\frac{\partial\psi}{\partial x_1}
 +A_2\frac{\partial\psi}{\partial x_2}
@@ -346,7 +346,7 @@ Hence
 \\
 &{}
 =\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-\frac{ie}{\hbar c}\mathbf A\nabla\psi
+\frac{-ie}{\hbar c}\mathbf A\nabla\psi
 \tag{11}
 \end{align*}
 
@@ -354,13 +354,13 @@ Hence
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \left(\tfrac{1}{2}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\psi)\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}=\INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\frac{ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)
+\frac{-ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)
 \\
 &{}\times
 \left(
@@ -381,7 +381,7 @@ Hence
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\frac{1}{2}\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
+\tfrac{1}{2} T^2 % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
 \psi(\mathbf x,t)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
@@ -408,8 +408,7 @@ Hence
 \begin{align*}
 &
 \INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\frac{1}{2}
-\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
+\tfrac{1}{2}T^2 % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
 (\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\&
@@ -433,8 +432,7 @@ Hence
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\frac{1}{2}
-\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
+\tfrac{1}{2}T^2 % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
 \left(\tfrac{1}{2}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\psi)\right)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
@@ -484,7 +482,7 @@ I&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
 \tag*{\text{from (9)}}
 \\
 &\quad{}+\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-\frac{ie}{\hbar c}\mathbf A\nabla\psi
+\frac{-ie}{\hbar c}\mathbf A\nabla\psi
 \tag*{\text{from (11)}}
 \\
 &\quad{}+\frac{i\hbar\epsilon}{m}
@@ -506,7 +504,7 @@ I=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
 \left(
 \psi(\mathbf x,t)
 +\frac{i\hbar\epsilon}{2m}\nabla^2\psi
--\frac{e\epsilon}{mc}\mathbf A\nabla\psi
++\frac{e\epsilon}{mc}\mathbf A\nabla\psi
 -\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
 \right)
 \tag{16}
@@ -531,7 +529,7 @@ Cancel $A$ with the coefficient in $I$ to obtain
 \left(
 \psi(\mathbf x,t)
 +\frac{i\hbar\epsilon}{2m}\nabla^2\psi
--\frac{e\epsilon}{mc}\mathbf A\nabla\psi
++\frac{e\epsilon}{mc}\mathbf A\nabla\psi
 -\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
 \right)
 \end{multline*}
@@ -543,7 +541,7 @@ Expand the product and discard terms of order greater than $\epsilon$.
 {}=
 \psi(\mathbf x,t)
 +\frac{i\hbar\epsilon}{2m}\nabla^2\psi
--\frac{e\epsilon}{mc}\mathbf A\nabla\psi
++\frac{e\epsilon}{mc}\mathbf A\nabla\psi
 -\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
 -\frac{ie\epsilon}{\hbar}\phi(\mathbf x,t)\psi
 \end{multline*}
@@ -554,12 +552,10 @@ Cancel leading terms $\psi(\mathbf x,t)$ and divide through by $\epsilon$.
 \\
 {}=
 \frac{i\hbar}{2m}\nabla^2\psi
--\frac{e}{mc}\mathbf A\nabla\psi
++\frac{e}{mc}\mathbf A\nabla\psi
 -\frac{ie^2}{2m\hbar c^2}\mathbf A^2\psi
 -\frac{ie}{\hbar}\phi(\mathbf x,t)\psi
 \tag{17}
 \end{equation*}
-
-
 
 \end{document}

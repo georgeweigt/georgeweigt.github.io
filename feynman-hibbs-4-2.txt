@@ -1,28 +1,24 @@
 -- Feynman and Hibbs problem 4-2
 
 e = quote(e)
+A = (A1,A2,A3)
 x = (x1,x2,x3)
 eta = (eta1,eta2,eta3)
-A = (A1,A2,A3)
 
-T = i e / (hbar c) dot(eta,A)
+T = -i e / (hbar c) dot(eta,A)
 
 D(f) = dot(eta,d(f,x))
-
-I = sqrt(2 pi i hbar epsilon / m)
-J = 0
-K = i hbar epsilon / m sqrt(2 pi i hbar epsilon / m)
 
 -- Volume integral
 
 integral3(f) = do(
-  f = I^3 f,
-  f = eval(f, eta1^2, K / I),
-  f = eval(f, eta2^2, K / I),
-  f = eval(f, eta3^2, K / I),
-  f = eval(f, eta1, J),
-  f = eval(f, eta2, J),
-  f = eval(f, eta3, J),
+  f = f (2 pi i hbar epsilon / m)^(3/2),
+  f = eval(f, eta1^2, i hbar epsilon / m),
+  f = eval(f, eta2^2, i hbar epsilon / m),
+  f = eval(f, eta3^2, i hbar epsilon / m),
+  f = eval(f, eta1, 0),
+  f = eval(f, eta2, 0),
+  f = eval(f, eta3, 0),
   f
 )
 
@@ -58,7 +54,7 @@ check(B == 0)
 B = integral3(T D(psi()))
 C = i hbar epsilon / m *
     (2 pi i hbar epsilon / m)^(3/2) *
-    i e / (hbar c) *
+    (-i e / (hbar c)) *
     dot(A,d(psi(),x))
 check(B == C)
 "ok"
@@ -109,7 +105,7 @@ C = psi() +
     i hbar epsilon / (2 m) *
     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
 
-    (-1) e epsilon / (m c) *
+    e epsilon / (m c) *
     (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
 
     (-1) i e^2 epsilon / (2 m hbar c^2) *
@@ -129,41 +125,38 @@ B = integral3(f)
 
 B = B (1 - i e epsilon / hbar phi())
 
-B = eval(B,epsilon^(9/2),0) -- discard
+B = eval(B,epsilon^(9/2),0) -- discard orders of epsilon
 B = eval(B,epsilon^(7/2),0)
 
 B = B (2 pi i hbar epsilon / m)^(-3/2) -- cancel A
+B = B - psi() -- cancel psi
+B = B / epsilon -- cancel epsilon
 
-C = psi() +
-    i hbar epsilon / (2 m) *
+C = i hbar / (2 m) *
     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
-    i hbar epsilon / m i e / (hbar c) dot(A,d(psi(),x)) +
-    i hbar epsilon / m (-e^2 / (2 hbar^2 c^2)) dot(A,A) psi() -
-    i e epsilon / hbar phi() psi()
+
+    e / (m c) dot(A,d(psi(),x)) +
+
+    (-1) i e^2 / (2 m hbar c^2) dot(A,A) psi() +
+
+    (-1) i e / hbar phi() psi()
 
 check(B == C)
 
 "ok"
 
--i / hbar / (2 m) (hbar / i "D" - e / c "A")^2
+"Compare with Feynman and Hibbs (4.18)"
 
-1 / (i hbar) / (2 m) (hbar / i "D" - e / c "A")^2
+C = (hbar / i)^2 *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
 
+    2 (hbar / i) (-e / c) *
+    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
 
--- From equation F&H (4.18)
+    (-e / c)^2 *
+    (A1^2 + A2^2 + A3^2) psi()
 
-T1 = (hbar / i)^2 *
-     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
-
-T2 = 2 (hbar / i) (-e / c) *
-     (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3))
-
-T3 = (-e / c)^2 *
-     (A1^2 + A2^2 + A3^2) psi()
-
-C = -i / hbar (1 / (2 m) (T1 + T2 + T3) + e phi() psi())
-
-C = psi() + epsilon C
+C = -i / hbar (C / (2 m) + e phi() psi())
 
 check(B == C)
 
