@@ -139,12 +139,22 @@ Substitute (3) into (2).
 \,d\eta_1\,d\eta_2\,d\eta_3
 \end{multline*}
 
-Let
+We need to get rid of $\boldsymbol\eta$ in the vector potential.
+By the logic on p.~77, the contribution to the integral
+diminishes as $\boldsymbol\eta$ increases.
+Therefore we will use the following approximation.
 \begin{equation*}
-T=-\frac{ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)
+\exp\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \end{equation*}
 
-Then use the approximation (need to justify this)
+Let
+\begin{equation*}
+T=-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)
+\end{equation*}
+
+Then
 \begin{equation*}
 \exp\left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
 \approx
