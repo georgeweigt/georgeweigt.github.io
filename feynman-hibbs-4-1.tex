@@ -409,7 +409,7 @@ Hence
 \frac{\partial^2}{\partial x_1^2}+
 \frac{\partial^2}{\partial x_2^2}+
 \frac{\partial^2}{\partial x_3^2}
-\right)\psi(\mathbf x,t)
+\right)\psi
 \tag{18}
 \end{multline*}
 
@@ -420,14 +420,14 @@ Substitute the solved integrals into (6) to obtain
 &\qquad{}=\frac{1}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi(\mathbf x,t)
 \tag*{\text{from (7) and (16)}}
 \\
-&\qquad\qquad{}+\frac{i\hbar\epsilon}{2Am}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\nabla^2\psi(\mathbf x,t)
+&\qquad\qquad{}+\frac{i\hbar\epsilon}{2Am}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\nabla^2\psi
 \tag*{\text{from (9) and (18)}}
 \\
-&\qquad\qquad{}-\frac{i\epsilon}{A\hbar}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}V(\mathbf x,t)\psi(\mathbf x,t)
+&\qquad\qquad{}-\frac{i\epsilon}{A\hbar}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}V(\mathbf x,t)\psi
 \tag*{\text{from (10) and (16)}}
 \\
 &\qquad\qquad{}+\frac{\epsilon^2}{2Am}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-V(\mathbf x,t)\nabla^2\psi(\mathbf x,t)
+V(\mathbf x,t)\nabla^2\psi
 \tag*{\text{from (12) and (18)}}
 \end{align*}
 
@@ -445,98 +445,23 @@ Cancel $A$ and drop the order $\epsilon^2$ term.
 \begin{equation*}
 \psi(\mathbf{x},t)+\epsilon\frac{\partial\psi}{\partial t}
 =\psi(\mathbf{x},t)
-+\frac{i\hbar\epsilon}{2m}\nabla^2\psi(\mathbf{x},t)
--\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
+-\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi
 \end{equation*}
 
 The $\psi(\mathbf x,t)$ terms cancel.
 \begin{equation*}
 \epsilon\frac{\partial\psi}{\partial t}
-=\frac{i\hbar\epsilon}{2m}\nabla^2\psi(\mathbf{x},t)
--\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
+=\frac{i\hbar\epsilon}{2m}\nabla^2\psi
+-\frac{i\epsilon}{\hbar}V(\mathbf x,t)\psi
 \end{equation*}
 
 Divide through by $\epsilon$.
 \begin{equation*}
 \frac{\partial\psi}{\partial t}
-=\frac{i\hbar}{2m}\nabla^2\psi(\mathbf{x},t)
--\frac{i}{\hbar}V(\mathbf x,t)\psi(\mathbf{x},t)
+=\frac{i\hbar}{2m}\nabla^2\psi
+-\frac{i}{\hbar}V(\mathbf x,t)\psi
+\tag{19}
 \end{equation*}
-
-\end{document}
-
-
-
-
-
-
-
-From the terms involving $\psi(\mathbf x,t)$ we have
-\begin{multline*}
-\psi(\mathbf{x},t)=
-\frac{\psi(\mathbf x,t)}{A}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\,d\eta_1\,d\eta_2\,d\eta_3
-\\
-{}-\frac{i\epsilon\psi(\mathbf x,t)}{A\hbar}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-V\left(\mathbf x,t\right)
-\,d\eta_1\,d\eta_2\,d\eta_3
-\end{multline*}
-
-Solve the first integral.
-\begin{multline*}
-\psi(\mathbf{x},t)=\frac{\psi(\mathbf x,t)}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-\\
-{}-\frac{i\epsilon\psi(\mathbf x,t)}{A\hbar}
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-V\left(\mathbf x,t\right)
-\,d\eta_1\,d\eta_2\,d\eta_3
-\end{multline*}
-
-In the limit $\epsilon\rightarrow0$ the rightmost term drops out leaving
-\begin{equation*}
-\psi(\mathbf{x},t)=\frac{\psi(\mathbf x,t)}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-\end{equation*}
-
-Hence
-\begin{equation*}
-A=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
-\end{equation*}
-
-It can be shown that
-\begin{equation*}
-\frac{1}{A}\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)\boldsymbol\eta
-\,d\eta_1\,d\eta_2\,d\eta_3
-=(0,0,0)
-\end{equation*}
-and
-\begin{equation*}
-\frac{1}{A}\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\int\limits_{-\infty}^\infty
-\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)\boldsymbol\eta^2
-\,d\eta_1\,d\eta_2\,d\eta_3
-=\left(\frac{i\hbar\epsilon}{m}\right)^3
-\end{equation*}
-
-From equation (4.10)
-\begin{equation*}
-\int_{-\infty}^\infty\exp\left(\frac{imx^2}{2\hbar\epsilon}\right)x^2\,dx
-=\left(-\frac{2\pi i\hbar^3\epsilon^3}{m^3}\right)^{1/2}
-\end{equation*}
-
 
 \end{document}
