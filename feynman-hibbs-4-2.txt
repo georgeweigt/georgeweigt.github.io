@@ -88,87 +88,79 @@ check(B == 0)
 "Verify equation (15)"
 
 B = integral3(1/2 T^2 1/2 D(D(psi())))
-
-B = B c^2 m^(7/2) / (e^2 epsilon^(7/2) hbar^(3/2) pi^(3/2) sqrt(2 i))
-
-atomize(B)
-
-a2 = dot(A,A)
-d2 = d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)
-
-Y = a2 d2
-
-Y = Y - A1^2 d(psi(),x1,x1) - A2^2 d(psi(),x2,x2) - A3^2 d(psi(),x3,x3)
-
-Y = 1/2 i Y
-
-atomize(Y)
-
-B - Y
-
-Y = Y + i dot(d(psi(),x,x),A,A) -
-    i A1^2 d(psi(),x1,x1) -
-    i A2^2 d(psi(),x2,x2) -
-    i A3^2 d(psi(),x3,x3)
-
-B == Y
-
-check(B == 0)
+C = 1/2 dot(A,A) (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    dot(A,d(psi(),x,x),A) - 3/2 *
+    (A1^2 d(psi(),x1,x1) + A2^2 d(psi(),x2,x2) + A3^2 d(psi(),x3,x3))
+C = C e^2 epsilon^2 / (2 c^2 m^2) *
+    (2 pi i hbar epsilon / m)^(3/2)
+check(B == C)
 "ok"
 
-"Verify equation (?)"
+"Verify equation (16)"
 
 f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
 
 B = integral3(f)
 
-B == integral3(psi()) +
-     0 integral3(D(psi()))+
-     integral3(1/2 D(D(psi()))) +
-
-     0 integral3(T psi()) +
-     integral3(T D(psi()))+
-     0 integral3(T 1/2 D(D(psi()))) +
-
-     integral3(1/2 T^2 psi()) +
-     0 integral3(1/2 T^2 D(psi())) +
-     0 integral3(1/2 T^2 1/2 D(D(psi())))
-
-
-stop
-
---B = eval(B,epsilon^(7/2),0)
+B = eval(B,epsilon^(7/2),0)
 
 C = psi() +
+
     i hbar epsilon / (2 m) *
     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
-    i hbar epsilon / m i e / (hbar c) dot(A,d(psi(),x)) +
-    i hbar epsilon / m (-e^2 / (2 hbar^2 c^2)) dot(A,A) psi()
 
-C = C (2 pi i hbar epsilon / m)^(3/2) -- + V(1/2 T^2 1/2 D(D(psi())))
+    (-1) e epsilon / (m c) *
+    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
+
+    (-1) i e^2 epsilon / (2 m hbar c^2) *
+    (A1^2 + A2^2 + A3^2) psi()
+
+C = C (2 pi i hbar epsilon / m)^(3/2)
 
 check(B == C)
 
 "ok"
 
-"Verify equation (16)"
-
-T = i e / (hbar c) dot(eta,A)
+"Verify equation (17)"
 
 f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
 
-B = integral3(f) (1 - i e epsilon / hbar phi())
+B = integral3(f)
 
---B = eval(B,epsilon^(9/2),0)
---B = eval(B,epsilon^(7/2),0)
+B = B (1 - i e epsilon / hbar phi())
 
-C = (hbar / i)^2 (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
-    2 (hbar / i) (e / c) dot(d(psi(),x),A) +
-    (e / c)^2 dot(A,A) psi()
+B = eval(B,epsilon^(9/2),0) -- discard
+B = eval(B,epsilon^(7/2),0)
 
-C = -i / hbar (1 / (2 m) C + e phi() psi())
+B = B (2 pi i hbar epsilon / m)^(-3/2) -- cancel A
 
-C = (2 pi i hbar epsilon / m)^(3/2) (epsilon C + psi())
+C = psi() +
+    i hbar epsilon / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    i hbar epsilon / m i e / (hbar c) dot(A,d(psi(),x)) +
+    i hbar epsilon / m (-e^2 / (2 hbar^2 c^2)) dot(A,A) psi() -
+    i e epsilon / hbar phi() psi()
+
+check(B == C)
+
+"ok"
+
+-i / hbar (1 / (2 m)) (hbar / i "D" - e / c "A")^2
+
+-- From equation F&H (4.18)
+
+T1 = (hbar / i)^2 *
+     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+T2 = 2 (hbar / i) (-e / c) *
+     (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3))
+
+T3 = (-e / c)^2 *
+     (A1^2 + A2^2 + A3^2) psi()
+
+C = -i / hbar (1 / (2 m) (T1 + T2 + T3) + e phi() psi())
+
+C = psi() + epsilon C
 
 check(B == C)
 
