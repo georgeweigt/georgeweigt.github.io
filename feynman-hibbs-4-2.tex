@@ -302,8 +302,8 @@ T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \begin{align*}
 &
 \INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
-(\boldsymbol\eta\cdot\nabla\psi)
+T
+\boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}
@@ -352,22 +352,21 @@ T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
-\left(\tfrac{1}{2}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\psi)\right)
+T
+\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}=\INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\frac{-ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)
+\frac{-ie}{\hbar c}(\eta_1A_1+\eta_2A_2+\eta_3A_3)\times{}
 \\
-&{}\times
-\left(
- \tfrac{1}{2}\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
-+\tfrac{1}{2}\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
-+\tfrac{1}{2}\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
-+\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1x_2}
-+\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1x_3}
-+\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2x_3}
+&{}\frac{1}{2}\left(
+ \eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
++\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
++\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
++2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1x_2}
++2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1x_3}
++2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2x_3}
 \right)
 \\
 &{}
@@ -406,8 +405,8 @@ T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \begin{align*}
 &
 \INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\tfrac{1}{2}T^2 % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
-(\boldsymbol\eta\cdot\nabla\psi)
+\tfrac{1}{2}T^2
+\boldsymbol\eta\cdot\nabla\psi
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\&
 {}=\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
@@ -430,27 +429,27 @@ T % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 &
 \INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
-\tfrac{1}{2}T^2 % \left(\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)^2
-\left(\tfrac{1}{2}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\psi)\right)
+\tfrac{1}{2}T^2
+\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\eta_1\,d\eta_2\,d\eta_3
 \\
 &{}=\INT
 \exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
 \left(-\frac{e^2}{2\hbar^2c^2}\right)
-(\eta_1A_1+\eta_2A_2+\eta_3A_3)^2
+(\eta_1A_1+\eta_2A_2+\eta_3A_3)^2\times{}
 \\
-&{}\times
+&{}\frac{1}{2}
 \left(
- \tfrac{1}{2}\eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
-+\tfrac{1}{2}\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
-+\tfrac{1}{2}\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
-+\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1x_2}
-+\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1x_3}
-+\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2x_3}
+ \eta_1^2\frac{\partial^2\psi}{\partial x_1^2}
++\eta_2^2\frac{\partial^2\psi}{\partial x_2^2}
++\eta_3^2\frac{\partial^2\psi}{\partial x_3^2}
++2\eta_1\eta_2\frac{\partial^2\psi}{\partial x_1x_2}
++2\eta_1\eta_3\frac{\partial^2\psi}{\partial x_1x_3}
++2\eta_2\eta_3\frac{\partial^2\psi}{\partial x_2x_3}
 \right)
 \\
 &{}=\frac{e^2\epsilon^2}{2m^2c^2}
-\left(\frac{2\pi i\hbar\epsilon}{m}\right)^2
+\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
 \\
 &{}\times
 \left(
