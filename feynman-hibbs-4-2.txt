@@ -130,7 +130,7 @@ B = B (1 - i e epsilon / hbar phi())
 B = eval(B,epsilon^(9/2),0) -- discard orders of epsilon
 B = eval(B,epsilon^(7/2),0)
 
-B = B (2 pi i hbar epsilon / m)^(-3/2) -- cancel A
+B = B / (2 pi i hbar epsilon / m)^(3/2) -- cancel A
 B = B - psi() -- cancel psi
 B = B / epsilon -- cancel epsilon
 
