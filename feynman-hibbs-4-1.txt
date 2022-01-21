@@ -20,21 +20,21 @@ integral3(f) = do(
   f
 )
 
-"Verify equation (16)"
+"Verify equation (13)"
 
-A = integral3(1)
-B = (2 pi i hbar epsilon / m)^(3/2)
+A = integral3(psi())
+B = (2 pi i hbar epsilon / m)^(3/2) psi()
 check(A == B)
 "ok"
 
-"Verify equation (17)"
+"Verify equation (14)"
 
 A = integral3(D(psi()))
 check(A == 0)
 
 "ok"
 
-"Verify equation (18)"
+"Verify equation (15)"
 
 A = integral3(D(D(psi())))
 B = i hbar epsilon / m *
@@ -43,7 +43,7 @@ B = i hbar epsilon / m *
 check(A == B)
 "ok"
 
-"Verify equation (19)"
+"Verify equation (16)"
 
 f = psi() + D(psi()) + 1/2 D(D(psi()))
 A = integral3(f)
