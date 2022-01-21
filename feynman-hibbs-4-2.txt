@@ -7,9 +7,11 @@ eta = (eta1,eta2,eta3)
 
 T = -i e / (hbar c) dot(eta,A)
 
+-- Gradient
+
 D(f) = dot(eta,d(f,x))
 
--- Volume integral
+-- Volume integral of exp(...) f
 
 integral3(f) = do(
   f = f (2 pi i hbar epsilon / m)^(3/2),
@@ -145,7 +147,7 @@ check(B == C)
 
 "ok"
 
-"Compare with Feynman and Hibbs (4.18)"
+"Compare with Feynman and Hibbs equation (4.18)"
 
 C = (hbar / i)^2 *
     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
