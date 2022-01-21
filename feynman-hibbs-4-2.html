@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+This script can be pasted into the Eigenmath app.
+<br>
+<br>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Feynman and Hibbs problem 4-2
+
+e = quote(e)
+x = (x1,x2,x3)
+eta = (eta1,eta2,eta3)
+A = (A1,A2,A3)
+
+T = i e / (hbar c) dot(eta,A)
+
+D(f) = dot(eta,d(f,x))
+
+I = sqrt(2 pi i hbar epsilon / m)
+J = 0
+K = i hbar epsilon / m sqrt(2 pi i hbar epsilon / m)
+
+-- Volume integral
+
+integral3(f) = do(
+  f = I^3 f,
+  f = eval(f, eta1^2, K / I),
+  f = eval(f, eta2^2, K / I),
+  f = eval(f, eta3^2, K / I),
+  f = eval(f, eta1, J),
+  f = eval(f, eta2, J),
+  f = eval(f, eta3, J),
+  f
+)
+
+"Verify equation (7)"
+
+B = integral3(psi())
+C = (2 pi i hbar epsilon / m)^(3/2) psi()
+check(B == C)
+"ok"
+
+"Verify equation (8)"
+
+B = integral3(D(psi()))
+check(B == 0)
+"ok"
+
+"Verify equation (9)"
+
+B = integral3(1/2 D(D(psi())))
+C = i hbar epsilon / (2 m) *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+check(B == C)
+"ok"
+
+"Verify equation (10)"
+B = integral3(T psi())
+check(B == 0)
+"ok"
+
+"Verify equation (11)"
+
+B = integral3(T D(psi()))
+C = i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    i e / (hbar c) *
+    dot(A,d(psi(),x))
+check(B == C)
+"ok"
+
+"Verify equation (12)"
+
+B = integral3(T 1/2 D(D(psi())))
+check(B == 0)
+"ok"
+
+"Verify equation (13)"
+
+B = integral3(1/2 T^2 psi())
+C = i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    (-e^2 / (2 hbar^2 c^2)) *
+    dot(A,A) psi()
+check(B == C)
+"ok"
+
+"Verify equation (14)"
+
+B = integral3(1/2 T^2 D(psi()))
+check(B == 0)
+"ok"
+
+"Verify equation (15)"
+
+B = integral3(1/2 T^2 1/2 D(D(psi())))
+C = 1/2 dot(A,A) (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    dot(A,d(psi(),x,x),A) - 3/2 *
+    (A1^2 d(psi(),x1,x1) + A2^2 d(psi(),x2,x2) + A3^2 d(psi(),x3,x3))
+C = C e^2 epsilon^2 / (2 c^2 m^2) *
+    (2 pi i hbar epsilon / m)^(3/2)
+check(B == C)
+"ok"
+
+"Verify equation (16)"
+
+f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
+
+B = integral3(f)
+
+B = eval(B,epsilon^(7/2),0)
+
+C = psi() +
+
+    i hbar epsilon / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+
+    (-1) e epsilon / (m c) *
+    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
+
+    (-1) i e^2 epsilon / (2 m hbar c^2) *
+    (A1^2 + A2^2 + A3^2) psi()
+
+C = C (2 pi i hbar epsilon / m)^(3/2)
+
+check(B == C)
+
+"ok"
+
+"Verify equation (17)"
+
+f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
+
+B = integral3(f)
+
+B = B (1 - i e epsilon / hbar phi())
+
+B = eval(B,epsilon^(9/2),0) -- discard
+B = eval(B,epsilon^(7/2),0)
+
+B = B (2 pi i hbar epsilon / m)^(-3/2) -- cancel A
+
+C = psi() +
+    i hbar epsilon / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    i hbar epsilon / m i e / (hbar c) dot(A,d(psi(),x)) +
+    i hbar epsilon / m (-e^2 / (2 hbar^2 c^2)) dot(A,A) psi() -
+    i e epsilon / hbar phi() psi()
+
+check(B == C)
+
+"ok"
+
+-i / hbar / (2 m) (hbar / i "D" - e / c "A")^2
+
+1 / (i hbar) / (2 m) (hbar / i "D" - e / c "A")^2
+
+
+-- From equation F&H (4.18)
+
+T1 = (hbar / i)^2 *
+     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+T2 = 2 (hbar / i) (-e / c) *
+     (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3))
+
+T3 = (-e / c)^2 *
+     (A1^2 + A2^2 + A3^2) psi()
+
+C = -i / hbar (1 / (2 m) (T1 + T2 + T3) + e phi() psi())
+
+C = psi() + epsilon C
+
+check(B == C)
+
+"ok"
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>
