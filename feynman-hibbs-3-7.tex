@@ -1,38 +1,30 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 
+\parindent=0pt
+
 \begin{document}
 
-\noindent
+\begin{center}
 Feynman and Hibbs problem 3-7
+\end{center}
 
-\bigskip
-\noindent
 Using equations (3.52) and (2.31),
 express $F(t+s)$ in terms of $F(t)$ and $F(s)$,
 where $t=t_b-t_c$ and $s=t_c-t_a$.
 
 \bigskip
-\noindent
-From equation (3.52)
-\begin{equation*}
-K(b,a)=F(t_b-t_a)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar (t_b-t_a)}\right)
-\end{equation*}
-
-\noindent
-Hence
+From equation (3.52) and $t+s=t_b-t_a$
 \begin{equation*}
 K(b,a)=F(t+s)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar (t+s)}\right)
-\eqno{(1)}
+\tag{1}
 \end{equation*}
 
-\noindent
 From equation (2.31)
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 K(b,a)=F(t)F(s)\int_{-\infty}^\infty
@@ -41,22 +33,20 @@ K(b,a)=F(t)F(s)\int_{-\infty}^\infty
 \,dx_c
 \end{equation*}
 
-\noindent
 Solve the integral.
 \begin{equation*}
 K(b,a)=F(t)F(s)
 \left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
 \exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t+s)}\right)
-\eqno{(2)}
+\tag{2}
 \end{equation*}
 
-\noindent
 Equating (1) with (2) causes the exponentials to cancel leaving
 \begin{equation*}
-F(t+s)=F(t)F(s)\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}\eqno{(3)}
+F(t+s)=F(t)F(s)\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\tag{3}
 \end{equation*}
 
-\noindent
 Show that if
 \begin{equation*}
 F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} f(t)
@@ -66,7 +56,6 @@ then the new function $f(t)$ must satisfy
 f(t+s)=f(t)f(s)
 \end{equation*}
 
-\noindent
 By substitution
 \begin{equation*}
 F(t+s)=\left(\frac{m}{2\pi i\hbar (t+s)}\right)^{1/2} f(t+s)
@@ -79,7 +68,6 @@ F(t)F(s)=
 f(t)f(s)
 \end{equation*}
 
-\noindent
 Then by (3) we have
 \begin{multline*}
 \left(\frac{m}{2\pi i\hbar(t+s)}\right)^{1/2}
@@ -91,10 +79,10 @@ f(t)f(s)
 \left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
 \end{multline*}
 
-\noindent
 The coefficients cancel leaving
 \begin{equation*}
-f(t+s)=f(t)f(s)\eqno{(4)}
+f(t+s)=f(t)f(s)
+\tag{4}
 \end{equation*}
 
 \end{document}
