@@ -1,6 +1,7 @@
 -- Feynman and Hibbs problem 4-2
 
-e = quote(e)
+e = quote(e) -- clear e
+
 A = (A1,A2,A3)
 x = (x1,x2,x3)
 eta = (eta1,eta2,eta3)
@@ -11,9 +12,9 @@ T = -i e / (hbar c) dot(eta,A)
 
 D(f) = dot(eta,d(f,x))
 
--- Volume integral of exp(...) f
+-- Gaussian integral
 
-integral3(f) = do(
+G(f) = do(
   f = f (2 pi i hbar epsilon / m)^(3/2),
   f = eval(f, eta1^2, i hbar epsilon / m),
   f = eval(f, eta2^2, i hbar epsilon / m),
@@ -26,79 +27,104 @@ integral3(f) = do(
 
 "Verify equation (7)"
 
-B = integral3(psi())
-C = (2 pi i hbar epsilon / m)^(3/2) psi()
+B = G(psi())
+
+C = psi() (2 pi i hbar epsilon / m)^(3/2)
+
 check(B == C)
+
 "ok"
 
 "Verify equation (8)"
 
-B = integral3(D(psi()))
+B = G(D(psi()))
+
 check(B == 0)
+
 "ok"
 
 "Verify equation (9)"
 
-B = integral3(1/2 D(D(psi())))
+B = G(1/2 D(D(psi())))
+
 C = i hbar epsilon / (2 m) *
     (2 pi i hbar epsilon / m)^(3/2) *
     (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
 check(B == C)
+
 "ok"
 
 "Verify equation (10)"
-B = integral3(T psi())
+
+B = G(T psi())
+
 check(B == 0)
+
 "ok"
 
 "Verify equation (11)"
 
-B = integral3(T D(psi()))
+B = G(T D(psi()))
+
 C = i hbar epsilon / m *
     (2 pi i hbar epsilon / m)^(3/2) *
     (-i e / (hbar c)) *
     dot(A,d(psi(),x))
+
 check(B == C)
+
 "ok"
 
 "Verify equation (12)"
 
-B = integral3(T 1/2 D(D(psi())))
+B = G(T 1/2 D(D(psi())))
+
 check(B == 0)
+
 "ok"
 
 "Verify equation (13)"
 
-B = integral3(1/2 T^2 psi())
+B = G(1/2 T^2 psi())
+
 C = i hbar epsilon / m *
     (2 pi i hbar epsilon / m)^(3/2) *
     (-e^2 / (2 hbar^2 c^2)) *
     dot(A,A) psi()
+
 check(B == C)
+
 "ok"
 
 "Verify equation (14)"
 
-B = integral3(1/2 T^2 D(psi()))
+B = G(1/2 T^2 D(psi()))
+
 check(B == 0)
+
 "ok"
 
 "Verify equation (15)"
 
-B = integral3(1/2 T^2 1/2 D(D(psi())))
+B = G(1/2 T^2 1/2 D(D(psi())))
+
 C = 1/2 dot(A,A) (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
     dot(A,d(psi(),x,x),A) - 3/2 *
     (A1^2 d(psi(),x1,x1) + A2^2 d(psi(),x2,x2) + A3^2 d(psi(),x3,x3))
+
 C = C e^2 epsilon^2 / (2 c^2 m^2) *
     (2 pi i hbar epsilon / m)^(3/2)
+
 check(B == C)
+
 "ok"
 
 "Verify equation (16)"
 
 f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
 
-B = integral3(f)
+B = G(f)
 
 B = eval(B,epsilon^(7/2),0)
 
@@ -123,12 +149,12 @@ check(B == C)
 
 f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
 
-B = integral3(f)
+B = G(f)
 
 B = B (1 - i e epsilon / hbar phi())
 
-B = eval(B,epsilon^(9/2),0) -- discard orders of epsilon
-B = eval(B,epsilon^(7/2),0)
+B = eval(B,epsilon^(9/2),0) -- discard epsilon^3
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
 
 B = B / (2 pi i hbar epsilon / m)^(3/2) -- cancel A
 B = B - psi() -- cancel psi
