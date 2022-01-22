@@ -10,15 +10,14 @@ D(f) = dot(eta,d(f,x))
 -- Gaussian integral
 
 G(f) = do(
-  f = f (2 pi i hbar epsilon / m)^(3/2),
-  f = eval(f, eta1^2, i hbar epsilon / m),
-  f = eval(f, eta2^2, i hbar epsilon / m),
-  f = eval(f, eta3^2, i hbar epsilon / m),
-  f = eval(f, eta1, 0),
-  f = eval(f, eta2, 0),
-  f = eval(f, eta3, 0),
-  f
-)
+f = f (2 pi i hbar epsilon / m)^(3/2),
+f = eval(f, eta1^2, i hbar epsilon / m),
+f = eval(f, eta2^2, i hbar epsilon / m),
+f = eval(f, eta3^2, i hbar epsilon / m),
+f = eval(f, eta1, 0),
+f = eval(f, eta2, 0),
+f = eval(f, eta3, 0),
+f)
 
 "Verify equation (13)"
 
