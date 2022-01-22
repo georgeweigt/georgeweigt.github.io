@@ -113,8 +113,9 @@ C = 1/2 dot(A,A) (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
     dot(A,d(psi(),x,x),A) - 3/2 *
     (A1^2 d(psi(),x1,x1) + A2^2 d(psi(),x2,x2) + A3^2 d(psi(),x3,x3))
 
-C = C e^2 epsilon^2 / (2 c^2 m^2) *
-    (2 pi i hbar epsilon / m)^(3/2)
+C = C (2 pi i hbar epsilon / m)^(3/2)
+
+C = C e^2 epsilon^2 / (2 c^2 m^2)
 
 check(B == C)
 
