@@ -18,12 +18,8 @@ in a potential energy $V(\mathbf x,t)$ the Schrodinger equation is
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x,t)+V(\mathbf x,t)\psi(\mathbf x,t)\right)
 \end{equation*}
 
-This is the Lagrangian.
-\begin{equation*}
-L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2-V(\mathbf{x},t)\tag{1}
-\end{equation*}
-
-Extend equation (4.3) from one dimension to three dimensions.
+\bigskip
+From equation (4.3) we have
 \begin{equation*}
 \psi(\mathbf{x},t+\epsilon)
 =\frac{1}{A}\int_{\mathbb R^3}
@@ -31,6 +27,7 @@ Extend equation (4.3) from one dimension to three dimensions.
 \frac{i\epsilon}{\hbar}L
 \left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\right)
 \right)\psi(\mathbf{y},t)\,dy_1\,dy_2\,dy_3
+\tag{1}
 \end{equation*}
 where
 \begin{equation*}
@@ -38,7 +35,12 @@ where
 \equiv\int_{-\infty}^\infty\int_{-\infty}^\infty\int_{-\infty}^\infty
 \end{equation*}
 
-From (1) we have
+From p.~77 the Lagrangian is
+\begin{equation*}
+L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2-V(\mathbf{x},t)
+\end{equation*}
+
+It follows that
 \begin{equation*}
 L\left(\frac{\mathbf{x}-\mathbf{y}}{\epsilon},\frac{\mathbf{x}+\mathbf{y}}{2}\right)
 =\frac{m}{2\epsilon^2}(\mathbf{x}-\mathbf{y})^2
