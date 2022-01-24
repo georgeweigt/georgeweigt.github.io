@@ -2,11 +2,9 @@
 
 e = quote(e) -- clear e
 
-A = (A1,A2,A3)
+A = (A1(),A2(),A3())
 x = (x1,x2,x3)
 eta = (eta1,eta2,eta3)
-
-T = -i e / (hbar c) dot(eta,A)
 
 -- Directional derivative (unnormalized)
 
@@ -15,18 +13,32 @@ D(f) = dot(eta,d(f,x))
 -- Gaussian integral
 
 G(f) = do(
-f = f (2 pi i hbar epsilon / m)^(3/2),
 f = eval(f, eta1^2, i hbar epsilon / m),
 f = eval(f, eta2^2, i hbar epsilon / m),
 f = eval(f, eta3^2, i hbar epsilon / m),
 f = eval(f, eta1, 0),
 f = eval(f, eta2, 0),
 f = eval(f, eta3, 0),
-f) -- return f
+f (2 pi i hbar epsilon / m)^(3/2)) -- return value
 
-"Verify equation (7)"
+U1 = 1
+U2 = i e / (hbar c) dot(eta,A)
+U3 = i e / (2 hbar c) dot(eta,D(A))
+U4 = 1/2 (i e / (hbar c) dot(eta,A))^2
 
-B = G(psi())
+U = (U1,U2,U3,U4)
+
+V1 = psi()
+V2 = D(psi())
+V3 = 1/2 D(D(psi()))
+
+V = (V1,V2,V3)
+
+"Verify integral 1"
+
+f = U[1] V[1]
+
+B = G(f)
 
 C = psi() (2 pi i hbar epsilon / m)^(3/2)
 
@@ -34,15 +46,19 @@ check(B == C)
 
 "ok"
 
-"Verify equation (8)"
+"Verify integral 2"
 
-B = G(D(psi()))
+f = U[1] V[2]
+
+B = G(f)
 
 check(B == 0)
 
 "ok"
 
-"Verify equation (9)"
+"Verify integral 3"
+
+f = U[1] V[3]
 
 B = G(1/2 D(D(psi())))
 
@@ -54,138 +70,114 @@ check(B == C)
 
 "ok"
 
-"Verify equation (10)"
+"Verify integral 4"
 
-B = G(T psi())
+f = U[2] V[1]
+
+B = G(f)
 
 check(B == 0)
 
 "ok"
 
-"Verify equation (11)"
+"Verify integral 5"
 
-B = G(T D(psi()))
+f = U[2] V[2]
+
+B = G(f)
 
 C = i hbar epsilon / m *
     (2 pi i hbar epsilon / m)^(3/2) *
-    (-i e / (hbar c)) *
+    i e / (hbar c) *
     dot(A,d(psi(),x))
 
 check(B == C)
 
 "ok"
 
-"Verify equation (12)"
+"Verify integral 6"
 
-B = G(T 1/2 D(D(psi())))
+f = U[2] V[3]
+
+B = G(f)
 
 check(B == 0)
 
 "ok"
 
-"Verify equation (13)"
 
-B = G(1/2 T^2 psi())
+"Verify integral 7"
+
+f = U[3] V[1]
+
+B = G(f)
 
 C = i hbar epsilon / m *
     (2 pi i hbar epsilon / m)^(3/2) *
-    (-e^2 / (2 hbar^2 c^2)) *
-    dot(A,A) psi()
+    i e / (2 hbar c) *
+    (d(A1(),x1) + d(A2(),x2) + d(A3(),x3)) *
+    psi()
 
 check(B == C)
 
 "ok"
 
-"Verify equation (14)"
+"Verify integral 8"
 
-B = G(1/2 T^2 D(psi()))
+f = U[3] V[2]
+
+B = G(f)
 
 check(B == 0)
 
 "ok"
 
-"Verify equation (15)"
+"Verify integral 9"
 
-B = G(1/2 T^2 1/2 D(D(psi())))
-
-C = 1/2 dot(A,A) (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
-    dot(A,d(psi(),x,x),A) - 3/2 *
-    (A1^2 d(psi(),x1,x1) + A2^2 d(psi(),x2,x2) + A3^2 d(psi(),x3,x3))
-
-C = C (2 pi i hbar epsilon / m)^(3/2)
-
-C = C e^2 epsilon^2 / (2 c^2 m^2)
-
-check(B == C)
-
-"ok"
-
-"Verify equation (16)"
-
-f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
+f = U[3] V[3]
 
 B = G(f)
 
-B = eval(B,epsilon^(7/2),0)
-
-C = psi() +
-
-    i hbar epsilon / (2 m) *
-    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
-
-    e epsilon / (m c) *
-    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
-
-    (-1) i e^2 epsilon / (2 m hbar c^2) *
-    (A1^2 + A2^2 + A3^2) psi()
-
-C = C (2 pi i hbar epsilon / m)^(3/2)
-
-check(B == C)
-
-"ok"
-
-"Verify equation (17)"
-
-f = (1 + T + 1/2 T^2) (psi() + D(psi()) + 1/2 D(D(psi())))
-
-B = G(f)
-
-B = B (1 - i e epsilon / hbar phi())
-
-B = eval(B,epsilon^(9/2),0) -- discard epsilon^3
 B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
 
-B = B / (2 pi i hbar epsilon / m)^(3/2) -- cancel A
-B = B - psi() -- cancel psi
-B = B / epsilon -- cancel epsilon
+check(B == 0)
 
-C = i hbar / (2 m) *
-    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+"ok"
 
-    e / (m c) dot(A,d(psi(),x)) +
+"Verify integral 10"
 
-    (-1) i e^2 / (2 m hbar c^2) dot(A,A) psi() +
+f = U[4] V[1]
 
-    (-1) i e / hbar phi() psi()
+B = G(f)
+
+C = i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    1/2 (i e / (hbar c))^2 *
+    dot(A,A) *
+    psi()
 
 check(B == C)
 
 "ok"
 
-"Compare with Feynman and Hibbs equation (4.18)"
+"Verify integral 11"
 
-C = (hbar / i)^2 *
-    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+f = U[4] V[2]
 
-    2 (hbar / i) (-e / c) *
-    (A1 d(psi(),x1) + A2 d(psi(),x2) + A3 d(psi(),x3)) +
+B = G(f)
 
-    (-e / c)^2 *
-    (A1^2 + A2^2 + A3^2) psi()
+check(B == 0)
 
-C = -i / hbar (C / (2 m) + e phi() psi())
+"ok"
 
-check(B == C)
+"Verify integral 12"
+
+f = U[4] V[3]
+
+B = G(f)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+check(B == 0)
 
 "ok"
