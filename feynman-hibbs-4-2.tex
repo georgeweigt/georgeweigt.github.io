@@ -333,15 +333,16 @@ Cancel $A$.
 \end{multline*}
 
 Expand the product and discard terms of order $\epsilon^2$.
-\begin{equation*}
+\begin{multline*}
 \psi+\epsilon\frac{\partial\psi}{\partial t}
+\\
 =\psi
 +\frac{i\hbar\epsilon}{2m}\nabla^2\psi
 -\frac{e\epsilon}{mc}\mathbf A\cdot\nabla\psi
 -\frac{e\epsilon}{2mc}\nabla\cdot\mathbf A\psi
 -\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
 -\frac{ie\epsilon}{\hbar}\phi\psi
-\end{equation*}
+\end{multline*}
 
 Cancel leading terms $\psi$ and divide through by $\epsilon$.
 \begin{equation*}
@@ -358,18 +359,18 @@ To show that (7) is the same as (4.18), expand (4.18) step by step.
 First we have
 \begin{equation*}
 \left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)\psi
-=\frac{\hbar}{i}\nabla\psi-\frac{e}{c}\mathbf A\psi
+=-i\hbar\nabla\psi-\frac{e}{c}\mathbf A\psi
 \end{equation*}
 
 Next
 \begin{multline*}
 \left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi
-=\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)
-\left(\frac{\hbar}{i}\nabla\psi-\frac{e}{c}\mathbf A\psi\right)
+=\left(-i\hbar\nabla-\frac{e}{c}\mathbf A\right)
+\left(-i\hbar\nabla\psi-\frac{e}{c}\mathbf A\psi\right)
 \\
-=\frac{\hbar^2}{i^2}\nabla\cdot\nabla\psi
--\frac{e\hbar}{ic}\nabla(\mathbf A\psi)
--\frac{e\hbar}{ic}\mathbf A\cdot\nabla\psi
+=-\hbar^2\nabla\cdot\nabla\psi
++\frac{ie\hbar}{c}\nabla(\mathbf A\psi)
++\frac{ie\hbar}{c}\mathbf A\cdot\nabla\psi
 +\frac{e^2}{c^2}\mathbf A\cdot\mathbf A\psi
 \end{multline*}
 
@@ -392,13 +393,14 @@ Hence
 \end{equation*}
 
 Divide through by $2m$.
-\begin{equation*}
+\begin{multline*}
 \frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi
+\\
 =-\frac{\hbar^2}{2m}\nabla^2\psi
 +\frac{ie\hbar}{mc}\mathbf A\cdot\nabla\psi
 +\frac{ie\hbar}{2mc}\nabla\cdot\mathbf A\psi
 +\frac{e^2}{2mc^2}\mathbf A^2\psi
-\end{equation*}
+\end{multline*}
 
 Add the scalar potential.
 \begin{multline*}
