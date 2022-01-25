@@ -36,7 +36,7 @@ v3 = 1/2 D(D(psi()))
 
 v = (v1,v2,v3)
 
-okay(n) = test(n == 1, "ok", "no")
+okay(n) = test(n == 1, "ok", "?")
 
 "Verify integral 1"
 
@@ -165,7 +165,7 @@ okay(B == 0)
 
 B = sum(j,1,4,sum(k,1,3,do(
 f = u[j] v[k],
-G(f) -- sum over Gaussian integrals
+G(f) -- sum over Gaussian integrals for all uv
 )))
 
 B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
