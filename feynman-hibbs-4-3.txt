@@ -1,0 +1,7 @@
+-- Feynman and Hibbs problem 4-3
+
+-- Show that conjugation and differentiation commute for exponential
+
+f = exp(i t)
+
+conj(d(f,t)) == d(conj(f),t)
