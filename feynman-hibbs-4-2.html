@@ -179,14 +179,15 @@ okay(B == 0)
 
 "Verify with Feynman and Hibbs equation (4.18)"
 
-B = sum(j,1,4,sum(k,1,3,do(
-f = u[j] v[k],
-G(f) -- sum over Gaussian integrals for all uv
-)))
+-- sum over Gaussian integrals for all uv
+
+B = sum(j,1,4, sum(k,1,3, G( u[j] v[k] ) ))
+
+-- epsilon^2 epsilon^(3/2) == epsilon^(7/2)
 
 B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
 
-B = B (1 - i e epsilon / hbar phi)
+B = B (1 - i e epsilon / hbar phi) -- multiply by (1 - phi)
 
 B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
 
