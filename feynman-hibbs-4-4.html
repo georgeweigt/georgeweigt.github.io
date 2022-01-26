@@ -16,9 +16,16 @@ This script can be pasted into the Eigenmath app.
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 -- Feynman and Hibbs problem 4-4
 
+"Verify (4.23) for the H in (4.15)"
+
 H(f) = -hbar^2 / (2 m) d(f,x,x) + V(x,t) f
 
 H(x psi(x,t)) - x H(psi(x,t))
+
+A = last
+B = -hbar^2 / m d(psi(x,t),x)
+
+test(A == B, "ok", "?")
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
