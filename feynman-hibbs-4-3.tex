@@ -50,7 +50,7 @@ Differentiate with respect to $t_b$.
 =
 \lim_{\epsilon\rightarrow0}\frac{1}{A^N}
 \int\cdots\int
-\frac{i}{h}\frac{\partial}{\partial t_b}S(b,a)
+\frac{i}{\hbar}\frac{\partial}{\partial t_b}S(b,a)
 \exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
 \end{equation*}
 
@@ -60,7 +60,7 @@ Then conjugate.
 \\
 =\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
 \int\cdots\int
--\frac{i}{h}\frac{\partial}{\partial t_b}S(b,a)
+-\frac{i}{\hbar}\frac{\partial}{\partial t_b}S(b,a)
 \exp\left(-\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
 \end{multline*}
 
@@ -84,7 +84,7 @@ Note that $\psi(x_a,t_a)$ is a constant with respect to $t$.
 =\int_{\infty}^\infty\left(\frac{\partial}{\partial t}K(x,t,x_a,t_a)\right)^*\psi^*(x_a,t_a)\,dx_a
 \end{equation*}
 
-Conjugate (2) then differentiate.
+Now do the reverse, conjugate (2) then differentiate.
 \begin{equation*}
 \frac{\partial}{\partial t}\psi^*(x,t)
 =\int_{\infty}^\infty\frac{\partial}{\partial t}K^*(x,t,x_a,t_a)\psi^*(x_a,t_a)\,dx_a
