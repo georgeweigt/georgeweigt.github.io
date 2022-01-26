@@ -43,31 +43,31 @@ K(b,a)=\lim_{\epsilon\rightarrow0}\frac{1}{A^N}\int\cdots\int
 \exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
 \end{equation*}
 
-Differentiate with respect to $t$.
+Differentiate with respect to $t_b$.
 \begin{equation*}
-\frac{\partial}{\partial t}K(b,a)
+\frac{\partial}{\partial t_b}K(b,a)
 \\
 =
 \lim_{\epsilon\rightarrow0}\frac{1}{A^N}
 \int\cdots\int
-\frac{i}{h}\frac{\partial}{\partial t}S(b,a)
+\frac{i}{h}\frac{\partial}{\partial t_b}S(b,a)
 \exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
 \end{equation*}
 
 Then conjugate.
 \begin{multline*}
-\left(\frac{\partial}{\partial t}K(b,a)\right)^*
+\left(\frac{\partial}{\partial t_b}K(b,a)\right)^*
 \\
 =\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
 \int\cdots\int
--\frac{i}{h}\frac{\partial}{\partial t}S(b,a)
+-\frac{i}{h}\frac{\partial}{\partial t_b}S(b,a)
 \exp\left(-\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
 \end{multline*}
 
 Clearly the result is the same for conjugate first then differentiate, hence
 \begin{equation*}
-\left(\frac{\partial}{\partial t}K(b,a)\right)^*
-=\frac{\partial}{\partial t}K^*(b,a)
+\left(\frac{\partial}{\partial t_b}K(b,a)\right)^*
+=\frac{\partial}{\partial t_b}K^*(b,a)
 \tag{1}
 \end{equation*}
 
@@ -77,7 +77,7 @@ Now consider this form of equation (4.2) that has $x,t$ instead of $x_b,t_b$.
 \tag{2}
 \end{equation*}
 
-Differentiate equation (2) then conjugate.
+Differentiate (2) with respect to $t$ then conjugate.
 Note that $\psi(x_a,t_a)$ is a constant with respect to $t$.
 \begin{equation*}
 \left(\frac{\partial}{\partial t}\psi(x,t)\right)^*
