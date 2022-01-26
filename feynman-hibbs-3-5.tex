@@ -1,13 +1,14 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 
+\parindent=0pt
+
 \begin{document}
 
-\noindent
+\begin{center}
 Feynman and Hibbs problem 3-5
+\end{center}
 
-\bigskip
-\noindent
 Let $\psi$ be a free-particle wave function.
 Use problem 3-2 and equation (3.42) to show that
 \begin{equation*}
@@ -15,13 +16,11 @@ Use problem 3-2 and equation (3.42) to show that
 \left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)
 \end{equation*}
 
-\noindent
 From equation (3.42)
 \begin{equation*}
 \psi(x,t)=\int_{-\infty}^\infty K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c
 \end{equation*}
 
-\noindent
 By linearity of differentiation
 \begin{align*}
 \frac{\partial\psi}{\partial t}
@@ -31,7 +30,6 @@ By linearity of differentiation
 &=\int_{-\infty}^\infty \frac{\partial^2}{\partial x^2} \bigg(K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\bigg)
 \end{align*}
 
-\noindent
 By independence of coordinates
 \begin{equation*}
 \begin{aligned}
@@ -43,14 +41,12 @@ By independence of coordinates
 \end{aligned}\eqno{(1)}
 \end{equation*}
 
-\noindent
 From problem 3-2
 \begin{equation*}
 \frac{\partial K_0}{\partial t}=-\frac{i}{\hbar}
 \left(-\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x^2}\right)
 \end{equation*}
 
-\noindent
 Multiply both sides by $\psi(x_c,t_c)$ and integrate over $x_c$.
 \begin{equation*}
 \int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
@@ -58,7 +54,6 @@ Multiply both sides by $\psi(x_c,t_c)$ and integrate over $x_c$.
 \int_{-\infty}^\infty -\frac{i}{\hbar}\left(-\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x^2}\right)\psi(x_c,t_c)\,dx_c
 \end{equation*}
 
-\noindent
 By the  distributive property
 \begin{equation*}
 \int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
@@ -66,7 +61,6 @@ By the  distributive property
 \int_{-\infty}^\infty \frac{\partial^2 K_0}{\partial x^2}\psi(x_c,t_c)\,dx_c\right)
 \end{equation*}
 
-\noindent
 Then by equation (1)
 \begin{equation*}
 \frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}
