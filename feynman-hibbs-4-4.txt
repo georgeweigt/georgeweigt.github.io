@@ -4,10 +4,10 @@
 
 H(f) = -hbar^2 / (2 m) d(f,x,x) + V(x,t) f
 
-H(x psi(x,t)) - x H(psi(x,t))
-
 A = H(x psi(x,t)) - x H(psi(x,t))
 
 B = -hbar^2 / m d(psi(x,t),x)
+
+eval(A) -- use eval so "A =" is not printed
 
 test(A == B, "ok", "?")
