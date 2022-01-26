@@ -1,0 +1,5 @@
+-- Feynman and Hibbs problem 4-4
+
+H(f) = -hbar^2 / (2 m) d(f,x,x) + V(x,t) f
+
+H(x psi(x,t)) - x H(psi(x,t))
