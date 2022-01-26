@@ -34,4 +34,66 @@ It is well known that conjugation and differentiation commute, hence
 \left(\frac{\partial\psi}{\partial t}\right)^*=\frac{\partial\psi^*}{\partial t}=+\frac{i}{\hbar}(H\psi)^*
 \end{equation*}
 
+However, just for the fun of it, let us complete the proof without using the commutation rule.
+
+\bigskip
+From equation (2.22) we have
+\begin{equation*}
+K(b,a)=\lim_{\epsilon\rightarrow0}\frac{1}{A^N}\int\cdots\int
+\exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\tag{1}
+\end{equation*}
+
+Differentiate (1).
+\begin{equation*}
+\frac{\partial}{\partial t}K(b,a)
+\\
+=
+\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
+\int\cdots\int
+\frac{i}{h}\frac{\partial}{\partial t}S(b,a)
+\exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\tag{2}
+\end{equation*}
+
+Conjugate (2).
+\begin{multline*}
+\left(\frac{\partial}{\partial t}K(b,a)\right)^*
+\\
+=\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
+\int\cdots\int
+-\frac{i}{h}\frac{\partial}{\partial t}S(b,a)
+\exp\left(-\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\end{multline*}
+
+Clearly the result is the same for conjugate first then differentiate, hence
+\begin{equation*}
+\left(\frac{\partial}{\partial t}K(b,a)\right)^*
+=\frac{\partial}{\partial t}K^*(b,a)
+\tag{3}
+\end{equation*}
+
+Now consider this form of equation (4.2)
+\begin{equation*}
+\psi(x,t)=\int_{\infty}^\infty K(x,t,x_a,t_a)\psi(x_a,t_a)\,dx_a
+\tag{4}
+\end{equation*}
+
+Differentiate (4) then conjugate.
+\begin{equation*}
+\left(\frac{\partial}{\partial t}\psi(x,t)\right)^*
+=\int_{\infty}^\infty\left(\frac{\partial}{\partial t}K(x,t,x_a,t_a)\right)^*\psi^*(x_a,t_a)\,dx_a
+\end{equation*}
+
+Conjugate (4) then differentiate.
+\begin{equation*}
+\frac{\partial}{\partial t}\psi^*(x,t)
+=\int_{\infty}^\infty\frac{\partial}{\partial t}K^*(x,t,x_a,t_a)\psi^*(x_a,t_a)\,dx_a
+\end{equation*}
+
+Then by (3)
+\begin{equation*}
+\left(\frac{\partial}{\partial t}\psi(x,t)\right)^*=\frac{\partial}{\partial t}\psi^*(x,t)
+\end{equation*}
+
 \end{document}
