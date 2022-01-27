@@ -4,5 +4,10 @@
 
 f = exp(i/hbar S(x,t))
 
-conj(d(f,t))
-d(conj(f),t)
+A = conj(d(f,t))
+B = d(conj(f),t)
+
+A
+B
+
+test(A == B, "ok", "?")
