@@ -8,6 +8,6 @@ A = H(x psi(x,t)) - x H(psi(x,t))
 
 B = -hbar^2 / m d(psi(x,t),x)
 
-eval(A) -- use eval so "A =" is not printed
+A + 0
 
 test(A == B, "ok", "?")
