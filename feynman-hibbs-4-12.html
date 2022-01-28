@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo</title>
+</head>
+<body>
+
+<script src="eigenmath.js"></script>
+
+This script can be pasted into the Eigenmath app.
+<br>
+<br>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+-- Feynman and Hibbs problem 4-12
+
+xa = (xa1,xa2,xa3)
+xb = (xb1,xb2,xb3)
+
+T = tb - ta
+X = xb - xa
+
+"Verify equation (1)"
+
+A = -i / (2 m hbar) T
+B = i / hbar X[1]
+
+check(-pi / A == -2 pi i m hbar / T)
+check(-B^2 / (4 A) == i m X[1]^2 / (2 hbar T))
+
+"ok"
+
+"Verify equation (2)"
+
+A = product(k,1,3,sqrt(-2 pi i m hbar / T) exp(i m X[k]^2 / (2 hbar T)))
+
+A = A / (2 pi hbar)^3
+
+B = (-i m / (2 pi hbar T))^(3/2) exp(i m dot(X,X) / (2 hbar T))
+
+check(A == B)
+
+"ok"
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>

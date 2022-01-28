@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+\begin{center}
+Feynman and Hibbs problem 4-12
+\end{center}
+
+Carry out the integral in equation (4.64) by completing the square.
+Show that the correct free particle kernel
+(i.e., the three dimensional version of equation 3.3) results.
+\begin{multline*}
+K_0(\mathbf x_b,t_b,\mathbf x_a,t_a)
+\\
+=\int
+\exp\left(\frac{i}{\hbar}\mathbf p\cdot(\mathbf x_b-\mathbf x_a)\right)
+\exp\left(-\frac{i}{\hbar}\frac{\mathbf p^2}{2m}(t_b-t_a)\right)
+\frac{d^3\mathbf p}{(2\pi\hbar)^3}
+\tag{4.64}
+\end{multline*}
+
+Rewrite equation (4.64) in component notation.
+\begin{multline*}
+K_0(\mathbf x_b,t_b,\mathbf x_a,t_a)=\frac{1}{(2\pi\hbar)^3}\INT
+\exp\left(\frac{i}{\hbar}p_1X_1-\frac{i}{\hbar}\frac{p_1^2}{2m}T\right)
+\\
+{}\times
+\exp\left(\frac{i}{\hbar}p_2X_2-\frac{i}{\hbar}\frac{p_2^2}{2m}T\right)
+\exp\left(\frac{i}{\hbar}p_3X_3-\frac{i}{\hbar}\frac{p_3^2}{2m}T\right)
+\,dp_1\,dp_2\,dp_3
+\end{multline*}
+
+where
+\begin{align*}
+X_k&=(\mathbf x_b-\mathbf x_a)_k
+\\
+T&=t_b-t_a
+\end{align*}
+
+Let
+\begin{align*}
+A&=-\frac{i}{2m\hbar}T
+\\
+B&=\frac{i}{\hbar}X_k
+\end{align*}
+
+Then
+\begin{align*}
+\int_{-\infty}^\infty\exp(Ap^2+Bp)\,dp
+&=\left(-\frac{\pi}{A}\right)^{1/2}\exp\left(-\frac{B^2}{4A}\right)
+\\
+&=\left(-\frac{2\pi im\hbar}{T}\right)^{1/2}
+\exp\left(\frac{imX_k^2}{2\hbar T}\right)
+\tag{1}
+\end{align*}
+
+Hence
+\begin{equation*}
+K_0(\mathbf x_b,t_b,\mathbf x_a,t_a)=
+\frac{1}{(2\pi\hbar)^3}
+\prod_{k=1}^3
+\left(-\frac{2\pi im\hbar}{T}\right)^{1/2}
+\exp\left(\frac{imX_k^2}{2\hbar T}\right)
+\end{equation*}
+
+Combine coefficients and convert to vector notation.
+\begin{equation*}
+K_0(\mathbf x_b,t_b,\mathbf x_a,t_a)=
+\left(-\frac{im}{2\pi\hbar(t_b-t_a)}\right)^{3/2}
+\exp\left(\frac{im(\mathbf x_b-\mathbf x_a)^2}{2\hbar(t_b-t_a)}\right)
+\tag{2}
+\end{equation*}
+
+
+\end{document}
