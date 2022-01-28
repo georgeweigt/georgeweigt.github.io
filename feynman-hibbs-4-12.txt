@@ -18,12 +18,10 @@ check(-B^2 / (4 A) == i m X[1]^2 / (2 hbar T))
 
 "Verify equation (2)"
 
-A = product(k,1,3,sqrt(-2 pi i m hbar / T) exp(i m X[k]^2 / (2 hbar T)))
+K = product(k,1,3,sqrt(-2 pi i m hbar / T) exp(i m X[k]^2 / (2 hbar T)))
 
-A = A / (2 pi hbar)^3
+K = K / (2 pi hbar)^3
 
-B = (-i m / (2 pi hbar T))^(3/2) exp(i m dot(X,X) / (2 hbar T))
-
-check(A == B)
+check(K == (-i m / (2 pi hbar T))^(3/2) exp(i m dot(X,X) / (2 hbar T)))
 
 "ok"
