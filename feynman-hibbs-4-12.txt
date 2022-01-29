@@ -1,9 +1,6 @@
 -- Feynman and Hibbs problem 4-12
 
-xa = (xa1,xa2,xa3)
-xb = (xb1,xb2,xb3)
-
-X = xb - xa
+X = (X1,X2,X3)
 
 "Verify equation (1)"
 
