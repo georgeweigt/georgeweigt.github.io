@@ -33,9 +33,9 @@ check(-B^2 / (4 A) == i m Xk^2 / (2 hbar T))
 
 "Verify equation (2)"
 
-K = product(k,1,3,sqrt(-2 pi i m hbar / T) exp(i m X[k]^2 / (2 hbar T)))
+I(k) = sqrt(-2 pi i m hbar / T) exp(i m X[k]^2 / (2 hbar T))
 
-K = K / (2 pi hbar)^3
+K = I(1) I(2) I(3) / (2 pi hbar)^3
 
 check(K == (-i m / (2 pi hbar T))^(3/2) exp(i m dot(X,X) / (2 hbar T)))
 
