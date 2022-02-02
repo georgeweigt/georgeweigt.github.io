@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+We are given
+\begin{equation*}
+\psi(x,0)=C\exp\left(\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+\noindent
+For a free particle we have
+\begin{equation*}
+K=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\eqno{(3.3)}
+\end{equation*}
+
+\noindent
+From
+\begin{equation*}
+p=\frac{m(x_b-x_a)}{t_b-t_a}
+\end{equation*}
+
+\noindent
+we have
+\begin{equation*}
+\frac{m(x_b-x_a)^2}{t_b-t_a}=\frac{p^2(t_b-t_a)}{m}
+\end{equation*}
+
+\noindent
+Hence
+\begin{equation*}
+K=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\exp\left(\frac{ip^2(t_b-t_a)}{2m\hbar}+\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+\noindent
+By equation (3.42) we have
+\begin{align*}
+\psi(x,t_b)
+&=K\psi(x,0)
+\\
+&=C\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\exp\left(\frac{ip^2(t_b-t_a)}{2m\hbar}+\frac{ipx}{\hbar}\right)
+\end{align*}
+
+\noindent
+Finally, set $t_a=0$ and change $t_b$ to $t$ to obtain
+\begin{equation*}
+\psi(x,t)=C\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}
+\exp\left(\frac{ip^2t}{2m\hbar}+\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+
+
+
+
+\end{document}

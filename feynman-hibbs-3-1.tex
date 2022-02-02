@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+%\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent
+Let the classical momentum at $x=a$ be somewhere between zero and $p$.
+Then from $p=mv$ we have the following maximum distance $d$.
+\begin{equation*}
+d=\frac{p}{m}(t_b-t_a)
+\end{equation*}
+
+\noindent
+Hence the normalization constant $C$ is
+\begin{align*}
+C&=\int_a^{a+d}\frac{m}{2\pi\hbar(t_b-t_a)}\,dx
+\\[1ex]
+&=\frac{mx}{2\pi\hbar(t_b-t_a)}\bigg|_a^{a+d}
+\\[1ex]
+&=\frac{m(a+d)}{2\pi\hbar(t_b-t_a)}-\frac{ma}{2\pi\hbar(t_b-t_a)}
+\\[1ex]
+&=\frac{md}{2\pi\hbar(t_b-t_a)}
+\\[1ex]
+&=\frac{p}{2\pi\hbar}
+\end{align*}
+
+\noindent
+Hence diverging normalization corresponds to unrestricted momentum $p$.
+
+\bigskip
+\noindent
+Given
+\begin{equation*}
+x+dx=\frac{p+dp}{m}(t_b-t_a)
+\end{equation*}
+
+\noindent
+we have
+\begin{equation*}
+dx=\frac{dp}{m}(t_b-t_a)
+\end{equation*}
+
+\noindent
+It follows that
+\begin{equation*}
+\frac{m}{2\pi\hbar(t_b-t_a)}\,dx=\frac{dp}{2\pi\hbar}
+\end{equation*}
+
+\end{document}
