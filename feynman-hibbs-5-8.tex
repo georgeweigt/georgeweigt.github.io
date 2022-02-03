@@ -19,7 +19,7 @@ $g(x)$ and $f(x)$, both of which approach 0 as $x$ goes to $\pm\infty$,
 \int_{-\infty}^\infty
 g^*(x)\mathcal Af(x)\,dx=
 \int_{-\infty}^\infty
-(\mathcal Ag(x))^*f(x)\,dx
+\big(\mathcal Ag(x)\big)^*f(x)\,dx
 \tag{5.47}
 \end{equation*}
 Any operator, such as $\mathcal A$, for which equation (5.47)
@@ -57,19 +57,19 @@ By equation (5.44) substitute $G_A^*(x',x)$ for $G_A(x,x')$.
 By complex conjugation of a product
 \begin{equation*}
 {}=\int_{-\infty}^\infty
-\int_{-\infty}^\infty(G_A(x',x)g(x))^*f(x')\,dx'
+\int_{-\infty}^\infty\big(G_A(x',x)g(x)\big)^*f(x')\,dx'
 \,dx
 \end{equation*}
 
-Factor out $f(x')$.
+Factor out $f(x')\,dx'$.
 \begin{equation*}
 {}=\int_{-\infty}^\infty
-\left(\int_{-\infty}^\infty(G_A(x',x)g(x))^*\,dx\right)f(x')\,dx'
+\left(\int_{-\infty}^\infty\big(G_A(x',x)g(x)\big)^*\,dx\right)f(x')\,dx'
 \end{equation*}
 
 Then by equation (1)
 \begin{equation*}
-{}=\int_{-\infty}^\infty (\mathcal Ag(x'))^*f(x')\,dx'
+{}=\int_{-\infty}^\infty\big(\mathcal Ag(x')\big)^*f(x')\,dx'
 \end{equation*}
 
 \end{document}

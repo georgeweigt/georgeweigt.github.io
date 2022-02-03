@@ -40,9 +40,13 @@ K(x_b,t_b,x_a,t_a)
 \end{equation*}
 
 Hence the integral over $x_a$ in (1) is equivalent to $\psi(x_b)$.
-We now have
 \begin{equation*}
-\int_{-\infty}^\infty
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\chi^*(x_b)
+K(x_b,t_b,x_a,t_a)
+\psi(x_a)
+\,dx_a\,dx_b
+=\int_{-\infty}^\infty
 \chi^*(x_b)
 \psi(x_b)
 \,dx_b
