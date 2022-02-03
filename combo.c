@@ -55,6 +55,8 @@ emit_file(char *filename)
 
 	printf("\\subsection*{%s}\n", filename);
 
+	printf("\\let\\INT\\undefined\n");
+
 	f = fopen(filename, "r");
 
 	if (f == NULL) {
