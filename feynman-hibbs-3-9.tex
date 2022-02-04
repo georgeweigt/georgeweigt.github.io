@@ -12,7 +12,7 @@ where the Lagrangian is
 L=\frac{m}{2}\dot x^2+fx
 \end{equation*}
 
-From problem 2-3 we have
+From problem 2-3 we have for the action $S(b,a)$
 \begin{equation*}
 S(b,a)=\frac{m(x_b-x_a)^2}{2T}+\frac{fT(x_b+x_a)}{2}-\frac{f^2T^3}{24m}
 \end{equation*}
@@ -22,10 +22,10 @@ where $T=t_b-t_a$.
 From equation (3.51)
 \begin{equation*}
 K(b,a)=F(T)\exp\left(\frac{iS(b,a)}{\hbar}\right)
-\tag{3.51$'$}
+\tag{3.51}
 \end{equation*}
 
-It follows that
+Substitute the formula for $S(b,a)$ into (3.51).
 \begin{equation*}
 K(b,a)=
 F(T)\exp\left(
@@ -39,6 +39,7 @@ F(T)\exp\left(
 We now proceed to compute $F(T)$. By equation (2.31) which is
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
+\tag{2.31}
 \end{equation*}
 we have
 \begin{equation*}
@@ -71,9 +72,8 @@ C&=\frac{if}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{im}{2\hbar}
 \tag{5}
 \end{align*}
 
-\bigskip
 Note that the exponential involving $f^2$ is independent of $x_c$
-and is factored out of the integrand in (2) by the distributive law.
+and is factored out of the integrand in (2).
 
 \bigskip
 Solve the integral in (2).
