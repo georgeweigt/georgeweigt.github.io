@@ -1,0 +1,14 @@
+-- Feynman and Hibbs problem 3-4
+
+A = i m / (2 hbar tb)
+
+B = -i m xb / (hbar tb) + i p / hbar
+
+"Verify equation (2)"
+
+check(-pi / A == 2 pi i hbar tb / m)
+
+check(-B^2 / (4 A) ==
+-i m xb^2 / (2 hbar tb) - i p^2 tb / (2 m hbar) + i p xb / hbar)
+
+"ok"
