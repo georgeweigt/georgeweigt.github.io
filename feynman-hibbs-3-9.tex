@@ -36,19 +36,22 @@ F(T)\exp\left(
 \tag{1}
 \end{equation*}
 
-We now proceed to compute $F(T)$. By equation (2.31) which is
+We now proceed to compute $F(T)$.
+Consider equation (2.31).
 \begin{equation*}
 K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
 \tag{2.31}
 \end{equation*}
-we have
+
+Substitute (3.51) into (2.31) to obatin
 \begin{equation*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
 \exp\left(\frac{iS(b,c)}{\hbar}+\frac{iS(c,a)}{\hbar}\right)
 \,dx_c
 \end{equation*}
 
-Reorganize as powers of $x_c$.
+Substitute the formula for $S$ into the integral
+and rewrite as powers of $x_c$.
 \begin{multline*}
 K(b,a)=F(t_b-t_c)F(t_c-t_a)
 \exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
