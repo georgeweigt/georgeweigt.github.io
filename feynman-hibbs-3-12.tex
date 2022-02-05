@@ -25,6 +25,7 @@ at time $t=T$ the wave function is
 From equation (3.42)
 \begin{equation*}
 \psi(x,T)=\int_{-\infty}^\infty K(x,T,x_c,0)\psi(x_c,0)\,dx_c
+\tag{1}
 \end{equation*}
 
 From problem 3-8
@@ -35,9 +36,11 @@ K(x,T,x_c,0)=
 \exp\left(
 \frac{im\omega}{2\hbar\sin(\omega T)}\left((x^2+x_c^2)\cos(\omega T)-2xx_c\right)
 \right)
+\tag{2}
 \end{multline*}
 
-Hence
+Substitute (2) and $\psi(x,0)$ into (1).
+We now have for $\psi(x,T)$
 \begin{align*}
 &\psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
 \int_{-\infty}^\infty
