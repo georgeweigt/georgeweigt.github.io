@@ -1,0 +1,38 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-3.
+For a free particle, equation (4.29) reduces to
+\begin{equation*}
+\frac{\partial}{\partial t}K_0(b,a)+\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,a)\right)
+=\delta(t_b-t_a)\delta(x_b-x_a)
+\tag{6.20}
+\end{equation*}
+
+Show, from this result and equation (6.19), that the kernel
+$K_V$ satisfies the differential equation
+\begin{multline*}
+\frac{\partial}{\partial t}K_V(b,a)+\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_V(b,a)-V(b)K_V(b,a)\right)
+\\
+=\delta(t_b-t_a)\delta(x_b-x_a)
+\tag{6.21}
+\end{multline*}
+
+This is equation (6.19).
+\begin{equation*}
+K_V(b,a)=K_0(b,a)-\frac{i}{\hbar}
+\int K_0(b,c)V(c)K_V(c,a)\,d\tau_c
+\tag{6.19}
+\end{equation*}
+
+
+\end{document}
