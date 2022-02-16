@@ -18,6 +18,7 @@ final state is the eigenfunction $\phi_m(x)$.
 \bigskip
 From problem 5-4 the transition amplitude is
 \begin{equation*}
+\langle m|n\rangle=
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 \phi_m^*(x_b)K_V(b,a)\phi_n(x_a)
 \,dx_a\,dx_b
@@ -31,17 +32,21 @@ K_V(b,a)=\sum_m\sum_n\lambda_{mn}(t_b,t_a)\phi_m(x_b)\phi_n^*(x_a)
 \end{equation*}
 
 Substitute (6.68) into (1).
-\begin{equation*}
+\begin{multline*}
+\langle m|n\rangle=
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 \phi_m^*(x_b)
+\\
+{}\times
 \left(\sum_{m'}\sum_{n'}\lambda_{m'n'}(t_b,t_a)\phi_{m'}(x_b)\phi_{n'}^*(x_a)\right)
 \phi_n(x_a)
 \,dx_a\,dx_b
-\end{equation*}
+\end{multline*}
 
 By distributive law
 \begin{equation*}
-{}=\sum_{m'}\sum_{n'}\lambda_{m'n'}(t_b,t_a)
+\langle m|n\rangle=
+\sum_{m'}\sum_{n'}\lambda_{m'n'}(t_b,t_a)
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 \phi_m^*(x_b)\phi_{m'}(x_b)
 \phi_{n'}^*(x_a)\phi_n(x_a)
@@ -50,7 +55,8 @@ By distributive law
 
 By orthogonality of eigenfunctions
 \begin{equation*}
-{}=\lambda_{mn}(t_b,t_a)\int_{-\infty}^\infty\int_{-\infty}^\infty
+\langle m|n\rangle=
+\lambda_{mn}(t_b,t_a)\int_{-\infty}^\infty\int_{-\infty}^\infty
 \phi_m^*(x_b)\phi_m(x_b)
 \phi_n^*(x_a)\phi_n(x_a)
 \,dx_a\,dx_b
@@ -58,7 +64,8 @@ By orthogonality of eigenfunctions
 
 By normalization of eigenfunctions
 \begin{equation*}
-{}=\lambda_{mn}(t_b,t_a)
+\langle m|n\rangle=
+\lambda_{mn}(t_b,t_a)
 \end{equation*}
 
 \end{document}
