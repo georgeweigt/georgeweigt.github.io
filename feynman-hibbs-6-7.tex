@@ -16,21 +16,14 @@ is the result of a charge distribution $\rho(\mathbf r)$ so that
 \tag{6.48}
 \end{equation*}
 
-In rectangular coordinates
+In polar coordinates
 \begin{equation*}
+I=\int_0^{2\pi}\int_0^\pi\int_0^\infty
 \nabla^2\phi(\mathbf r)
-=\frac{\partial^2\phi}{\partial x^2}
-+\frac{\partial^2\phi}{\partial y^2}
-+\frac{\partial^2\phi}{\partial z^2}
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Hence
-\begin{equation*}
--4\pi\INT\rho(\mathbf r)
-\exp\left(\frac{ip_xx}{\hbar}\right)
-\exp\left(\frac{ip_yy}{\hbar}\right)
-\exp\left(\frac{ip_zz}{\hbar}\right)
-\,dx\,dy\,dz
-\end{equation*}
+
 
 \end{document}
