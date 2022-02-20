@@ -1900,10 +1900,16 @@ cmp_rationals(p1, p2)
 	else
 		return bignum_cmp(a, b);
 }
+// don't use localeCompare
+
 function
 cmp_strings(s1, s2)
 {
-	return s1.localeCompare(s2);
+	if (s1 < s2)
+		return -1;
+	if (s1 > s2)
+		return 1;
+	return 0;
 }
 function
 cmp_terms(p1, p2)
