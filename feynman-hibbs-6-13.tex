@@ -13,7 +13,7 @@ Assume that $V(\mathbf r,t)$ is independent of time.
 Substitute the free particle kernel $K_0$ into equation
 (6.61) and integrate over $t_c$ to show that
 \begin{multline*}
-\psi(\mathbf x_b,t_b)=
+\psi(b)=
 \exp\left(-\frac{iE_at_b}{\hbar}\right)
 \exp\left(\frac{i\mathbf p_a\cdot\mathbf x_b}{\hbar}\right)
 \\
@@ -32,7 +32,28 @@ $\mathbf x_c$ to the final point $\mathbf x_b$ and $p$ is the
 magnitude of the momentum of the electron.
 
 \bigskip
-This is the integral over $t_c$ from (6.61) with $E_a=p^2/2m$.
+This is equation (6.61).
+\begin{multline*}
+\psi(b)=
+\exp\left(-\frac{iE_at_b}{\hbar}\right)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_b}{\hbar}\right)
+\\
+{}-\frac{i}{\hbar}\int_0^{t_b}\int
+K_0(b,c)V(c)
+\exp\left(-\frac{iE_at_c}{\hbar}\right)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_c}{\hbar}\right)
+\,d\mathbf x_c\,dt_c
+\tag{6.61}
+\end{multline*}
+
+This is the integral over $t_c$ from (6.61) with $V(c)$ independent of time.
+\begin{equation*}
+I=\int_0^{t_b}K_0(b,c)
+\exp\left(-\frac{iE_at_c}{\hbar}\right)
+\,dt_c
+\end{equation*}
+
+Substitute $E_a=p^2/2m$.
 \begin{equation*}
 I=\int_0^{t_b}K_0(b,c)
 \exp\left(-\frac{ip^2t_c}{2m\hbar}\right)
