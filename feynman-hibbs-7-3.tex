@@ -40,7 +40,7 @@ F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)
 
 Let
 \begin{multline*}
-f(f_1,f_2)=
+I(f_1,f_2)=
 \\
 \frac{1}{2}
 \int\int\int\int
@@ -51,18 +51,18 @@ f_1(\mathbf r_1,t_1)f_2(\mathbf r_2,t_2)R(\mathbf r_2-\mathbf r_1,t_2-t_1)
 Then
 \begin{align*}
 F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)=F\big(j(\mathbf r,t)\big)
-\exp\big(f(j,\eta)\big)\exp\big(f(\eta,j)\big)\exp\big(f(\eta,\eta)\big)
+\exp\big(I(j,\eta)\big)\exp\big(I(\eta,j)\big)\exp\big(I(\eta,\eta)\big)
 \end{align*}
 
 Use the approximation $\exp(x)=1+x$ to obtain to first order in $\eta$
 \begin{equation*}
 F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)
-=F\big(j(\mathbf r,t)\big)\big(1+f(j,\eta)+f(\eta,j)\big)
+=F\big(j(\mathbf r,t)\big)\big(1+I(j,\eta)+I(\eta,j)\big)
 \end{equation*}
 
 Then by equation (7.20)
 \begin{equation*}
-F\big(j(\mathbf r,t)\big)\big(f(j,\eta)+f(\eta,j)\big)
+F\big(j(\mathbf r,t)\big)I(j,\eta)+F\big(j(\mathbf r,t)\big)I(\eta,j)
 =\int\int
 \frac{\delta F}{\delta j(\mathbf x,s)}\eta(\mathbf x,s)\,d^3\mathbf x\,ds
 \tag{1}
@@ -71,7 +71,7 @@ F\big(j(\mathbf r,t)\big)\big(f(j,\eta)+f(\eta,j)\big)
 Substitute (7.27) into (1).
 The $F\big(j(\mathbf r,t)\big)$ cancel leaving
 \begin{align*}
-&f(j,\eta)+f(\eta,j)=
+&I(j,\eta)+I(\eta,j)=
 \\
 &\qquad\frac{1}{2}\int\int\int\int
 j(\mathbf r,t)R(\mathbf r-\mathbf x,t-s)\eta(\mathbf x,s)\,d^3\mathbf r\,dt\,d^3\mathbf x\,ds
