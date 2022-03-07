@@ -113,4 +113,34 @@ Then by the same arguments in the book for equation (7.49) we have
 
 Hence (7.50) is shown to be true.
 
+\bigskip
+The action for a particle in three dimensions is
+\begin{equation*}
+S=\int_{t_a}^{t_b}\left(\frac{m}{2}\left(\dot x^2+\dot y^2+\dot z^2\right)-V(x,y,z)\right)\,dt
+\end{equation*}
+
+Hence
+\begin{equation*}
+\nabla_kS
+=\frac{\partial S}{\partial x_k}\mathbf i
++\frac{\partial S}{\partial y_k}\mathbf j
++\frac{\partial S}{\partial z_k}\mathbf k
+\end{equation*}
+where
+\begin{align*}
+\frac{\partial S}{\partial x_k}
+&=-m\left(\frac{x_{k+1}-x_k}{\epsilon}-\frac{x_k-x_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial x}\bigg|_{x_k,y_k,z_k}
+\\
+\frac{\partial S}{\partial y_k}
+&=-m\left(\frac{y_{k+1}-y_k}{\epsilon}-\frac{y_k-y_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial y}\bigg|_{x_k,y_k,z_k}
+\\
+\frac{\partial S}{\partial z_k}
+&=-m\left(\frac{z_{k+1}-z_k}{\epsilon}-\frac{z_k-z_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial z}\bigg|_{x_k,y_k,z_k}
+\end{align*}
+
+% FIXME show (7.51)
+
 \end{document}
