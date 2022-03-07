@@ -24,32 +24,26 @@ Show, for a particle moving in three-dimensional space $x$, $y$, $z$,
 \tag{7.51}
 \end{align*}
 
-The action for a particle in three-dimensional space is
+To extend (7.33) to three dimensions, change derivative to gradient, hence
 \begin{equation*}
-S=\int_{t_a}^{t_b}\left(\frac{m}{2}\left(\dot x^2+\dot y^2+\dot z^2\right)-V(x,y,z)\right)\,dt
-\end{equation*}
-
-By extending equation (7.39) to three dimensions we have
-\begin{equation*}
-\nabla_kS
-=\frac{\partial S}{\partial x_k}\mathbf i
-+\frac{\partial S}{\partial y_k}\mathbf j
-+\frac{\partial S}{\partial z_k}\mathbf k
+\left\langle\nabla_kF\right\rangle=-\frac{i}{\hbar}\left\langle F\nabla_kS\right\rangle
+\tag{1}
 \end{equation*}
 where
-\begin{align*}
-\frac{\partial S}{\partial x_k}
-&=-m\left(\frac{x_{k+1}-x_k}{\epsilon}-\frac{x_k-x_{k-1}}{\epsilon}\right)
--\epsilon\frac{\partial V}{\partial x}\bigg|_{x_k,y_k,z_k}
-\\
-\frac{\partial S}{\partial y_k}
-&=-m\left(\frac{y_{k+1}-y_k}{\epsilon}-\frac{y_k-y_{k-1}}{\epsilon}\right)
--\epsilon\frac{\partial V}{\partial y}\bigg|_{x_k,y_k,z_k}
-\\
-\frac{\partial S}{\partial z_k}
-&=-m\left(\frac{z_{k+1}-z_k}{\epsilon}-\frac{z_k-z_{k-1}}{\epsilon}\right)
--\epsilon\frac{\partial V}{\partial z}\bigg|_{x_k,y_k,z_k}
-\end{align*}
+\begin{equation*}
+\nabla_k
+=\mathbf i\frac{\partial}{\partial x}
++\mathbf j\frac{\partial}{\partial y}
++\mathbf k\frac{\partial}{\partial z}
+\end{equation*}
+and
+\begin{equation*}
+\mathbf i=\begin{pmatrix}1\\0\\0\end{pmatrix},
+\quad
+\mathbf j=\begin{pmatrix}0\\1\\0\end{pmatrix},
+\quad
+\mathbf k=\begin{pmatrix}0\\0\\1\end{pmatrix}
+\end{equation*}
 
 Let
 \begin{equation*}
@@ -57,34 +51,46 @@ F=x_k+y_k+z_k
 \end{equation*}
 
 Then
-\begin{equation*}
+\begin{align*}
 \nabla_kF
-=\frac{\partial F}{\partial x_k}\mathbf i
+&=\frac{\partial F}{\partial x_k}\mathbf i
 +\frac{\partial F}{\partial y_k}\mathbf j
 +\frac{\partial F}{\partial z_k}\mathbf k
-=\mathbf i+\mathbf j+\mathbf k
-\end{equation*}
-and
+\\
+&=\mathbf i+\mathbf j+\mathbf k
+\end{align*}
+
+Hence
 \begin{equation*}
 \langle\nabla_kF\rangle
 =\langle1\rangle\mathbf i
 +\langle1\rangle\mathbf j
 +\langle1\rangle\mathbf k
+\tag{2}
 \end{equation*}
 
 By equation (7.43)
 \begin{align*}
-\left\langle F\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
 &=\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
 \\
-\left\langle F\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
 &=\left\langle y_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
 \\
-\left\langle F\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
 &=\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
 \end{align*}
 
-By equation (7.33)
+Hence
+\begin{equation*}
+\langle F\nabla_kS\rangle
+=\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
++\left\langle y_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
++\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+\tag{3}
+\end{equation*}
+
+By equations (1), (2), and (3)
 \begin{align*}
 \langle1\rangle\mathbf i
 &=-\frac{i}{\hbar}\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
@@ -96,7 +102,7 @@ By equation (7.33)
 &=-\frac{i}{\hbar}\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
 \end{align*}
 
-Then by the same arguments that led to equation (7.49) we have
+Then by the same arguments in the book for equation (7.49) we have
 \begin{align*}
 \left\langle(x_{k+1}-x_k)^2\right\rangle\mathbf i&=-\frac{\hbar\epsilon}{im}\langle1\rangle\mathbf i
 \\
@@ -106,45 +112,5 @@ Then by the same arguments that led to equation (7.49) we have
 \end{align*}
 
 Hence (7.50) is shown to be true.
-
-\bigskip
-Let
-\begin{equation*}
-F=x_ky_kz_k
-\end{equation*}
-
-Then
-\begin{equation*}
-\langle\nabla_kF\rangle
-=\langle y_kz_k\rangle\mathbf i
-+\langle x_kz_k\rangle\mathbf j
-+\langle x_ky_k\rangle\mathbf k
-\end{equation*}
-
-By equation (7.43)
-\begin{align*}
-\left\langle y_kz_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i&=0
-\\
-\left\langle x_kz_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j&=0
-\\
-\left\langle x_ky_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k&=0
-\end{align*}
-
-Then by equation (7.33)
-\begin{equation*}
-\left\langle\nabla_kF\right\rangle=-\frac{i}{\hbar}\left\langle F\nabla_kS\right\rangle
-\tag{7.33}
-\end{equation*}
-we have
-\begin{align*}
-\langle y_kz_k\rangle&=0
-\\
-\langle x_kz_k\rangle&=0
-\\
-\langle x_ky_k\rangle&=0
-\end{align*}
-
-The above argument can be repeated for all combinations of subscripts $k$ and $k+1$
-hence (7.51) is shown to be true.
 
 \end{document}
