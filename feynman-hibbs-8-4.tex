@@ -19,26 +19,50 @@ equation (8.78) can be written
 \end{equation*}
 (where $A$ is a constant) by starting with the wave function in terms of
 the real variables $Q_\alpha^c$ and $Q_\alpha^s$.
-
-\bigskip
-Consider equations (8.67) and (8.82).
 \begin{gather*}
-L=\frac{1}{2}\sum_{j=1}^N\dot q_j^2
--\frac{\nu^2}{2}\sum_{j=1}^{N-1}(q_{j+1}-q_j)^2
-\tag{8.67}
+L=\frac{1}{2}\sum_{\alpha=0}^{N-1}
+\left(\dot Q_\alpha^*\dot Q_\alpha-\omega_\alpha^2Q_\alpha^*Q_\alpha\right)
+\tag{8.78}
 \\
-q_j(t)=
-\sqrt{\frac{2}{N}}\left(
-\frac{1}{2}Q_0^c(t)
-+\sum_{\alpha=1}^{(N-1)/2}
-\left(
-Q_\alpha^c(t)\cos\frac{2\pi\alpha j}{N}
-+Q_\alpha^s(t)\sin\frac{2\pi\alpha j}{N}
-\right)
-\right)
-\tag{8.82}
+Q_\alpha^c=\frac{1}{\sqrt2}(Q_\alpha+Q_\alpha^*)
+\tag{8.79}
+\\
+Q_\alpha^s=\frac{i}{\sqrt2}(Q_\alpha-Q_\alpha^*)
+\tag{8.80}
 \end{gather*}
 
+Rewrite (8.78) as
+\begin{equation*}
+L=\frac{1}{2}\dot Q_0^*\dot Q_0
+-\frac{1}{2}\omega_0^2Q_0^*Q_0
++\frac{1}{2}\sum_{\alpha=1}^{N-1}
+\left(\dot Q_\alpha^*\dot Q_\alpha-\omega_\alpha^2Q_\alpha^*Q_\alpha\right)
+\end{equation*}
 
+Note that
+\begin{equation*}
+Q_0^c=\frac{1}{\sqrt2}(Q_0+Q_0^*)=\sqrt2Q_0
+\end{equation*}
+and
+\begin{align*}
+Q_\alpha^*Q_\alpha
+&=\frac{1}{2}(Q_\alpha^c+iQ_\alpha^s)(Q_\alpha^c-iQ_\alpha^s)
+\\
+&=\frac{1}{2}(Q_\alpha^c)^2+\frac{1}{2}(Q_\alpha^s)^2
+\end{align*}
+
+Hence
+\begin{equation*}
+L=\frac{1}{4}(\dot Q_0^c)^2-\frac{1}{4}\omega^2(Q_0^c)^2
++\frac{1}{4}\sum_{\alpha=1}^{N-1}
+\left(
+(\dot Q_\alpha^c)^2
++(\dot Q_\alpha^s)^2
+-\omega_\alpha^2(Q_\alpha^c)^2
+-\omega_\alpha^2(Q_\alpha^s)^2
+\right)
+\end{equation*}
+
+% FIXME go from L to wave function
 
 \end{document}
