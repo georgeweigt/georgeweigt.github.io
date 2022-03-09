@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+8-3.
+Show that $Q_\alpha^c$, $Q_\alpha^s$ are normal coordinates
+corresponding to standing wave normal modes
+$\cos(2\pi\alpha j/N)$ and $\sin(2\pi\alpha j/N)$,
+in the sense that (for $N$ odd)
+\begin{multline*}
+q_j(t)=
+\\
+\sqrt{\frac{2}{N}}\left(
+\frac{1}{2}Q_0^c(t)
++\sum_{\alpha=1}^{(N-1)/2}
+\left(
+Q_\alpha^c(t)\cos\frac{2\pi\alpha j}{N}
++Q_\alpha^s(t)\sin\frac{2\pi\alpha j}{N}
+\right)
+\right)
+\tag{8.82}
+\end{multline*}
+
+Consider the following equations.
+\begin{gather*}
+Q_\alpha(t)=\frac{1}{\sqrt N}\sum_{k=1}^Nq_k(t)
+\left(
+\cos\frac{2\pi\alpha k}{N}-i\sin\frac{2\pi\alpha k}{N}
+\right)
+\tag{8.77}
+\\
+Q_\alpha^c=\frac{1}{\sqrt2}(Q_\alpha+Q_\alpha^*)
+\tag{8.79}
+\\
+Q_\alpha^s=\frac{i}{\sqrt2}(Q_\alpha-Q_\alpha^*)
+\tag{8.80}
+\end{gather*}
+
+Let
+\begin{align*}
+T_1&=\cos\frac{2\pi\alpha k}{N}\cos\frac{2\pi\alpha j}{N}
+-i\sin\frac{2\pi\alpha k}{N}\cos\frac{2\pi\alpha j}{N}
+\\
+T_2&=\cos\frac{2\pi\alpha k}{N}\cos\frac{2\pi\alpha j}{N}
++i\sin\frac{2\pi\alpha k}{N}\cos\frac{2\pi\alpha j}{N}
+\\
+T_3&=i\cos\frac{2\pi\alpha k}{N}\sin\frac{2\pi\alpha j}{N}
++\sin\frac{2\pi\alpha k}{N}\sin\frac{2\pi\alpha j}{N}
+\\
+T_4&=i\cos\frac{2\pi\alpha k}{N}\sin\frac{2\pi\alpha j}{N}
+-\sin\frac{2\pi\alpha k}{N}\sin\frac{2\pi\alpha j}{N}
+\end{align*}
+
+Hence
+\begin{equation*}
+T=T_1+T_2+T_3-T_4
+=2\cos\frac{2\pi\alpha k}{N}\cos\frac{2\pi\alpha j}{N}
++2\sin\frac{2\pi\alpha k}{N}\sin\frac{2\pi\alpha j}{N}
+\end{equation*}
+
+By trigonometric identities
+\begin{equation*}
+T=2\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
+\end{equation*}
+
+It follows that
+\begin{multline*}
+\sum_{\alpha=1}^{(N-1)/2}
+\left(Q_\alpha^c\cos\frac{2\pi\alpha j}{N}
++Q_\alpha^s\sin\frac{2\pi\alpha j}{N}\right)
+=\sum_{\alpha=1}^{(N-1)/2}\frac{1}{\sqrt N}\sum_{k=1}^Nq_k\frac{T}{\sqrt2}
+\\
+=\sqrt{\frac{2}{N}}\sum_{\alpha=1}^{(N-1)/2}\sum_{k=1}^N
+q_k\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
+\end{multline*}
+
+% FIXME incomplete
+
+\end{document}

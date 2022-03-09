@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+8-4.
+Show that the ground-state wave function for the Lagrangian of
+equation (8.78) can be written
+\begin{equation*}
+\Phi_0=A\exp\left(
+-\frac{1}{2\hbar}
+\sum_{\alpha=1}^{N-1}
+\omega_\alpha Q_\alpha^*Q_\alpha
+\right)
+\tag{8.83}
+\end{equation*}
+(where $A$ is a constant) by starting with the wave function in terms of
+the real variables $Q_\alpha^c$ and $Q_\alpha^s$.
+
+\bigskip
+Consider equation (8.82).
+\begin{multline*}
+q_j(t)=
+\\
+\sqrt{\frac{2}{N}}\left(
+\frac{1}{2}Q_0^c(t)
++\sum_{\alpha=1}^{(N-1)/2}
+\left(
+Q_\alpha^c(t)\cos\frac{2\pi\alpha j}{N}
+-Q_\alpha^s(t)\sin\frac{2\pi\alpha j}{N}
+\right)
+\right)
+\tag{8.82}
+\end{multline*}
+
+
+
+\begin{gather*}
+L=\frac{1}{2}\sum_{\alpha=0}^{N-1}
+\left(\dot Q_\alpha^*\dot Q_\alpha-\omega_\alpha^2Q_\alpha^*Q_\alpha\right)
+\tag{8.78}
+\\
+Q_\alpha^c=\frac{1}{\sqrt2}(Q_\alpha+Q_{-\alpha})
+\tag{8.79}
+\\
+Q_\alpha^s=\frac{i}{\sqrt2}(Q_\alpha-Q_{-\alpha})
+\tag{8.80}
+\end{gather*}
+
+Consider this part of equation (8.63).
+\begin{equation*}
+\Phi_0=\exp\left(
+-\frac{1}{2\hbar}\sum_{\alpha=1}^n\omega_\alpha Q_\alpha^2
+\right)
+\tag{8.63}
+\end{equation*}
+
+How to go from Lagrangian to wave function?
+
+\end{document}
