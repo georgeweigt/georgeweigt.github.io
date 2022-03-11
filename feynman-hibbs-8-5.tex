@@ -32,11 +32,14 @@ Show that the following expectation values are correct (for $\alpha\ne0$).
 &=\langle\Phi_0^*|Q_\alpha^{*2}|\Phi_0\rangle=0
 \\
 \langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle
-&=\frac{\hbar}{2\omega_\alpha}\langle\Phi_0^*|1|\Phi_0\rangle
+&=\frac{\hbar}{\omega_\alpha}\langle\Phi_0^*|1|\Phi_0\rangle
 \\
 \langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle&=0,\quad\alpha\ne\beta
 \end{align*}
 
+(Note: A typo in $\hbar/\omega$ is corrected here.)
+
+\bigskip
 Recall that
 \begin{equation*}
 Q_\alpha=\frac{1}{\sqrt2}(Q_\alpha^c-iQ_\alpha^s)
@@ -48,7 +51,7 @@ Q_\alpha^*Q_\alpha=\frac{1}{2}(Q_\alpha^c)^2+\frac{1}{2}(Q_\alpha^s)^2
 \tag{1}
 \end{equation*}
 
-Here is equation (8.83).
+Consider equation (8.83).
 \begin{equation*}
 \Phi_0=A\exp\left(
 -\frac{1}{2\hbar}
@@ -58,7 +61,7 @@ Here is equation (8.83).
 \tag{8.83}
 \end{equation*}
 
-Compute $\Phi_0^*\Phi_0$.
+It follows that
 \begin{align*}
 \Phi_0^*\Phi_0
 &=A^2
@@ -137,13 +140,7 @@ u\frac{Q_1^c-iQ_1^s}{\sqrt2}
 \,dQ_1^c\,dQ_1^s
 \end{equation*}
 
-By equation (2) we have
-\begin{equation*}
-I=0
-\end{equation*}
-
-Since $I=0$ there is no need to continue integrating as in (8.84).
-Hence
+By equation (2), $I=0$ hence
 \begin{equation*}
 \langle\Phi_0^*|Q_1|\Phi_0\rangle=0
 \end{equation*}
@@ -181,7 +178,7 @@ u(Q_1^c)^2\,dQ_1^c\,dQ_1^s
 u(Q_1^s)^2\,dQ_1^c\,dQ_1^s
 \end{multline*}
 
-The first integral vanishes by (1).
+The first integral vanishes by (2).
 The remaining integrals cancel by symmetry, hence
 \begin{equation*}
 \langle\Phi_0^*|Q_1^2|\Phi_0\rangle=0
@@ -190,8 +187,7 @@ The remaining integrals cancel by symmetry, hence
 Compute the expectation value for $Q_1^{*2}$.
 (As above except the first integral is positive.)
 \begin{multline*}
-\langle\Phi_0^*|Q_1^{*2}|\Phi_0\rangle
-=i\int_{-\infty}^\infty\int_{-\infty}^\infty
+I=i\int_{-\infty}^\infty\int_{-\infty}^\infty
 uQ_1^cQ_1^s\,dQ_1^c\,dQ_1^s
 \\
 {}+\frac{1}{2}
@@ -244,8 +240,8 @@ u
 {}+
 \frac{\hbar}{2\omega_1}
 \frac{2\pi\hbar}{\omega_1}
-\exp\left(\frac{\omega_1}{2\hbar}(Q_1^c)^2\right)
 \exp\left(\frac{\omega_1}{2\hbar}(Q_1^s)^2\right)
+\exp\left(\frac{\omega_1}{2\hbar}(Q_1^c)^2\right)
 u
 \end{multline*}
 
@@ -257,14 +253,32 @@ Now integrate over the remaining measure as in (8.84).
 =\frac{\hbar}{\omega_1}
 \frac{2\pi\hbar}{\omega_1}
 \prod_{k=2}^{N-1}\frac{2\pi\hbar}{\omega_k}
+\tag{7}
 \end{multline*}
 
-By equation (1)
+By equations (1) and (4)
 \begin{equation*}
 \langle\Phi_0^*|1|\Phi_0\rangle
 =\prod_{k=1}^{N-1}\frac{2\pi\hbar}{\omega_k}
+\tag{8}
 \end{equation*}
 
-% FIXME
+Hence by (7) and (8)
+\begin{equation*}
+\langle\Phi_0^*|Q_1^*Q_1|\Phi_0\rangle=\frac{\hbar}{\omega_1}\langle\Phi_0^*|1|\Phi_0\rangle
+\end{equation*}
+
+Compute the expectation value for $Q_1^*Q_2$.
+Let
+\begin{equation*}
+I=\frac{1}{2}\int_{-\infty}^\infty\int_{-\infty}^\infty
+u\left(Q_1^cQ_2^c-Q_1^sQ_2^s-iQ_1^cQ_2^s-iQ_1^sQ_2^c\right)
+\,dQ_1^c\,dQ_1^s
+\end{equation*}
+
+By equation (2), $I=0$ hence
+\begin{equation*}
+\langle\Phi_0^*|Q_1^*Q_2|\Phi_0\rangle=0
+\end{equation*}
 
 \end{document}
