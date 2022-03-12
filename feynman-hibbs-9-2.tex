@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-2.
+Explain why the charge density corresponding to a single
+charge $q$ located at the point $\mathbf x(t)=(x(t),y(t),z(t))$
+at time $t$ is
+\begin{equation*}
+\rho(\mathbf r,t)=q
+\delta(r_x-x(t))
+\delta(r_y-y(t))
+\delta(r_z-z(t))
+=q\delta^3(\mathbf r-\mathbf x(t))
+\end{equation*}
+
+From equation (9.14)
+\begin{equation*}
+\rho(\mathbf r,t)=\int\rho_{\mathbf k}(t)
+\exp(i\mathbf k\cdot\mathbf r)
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+For a point charge at $\mathbf x(t)$
+\begin{equation*}
+\rho_{\mathbf k}(t)=\begin{cases}
+q & \mathbf k\cdot\mathbf r=0
+\\
+0 & \mathbf k\cdot\mathbf r\ne0
+\end{cases}
+\end{equation*}
+
+Rewrite as
+\begin{multline*}
+\rho(\mathbf r,t)=
+\\
+\frac{1}{(2\pi)^3}
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\rho_{\mathbf k}(t)
+\exp(ik_xr_x)
+\exp(ik_yr_y)
+\exp(ik_zr_z)
+\,dk_x\,dk_y\,dk_z
+\end{multline*}
+
+\end{document}

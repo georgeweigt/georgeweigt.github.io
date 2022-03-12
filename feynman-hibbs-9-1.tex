@@ -15,12 +15,14 @@ mutually perpendicular for this plane-wave solution.
 \tag{9.12}
 \end{equation*}
 
-For an arbitrary direction vector $\mathbf k'$,
+For an arbitrary $\mathbf k'$
 choose a rotation matrix $\mathbf R$ such that
 \begin{equation*}
-\mathbf k=\mathbf R\,\mathbf k'=\begin{pmatrix}0\\0\\1\end{pmatrix}
+\mathbf k=\mathbf R\,\mathbf k'=\begin{pmatrix}0\\0\\k\end{pmatrix}
 \end{equation*}
+where $k=|\mathbf k'|$.
 
+\bigskip
 By the requirement that $\mathbf a_{\mathbf k}\cdot\mathbf k=0$, let
 \begin{equation*}
 \mathbf a_{\mathbf k}=a(t)\begin{pmatrix}1\\1\\0\end{pmatrix}
@@ -30,9 +32,9 @@ Then by equation (9.12)
 \begin{equation*}
 \mathbf A=\mathbf a_{\mathbf k}\exp(i\mathbf k\cdot\mathbf r)
 =\begin{pmatrix}
-a(t)\exp(iz)
+a(t)\exp(ikz)
 \\[1ex]
-a(t)\exp(iz)
+a(t)\exp(ikz)
 \\[1ex]
 0
 \end{pmatrix}
@@ -43,9 +45,9 @@ By equation (9.9) with $\phi=0$
 \mathbf E=-\frac{1}{c}\frac{\partial\mathbf A}{\partial t}=
 -\frac{1}{c}\frac{da(t)}{dt}
 \begin{pmatrix}
-\exp(iz)
+\exp(ikz)
 \\[1ex]
-\exp(iz)
+\exp(ikz)
 \\[1ex]
 0
 \end{pmatrix}
@@ -55,9 +57,9 @@ By equation (9.7)
 \begin{equation*}
 \mathbf B=\nabla\times\mathbf A=
 \begin{pmatrix}
--ia(t)\exp(iz)
+-ia(t)\exp(ikz)
 \\[1ex]
-ia(t)\exp(iz)
+ia(t)\exp(ikz)
 \\[1ex]
 0
 \end{pmatrix}
