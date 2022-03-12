@@ -31,13 +31,14 @@ q & \mathbf r=\mathbf x(t)
 Hence
 \begin{equation*}
 \rho(\mathbf r,t)=q\delta^3(\mathbf r-\mathbf x(t))
+\tag{1}
 \end{equation*}
 
 (9-2 cont'd)
 Show that
 \begin{equation*}
 \rho_{\mathbf k}(t)=q\exp(-i\mathbf k\cdot\mathbf x(t))
-\tag{1}
+\tag{2}
 \end{equation*}
 
 From equation (9.14)
@@ -45,10 +46,10 @@ From equation (9.14)
 \rho(\mathbf r,t)=\int\rho_{\mathbf k}(t)
 \exp(i\mathbf k\cdot\mathbf r)
 \frac{d^3\mathbf k}{(2\pi)^3}
-\tag{2}
+\tag{3}
 \end{equation*}
 
-Substitute (1) into (2).
+Substitute (2) into (3).
 \begin{equation*}
 \rho(\mathbf r,t)=\frac{q}{(2\pi)^3}
 \int_{-\infty}^\infty
@@ -68,6 +69,10 @@ Hence
 \rho(\mathbf r,t)=q\delta^3(\mathbf r-\mathbf x(t))
 \end{equation*}
 
+By equation (1) this is the correct result,
+hence (2) is correct.
+
+\bigskip
 (9-2 cont'd)
 Explain why the current density is
 \begin{equation*}
@@ -92,10 +97,10 @@ From equation (9.14)
 =\int\mathbf j_{\mathbf k}(t)
 \exp(i\mathbf k\cdot\mathbf r)
 \frac{d^3\mathbf k}{(2\pi)^3}
-\tag{3}
+\tag{4}
 \end{equation*}
 
-Substitute (9.16) into (3).
+Substitute (9.16) into (4).
 \begin{equation*}
 \mathbf j(\mathbf r,t)
 =\frac{q}{(2\pi)^3}\dot{\mathbf x}(t)
