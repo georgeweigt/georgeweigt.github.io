@@ -22,32 +22,32 @@ i\int\mathbf k\left(\mathbf a_{\mathbf k}^*\cdot\dot{\mathbf a}_{\mathbf k}\righ
 
 Let
 \begin{equation*}
-D=\exp(i\mathbf k\cdot\mathbf r)\,\frac{d^3\mathbf k}{(2\pi)^3}
+D_{\mathbf k}=\exp(i\mathbf k\cdot\mathbf r)\,\frac{d^3\mathbf k}{(2\pi)^3}
 \end{equation*}
 
 By equation (9.14)
 \begin{equation*}
-\mathbf A\,d^3\mathbf r=\sqrt{4\pi}c\,\mathbf a_{\mathbf k}\,D
+\mathbf A\,d^3\mathbf r=\sqrt{4\pi}c\,\mathbf a_{\mathbf k}\,D_{\mathbf k}
 \tag{1}
 \end{equation*}
 
 By equation (1) and (9.9) with $\phi=0$
 \begin{equation*}
 \mathbf E\,d^3\mathbf r=-\frac{1}{c}\frac{\partial\mathbf A}{\partial t}
-=-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}\,D
+=-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}\,D_{\mathbf k}
 \end{equation*}
 
 By equation (1) and (9.7)
 \begin{equation*}
 \mathbf B\,d^3\mathbf r=\nabla\times\mathbf A\,d^3\mathbf r
-=\sqrt{4\pi}ic\,\mathbf k\times\mathbf a_{\mathbf k}\,D
+=\sqrt{4\pi}ic\,\mathbf k\times\mathbf a_{\mathbf k}\,D_{\mathbf k}
 \end{equation*}
 
 Hence
 \begin{equation*}
 \mathbf E\times\mathbf B=-4\pi ic\int
 \dot{\mathbf a}_{\mathbf k}
-\times\left(\mathbf k\times\mathbf a_{\mathbf k}\right)\,D
+\times\left(\mathbf k\times\mathbf a_{\mathbf k}\right)\,D_{\mathbf k}
 \end{equation*}
 
 By the triple product formula
@@ -56,7 +56,7 @@ By the triple product formula
 \big(
 (\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
 -(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}
-\big)\,D
+\big)\,D_{\mathbf k}
 \end{equation*}
 
 By orthogonality of $\mathbf E$ and $\mathbf k$ (see problem 9-1),
@@ -64,7 +64,7 @@ $\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k=0$ hence
 \begin{equation*}
 \mathbf E\times\mathbf B
 =-4\pi ic\int(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
-\,D
+\,D_{\mathbf k}
 \end{equation*}
 
 Integrate over all space.
@@ -76,6 +76,6 @@ Integrate over all space.
 \end{equation*}
 
 Note: Integrating over all $\mathbf r$ is the same as integrating over all $\mathbf k$,
-hence the exponential in $D$ is cancelled.
+hence the exponential in $D_{\mathbf k}$ is cancelled.
 
 \end{document}
