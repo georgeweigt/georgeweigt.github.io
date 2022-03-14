@@ -20,23 +20,35 @@ i\int\mathbf k\left(\mathbf a_{\mathbf k}^*\cdot\dot{\mathbf a}_{\mathbf k}\righ
 \frac{d^3\mathbf k}{(2\pi)^3}
 \end{equation*}
 
-From equations (9.26) and (9.27) with $\phi=0$ we have
+By equation (9.14)
 \begin{equation*}
-\mathbf E\,d^3\mathbf r=\sqrt{4\pi}\dot{\mathbf a}_{\mathbf k}\,\frac{d^3\mathbf k}{(2\pi)^3}
-\qquad
-\mathbf B\,d^3\mathbf r=\sqrt{4\pi}ic\mathbf k\times\mathbf a_{\mathbf k}\,\frac{d^3\mathbf k}{(2\pi)^3}
+\mathbf A\,d^3\mathbf r=\sqrt{4\pi}c\,\mathbf a_{\mathbf k}\,\frac{d^3\mathbf k}{(2\pi)^3}
+\tag{1}
+\end{equation*}
+
+By equation (1) and (9.9) with $\phi=0$
+\begin{equation*}
+\mathbf E\,d^3\mathbf r=-\frac{1}{c}\frac{\partial\mathbf A}{\partial t}
+=-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+By equation (1) and (9.7)
+\begin{equation*}
+\mathbf B\,d^3\mathbf r=\nabla\times\mathbf A\,d^3\mathbf r
+=\sqrt{4\pi}ic\,\mathbf k\times\mathbf a_{\mathbf k}
+\,\frac{d^3\mathbf k}{(2\pi)^3}
 \end{equation*}
 
 Hence
 \begin{align*}
 \mathbf E\times\mathbf B\,d^3\mathbf r
-&=\sqrt{4\pi}\dot{\mathbf a}_{\mathbf k}
-\times\left(\sqrt{4\pi}ic\mathbf k\times\mathbf a_{\mathbf k}\right)
+&=-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}
+\times\left(\sqrt{4\pi}ic\,\mathbf k\times\mathbf a_{\mathbf k}\right)
 \,\frac{d^3\mathbf k}{(2\pi)^3}
 \\
-&=4\pi ic(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+&=-4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
 \,\frac{d^3\mathbf k}{(2\pi)^3}
--4\pi ic(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}
++4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}
 \,\frac{d^3\mathbf k}{(2\pi)^3}
 \end{align*}
 
@@ -44,7 +56,7 @@ By orthogonality of $\mathbf E$ and $\mathbf k$ (see problem 9-1),
 $\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k=0$ hence
 \begin{align*}
 \mathbf E\times\mathbf B\,d^3\mathbf r
-=4\pi ic(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k\,\frac{d^3\mathbf k}{(2\pi)^3}
+=-4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k\,\frac{d^3\mathbf k}{(2\pi)^3}
 \end{align*}
 
 \end{document}
