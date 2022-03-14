@@ -44,20 +44,35 @@ By equation (1) and (9.7)
 \end{equation*}
 
 Hence
-\begin{align*}
-\mathbf E\times\mathbf B\,d^3\mathbf r
-&=-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}
-\times\left(\sqrt{4\pi}ic\,\mathbf k\times\mathbf a_{\mathbf k}\right)\,D
-\\
-&=-4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k\,D
-+4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}\,D
-\end{align*}
+\begin{equation*}
+\mathbf E\times\mathbf B=-4\pi ic\int
+\dot{\mathbf a}_{\mathbf k}
+\times\left(\mathbf k\times\mathbf a_{\mathbf k}\right)\,D
+\end{equation*}
+
+By the triple product formula
+\begin{equation*}
+\mathbf E\times\mathbf B=-4\pi ic\int
+\big(
+(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+-(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}
+\big)\,D
+\end{equation*}
 
 By orthogonality of $\mathbf E$ and $\mathbf k$ (see problem 9-1),
 $\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k=0$ hence
 \begin{equation*}
-\mathbf E\times\mathbf B\,d^3\mathbf r
-=-4\pi ic\,(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k\,D
+\mathbf E\times\mathbf B
+=-4\pi ic\int(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+\,D
+\end{equation*}
+
+Integrate over all space.
+\begin{equation*}
+\int\mathbf E\times\mathbf B
+\,d^3\mathbf r
+=-4\pi ic\int(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+\,\frac{d^3\mathbf k}{(2\pi)^3}
 \end{equation*}
 
 \end{document}
