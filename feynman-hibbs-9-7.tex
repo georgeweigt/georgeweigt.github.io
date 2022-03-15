@@ -49,9 +49,9 @@ From problem 9-6
 
 Adapted from equation (8.84)
 \begin{equation*}
-\langle\Phi_0|F|\Phi_0\rangle
+\langle\Phi_0|f|\Phi_0\rangle
 =\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*F\Phi_0
+\Phi_0^*f\Phi_0
 \,dA\,dB\,dC\,dD
 \end{equation*}
 
@@ -83,14 +83,13 @@ K=\langle\Phi_0|1|\Phi_0\rangle
 \,dA\,dB\,dC\,dD
 \end{equation*}
 
-Apply equation (1) for each factor in the measure (see problem 8-5).
+Apply integral (1) for each factor in the measure (see problem 8-5).
 \begin{equation*}
 K=
 \left(\frac{2\pi\hbar}{kc}\right)^{1/2}
 \left(\frac{2\pi\hbar}{kc}\right)^{1/2}
 \left(\frac{2\pi\hbar}{qc}\right)^{1/2}
 \left(\frac{2\pi\hbar}{qc}\right)^{1/2}
-=\frac{4\pi^2\hbar^2}{kqc^2}
 \end{equation*}
 
 Compute the expectation value for $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}$.
@@ -124,7 +123,7 @@ B^2
 \,dA\,dB\,dC\,dD
 \end{multline*}
 
-By equations (1) and (3) we have
+By integrals (1) and (3) we have
 \begin{equation*}
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
 =\frac{1}{K}\frac{\hbar}{kc}\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
@@ -143,7 +142,23 @@ Compute the expectation value for $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$.
 From (4) we have
 \begin{equation*}
 \bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}
-=\frac{1}{2}AC-\frac{1}{2}BD-\frac{i}{2}AD-\frac{i}{2}BC
+=\frac{AC+BD-iAD+iBC}{2}
+\end{equation*}
+
+Hence
+\begin{multline*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=
+\\
+\frac{1}{K}\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+\Phi_0^*\Phi_0
+\frac{AC+BD-iAD+iBC}{2}
+\,dA\,dB\,dC\,dD
+\end{multline*}
+
+By integral (2) all terms are zero, hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=0
+\tag{6}
 \end{equation*}
 
 \end{document}

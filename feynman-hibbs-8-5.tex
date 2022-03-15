@@ -4,8 +4,6 @@
 
 \parindent=0pt
 
-\DeclareMathOperator\erf{erf}
-
 \begin{document}
 
 8-5.
@@ -24,7 +22,8 @@ equation (8.83) is
 corresponding integral over real normal coordinates $Q_\alpha^c$
 and $Q_\alpha^s$.)
 Show that the following expectation values are correct (for $\alpha\ne0$).
-\begin{align*}
+\begin{equation*}
+\begin{aligned}
 \langle\Phi_0^*|Q_\alpha|\Phi_0\rangle
 &=\langle\Phi_0^*|Q_\alpha^*|\Phi_0\rangle=0
 \\
@@ -32,14 +31,13 @@ Show that the following expectation values are correct (for $\alpha\ne0$).
 &=\langle\Phi_0^*|Q_\alpha^{*2}|\Phi_0\rangle=0
 \\
 \langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle
-&=\frac{\hbar}{\omega_\alpha}\langle\Phi_0^*|1|\Phi_0\rangle
+&=\frac{\hbar}{2\omega_\alpha}\langle\Phi_0^*|1|\Phi_0\rangle
 \\
 \langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle&=0,\quad\alpha\ne\beta
-\end{align*}
+\end{aligned}
+\tag{8.85}
+\end{equation*}
 
-(Note: A typo in $\hbar/\omega$ is corrected here.)
-
-\bigskip
 Recall that
 \begin{equation*}
 Q_\alpha=\frac{1}{\sqrt2}(Q_\alpha^c-iQ_\alpha^s)
@@ -62,28 +60,16 @@ Consider equation (8.83).
 \end{equation*}
 
 It follows that
-\begin{align*}
+\begin{equation*}
 \Phi_0^*\Phi_0
-&=A^2
-\exp\left(
--\frac{1}{2\hbar}
-\sum_{\alpha=1}^{N-1}
-\omega_\alpha Q_\alpha Q_\alpha^*
-\right)
-\exp\left(
--\frac{1}{2\hbar}
-\sum_{\alpha=1}^{N-1}
-\omega_\alpha Q_\alpha^*Q_\alpha
-\right)
-\\
-&=A^2
+=A^2
 \exp\left(
 -\frac{1}{\hbar}
 \sum_{\alpha=1}^{N-1}
 \omega_\alpha Q_\alpha^*Q_\alpha
 \right)
 \tag{2}
-\end{align*}
+\end{equation*}
 
 Substitute (1) into (2).
 \begin{equation*}
@@ -268,6 +254,9 @@ Hence by (7) and (8)
 \langle\Phi_0^*|Q_1^*Q_1|\Phi_0\rangle=\frac{\hbar}{\omega_1}\langle\Phi_0^*|1|\Phi_0\rangle
 \end{equation*}
 
+FIXME Wrong by a factor of 2.
+
+\bigskip
 Compute the expectation value for $Q_1^*Q_2$.
 Let
 \begin{equation*}
