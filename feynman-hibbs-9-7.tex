@@ -47,7 +47,7 @@ From problem 9-6
 \tag{4}
 \end{equation*}
 
-Adapted from equation (8.84)
+Adapted from equation (8.84).
 \begin{equation*}
 \langle\Phi_0|f|\Phi_0\rangle
 =\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
@@ -83,7 +83,7 @@ K=\langle\Phi_0|1|\Phi_0\rangle
 \,dA\,dB\,dC\,dD
 \end{equation*}
 
-Apply integral (1) for each factor in the measure (see problem 8-5).
+By integral (1) for each factor in the measure (see problem 8-5)
 \begin{equation*}
 K=
 \left(\frac{2\pi\hbar}{kc}\right)^{1/2}
@@ -92,7 +92,7 @@ K=
 \left(\frac{2\pi\hbar}{qc}\right)^{1/2}
 \end{equation*}
 
-Compute the expectation value for $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}$.
+Compute the expectation of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}$.
 From (4) we have
 \begin{equation*}
 \bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}=\frac{A^2+B^2}{2}
@@ -138,8 +138,7 @@ Hence
 \tag{5}
 \end{equation*}
 
-Compute the expectation value for $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$.
-From (4) we have
+Compute the expectation of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$.
 \begin{equation*}
 \bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}
 =\frac{AC+BD-iAD+iBC}{2}
@@ -160,5 +159,101 @@ By integral (2) all terms are zero, hence
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=0
 \tag{6}
 \end{equation*}
+
+Combine (5) and (6) to obtain
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{kc}\delta_{\mathbf k,\mathbf q}
+\end{equation*}
+
+Note that by equation (8.77)
+\begin{equation*}
+\bar a_{1,\mathbf k}^*=\bar a_{1,-\mathbf k}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,-\mathbf k}\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{kc}\delta_{\mathbf k,\mathbf q}
+\end{equation*}
+
+(9-7 cont'd)
+Develop a formula for the expectation of
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r$
+for integral $r$ and explain thereby how the expectation of such
+quantities as
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s$
+can be got for $\mathbf q\ne\mathbf k$.
+
+\bigskip
+By the binomial theorem
+\begin{equation*}
+\left(\frac{A^2+B^2}{2}\right)^r=\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}A^{2j}B^{2(r-j)}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
+=\frac{1}{2^r}
+\sum_{j=0}^r\binom{r}{j}
+\langle\Phi_0^*|A^{2j}B^{2(r-j)}|\Phi_0\rangle
+\end{equation*}
+
+For $\mathbf q\ne\mathbf k$
+\begin{equation*}
+\begin{aligned}
+&\left(\frac{A^2+B^2}{2}\right)^r\left(\frac{C^2+D^2}{2}\right)^s
+\\
+&\qquad{}=\left(\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}A^{2j}B^{2(r-j)}\right)
+\left(\frac{1}{2^s}\sum_{k=0}^s\binom{s}{k}C^{2k}D^{2(r-k)}\right)
+\\
+&\qquad{}=\frac{1}{2^{r+s}}\sum_{j=0}^r\sum_{k=0}^s
+\binom{r}{j}\binom{s}{k}
+A^{2j}B^{2(r-j)}C^{2k}D^{2(s-k)}
+\end{aligned}
+\end{equation*}
+
+Hence
+\begin{multline*}
+\langle\Phi_0^*|
+(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s
+|\Phi_0\rangle={}
+\\
+\frac{1}{2^{r+s}}\sum_{j=0}^r\sum_{k=0}^s
+\binom{r}{j}\binom{s}{k}
+\langle\Phi_0^*|
+A^{2j}B^{2(r-j)}C^{2k}D^{2(s-k)}
+|\Phi_0\rangle
+\end{multline*}
+
+(9-7 cont'd)
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+
+\bigskip
+We have
+\begin{equation*}
+(\bar a_{1,\mathbf k})^2=\frac{A^2-B^2}{2}-iAB
+\qquad
+(\bar a_{1,\mathbf k}^*)^2=\frac{A^2-B^2}{2}+iAB
+\end{equation*}
+
+The integrals of $A^2$ and $-B^2$ cancel each other.
+The integral of $AB$ vanishes by integral (2).
+
+\bigskip
+(9-7 cont'd)
+Show that the expectation of the product of any odd number of
+$\bar a$'s is zero and that you can compute the expectation value of
+any product of $\bar a$'s or $\bar a^*$'s for the vacuum state.
+
+\bigskip
+Isn't the expectation of {\it any} number of $\bar a$'s zero?
+It is shown above that the expectation of $(\bar a_{1,\mathbf k})^2$ vanishes.
+
+\bigskip
+FIXME: The result $\hbar/kc$ is wrong by a factor of 2 everywhere it appears.
+Should be $\hbar/2kc$.
 
 \end{document}
