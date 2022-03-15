@@ -210,29 +210,30 @@ To evaluate (7) we need the following integral.
 Based on the above integral, define the following function $F$.
 (The $\sqrt{\pi/a}$ factor is left out because it gets cancelled by the normalization constant $K$.)
 \begin{equation*}
-F(n)=(2n-1)!!\left(\frac{\pi\hbar}{kc}\right)^n
+F(n)=(2n-1)!!\left(\frac{\hbar}{kc}\right)^n
 \end{equation*}
 
 Note that
 \begin{equation*}
 F(j)F(r-j)=
 (2j-1)!!\,(2r-2j-1)!!
-\left(\frac{\pi\hbar}{kc}\right)^j
-\left(\frac{\pi\hbar}{kc}\right)^{r-j}
+\left(\frac{\hbar}{kc}\right)^j
+\left(\frac{\hbar}{kc}\right)^{r-j}
+\end{equation*}
+
+It turns out that
+\begin{equation*}
+\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}(2j-1)!!\,(2r-2j-1)!!=r!
 \end{equation*}
 
 Hence equation (7) can be written as
 \begin{equation*}
 \langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
-=\frac{1}{2^r}
-\left(\frac{\pi\hbar}{kc}\right)^r
-\sum_{j=0}^r\binom{r}{j}
-(2j-1)!!\,(2r-2j-1)!!
+=r!\left(\frac{\hbar}{kc}\right)^r
 \end{equation*}
 
-For $\mathbf q\ne\mathbf k$
-\begin{equation*}
-\begin{aligned}
+Regarding the $\mathbf q\ne\mathbf k$ part of the problem, we have
+\begin{align*}
 &\left(\frac{A^2+B^2}{2}\right)^r\left(\frac{C^2+D^2}{2}\right)^s
 \\
 &\qquad{}=\left(\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}A^{2j}B^{2(r-j)}\right)
@@ -241,8 +242,7 @@ For $\mathbf q\ne\mathbf k$
 &\qquad{}=\frac{1}{2^{r+s}}\sum_{j=0}^r\sum_{k=0}^s
 \binom{r}{j}\binom{s}{k}
 A^{2j}B^{2(r-j)}C^{2k}D^{2(s-k)}
-\end{aligned}
-\end{equation*}
+\end{align*}
 
 Hence
 \begin{multline*}
