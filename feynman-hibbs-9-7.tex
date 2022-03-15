@@ -14,7 +14,7 @@ of $\bar a_{1,\mathbf k}\bar a_{1,\mathbf q}$
 is $(\hbar/2kc)\delta_{-\mathbf k,\mathbf q}$.
 
 \bigskip
-We will use the following integrals.
+We will use the following table of integrals.
 \begin{align*}
 &\int_{-\infty}^\infty\exp(-ax^2+b)\,dx=\sqrt{\frac{\pi}{a}}\exp(b)
 \tag{1}
@@ -196,6 +196,38 @@ Hence
 =\frac{1}{2^r}
 \sum_{j=0}^r\binom{r}{j}
 \langle\Phi_0^*|A^{2j}B^{2(r-j)}|\Phi_0\rangle
+\tag{7}
+\end{equation*}
+
+To evaluate (7) we need the following integral.
+\begin{align*}
+\int_{-\infty}^\infty x^{2n}\exp(-ax^2+b)
+&=\frac{1\cdot3\cdot5\cdots(2n-1)}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+\\
+&=(2n-1)!!\,\frac{1}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+\end{align*}
+
+Based on the above integral, define the following function $F$.
+(The $\sqrt{\pi/a}$ factor is left out because it gets cancelled by the normalization constant $K$.)
+\begin{equation*}
+F(n)=(2n-1)!!\left(\frac{\pi\hbar}{kc}\right)^n
+\end{equation*}
+
+Note that
+\begin{equation*}
+F(j)F(r-j)=
+(2j-1)!!\,(2r-2j-1)!!
+\left(\frac{\pi\hbar}{kc}\right)^j
+\left(\frac{\pi\hbar}{kc}\right)^{r-j}
+\end{equation*}
+
+Hence equation (7) can be written as
+\begin{equation*}
+\langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
+=\frac{1}{2^r}
+\left(\frac{\pi\hbar}{kc}\right)^r
+\sum_{j=0}^r\binom{r}{j}
+(2j-1)!!\,(2r-2j-1)!!
 \end{equation*}
 
 For $\mathbf q\ne\mathbf k$
@@ -225,6 +257,37 @@ Hence
 A^{2j}B^{2(r-j)}C^{2k}D^{2(s-k)}
 |\Phi_0\rangle
 \end{multline*}
+
+We need to add the following to our table of integrals.
+\begin{align*}
+\int_{-\infty}^\infty x^{2n}\exp(-ax^2+b)
+&=\frac{1\cdot3\cdot5\cdots(2n-1)}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+\\
+&=(2n-1)!!\frac{1}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+\end{align*}
+
+Based on the above integral, define the following function $F$.
+(The $\sqrt{\pi/a}$ factor is left out because it gets cancelled by the normalization constant $K$.)
+\begin{equation*}
+F(n)=(2n-1)!!\left(\frac{\pi\hbar}{kc}\right)^n
+\end{equation*}
+
+Note that
+\begin{equation*}
+F(j)F(r-j)=
+(2j-1)!!(2r-2j-1)!!
+\left(\frac{\pi\hbar}{kc}\right)^j
+\left(\frac{\pi\hbar}{kc}\right)^{r-j}
+\end{equation*}
+
+Hence equation (7) can be written as
+\begin{equation*}
+\langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
+=\frac{1}{2^r}
+\left(\frac{\pi\hbar}{kc}\right)^r
+\sum_{j=0}^r\binom{r}{j}
+(2j-1)!!(2r-2j-1)!!
+\end{equation*}
 
 (9-7 cont'd)
 Show that the expectation of 
