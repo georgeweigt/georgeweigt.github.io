@@ -24,23 +24,56 @@ Hence the normalized one-photon state is
 $\sqrt{2kc/\hbar}\bar a_{1,\mathbf k}^*\Phi_0$.
 
 \bigskip
-From problem 9-6, let
+This is a state with the cosine mode excited.
 \begin{equation*}
-\Phi_0=\exp\left(-\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^s)^2\right)
+\bar a_{1,\mathbf k}^c\Phi_0
+\end{equation*}
+
+This is a state with the sine mode excited.
+\begin{equation*}
+\bar a_{1,\mathbf k}^s\Phi_0
+\end{equation*}
+
+This is a linear superposition of the cosine state and $i$ times the sine state.
+\begin{equation*}
+\Phi_1=\frac{1}{\sqrt2}\bar a_{1,\mathbf k}^c\Phi_0+\frac{i}{\sqrt2}\bar a_{1,\mathbf k}^s\Phi_0
+=\bar a_{1,\mathbf k}^*\Phi_0
+\end{equation*}
+
+Here are some additional results.
+
+\bigskip
+From equation (9.43) and problem 9-6, let
+\begin{equation*}
+\Phi_0=\exp\left(
+-\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^s)^2
+-\frac{kc}{4\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{4\hbar}(\bar a_{2,\mathbf k}^s)^2
+\right)
 \end{equation*}
 
 It follows that
 \begin{equation*}
-\Phi_0^*\Phi_0=\exp\left(-\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^s)^2\right)
+\Phi_0^*\Phi_0=\exp\left(
+-\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^s)^2
+-\frac{kc}{2\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{2\hbar}(\bar a_{2,\mathbf k}^s)^2
+\right)
+\end{equation*}
+
+For simplicity of notation, let
+\begin{equation*}
+d\bar a=
+d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s
+\,d\bar a_{2,\mathbf k}^c\,d\bar a_{2,\mathbf k}^s
 \end{equation*}
 
 The expectation of $\Phi_0$ is
 \begin{equation*}
 \langle\Phi_0\rangle=
-\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
 \Phi_0^*\Phi_0
-\,d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s=\frac{2\pi\hbar}{kc}
+\,d\bar a
+=\left(\frac{2\pi\hbar}{kc}\right)^2
 \tag{1}
 \end{equation*}
 
@@ -57,26 +90,28 @@ Then
 The expectation of $\Phi_1$ is
 \begin{equation*}
 \langle\Phi_1\rangle=
-\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
 \Phi_1^*\Phi_1
-\,d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s
-=\frac{\hbar}{kc}\frac{2\pi\hbar}{kc}
+\,d\bar a
+=\frac{\hbar}{kc}
+\left(\frac{2\pi\hbar}{kc}\right)^2
 \tag{2}
 \end{equation*}
 
 The expectation for $n$ photons is
 \begin{equation*}
 \langle\Phi_n\rangle=
-\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
 \Phi_0^*\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)^n\Phi_0
-\,d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s
+\,d\bar a
 \end{equation*}
 
 By a result from problem 9-7
 \begin{equation*}
-\langle\Phi_n\rangle=n!\left(\frac{\hbar}{kc}\right)^n\frac{2\pi\hbar}{kc}
+\langle\Phi_n\rangle=n!\left(\frac{\hbar}{kc}\right)^n
+\left(\frac{2\pi\hbar}{kc}\right)^2
 \tag{3}
 \end{equation*}
 
