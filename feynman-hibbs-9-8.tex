@@ -51,7 +51,7 @@ Let
 
 Then
 \begin{equation*}
-\Phi_1^*\Phi_1=\Phi_0^*\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\Phi_0
+\Phi_1^*\Phi_1=\Phi_0^*\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)\Phi_0
 \end{equation*}
 
 The expectation of $\Phi_1$ is
@@ -65,6 +65,19 @@ The expectation of $\Phi_1$ is
 \tag{2}
 \end{equation*}
 
-The expectation of $\Phi_1$ is $\hbar/kc$ times the vacuum state.
+The expectation for $n$ photons is
+\begin{equation*}
+\langle\Phi_n\rangle=
+\int\limits_{-\infty}^\infty
+\int\limits_{-\infty}^\infty
+\Phi_0^*\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)^n\Phi_0
+\,d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s
+\end{equation*}
+
+By a result from problem 9-7
+\begin{equation*}
+\langle\Phi_n\rangle=n!\left(\frac{\hbar}{kc}\right)^n\frac{2\pi\hbar}{kc}
+\tag{3}
+\end{equation*}
 
 \end{document}
