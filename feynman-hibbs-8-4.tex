@@ -19,75 +19,70 @@ equation (8.78) can be written
 \end{equation*}
 (where $A$ is a constant) by starting with the wave function in terms of
 the real variables $Q_\alpha^c$ and $Q_\alpha^s$.
-\begin{gather*}
+
+\begin{equation*}
 L=\frac{1}{2}\sum_{\alpha=0}^{N-1}
 \left(\dot Q_\alpha^*\dot Q_\alpha-\omega_\alpha^2Q_\alpha^*Q_\alpha\right)
 \tag{8.78}
-\\
-Q_\alpha^c=\frac{1}{\sqrt2}(Q_\alpha+Q_\alpha^*)
-\tag{8.79}
-\\
-Q_\alpha^s=\frac{i}{\sqrt2}(Q_\alpha-Q_\alpha^*)
-\tag{8.80}
-\end{gather*}
-
-Rewrite (8.78) as
-\begin{equation*}
-L=\frac{1}{2}\dot Q_0^*\dot Q_0
--\frac{1}{2}\omega_0^2Q_0^*Q_0
-+\frac{1}{2}\sum_{\alpha=1}^{N-1}
-\left(\dot Q_\alpha^*\dot Q_\alpha-\omega_\alpha^2Q_\alpha^*Q_\alpha\right)
 \end{equation*}
 
-Note that
-\begin{align*}
+Consider the following equation from p.~216.
+\begin{equation*}
+Q_\alpha=\frac{1}{\sqrt2}(Q_\alpha^c-iQ_\alpha^s)
+\end{equation*}
+
+It follows that
+\begin{equation*}
 Q_\alpha^*Q_\alpha
-&=\frac{1}{2}(Q_\alpha^c+iQ_\alpha^s)(Q_\alpha^c-iQ_\alpha^s)
-\\
-&=\frac{1}{2}(Q_\alpha^c)^2+\frac{1}{2}(Q_\alpha^s)^2
-\end{align*}
-and, because $Q_0$ is real,
-\begin{equation*}
-Q_0^s=0
+=\frac{1}{2}(Q_\alpha^c)^2+\frac{1}{2}(Q_\alpha^s)^2
+\tag{1}
 \end{equation*}
 
-Hence
+Substitute (1) into (8.78).
 \begin{equation*}
-L=\frac{1}{4}(\dot Q_0^c)^2-\frac{1}{4}\omega^2(Q_0^c)^2
-+\frac{1}{4}\sum_{\alpha=1}^{N-1}
+L=\frac{1}{4}\sum_{\alpha=0}^{N-1}
 \left(
 (\dot Q_\alpha^c)^2
 +(\dot Q_\alpha^s)^2
 -\omega_\alpha^2(Q_\alpha^c)^2
 -\omega_\alpha^2(Q_\alpha^s)^2
 \right)
+\tag{2}
 \end{equation*}
 
-For $N$ odd the summation interval can be halved because $Q_\alpha=Q_{N-\alpha}$.
+From equation (2.7),
 \begin{equation*}
-L=\frac{1}{4}(\dot Q_0^c)^2
--\frac{1}{4}\omega^2(Q_0^c)^2
-+\frac{1}{2}\sum_{\alpha=1}^{(N-1)/2}
-\left(
-(\dot Q_\alpha^c)^2
-+(\dot Q_\alpha^s)^2
--\omega_\alpha^2(Q_\alpha^c)^2
--\omega_\alpha^2(Q_\alpha^s)^2
-\right)
+\frac{d}{dt}\frac{\partial L}{\partial\dot Q}=\frac{\partial L}{\partial Q}
+\tag{3}
 \end{equation*}
 
-The $Q_0$ term can be dropped because it is a spatial translation.
+Use (2) and (3) to obtains the following equations of motion.
 \begin{equation*}
-L=\frac{1}{4}(\dot Q_0^c)^2
-+\frac{1}{2}\sum_{\alpha=1}^{(N-1)/2}
-\left(
-(\dot Q_\alpha^c)^2
-+(\dot Q_\alpha^s)^2
--\omega_\alpha^2(Q_\alpha^c)^2
--\omega_\alpha^2(Q_\alpha^s)^2
-\right)
+\ddot Q_\alpha^c=-\omega_\alpha^2Q_\alpha^c
+\qquad
+\ddot Q_\alpha^s=-\omega_\alpha^2Q_\alpha^s
+\tag{4}
 \end{equation*}
 
-% FIXME go from L to wave function
+From (8.7), let $\phi_0$ be the ground state wave function associated with (4).
+\begin{equation*}
+\phi_0(x_\alpha)=\exp\left(-\frac{\omega_\alpha x_\alpha^2}{2\hbar}\right)
+\end{equation*}
+
+Then by equation (8.62),
+\begin{equation*}
+\Phi_0=\prod_{\alpha=0}^{N-1}\phi_0(Q_\alpha^c)\phi_0(Q_\alpha^s)
+=\exp\left(-\frac{1}{2\hbar}\sum_{\alpha=0}^{N-1}\omega_\alpha(Q_\alpha^c+Q_\alpha^s)\right)
+\end{equation*}
+
+\end{document}
+
+Consider equation (8.77).
+\begin{equation*}
+Q_\alpha(t)=\frac{1}{\sqrt N}\sum_{j=1}^Nq_j(t)\exp\left(-\frac{2\pi i\alpha j}{N}\right)
+\tag{8.77}
+\end{equation*}
+
+Note that $Q_0$ is real hence $Q_0^s$, the imaginary part of $Q_0$, is zero.
 
 \end{document}
