@@ -4,6 +4,8 @@
 
 \parindent=0pt
 
+\newcommand\U{\vert\Phi_0\vert^2}
+
 \begin{document}
 
 8-5.
@@ -40,17 +42,13 @@ Show that the following expectation values are correct (for $\alpha\ne0$).
 
 From problem 8-4,
 \begin{equation*}
-\Phi_0^*\Phi_0
+\U
+=\Phi_0^*\Phi_0
 =\exp\left(
 -\frac{1}{\hbar}
 \sum_{\alpha=1}^{N-1}
 \omega_\alpha\left((Q_\alpha^c)^2+(Q_\alpha^s)^2\right)
 \right)
-\end{equation*}
-
-For brevity in the following formulas, let
-\begin{equation*}
-u=\Phi_0^*\Phi_0
 \end{equation*}
 
 We will use the following integrals.
@@ -67,22 +65,28 @@ We will use the following integrals.
 
 Here are some specific examples with $a=\omega_1/\hbar$.
 \begin{align*}
-&\int_{-\infty}^\infty u\,dQ_1^c=\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
-u\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+&\int_{-\infty}^\infty
+\U\,dQ_1^c=\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\U
 \tag{4}
 \\
-&\int_{-\infty}^\infty Q_1^cu\,dQ_1^c=0
+&\int_{-\infty}^\infty Q_1^c
+\U\,dQ_1^c=0
 \tag{5}
 \\
-&\int_{-\infty}^\infty (Q_1^c)^2u\,dQ_1^c=\frac{\hbar}{2\omega_1}
+&\int_{-\infty}^\infty (Q_1^c)^2
+\U\,dQ_1^c
+=\frac{\hbar}{2\omega_1}
 \left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
-u\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\U
 \tag{6}
 \end{align*}
 
-Note that multiplying $u$ by an exponential cancels a factor, i.e.,
+Multiplying $\U$ by an exponential cancels a factor, i.e., in (1) and (4),
 \begin{equation*}
-\exp(b)=u\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\exp(b)=\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)\U
 \end{equation*}
 
 Compute the expectation value for $Q_1$.
@@ -90,7 +94,7 @@ Let
 \begin{equation*}
 I=\int_{-\infty}^\infty\int_{-\infty}^\infty
 \left(\frac{Q_1^c-iQ_1^s}{\sqrt2}\right)
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{equation*}
 
 By integral (2), $I=0$ hence by equation (8.84)
@@ -103,7 +107,7 @@ Let
 \begin{equation*}
 I=\int_{-\infty}^\infty\int_{-\infty}^\infty
 \left(\frac{Q_1^c+iQ_1^s}{\sqrt2}\right)
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{equation*}
 
 As above, $I=0$ hence
@@ -116,23 +120,23 @@ Let
 \begin{equation*}
 I=\int_{-\infty}^\infty\int_{-\infty}^\infty
 \left(\frac{Q_1^c-iQ_1^s}{\sqrt2}\right)^2
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{equation*}
 
 Rewrite as
 \begin{multline*}
 I=-i\int_{-\infty}^\infty\int_{-\infty}^\infty
 Q_1^cQ_1^s
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \\
 {}+\frac{1}{2}
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 (Q_1^c)^2
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 -\frac{1}{2}
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 (Q_1^s)^2
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{multline*}
 
 The first integral vanishes by (2).
@@ -146,16 +150,16 @@ Compute the expectation value for $Q_1^{*2}$.
 \begin{multline*}
 I=i\int_{-\infty}^\infty\int_{-\infty}^\infty
 Q_1^cQ_1^s
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \\
 {}+\frac{1}{2}
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 (Q_1^c)^2
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 -\frac{1}{2}
 \int_{-\infty}^\infty\int_{-\infty}^\infty
 (Q_1^s)^2
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{multline*}
 
 By the same arguments as $Q_1^2$
@@ -168,15 +172,15 @@ Let
 \begin{equation*}
 I=\int_{-\infty}^\infty\int_{-\infty}^\infty
 \left(\frac{(Q_1^c)^2+(Q_1^s)^2}{2}\right)
-u\,dQ_1^c\,dQ_1^s
+\U\,dQ_1^c\,dQ_1^s
 \end{equation*}
 
 Rewrite as
 \begin{equation*}
 I=\frac{1}{2}\int_{-\infty}^\infty\left(\int_{-\infty}^\infty (Q_1^c)^2
-u\,dQ_1^c\right)\,dQ_1^s
+\U\,dQ_1^c\right)\,dQ_1^s
 +\frac{1}{2}\int_{-\infty}^\infty\left(\int_{-\infty}^\infty (Q_1^s)^2
-u\,dQ_1^s\right)\,dQ_1^c
+\U\,dQ_1^s\right)\,dQ_1^c
 \end{equation*}
 
 By integral (3) with $a=\omega_1/\hbar$,
@@ -185,12 +189,14 @@ I=
 \frac{\hbar}{4\omega_1}
 \left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
-\int_{-\infty}^\infty u\,dQ_1^s
+\int_{-\infty}^\infty
+\U\,dQ_1^s
 \\
 {}+\frac{\hbar}{4\omega_1}
 \left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
-\int_{-\infty}^\infty u\,dQ_1^c
+\int_{-\infty}^\infty
+\U\,dQ_1^c
 \end{multline*}
 
 By integral (1),
@@ -200,14 +206,14 @@ I=
 \frac{\pi\hbar}{\omega_1}
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
-u
+\U
 \\
 {}+
 \frac{\hbar}{4\omega_1}
 \frac{\pi\hbar}{\omega_1}
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
 \exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
-u
+\U
 \end{multline*}
 
 Integrate over the remaining measure as in (8.84).
@@ -242,7 +248,7 @@ Let
 \begin{equation*}
 I=\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
 \left(\frac{Q_1^cQ_2^c-Q_1^sQ_2^s-iQ_1^cQ_2^s-iQ_1^sQ_2^c}{2}\right)
-u\,dQ_1^c\,dQ_1^s\,dQ_2^c\,dQ_2^s
+\U\,dQ_1^c\,dQ_1^s\,dQ_2^c\,dQ_2^s
 \end{equation*}
 
 By integral (2) we have $I=0$, hence by equation (8.84)
