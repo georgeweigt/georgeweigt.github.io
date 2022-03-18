@@ -4,6 +4,8 @@
 
 \parindent=0pt
 
+\newcommand\U{\vert\Phi_0\vert^2}
+
 \begin{document}
 
 9-7.
@@ -12,6 +14,22 @@ of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$
 is $(\hbar/2kc)\delta_{\mathbf k,\mathbf q}$ and that
 of $\bar a_{1,\mathbf k}\bar a_{1,\mathbf q}$
 is $(\hbar/2kc)\delta_{-\mathbf k,\mathbf q}$.
+Develop a formula for the expectation of
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r$
+for integral $r$ and explain thereby how the expectation of such
+quantities as
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s$
+can be got for $\mathbf q\ne\mathbf k$.
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+Show that the expectation of the product of any odd number of
+$\bar a$'s is zero and that you can compute the expectation value of
+any product of $\bar a$'s or $\bar a^*$'s for the vacuum state.
 
 \bigskip
 We will use the following table of integrals.
@@ -37,46 +55,33 @@ C=\bar a_{1,\mathbf q}^c
 D=\bar a_{1,\mathbf q}^s
 \end{equation*}
 
-From problem 9-6 we have
+Sine and cosine mode relations.
 \begin{equation*}
-\begin{aligned}
-\bar a_{1,\mathbf k}&=\frac{1}{\sqrt2}(A-iB)
-\\
-\bar a_{1,\mathbf q}&=\frac{1}{\sqrt2}(C-iD)
-\end{aligned}
+\bar a_{1,\mathbf k}=\frac{1}{\sqrt2}(A-iB)
+\qquad
+\bar a_{1,\mathbf q}=\frac{1}{\sqrt2}(C-iD)
 \tag{4}
 \end{equation*}
 
-Adapted from equation (8.84),
+Adapted from equation (8.84)
 \begin{equation*}
 \langle\Phi_0|f|\Phi_0\rangle
 =\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*f\Phi_0
+f\U
 \,dA\,dB\,dC\,dD
 \end{equation*}
 
-The following vacuum state
-is adapted from (9.43) and problem 9-6.
+The following $\U$ is adapted from equation (9.43).
 Symbol $q$ is a mode (physical unit $\text{meter}^{-1}$), not an electric charge.
 Note that we {\it could} include other modes in addition to $k$ and $q$.
 However, integrals over unused modes are
 cancelled by the normalization constant.
 \begin{equation*}
-\Phi_0=\exp\left(
--\frac{kc}{4\hbar}A^2
--\frac{kc}{4\hbar}B^2
--\frac{qc}{4\hbar}C^2
--\frac{qc}{4\hbar}D^2
-\right)
-\end{equation*}
-
-It follows that
-\begin{equation*}
-\Phi_0^*\Phi_0=\exp\left(
--\frac{kc}{2\hbar}A^2
--\frac{kc}{2\hbar}B^2
--\frac{qc}{2\hbar}C^2
--\frac{qc}{2\hbar}D^2
+\U=\Phi_0^*\Phi_0=\exp\left(
+-\frac{kc}{\hbar}A^2
+-\frac{kc}{\hbar}B^2
+-\frac{qc}{\hbar}C^2
+-\frac{qc}{\hbar}D^2
 \right)
 \end{equation*}
 
@@ -84,17 +89,16 @@ Compute the normalization constant $K$.
 \begin{equation*}
 K=\langle\Phi_0|1|\Phi_0\rangle
 =\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
-\,dA\,dB\,dC\,dD
+\U\,dA\,dB\,dC\,dD
 \end{equation*}
 
-By integral (1) for each factor in the measure (see problem 8-5)
+By integral (1) for each factor in the measure,
 \begin{equation*}
 K=
-\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{qc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{qc}\right)^{1/2}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
 \end{equation*}
 
 Compute the expectation of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}$.
@@ -107,9 +111,8 @@ Hence
 \begin{equation*}
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
 =\frac{1}{K}\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
-\frac{A^2+B^2}{2}
-\,dA\,dB\,dC\,dD
+\left(\frac{A^2+B^2}{2}\right)
+\U\,dA\,dB\,dC\,dD
 \end{equation*}
 
 Rewrite as
@@ -117,29 +120,27 @@ Rewrite as
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
 =\frac{1}{2K}
 \int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
 A^2
-\,dA\,dB\,dC\,dD
+\U\,dA\,dB\,dC\,dD
 \\{}+
 \frac{1}{2K}
 \int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
 B^2
-\,dA\,dB\,dC\,dD
+\U\,dA\,dB\,dC\,dD
 \end{multline*}
 
 By integrals (1) and (3) we have
 \begin{equation*}
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
-=\frac{1}{K}\frac{\hbar}{kc}\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{qc}\right)^{1/2}
-\left(\frac{2\pi\hbar}{qc}\right)^{1/2}
+=\frac{1}{K}\frac{\hbar}{2kc}\left(\frac{2\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle=\frac{\hbar}{kc}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle=\frac{\hbar}{2kc}
 \tag{5}
 \end{equation*}
 
@@ -154,9 +155,8 @@ Hence
 \langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=
 \\
 \frac{1}{K}\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
-\frac{AC+BD-iAD+iBC}{2}
-\,dA\,dB\,dC\,dD
+\left(\frac{AC+BD-iAD+iBC}{2}\right)
+\U\,dA\,dB\,dC\,dD
 \end{multline*}
 
 By integral (2) all terms are zero, hence
@@ -167,17 +167,17 @@ By integral (2) all terms are zero, hence
 
 Combine (5) and (6) to obtain
 \begin{equation*}
-\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{kc}\delta_{\mathbf k,\mathbf q}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{2kc}\delta_{\mathbf k,\mathbf q}
 \end{equation*}
 
-Note that by equation (8.77)
+By equation (8.77)
 \begin{equation*}
 \bar a_{1,\mathbf k}^*=\bar a_{1,-\mathbf k}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\langle\Phi_0|\bar a_{1,-\mathbf k}\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{kc}\delta_{\mathbf k,\mathbf q}
+\langle\Phi_0|\bar a_{1,-\mathbf k}\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{2kc}\delta_{\mathbf k,\mathbf q}
 \end{equation*}
 
 (9-7 cont'd)
@@ -201,22 +201,24 @@ To compute the expectation of (7) we need the following integral.
 \int_{-\infty}^\infty x^{2n}\exp(-ax^2+b)
 &=\frac{1\cdot3\cdot5\cdots(2n-1)}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
 \\
-&=(2n-1)!!\,\frac{1}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+&=(2n-1)!!
+\left(\frac{1}{2a}\right)^n
+\sqrt{\frac{\pi}{a}}\exp(b)
 \tag{8}
 \end{align*}
 
 Given (8), define the following function $F$.
 (The $\sqrt{\pi/a}$ factor is left out because it gets cancelled by the normalization constant $K$.)
 \begin{equation*}
-F(n)=(2n-1)!!\left(\frac{\hbar}{kc}\right)^n
+F(n)=(2n-1)!!\left(\frac{\hbar}{2kc}\right)^n
 \end{equation*}
 
 Note that
 \begin{equation*}
 F(j)F(r-j)=
 (2j-1)!!\,(2r-2j-1)!!
-\left(\frac{\hbar}{kc}\right)^j
-\left(\frac{\hbar}{kc}\right)^{r-j}
+\left(\frac{\hbar}{2kc}\right)^j
+\left(\frac{\hbar}{2kc}\right)^{r-j}
 \end{equation*}
 
 It turns out that
@@ -227,7 +229,7 @@ It turns out that
 Hence
 \begin{equation*}
 \langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
-=r!\left(\frac{\hbar}{kc}\right)^r
+=r!\left(\frac{\hbar}{2kc}\right)^r
 \end{equation*}
 
 Regarding the $\mathbf q\ne\mathbf k$ part of the problem, we have
@@ -244,8 +246,8 @@ Hence
 (\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
 (\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s
 |\Phi_0\rangle
-=r!\left(\frac{\hbar}{kc}\right)^r
-s!\left(\frac{\hbar}{qc}\right)^s
+=r!\left(\frac{\hbar}{2kc}\right)^r
+s!\left(\frac{\hbar}{2qc}\right)^s
 \end{equation*}
 
 (9-7 cont'd)
@@ -270,12 +272,6 @@ Show that the expectation of the product of any odd number of
 $\bar a$'s is zero and that you can compute the expectation value of
 any product of $\bar a$'s or $\bar a^*$'s for the vacuum state.
 
-\bigskip
-Isn't the expectation of {\it any} number of $\bar a$'s zero?
-It is shown above that the expectation of $(\bar a_{1,\mathbf k})^2$ vanishes.
-
-\bigskip
-FIXME: The result $\hbar/kc$ is wrong by a factor of 2 everywhere it appears.
-Should be $\hbar/2kc$ according to the problem statement.
+% FIXME answer last question
 
 \end{document}
