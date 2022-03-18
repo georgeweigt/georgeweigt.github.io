@@ -22,7 +22,7 @@ This script can be pasted into the Eigenmath app.
 
 Tba = Tbc + Tca
 
-"Verify equations (3), (4), and (5)"
+"Verify equations (5), (6), and (7)"
 
 D = i m (xb - xc)^2 / (2 hbar Tbc) + i (xb + xc) Tbc f / (2 hbar) +
     i m (xc - xa)^2 / (2 hbar Tca) + i (xc + xa) Tca f / (2 hbar)
@@ -38,7 +38,7 @@ check(D == A xc^2 + B xc + C)
 
 "ok"
 
-"Verify equation (6) definite integral"
+"Verify equation (8) solution of integral"
 
 check(-pi / A == -2 pi hbar Tbc Tca / (i m Tba))
 
@@ -54,7 +54,7 @@ check(D == A + B + C)
 
 "ok"
 
-"Verify equation (7) complete the cube"
+"Verify equation (10) complete the cube"
 
 A = (tb - ta)^3
 
@@ -64,7 +64,7 @@ check(A == B)
 
 "ok"
 
-"Verify equation (9) combine exponentials"
+"Verify equation (12) combine exponentials"
 
 A = -(tb - tc)^3 / (24 hbar m)
 
@@ -78,7 +78,7 @@ check(A + B + C == D)
 
 "ok"
 
-"Verify equation (11) cancellation of coefficients"
+"Verify equation (14) cancellation of coefficients"
 
 D = m / (2 pi i hbar Tba)
 
