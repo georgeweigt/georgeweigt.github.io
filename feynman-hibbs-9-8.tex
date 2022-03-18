@@ -4,6 +4,8 @@
 
 \parindent=0pt
 
+\newcommand\U{\vert\Phi_0\vert^2}
+
 \begin{document}
 
 9-8.
@@ -44,19 +46,11 @@ The factor $1/\sqrt2$ is for normalization, i.e., $|1+i|=\sqrt2$.
 Here are some additional results.
 
 \bigskip
-From equation (9.43) and problem 9-6, let
+From equation (9.43)
 \begin{equation*}
-\Phi_0=\exp\left(
--\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{4\hbar}(\bar a_{1,\mathbf k}^s)^2
--\frac{kc}{4\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{4\hbar}(\bar a_{2,\mathbf k}^s)^2
-\right)
-\end{equation*}
-
-It follows that
-\begin{equation*}
-\Phi_0^*\Phi_0=\exp\left(
--\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{2\hbar}(\bar a_{1,\mathbf k}^s)^2
--\frac{kc}{2\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{2\hbar}(\bar a_{2,\mathbf k}^s)^2
+\U=\Phi_0^*\Phi_0=\exp\left(
+-\frac{kc}{\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{\hbar}(\bar a_{1,\mathbf k}^s)^2
+-\frac{kc}{\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{\hbar}(\bar a_{2,\mathbf k}^s)^2
 \right)
 \end{equation*}
 
@@ -72,9 +66,8 @@ The expectation of $\Phi_0$ is
 \langle\Phi_0\rangle=
 \int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
-\Phi_0^*\Phi_0
-\,d\bar a
-=\left(\frac{2\pi\hbar}{kc}\right)^2
+\U\,d\bar a
+=\left(\frac{\pi\hbar}{kc}\right)^2
 \tag{1}
 \end{equation*}
 
@@ -85,7 +78,10 @@ Let
 
 Then
 \begin{equation*}
-\Phi_1^*\Phi_1=\Phi_0^*\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)\Phi_0
+\vert\Phi_1\vert^2
+=\Phi_1^*\Phi_1
+=\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)
+\U
 \end{equation*}
 
 The expectation of $\Phi_1$ is
@@ -93,10 +89,10 @@ The expectation of $\Phi_1$ is
 \langle\Phi_1\rangle=
 \int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
-\Phi_1^*\Phi_1
-\,d\bar a
-=\frac{\hbar}{kc}
-\left(\frac{2\pi\hbar}{kc}\right)^2
+\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)
+\U\,d\bar a
+=\frac{\hbar}{2kc}
+\left(\frac{\pi\hbar}{kc}\right)^2
 \tag{2}
 \end{equation*}
 
@@ -105,15 +101,15 @@ The expectation for $n$ photons is
 \langle\Phi_n\rangle=
 \int\limits_{-\infty}^\infty\cdots
 \int\limits_{-\infty}^\infty
-\Phi_0^*\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)^n\Phi_0
-\,d\bar a
+\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)^n
+\U\,d\bar a
 \end{equation*}
 
 By a result from problem 9-7
 \begin{equation*}
 \langle\Phi_n\rangle
-=n!\left(\frac{\hbar}{kc}\right)^n\left(\frac{2\pi\hbar}{kc}\right)^2
-=n!\left(\frac{\hbar}{kc}\right)^n\langle\Phi_0\rangle
+=n!\left(\frac{\hbar}{2kc}\right)^n\left(\frac{\pi\hbar}{kc}\right)^2
+=n!\left(\frac{\hbar}{2kc}\right)^n\langle\Phi_0\rangle
 \tag{3}
 \end{equation*}
 
