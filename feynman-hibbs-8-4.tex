@@ -50,26 +50,26 @@ L=\frac{1}{4}\sum_{\alpha=0}^{N-1}
 \tag{2}
 \end{equation*}
 
-From equation (2.7),
+Consider equation (2.7).
 \begin{equation*}
 \frac{d}{dt}\frac{\partial L}{\partial\dot Q}=\frac{\partial L}{\partial Q}
+\tag{2.7}
+\end{equation*}
+
+Substitute (2) into (2.7) to obtain the following equations of motion.
+\begin{equation*}
+\ddot Q_\alpha^c(t)=-\omega_\alpha^2Q_\alpha^c(t)
+\qquad
+\ddot Q_\alpha^s(t)=-\omega_\alpha^2Q_\alpha^s(t)
 \tag{3}
 \end{equation*}
 
-Use (2) and (3) to obtains the following equations of motion.
-\begin{equation*}
-\ddot Q_\alpha^c=-\omega_\alpha^2Q_\alpha^c
-\qquad
-\ddot Q_\alpha^s=-\omega_\alpha^2Q_\alpha^s
-\tag{4}
-\end{equation*}
-
-From (8.7), let $\phi_0$ be the ground state wave function associated with (4).
+From the text on p.~210, the ground state eigenfunction related to (3) is
 \begin{equation*}
 \phi_0(x_\alpha)=\exp\left(-\frac{\omega_\alpha x_\alpha^2}{2\hbar}\right)
 \end{equation*}
 
-Then by equation (8.62),
+Then by equation (8.62)
 \begin{equation*}
 \Phi_0=\prod_{\alpha=0}^{N-1}\phi_0(Q_\alpha^c)\phi_0(Q_\alpha^s)
 =\exp\left(-\frac{1}{2\hbar}\sum_{\alpha=0}^{N-1}\omega_\alpha(Q_\alpha^c+Q_\alpha^s)\right)
