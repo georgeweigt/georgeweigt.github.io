@@ -9,6 +9,7 @@
 Let the wave function for a harmonic oscillator at time $t=0$ be
 \begin{equation*}
 \psi(x,0)=\exp\left(-\frac{m\omega}{2\hbar}(x-a)^2\right)
+\tag{1}
 \end{equation*}
 
 Using equation (3.42) and the results of problem 3-8 show that
@@ -22,12 +23,6 @@ at time $t=T$ the wave function is
 \right)
 \end{multline*}
 
-From equation (3.42)
-\begin{equation*}
-\psi(x,T)=\int_{-\infty}^\infty K(x,T,x_c,0)\psi(x_c,0)\,dx_c
-\tag{1}
-\end{equation*}
-
 From problem 3-8
 \begin{multline*}
 K(x,T,x_c,0)=
@@ -39,23 +34,29 @@ K(x,T,x_c,0)=
 \tag{2}
 \end{multline*}
 
-Substitute (2) and $\psi(x,0)$ into (1).
-We now have for $\psi(x,T)$
+From equation (3.42)
+\begin{equation*}
+\psi(x,T)=\int_{-\infty}^\infty K(x,T,x_c,0)\psi(x_c,0)\,dx_c
+\tag{3}
+\end{equation*}
+
+Substitute (1) and (2) into (3) to obtain
 \begin{align*}
 &\psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
-\int_{-\infty}^\infty
 \\
-&\exp\left(
+&\quad{}\times\int_{-\infty}^\infty
+\exp\left(
 \frac{im\omega}{2\hbar\sin(\omega T)}\left((x^2+x_c^2)\cos(\omega T)-2xx_c\right)
 \right)
-\exp\left(-\frac{m\omega}{2\hbar}(x_c-a)^2\right)\,dx_c
+\\
+&\quad{}\times\exp\left(-\frac{m\omega}{2\hbar}(x_c-a)^2\right)\,dx_c
 \end{align*}
 
 Rewrite as
 \begin{equation*}
 \psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
 \int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)\,dx_c
-\tag{3}
+\tag{4}
 \end{equation*}
 
 where
@@ -69,30 +70,36 @@ C&=\frac{m\omega}{2\hbar}\left(\frac{ix^2\cos(\omega T)}{\sin(\omega T)}-a^2\rig
 \end{align*}
 
 Solve the integral.
-\begin{gather*}
+\begin{equation*}
 \int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)
 =\left(-\frac{\pi}{A}\right)^{1/2}
 \exp\left(-\frac{B^2}{4A}+C\right)
-\\
+\end{equation*}
+
+where
+\begin{equation*}
 -\frac{\pi}{A}
 =\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}
-\tag{4}
-\\
+\tag{5}
+\end{equation*}
+
+and
+\begin{equation*}
 -\frac{B^2}{4A}+C
 =-\frac{m\omega}{2\hbar}
 \left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
-\tag{5}
-\end{gather*}
+\tag{6}
+\end{equation*}
 
 Note that
 \begin{equation*}
-\underset{\substack{\\[1ex]\text{from equation (3)}}}
+\underset{\substack{\\[1ex]\text{from equation (4)}}}
 {\frac{m\omega}{2\pi i\hbar\sin(\omega T)}}
 \times
-\underset{\substack{\\[1ex]\text{from equation (4)}}}
+\underset{\substack{\\[1ex]\text{from equation (5)}}}
 {\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}}
 =\exp(-i\omega T)
-\tag{6}
+\tag{7}
 \end{equation*}
 
 Substitute the solved integral into (3) to obtain
