@@ -6,14 +6,13 @@
 \begin{document}
 
 3-12.
-Let the wave function for a harmonic oscillator at time $t=0$ be
+If the wave function for a harmonic oscillator is (at $t=0$)
 \begin{equation*}
 \psi(x,0)=\exp\left(-\frac{m\omega}{2\hbar}(x-a)^2\right)
-\tag{1}
+\tag{3.67}
 \end{equation*}
 
-Using equation (3.42) and the results of problem 3-8 show that
-at time $t=T$ the wave function is
+then using equation (3.42) and the results of problem 3-8, show that
 \begin{multline*}
 \psi(x,T)=
 \\
@@ -21,8 +20,15 @@ at time $t=T$ the wave function is
 -\frac{i\omega T}{2}-\frac{m\omega}{2\hbar}
 \left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
 \right)
+\tag{3.68}
 \end{multline*}
 
+and find the probability distribution $\vert\psi\vert^2$.
+
+\bigskip
+\hrule
+
+\bigskip
 From problem 3-8
 \begin{multline*}
 K(x,T,x_c,0)=
@@ -40,7 +46,7 @@ From equation (3.42)
 \tag{3}
 \end{equation*}
 
-Substitute (1) and (2) into (3) to obtain
+Substitute (3.68) and (2) into (3) to obtain
 \begin{align*}
 &\psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
 \\
@@ -113,5 +119,7 @@ Substitute the solved integral (5) into (3) to obtain
 \left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
 \right)
 \end{multline*}
+
+% FIXME find probability distribution
 
 \end{document}
