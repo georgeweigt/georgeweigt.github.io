@@ -18,20 +18,23 @@ S_{cl}=\frac{m}{2}\frac{(x_b-x_a)^2}{t_b-t_a}
 \hrule
 
 \bigskip
-For the $L$ given above we have
+We will need the following equations.
+\begin{gather*}
+S=\int_{t_a}^{t_b} L\,dt
+\tag{2.1}
+\\
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
+\tag{2.7}
+\end{gather*}
+
+For $L=(m/2)\dot x^2$ we have
 \begin{equation*}
-\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=m\ddot x
-\end{equation*}
-and
-\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=m\ddot x
+\qquad
 \frac{\partial L}{\partial x}=0
 \end{equation*}
 
-By equation (2.7) which is
-\begin{equation*}
-\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=\frac{\partial L}{\partial x}
-\end{equation*}
-we have
+By equation (2.7)
 \begin{equation*}
 \ddot x=0
 \end{equation*}
@@ -39,18 +42,22 @@ we have
 Hence velocity $\dot x$ is constant and equals distance divided by time.
 \begin{equation*}
 \dot x=\frac{x_b-x_a}{t_b-t_a}
+\tag{1}
 \end{equation*}
 
-By equation (2.1) which is
+Substitute (1) into the Lagrangian.
 \begin{equation*}
-S=\int_{t_a}^{t_b} L\,dt
-\end{equation*}
-we have for classical action $S_{cl}$
-\begin{equation*}
-S_{cl}=\int_{t_a}^{t_b}\frac{m}{2}\dot x^2\,dt=\int_{t_a}^{t_b}\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2\,dt
+L=\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2
+\tag{2}
 \end{equation*}
 
-Solve the integral.
+Substitute (2) into (2.1) to obtain
+\begin{equation*}
+S_{cl}=\int_{t_a}^{t_b}\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2\,dt
+\tag{3}
+\end{equation*}
+
+Solve the integral in (3).
 \begin{equation*}
 S_{cl}
 =\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2 t\,\bigg|_{t_a}^{t_b}
