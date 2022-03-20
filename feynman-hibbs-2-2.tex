@@ -10,7 +10,7 @@ For a harmonic oscillator $L=(m/2)(\dot x^2-\omega^2x^2)$.
 With $T$ equal to $t_b-t_a$, show that the classical action is
 \begin{equation*}
 S_{cl}=\frac{m\omega}{2\sin\omega T}
-\big((x_b^2+x_a^2)\cos\omega T-2x_bx_a\big)
+\left(\left(x_b^2+x_a^2\right)\cos\omega T-2x_bx_a\right)
 \tag{2.9}
 \end{equation*}
 
@@ -118,21 +118,20 @@ S_{cl}=\frac{m}{2}\left(
 -\int_0^T\omega^2x^2\,dt
 \right)
 \end{equation*}
-The remaining integrals cancel by $\ddot x=-\omega^2x$ from equation (1).
+The two integrals on the right cancel by $\ddot x=-\omega^2x$ from equation (1).
 
 \bigskip
 We now have
-\begin{align*}
-S_{cl}&=\frac{m}{2}\dot xx\bigg|_0^T
-\\[1ex]
-&=\frac{m}{2}\bigg(\dot x(T)x(T)-\dot x(0)x(0)\bigg)
+\begin{equation*}
+S_{cl}=\frac{m}{2}\dot xx\bigg|_0^T
+=\frac{m}{2}\left(\dot x(T)x(T)-\dot x(0)x(0)\right)
 \tag{4}
-\end{align*}
+\end{equation*}
 
-By substitution and simplification
+We have already determined $x(t)$ and $\dot x(t)$ so by substitution
 \begin{equation*}
 S_{cl}=\frac{m\omega}{2\sin(\omega T)}
-\bigg((x_b^2+x_a^2)\cos(\omega T)-2x_b x_a\bigg)
+\left(\left(x_b^2+x_a^2\right)\cos(\omega T)-2x_b x_a\right)
 \tag{5}
 \end{equation*}
 
