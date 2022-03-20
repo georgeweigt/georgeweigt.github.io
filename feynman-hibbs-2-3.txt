@@ -1,6 +1,6 @@
 -- Feynman and Hibbs problem 2-3
 
-"Verify equation (1)"
+"Verify equation (4)"
 
 A = f / (2 m)
 B = (xb - xa) / (tb - ta) - f (tb^2 - ta^2) / (2 m (tb - ta))
@@ -14,7 +14,7 @@ check(eval(x,t,tb) == xb)
 
 "ok"
 
-"Verify equation (2)"
+"Verify equation (5)"
 
 ta = 0
 tb = T
@@ -27,7 +27,7 @@ check(x == A t^2 + B t + C)
 
 "ok"
 
-"Verify equation (3)"
+"Verify equation (6)"
 
 v = d(x,t)
 
@@ -35,7 +35,7 @@ check(v == f t / m - f T / (2 m) + (xb - xa) / T)
 
 "ok"
 
-"Verify equation (4)"
+"Verify equation (7)"
 
 L = 1/2 m v^2 + f x
 
@@ -47,7 +47,7 @@ check(L == A t^2 + B t + C)
 
 "ok"
 
-"Verify equation (5)"
+"Verify equation (8)"
 
 S = defint(L, t, 0, T)
 
