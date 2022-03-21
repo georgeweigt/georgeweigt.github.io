@@ -11,7 +11,7 @@ is by definition proportional to the absolute square of the kernel
 $K(b,a)$.
 For the free-particle kernel of equation (3.3) this is
 \begin{equation*}
-P(b)\,dx=\frac{m}{2\pi\hbar(t_b-t_1)}\,dx
+P(b)\,dx=\frac{m}{2\pi\hbar(t_b-t_a)}\,dx
 \tag{3.6}
 \end{equation*}
 
@@ -27,32 +27,26 @@ of the particle lies in the range $dp$ is $dp/2\pi\hbar$.
 \hrule
 
 \bigskip
-Let the classical momentum at $x=a$ be somewhere between zero and $p$.
-Then from $p=mv$ we have the following maximum distance $d$.
-\begin{equation*}
-d=\frac{p}{m}(t_b-t_a)
-\end{equation*}
-
-\noindent
-Hence the normalization constant $C$ is
+Calculate the normalization constant $C$.
 \begin{align*}
-C&=\int_a^{a+d}\frac{m}{2\pi\hbar(t_b-t_a)}\,dx
+C&=\int_{x_a}^{x_b}\frac{m}{2\pi\hbar(t_b-t_a)}\,dx
 \\[1ex]
-&=\frac{mx}{2\pi\hbar(t_b-t_a)}\bigg|_a^{a+d}
+&=\frac{m}{2\pi\hbar(t_b-t_a)}\,x\bigg|_{x_a}^{x_b}
 \\[1ex]
-&=\frac{m(a+d)}{2\pi\hbar(t_b-t_a)}-\frac{ma}{2\pi\hbar(t_b-t_a)}
-\\[1ex]
-&=\frac{md}{2\pi\hbar(t_b-t_a)}
-\\[1ex]
-&=\frac{p}{2\pi\hbar}
+&=\frac{m}{2\pi\hbar}\left(\frac{x_b-x_a}{t_b-t_a}\right)
 \end{align*}
+
+From $v=(x_b-x_a)/(t_b-t_a)$ and $p=mv$ we have
+\begin{equation*}
+C=\frac{p}{2\pi\hbar}
+\end{equation*}
 
 \noindent
 Hence diverging normalization corresponds to unrestricted momentum $p$.
 
 \bigskip
 \noindent
-Given
+From
 \begin{equation*}
 x+dx=\frac{p+dp}{m}(t_b-t_a)
 \end{equation*}
