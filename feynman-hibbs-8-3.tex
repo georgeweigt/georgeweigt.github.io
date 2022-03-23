@@ -91,15 +91,17 @@ q_j=
 \sum_{\alpha=1}^{(N-1)/2}
 \sum_{k=1}^N
 q_k\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
+\tag{3}
 \end{equation*}
 
-Note that by (8.77) and (8.79) with $\alpha=0$
+By equations (8.77) and (8.79) with $\alpha=0$ we have
 \begin{equation*}
 Q_0^c
 =\sqrt{\frac{2}{N}}\sum_{k=1}^Nq_k
+\tag{4}
 \end{equation*}
 
-Hence
+Substitute (4) into (3).
 \begin{equation*}
 q_j=
 \frac{1}{N}\sum_{k=1}^N q_k
@@ -112,14 +114,14 @@ q_k\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
 
 Rewrite as
 \begin{equation*}
-q_j=\frac{1}{N}\sum_{k=1}^N q_k \left(
-1+2\sum_{\alpha=1}^{(N-1)/2}
+q_j=\sum_{k=1}^N q_k \left(
+\frac{1}{N}+\frac{2}{N}\sum_{\alpha=1}^{(N-1)/2}
 \cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
 \right)
-\tag{3}
+\tag{5}
 \end{equation*}
 
-For the sum over $\alpha$ in (3) we have
+For the sum over $\alpha$ in (5) we have
 \begin{equation*}
 \sum_{\alpha=1}^{(N-1)/2}
 \cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
@@ -132,21 +134,21 @@ For the sum over $\alpha$ in (3) we have
 
 Hence for $j=k$
 \begin{equation*}
-1+2\sum_{\alpha=1}^{(N-1)/2}
+\frac{1}{N}+\frac{2}{N}\sum_{\alpha=1}^{(N-1)/2}
 \cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
-=N
+=1
 \end{equation*}
 
 and for $j\ne k$
 \begin{equation*}
-1+2\sum_{\alpha=1}^{(N-1)/2}
+\frac{1}{N}+\frac{2}{N}\sum_{\alpha=1}^{(N-1)/2}
 \cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
 =0
 \end{equation*}
 
-Therefore (3) is shown to be a tautology, that is,
+Therefore (5) reduces to
 \begin{equation*}
-q_j=q_j
+q_j=\sum_{k=1}^N q_k\delta(j-k)=q_j
 \end{equation*}
 
 Hence (8.82) is proven to be correct.
