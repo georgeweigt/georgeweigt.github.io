@@ -128,7 +128,7 @@ For the sum over $\alpha$ in (5) we have
 =\begin{cases}
 (N-1)/2 & j=k
 \\
--1/2 & j\ne k
+-1/2 & j\ne k\quad\text{(see proof below)}
 \end{cases}
 \end{equation*}
 
@@ -153,21 +153,89 @@ q_j=\sum_{k=1}^N q_k\delta(j-k)=q_j
 
 Hence (8.82) is proven to be correct.
 
-\end{document}
-
 \bigskip
-We will now prove that for $N$ odd and $j\ne k$,
+We will now show that for $N$ odd and $j\ne k$,
 \begin{equation*}
 \sum_{\alpha=1}^{(N-1)/2}
 \cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
 =-\frac{1}{2}
 \end{equation*}
 
-By symmetry of the cosine function,
+Consider the following geometric series formula.
 \begin{equation*}
-\sum_{\alpha=1}^{(N-1)/2}
-\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)
-=\frac{1}{\sin(\pi(j-k)/N)}
+\sum_{k=0}^{N-1}z^k=\frac{1-z^N}{1-z},\qquad|z|<1
+\tag{6}
+\end{equation*}
+
+Let
+\begin{equation*}
+z=\exp\left(\frac{2\pi in}{N}\right)
+\end{equation*}
+
+where $n$ is an integer such that $2n<N$ so that $|z|<1$.
+Then
+\begin{equation*}
+z^N=\exp(2\pi in)=1
+\end{equation*}
+
+Hence by (6)
+\begin{equation*}
+\sum_{k=0}^{N-1}z^k=0
+\tag{7}
+\end{equation*}
+
+Noting that
+\begin{equation*}
+z^k=\exp\left(\frac{2\pi ink}{N}\right)=\cos\left(\frac{2\pi nk}{N}\right)+i\sin\left(\frac{2\pi nk}{N}\right)
+\end{equation*}
+
+we have by (7)
+\begin{equation*}
+\sum_{k=0}^{N-1}\cos\left(\frac{2\pi nk}{N}\right)+i\sum_{k=0}^{N-1}\sin\left(\frac{2\pi nk}{N}\right)=0
+\end{equation*}
+
+Hence
+\begin{equation*}
+\sum_{k=0}^{N-1}\cos\left(\frac{2\pi nk}{N}\right)=0
+\tag{8}
+\end{equation*}
+
+We need to get rid of the restriction $2n<N$.
+Consider
+\begin{equation*}
+\cos\left(\frac{2\pi(N-n)k}{N}\right)
+\tag{9}
+\end{equation*}
+
+By trigonometric identities (9) is equivalent to
+\begin{equation*}
+\cos\left(\frac{2\pi nk}{N}\right)\cos(2\pi k)
++\sin\left(\frac{2\pi nk}{N}\right)\sin(2\pi k)
+\end{equation*}
+
+By $\cos(2\pi k)=1$ and $\sin(2\pi k)=0$ we have
+\begin{equation*}
+\cos\left(\frac{2\pi(N-n)k}{N}\right)=\cos\left(\frac{2\pi nk}{N}\right)
+\tag{10}
+\end{equation*}
+
+Hence (8) is valid for $0<n<N$.
+
+\bigskip
+Returning to (8) and starting the summation at $k=1$, we have
+\begin{equation*}
+\sum_{k=1}^{N-1}\cos\left(\frac{2\pi nk}{N}\right)=-1
+\end{equation*}
+
+By (10) we have for $N$ odd
+\begin{equation*}
+\sum_{k=1}^{(N-1)/2}\cos\left(\frac{2\pi nk}{N}\right)=-\frac{1}{2}
+\end{equation*}
+
+Finally, replace $k$ with $\alpha$ and $n$ with $j-k$.
+(The sign of $j-k$ doesn't matter.)
+\begin{equation*}
+\sum_{\alpha=1}^{(N-1)/2}\cos\left(\frac{2\pi\alpha}{N}(j-k)\right)=-\frac{1}{2}
 \end{equation*}
 
 \end{document}
