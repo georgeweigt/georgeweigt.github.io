@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+6.21
+Let $X$ be one observation from the pdf
+$$f(x\mid\theta)=\left({\theta\over2}\right)^{|x|}
+(1-\theta)^{1-|x|},\quad x=-1,0,1,\quad 0\le\theta\le1$$
+
+\bigskip
+\noindent
+(a) Is $X$ a complete sufficient statistic?
+
+\bigskip
+\noindent
+Let $g(x)$ be a function such that $E_\theta g(X)=0$ for all $\theta$.
+Then
+$${\theta\over2}g(-1)+{\theta\over2}g(1)+(1-\theta)g(0)=0$$
+Note that $g(x)=x$ is a solution to this equation.
+However, for $g(x)=x$ we have $P_\theta(g(X)=0)\ne1$.
+Therefore $X$ is not complete.
+
+\bigskip
+\noindent
+(b) Is $|X|$ a complete sufficient statistic?
+
+\bigskip
+\noindent
+By the Factorization Theorem, $|X|$ is sufficient.
+Now show that it is complete.
+Let $g(x)$ be a function such that $E_\theta g(|X|)=0$ for all
+$\theta$.
+Then
+$$\theta g(1)+(1-\theta)g(0)=0$$
+For $\theta=0$ we have $g(0)=0$.
+For $\theta=1$ we have $g(1)=0$.
+Therefore the only $g(x)$ such that
+$E_\theta g(|X|)=0$ for all $\theta$ is $g(x)=0$.
+Therefore $|X|$ is complete, as well as sufficient.
+
+\bigskip
+\noindent
+(c) Does $f(x\mid\theta)$ belong to the exponential class?
+
+\bigskip
+\noindent
+We have
+\begin{eqnarray*}
+f(x\mid\theta)
+&=&
+\left({\theta\over2}\right)^{|x|}(1-\theta)^{1-|x|}I_{\{-1,0,1\}}(x)\\
+&=&
+\exp[|x|\log(\theta/2)]\exp[(1-|x|)\log(1-\theta)]I_{\{-1,0,1\}}(x)\\
+&=&
+\underbrace{\exp[\log(1-\theta)]}_{c(\theta)}
+\exp[
+\underbrace{|x|}_{t(x)}
+\underbrace{(\log(\theta/2)-\log(1-\theta))}_{w(x)}
+]
+\underbrace{I_{\{-1,0,1\}}(x)}_{h(x)}
+\end{eqnarray*}
+Therefore $f(x\mid\theta)$ belongs to the exponential class for
+$0<\theta<1$.
+
+\end{document}

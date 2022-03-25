@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+7.50
+Let $X_1,\ldots,X_n$ be iid $N(\theta,\theta^2)$, $\theta>0$.
+For this model both $\bar X$ and $cS$ are unbiased estimators
+of $\theta$, where
+$$c={\sqrt{n-1}\Gamma((n-1)/2)\over\sqrt2\Gamma(n/2)}$$
+
+\bigskip
+\noindent
+(a) Prove that for any number $a$ the estimator
+$a\bar X+(1-a)(cS)$ is an unbiased estimator of $\theta$.
+
+\bigskip
+\noindent
+$$E[a\bar X+(1-a)(cS)]=aE(\bar X)+E(cS)-aE(cS)
+=a\theta+\theta-a\theta=\theta$$
+
+\bigskip
+\noindent
+(b) Find the value of $a$ that produces the estimator with
+minimum variance.
+
+\bigskip
+\noindent
+Since this is a normal population, $\bar X$ and $S$ are independent.
+\begin{eqnarray*}
+\mathop{Var}[a\bar X+(1-a)(cS)]&=&
+a^2\mathop{Var}\bar X+(1-a)^2c^2\mathop{Var}S\\
+&=&(\mathop{Var}\bar X+c^2\mathop{Var}S)a^2-(2c^2\mathop{Var}S)a
++c^2\mathop{Var}S
+\end{eqnarray*}
+This is a quadratic equation in $a$ with minimum
+$$a={c^2\mathop{Var}S\over\mathop{Var}\bar X+c^2\mathop{Var}S}$$
+
+\bigskip
+\noindent
+(c) Show that $(\bar X,S^2)$ is a sufficient statistic for $\theta$
+but it is not a complete sufficient statistic.
+
+\bigskip
+\noindent
+By the Factorization Theorem, $(\bar X,S^2)$
+is a sufficient statistic for $\theta$.
+However, as shown in part (a), there is no unique unbiased estimator.
+Therefore, by Theorem 7.5.1 (Lehmann-Scheffe), the statistic
+$(\bar X,S^2)$ cannot be complete.
+
+\end{document}

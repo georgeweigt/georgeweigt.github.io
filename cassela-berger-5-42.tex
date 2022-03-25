@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+5.42
+Similar to Example 5.5.11, let $X_1,X_2,\ldots$ be iid and
+$X_{(n)}=\max_{1\le i\le n}X_i$.
+
+\bigskip
+\noindent
+(a) If $X_i\sim Beta(1,\beta)$, find a value of $\nu$ so that
+$n^\nu (1-X_{(n)})$ converges in distribution.
+
+\bigskip
+\noindent
+We will need the cdf of $Beta(1,\beta)$.
+$$\int_0^x{\Gamma(1+\beta)\over\Gamma(1)\Gamma(\beta)}
+(1-u)^{\beta-1}\,du=-(1-u)^\beta\bigg|_{u=0}^x=1-(1-x)^\beta$$
+for integer $\beta$. We have
+\begin{eqnarray*}
+P(n^\nu(1-X_{(n)})\le x)&=&1-P(X_{(n)}\le1-xn^{-\nu})\\
+&=&1-[P(X_1\le1-xn^{-\nu})]^n\\
+&=&1-[1-(1-(1-xn^{-\nu}))^\beta]^n\\
+&=&1-[1-x^\beta n^{-\nu\beta}]^n
+\end{eqnarray*}
+This converges for
+$$\nu=1/\beta$$
+
+\bigskip
+\noindent
+(b) If $X_i\sim Exponential(1)$, find a sequence $a_n$ so that
+$X_{(n)}-a_n$ converges in distribution.
+
+\bigskip
+\noindent
+The cdf for $Exponential(1)$ is
+$$F_X(x)=1-e^{-x}$$
+We have
+\begin{eqnarray*}
+P(X_{(n)}-a_n\le x)&=&P(X_{(n)}\le x+a_n)\\
+&=&[P(X_1\le x+a_n)]^n\\
+&=&[1-\exp(-x-a_n)]^n
+\end{eqnarray*}
+This will converge if
+$$\exp(-x-a_n)=\exp(-x)/n$$
+hence
+$$a_n=\log n$$
+
+\end{document}

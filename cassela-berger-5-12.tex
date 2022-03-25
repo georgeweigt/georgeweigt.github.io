@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+5.12
+Let $X_1$, $\ldots$, $X_n$ be a random sample from a $N(0,1)$
+population. Define
+$$Y_1=\left|{1\over n}\sum_{i=1}^n X_i\right|,\qquad
+Y_2={1\over n}\sum_{i=1}^n|X_i|$$
+Calculate $EY_1$ and $EY_2$, and establish an inequality between
+them.
+
+\bigskip
+\noindent
+For $Z\sim N(0,1)$ we have
+\begin{eqnarray*}
+E|Z|&=&2\cdot{1\over\sqrt{2\pi}}\int_0^\infty z\exp(-z^2/2)\,dz\\
+&=&-\sqrt{2/\pi}\exp(-z^2/2)\bigg|_0^\infty\\
+&=&\sqrt{2/\pi}
+\end{eqnarray*}
+By theorem 5.3.1 we have
+$${1\over n}\sum_{i=1}^nX_i\sim N(0,1/n)$$
+Noting that
+$$Z/\sqrt n\sim N(0,1/n)$$
+we have
+$$EY_1=E|Z/\sqrt n|=E|Z|/\sqrt n=\sqrt{2/(n\pi)}$$
+For $Y_2$ we have
+$$EY_2={1\over n}\cdot nE|Z|=\sqrt{2/\pi}$$
+Therefore
+$$EY_1\le EY_2$$
+
+\end{document}

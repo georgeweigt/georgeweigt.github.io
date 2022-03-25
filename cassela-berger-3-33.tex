@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+3.33
+For each of the following families, (i) verify that it is an
+exponential family, (ii) describe the curve on which the $\theta$
+parameter vector lies, (iii) sketch a graph of the curved parameter
+space.
+
+\bigskip
+\noindent
+(a) $N(\theta,\theta)$
+
+\bigskip
+\noindent
+The pdf is
+$$f(x)={1\over\sqrt{2\pi\theta}}
+\exp\left(-{\theta\over2}\right)
+\exp\left(-{x^2\over2\theta}+x\right)$$
+The exponential family functions are
+\begin{eqnarray*}
+h(x)&=&\exp(x)\\
+c(\theta)&=&{1\over\sqrt{2\pi\theta}}
+\exp\left(-{\theta\over2}\right)\\
+w_1(\theta)&=&1/\theta\\
+t_1(x)&=&-x^2/2
+\end{eqnarray*}
+The parameter space $(\theta,\theta)$ is a straight
+line.
+
+\bigskip
+\noindent
+(b) $N(\theta,a\theta^2)$, $a$ known.
+
+\bigskip
+\noindent
+The pdf is
+$$f(x)={1\over\sqrt{2\pi a\theta^2}}
+\exp\left(-{1\over2a}\right)
+\exp\left(-{x^2\over2a\theta^2}+{x\over a\theta}\right)$$
+The exponential family functions are
+\begin{eqnarray*}
+h(x)&=&1\\
+c(\theta)&=&{1\over\sqrt{2\pi a\theta^2}}
+\exp\left(-{1\over2a}\right)\\
+w_1(\theta)&=&1/(a\theta^2)\\
+w_2(\theta)&=&1/(a\theta)\\
+t_1(x)&=&-x^2/2\\
+t_2(x)&=&x
+\end{eqnarray*}
+The parameter space $(\theta,a\theta^2)$ is a
+parabola.
+
+\bigskip
+\noindent
+(c) $Gamma(\alpha,1/\alpha)$
+
+\bigskip
+\noindent
+The pdf is
+$$f(x)={\alpha^\alpha\over\Gamma(\alpha)}
+x^{\alpha-1}e^{-\alpha x}$$
+The exponential family functions are
+\begin{eqnarray*}
+h(x)&=&1\\
+c(\alpha)&=&{\alpha^\alpha\over\Gamma(\alpha)}\\
+w_1(\alpha)&=&\alpha-1\\
+w_2(\alpha)&=&\alpha\\
+t_1(x)&=&\log(x)\\
+t_2(x)&=&-x
+\end{eqnarray*}
+The parameter space $(\alpha,1/\alpha)$ is
+a hyperbola.
+
+\bigskip
+\noindent
+(d) $f(x\mid\theta)=C\exp(-(x-\theta)^4)$, $C$ a normalizing
+constant.
+
+\bigskip
+\noindent
+The pdf can be written as
+$$f(x)=C
+\exp(-x^4+4\theta x^3-6\theta^2x^2+4\theta^3x-\theta^4)$$
+The exponential family functions are
+\begin{eqnarray*}
+h(x)&=&\exp(-x^4)\\
+c(\theta)&=&C\exp(-\theta^4)\\
+w_1(\theta)&=&\theta\\
+w_2(\theta)&=&\theta^2\\
+w_3(\theta)&=&\theta^3\\
+t_1(x)&=&4x^3\\
+t_2(x)&=&-6x^2\\
+t_3(x)&=&4x
+\end{eqnarray*}
+The parameter space
+is a curve in $\mathbb R^3$.
+
+%\newpage
+
+%\begin{center}
+%\includegraphics[scale=0.1]{IMG.jpg}
+%\end{center}
+
+%\newpage
+
+\end{document}

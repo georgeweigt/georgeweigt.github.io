@@ -1,0 +1,271 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+6.9
+For each of the following distributions let $X_1,\ldots,X_n$
+be a random sample.
+Find a minimal sufficient statistic for $\theta$.
+
+\bigskip
+\noindent
+(a) $\displaystyle{f(x\mid\theta)={1\over\sqrt{2\pi}}
+e^{-(x-\theta)^2/2},\quad-\infty<x<\infty,\quad
+-\infty<\theta<\infty}$
+
+\bigskip
+\noindent
+The statistic $\sum_{i=1}^nX_i$ is minimal sufficient.
+%First show that it is sufficient.
+%\begin{eqnarray*}
+%f(\mathbb X\mid\theta)&=&\prod_{i=1}^nf(X_i\mid\theta)\\
+%&=&{1\over(2\pi)^{n/2}}
+%\exp\left(-{1\over2}\sum_{i=1}^nX_i^2+\theta\sum_{i=1}^nX_i-
+%{1\over2}n\theta^2\right)\\
+%&=&
+%{1\over(2\pi)^{n/2}}
+%\exp\left(-{1\over2}\sum_{i=1}^nX_i^2\right)
+%\exp\left(\theta\sum_{i=1}^nX_i-{1\over2}n\theta^2\right)
+%\end{eqnarray*}
+%We have
+%$$
+%h(\mathbb X)={1\over(2\pi)^{n/2}}
+%\exp\left(-{1\over2}\sum_{i=1}^nX_i^2\right),\quad
+%g(T(\mathbb X),\theta)=
+%\exp\left(\theta\sum_{i=1}^nX_i-{1\over2}n\theta^2\right)
+%$$
+%therefore $\sum_{i=1}^nX_i$ is sufficient.
+%Now show that it is minimal sufficient.
+\begin{eqnarray*}
+{f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+&=&{
+{1\over(2\pi)^{n/2}}
+\exp\left(-{1\over2}\sum_{i=1}^nX_i^2+\theta\sum_{i=1}^nX_i-
+{1\over2}n\theta^2\right)
+\over
+{1\over(2\pi)^{n/2}}
+\exp\left(-{1\over2}\sum_{i=1}^nY_i^2+\theta\sum_{i=1}^nY_i-
+{1\over2}n\theta^2\right)
+}\\
+&=&\exp\left(
+-{1\over2}\sum_{i=1}^nX_i^2
++{1\over2}\sum_{i=1}^nY_i^2
+-\theta\sum_{i=1}^nX_i
++\theta\sum_{i=1}^nY_i
+\right)
+\end{eqnarray*}
+If $T(\mathbb X)=T(\mathbb Y)$ then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=\exp\left(
+-{1\over2}\sum_{i=1}^nX_i^2
++{1\over2}\sum_{i=1}^nY_i^2
+\right)
+$$
+which does not depend on $\theta$.
+If $T(\mathbb X)\ne T(\mathbb Y)$ then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=\exp\left(
+-{1\over2}\sum_{i=1}^nX_i^2
++{1\over2}\sum_{i=1}^nY_i^2-\theta T(\mathbb X)+\theta T(\mathbb Y)
+\right)
+$$
+which does depend on $\theta$.
+Therefore $\sum_{i=1}^nX_i$ is minimal sufficient.
+
+\bigskip
+\noindent
+(b) $\displaystyle{f(x\mid\theta)=e^{-(x-\theta)},
+\quad\theta<x<\infty,\quad-\infty<\theta<\infty}$
+
+\bigskip
+\noindent
+The statistic $X_{1:n}$ is minimal sufficient.
+%First show that it is sufficient.
+%\begin{eqnarray*}
+%f(\mathbb X\mid\theta)&=&\prod_{i=1}^nf(X_i\mid\theta)\\
+%&=&\prod_{i=1}^n\exp(-X_i+\theta)I_{(\theta,\infty)}(X_i)\\
+%&=&\exp\left(-\sum_{i=1}^nX_i\right)
+%\exp(n\theta)I_{(\theta,\infty)}(X_{1:n})
+%\end{eqnarray*}
+%We have $f(\mathbb X\mid\theta)=h(\mathbb X)g(T(\mathbb X),\theta)$
+%where
+%$$h(\mathbb X)=\exp\left(-\sum_{i=1}^nX_i\right),\quad
+%g(T(\mathbb X),\theta)=\exp(n\theta)I_{(\theta,\infty)}(X_{1:n})$$
+%therefore $X_{1:n}$ is sufficient.
+%Now show that it is minimal sufficient.
+\begin{eqnarray*}
+{f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+&=&{
+\exp\left(-\sum_{i=1}^nX_i\right)
+\exp(n\theta)I_{(\theta,\infty)}(X_{1:n})
+\over
+\exp\left(-\sum_{i=1}^nY_i\right)
+\exp(n\theta)I_{(\theta,\infty)}(Y_{1:n})
+}\\
+&=&\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right)
+\cdot
+{I_{(\theta,\infty)}(X_{1:n})\over I_{(\theta,\infty)}(Y_{1:n})}
+\end{eqnarray*}
+As in Lecture \#18, assume for this problem that $0/0=1$.
+If $X_{1:n}=Y_{1:n}$ then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right)$$
+which does not depend on $\theta$.
+%
+%
+%
+If $X_{1:n}<Y_{1:n}$ then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=\left\{
+\begin{array}{ll}
+%\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right), & \theta<X_{1:n}\\
+0, & X_{1:n}\le\theta<Y_{1:n}\\
+\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right), & {\rm otherwise}
+\end{array}\right.
+$$
+%
+%
+%
+If $X_{1:n}>Y_{1:n}$ then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=\left\{
+\begin{array}{ll}
+%\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right), & \theta<Y_{1:n}\\
+\infty, & Y_{1:n}\le\theta<X_{1:n}\\
+\exp\left(-\sum_{i=1}^nX_i+\sum_{i=1}^nY_i\right), & {\rm otherwise}
+\end{array}\right.
+$$
+In both cases there is a dependence on $\theta$ therefore
+$X_{1:n}$ is minimal sufficient.
+
+\bigskip
+\noindent
+(e) $\displaystyle{f(x\mid\theta)=
+{1\over2}e^{-|x-\theta|},\quad
+-\infty<x<\infty,\quad
+-\infty<\theta<\infty}$
+
+\bigskip
+\noindent
+Per Recitation \#6, the order statistic is minimal sufficient.
+%\begin{eqnarray*}
+%f(\mathbb X\mid\theta)&=&\prod_{i=1}^nf(X_i\mid\theta)\\
+%&=&{1\over2^n}\exp\left(
+%-\sum_{i=1}^n|X_i-\theta|\right)\\
+%&=&{1\over2^n}\exp\left(
+%-\sum_{i=1}^n|X_{i:n}-\theta|\right)
+%\end{eqnarray*}
+\begin{eqnarray*}
+{f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+&=&\exp\left(-\sum_{i=1}^n|X_i-\theta|+\sum_{i=1}^n|Y_i-\theta|\right)\\
+&=&\exp\left(-\sum_{i=1}^n|X_{(i)}-\theta|+\sum_{i=1}^n|Y_{(i)}-\theta|\right)
+\end{eqnarray*}
+Let $(X_{(1)},\ldots,X_{(n)})=(Y_{(1)},\ldots,Y_{(n)})$. Then
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}=1$$
+which does not depend on $\theta$.
+To show the converse, let
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=h(\mathbb X,\mathbb Y)$$
+We want to show that this implies
+$(X_{(1)},\ldots,X_{(n)})=(Y_{(1)},\ldots,Y_{(n)})$.
+Since $h(\mathbb X,\mathbb Y)$ does not depend on $\theta$ we have
+$${\partial h(\mathbb X,\mathbb Y)\over\partial\theta}=0$$
+The exponential cannot be zero hence we must have
+$${\partial\over\partial\theta}
+\left(-\sum_{i=1}^n|X_{(i)}-\theta|+\sum_{i=1}^n|Y_{(i)}-\theta|\right)=0$$
+or equivalently
+$$
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|X_{(i)}-\theta|\right)
+=
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|Y_{(i)}-\theta|\right)
+$$
+For $\theta\le X_{(1)}$ the term on the left becomes
+\begin{eqnarray*}
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|X_{(i)}-\theta|\right)
+&=&
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n(X_{(i)}-\theta)\right)\\
+&=&
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^nX_{(i)}-n\theta\right)\\
+&=&-n
+\end{eqnarray*}
+%
+%
+%
+Note that in order to have
+$$
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|X_{(i)}-\theta|\right)
+=
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|Y_{(i)}-\theta|\right)=-n
+$$
+for every $\theta$ such that $\theta\le X_{(1)}$ we must have
+$$X_{(1)}\le Y_{(1)}$$
+%
+%
+%
+For $X_{(1)}<\theta\le X_{(2)}$ we have
+\begin{eqnarray*}
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|X_{(i)}-\theta|\right)
+&=&
+{\partial\over\partial\theta}
+\left(\theta-X_{(1)}+\sum_{i=2}^n(X_{(i)}-\theta)\right)\\
+&=&
+{\partial\over\partial\theta}
+\left(\theta-X_{(1)}+\sum_{i=2}^nX_{(i)}-(n-1)\theta\right)\\
+&=&-n+2
+\end{eqnarray*}
+%
+%
+%
+Note that in order to have
+$$
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|X_{(i)}-\theta|\right)
+=
+{\partial\over\partial\theta}
+\left(\sum_{i=1}^n|Y_{(i)}-\theta|\right)=-n+2
+$$
+for every $\theta$ such that $X_{(1)}<\theta\le X_{(2)}$ we must have
+$$Y_{(1)}\le X_{(1)},\quad X_{(2)}\le Y_{(2)}$$
+%
+%
+%
+But we already have $X_{(1)}\le Y_{(1)}$ therefore
+$$X_{(1)}=Y_{(1)}$$
+This argument can be repeated for each interval of the $X_{(i)}$
+and we conclude that $X_{(i)}=Y_{(i)}$ for all $i$.
+Therefore
+$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=h(\mathbb X,\mathbb Y)$$
+implies
+$$T(\mathbb X)=T(\mathbb Y)$$
+Therefore the order statistic is minimal sufficient.
+
+
+%To show the converse, I will use the contrapositive technique
+%rather than the direct proof Jan used in the recitation.
+%Suppose $(X_{(1)},\ldots,X_{(n)})\ne(Y_{(1)},\ldots,Y_{(n)})$.
+%Let $j$ be the smallest index such that $X_{(j)}\ne Y_{(j)}$.
+%Then
+%$${f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+%=\exp(-|X_{(j)}-\theta|+|Y_{(j)}-\theta|+\hbox{other terms})$$
+%For this to {\it not} depend on $\theta$
+%would need to have
+%$$\hbox{other terms}=|X_{(j)}-\theta|-|Y_{(j)}-\theta|$$
+%However this is not possible because the order statistic is an
+%increasing function.
+%Therefore
+
+\end{document}

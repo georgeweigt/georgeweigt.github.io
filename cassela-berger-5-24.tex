@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+5.24
+Let $X_1,\,\ldots,\,X_n$ be a random sample from a population with
+pdf
+$$
+f_X(x)=\left\{
+\begin{array}{ll}
+1/\theta & \hbox{if $0<x<\theta$}\\
+0 & \hbox{otherwise}
+\end{array}\right.
+$$
+Let $X_{(1)}<\cdots<X_{(n)}$ be the order statistics.
+Show that $X_{(1)}/X_{(n)}$ and $X_{(n)}$ are independent random
+variables.
+
+\bigskip
+\noindent
+Note that $X_i\sim U(0,\theta)$. For the cdf we have
+$$F_X(x)={x\over\theta}I_{(0,\theta)}(x)+I_{[\theta,\infty)}(x)$$
+First we need the joint distribution of $X_{(1)}$ and $X_{(n)}$.
+\begin{eqnarray*}
+f(x,y)&=&
+{n!\over(n-2)!}
+\,{1\over\theta^2}
+\left({y\over\theta}-{x\over\theta}\right)^{n-2}
+I_{(0,\theta)}(x)I_{(0,\theta)}(y)\\
+&=&n(n-1){1\over\theta^n}
+(y-x)^{n-2}I_{(0,\theta)}(x)I_{(0,\theta)}(y)
+\end{eqnarray*}
+Now do a Jacobian transformation.
+Let
+\begin{eqnarray*}
+U&=&X_{(1)}/X_{(n)}\\
+V&=&X_{(n)}
+\end{eqnarray*}
+Then
+\begin{eqnarray*}
+X_{(1)}&=&UV\\
+X_{(n)}&=&V
+\end{eqnarray*}
+We have
+$$J_{T^{-1}}=\left(\begin{matrix}
+\partial X_{(1)}/\partial U &
+\partial X_{(1)}/\partial V\\
+\partial X_{(n)}/\partial U &
+\partial X_{(n)}/\partial V\\
+\end{matrix}\right)
+=\left(\begin{matrix}
+V & U\\
+0 & 1\\
+\end{matrix}\right)
+$$
+and
+$$|\det J_{T^{-1}}|=|V|$$
+The joint distribution of $U$ and $V$ is
+\begin{eqnarray*}
+f_{UV}(u,v)&=&f(uv,v)\,|v|\,
+I_{(0,\theta)}(uv)\,I_{(0,\theta)}(v)\\
+&=&
+n(n-1)
+{1\over\theta^n}
+(v-uv)^{n-2}
+\,v\,
+I_{(0,\theta)}(uv)\,I_{(0,\theta)}(v)\\
+&=&
+n(n-1)
+{1\over\theta^n}
+v^{n-1}(1-u)^{n-2}
+I_{(0,1)}(u)I_{(0,\theta)}(v)\\
+\end{eqnarray*}
+Now compute the marginal density functions.
+\begin{eqnarray*}
+f_U(u)&=&\int_0^\theta f_{UV}(u,v)\,dv\\
+&=&(n-1)
+{1\over\theta^n}
+v^n
+(1-u)^{n-2}\bigg|_0^\theta\\
+&=&(n-1)(1-u)^{n-2}\\
+%
+f_V(v)&=&\int_0^1f_{UV}(u,v)\,du\\
+&=&-n{1\over\theta^n}v^{n-1}(1-u)^{n-1}\bigg|_0^1\\
+&=&n{1\over\theta^n}v^{n-1}
+\end{eqnarray*}
+We have
+$$f_{UV}(u,v)=f_U(u)f_V(v)$$
+therefore $X_{(1)}/X_{(n)}$ and $X_{(n)}$ are independent.
+
+\end{document}

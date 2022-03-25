@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+3.29
+For each family in Exercise 3.28, describe the natural parameter
+space.
+
+\bigskip
+\noindent
+(b) gamma family
+\begin{eqnarray*}
+\eta_1&=&\alpha-1\\
+\eta_2&=&1/\beta\\
+\bar c(\eta_1,\eta_2)&=&{\eta_2^{\eta_1+1}\over\Gamma(\eta_1+1)}
+={1\over\Gamma(\alpha)\beta^\alpha}
+\end{eqnarray*}
+For
+$$\int_0^\infty x^{\eta_1}\exp(-\eta_2x)\,dx<\infty$$
+we must have $\eta_1>-1$ and $\eta_2>0$.
+Therefore the natural parameter space is
+$${\mathscr H}=\{(\eta_1,\eta_2):\eta_1\in(-1,\infty),\eta_2\in(0,\infty)\}$$
+
+\bigskip
+\noindent
+(c) beta familiy
+\begin{eqnarray*}
+\eta_1&=&\alpha-1\\
+\eta_2&=&\beta-1\\
+\bar c(\eta_1,\eta_2)&=&
+{\Gamma(\eta_1+\eta_2+2)\over\Gamma(\eta_1+1)\Gamma(\eta_2+1)}
+={\Gamma(\alpha+\beta)\over\Gamma(\alpha)\Gamma(\beta)}
+\end{eqnarray*}
+In order to have
+$$\int_0^1 x^{\eta_1}(1-x)^{\eta_2}\,dx<\infty$$
+we must have $\eta_1,\eta_2>-1$.
+Therefore the natural parameter space is
+$$\mathscr H=\{(\eta_1,\eta_2):\eta_1,\eta_2\in(-1,\infty)\}$$
+
+\bigskip
+\noindent
+(e) negative binomial
+\begin{eqnarray*}
+\eta&=&\log(1-p)\\
+\bar c(\eta)&=&(1-e^\eta)^r=p^r
+\end{eqnarray*}
+In order to have
+$$\sum_{x=0}^\infty {r+x-1\choose x}\exp(\eta x)<\infty$$
+we must have $\eta<0$.
+Therefore the natural parameter space is
+$$\mathscr H=\{\eta:\eta\in(-\infty,0)\}$$
+
+\end{document}

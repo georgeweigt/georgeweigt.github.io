@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+6.16
+A famous example in genetic modeling is a genetic linkage
+multinomial model, where we observe the multinomial vector
+$(x_1,x_2,x_3,x_4)$ with cell probabilities given by
+$({1\over2}+{\theta\over4},{1\over4}(1-\theta),
+{1\over4}(1-\theta),{\theta\over4})$.
+
+\bigskip
+\noindent
+(a) Show that this is a curved exponential family.
+
+\bigskip
+\noindent
+Let
+$$p_1={1\over2}+{\theta\over4},\quad
+p_2,p_3={1\over4}(1-\theta),\quad
+p_4={\theta\over4}
+$$
+Then
+\begin{eqnarray*}
+f(\mathbb X\mid\theta)&=&
+{(x_1+x_2+x_3+x_4)!\over x_1!\,x_2!\,x_3!\,x_4!}
+p_1^{x_1}
+p_2^{x_2}
+p_3^{x_3}
+p_4^{x_4}\\
+&=&{(x_1+x_2+x_3+x_4)!\over x_1!\,x_2!\,x_3!\,x_4!}
+\exp\left[
+x_1\log p_1
++x_2\log p_2
++x_3\log p_3
++x_4\log p_4
+\right]
+\end{eqnarray*}
+Hence
+\begin{eqnarray*}
+h(\mathbb X)&=&{(x_1+x_2+x_3+x_4)!\over x_1!\,x_2!\,x_3!\,x_4!}\\
+c(\theta)&=&1\\
+t_i(\mathbb X)&=&x_i\\
+w_i(\theta)&=&\log p_i
+\end{eqnarray*}
+We have $k=4$ and the dimension of the parameter is $d=1$.
+Since $d<k$ this is a curved exponential family.
+
+\bigskip
+\noindent
+(b) Find a sufficient statistic for $\theta$.
+
+\bigskip
+\noindent
+Try $T(\mathbb X)=(x_1,x_2+x_3,x_4)$.
+$$f(\mathbb X\mid\theta)
+=
+\underbrace{
+{(x_1+x_2+x_3+x_4)!\over x_1!\,x_2!\,x_3!\,x_4!}
+}_{h(\mathbb X)}
+\underbrace{
+\left({1\over2}+{\theta\over4}\right)^{x_1}
+\left({1\over4}-{\theta\over4}\right)^{x_2+x_3}
+\left({\theta\over4}\right)^{x_4}
+}_{g(T(\mathbb X),\theta)}
+$$
+By the factorization theorem,
+$T(\mathbb X)$ is sufficient.
+
+\bigskip
+\noindent
+(c) Find a minimal sufficient statistic for $\theta$.
+
+\bigskip
+\noindent
+Try $T(\mathbb X)=(x_1,x_2+x_3,x_4)$ again.
+$$h=
+{f(\mathbb X\mid\theta)\over f(\mathbb Y\mid\theta)}
+=K
+\left({1\over2}+{\theta\over4}\right)^{x_1-y_1}
+\left({1\over4}-{\theta\over4}\right)^{x_2+x_3-y_2-y_3}
+\left({\theta\over4}\right)^{x_4-y_4}
+$$
+where
+$$K={y_1!\,y_2!\,y_3!\,y_4!\,(x_1+x_2+x_3+x_4)!\over
+x_1!\,x_2!\,x_3!\,x_4!\,(y_1+y_2+y_3+y_4)!}
+$$
+If $T(\mathbb X)=T(\mathbb Y)$
+then $h$ does not depend on $\theta$.
+If $x_1\ne y_1$ then $h$ depends on $\theta$.
+If $x_2+x_3\ne y_2+y_3$ then $h$ depends on $\theta$.
+If $x_4\ne y_4$ then $h$ depends on $\theta$.
+Hence if $T(\mathbb X)\ne T(\mathbb Y)$ then $h$ depends
+on $\theta$.
+Therefore $T(\mathbb X)$ is minimal sufficient.
+
+\end{document}

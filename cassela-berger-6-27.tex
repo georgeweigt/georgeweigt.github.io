@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+6.27
+Let $X_1,\ldots,X_n$ be a random sample from the inverse Gaussian
+distribution with pdf
+$$f(x\mid\mu,\lambda)=\left({\lambda\over2\pi x^3}\right)^{1/2}
+e^{-\lambda(x-\mu)^2\over2\mu^2x},\qquad0<x<\infty
+$$
+
+\bigskip
+\noindent
+(a) Show that the statistics
+$$\bar X={1\over n}\sum_{i=1}^n X_i
+\quad\hbox{and}\quad
+T={n\over\sum_{i=1}^n\left({1\over X_i}-{1\over\bar X}\right)}
+$$
+are sufficient and complete.
+
+\bigskip
+\noindent
+Note that
+$${1\over T}={1\over n}\sum_{i=1}^n\left(
+{1\over X_i}-{1\over\bar X}\right),\qquad
+{n\over T}+{n\over\bar X}=\sum_{i=1}^n{1\over X_i}
+$$
+We have
+\begin{eqnarray*}
+f(\mathbb X\mid\mu,\lambda)&=&\prod_{i=1}^nf(X_i\mid\mu,\lambda)\\
+&=&
+\left(\prod_{i=1}^nX_i\right)^{-3n/2}
+\left({\lambda\over2\pi}\right)^{n/2}
+\exp\left(-{\lambda\over2\mu^2}\sum_{i=1}^n{(X_i-\mu)^2\over X_i}\right)\\
+&=&
+\left(\prod_{i=1}^nX_i\right)^{-3n/2}
+\left({\lambda\over2\pi}\right)^{n/2}
+\exp\left(
+-{\lambda\over2\mu^2}\sum_{i=1}^n{X_i^2-2\mu X_i+\mu^2\over X_i}\right)\\
+&=&
+\left(\prod_{i=1}^nX_i\right)^{-3n/2}
+\left({\lambda\over2\pi}\right)^{n/2}
+\exp\left[
+-{\lambda\over2\mu^2}\sum_{i=1}^n\left(
+X_i-2\mu+{\mu^2\over X_i}\right)\right]\\
+&=&
+\left(\prod_{i=1}^nX_i\right)^{-3n/2}
+\left({\lambda\over2\pi}\right)^{n/2}
+\exp\left(
+-{n\lambda\over2\mu^2}\bar X
++{n\lambda\over\mu}
+-{\lambda\over2}\sum_{i=1}^n{1\over X_i}\right)\\
+&=&
+\underbrace{
+\left(\prod_{i=1}^nX_i\right)^{-3n/2}}_{h(\mathbb X)}
+\underbrace{
+\left({\lambda\over2\pi}\right)^{n/2}
+\exp\left(
+-{n\lambda\over2\mu^2}\bar X
++{n\lambda\over\mu}
+-{\lambda\over2}\left(
+{n\over T}+{n\over\bar X}\right)\right)
+}_{g(\bar X,T,\mu,\lambda)}
+\end{eqnarray*}
+Therefore by the Factorization Theorem, $\bar X$ and $T$ are
+sufficient.
+
+\bigskip
+\noindent
+Now show that $\bar X$ and $T$ are complete.
+We have
+\begin{eqnarray*}
+f(x\mid\mu,\lambda)&=&
+\left({\lambda\over2\pi x^3}\right)^{1/2}
+e^{-\lambda(x-\mu)^2\over2\mu^2x}I_{(0,\infty)}(x)\\
+&=&
+\underbrace{
+I_{(0,\infty)}(x){1\over x^{3/2}}}_{h(x)}
+\underbrace{
+\left({\lambda\over2\pi}\right)^{1/2}\exp(\lambda/\mu)
+}_{c(\mu,\lambda)}
+\exp\left(-{\lambda x\over2\mu^2}-{\lambda\over2x}\right)
+\end{eqnarray*}
+Therefore the pdf is an exponential family.
+By theorem 6.2.25 the statistic
+$$\left(\sum X_i,\sum{1\over X_i}\right)$$
+is complete.
+Let
+$$E_\theta h\left(\bar X,T\right)
+=E_\theta g\left(n\bar X,{n\over T}+{n\over\bar X}\right)
+=E_\theta g\left(\sum X_i,\sum{1\over X_i}\right)=0$$
+for all $\theta$.
+Then since $\sum X_i$ and $\sum {1\over X_i}$ are complete we have
+$P_\theta (h(\bar X, T)=0)=1$ for all $\theta$.
+Therefore $\bar X$ and $T$ are complete.
+
+\bigskip
+\noindent
+(b) For $n=2$, show that $\bar X$ has an inverse Gaussian
+distribution, $n\lambda/T$ has a $\chi^2_{n-1}$ distribution,
+and they are independent.
+
+%\bigskip
+%\noindent
+%The mgf for inverse Gaussian is
+%$$M_X(t)=\exp\left({\lambda\over\mu}\left(
+%1-\sqrt{1-{2\mu^2t\over\lambda}}\right)\right)
+%$$
+%Since $X_1$ and $X_2$ are iid we have
+%$$M_{X_1+X_2}(t)=M_{X_1}(t)\,M_{X_2}(t)
+%=\exp\left({2\lambda\over\mu}\left(
+%1-\sqrt{1-{2\mu^2t\over\lambda}}\right)\right)
+%$$
+%Hence
+%$$M_{\bar X}(t)=M_{X_1+X_2}(t/2)=
+%\exp\left({2\lambda\over\mu}\left(
+%1-\sqrt{1-{\mu^2t\over\lambda}}\right)\right)
+%$$
+%Substituting $\theta/2$ for $\lambda$ we have
+%$$M_{\bar X}(t)=
+%\exp\left({\theta\over\mu}\left(
+%1-\sqrt{1-{2\mu^2t\over\theta}}\right)\right)
+%$$
+%Therefore the distribution of $\bar X$ is inverse Gaussian.
+
+\bigskip
+\noindent
+%The joint distribution is
+%$$f(x,y)={\lambda\over2\pi}x^{-3/2}y^{-3/2}
+%\exp(2\lambda/\mu)
+%\exp\left(
+%-{\lambda x\over2\mu^2}
+%-{\lambda\over2x}
+%-{\lambda y\over2\mu^2}
+%-{\lambda\over2y}
+%\right)
+%$$
+The transform is
+$$\bar X={X_1+X_2\over2},\quad
+S=n/T={1\over X_1}+{1\over X_2}-{2\over\bar X}$$
+After a lengthy calculation the inverse transform is
+$$
+X_1=\bar X\left(1-{1\over2}\sqrt{4S\bar X\over S\bar X+2}\right),
+\qquad
+X_2=\bar X\left(1+{1\over2}\sqrt{4S\bar X\over S\bar X+2}\right)
+$$
+The associated Jacobian is
+$$J=|\det J_{T^{-1}}|={2\bar X^{3/2}\over S^{1/2}(S\bar X+2)^{3/2}}$$
+The joint distribution is
+$$f(\bar x,s)=f(X_1)f(X_2)\cdot J$$
+According to the Schwarz and Samanta paper this works out to be
+$$f(\bar x,s)=
+\underbrace{
+\left({2\lambda\over2\pi\bar x^3}\right)^{1/2}
+\exp\left(-{2\lambda(\bar x-\mu)^2\over2\mu^2\bar x}\right)
+}_{\bar X\sim IG(\mu,2\lambda)}
+\underbrace{
+{1\over\Gamma(1/2)}\left(\lambda\over2s\right)^{1/2}
+\exp\left(-{\lambda\over2}s\right)
+}_{\lambda S\sim\chi^2_1}
+$$
+Hence $\bar X\sim IG(\mu,2\lambda)$,
+$\lambda S\sim\chi^2_1$, and $\bar X\amalg S$.
+
+\end{document}

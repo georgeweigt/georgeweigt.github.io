@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+7.23
+If $S^2$ is the sample variance based on a sample of size $n$
+from a normal population, we know that $(n-1)S^2/\sigma^2$
+has a $\chi^2_{n-1}$ distribution. The conjugate prior for $\sigma^2$
+is the inverted gamma pdf, ${\rm IG}(\alpha,\beta)$ given by
+$$\pi(\sigma^2)=
+{1\over\Gamma(\alpha)\beta^\alpha}
+{1\over(\sigma^2)^{\alpha+1}}
+e^{-1/(\beta\sigma^2)},\qquad0<\sigma^2<\infty
+$$
+Where $\alpha$ and $\beta$ are positive constants.
+Show that the posterior distribution of $\sigma^2$ is
+${\rm IG}(\alpha+{n-1\over2},[{(n-1)S^2\over2}+{1\over\beta}]^{-1})$.
+Find the mean of this distribution, the Bayes estimator of
+$\sigma^2$.
+
+\bigskip
+\noindent
+We have
+\begin{eqnarray*}
+\pi(\sigma^2\mid\mathbb X)&=&{
+{1\over\Gamma(\alpha)\beta^\alpha}
+{1\over(\sigma^2)^{\alpha+1}}
+e^{-1/(\beta\sigma^2)}
+{1\over(2\pi\sigma^2)^{(n-1)/2}}\exp\left(-{1\over2\sigma^2}
+\sum_{i=1}^{n-1}(X_i-\mu)^2\right)
+\over
+\int_0^\infty
+{1\over\Gamma(\alpha)\beta^\alpha}
+{1\over(\sigma^2)^{\alpha+1}}
+e^{-1/(\beta\sigma^2)}
+{1\over(\sigma^2)^{(n-1)/2}}\exp\left(-{1\over2\sigma^2}
+\sum_{i=1}^{n-1}(X_i-\mu)^2\right)\,d\sigma^2
+}\\
+&=&{
+{1\over(\sigma^2)^{\alpha+1}}
+e^{-1/(\beta\sigma^2)}
+{1\over(\sigma^2)^{(n-1)/2}}\exp\left(-{1\over2\sigma^2}
+\sum_{i=1}^{n-1}(X_i-\mu)^2\right)
+\over
+\int_0^\infty
+{1\over(\sigma^2)^{\alpha+1}}
+e^{-1/(\beta\sigma^2)}
+{1\over(\sigma^2)^{(n-1)/2}}\exp\left(-{1\over2\sigma^2}
+\sum_{i=1}^{n-1}(X_i-\mu)^2\right)\,d\sigma^2
+}
+\end{eqnarray*}
+Note that $X_i=\sigma Z_i+\mu$ hence
+\begin{eqnarray*}
+\exp\left(-{1\over2\sigma^2}\sum_{i=1}^{n-1}(X_i-\mu)^2\right)
+&=&\exp\left(-{1\over2\sigma^2}\sum_{i=1}^{n-1}(\sigma Z_i)^2\right)\\
+&=&\exp\left(-{1\over2}\sum_{i=1}^{n-1}Z_i^2\right)\\
+&=&\exp\left(-{(n-1)S^2\over2\sigma^2}\right)
+\end{eqnarray*}
+where the last step is by $\sum_{i=1}^{n-1}Z^2\sim\chi^2_{n-1}$.
+Now we have
+\begin{eqnarray*}
+\pi(\sigma^2\mid\mathbb X)&=&
+{
+{1\over(\sigma^2)^{\alpha+1}}
+{1\over(\sigma^2)^{(n-1)/2}}\exp\left(
+-{1\over\sigma^2}\left({(n-1)S^2\over2}+{1\over\beta}\right)
+\right)
+\over
+\int_0^\infty
+{1\over(\sigma^2)^{\alpha+1}}
+{1\over(\sigma^2)^{(n-1)/2}}\exp\left(
+-{1\over\sigma^2}\left({(n-1)S^2\over2}+{1\over\beta}\right)
+\right)\,d\sigma^2
+}
+\end{eqnarray*}
+Note that the integral in the denominator is IG without the
+normalizing constant. Hence it integrates to one over the
+normalizing constant and we have
+\begin{eqnarray*}
+\pi(\sigma^2\mid\mathbb X)&=&
+%
+{
+\left({(n-1)S^2\over2}+{1\over\beta}\right)^{\alpha+{n-1\over2}}
+\over
+\Gamma\left(\alpha+{n-1\over2}\right)
+(\sigma^2)^{\alpha+{n-1\over2}+1}
+}
+%
+\exp\left(
+-{1\over\sigma^2}\left({(n-1)S^2\over2}+{1\over\beta}\right)
+\right)
+\end{eqnarray*}
+Finally we have
+$$\pi(\sigma^2\mid\mathbb X)\sim{\rm IG}\left(\alpha+{n-1\over2},\left[{(n-1)S^2\over2}+{1\over\beta}\right]^{-1}\right)$$
+The mean of this distribution is
+$$
+%{1\over\beta(\alpha-1)}=
+{
+\left[{(n-1)S^2\over2}+{1\over\beta}\right]
+\over
+\alpha+{n-1\over2}-1
+}$$
+
+\end{document}

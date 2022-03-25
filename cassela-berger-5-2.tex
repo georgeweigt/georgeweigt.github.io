@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+Suppose $X_1$, $X_2$, $\ldots$ are jointly continuous and independent,
+each distributed with marginal pdf $f(x)$, where each $X_i$
+represents annual rainfall at a given location.
+
+\bigskip
+\noindent
+(a) Find the distribution of the number of years until the first
+year's rainfall, $X_1$, is exceeded for the first time.
+
+\bigskip
+\noindent
+Let $X_1=x$ be the first year's rainfall. Then
+$$P(X_i>x)=1-F(x)$$
+Let $N$ be the number of years until $X_1$ is exceeded for the first
+time. Then
+$$P(N=n\mid X_1=x)=F(x)^{n-1}(1-F(x))$$
+We have
+$$P(N=n)=\int_0^\infty F(x)^{n-1}(1-F(x))f(x)\,dx$$
+Let $t=F(x)$. Then $dt=f(x)\,dx$ and
+\begin{eqnarray*}
+P(N=n)&=&\int_0^1 t^{n-1}(1-t)\,dt\\
+&=&\left({t^n\over n}-{t^{n+1}\over n+1}\right)\bigg|_{t=0}^1\\
+&=&{1\over n}-{1\over n+1}\\
+&=&{n+1\over n(n+1)}-{n\over n(n+1)}\\
+&=&{1\over n(n+1)}
+\end{eqnarray*}
+
+\bigskip
+\noindent
+(b) Show that the mean number of years until $X_1$ is exceeded for
+the first time is infinite.
+
+$$EN=\sum_{n=1}^\infty n\,P(N=n)
+=\sum_{n=1}^\infty{1\over n+1}=\infty$$
+
+\end{document}

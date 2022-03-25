@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+7.26
+Let $X_1,\ldots,X_n$ be iid $N(\theta,\sigma^2)$ and let $\theta$
+have a double exponential distribution, that is,
+$\pi(\theta)=e^{|\theta|/a}/(2a)$, $a$ known.
+Find the mean of the posterior distribution of $\theta$.
+
+\bigskip
+\noindent
+We have
+\begin{eqnarray*}
+\pi({\theta\mid\mathbb X})
+&=&
+{1\over C}e^{\theta/a}\exp\left(
+{\theta\sum X_i\over\sigma^2}-{n\theta^2\over2\sigma^2}
+\right)
+I_{(0,\infty)}(\theta)
+\\
+&&{}+
+{1\over C}e^{-\theta/a}\exp\left(
+{\theta\sum X_i\over\sigma^2}-{n\theta^2\over2\sigma^2}
+\right)
+I_{(-\infty,0)}(\theta)
+\\
+&=&
+{1\over C}\exp\left({\theta\over a}+
+{\theta\sum X_i\over\sigma^2}-{n\theta^2\over2\sigma^2}
+\right)
+I_{(0,\infty)}(\theta)
+\\
+&&{}+
+{1\over C}\exp\left(-{\theta\over a}+
+{\theta\sum X_i\over\sigma^2}-{n\theta^2\over2\sigma^2}
+\right)
+I_{(-\infty,0)}(\theta)
+\\
+&=&
+{1\over C}\exp\left(
+-{n\over2\sigma^2}
+\left(
+\theta^2-\theta
+\left({2\sigma^2\over n}\right)
+\left({\sum X_i\over\sigma^2}+{1\over a}\right)
+\right)
+\right)I_{(0,\infty)}(\theta)
+\\
+&&{}+
+{1\over C}\exp\left(
+-{n\over2\sigma^2}
+\left(
+\theta^2-\theta
+\left({2\sigma^2\over n}\right)
+\left({\sum X_i\over\sigma^2}-{1\over a}\right)
+\right)
+\right)I_{(-\infty,0)}(\theta)
+\end{eqnarray*}
+Let
+\begin{eqnarray*}
+A&=&\left({\sigma^2\over n}\right)
+\left({\sum X_i\over\sigma^2}+{1\over a}\right)
+=\bar X+{\sigma^2\over na}\\
+B&=&\left({\sigma^2\over n}\right)
+\left({\sum X_i\over\sigma^2}-{1\over a}\right)
+=\bar X-{\sigma^2\over na}
+\end{eqnarray*}
+Then
+\begin{eqnarray*}
+\pi(\theta\mid\mathbb X)&=&
+{1\over C}\exp\left(-{n\over2\sigma^2}(\theta-A)^2\right)
+\exp\left({n\over2\sigma^2}A^2\right)
+I_{(0,\infty)}(\theta)\\
+&&{}+
+{1\over C}\exp\left(-{n\over2\sigma^2}(\theta-B)^2\right)
+\exp\left({n\over2\sigma^2}B^2\right)
+I_{(-\infty,0)}(\theta)\\
+%
+%&=&
+%\widetilde C\exp\left(-{n\over2\sigma^2}(\theta-A)^2\right)
+%I_{(0,\infty)}(\theta)\\
+%&&{}+
+%\widetilde C\exp\left(-{n\over2\sigma^2}(\theta-B)^2\right)
+%I_{(-\infty,0)}(\theta)
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+C&=&
+\exp\left({n\over2\sigma^2}A^2\right)
+\int_0^\infty\exp\left(-{n\over2\sigma^2}(\theta-A)^2\right)\,d\theta\\
+&&{}+
+\exp\left({n\over2\sigma^2}B^2\right)
+\int_{-\infty}^0\exp\left(-{n\over2\sigma^2}(\theta-B)^2\right)\,d\theta\\
+&=&
+\exp\left({n\over2\sigma^2}A^2\right)
+\sqrt{2\pi\sigma^2/n}\cdot
+P\left({\sigma\over\sqrt n}Z+A\ge0\right)\\
+&&{}+
+\exp\left({n\over2\sigma^2}B^2\right)
+\sqrt{2\pi\sigma^2/n}\cdot
+P\left({\sigma\over\sqrt n}Z+B\le0\right)\\
+&=&
+\exp\left({n\over2\sigma^2}A^2\right)
+\sqrt{2\pi\sigma^2/n}\cdot
+\Phi\left({\sqrt n\over\sigma}A\right)\\
+&&{}+
+\exp\left({n\over2\sigma^2}B^2\right)
+\sqrt{2\pi\sigma^2/n}\cdot
+\Phi\left(-{\sqrt n\over\sigma}B\right)\\
+\end{eqnarray*}
+%
+Finally
+\begin{eqnarray*}
+E(\theta\mid\mathbb X)&=&
+{1\over C}
+\exp\left({n\over2\sigma^2}A^2\right)
+\int_0^\infty\theta\exp\left(-{n\over2\sigma^2}(\theta-A)^2\right)
+\,d\theta
+\\
+&&{}+
+{1\over C}
+\exp\left({n\over2\sigma^2}B^2\right)
+\int_{-\infty}^0
+\theta
+\exp\left(-{n\over2\sigma^2}(\theta-B)^2\right)
+\,d\theta\\
+%
+&=&
+{1\over C}
+A\exp\left({n\over2\sigma^2}A^2\right)
+\sqrt{2\pi\sigma^2/n}
+\cdot\Phi\left({\sqrt n\over\sigma}A\right)\\
+&&{}+
+{1\over C}
+B\exp\left({n\over2\sigma^2}B^2\right)
+\sqrt{2\pi\sigma^2/n}
+\cdot\Phi\left(-{\sqrt n\over\sigma}B\right)\\
+%
+&=&
+{1\over C}
+\bar X\exp\left({n\over2\sigma^2}A^2\right)
+\sqrt{2\pi\sigma^2/n}
+\cdot\Phi\left({\sqrt n\over\sigma}A\right)\\
+&&{}+
+{1\over C}
+\bar X\exp\left({n\over2\sigma^2}B^2\right)
+\sqrt{2\pi\sigma^2/n}
+\cdot\Phi\left(-{\sqrt n\over\sigma}B\right)\\
+\\
+&=&\bar X
+\end{eqnarray*}
+
+\end{document}

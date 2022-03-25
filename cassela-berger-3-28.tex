@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+3.28
+Show that each of the following families is an exponential family.
+
+\bigskip
+\noindent
+(b) gamma family with either parameter $\alpha$ or $\beta$
+known or both unknown.
+
+\bigskip
+\noindent
+The pdf for $Gamma$ is
+$$f(x\mid\alpha,\beta)=\frac{1}{\Gamma(\alpha)\beta^\alpha}
+x^{\alpha-1}e^{-x/\beta}I_{[0,\infty)}(x)$$
+%
+For $\alpha$ known the exponential family functions are
+\begin{eqnarray*}
+h(x)&=&x^{\alpha-1}I_{[0,\infty)}(x)\\
+c(\beta)&=&\frac{1}{\Gamma(\alpha)\beta^\alpha}\\
+w_1(\beta)&=&1/\beta\\
+t_1(x)&=&-x
+\end{eqnarray*}
+%
+For $\beta$ known the exponential family functions are
+\begin{eqnarray*}
+h(x)&=&e^{-x/\beta}I_{[0,\infty)}(x)\\
+c(\alpha)&=&\frac{1}{\Gamma(\alpha)\beta^\alpha}\\
+w_1(\alpha)&=&\alpha-1\\
+t_1(x)&=&\log(x)
+\end{eqnarray*}
+%
+For both $\alpha$ and $\beta$ unknown the exponential
+family functions are
+\begin{eqnarray*}
+h(x)&=&I_{[0,\infty)}(x)\\
+c(\alpha,\beta)&=&\frac{1}{\Gamma(\alpha)\beta^\alpha}\\
+w_1(\alpha,\beta)&=&\alpha-1\\
+w_2(\alpha,\beta)&=&1/\beta\\
+t_1(x)&=&\log(x)\\
+t_2(x)&=&-x
+\end{eqnarray*}
+
+\bigskip
+\noindent
+(c) beta familiy with either parameter $\alpha$ or $\beta$
+known or both unknown.
+
+\bigskip
+\noindent
+The pdf for $Beta$ is
+$$f(x\mid\alpha,\beta)=
+\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}
+x^{\alpha-1}(1-x)^{\beta-1}I_{[0,1]}(x)$$
+For $\alpha$ known the exponential family functions are
+\begin{eqnarray*}
+h(x)&=&x^{\alpha-1}I_{[0,1]}(x)\\
+c(\beta)&=&
+\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\\
+w_1(\beta)&=&\beta-1\\
+t_1(x)&=&\log(1-x)
+\end{eqnarray*}
+%
+For $\beta$ known the exponential
+family functions are
+\begin{eqnarray*}
+h(x)&=&(1-x)^{\beta-1}I_{[0,1]}(x)\\
+c(\alpha)&=&
+\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\\
+w_1(\alpha)&=&\alpha-1\\
+t_1(x)&=&\log(x)
+\end{eqnarray*}
+%
+For both $\alpha$ and $\beta$ unknown the exponential
+family functions are
+\begin{eqnarray*}
+h(x)&=&I_{[0,1]}(x)\\
+c(\alpha,\beta)&=&
+\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\\
+w_1(\alpha)&=&\alpha-1\\
+w_2(\beta)&=&\beta-1\\
+t_1(x)&=&\log(x)\\
+t_2(x)&=&\log(1-x)
+\end{eqnarray*}
+
+\bigskip
+\noindent
+(e) negative binomial family with $r$ known, $0<p<1$.
+
+\bigskip
+\noindent
+Let $r$ be a positive integer.
+The pmf for negative binomial is
+$$f(x\mid p)=\binom{r+x-1}{x}p^r(1-p)^xI_{\{0,1,2,\ldots\}}(x)$$
+The exponential family functions are
+\begin{eqnarray*}
+h(x)&=&\binom{r+x-1}{x}I_{\{0,1,2,\ldots\}}(x)\\
+c(p)&=&p^r\\
+w_1(p)&=&\log(1-p)\\
+t_1(x)&=&x
+\end{eqnarray*}
+
+\end{document}

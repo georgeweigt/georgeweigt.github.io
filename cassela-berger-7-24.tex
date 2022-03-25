@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+7.24
+Let $X_1,\ldots,X_n$ be iid $Poisson(\lambda)$, and let $\lambda$
+have a $Gamma(\alpha,\beta)$ distribution, the conjugate family
+for the Poisson.
+
+\bigskip
+\noindent
+(a) Find the posterior distribution of $\lambda$.
+
+\begin{eqnarray*}
+\pi(\theta\mid\mathbb X)&=&
+{
+{1\over\Gamma(\alpha)\beta^\alpha}
+\lambda^{\alpha-1}
+e^{-\lambda/\beta}
+\prod_{i=1}^n
+{e^{-\lambda}\lambda^{X_i}\over X_i!}
+}
+\over
+\sum_{\lambda=0}^\infty
+{
+{1\over\Gamma(\alpha)\beta^\alpha}
+\lambda^{\alpha-1}
+e^{-\lambda/\beta}
+\prod_{i=1}^n
+{e^{-\lambda}\lambda^{X_i}\over X_i!}
+}\\
+&=&
+{
+\lambda^{\alpha-1}
+e^{-\lambda/\beta}
+e^{-n\lambda}
+\lambda^{\sum X_i}
+}
+\over
+\sum_{\lambda=0}^\infty
+{
+\lambda^{\alpha-1}
+e^{-\lambda/\beta}
+e^{-n\lambda}
+\lambda^{\sum X_i}
+}\\
+&=&
+{
+e^{-\lambda(n+1/\beta)}
+\lambda^{\sum X_i+\alpha-1}
+}
+\over
+\sum_{\lambda=0}^\infty
+{
+e^{-\lambda(n+1/\beta)}
+\lambda^{\sum X_i+\alpha-1}
+}\\
+&\sim&Gamma\left(\sum X_i+\alpha,(n+1/\beta)^{-1}\right)
+\end{eqnarray*}
+
+\bigskip
+\noindent
+(b) Calculate the posterior mean and variance.
+\begin{eqnarray*}
+\hat\mu&=&{\sum X_i+\alpha\over n+1/\beta}\\
+\hat\sigma^2&=&{\sum X_i+\alpha\over(n+1/\beta)^2}
+\end{eqnarray*}
+
+\end{document}

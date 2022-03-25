@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs} % \mathscr
+
+\parindent=0pt
+
+\begin{document}
+
+6.36
+Suppose that $T_1$ is sufficient and $T_2$ is minimal sufficient,
+$U$ is an unbiased estimator of $\theta$, and define
+$U_1=E(U\mid T_1)$ and $U_2=E(U\mid T_2)$.
+
+\bigskip
+\noindent
+(a) Show that $U_2=E(U_1\mid T_2)$.
+
+\bigskip
+\noindent
+Since $U$ is an unbiased estimator of $\theta$ we have
+$$EU=\sum_x u(x)P(X=x)=\theta$$
+Because $T_1$ and $T_2$ are sufficient we have that the event
+$\{X=x\}\subset\{T(X)=T(x)\}$.
+It follows that
+$$P(X=x\cap T=t)=P(X=x)$$
+Hence
+\begin{eqnarray*}
+U_1&=&E(U\mid T_1)=\sum_x u(x){P(X=x)\over P(T_1=t)}={\theta\over P(T_1=t)}\\
+U_2&=&E(U\mid T_2)=\sum_x u(x){P(X=x)\over P(T_2=t)}={\theta\over P(T_2=t)}
+\end{eqnarray*}
+Since $T_2$ is minimum sufficient we have $T_2(X)=g(T_1(X))$.
+Hence the event $\{T_1=t\}\subset\{T_2=t\}$.
+It follows that
+$$P(T_1=t\cap T_2=t)=P(T_1=t)$$
+Therefore
+$$E(U_1\mid T_2)=\sum_t {\theta\over P(T_1=t)}
+{P(T_1=t\cap T_2=t)\over P(T_2=t)}={\theta\over P(T_2=t)}=U_2
+$$
+
+\bigskip
+\noindent
+(b) Now use the conditional variance formula (Theorem 4.4.7)
+to show that $\mathop{Var}U_2\le\mathop{Var}U_1$.
+
+\bigskip
+\noindent
+We have
+\begin{eqnarray*}
+\mathop{Var}U_1&=&E(\mathop{Var}(U_1\mid T_2))+\mathop{Var}(E(U_1\mid T_2))\\
+&=&E(\mathop{Var}(U_1\mid T_2))+\mathop{Var}(U_2)
+\end{eqnarray*}
+Since $E(\mathop{Var}(U_1\mid T_2))\ge0$ we have
+$\mathop{Var}U_1\ge\mathop{Var}U_2$.
+
+\end{document}
