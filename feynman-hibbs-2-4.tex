@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+2-4.
+Classically, the momentum is defined as
+\begin{equation*}
+p=\frac{\partial L}{\partial\dot x}
+\tag{2.10}
+\end{equation*}
+
+Show that the momentum at a final point is
+\begin{equation*}
+\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+=+\frac{\partial S_{cl}}{\partial x_b}
+\tag{2.11}
+\end{equation*}
+while the momentum at an initial point is
+\begin{equation*}
+\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+=-\frac{\partial S_{cl}}{\partial x_a}
+\tag{2.11}
+\end{equation*}
+
+{\it Hint:} Consider the effect on equation (2.6)
+of a change in the end points.
+\begin{equation*}
+\delta S=\left(\delta x(t)\frac{\partial L}{\partial\dot x}\right)_{t_a}^{t_b}
+-\int_{t_a}^{t_b}\delta x(t)
+\left(\frac{d}{dt}\frac{\partial L}{\partial\dot x}
+-\frac{\partial L}{\partial x}\right)\,dt
+\tag{2.6}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (2.7) for the classical path.
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}
+-\frac{\partial L}{\partial x}=0
+\tag{2.7}
+\end{equation*}
+
+Substitute (2.7) into (2.6) to obtain
+\begin{equation*}
+\delta S_{cl}=\left(\delta x(t)\frac{\partial L}{\partial\dot x}\right)_{t_a}^{t_b}
+=\delta x_b\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+-\delta x_a\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+\tag{1}
+\end{equation*}
+
+For the endpoints $x_a$ and $x_b$ we have $\delta S_{cl}=0$ by equation (2.3).
+\begin{equation*}
+\delta x(t_a)=\delta x(t_b)=0
+\tag{2.3}
+\end{equation*}
+
+However, consider a variation of the endpoint $x_b$.
+Then by equation (1)
+\begin{equation*}
+\delta S_{cl}=\delta x_b\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\lim\frac{\delta S_{cl}}{\delta x_b}=\frac{\partial S_{cl}}{\partial x_b}
+=\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+\end{equation*}
+
+Likewise, a variation of $x_a$ yields
+\begin{equation*}
+\lim\frac{\delta S_{cl}}{\delta x_a}=\frac{\partial S_{cl}}{\partial x_a}
+=-\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+\end{equation*}
+
+\end{document}
