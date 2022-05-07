@@ -1,4 +1,4 @@
--- Matrix elements for quantum harmonic oscillator
+"Matrix elements for quantum harmonic oscillator"
 
 psi(n) = (m omega / (pi hbar))^(1/4) *
          exp(-1/2 m omega x^2 / hbar) *
