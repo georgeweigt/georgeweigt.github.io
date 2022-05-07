@@ -6,12 +6,12 @@
 \begin{document}
 
 \noindent
-The following data is from
+The following table is from
 ``Note on the spectral lines of hydrogen''
 by J.~J.~Balmer dated 1885.
 Numerical values are hydrogen line wavelengths in units of $10^{-10}$ meter.
-(Data for $H_I$ is not included because $H_I$ is not a hydrogen line.
-The $H_I$ data is for Fraunhofer line $H$ which is ionized calcium.)
+%(Data for $H_I$ is not included here because $H_I$ is not a hydrogen line.
+%The $H_I$ data is for Fraunhofer line $H$ which is ionized calcium.)
 \begin{center}
 \footnotesize
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
@@ -41,11 +41,12 @@ Vogel & -- & -- & -- & -- & 3969 & 3887 & 3834 & 3795 & 3769${}^\dag$
 \end{center}
 
 \noindent
-From this data, Balmer determined that
+Using the above data, Balmer found the following formula
+for wavelength $\hat y$.
 \begin{equation*}
 \hat{y}=\frac{m^2}{m^2-2^2}\times3645.6\times10^{-10}\,\text{meter}
 \end{equation*}
-where $\hat{y}$ is the predicted wavelength and $m$ is determined by the hydrogen line
+where $m$ is determined by the hydrogen line
 according to the following table.
 \begin{center}
 \begin{tabular}{cccccccccccc}
@@ -56,46 +57,45 @@ $m=$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11
 \end{tabular}
 \end{center}
 
-\noindent
-Just for the fun of it, use linear regression in R to compute the model coefficient.
-{\footnotesize\color{blue}
-\begin{verbatim}
-m = c(3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
-
-x = m^2 / (m^2 - 4)
-
-y = c(
-6565.60, 6562.10, 6561.62, 6560.70, 6559.50,
-4863.94, 4860.74, 4860.16, 4859.80, 4859.74,
-4342.80, 4340.10, 4338.60, 4103.80, 4101.20,
-4100.00, 3969.00, 3887.50, 3887.00, 3834.00,
-3834.00, 3795.00, 3795.00, 3767.50, 3769.00)
-
-coef(lm(y ~ 0 + x))
-\end{verbatim}
-}
-
-\medskip
-\noindent
-The result is
-{\footnotesize
-\begin{verbatim}
-3645.296
-\end{verbatim}
-}
-
-\noindent
-which is a little bit smaller than Balmer's value.
+%\noindent
+%Use linear regression in R to compute the model coefficient.
+%{\footnotesize\color{blue}
+%\begin{verbatim}
+%m = c(3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
+%
+%x = m^2 / (m^2 - 4)
+%
+%y = c(
+%6565.60, 6562.10, 6561.62, 6560.70, 6559.50,
+%4863.94, 4860.74, 4860.16, 4859.80, 4859.74,
+%4342.80, 4340.10, 4338.60, 4103.80, 4101.20,
+%4100.00, 3969.00, 3887.50, 3887.00, 3834.00,
+%3834.00, 3795.00, 3795.00, 3767.50, 3769.00)
+%
+%coef(lm(y ~ 0 + x))
+%\end{verbatim}
+%}
+%
+%\medskip
+%\noindent
+%The result is
+%{\footnotesize
+%\begin{verbatim}
+%3645.296
+%\end{verbatim}
+%}
+%
+%\noindent
+%which is a little bit smaller than Balmer's value.
 %It should be noted that Balmer did not use the entire data set as we have done here.
 %His value 3645.6 was computed using a subset of the data.
 
-\bigskip
 \noindent
-The actual value is now known to be
+The modern value of the model coefficient is
 \begin{equation*}
 \frac{4}{R_H}=3647.05\times10^{-10}\,\text{meter}
 \end{equation*}
-where $R_H$ is the Rydberg constant for hydrogen.
+where
 \begin{equation*}
 R_H=1.09677576\times10^7\,\text{meter}^{-1}
 \end{equation*}

@@ -1,4 +1,4 @@
--- Compute model coefficient using linear regression
+-- Compute Balmer coefficient using linear regression
 
 m = (3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
 
@@ -10,6 +10,8 @@ y = (
 4342.80, 4340.10, 4338.60, 4103.80, 4101.20,
 4100.00, 3969.00, 3887.50, 3887.00, 3834.00,
 3834.00, 3795.00, 3795.00, 3767.50, 3769.00)
+
+"Model coefficient"
 
 beta = dot(x,y) / dot(x,x)
 beta
