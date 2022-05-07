@@ -18,9 +18,9 @@ beta
 
 yhat = beta x
 
-"Coefficient of determination (R squared)"
-
-ybar = sum(y) / dim(y)
-RSS = sum((y - yhat)^2) -- residual sum of squares
-TSS = sum((y - ybar)^2) -- total sum of squares
-1 - RSS / TSS
+--"Coefficient of determination (R squared)"
+--
+--ybar = sum(y) / dim(y)
+--RSS = sum((y - yhat)^2) -- residual sum of squares
+--TSS = sum((y - ybar)^2) -- total sum of squares
+--1 - RSS / TSS
