@@ -10932,6 +10932,23 @@ isusersymbol(p)
 	return issymbol(p) && p.func == eval_user_symbol;
 }
 function
+isusersymbolsomewhere(p)
+{
+	if (isusersymbol(p) && p != symbol(PI) && p != symbol(EXP1))
+		return 1;
+
+	if (iscons(p)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (isusersymbolsomewhere(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+	}
+
+	return 0;
+}
+function
 iszero(p)
 {
 	var i, n;
@@ -15776,14 +15793,7 @@ simplify_pass3()
 
 	p1 = pop();
 
-	// already simple?
-
-	if (!iscons(p1)) {
-		push(p1);
-		return;
-	}
-
-	if (car(p1) != symbol(ADD) || !findf(p1, imaginaryunit)) {
+	if (car(p1) != symbol(ADD) || isusersymbolsomewhere(p1) || !findf(p1, imaginaryunit)) {
 		push(p1);
 		return;
 	}
