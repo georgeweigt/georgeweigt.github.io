@@ -15647,7 +15647,7 @@ simplify()
 
 	simplify_pass1();
 	simplify_pass2(); // try exponential form
-	simplify_pass3(); // try rectangular form
+	simplify_pass3(); // try polar form
 }
 function
 simplify_pass1()
@@ -15767,7 +15767,7 @@ simplify_pass2()
 
 	push(p1);
 }
-// try rectangular form
+// try polar form
 
 function
 simplify_pass3()
@@ -15789,7 +15789,7 @@ simplify_pass3()
 	}
 
 	push(p1);
-	rect();
+	polar();
 	p2 = pop();
 
 	if (!iscons(p2)) {
