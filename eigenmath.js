@@ -2389,6 +2389,7 @@ const SUBST = "subst";
 const SUM = "sum";
 const TAN = "tan";
 const TANH = "tanh";
+const TAYLOR = "taylor";
 const TEST = "test";
 const TESTEQ = "testeq";
 const TESTGE = "testge";
@@ -7611,6 +7612,76 @@ eval_tanh(p1)
 	expanding = t;
 }
 function
+eval_taylor(p1)
+{
+	var h, i, n, F, X, A, C;
+
+	push(cadr(p1));
+	evalf();
+	F = pop();
+
+	push(caddr(p1));
+	evalf();
+	X = pop();
+
+	push(cadddr(p1));
+	evalf();
+	n = pop_integer();
+
+	p1 = cddddr(p1);
+
+	if (iscons(p1)) {
+		push(car(p1));
+		evalf();
+	} else
+		push_integer(0); // default expansion point
+
+	A = pop();
+
+	h = stack.length;
+
+	push(F);	// f(a)
+	push(X);
+	push(A);
+	subst();
+	evalf();
+
+	push_integer(1);
+	C = pop();
+
+	for (i = 1; i <= n; i++) {
+
+		push(F);	// f = f'
+		push(X);
+		derivative();
+		F = pop();
+
+		if (iszero(F))
+			break;
+
+		push(C);	// c = c * (x - a)
+		push(X);
+		push(A);
+		subtract();
+		multiply();
+		C = pop();
+
+		push(F);	// f(a)
+		push(X);
+		push(A);
+		subst();
+		evalf();
+
+		push(C);
+		multiply();
+		push_integer(i);
+		factorial();
+		divide();
+	}
+
+	add_terms(stack.length - h);
+}
+function
 eval_tensor(p1)
 {
 	var i, n;
@@ -9406,7 +9477,6 @@ var init_script = [
 "cross(u,v) = dot(u,(((0,0,0),(0,0,-1),(0,1,0)),((0,0,1),(0,0,0),(-1,0,0)),((0,-1,0),(1,0,0),(0,0,0))),v)",
 "curl(u) = (d(u[3],y) - d(u[2],z),d(u[1],z) - d(u[3],x),d(u[2],x) - d(u[1],y))",
 "div(u) = d(u[1],x) + d(u[2],y) + d(u[3],z)",
-"taylor(f,x,n,a) = sum(k,0,n,eval(d(f,x,k),x,a) (x - a)^k / k!)",
 "laguerre(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))",
 "legendre(f,n,m,x) = eval(1 / (2^n n!) (1 - x^2)^(m/2) d((x^2 - 1)^n,x,n + m),x,f)",
 "hermite(x,n) = (-1)^n exp(x^2) d(exp(-x^2),x,n)",
@@ -16628,6 +16698,7 @@ var symtab = {
 "sum":		{printname:SUM,		func:eval_sum},
 "tan":		{printname:TAN,		func:eval_tan},
 "tanh":		{printname:TANH,	func:eval_tanh},
+"taylor":	{printname:TAYLOR,	func:eval_taylor},
 "test":		{printname:TEST,	func:eval_test},
 "testeq":	{printname:TESTEQ,	func:eval_testeq},
 "testge":	{printname:TESTGE,	func:eval_testge},
