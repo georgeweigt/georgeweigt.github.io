@@ -2384,7 +2384,6 @@ const REAL = "real";
 const RECT = "rect";
 const ROTATE = "rotate";
 const RUN = "run";
-const SGN = "sgn";
 const SIMPLIFY = "simplify";
 const SIN = "sin";
 const SINH = "sinh";
@@ -2902,16 +2901,6 @@ count_numerators(p)
 		p = cdr(p);
 	}
 	return n;
-}
-function
-dabs(p1, p2)
-{
-	push(cadr(p1));
-	push(p2);
-	derivative();
-	push(cadr(p1));
-	sgn();
-	multiply();
 }
 function
 darccos(p1, p2)
@@ -5231,11 +5220,6 @@ dss(F, X)
 		return;
 	}
 
-	if (car(F) == symbol(ABS)) {
-		dabs(F, X);
-		return;
-	}
-
 	if (car(F) == symbol(ERF)) {
 		derf(F, X);
 		return;
@@ -7225,13 +7209,6 @@ eval_setq(p1)
 	p2 = pop();
 
 	set_symbol(cadr(p1), p2, symbol(NIL));
-}
-function
-eval_sgn(p1)
-{
-	push(cadr(p1));
-	evalf();
-	sgn();
 }
 function
 eval_simplify(p1)
@@ -9995,11 +9972,11 @@ var integral_tab_trig = [
 	"1",
 
 	"cos(a x)^5 / sin(a x)",
-	"log(abs(sin(a x))) / a + sin(a x)^4 / (4 a) - sin(a x)^2 / a",
+	"log(sin(a x)) / a + sin(a x)^4 / (4 a) - sin(a x)^2 / a",
 	"1",
 
 	"cos(a x)^3 / sin(a x)",
-	"log(abs(sin(a x))) / a - sin(a x)^2 / (2 a)",
+	"log(sin(a x)) / a - sin(a x)^2 / (2 a)",
 	"1",
 
 	"cos(a x) sin(a x)^3",
@@ -15390,28 +15367,6 @@ setup_yrange()
 	ymax = pop_double();
 }
 function
-sgn()
-{
-	var p1 = pop();
-
-	if (!isnum(p1)) {
-		push_symbol(SGN);
-		push(p1);
-		list(2);
-		return;
-	}
-
-	if (iszero(p1)) {
-		push_integer(0);
-		return;
-	}
-
-	if (isnegativenumber(p1))
-		push_integer(-1);
-	else
-		push_integer(1);
-}
-function
 simplify()
 {
 	var h, i, n, p1;
@@ -16406,7 +16361,6 @@ var symtab = {
 "rect":		{printname:RECT,	func:eval_rect},
 "rotate":	{printname:ROTATE,	func:eval_rotate},
 "run":		{printname:RUN,		func:eval_run},
-"sgn":		{printname:SGN,		func:eval_sgn},
 "simplify":	{printname:SIMPLIFY,	func:eval_simplify},
 "sin":		{printname:SIN,		func:eval_sin},
 "sinh":		{printname:SINH,	func:eval_sinh},
