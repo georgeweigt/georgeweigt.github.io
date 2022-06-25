@@ -2384,6 +2384,7 @@ const REAL = "real";
 const RECT = "rect";
 const ROTATE = "rotate";
 const RUN = "run";
+const SGN = "sgn";
 const SIMPLIFY = "simplify";
 const SIN = "sin";
 const SINH = "sinh";
@@ -7209,6 +7210,13 @@ eval_setq(p1)
 	p2 = pop();
 
 	set_symbol(cadr(p1), p2, symbol(NIL));
+}
+function
+eval_sgn(p1)
+{
+	push(cadr(p1));
+	evalf();
+	sgn();
 }
 function
 eval_simplify(p1)
@@ -15367,6 +15375,28 @@ setup_yrange()
 	ymax = pop_double();
 }
 function
+sgn()
+{
+	var p1 = pop();
+
+	if (!isnum(p1)) {
+		push_symbol(SGN);
+		push(p1);
+		list(2);
+		return;
+	}
+
+	if (iszero(p1)) {
+		push_integer(0);
+		return;
+	}
+
+	if (isnegativenumber(p1))
+		push_integer(-1);
+	else
+		push_integer(1);
+}
+function
 simplify()
 {
 	var h, i, n, p1;
@@ -16361,6 +16391,7 @@ var symtab = {
 "rect":		{printname:RECT,	func:eval_rect},
 "rotate":	{printname:ROTATE,	func:eval_rotate},
 "run":		{printname:RUN,		func:eval_run},
+"sgn":		{printname:SGN,		func:eval_sgn},
 "simplify":	{printname:SIMPLIFY,	func:eval_simplify},
 "sin":		{printname:SIN,		func:eval_sin},
 "sinh":		{printname:SINH,	func:eval_sinh},
