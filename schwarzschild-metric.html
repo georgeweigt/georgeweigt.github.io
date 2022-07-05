@@ -58,12 +58,6 @@ GAMUDD = dot(guu,GAMDDD)
 
 -- Step 3. Calculate Riemann tensor (MTW p. 219)
 --
--- a is alpha
--- b is beta
--- c is gamma
--- d is delta
--- u is mu
---
 --  a           a            a            a        u          a        u
 -- R     = Gamma      - Gamma      + Gamma    Gamma    - Gamma    Gamma
 --   bcd         bd,c         bc,d         uc       bd         ud       bc
@@ -82,8 +76,6 @@ transpose(GAMGAM,2,3,3,4)
 --        a
 -- R   = R
 --  uv     uav
---
--- Contract over "a" (1st and 3rd indices)
 
 RDD = contract(RUDDD,1,3)
 
@@ -95,24 +87,24 @@ RDD = contract(RUDDD,1,3)
 
 R = contract(dot(guu,transpose(RDD)))
 
--- Step 6. Finally, calculate Einstein tensor (MTW p. 343)
+-- Step 6. Calculate Einstein tensor (MTW p. 343)
 --
 -- G   = R   - 1/2 g   R
 --  uv    uv        uv
 
-Gmunu = RDD - 1/2 gdd R
+GDD = RDD - 1/2 gdd R
 
 "Einstein tensor"
 
-Gmunu
+GDD
 
 "Verify Einstein tensor vanishes for Schwarzschild metric"
 
 xi(r) = 2 M/r - 1
 xi
 
-Gmunu = simplify(Gmunu)
-Gmunu
+GDD = simplify(GDD)
+GDD
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
