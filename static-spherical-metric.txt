@@ -1,9 +1,11 @@
 -- gdd is the metric tensor
 
-gdd = ((-exp(2*Phi(r)),                0,   0,                0),
-       (             0, exp(2*Lambda(r)),   0,                0),
-       (             0,                0, r^2,                0),
-       (             0,                0,   0, r^2*sin(theta)^2))
+gdd = zero(4,4)
+
+gdd[1,1] = -exp(2*Phi(r))
+gdd[2,2] = exp(2*Lambda(r))
+gdd[3,3] = r^2
+gdd[4,4] = r^2*sin(theta)^2
 
 -- Note: "dd" stands for two "down" indices, "uu" stands for two "up" indices.
 
@@ -114,11 +116,15 @@ Grr
 Gthetatheta
 Gphiphi
 
-T = ((Gtt,   0,           0,       0),
-     (  0, Grr,           0,       0),
-     (  0,   0, Gthetatheta,       0),
-     (  0,   0,           0, Gphiphi))
+G = zero(4,4)
 
-"Verify Einstein tensor (1=ok)"
+G[1,1] = Gtt
+G[2,2] = Grr
+G[3,3] = Gthetatheta
+G[4,4] = Gphiphi
 
-GDD == T
+"Verify Einstein tensor"
+
+check(GDD == G)
+
+"ok"
