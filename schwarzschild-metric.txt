@@ -24,7 +24,7 @@ gddd = d(gdd,X)
 
 GAMDDD = 1/2 (gddd +
 transpose(gddd,2,3) -
-transpose(gddd,2,3,1,2)) -- transpose to (,a)bc
+transpose(gddd,2,3,1,2)) -- transpose bc,a to (,a)bc
 
 -- Raise first index
 --
