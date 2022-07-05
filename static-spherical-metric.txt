@@ -26,11 +26,9 @@ guu = inv(gdd)
 
 gddd = d(gdd,X)
 
--- Transpose indices to match abc.
-
-GAMDDD = 1/2 * (gddd +      -- indices are already in correct order
-transpose(gddd,2,3) -       -- transpose c and b
-transpose(gddd,2,3,1,2))    -- transpose c and a, then b and a
+GAMDDD = 1/2 * (gddd +
+transpose(gddd,2,3) -
+transpose(gddd,2,3,1,2))
 
 -- Raise first index.
 --
