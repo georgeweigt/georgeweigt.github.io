@@ -1,6 +1,6 @@
 -- undefined function xi(r) is used instead of 2M/r - 1 for stability
 
--- 2M/r - 1 is then substituted at the end
+-- 2M/r - 1 is then substituted for xi(r) at the end
 
 -- metric tensor
 
