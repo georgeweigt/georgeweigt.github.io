@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+This is how to calculate Einstein tensor $G_{\mu\nu}$ from metric tensor $g_{\mu\nu}$.
+
+\bigskip
+1. Calculate inverse of $g_{\mu\nu}$.
+\begin{equation*}
+g^{\mu\nu}=(g_{\mu\nu})^{-1}
+\end{equation*}
+
+2. Calculate connection coefficients.
+\begin{equation*}
+\Gamma^\alpha{}_{\beta\gamma}=\frac{1}{2}
+g^{\alpha\mu}(g_{\mu\beta,\gamma}+g_{\mu\gamma,\beta}-g_{\beta\gamma,\mu})
+\end{equation*}
+
+3. Calculate Riemann tensor.
+\begin{equation*}
+R^\alpha{}_{\beta\gamma\delta}
+=\Gamma^\alpha{}_{\beta\delta,\gamma}
+-\Gamma^\alpha{}_{\beta\gamma,\delta}
++\Gamma^\alpha{}_{\mu\gamma}\Gamma^\mu{}_{\beta\delta}
+-\Gamma^\alpha{}_{\mu\delta}\Gamma^\mu{}_{\beta\gamma}
+\end{equation*}
+
+4. Calculate Ricci tensor.
+\begin{equation*}
+R_{\mu\nu}=R^\alpha{}_{\mu\alpha\nu}
+\end{equation*}
+
+5. Calculate Ricci scalar.
+\begin{equation*}
+R=R^\mu{}_\mu
+\end{equation*}
+
+6. Calculate Einstein tensor.
+\begin{equation*}
+G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R
+\end{equation*}
+
+This is the Schwarzschild metric.
+\begin{equation*}
+g_{\mu\nu}=\begin{pmatrix}
+2M/r-1 & 0 & 0 & 0
+\\
+0 & (1 - 2M/r)^{-1} & 0 & 0
+\\
+0 & 0 & r^2 & 0
+\\
+0 & 0 & 0 & r^2\sin^2\theta
+\end{pmatrix}
+\end{equation*}
+
+The Einstein tensor vanishes for the Schwarzschild metric.
+\begin{equation*}
+G_{\mu\nu}=\begin{pmatrix}
+0 & 0 & 0 & 0
+\\
+0 & 0 & 0 & 0
+\\
+0 & 0 & 0 & 0
+\\
+0 & 0 & 0 & 0
+\end{pmatrix}
+\end{equation*}
+
+\end{document}

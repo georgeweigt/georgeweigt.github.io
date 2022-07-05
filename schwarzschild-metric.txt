@@ -1,9 +1,13 @@
+-- undefined function xi(r) is used instead of 2M/r - 1 for stability
+
+-- 2M/r - 1 is then substituted at the end
+
 -- metric tensor
 
 gdd = zero(4,4)
 
-gdd[1,1] = -xi(r)
-gdd[2,2] = 1/xi(r)
+gdd[1,1] = xi(r)
+gdd[2,2] = -1/xi(r)
 gdd[3,3] = r^2
 gdd[4,4] = r^2 sin(theta)^2
 
@@ -88,7 +92,7 @@ Gmunu
 
 "Verify Einstein tensor vanishes for Schwarzschild metric"
 
-xi(r) = 1 - 2 M/r
+xi(r) = 2 M/r - 1
 xi
 
 Gmunu = simplify(Gmunu)
