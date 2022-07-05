@@ -90,19 +90,19 @@ R = contract(dot(guu,transpose(RDD)))
 -- G   = R   - 1/2 g   R
 --  uv    uv        uv
 
-GDD = RDD - 1/2 gdd R
+Gmunu = RDD - 1/2 gdd R
 
 "Einstein tensor"
 
-GDD
+Gmunu
 
 "Verify Einstein tensor vanishes for Schwarzschild metric"
 
 xi(r) = 2 M/r - 1
 xi
 
-GDD = simplify(GDD)
-GDD
+Gmunu = simplify(Gmunu)
+Gmunu
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
