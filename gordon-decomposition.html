@@ -39,8 +39,9 @@ V = (outer(p2 + p1,I) + i dot(S,gmunu,p2 - p1)) / (2 m)
 for(s1,1,2,for(s2,1,2,for(mu,1,4, -- for each spin state and gamma
   A = dot(u2bar[s2],gamma[mu],u1[s1]),
   B = dot(u2bar[s2],V[mu],u1[s1]),
-  print(A==B) -- print 1 if A equals B
+  check(A == B)
 )))
+"ok"
 </textarea>
 </td><td>
 <button onclick="run()" style="font-size:20pt">Run</button>
