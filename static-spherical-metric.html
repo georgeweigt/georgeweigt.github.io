@@ -18,10 +18,10 @@ This script can be pasted into the Eigenmath app.
 
 gdd = zero(4,4)
 
-gdd[1,1] = -exp(2*Phi(r))
-gdd[2,2] = exp(2*Lambda(r))
+gdd[1,1] = -exp(2 Phi(r))
+gdd[2,2] = exp(2 Lambda(r))
 gdd[3,3] = r^2
-gdd[4,4] = r^2*sin(theta)^2
+gdd[4,4] = r^2 sin(theta)^2
 
 -- Note: "dd" stands for two "down" indices, "uu" stands for two "up" indices.
 
@@ -42,9 +42,9 @@ guu = inv(gdd)
 
 gddd = d(gdd,X)
 
-GAMDDD = 1/2 * (gddd +
+GAMDDD = 1/2 (gddd +
 transpose(gddd,2,3) -
-transpose(gddd,2,3,1,2))
+transpose(gddd,2,3,1,2)) -- transpose to (,a)bc
 
 -- Raise first index.
 --
@@ -67,21 +67,15 @@ GAMUDD = dot(guu,GAMDDD)
 --  a           a            a            a        u          a        u
 -- R     = Gamma      - Gamma      + Gamma    Gamma    - Gamma    Gamma
 --   bcd         bd,c         bc,d         uc       bd         ud       bc
---
--- Do the gradient once and save in a temporary variable.
 
-T1 = d(GAMUDD,X)
+GAMUDDD = d(GAMUDD,X)
 
--- T2 is the product Gamma Gamma contracted over u.
+GAMGAM = dot(transpose(GAMUDD,2,3),GAMUDD)
 
-T2 = dot(transpose(GAMUDD,2,3),GAMUDD)
-
--- Now put it all together. Transpose indices to match abcd.
-
-RUDDD = transpose(T1,3,4) -       -- transpose d and c
-  T1 +                            -- already in correct order
-  transpose(T2,2,3) -             -- transpose c and b
-  transpose(T2,2,3,3,4)           -- transpose d and b, then d and c
+RUDDD = transpose(GAMUDDD,3,4) -
+GAMUDDD +
+transpose(GAMGAM,2,3) -
+transpose(GAMGAM,2,3,3,4)
 
 -- Step 4: Calculate the Ricci tensor. ("Gravitation" by MTW p. 343)
 --
@@ -106,7 +100,7 @@ R = contract(dot(guu,transpose(RDD)))
 -- G   = R   - 1/2 g   R
 --  uv    uv        uv
 
-GDD = RDD - 1/2 * gdd * R
+GDD = RDD - 1/2 gdd R
 
 -- Check GDD
 
@@ -114,14 +108,14 @@ Gtt = exp(2 Phi(r)) d(r (1 - exp(-2 Lambda(r))),r) / r^2
 
 Grr = (1 - exp(2 Lambda(r))) / r^2 + 2 d(Phi(r),r) / r
 
-Gthetatheta = r^2 * exp(-2*Lambda(r)) * (
-  d(d(Phi(r),r),r) +
-  d(Phi(r),r)^2 +
-  d(Phi(r),r) / r -
-  d(Phi(r),r) * d(Lambda(r),r) -
-  d(Lambda(r),r) / r)
+Gthetatheta = r^2 exp(-2 Lambda(r)) (
+d(d(Phi(r),r),r) +
+d(Phi(r),r)^2 +
+d(Phi(r),r) / r -
+d(Phi(r),r) d(Lambda(r),r) -
+d(Lambda(r),r) / r)
 
-Gphiphi = Gthetatheta * sin(theta)^2
+Gphiphi = Gthetatheta sin(theta)^2
 
 "Non-zero components of Einstein tensor"
 

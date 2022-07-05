@@ -43,11 +43,9 @@ guu = inv(gdd)
 
 gddd = d(gdd,X)
 
--- Transpose indices to match abc
-
-GAMDDD = 1/2 (gddd +         -- indices are already in correct order
-transpose(gddd,2,3) -        -- transpose c and b
-transpose(gddd,2,3,1,2))     -- transpose c and a, then b and a
+GAMDDD = 1/2 (gddd +
+transpose(gddd,2,3) -
+transpose(gddd,2,3,1,2)) -- transpose to (,a)bc
 
 -- Raise first index
 --
@@ -70,21 +68,15 @@ GAMUDD = dot(guu,GAMDDD)
 --  a           a            a            a        u          a        u
 -- R     = Gamma      - Gamma      + Gamma    Gamma    - Gamma    Gamma
 --   bcd         bd,c         bc,d         uc       bd         ud       bc
---
--- Do the gradient once and save in a temporary variable
 
-T1 = d(GAMUDD,X)
+GAMUDDD = d(GAMUDD,X)
 
--- T2 is the product Gamma Gamma contracted over u
+GAMGAM = dot(transpose(GAMUDD,2,3),GAMUDD)
 
-T2 = dot(transpose(GAMUDD,2,3),GAMUDD)
-
--- Now put it all together. Transpose indices to match abcd.
-
-RUDDD = transpose(T1,3,4) -      -- transpose d and c
-T1 +                             -- already in correct order
-transpose(T2,2,3) -              -- transpose c and b
-transpose(T2,2,3,3,4)            -- transpose d and b, then d and c
+RUDDD = transpose(GAMUDDD,3,4) -
+GAMUDDD +
+transpose(GAMGAM,2,3) -
+transpose(GAMGAM,2,3,3,4)
 
 -- Step 4. Calculate Ricci tensor (MTW p. 343)
 --
