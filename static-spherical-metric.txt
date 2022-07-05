@@ -1,4 +1,4 @@
--- gdd is the metric tensor
+-- metric tensor
 
 gdd = zero(4,4)
 

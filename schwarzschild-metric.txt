@@ -1,8 +1,3 @@
--- Verify Einstein tensor vanishes for Schwarzschild metric
-
--- u: up index (contravariant index)
--- d: down index (covariant index)
-
 -- metric tensor
 
 gdd = zero(4,4)
