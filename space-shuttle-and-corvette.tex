@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}
+\parindent=0pt
+\begin{document}
+
+The space shuttle accelerates from zero to 17,000 miles per hour
+in 8 minutes.
+A Corvette accelerates from zero to 60 miles per hour in 4.5 seconds.
+The following script compares the two.
+
+\begin{verbatim}
+"Average space shuttle acceleration"
+vs = 17000 "mile" / "hr"
+ts = 8 "min" / (60 "min" / "hr")
+as = vs / ts
+as
+"Average Corvette acceleration"
+vc = 60 "mile" / "hr"
+tc = 4.5 "sec" / (3600 "sec" / "hr")
+ac = vc / tc
+ac
+"Time for Corvette to reach orbital velocity"
+vs / ac 60 "min" / "hr"
+\end{verbatim}
+
+The result shows that the space shuttle accelerates
+more than twice as fast as a Corvette.
+
+\end{document}

@@ -18,21 +18,3 @@ gmunu[mu,mu] gmunu[nu,nu] *
 check(-1/4 U == -1/2 V)
 
 "ok"
-
-P = ((1,1,1,1),
-     (1,-1,1,1),
-     (1,1,-1,1),
-     (1,1,1,-1))
-
-T = 1/2 sum(mu,1,4,sum(nu,1,4,
-d(A[nu],X[mu]) P[mu,nu] d(A[mu],X[nu])
-))
-
-dim(atomize(U))
-dim(atomize(T))
-dim(atomize(T + U))
-
-dot(d(A[1],X),gmunu,d(A[1],X))
-dot(d(A[2],X),gmunu,d(A[2],X))
-dot(d(A[3],X),gmunu,d(A[3],X))
-dot(d(A[4],X),gmunu,d(A[4],X))
