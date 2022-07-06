@@ -1,4 +1,4 @@
--- calculate using intermediate function xi(r) for stability
+-- intermediate function xi(r) is used for stability
 
 -- metric tensor
 
