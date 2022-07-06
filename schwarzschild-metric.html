@@ -25,7 +25,7 @@ gdd[2,2] = -1/xi(r)
 gdd[3,3] = r^2
 gdd[4,4] = r^2 sin(theta)^2
 
-X = (t,r,theta,phi) -- X is for computing gradients
+X = (t,r,theta,phi) -- for computing gradients
 
 -- Step 1. Calculate guu
 
@@ -35,8 +35,6 @@ guu = inv(gdd)
 --
 -- Gamma    = 1/2 (g     + g     - g    )
 --      abc         ab,c    ac,b    bc,a
---
--- The comma means gradient which increases the rank of gdd by 1
 
 gddd = d(gdd,X)
 
@@ -49,8 +47,6 @@ transpose(gddd,2,3,1,2)) -- transpose bc,a to (,a)bc
 --      a      au
 -- Gamma    = g   Gamma
 --       bc            ubc
---
--- Sum over index u means contraction
 
 GAMUDD = dot(guu,GAMDDD)
 
