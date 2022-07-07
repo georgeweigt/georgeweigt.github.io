@@ -1,5 +1,3 @@
--- intermediate function xi(r) is used for stability
-
 -- metric tensor
 
 gdd = zero(4,4)
@@ -22,17 +20,10 @@ guu = inv(gdd)
 
 gddd = d(gdd,X)
 
-GAMDDD = 1/2 (gddd +
-transpose(gddd,2,3) -
+GAMDDD = 1/2 (gddd + transpose(gddd,2,3) -
 transpose(gddd,2,3,1,2)) -- transpose bc,a to (,a)bc
 
--- Raise first index
---
---      a      au
--- Gamma    = g   Gamma
---       bc            ubc
-
-GAMUDD = dot(guu,GAMDDD)
+GAMUDD = dot(guu,GAMDDD) -- raise first index
 
 -- Step 3. Calculate Riemann tensor (MTW p. 219)
 --
@@ -44,10 +35,8 @@ GAMUDDD = d(GAMUDD,X)
 
 GAMGAM = dot(transpose(GAMUDD,2,3),GAMUDD)
 
-RUDDD = transpose(GAMUDDD,3,4) -
-GAMUDDD +
-transpose(GAMGAM,2,3) -
-transpose(GAMGAM,2,3,3,4)
+RUDDD = transpose(GAMUDDD,3,4) - GAMUDDD +
+transpose(GAMGAM,2,3) - transpose(GAMGAM,2,3,3,4)
 
 -- Step 4. Calculate Ricci tensor (MTW p. 343)
 --
