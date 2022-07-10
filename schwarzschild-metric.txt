@@ -52,7 +52,7 @@ RDD = contract(RUDDD,1,3)
 -- R = g   R
 --          uv
 
-R = contract(dot(guu,transpose(RDD)))
+R = contract(dot(guu,RDD))
 
 -- Step 6. Calculate Einstein tensor (MTW p. 343)
 --
