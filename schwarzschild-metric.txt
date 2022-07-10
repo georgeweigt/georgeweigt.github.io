@@ -48,9 +48,9 @@ RDD = contract(RUDDD,1,3)
 
 -- Step 5. Calculate Ricci scalar (MTW p. 343)
 --
---      uv
--- R = g   R
---          uv
+--      u
+-- R = R
+--       u
 
 R = contract(dot(guu,RDD))
 
