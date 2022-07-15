@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Verify the following spin operator table from ``Quantum Mechanics'' by Susskind and Friedman.
+
+\begin{center}
+\begin{tabular}{rrrrr}
+& $|uu\rangle$ & $|ud\rangle$ & $|du\rangle$ & $|dd\rangle$
+\\[1ex]
+$\sigma_z$ & $|uu\rangle$ & $|ud\rangle$ & $-|du\rangle$ & $-|dd\rangle$
+\\
+$\sigma_x$ & $|du\rangle$ & $|dd\rangle$ & $|uu\rangle$ & $|ud\rangle$
+\\
+$\sigma_y$ & $i|du\rangle$ & $i|dd\rangle$ & $-i|uu\rangle$ & $-i|ud\rangle$
+\\
+$\tau_z$ & $|uu\rangle$ & $-|ud\rangle$ & $|du\rangle$ & $-|dd\rangle$
+\\
+$\tau_x$ & $|ud\rangle$ & $|uu\rangle$ & $|dd\rangle$ & $|du\rangle$
+\\
+$\tau_y$ & $i|ud\rangle$ & $-i|uu\rangle$ & $i|dd\rangle$ & $-i|du\rangle$
+\end{tabular}
+\end{center}
+
+For single spins we have
+\begin{equation*}
+|u\rangle=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+|d\rangle=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+For a system of two spins we use the Kronecker product of $|u\rangle$ and $|d\rangle$.
+Hence
+\begin{equation*}
+|uu\rangle=|u\rangle\otimes|u\rangle=\begin{pmatrix}1\\0\\0\\0\end{pmatrix},
+\quad
+|ud\rangle=\begin{pmatrix}0\\1\\0\\0\end{pmatrix},
+\quad
+|du\rangle=\begin{pmatrix}0\\0\\1\\0\end{pmatrix},
+\quad
+|dd\rangle=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
+\end{equation*}
+
+The spin operators for single spins are
+\begin{equation*}
+\sigma_z=\tau_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\quad
+\sigma_x=\tau_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+\quad
+\sigma_y=\tau_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\end{equation*}
+
+For a system of two spins, we again use the Kronecker product.
+\begin{equation*}
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\otimes I,
+\quad
+\tau_z=I\otimes\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\quad
+\text{etc.}
+\end{equation*}
+
+Click ``Demo'' to see and run the Eigenmath code.
+
+\end{document}
