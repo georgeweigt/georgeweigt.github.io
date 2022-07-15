@@ -11199,8 +11199,8 @@ multiply_rationals(p1, p2)
 {
 	var a, b, d, sign;
 
-	if (isinteger(p1) && isinteger(p2)) {
-		multiply_integers(p1, p2);
+	if (iszero(p1) || iszero(p2)) {
+		push_integer(0);
 		return;
 	}
 
@@ -11209,6 +11209,13 @@ multiply_rationals(p1, p2)
 	else
 		sign = -1;
 
+	if (isinteger(p1) && isinteger(p2)) {
+		a = bignum_mul(p1.a, p2.a);
+		b = bignum_int(1);
+		push_bignum(sign, a, b);
+		return;
+	}
+
 	a = bignum_mul(p1.a, p2.a);
 	b = bignum_mul(p1.b, p2.b);
 
@@ -11216,22 +11223,6 @@ multiply_rationals(p1, p2)
 
 	a = bignum_div(a, d);
 	b = bignum_div(b, d);
-
-	push_bignum(sign, a, b);
-}
-
-function
-multiply_integers(p1, p2)
-{
-	var a, b, sign;
-
-	if (p1.sign == p2.sign)
-		sign = 1;
-	else
-		sign = -1;
-
-	a = bignum_mul(p1.a, p2.a);
-	b = bignum_int(1);
 
 	push_bignum(sign, a, b);
 }
