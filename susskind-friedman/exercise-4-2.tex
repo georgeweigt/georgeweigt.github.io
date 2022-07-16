@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 4.2.
+Prove that if $\mathbf M$ and $\mathbf L$ are both Hermitian,
+$i[\mathbf M,\mathbf L]$ is also Hermitian.
+Note that the $i$ is important.
+The commutator is, by itself, not Hermitian.
+
+\bigskip
+\hrule
+
+\bigskip
+We have
+\begin{equation*}
+(i[\mathbf M,\mathbf L])^\dag=(i\mathbf M\mathbf L-i\mathbf L\mathbf M)^\dag
+=-i(\mathbf M\mathbf L)^\dag+i(\mathbf L\mathbf M)^\dag
+\end{equation*}
+
+Noting that $(\mathbf M\mathbf L)^\dag=\mathbf L^\dag\mathbf M^\dag$ we have
+\begin{equation*}
+(i[\mathbf M,\mathbf L])^\dag
+=-i\mathbf L^\dag\mathbf M^\dag+i\mathbf M^\dag\mathbf L^\dag
+\end{equation*}
+
+By hypothesis $\mathbf M=\mathbf M^\dag$ and $\mathbf L=\mathbf L^\dag$ hence
+\begin{equation*}
+(i[\mathbf M,\mathbf L])^\dag
+=-i\mathbf L\mathbf M+i\mathbf M\mathbf L=i[\mathbf M,\mathbf L]
+\end{equation*}
+
+\end{document}

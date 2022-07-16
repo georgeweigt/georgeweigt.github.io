@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 3.3.
+Calculate the eigenvectors and eigenvalues of $\sigma_n$.
+{\it Hint:}
+Assume the eigenvector $\lambda_1$ has the form
+\begin{equation*}
+\begin{pmatrix}\cos\alpha\\\sin\alpha\end{pmatrix}
+\end{equation*}
+where $\alpha$ is an unknown parameter.
+Plug this vector into the eigenvalue equation and
+solve for $\alpha$ in terms of $\theta$.
+Why did we use a single parameter $\alpha$?
+Notice that our suggested column vector must have unit length.
+
+\bigskip
+\hrule
+
+\bigskip
+Matrix $\sigma_n$ is given on page 85.
+\begin{equation*}
+\sigma_n=\begin{pmatrix}
+\cos\theta & \sin\theta
+\\
+\sin\theta & -\cos\theta
+\end{pmatrix}
+\end{equation*}
+
+Equation (3.5) is the eigenvalue equation where $\lambda$ is an eigenvalue,
+$|\lambda\rangle$ is an eigenvector, and $\mathbf M$ is a matrix.
+\begin{equation*}
+\mathbf M|\lambda\rangle=\lambda|\lambda\rangle
+\tag{3.5}
+\end{equation*}
+
+Following the above hint we have
+\begin{equation*}
+\sigma_n|\lambda_1\rangle=\begin{pmatrix}
+\cos\theta & \sin\theta
+\\
+\sin\theta & -\cos\theta
+\end{pmatrix}
+\begin{pmatrix}\cos\alpha\\\sin\alpha\end{pmatrix}
+=\begin{pmatrix}
+\cos\theta\cos\alpha+\sin\theta\sin\alpha
+\\
+\sin\theta\cos\alpha-\cos\theta\sin\alpha
+\end{pmatrix}
+\end{equation*}
+
+By sine and cosine angle difference formulas
+\begin{equation*}
+\sigma_n|\lambda_1\rangle
+=\begin{pmatrix}
+\cos(\theta-\alpha)
+\\
+\sin(\theta-\alpha)
+\end{pmatrix}
+\end{equation*}
+
+Then by equation (3.5) we have
+\begin{equation*}
+\begin{pmatrix}
+\cos(\theta-\alpha)
+\\
+\sin(\theta-\alpha)
+\end{pmatrix}
+=\lambda_1\begin{pmatrix}\cos\alpha\\\sin\alpha\end{pmatrix}
+\end{equation*}
+
+Taking $\lambda_1=1$ we have
+\begin{equation*}
+\theta-\alpha=\alpha
+\end{equation*}
+
+Hence
+\begin{equation*}
+\alpha=\frac{\theta}{2}
+\end{equation*}
+
+\end{document}

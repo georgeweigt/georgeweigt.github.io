@@ -1,0 +1,38 @@
+"Exercise 6.8"
+
+u = (1,0)
+d = (0,1)
+
+uu = kronecker(u,u)
+ud = kronecker(u,d)
+du = kronecker(d,u)
+dd = kronecker(d,d)
+
+sigmaz = ((1,0),(0,-1))
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+
+tauz = ((1,0),(0,-1))
+taux = ((0,1),(1,0))
+tauy = ((0,-i),(i,0))
+
+I = ((1,0),(0,1))
+
+sigmaz = kronecker(sigmaz,I)
+sigmax = kronecker(sigmax,I)
+sigmay = kronecker(sigmay,I)
+
+tauz = kronecker(I,tauz)
+taux = kronecker(I,taux)
+tauy = kronecker(I,tauy)
+
+T2 = (uu + dd) / sqrt(2)
+T3 = (uu - dd) / sqrt(2)
+
+dot(conj(T2),sigmaz,tauz,T2)
+dot(conj(T2),sigmax,taux,T2)
+dot(conj(T2),sigmay,tauy,T2)
+
+dot(conj(T3),sigmaz,tauz,T3)
+dot(conj(T3),sigmax,taux,T3)
+dot(conj(T3),sigmay,tauy,T3)

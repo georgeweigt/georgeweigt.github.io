@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 6.1.
+Prove that if $P(a,b)$ factorizes, then the correlation
+between $a$ and $b$ is zero.
+
+\bigskip
+\hrule
+
+\bigskip
+We have
+\begin{equation*}
+\langle a\rangle\langle b\rangle
+=\left(\sum_aaP(a)\right)\left(\sum_bbP(b)\right)
+=\sum_a\sum_babP(a)P(b)
+\tag{1}
+\end{equation*}
+
+Let $P(a,b)=P(a)P(b)$.
+Then
+\begin{equation*}
+\sum_a\sum_babP(a)P(b)=\sum_a\sum_babP(a,b)=\langle ab\rangle
+\tag{2}
+\end{equation*}
+
+By (1) and (2) we have
+\begin{equation*}
+\langle a\rangle\langle b\rangle=\langle ab\rangle
+\end{equation*}
+
+Hence $a$ and $b$ are uncorrelated.
+
+\bigskip
+Note that $P(a,b)=P(a)P(b)$ is the definition of independence.
+Hence $a$ and $b$ are uncorrelated by independence.
+
+\end{document}

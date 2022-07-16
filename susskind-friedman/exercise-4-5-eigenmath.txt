@@ -1,0 +1,16 @@
+"Exercise 4.5"
+
+nx = sin(theta) cos(phi)
+ny = sin(theta) sin(phi)
+nz = cos(theta)
+
+H = ((nz,nx - i ny),(nx + i ny,-nz))
+H
+
+E1 = 1
+V1 = (cos(theta/2),sin(theta/2) exp(i phi))
+dot(H,V1) == E1 V1
+
+E2 = -1
+V2 = (-sin(theta/2),cos(theta/2) exp(i phi))
+dot(H,V2) == E2 V2

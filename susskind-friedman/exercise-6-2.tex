@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 6.2.
+Show that if the two normalization conditions
+of Eqs.~6.4 are satisfied, then the state vector of Eq.~6.5 is
+automatically normalized as well.
+In other words, show that for this product state, normalizing
+the overall state vector does not put any additional constraints
+on the $\alpha$'s and $\beta$'s.
+
+\bigskip
+\hrule
+
+\bigskip
+These are the normalization conditions.
+\begin{align*}
+\alpha_u^*\alpha_u+\alpha_d^*\alpha_d&=1\tag{6.4a}
+\\[1ex]
+\beta_u^*\beta_u+\beta_d^*\beta_d&=1\tag{6.4b}
+\end{align*}
+
+Consider equation (6.5).
+\begin{equation*}
+\alpha_u\beta_u|uu\rangle
++\alpha_u\beta_d|ud\rangle
++\alpha_d\beta_u|du\rangle
++\alpha_d\beta_d|dd\rangle
+\tag{6.5}
+\end{equation*}
+
+In order for this state to be normalized we must have $P=1$ where
+\begin{equation*}
+P=|\alpha_u\beta_u|^2+|\alpha_u\beta_d|^2+|\alpha_d\beta_u|^2+|\alpha_d\beta_d|^2
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+P
+=\alpha_u^*\alpha_u\,\beta_u^*\beta_u
++\alpha_u^*\alpha_u\,\beta_d^*\beta_d
++\alpha_d^*\alpha_d\,\beta_u^*\beta_u
++\alpha_d^*\alpha_d\,\beta_d^*\beta_d
+\end{equation*}
+
+By the distributive law
+\begin{equation*}
+P
+=\alpha_u^*\alpha_u(\beta_u^*\beta_u+\beta_d^*\beta_d)
++\alpha_d^*\alpha_d(\beta_u^*\beta_u+\beta_d^*\beta_d)
+\tag{1}
+\end{equation*}
+
+Substitute (6.4b) into (1) to obtain
+\begin{equation*}
+P=\alpha_u^*\alpha_u+\alpha_d^*\alpha_d
+\end{equation*}
+
+By (6.4a) we have $P=1$ hence the state vector in (6.5) is normalized.
+
+\end{document}

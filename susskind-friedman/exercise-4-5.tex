@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 4.5.
+Take any unit 3-vector $\vec n$ and form the operator
+\begin{equation*}
+\mathbf H=\frac{\hbar\omega}{2}\sigma\cdot\vec n
+\end{equation*}
+
+Find the energy eigenvalues and eigenvectors by solving the
+time-independent Schrodinger equation.
+Recall that Eq.~3.23 gives $\sigma\cdot\vec n$ in component form.
+
+\bigskip
+\hrule
+
+\bigskip
+Here is equation (3.23).
+\begin{equation*}
+\sigma_n=\begin{pmatrix}
+n_z & n_x-in_y
+\\
+n_x+in_y & -n_z
+\end{pmatrix}
+\tag{3.23}
+\end{equation*}
+
+Then by hypothesis
+\begin{equation*}
+\mathbf H=\frac{\hbar\omega}{2}
+\begin{pmatrix}
+n_z & n_x-in_y
+\\
+n_x+in_y & -n_z
+\end{pmatrix}
+\end{equation*}
+
+Equation (4.28) is the time-independent Schrodinger equation.
+\begin{equation*}
+\mathbf H|E_j\rangle=E_j|E_j\rangle
+\tag{4.28}
+\end{equation*}
+
+The eigenvalues $E_j$ of $\mathbf H$ are solutions to $\det(\mathbf H-E_j\mathbf I)=0$.
+Hence
+\begin{align*}
+&\det(\mathbf H-E_j\mathbf I)
+\\
+&\quad{}=\left|
+\begin{matrix}
+\frac{\hbar\omega}{2}n_z-E_j & \frac{\hbar\omega}{2}(n_x-in_y)
+\\[1ex]
+\frac{\hbar\omega}{2}(n_x+in_y) & -\frac{\hbar\omega}{2}n_z-E_j
+\end{matrix}
+\right|
+\\
+&\quad{}=\left(\frac{\hbar\omega}{2}n_z-E_j\right)\left(-\frac{\hbar\omega}{2}n_z-E_j\right)
+-\frac{\hbar\omega}{2}(n_x-in_y)\frac{\hbar\omega}{2}(n_x+in_y)
+\\
+&\quad{}=E_j^2-\left(\frac{\hbar\omega}{2}\right)^2\left(n_x^2+n_y^2+n_z^2\right)=0
+\end{align*}
+
+By hypothesis $\vec n$ is a unit vector hence
+\begin{equation*}
+E_j^2-\left(\frac{\hbar\omega}{2}\right)^2=0
+\end{equation*}
+
+Therefore the eigenvalues are
+\begin{equation*}
+E_1=\frac{\hbar\omega}{2},\qquad E_2=-\frac{\hbar\omega}{2}
+\end{equation*}
+
+To find the eigenvectors, let
+\begin{equation*}
+|E_j\rangle=\begin{pmatrix}\cos\alpha\\\sin\alpha\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+Then by (4.28) we have
+\begin{equation*}
+\frac{\hbar\omega}{2}
+\begin{pmatrix}
+n_z & n_x-in_y
+\\
+n_x+in_y & -n_z
+\end{pmatrix}
+\begin{pmatrix}\cos\alpha\\\sin\alpha\exp(i\phi)\end{pmatrix}
+=E_j\begin{pmatrix}\cos\alpha\\\sin\alpha\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+From the first row we have
+\begin{equation*}
+\frac{\hbar\omega}{2}n_z\cos\alpha+\frac{\hbar\omega}{2}(n_x-in_y)\sin\alpha\exp(i\phi)
+=E_j\cos\alpha
+\tag{1}
+\end{equation*}
+
+From exercise 3.4 let
+\begin{equation*}
+\begin{aligned}
+n_x&=\sin\theta\cos\phi
+\\
+n_y&=\sin\theta\sin\phi
+\\
+n_z&=\cos\theta
+\end{aligned}
+\tag{2}
+\end{equation*}
+
+Substitute (2) into (1) to obtain
+\begin{equation*}
+\frac{\hbar\omega}{2}\cos\theta\cos\alpha
++\frac{\hbar\omega}{2}\sin\theta(\cos\phi-i\sin\phi)\sin\alpha\exp(i\phi)
+=E_j\cos\alpha
+\end{equation*}
+
+Noting that $\cos\phi-i\sin\phi=\exp(-i\phi)$ we have
+\begin{equation*}
+\frac{\hbar\omega}{2}\cos\theta\cos\alpha
++\frac{\hbar\omega}{2}\sin\theta\sin\alpha
+=E_j\cos\alpha
+\end{equation*}
+
+Then by angle difference identity we have
+\begin{equation*}
+\frac{\hbar\omega}{2}\cos(\theta-\alpha)=E_j\cos\alpha
+\tag{3}
+\end{equation*}
+
+Substitute $E_j=E_1=\hbar\omega/2$ into (3) to obtain
+\begin{equation*}
+\cos(\theta-\alpha)=\cos\alpha
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\alpha=\frac{\theta}{2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+|E_1\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\[1ex]\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+Substitute $E_j=E_2=-\hbar\omega/2$ into (3) to obtain
+\begin{equation*}
+\cos(\theta-\alpha)=-\cos\alpha
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\sin(\theta-\alpha+\pi/2)=\sin(\alpha-\pi/2)
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\alpha=\frac{\theta}{2}+\frac{\pi}{2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+|E_2\rangle=\begin{pmatrix}\cos\left(\frac{\theta}{2}+\frac{\pi}{2}\right)
+\\[1ex]
+\sin\left(\frac{\theta}{2}+\frac{\pi}{2}\right)\exp(i\phi)
+\end{pmatrix}
+=\begin{pmatrix}
+-\sin\frac{\theta}{2}
+\\[1ex]
+\cos\frac{\theta}{2}\exp(i\phi)
+\end{pmatrix}
+\end{equation*}
+
+\end{document}

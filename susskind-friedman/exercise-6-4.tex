@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 6.4.
+Use the matrix forms of $\sigma_z$, $\sigma_x$, and $\sigma_y$ and
+the column vectors for $|u\}$ and $|d\}$ to verify Eqs.~6.6.
+Then, use Eqs.~6.6 and 6.7 to write the equations that were left out
+of Eqs.~6.8. Use the appendix to check your answers.
+
+\bigskip
+\hrule
+
+\bigskip
+\begin{equation*}
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\quad
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+\quad
+\sigma_y=\begin{pmatrix}0&-i\\ i&0\end{pmatrix}
+\tag{3.20}
+\end{equation*}
+
+\begin{equation*}
+|u\}=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+|d\}=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Hence
+\begin{align*}
+\sigma_z|u\}&=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}1\\0\end{pmatrix}=|u\}
+\\[1ex]
+\sigma_z|d\}&=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}0\\-1\end{pmatrix}=-|d\}
+\\[1ex]
+\sigma_x|u\}&=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}0\\1\end{pmatrix}=|d\}
+\\[1ex]
+\sigma_x|d\}&=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}1\\0\end{pmatrix}=|u\}
+\\[1ex]
+\sigma_y|u\}&=\begin{pmatrix}0&-i\\i&0\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}0\\i\end{pmatrix}=i|d\}
+\\[1ex]
+\sigma_y|d\}&=\begin{pmatrix}0&-i\\i&0\end{pmatrix}\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}-i\\0\end{pmatrix}=-i|u\}
+\end{align*}
+
+The $\sigma$ operators operate on the left-hand side of the product state.
+
+\bigskip
+For $\sigma_z$ of product states we have
+\begin{align*}
+\sigma_z|uu\rangle&=\sigma_z|u\rangle\otimes|u\rangle
+=|u\rangle\otimes|u\rangle=|uu\rangle
+\\[1ex]
+\sigma_z|ud\rangle&=\sigma_z|u\rangle\otimes|d\rangle
+=|u\rangle\otimes|d\rangle=|ud\rangle
+\\[1ex]
+\sigma_z|du\rangle&=\sigma_z|d\rangle\otimes|u\rangle
+=-|d\rangle\otimes|u\rangle=-|du\rangle
+\\[1ex]
+\sigma_z|dd\rangle&=\sigma_z|d\rangle\otimes|d\rangle
+=-|d\rangle\otimes|d\rangle=-|dd\rangle
+\end{align*}
+
+For $\sigma_x$ of product states we have
+\begin{align*}
+\sigma_x|uu\rangle&=\sigma_x|u\rangle\otimes|u\rangle
+=|d\rangle\otimes|u\rangle=|du\rangle
+\\[1ex]
+\sigma_x|ud\rangle&=\sigma_x|u\rangle\otimes|d\rangle
+=|d\rangle\otimes|d\rangle=|dd\rangle
+\\[1ex]
+\sigma_x|du\rangle&=\sigma_x|d\rangle\otimes|u\rangle
+=|u\rangle\otimes|u\rangle=|uu\rangle
+\\[1ex]
+\sigma_x|dd\rangle&=\sigma_x|d\rangle\otimes|d\rangle
+=|u\rangle\otimes|d\rangle=|ud\rangle
+\end{align*}
+
+For $\sigma_y$ of product states we have
+\begin{align*}
+\sigma_y|uu\rangle&=\sigma_y|u\rangle\otimes|u\rangle
+=i|d\rangle\otimes|u\rangle=i|du\rangle
+\\[1ex]
+\sigma_y|ud\rangle&=\sigma_y|u\rangle\otimes|d\rangle
+=i|d\rangle\otimes|d\rangle=i|dd\rangle
+\\[1ex]
+\sigma_y|du\rangle&=\sigma_y|d\rangle\otimes|u\rangle
+=-i|u\rangle\otimes|u\rangle=-i|uu\rangle
+\\[1ex]
+\sigma_y|dd\rangle&=\sigma_y|d\rangle\otimes|d\rangle
+=-i|u\rangle\otimes|d\rangle=-i|ud\rangle
+\end{align*}
+
+The $\tau$ operators operate on the right-hand term of the product state.
+
+\bigskip
+For $\tau_z$ of product states we have
+\begin{align*}
+\tau_z|uu\rangle&=|u\rangle\otimes\tau_z|u\rangle
+=|u\rangle\otimes|u\rangle=|uu\rangle
+\\[1ex]
+\tau_z|ud\rangle&=|u\rangle\otimes\tau_z|d\rangle
+=|u\rangle\otimes-|d\rangle=-|ud\rangle
+\\[1ex]
+\tau_z|du\rangle&=|d\rangle\otimes\tau_z|u\rangle
+=|d\rangle\otimes|u\rangle=|du\rangle
+\\[1ex]
+\tau_z|dd\rangle&=|d\rangle\otimes\tau_z|d\rangle
+=|d\rangle\otimes-|d\rangle=-|dd\rangle
+\end{align*}
+
+For $\tau_x$ of product states we have
+\begin{align*}
+\tau_x|uu\rangle&=|u\rangle\otimes\tau_x|u\rangle
+=|u\rangle\otimes|d\rangle=|ud\rangle
+\\[1ex]
+\tau_x|ud\rangle&=|u\rangle\otimes\tau_x|d\rangle
+=|u\rangle\otimes|u\rangle=|uu\rangle
+\\[1ex]
+\tau_x|du\rangle&=|d\rangle\otimes\tau_x|u\rangle
+=|d\rangle\otimes|d\rangle=|dd\rangle
+\\[1ex]
+\tau_x|dd\rangle&=|d\rangle\otimes\tau_x|d\rangle
+=|d\rangle\otimes|u\rangle=|du\rangle
+\end{align*}
+
+For $\tau_y$ of product states we have
+\begin{align*}
+\tau_y|uu\rangle&=|u\rangle\otimes\tau_y|u\rangle
+=|u\rangle\otimes i|d\rangle=i|ud\rangle
+\\[1ex]
+\tau_y|ud\rangle&=|u\rangle\otimes\tau_y|d\rangle
+=|u\rangle\otimes-i|u\rangle=-i|uu\rangle
+\\[1ex]
+\tau_y|du\rangle&=|d\rangle\otimes\tau_y|u\rangle
+=|d\rangle\otimes i|d\rangle=i|dd\rangle
+\\[1ex]
+\tau_y|dd\rangle&=|d\rangle\otimes\tau_y|d\rangle
+=|d\rangle\otimes-i|u\rangle=-i|du\rangle
+\end{align*}
+
+\end{document}

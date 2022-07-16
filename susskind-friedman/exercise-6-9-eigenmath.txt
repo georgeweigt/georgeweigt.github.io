@@ -1,0 +1,58 @@
+"Exercise 6.9"
+
+u = (1,0)
+d = (0,1)
+
+uu = kronecker(u,u)
+ud = kronecker(u,d)
+du = kronecker(d,u)
+dd = kronecker(d,d)
+
+sigmaz = ((1,0),(0,-1))
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+
+tauz = ((1,0),(0,-1))
+taux = ((0,1),(1,0))
+tauy = ((0,-i),(i,0))
+
+I = ((1,0),(0,1))
+
+sigmaz = kronecker(sigmaz,I)
+sigmax = kronecker(sigmax,I)
+sigmay = kronecker(sigmay,I)
+
+tauz = kronecker(I,tauz)
+taux = kronecker(I,taux)
+tauy = kronecker(I,tauy)
+
+S = (ud - du) / sqrt(2) -- singlet state
+
+T1 = (ud + du) / sqrt(2)
+T2 = (uu + dd) / sqrt(2)
+T3 = (uu - dd) / sqrt(2)
+
+check(dot(sigmax,taux,S) == -S)
+check(dot(sigmay,tauy,S) == -S)
+check(dot(sigmaz,tauz,S) == -S)
+
+check(dot(sigmax,taux,T1) == T1)
+check(dot(sigmay,tauy,T1) == T1)
+check(dot(sigmaz,tauz,T1) == -T1)
+
+check(dot(sigmax,taux,T2) == T2)
+check(dot(sigmay,tauy,T2) == -T2)
+check(dot(sigmaz,tauz,T2) == T2)
+
+check(dot(sigmax,taux,T3) == -T3)
+check(dot(sigmay,tauy,T3) == T3)
+check(dot(sigmaz,tauz,T3) == T3)
+
+H = dot(sigmax,taux) + dot(sigmay,tauy) + dot(sigmaz,tauz)
+
+check(dot(H,S) == -3 S)
+check(dot(H,T1) == T1)
+check(dot(H,T2) == T2)
+check(dot(H,T3) == T3)
+
+"ok"

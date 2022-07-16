@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 4.6.
+Carry out the Schrodinger Ket recipe for a
+single spin.
+The Hamiltonian is
+$\mathbf H=\frac{\omega\hbar}{2}\sigma_z$ and the final
+observable is $\sigma_x$.
+The initial state is given as $|u\rangle$
+(the state in which $\sigma_z=+1$).
+
+\bigskip
+After time $t$, an experiment is done to measure $\sigma_y$.
+What are the possible outcomes and what are the probabilities
+for those outcomes?
+
+\bigskip
+\hrule
+
+\bigskip
+Note: Use $|r\rangle$ for the initial state instead of $|u\rangle$.
+Otherwise, the result is time-independent.
+
+\bigskip
+Step 1 of the Schrodinger Ket recipe is obtain $\mathbf H$,
+which we already have by hypothesis.
+\begin{equation*}
+\mathbf H=\frac{\hbar\omega}{2}\sigma_z
+=\frac{\hbar\omega}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\end{equation*}
+
+Step 2.
+Prepare an initial state $|\Psi(0)\rangle$.
+By hypothesis the initial state is $|r\rangle$.
+\begin{equation*}
+|r\rangle=\frac{1}{\sqrt2}|u\rangle+\frac{1}{\sqrt2}|d\rangle
+\tag{2.5}
+\end{equation*}
+
+Hence
+\begin{equation*}
+|\Psi(0)\rangle=|r\rangle=\begin{pmatrix}\frac{1}{\sqrt2}\\[1ex]\frac{1}{\sqrt2}\end{pmatrix}
+\end{equation*}
+
+Step 3.
+Find the eigenvalues and eigenvectors of $\mathbf H$ by solving
+the time-independent Schrodinger equation,
+\begin{equation*}
+\mathbf H|E_j\rangle=E_j|E_j\rangle
+\end{equation*}
+
+The eigenvalues are obtained by solving the characteristic equation
+$\det(\mathbf H-E_j\mathbf I)=0$.
+\begin{align*}
+\det(\mathbf H-E_j\mathbf I)
+&=\left|
+\begin{matrix}\frac{\hbar\omega}{2}-E_j&0\\0&-\frac{\hbar\omega}{2}-E_j\end{matrix}
+\right|
+\\[1ex]
+&=\left(\frac{\hbar\omega}{2}-E_j\right)\left(-\frac{\hbar\omega}{2}-E_j\right)
+\\[1ex]
+&=E_j^2-\left(\frac{\hbar\omega}{2}\right)^2=0
+\end{align*}
+
+Hence the eigenvalues are
+\begin{equation*}
+E_1=\frac{\hbar\omega}{2},
+\quad
+E_2=-\frac{\hbar\omega}{2}
+\end{equation*}
+
+The eigenvectors of $\mathbf H$ are $|u\rangle$ and $|d\rangle$.
+\begin{equation*}
+|E_1\rangle=|u\rangle=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+|E_2\rangle=|d\rangle=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Step 4.
+Use the initial state vector $|\Psi(0)\rangle$,
+along with the eigenvectors $|E_j\rangle$ from step 3,
+to calculate the initial coefficients $\alpha_j(0)$:
+\begin{equation*}
+\alpha_j(0)=\langle E_j|\Psi(0)\rangle
+\end{equation*}
+
+We have
+\begin{align*}
+\alpha_1(0)&=\langle E_1|r\rangle=\frac{1}{\sqrt2}
+\\[1ex]
+\alpha_2(0)&=\langle E_2|r\rangle=\frac{1}{\sqrt2}
+\end{align*}
+
+Step 5.
+Rewrite $|\Psi(0)\rangle$ in terms of the eigenvectors $|E_j\rangle$ and
+the initial coefficients $\alpha_j(0)$:
+\begin{equation*}
+|\Psi(0)\rangle=\sum_j\alpha_j(0)|E_j\rangle
+\end{equation*}
+
+We have
+\begin{equation*}
+|\Psi(0)\rangle
+=\frac{1}{\sqrt2}\begin{pmatrix}1\\0\end{pmatrix}
++\frac{1}{\sqrt2}\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Step 6.
+In the above equation, replace each $\alpha_j(0)$ with $\alpha_j(t)$
+to capture its time-independence.
+As a result, $|\Psi(0)\rangle$ becomes $|\Psi(t)\rangle$:
+\begin{equation*}
+|\Psi(t)\rangle=\sum_j\alpha_j(t)|E_j\rangle
+\end{equation*}
+
+We have
+\begin{equation*}
+|\Psi(t)\rangle
+=\alpha_1(t)\begin{pmatrix}1\\0\end{pmatrix}
++\alpha_2(t)\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Step 7.
+Using Eq.~4.30, replace each $\alpha_j(t)$ with
+$\alpha_j(0)\exp(-iE_jt/\hbar)$:
+\begin{equation*}
+|\Psi(t)\rangle=\sum_j\alpha_j(0)
+\exp\left(-\frac{i}{\hbar}E_jt\right)
+|E_j\rangle
+\tag{4.34}
+\end{equation*}
+
+We have
+\begin{equation*}
+|\Psi(t)\rangle
+=\frac{1}{\sqrt2}\exp\left(-\frac{i}{\hbar}E_1t\right)\begin{pmatrix}1\\0\end{pmatrix}
++\frac{1}{\sqrt2}\exp\left(-\frac{i}{\hbar}E_2t\right)\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Hence
+\begin{equation*}
+|\Psi(t)\rangle
+=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2}\right)\begin{pmatrix}1\\0\end{pmatrix}
++\frac{1}{\sqrt2}\exp\left(\frac{i\omega t}{2}\right)\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+This concludes the Schrodinger Ket recipe.
+
+\bigskip
+Recall that
+\begin{equation*}
+|i\rangle=\begin{pmatrix}\frac{1}{\sqrt2}\\[1ex]\frac{i}{\sqrt2}\end{pmatrix},
+\qquad
+|o\rangle=\begin{pmatrix}\frac{1}{\sqrt2}\\[1ex]-\frac{i}{\sqrt2}\end{pmatrix}
+\end{equation*}
+
+The probability of measuring $\sigma_y=1$ is
+\begin{equation*}
+P(1\mid\sigma_y)=\langle i|\Psi(t)\rangle\langle\Psi(t)|i\rangle
+=\frac{1+\sin\omega t}{2}
+\end{equation*}
+
+The probability of measuring $\sigma_y=-1$ is
+\begin{equation*}
+P(-1\mid\sigma_y)=\langle o|\Psi(t)\rangle\langle\Psi(t)|o\rangle
+=\frac{1-\sin\omega t}{2}
+\end{equation*}
+
+\end{document}

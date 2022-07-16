@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 6.6.
+Assume Charlie has prepared the two spins in the singlet state.
+This time, Bob measures $\tau_y$ and Alice measures $\sigma_x$.
+What is the expectation value of $\sigma_x\tau_y$?
+
+\bigskip
+What does this say about the correlation between the two measurements?
+
+\bigskip
+\hrule
+
+\bigskip
+Recall that
+\begin{equation*}
+|sing\rangle=\frac{|ud\rangle-|du\rangle}{\sqrt2}
+\end{equation*}
+
+The expectation value of $\sigma_x\tau_y$ is
+\begin{equation*}
+\langle\sigma_x\tau_y\rangle=\langle sing|\sigma_x\tau_y|sing\rangle
+\end{equation*}
+
+Applying the $\tau_y$ operator first we have from Table 1 the following result.
+\begin{equation*}
+\langle\sigma_x\tau_y\rangle=\langle sing|\sigma_x
+\left(\frac{-i|uu\rangle-i|dd\rangle}{\sqrt2}\right)
+\end{equation*}
+
+Then applying the $\sigma_x$ operator we have
+\begin{equation*}
+\langle\sigma_x\tau_y\rangle=\langle sing|\left(\frac{-i|du\rangle-i|ud\rangle}{\sqrt2}\right)
+\end{equation*}
+
+Hence
+\begin{align*}
+\langle\sigma_x\tau_y\rangle
+&=\frac{1}{2}
+\left(\langle ud|-\langle du|\right)
+\left(-i|du\rangle-i|ud\rangle\right)
+\\[1ex]
+&=\frac{1}{2}\left(-i\langle ud|ud\rangle+i\langle du|du\rangle\right)
+\\[1ex]
+&=0\tag{1}
+\end{align*}
+
+From (1) and the result $\langle\sigma_x\rangle=\langle\tau_y\rangle=0$ given on page 174 we have
+\begin{equation*}
+\langle\sigma_x\tau_y\rangle-\langle\sigma_x\rangle\langle\tau_y\rangle=0
+\end{equation*}
+
+Hence the measurements $\sigma_x$ and $\tau_y$ are uncorrelated.
+
+\end{document}
