@@ -1,0 +1,37 @@
+-- Feynman and Hibbs problem 2-2
+
+A = (xb - xa cos(omega T)) / sin(omega T)
+
+B = xa
+
+x = A sin(omega t) + B cos(omega t)
+
+v = d(x,t)
+
+f = 1/2 m (v^2 - omega^2 x^2)
+
+S = defint(f, t, 0, T)
+
+"Verify equation (2)"
+
+check(x == (xb - xa cos(omega T)) sin(omega t) / sin(omega T) + xa cos(omega t))
+
+"ok"
+
+"Verify equation (3)"
+
+check(v == omega ((xb - xa cos(omega T)) cos(omega t) / sin(omega T) - xa sin(omega t)))
+
+"ok"
+
+"Verify equation (4)"
+
+check(S == 1/2 m (eval(v x, t, T) - eval(v x, t, 0)))
+
+"ok"
+
+"Verify equation (5)"
+
+check(S == 1/2 m omega ((xb^2 + xa^2) cos(omega T) - 2 xb xa) / sin(omega T))
+
+"ok"

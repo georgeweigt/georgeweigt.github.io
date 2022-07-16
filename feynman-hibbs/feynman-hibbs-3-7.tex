@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-7.
+Using equations (3.52) and (2.31),
+express $F(t+s)$ in terms of $F(t)$ and $F(s)$,
+where $t=t_b-t_c$ and $s=t_c-t_a$.
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (3.52) and $t+s=t_b-t_a$
+\begin{equation*}
+K(b,a)=F(t+s)\exp\left(\frac{im(x_b-x_a)^2}{2\hbar (t+s)}\right)
+\tag{1}
+\end{equation*}
+
+From equation (2.31)
+\begin{equation*}
+K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
+\end{equation*}
+
+Hence
+\begin{equation*}
+K(b,a)=F(t)F(s)\int_{-\infty}^\infty
+\exp\left(\frac{im(x_b-x_c)^2}{2\hbar t}\right)
+\exp\left(\frac{im(x_c-x_a)^2}{2\hbar s}\right)
+\,dx_c
+\end{equation*}
+
+Solve the integral.
+\begin{equation*}
+K(b,a)=F(t)F(s)
+\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t+s)}\right)
+\tag{2}
+\end{equation*}
+
+Equating (1) with (2) causes the exponentials to cancel leaving
+\begin{equation*}
+F(t+s)=F(t)F(s)\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\tag{3}
+\end{equation*}
+
+Show that if
+\begin{equation*}
+F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} f(t)
+\end{equation*}
+then the new function $f(t)$ must satisfy
+\begin{equation*}
+f(t+s)=f(t)f(s)
+\end{equation*}
+
+By substitution
+\begin{equation*}
+F(t+s)=\left(\frac{m}{2\pi i\hbar (t+s)}\right)^{1/2} f(t+s)
+\end{equation*}
+and
+\begin{equation*}
+F(t)F(s)=
+\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}
+\left(\frac{m}{2\pi i\hbar s}\right)^{1/2}
+f(t)f(s)
+\end{equation*}
+
+Then by (3) we have
+\begin{multline*}
+\left(\frac{m}{2\pi i\hbar(t+s)}\right)^{1/2}
+f(t+s)=
+\\
+\left(\frac{m}{2\pi i\hbar t}\right)^{1/2}
+\left(\frac{m}{2\pi i\hbar s}\right)^{1/2}
+f(t)f(s)
+\left(\frac{2\pi i\hbar ts}{m(t+s)}\right)^{1/2}
+\end{multline*}
+
+The coefficients cancel leaving
+\begin{equation*}
+f(t+s)=f(t)f(s)
+\tag{4}
+\end{equation*}
+
+\end{document}

@@ -1,0 +1,449 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-2.
+For a particle of charge $e$ in a magnetic field the Lagrangian is
+\begin{equation*}
+L(\dot{\mathbf x},\mathbf x)=\frac{m}{2}\dot{\mathbf x}^2
++\frac{e}{c}\dot{\mathbf x}\cdot\mathbf A(\mathbf x,t)-e\phi(\mathbf x,t)
+\end{equation*}
+where $\dot{\mathbf x}$ is the velocity vector,
+$c$ is the velocity of light, and $\mathbf A$ and $\phi$
+are the vector and scalar potentials.
+Show that the corresponding Schrodinger equation is
+\begin{equation*}
+\frac{\partial\psi}{\partial t}
+=-\frac{i}{\hbar}\left(
+\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)
+\cdot
+\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)\psi
++e\phi\psi
+\right)
+\tag{4.18}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (4.3) with a minor correction of $y-x$ instead of $x-y$.
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)=\frac{1}{A}\INT\exp\left(
+\frac{i\epsilon}{\hbar}L\left(\frac{\mathbf y-\mathbf x}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
+\right)\psi(\mathbf y,t)
+\,dy_1\,dy_2\,dy_3
+\tag{1}
+\end{equation*}
+
+This is the Lagrangian with arguments from (1).
+\begin{multline*}
+L\left(\frac{\mathbf y-\mathbf x}{\epsilon},\frac{\mathbf x+\mathbf y}{2}\right)
+\\
+=\frac{m}{2\epsilon^2}(\mathbf x-\mathbf y)^2
+-\frac{e}{c\epsilon}(\mathbf x-\mathbf y)\cdot\mathbf A\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+-e\phi\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+\end{multline*}
+
+Hence
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=\frac{1}{A}\INT
+\\
+&\quad\exp
+\left(
+\frac{im}{2\hbar\epsilon}(\mathbf x-\mathbf y)^2
+-\frac{ie}{\hbar c}(\mathbf x-\mathbf y)\cdot\mathbf A\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+-\frac{ie\epsilon}{\hbar}\phi\left(\frac{\mathbf x+\mathbf y}{2},t\right)
+\right)
+\\
+&\quad\quad{}\times\psi(\mathbf y,t)
+\,dy_1\,dy_2\,dy_3
+\end{align*}
+
+Let
+\begin{equation*}
+\mathbf y=\mathbf x+\boldsymbol\eta
+\end{equation*}
+
+Then
+\begin{equation*}
+\mathbf x-\mathbf y=\boldsymbol\eta,\quad
+\frac{\mathbf x+\mathbf y}{2}=\mathbf{x}+\tfrac{1}{2}\boldsymbol\eta,\quad
+dy_1\,dy_2\,dy_3=d\eta_1\,d\eta_2\,d\eta_3
+\end{equation*}
+
+Hence
+\begin{multline*}
+\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\INT\exp
+\left(
+\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2
+-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\right)
+\\
+{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Factor the exponential.
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\INT
+\\
+&\quad{}\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+&\quad\quad{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{2}
+\end{align*}
+
+From the identity $\exp(i\theta)=\cos(\theta)+i\sin(\theta)$ we have
+\begin{multline*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+=\cos\left(-\frac{e\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
++i\sin\left(-\frac{e\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\end{multline*}
+
+Then for small $\epsilon$
+\begin{equation*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+1-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)
+\end{equation*}
+
+The $\boldsymbol\eta$ term can be discarded because the integral is Gaussian.
+(Contributions to the integral are small for $\boldsymbol\eta^2>2\hbar\epsilon/m$.)
+\begin{equation*}
+\exp\left(-\frac{ie\epsilon}{\hbar}\phi\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)\approx
+1-\frac{ie\epsilon}{\hbar}\phi(\mathbf x,t)
+\tag{3}
+\end{equation*}
+
+Substitute (3) into (2).
+\begin{multline*}
+\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}\left(1-\frac{ie\epsilon}{\hbar}\phi\right)\INT
+\\
+\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{multline*}
+
+Approximate the exponential involving $\mathbf A$ with a Taylor series.
+\begin{equation*}
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+\exp\left(
+-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x)
+-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A(\mathbf x))
+\right)
+\end{equation*}
+
+Expand the right-hand side as a power series.
+\begin{equation*}
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\approx
+\left(1+T+\tfrac{1}{2}T^2\right)
+\end{equation*}
+where
+\begin{equation*}
+T=-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x)
+-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A(\mathbf x))
+\end{equation*}
+
+Discard high order terms.
+\begin{multline*}
+\exp\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\tfrac{1}{2}\boldsymbol\eta,t\right)\right)
+\\
+\approx
+1
+-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x)
+-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A(\mathbf x))
++\frac{1}{2}\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x)\right)^2
+\end{multline*}
+
+Hence
+\begin{align*}
+&\psi(\mathbf x,t+\epsilon)=
+\frac{1}{A}
+\left(1-\frac{ie\epsilon}{\hbar}\phi\right)
+\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\\
+&{}\times\left(
+1
+-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A
+-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A)
++\frac{1}{2}\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)^2
+\right)
+\\
+&{}\times\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{4}
+\end{align*}
+
+Next we will use the following Taylor series approximations.
+\begin{equation*}
+\begin{aligned}
+\psi(\mathbf x,t+\epsilon)&\approx\psi+\epsilon\frac{\partial\psi}{\partial t}
+\\
+\psi(\mathbf x+\boldsymbol\eta,t)&\approx\psi+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\end{aligned}
+\tag{5}
+\end{equation*}
+
+Substitute the approximations (5) into (4).
+\begin{align*}
+&\psi+\epsilon\frac{\partial\psi}{\partial t}=
+\frac{1}{A}
+\left(1-\frac{ie\epsilon}{\hbar}\phi\right)
+\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)
+\\
+&{}\times\left(
+1
+-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A
+-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A)
++\frac{1}{2}\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)^2
+\right)
+\\
+&{}\times\left(
+\psi+\boldsymbol\eta\cdot\nabla\psi
++\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\right)
+\,d\eta_1\,d\eta_2\,d\eta_3
+\tag{6}
+\end{align*}
+
+To solve the above integral, we will use the following formulas provided by the authors.
+\begin{align*}
+&\int_{-\infty}^\infty\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
+=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
+\tag{4.7}
+\\
+&\int_{-\infty}^\infty\eta_k\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
+=0
+\tag{4.9}
+\\
+&\int_{-\infty}^\infty\eta_k^2\exp\left(\frac{im\eta_k^2}{2\hbar\epsilon}\right)\,d\eta_k
+=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{1/2}
+\tag{4.10}
+\end{align*}
+
+The following table summarizes the solutions to
+\begin{equation*}
+I=\INT\exp\left(\frac{im}{2\hbar\epsilon}\boldsymbol\eta^2\right)uv
+\,d\eta_1\,d\eta_2\,d\eta_3
+\end{equation*}
+for each factor pair $uv$ in (6).
+Integrals $I_9$ and $I_{12}$ are proportional to $\epsilon^2$ due to (4.10) and are discarded.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+& & & \\ % vertical padding
+& $v=\psi$ & $v=\boldsymbol\eta\cdot\nabla\psi$ & $v=\tfrac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)$
+\\
+& & & \\ % vertical padding
+\hline
+& & & \\ % vertical padding
+$u=1$ & $I_1$ & 0 & $I_3$
+\\
+& & & \\ % vertical padding
+\hline
+& & &
+\\
+$\displaystyle u=-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A$ & 0 & $I_5$ & 0
+\\
+& & &
+\\
+\hline
+& & & \\ % vertical padding
+$\displaystyle u=-\frac{ie}{2\hbar c}\boldsymbol\eta\cdot(\boldsymbol\eta\cdot\nabla\mathbf A)$ & $I_7$ & 0 &
+$I_9\propto\epsilon^2$
+\\
+& & & \\ % vertical padding
+\hline
+& & & \\ % vertical padding
+$\displaystyle u=\frac{1}{2}\left(-\frac{ie}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)^2$ & $I_{10}$ & 0 &
+$I_{12}\propto\epsilon^2$
+\\
+& & & \\ % vertical padding
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+\begin{align*}
+I_1&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi
+\\
+I_3&=\frac{i\hbar\epsilon}{2m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\nabla^2\psi
+\\
+I_5&=\frac{i\hbar\epsilon}{m}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{-ie}{\hbar c}\mathbf A\cdot\nabla\psi
+\\
+I_7&=\frac{i\hbar\epsilon}{m}
+\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{-ie}{2\hbar c}\nabla\cdot\mathbf A\psi
+\\
+I_{10}&=\frac{i\hbar\epsilon}{m}
+\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\frac{1}{2}
+\left(\frac{-ie}{\hbar c}\right)^2
+\mathbf A^2\psi
+\end{align*}
+
+Substitute the solved integrals into (6) to obtain
+\begin{multline*}
+\psi+\epsilon\frac{\partial\psi}{\partial t}
+=\frac{1}{A}
+\left(1-\frac{ie\epsilon}{\hbar}\phi\right)\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\\
+\times\left(
+\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{e\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{e\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
+\right)
+\end{multline*}
+
+In the limit as $\epsilon\rightarrow0$ we have
+\begin{equation*}
+\psi=\frac{1}{A}\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}\psi
+\end{equation*}
+hence
+\begin{equation*}
+A=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{3/2}
+\end{equation*}
+
+Cancel $A$.
+\begin{multline*}
+\psi+\epsilon\frac{\partial\psi}{\partial t}
+=\left(1-\frac{ie\epsilon}{\hbar}\phi\right)
+\\
+\times\left(
+\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{e\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{e\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
+\right)
+\end{multline*}
+
+Expand the product and discard terms of order $\epsilon^2$.
+\begin{multline*}
+\psi+\epsilon\frac{\partial\psi}{\partial t}
+\\
+=\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{e\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{e\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2\epsilon}{2m\hbar c^2}\mathbf A^2\psi
+-\frac{ie\epsilon}{\hbar}\phi\psi
+\end{multline*}
+
+Cancel leading terms $\psi$ and divide through by $\epsilon$.
+\begin{equation*}
+\frac{\partial\psi}{\partial t}
+=\frac{i\hbar}{2m}\nabla^2\psi
++\frac{e}{mc}\mathbf A\cdot\nabla\psi
++\frac{e}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2}{2m\hbar c^2}\mathbf A^2\psi
+-\frac{ie}{\hbar}\phi\psi
+\tag{7}
+\end{equation*}
+
+To show that (7) is the same as (4.18), expand (4.18) step by step.
+First we have
+\begin{equation*}
+\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)\psi
+=-i\hbar\nabla\psi-\frac{e}{c}\mathbf A\psi
+\end{equation*}
+
+Next
+\begin{multline*}
+\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi
+=\left(-i\hbar\nabla-\frac{e}{c}\mathbf A\right)
+\left(-i\hbar\nabla\psi-\frac{e}{c}\mathbf A\psi\right)
+\\
+=-\hbar^2\nabla(\nabla\psi)
++\frac{ie\hbar}{c}\nabla(\mathbf A\psi)
++\frac{ie\hbar}{c}\mathbf A\cdot\nabla\psi
++\frac{e^2}{c^2}\mathbf A\cdot\mathbf A\psi
+\end{multline*}
+
+Because $\nabla\psi$ is a vector we have
+\begin{equation*}
+\nabla(\nabla\psi)=\nabla\cdot\nabla\psi=\nabla^2\psi
+\end{equation*}
+and because $\mathbf A$ is a vector and $\psi$ is a scalar we have
+\begin{equation*}
+\nabla(\mathbf A\psi)=\nabla\cdot\mathbf A\psi+\mathbf A\cdot\nabla\psi
+\end{equation*}
+
+Hence
+\begin{equation*}
+\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi
+=-\hbar^2\nabla^2\psi
++\frac{2ie\hbar}{c}\mathbf A\cdot\nabla\psi
++\frac{ie\hbar}{c}\nabla\cdot\mathbf A\psi
++\frac{e^2}{c^2}\mathbf A^2\psi
+\end{equation*}
+
+Divide through by $2m$.
+\begin{multline*}
+\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi
+\\
+=-\frac{\hbar^2}{2m}\nabla^2\psi
++\frac{ie\hbar}{mc}\mathbf A\cdot\nabla\psi
++\frac{ie\hbar}{2mc}\nabla\cdot\mathbf A\psi
++\frac{e^2}{2mc^2}\mathbf A^2\psi
+\end{multline*}
+
+Add the scalar potential.
+\begin{multline*}
+\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi+e\phi\psi
+\\
+=-\frac{\hbar^2}{2m}\nabla^2\psi
++\frac{ie\hbar}{mc}\mathbf A\cdot\nabla\psi
++\frac{ie\hbar}{2mc}\nabla\cdot\mathbf A\psi
++\frac{e^2}{2mc^2}\mathbf A^2\psi
++e\phi\psi
+\end{multline*}
+
+Finally, multiply by $-i/\hbar$.
+\begin{multline*}
+-\frac{i}{\hbar}\left(
+\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{e}{c}\mathbf A\right)^2\psi+e\phi\psi
+\right)
+\\
+=\frac{i\hbar}{2m}\nabla^2\psi
++\frac{e}{mc}\mathbf A\cdot\nabla\psi
++\frac{e}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2}{2m\hbar c^2}\mathbf A^2\psi
+-\frac{ie}{\hbar}\phi\psi
+\end{multline*}
+
+The result is identical to (7).
+\begin{equation*}
+\frac{\partial\psi}{\partial t}
+=\frac{i\hbar}{2m}\nabla^2\psi
++\frac{e}{mc}\mathbf A\cdot\nabla\psi
++\frac{e}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{ie^2}{2m\hbar c^2}\mathbf A^2\psi
+-\frac{ie}{\hbar}\phi\psi
+\tag{7}
+\end{equation*}
+
+\end{document}

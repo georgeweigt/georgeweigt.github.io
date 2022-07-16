@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-6.
+Show, using sine and cosine modes and real variables,
+that this expression using complex variables is indeed
+correct (cf. problem 8-4).
+\begin{equation*}
+\Phi_0=\exp\left(
+-\sum_{\mathbf k}
+\frac{kc}{2\hbar}
+\left(
+\bar a_{1,\mathbf k}^*
+\bar a_{1,\mathbf k}
++
+\bar a_{2,\mathbf k}^*
+\bar a_{2,\mathbf k}
+\right)
+\right)
+\tag{9.43}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Let
+\begin{align*}
+\bar a_{1,\mathbf k}^c&=\frac{1}{\sqrt2}(\bar a_{1,\mathbf k}+\bar a_{1,\mathbf k}^*)
+\\
+\bar a_{1,\mathbf k}^s&=\frac{i}{\sqrt2}(\bar a_{1,\mathbf k}-\bar a_{1,\mathbf k}^*)
+\\
+\\
+\bar a_{2,\mathbf k}^c&=\frac{1}{\sqrt2}(\bar a_{2,\mathbf k}+\bar a_{2,\mathbf k}^*)
+\\
+\bar a_{2,\mathbf k}^s&=\frac{i}{\sqrt2}(\bar a_{2,\mathbf k}-\bar a_{2,\mathbf k}^*)
+\end{align*}
+
+Then
+\begin{align*}
+\bar a_{1,\mathbf k}&=\frac{1}{\sqrt2}(\bar a_{1,\mathbf k}^c-i\bar a_{1,\mathbf k}^s)
+\\
+\bar a_{2,\mathbf k}&=\frac{1}{\sqrt2}(\bar a_{2,\mathbf k}^c-i\bar a_{2,\mathbf k}^s)
+\end{align*}
+
+It follows that
+\begin{equation*}
+\begin{aligned}
+\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}
+&=\frac{1}{2}(\bar a_{1,\mathbf k}^c)^2+\frac{1}{2}(\bar a_{1,\mathbf k}^s)^2
+\\
+\bar a_{2,\mathbf k}^*\bar a_{2,\mathbf k}
+&=\frac{1}{2}(\bar a_{2,\mathbf k}^c)^2+\frac{1}{2}(\bar a_{2,\mathbf k}^s)^2
+\end{aligned}
+\tag{1}
+\end{equation*}
+
+Substitute (1) into (9.43).
+\begin{equation*}
+\Phi_0=\exp\left(
+-\sum_{\mathbf k}
+\frac{kc}{4\hbar}
+\left(
+(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2
++
+(\bar a_{2,\mathbf k}^c)^2+(\bar a_{2,\mathbf k}^s)^2
+\right)
+\right)
+\end{equation*}
+
+% FIXME finish showing that (9.43) is correct
+
+\end{document}

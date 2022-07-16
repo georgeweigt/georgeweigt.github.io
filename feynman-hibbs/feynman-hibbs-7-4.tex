@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+7-4.
+Discuss why the integrated part vanishes.
+
+\bigskip
+\hrule
+
+\bigskip
+The authors are referring to integration by parts in equation (7.32).
+\begin{equation*}
+\int\frac{\partial F}{\partial x_k}
+\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)\,\mathcal Dx(t)
+=
+-\frac{i}{\hbar}\int F\frac{\partial S}{\partial x_k}
+\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)\,\mathcal Dx(t)
+\tag{7.32}
+\end{equation*}
+where
+\begin{equation*}
+x_k=x(t_k)
+\end{equation*}
+
+Note that integration by parts in (7.32) uses $x_k$, not $x(t)$.
+
+\bigskip
+Let
+\begin{align*}
+u&=\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)\,\mathcal Dx(t)
+\\
+dv&=\frac{\partial F}{\partial x_k}
+\end{align*}
+
+Then
+\begin{align*}
+du&=\frac{i}{\hbar}
+\frac{\partial S}{\partial x_k}
+\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)
+\,\mathcal Dx(t)
+\\
+v&=F
+\end{align*}
+
+Integrate by parts.
+\begin{align*}
+\int u\,dv&=uv-\int v\,du
+\\
+&=F\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)\,\mathcal Dx(t)
+-\frac{i}{\hbar}\int F
+\frac{\partial S}{\partial x_k}
+\exp\left(\frac{i}{\hbar}S\big(x(t)\big)\right)
+\,\mathcal Dx(t)
+\end{align*}
+
+The term $uv$ vanishes because there is no integral over $\mathcal Dx(t)$.
+There has to be an integration interval to obtain a nonzero transition amplitude.
+The concept is similar to a probability density function.
+A probability density function must be integrated over an interval to obtain a nonzero probability.
+
+\end{document}

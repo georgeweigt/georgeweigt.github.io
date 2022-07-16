@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-9.
+For a complicated system moving nonrelativistically
+\begin{equation*}
+(j_{1,\mathbf k})_{NM}=\sum_i\left(
+q_i\mathbf e_1\cdot\dot{\mathbf x}_i
+\exp(-i\mathbf k\cdot\mathbf x_i)\right)_{NM}
+\end{equation*}
+
+where $\mathbf e_1$ is a unit vector in the direction of the
+polarization of the light and $q_i$ and $\mathbf x_i$ are the
+charge and position of the $i$th particle.
+Assume the wavelength of the light is very large compared with the
+size of the atom, i.e., that the absolute square of the wave function
+describing the position of the $i$th electron falls to zero over a
+distance small compared with $1/k$.
+Show that we can then approximate $\exp(-i\mathbf k\cdot\mathbf x_i)$
+by unity and write the matrix element as
+\begin{equation*}
+(j_{1,\mathbf k})_{NM}=i\omega\mathbf e_1\cdot\boldsymbol\mu_{NM}
+\tag{9.57}
+\end{equation*}
+
+where
+\begin{equation*}
+\boldsymbol\mu_{NM}=\sum_i(q_i\mathbf x_i)_{NM}
+\tag{9.58}
+\end{equation*}
+
+The function $\boldsymbol\mu_{NM}$ is called the
+{\it matrix element of the electric dipole moment}
+of the atom, and the approximation used to derive equation (9.57)
+is called the {\it dipole approximation}.
+Show that the probability to emit light in any direction per unit time is
+\begin{equation*}
+\frac{dP}{dt}=\frac{4\omega^3}{3\hbar c^3}\left|\boldsymbol\mu_{NM}\right|^2
+\tag{9.59}
+\end{equation*}
+
+(Integrate equation (9.54) over all directions, remembering that
+$\mathbf e_1$ is perpendicular to $\mathbf k$ and that there are two
+possible directions of polarization.)
+\begin{equation*}
+\frac{dP}{dt}=\frac{\omega}{2\pi\hbar c^3}\left|j_{1,\mathbf q}\right|_{NM}^2
+\,d\Omega
+\tag{9.54}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Adapted from problem 7-12,
+\begin{equation*}
+\dot{\mathbf x}_i=-\frac{i}{\hbar}(\mathbf x_i\hat H-\hat H\mathbf x_i)=i\omega\mathbf x_i
+\end{equation*}
+
+The squared magnitude of $i\omega$ in (9.57) is $\omega^2$.
+It follows that
+\begin{equation*}
+\int\frac{\omega}{2\pi\hbar c^3}
+\left(\left|j_{1,\mathbf k}\right|_{NM}^2+\left|j_{2,\mathbf k}\right|_{NM}^2\right)
+\,d\Omega
+=2\left|\boldsymbol\mu_{NM}\right|^2
+\int_0^{2\pi}\int_0^\pi
+\frac{\omega^3}{2\pi\hbar c^3}
+\sin\theta
+\,d\theta\,d\phi
+\end{equation*}
+
+From the following integrals
+\begin{equation*}
+\int_0^\pi\sin\theta\,d\theta=2
+\qquad
+\int_0^{2\pi}d\phi=2\pi
+\end{equation*}
+
+the combined multiplier is $4\pi$ hence
+\begin{equation*}
+\frac{dP}{dt}
+=\frac{4\omega^3}{\hbar c^3}
+\left|\boldsymbol\mu_{NM}\right|^2
+\end{equation*}
+
+\end{document}

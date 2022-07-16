@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+2-4.
+Classically, the momentum is defined as
+\begin{equation*}
+p=\frac{\partial L}{\partial\dot x}
+\tag{2.10}
+\end{equation*}
+
+Show that the momentum at a final point is
+\begin{equation*}
+\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+=+\frac{\partial S_{cl}}{\partial x_b}
+\tag{2.11}
+\end{equation*}
+while the momentum at an initial point is
+\begin{equation*}
+\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+=-\frac{\partial S_{cl}}{\partial x_a}
+\end{equation*}
+
+{\it Hint:} Consider the effect on equation (2.6)
+of a change in the end points.
+\begin{equation*}
+\delta S=\left(\delta x(t)\frac{\partial L}{\partial\dot x}\right)_{t_a}^{t_b}
+-\int_{t_a}^{t_b}\delta x(t)
+\left(\frac{d}{dt}\frac{\partial L}{\partial\dot x}
+-\frac{\partial L}{\partial x}\right)\,dt
+\tag{2.6}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (2.7) for the classical path.
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}
+-\frac{\partial L}{\partial x}=0
+\tag{2.7}
+\end{equation*}
+
+Substitute (2.7) into (2.6) to obtain
+\begin{equation*}
+\delta S_{cl}=\left(\delta x(t)\frac{\partial L}{\partial\dot x}\right)_{t_a}^{t_b}
+=\delta x_b\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+-\delta x_a\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+\tag{1}
+\end{equation*}
+
+For endpoints $a$ and $b$ we have $\delta S_{cl}=0$ by equation (2.3).
+\begin{equation*}
+\delta x_a=\delta x_b=0
+\tag{2.3}
+\end{equation*}
+
+However, suppose endpoint $b$ is changed so that $\delta x_b\ne0$.
+Then by (1)
+\begin{equation*}
+\delta S_{cl}=\delta x_b\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\frac{\delta S_{cl}}{\delta x_b}
+=\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+\end{equation*}
+and in the limit
+\begin{equation*}
+\lim_{\delta\rightarrow0}\frac{\delta S_{cl}}{\delta x_b}=\frac{\partial S_{cl}}{\partial x_b}
+=\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_b}
+\end{equation*}
+
+Likewise, a change of endpoint $a$ yields
+\begin{equation*}
+\lim_{\delta\rightarrow0}\frac{\delta S_{cl}}{\delta x_a}=\frac{\partial S_{cl}}{\partial x_a}
+=-\left(\frac{\partial L}{\partial\dot x}\right)_{x=x_a}
+\end{equation*}
+
+\end{document}

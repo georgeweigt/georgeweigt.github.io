@@ -1,0 +1,6 @@
+-- Feynman and Hibbs problem 3-2
+
+K0 = sqrt(m / 2 / pi / i / hbar / (tb - ta)) *
+     exp(i m (xb - xa)^2 / 2 / hbar / (tb - ta))
+
+d(K0,tb) == -i / hbar (-hbar^2 / 2 / m d(K0,xb,xb))

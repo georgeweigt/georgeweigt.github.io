@@ -1,0 +1,194 @@
+-- Feynman and Hibbs problem 4-2
+
+e = quote(e) -- clear e (was natural number e = exp(1))
+
+A = (A1(),A2(),A3())
+x = (x1,x2,x3)
+eta = (eta1,eta2,eta3)
+
+-- Directional derivative (unnormalized)
+
+D(f) = dot(eta,d(f,x))
+
+-- Gaussian integral
+
+G(f) = do(
+f = eval(f, eta1^2, i hbar epsilon / m),
+f = eval(f, eta2^2, i hbar epsilon / m),
+f = eval(f, eta3^2, i hbar epsilon / m),
+f = eval(f, eta1, 0),
+f = eval(f, eta2, 0),
+f = eval(f, eta3, 0),
+f (2 pi i hbar epsilon / m)^(3/2)) -- return value
+
+-- Factors in integrand
+
+u1 = 1
+u2 = -i e / (hbar c) dot(eta,A)
+u3 = -i e / (2 hbar c) dot(eta,D(A))
+u4 = 1/2 (-i e / (hbar c) dot(eta,A))^2
+
+u = (u1,u2,u3,u4)
+
+v1 = psi()
+v2 = D(psi())
+v3 = 1/2 D(D(psi()))
+
+v = (v1,v2,v3)
+
+okay(n) = test(n == 1, "ok", "?")
+
+"Verify integral 1"
+
+f = u[1] v[1]
+
+B = G(f)
+
+C = psi() (2 pi i hbar epsilon / m)^(3/2)
+
+okay(B == C)
+
+"Verify integral 2"
+
+f = u[1] v[2]
+
+B = G(f)
+
+okay(B == 0)
+
+"Verify integral 3"
+
+f = u[1] v[3]
+
+B = G(f)
+
+C = i hbar epsilon / (2 m) *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+okay(B == C)
+
+"Verify integral 4"
+
+f = u[2] v[1]
+
+B = G(f)
+
+okay(B == 0)
+
+"Verify integral 5"
+
+f = u[2] v[2]
+
+B = G(f)
+
+C = -i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    i e / (hbar c) *
+    dot(A,d(psi(),x))
+
+okay(B == C)
+
+"Verify integral 6"
+
+f = u[2] v[3]
+
+B = G(f)
+
+okay(B == 0)
+
+"Verify integral 7"
+
+f = u[3] v[1]
+
+B = G(f)
+
+C = -i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    i e / (2 hbar c) *
+    (d(A1(),x1) + d(A2(),x2) + d(A3(),x3)) *
+    psi()
+
+okay(B == C)
+
+"Verify integral 8"
+
+f = u[3] v[2]
+
+B = G(f)
+
+okay(B == 0)
+
+"Verify integral 9"
+
+f = u[3] v[3]
+
+B = G(f)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+okay(B == 0)
+
+"Verify integral 10"
+
+f = u[4] v[1]
+
+B = G(f)
+
+C = i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    1/2 (i e / (hbar c))^2 *
+    dot(A,A) *
+    psi()
+
+okay(B == C)
+
+"Verify integral 11"
+
+f = u[4] v[2]
+
+B = G(f)
+
+okay(B == 0)
+
+"Verify integral 12"
+
+f = u[4] v[3]
+
+B = G(f)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+okay(B == 0)
+
+"Verify with Feynman and Hibbs equation (4.18)"
+
+-- sum over Gaussian integrals for all uv
+
+B = sum(j,1,4, sum(k,1,3, G( u[j] v[k] ) ))
+
+-- epsilon^2 epsilon^(3/2) == epsilon^(7/2)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+B = B (1 - i e epsilon / hbar phi) -- multiply by (1 - phi)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+B = B / (2 pi i hbar epsilon / m)^(3/2) -- cancel A
+B = B - psi() -- cancel psi
+B = B / epsilon -- cancel epsilon
+
+div(f) = d(f[1],x1) + d(f[2],x2) + d(f[3],x3)
+
+-- C is equation (4.18)
+
+C = hbar / i d(psi(),x) - e / c A psi()
+
+C = hbar / i div(C) - e / c dot(A,C)
+
+C = 1 / (2 m) C + e phi psi()
+
+C = -i / hbar C
+
+okay(B == C)

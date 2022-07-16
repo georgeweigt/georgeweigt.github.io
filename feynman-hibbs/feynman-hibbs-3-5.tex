@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-5.
+Let $\psi$ be a free-particle wave function.
+Use problem 3-2 and equation (3.42) to show that
+\begin{equation*}
+\frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (3.42)
+\begin{equation*}
+\psi(x,t)=\int_{-\infty}^\infty K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c
+\end{equation*}
+
+By linearity of differentiation
+\begin{align*}
+\frac{\partial\psi}{\partial t}
+&=\int_{-\infty}^\infty \frac{\partial}{\partial t} \bigg(K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\bigg)
+\\
+\frac{\partial^2\psi}{\partial x^2}
+&=\int_{-\infty}^\infty \frac{\partial^2}{\partial x^2} \bigg(K_0(x,t;x_c,t_c)\psi(x_c,t_c)\,dx_c\bigg)
+\end{align*}
+
+By independence of coordinates
+\begin{equation*}
+\begin{aligned}
+\frac{\partial\psi}{\partial t}
+&=\int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
+\\
+\frac{\partial^2\psi}{\partial x^2}
+&=\int_{-\infty}^\infty \frac{\partial^2 K_0}{\partial x^2}\psi(x_c,t_c)\,dx_c
+\end{aligned}\eqno{(1)}
+\end{equation*}
+
+From problem 3-2
+\begin{equation*}
+\frac{\partial K_0}{\partial t}=-\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x^2}\right)
+\end{equation*}
+
+Multiply both sides by $\psi(x_c,t_c)$ and integrate over $x_c$.
+\begin{equation*}
+\int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
+=
+\int_{-\infty}^\infty -\frac{i}{\hbar}\left(-\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x^2}\right)\psi(x_c,t_c)\,dx_c
+\end{equation*}
+
+By the  distributive property
+\begin{equation*}
+\int_{-\infty}^\infty \frac{\partial K_0}{\partial t}\psi(x_c,t_c)\,dx_c
+=-\frac{i}{\hbar}\left(-\frac{\hbar^2}{2m}
+\int_{-\infty}^\infty \frac{\partial^2 K_0}{\partial x^2}\psi(x_c,t_c)\,dx_c\right)
+\end{equation*}
+
+Then by equation (1)
+\begin{equation*}
+\frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}\right)
+\end{equation*}
+
+\end{document}

@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-9.
+Show from the fact that $H$ is hermitian that equation (4.46) holds.
+Hint: Choose $f=\phi_2$, $g=\phi_1$ in equation (4.30).
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (4.42)
+\begin{align*}
+H\phi_1&=E_1\phi_1
+\\
+H\phi_2&=E_2\phi_2
+\end{align*}
+
+Since $H$ is hermitian we have from equation (4.30)
+\begin{equation*}
+\int_{-\infty}^\infty(Hg)^*f\,dx=\int_{-\infty}^\infty g^*(Hf)\,dx
+\tag{4.30}
+\end{equation*}
+
+Substitute $\phi_1$ into $g$ and $\phi_2$ into $f$.
+\begin{equation*}
+\int_{-\infty}^\infty(H\phi_1)^*\phi_2\,dx=\int_{-\infty}^\infty \phi_1^*(H\phi_2)\,dx
+\end{equation*}
+
+Replace $H$ with the corresponding eigenvalue.
+(Eigenvalues of $H$ are real.)
+\begin{equation*}
+E_1\int_{-\infty}^\infty\phi_1^*\phi_2\,dx=E_2\int_{-\infty}^\infty \phi_1^*\phi_2\,dx
+\end{equation*}
+
+The integrals are identical hence for $E_1\ne E_2$ we must have
+\begin{equation*}
+\int_{-\infty}^\infty\phi_1^*\phi_2\,dx=0
+\end{equation*}
+
+\end{document}

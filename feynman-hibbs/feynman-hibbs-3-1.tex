@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-1.
+The probability that a particle arrives at the point $b$
+is by definition proportional to the absolute square of the kernel
+$K(b,a)$.
+For the free-particle kernel of equation (3.3) this is
+\begin{equation*}
+P(b)\,dx=\frac{m}{2\pi\hbar(t_b-t_a)}\,dx
+\tag{3.6}
+\end{equation*}
+
+Clearly this is a relative probability, since the integral over the
+complete range of $x$ diverges.
+What does the particular normalization mean?
+Show that this corresponds to a classical picture in which a particle
+starts from the point $a$ with all momenta equally likely.
+Show that the corresponding relative probability that the momentum
+of the particle lies in the range $dp$ is $dp/2\pi\hbar$.
+
+\bigskip
+\hrule
+
+\bigskip
+Compute the normalization constant $C$.
+\begin{align*}
+C&=\int_{x_a}^{x_b}P(b)\,dx
+\\[1ex]
+&=\frac{m}{2\pi\hbar(t_b-t_a)}\,x\big|_{x_a}^{x_b}
+\\[1ex]
+&=\frac{m}{2\pi\hbar}\left(\frac{x_b-x_a}{t_b-t_a}\right)
+\end{align*}
+
+From $v=(x_b-x_a)/(t_b-t_a)$ and $p=mv$ we have
+\begin{equation*}
+C=\frac{p}{2\pi\hbar}
+\end{equation*}
+
+\noindent
+Hence diverging normalization $C$ corresponds to unrestricted momentum $p$.
+
+\bigskip
+\noindent
+From $v=p/m$ we have
+\begin{equation*}
+\frac{x_b-x_a}{t_b-t_a}+\frac{dx}{t_b-t_a}=\frac{p}{m}+\frac{dp}{m}
+\end{equation*}
+
+\noindent
+It follows that
+\begin{equation*}
+dx=\frac{dp}{m}(t_b-t_a)
+\end{equation*}
+
+\noindent
+Multiply both sides by $P(b)$.
+\begin{equation*}
+P(b)\,dx=\frac{dp}{2\pi\hbar}
+\end{equation*}
+
+\end{document}

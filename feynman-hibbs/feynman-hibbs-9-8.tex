@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\U{\vert\Phi_0\vert^2}
+
+\begin{document}
+
+9-8.
+For the state for which there is just one photon
+present in level $1,\mathbf k$, all of the factors in the wave function are
+$\phi_0$ except one, which is $\phi_1$.
+But for an oscillator $\phi_1(x)=\sqrt2x\phi_0(x)$.
+The wave function representing an excited running wave is a linear
+superposition of the state with the cosine mode excited and $i$
+times the state with the sine wave excited, so show that the
+unnormalized wave function for just one photon present in
+$1,\mathbf k$ is $\bar a_{1,\mathbf k}^*\Phi_0$.
+The normalization is
+$\int\Phi_0^*\bar a_{1,\mathbf k}\bar a_{1,\mathbf k}^*\Phi_0\,d\bar a$,
+or the expectation of $\bar a_{1,\mathbf k}\bar a_{1,\mathbf k}^*$ for the
+vacuum, which we have seen in the preceding problem is $\hbar/2kc$.
+Hence the normalized one-photon state is
+$\sqrt{2kc/\hbar}\bar a_{1,\mathbf k}^*\Phi_0$.
+
+\bigskip
+\hrule
+
+\bigskip
+This is a state with the cosine mode excited.
+\begin{equation*}
+\bar a_{1,\mathbf k}^c\Phi_0
+\end{equation*}
+
+This is a state with the sine mode excited.
+\begin{equation*}
+\bar a_{1,\mathbf k}^s\Phi_0
+\end{equation*}
+
+This is a superposition of the cosine state and $i$ times the sine state.
+The factor $1/\sqrt2$ is for normalization, i.e., $|1+i|=\sqrt2$.
+\begin{equation*}
+\frac{1}{\sqrt2}\left(\bar a_{1,\mathbf k}^c\Phi_0+i\bar a_{1,\mathbf k}^s\Phi_0\right)
+=\bar a_{1,\mathbf k}^*\Phi_0
+\end{equation*}
+
+Here are some additional results.
+
+\bigskip
+From equation (9.43)
+\begin{equation*}
+\U=\Phi_0^*\Phi_0=\exp\left(
+-\frac{kc}{\hbar}(\bar a_{1,\mathbf k}^c)^2-\frac{kc}{\hbar}(\bar a_{1,\mathbf k}^s)^2
+-\frac{kc}{\hbar}(\bar a_{2,\mathbf k}^c)^2-\frac{kc}{\hbar}(\bar a_{2,\mathbf k}^s)^2
+\right)
+\end{equation*}
+
+For simplicity of notation, let
+\begin{equation*}
+d\bar a=
+d\bar a_{1,\mathbf k}^c\,d\bar a_{1,\mathbf k}^s
+\,d\bar a_{2,\mathbf k}^c\,d\bar a_{2,\mathbf k}^s
+\end{equation*}
+
+The expectation of $\Phi_0$ is
+\begin{equation*}
+\langle\Phi_0\rangle=
+\int\limits_{-\infty}^\infty\cdots
+\int\limits_{-\infty}^\infty
+\U\,d\bar a
+=\left(\frac{\pi\hbar}{kc}\right)^2
+\tag{1}
+\end{equation*}
+
+Let
+\begin{equation*}
+\Phi_1=\bar a_{1,\mathbf k}^*\Phi_0
+\end{equation*}
+
+Then
+\begin{equation*}
+\vert\Phi_1\vert^2
+=\Phi_1^*\Phi_1
+=\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)
+\U
+\end{equation*}
+
+The expectation of $\Phi_1$ is
+\begin{equation*}
+\langle\Phi_1\rangle=
+\int\limits_{-\infty}^\infty\cdots
+\int\limits_{-\infty}^\infty
+\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)
+\U\,d\bar a
+=\frac{\hbar}{2kc}
+\left(\frac{\pi\hbar}{kc}\right)^2
+\tag{2}
+\end{equation*}
+
+The expectation for $n$ photons is
+\begin{equation*}
+\langle\Phi_n\rangle=
+\int\limits_{-\infty}^\infty\cdots
+\int\limits_{-\infty}^\infty
+\left(\frac{(\bar a_{1,\mathbf k}^c)^2+(\bar a_{1,\mathbf k}^s)^2}{2}\right)^n
+\U\,d\bar a
+\end{equation*}
+
+By a result from problem 9-7
+\begin{equation*}
+\langle\Phi_n\rangle
+=n!\left(\frac{\hbar}{2kc}\right)^n\left(\frac{\pi\hbar}{kc}\right)^2
+=n!\left(\frac{\hbar}{2kc}\right)^n\langle\Phi_0\rangle
+\tag{3}
+\end{equation*}
+
+\end{document}

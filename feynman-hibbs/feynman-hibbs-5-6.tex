@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-6.
+Suppose $A$, $B$, and $C$ are the three cartesian coordinates
+of momentum $p_x$, $p_y$, $p_z$.
+What is the form of the function $\chi_{a,b,c}(x,y,z)$?
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (5.6)
+\begin{equation*}
+\phi(\mathbf p)=\INT\exp\left(-\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)f(\mathbf x)\,dx\,dy\,dz
+\tag{1}
+\end{equation*}
+where $\phi(\mathbf p)$ is the amplitude for the state $\mathbf p=(p_x,p_y,p_z)$.
+
+\bigskip
+From equation (5.36)
+\begin{equation*}
+F_{a,b,c}=\INT\chi_{a,b,c}^*(\mathbf x)f(\mathbf x)\,dx\,dy\,dz
+\tag{2}
+\end{equation*}
+where $F_{a,b,c}$ is (for this problem) the amplitude for the state $p_x=a$, $p_y=b$, and $p_z=c$.
+
+\bigskip
+Noting that (1) and (2) are identical for the state $\mathbf p=(a,b,c)$ we have
+\begin{equation*}
+\chi_{a,b,c}^*(\mathbf x)=\exp\left(-\frac{i(a,b,c)\cdot\mathbf x}{\hbar}\right)
+\end{equation*}
+and
+\begin{equation*}
+\chi_{a,b,c}(\mathbf x)=\exp\left(\frac{i(a,b,c)\cdot\mathbf x}{\hbar}\right)
+\end{equation*}
+
+\end{document}

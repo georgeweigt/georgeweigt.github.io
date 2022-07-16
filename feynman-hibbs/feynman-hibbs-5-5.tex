@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-5.
+Assume that the function $f(x,y,z,\ldots)$ can be represented by
+\begin{equation*}
+f(x,y,z,\ldots)=\sum_a\sum_b\sum_c\cdots\,F_{a,b,c,\ldots}'\chi_{a,b,c,\ldots}(x,y,z,\ldots)
+\tag{5.38}
+\end{equation*}
+
+By substituting this relation into equation (5.36), and using the
+orthogonal properties of $\chi$ as defined by equation (5.35),
+show that $F_{a,b,c,\ldots}'=F_{a,b,c,\ldots}$.
+
+\bigskip
+\hrule
+
+\bigskip
+Take (5.38) and prime the indices.
+\begin{equation*}
+f(x,y,z,\ldots)=\sum_{a'}\sum_{b'}\sum_{c'}\cdots\,F_{a',b',c',\ldots}'\chi_{a',b',c',\ldots}(x,y,z,\ldots)
+\tag{1}
+\end{equation*}
+
+This is equation (5.36).
+\begin{equation*}
+F_{a,b,c,\ldots}=\int_{-\infty}^\infty \chi_{a,b,c,\ldots}^*(x)f(x)\,dx
+\tag{5.36}
+\end{equation*}
+
+Substitute the right-hand side of (1) for $f(x)$ in (5.36).
+\begin{multline*}
+F_{a,b,c,\ldots}
+=\int_{\mathbb R^n}\chi_{a,b,c,\ldots}^*(x,y,z,\ldots)
+\\
+{}\times\left(\sum_{a'}\sum_{b'}\sum_{c'}\cdots\,F_{a',b',c',\ldots}'\chi_{a',b',c',\ldots}(x,y,z,\ldots)\right)
+\,dx\,dy\,dz\,\cdots
+\end{multline*}
+
+Combine factors.
+\begin{multline*}
+F_{a,b,c,\ldots}
+=\int_{\mathbb R^n}
+\sum_{a'}\sum_{b'}\sum_{c'}\cdots
+\\
+\chi_{a,b,c,\ldots}^*(x,y,z,\ldots)
+F_{a',b',c',\ldots}'
+\chi_{a',b',c',\ldots}(x,y,z,\ldots)
+\,dx\,dy\,dz\,\cdots
+\end{multline*}
+
+Interchange the order of integration and summation.
+\begin{multline*}
+F_{a,b,c,\ldots}
+=\sum_{a'}\sum_{b'}\sum_{c'}\cdots\int_{\mathbb R^n}
+\\
+\chi_{a,b,c,\ldots}^*(x,y,z,\ldots)
+F_{a',b',c',\ldots}'
+\chi_{a',b',c',\ldots}(x,y,z,\ldots)
+\,dx\,dy\,dz\,\cdots
+\end{multline*}
+
+Factor out $F'$.
+\begin{multline*}
+F_{a,b,c,\ldots}
+=\sum_{a'}\sum_{b'}\sum_{c'}\cdots\,F_{a',b',c',\ldots}'
+\\
+{}\times\left(
+\int_{\mathbb R^n}
+\chi_{a,b,c,\ldots}^*(x,y,z,\ldots)
+\chi_{a',b',c',\ldots}(x,y,z,\ldots)
+\,dx\,dy\,dz\,\cdots
+\right)
+\end{multline*}
+
+By equation (5.35) the integral becomes a product of delta functions.
+\begin{equation*}
+F_{a,b,c,\ldots}
+=\sum_{a'}\sum_{b'}\sum_{c'}\cdots\,F_{a',b',c',\ldots}'\delta(a-a')\delta(b-b')\delta(c-c')\cdots
+\end{equation*}
+
+Hence for $F_{a,b,c,\ldots}\ne0$ we must have $a=a'$, $b=b'$, etc.
+Therefore
+\begin{equation*}
+F_{a,b,c,\ldots}=F_{a',b',c',\ldots}'=F_{a,b,c,\ldots}'
+\end{equation*}
+
+\end{document}

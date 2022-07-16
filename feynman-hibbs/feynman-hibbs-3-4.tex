@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-4.
+Suppose a free particle has a definite momentum at the
+time $t=0$ (that is, the wave function is $Ce^{ipx/\hbar}$).
+With the help of equations (3.3) and (3.42),
+show that at some later time the particle has the same
+definite momentum
+(i.e., the wave function depends on $x$ through the
+function $e^{ipx/\hbar}$)
+and varies in time as
+$e^{-ip^2t/2m\hbar}$).
+This means that the particle has definite energy $p^2/2m$.
+
+\bigskip
+\hrule
+
+\bigskip
+We are given
+\begin{equation*}
+\psi(x,0)=C\exp\left(\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+\noindent
+This is equation (3.3).
+\begin{equation*}
+K_0(b,a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\tag{3.3}
+\end{equation*}
+
+Rewrite (3.3) as follows.
+\begin{multline*}
+K_0(b,a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\\
+{}\times\exp\left(\frac{imx_b^2}{2\hbar(t_b-t_a)}\right)
+\exp\left(\frac{imx_a^2}{2\hbar(t_b-t_a)}-\frac{imx_bx_a}{\hbar(t_b-t_a)}\right)
+\end{multline*}
+
+Then for $t_a=0$
+\begin{equation*}
+K_0(x_b,t_b,x_a,0)=\left(\frac{m}{2\pi i\hbar t_b}\right)^{1/2}
+\exp\left(\frac{imx_b^2}{2\hbar t_b}\right)
+\exp\left(\frac{imx_a^2}{2\hbar t_b}-\frac{imx_bx_a}{\hbar t_b}\right)
+\end{equation*}
+
+By equation (3.42) we have
+\begin{equation*}
+\psi(x_b,t_b)=\int_{-\infty}^\infty K_0(x_b,t_b,x_a,0)\psi(x_a,0)\,dx_a
+\end{equation*}
+
+Hence
+\begin{multline*}
+\psi(x_b,t_b)=C\left(\frac{m}{2\pi i\hbar t_b}\right)^{1/2}
+\exp\left(\frac{imx_b^2}{2\hbar t_b}\right)
+\\
+{}\times\int_{-\infty}^\infty
+\exp\left(\frac{imx_a^2}{2\hbar t_b}-\frac{imx_bx_a}{\hbar t_b}\right)
+\exp\left(\frac{ipx_a}{\hbar}\right)\,dx_a
+\tag{1}
+\end{multline*}
+
+Rewrite the integral as
+\begin{equation*}
+\int_{-\infty}^\infty\exp(Ax_a^2+Bx_a)\,dx_a
+\end{equation*}
+
+where
+\begin{align*}
+A&=\frac{im}{2\hbar t_b}
+\\
+B&=-\frac{imx_b}{\hbar t_b}+\frac{ip}{\hbar}
+\end{align*}
+
+Solve the integral.
+\begin{align*}
+&\int_{-\infty}^\infty
+\exp\left(\frac{imx_a^2}{2\hbar t_b}-\frac{imx_bx_a}{\hbar t_b}\right)\,dx_a
+\\
+&\quad{}=\left(-\frac{\pi}{A}\right)^{1/2}\exp\left(-\frac{B^2}{4A}\right)
+\\
+&\quad{}=\left(\frac{2\pi i\hbar t_b}{m}\right)^{1/2}
+\exp\left(-\frac{i m x_b^2}{2\hbar t_b}-\frac{ip^2t_b}{2m\hbar}+\frac{ipx_b}{\hbar}\right)
+\tag{2}
+\end{align*}
+
+Substitute (2) into (1) to obtain
+\begin{equation*}
+\psi(x_b,t_b)
+=C\exp\left(-\frac{ip^2t_b}{2m\hbar}+\frac{ipx_b}{\hbar}\right)
+\end{equation*}
+
+Substitute $x$ for $x_b$ and $t$ for $t_b$.
+\begin{equation*}
+\psi(x,t)
+=C\exp\left(-\frac{ip^2t}{2m\hbar}+\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+Hence the wave function $\psi(x,t)$ depends on $x$ through the
+function $e^{ipx/\hbar}$ and varies in time as
+$e^{-ip^2t/2m\hbar}$.
+
+\end{document}

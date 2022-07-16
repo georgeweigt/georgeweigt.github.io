@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-5.
+The momentum in the field is given by
+\begin{equation*}
+\frac{1}{4\pi c}\int
+\mathbf E\times\mathbf B\,d^3\mathbf r
+\end{equation*}
+
+In the absence of matter (so $\phi_{\mathbf k}=0$),
+show that this is
+\begin{equation*}
+i\int\mathbf k\left(\mathbf a_{\mathbf k}^*\cdot\dot{\mathbf a}_{\mathbf k}\right)
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Let
+\begin{equation*}
+D_{\mathbf k}=\exp(i\mathbf k\cdot\mathbf r)\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+Consider equation (9.14).
+\begin{equation*}
+\mathbf A=\sqrt{4\pi}c\int\mathbf a_{\mathbf k}\,D_{\mathbf k}
+\tag{9.14}
+\end{equation*}
+
+By equation (9.9) with $\phi=0$ and (9.14)
+\begin{equation*}
+\mathbf E=-\frac{1}{c}\frac{\partial\mathbf A}{\partial t}
+=-\sqrt{4\pi}\int\dot{\mathbf a}_{\mathbf k}\,D_{\mathbf k}
+\end{equation*}
+
+By equation (9.7) and (9.14)
+\begin{equation*}
+\mathbf B=\nabla\times\mathbf A
+=\sqrt{4\pi}ic\int\mathbf k\times\mathbf a_{\mathbf k}\,D_{\mathbf k}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\mathbf E\times\mathbf B=-4\pi ic\int
+\dot{\mathbf a}_{\mathbf k}
+\times\left(\mathbf k\times\mathbf a_{\mathbf k}\right)\,D_{\mathbf k}
+\end{equation*}
+
+By the triple product formula
+\begin{equation*}
+\mathbf E\times\mathbf B=-4\pi ic\int
+\big(
+(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+-(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}
+\big)\,D_{\mathbf k}
+\end{equation*}
+
+By orthogonality of $\mathbf E$ and $\mathbf k$ (see problem 9-1),
+$\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k=0$ hence
+\begin{equation*}
+\mathbf E\times\mathbf B
+=-4\pi ic\int(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+\,D_{\mathbf k}
+\end{equation*}
+
+Integrate over all space.
+\begin{equation*}
+\int\mathbf E\times\mathbf B
+\,d^3\mathbf r
+=-4\pi ic\int(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k})\mathbf k
+\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+Note: Integrating over all $\mathbf r$ is the same as integrating over all $\mathbf k$,
+hence the exponential in $D_{\mathbf k}$ is cancelled.
+
+\end{document}

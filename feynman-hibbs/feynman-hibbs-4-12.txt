@@ -1,0 +1,23 @@
+-- Feynman and Hibbs problem 4-12
+
+X = (X1,X2,X3)
+
+"Verify equation (1)"
+
+A = i / (2 m hbar) T
+B = i / hbar Xk
+
+check(pi / A == 2 pi m hbar / (i T))
+check(B^2 / (4 A) == i m Xk^2 / (2 hbar T))
+
+"ok"
+
+"Verify equation (2)"
+
+I(k) = sqrt(2 pi m hbar / (i T)) exp(i m X[k]^2 / (2 hbar T))
+
+K = I(1) I(2) I(3) / (2 pi hbar)^3
+
+check(K == (m / (2 pi i hbar T))^(3/2) exp(i m dot(X,X) / (2 hbar T)))
+
+"ok"

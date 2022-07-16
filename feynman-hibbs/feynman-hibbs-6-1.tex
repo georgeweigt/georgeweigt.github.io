@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-1.
+Suppose the potential can be written as $U+V$,
+where $V$ is small but $U$ is large.
+Suppose further that the kernel for motion in the potential of $U$ alone
+can be worked out (for example, $U$ might be quadratic in $x$ and
+independent of time).
+Show that the motion in the complete potential $U+V$ is described by
+equations (6.4), (6.11), (6.13), and (6.14) with $K_0$ replaced by $K_U$,
+where $K_U$ is the kernel for motion in the potential $U$ alone.
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (6.1) we have
+\begin{equation*}
+K_{U+V}(b,a)=\int_a^b
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\left(\tfrac{1}{2}m\dot x^2-U-V\right)\,dt\right)
+\mathcal Dx(t)
+\end{equation*}
+
+Consider equation (6.5).
+\begin{equation*}
+K_0(b,a)=\int_a^b\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\tfrac{1}{2}m\dot x^2\,dt\right)
+\mathcal Dx(t)
+\tag{6.5}
+\end{equation*}
+
+By hypothesis the kernel for $U$ is known hence
+\begin{equation*}
+K_U(b,a)=\int_a^b
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\left(\tfrac{1}{2}m\dot x^2-U\right)\,dt\right)
+\mathcal Dx(t)
+\end{equation*}
+
+In the expansion of $V$, replace
+\begin{equation*}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\tfrac{1}{2}m\dot x^2\,dt\right)
+\end{equation*}
+with
+\begin{equation*}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\left(\tfrac{1}{2}m\dot x^2-U\right)\,dt\right)
+\end{equation*}
+
+This corresponds to replacing $K_0$ with $K_U$ in (6.4), etc.
+
+\end{document}

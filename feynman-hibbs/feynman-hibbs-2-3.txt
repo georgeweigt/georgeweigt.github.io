@@ -1,0 +1,56 @@
+-- Feynman and Hibbs problem 2-3
+
+"Verify equation (4)"
+
+A = f / (2 m)
+B = (xb - xa) / (tb - ta) - f (tb^2 - ta^2) / (2 m (tb - ta))
+C = f (ta tb^2 - ta^2 tb) / (2 m (tb - ta)) + (tb xa - ta xb) / (tb - ta)
+
+x = A t^2 + B t + C
+
+check(d(x,t,t) == f / m)
+check(eval(x,t,ta) == xa)
+check(eval(x,t,tb) == xb)
+
+"ok"
+
+"Verify equation (5)"
+
+ta = 0
+tb = T
+
+A = f / (2 m)
+B = (xb - xa) / T - f T / (2 m)
+C = xa
+
+check(x == A t^2 + B t + C)
+
+"ok"
+
+"Verify equation (6)"
+
+v = d(x,t)
+
+check(v == f t / m - f T / (2 m) + (xb - xa) / T)
+
+"ok"
+
+"Verify equation (7)"
+
+L = 1/2 m v^2 + f x
+
+A = f^2 / m
+B = 2 f (xb - xa) / T - f^2 T / m
+C = f^2 T^2 / (8 m) + f (3 xa - xb) / 2 + m (xb - xa)^2 / (2 T^2)
+
+check(L == A t^2 + B t + C)
+
+"ok"
+
+"Verify equation (8)"
+
+S = defint(L, t, 0, T)
+
+check(S == m (xb - xa)^2 / (2 T) + f T (xb + xa) / 2 - f^2 T^3 / (24 m))
+
+"ok"

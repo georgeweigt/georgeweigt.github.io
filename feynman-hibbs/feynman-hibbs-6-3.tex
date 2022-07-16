@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-3.
+For a free particle, equation (4.29) reduces to
+\begin{equation*}
+\frac{\partial}{\partial t_b}K_0(b,a)+\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,a)\right)
+=\delta(t_b-t_a)\delta(x_b-x_a)
+\tag{6.20}
+\end{equation*}
+
+Show, from this result and equation (6.19), that the kernel
+$K_V$ satisfies the differential equation
+\begin{multline*}
+\frac{\partial}{\partial t_b}K_V(b,a)+\frac{i}{\hbar}
+\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_V(b,a)+V(b)K_V(b,a)\right)
+\\
+=\delta(t_b-t_a)\delta(x_b-x_a)
+\tag{6.21}
+\end{multline*}
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (6.19)
+\begin{equation*}
+K_0(b,a)=K_V(b,a)+\frac{i}{\hbar}
+\int K_0(b,c)V(c)K_V(c,a)\,d\tau_c
+\tag{1}
+\end{equation*}
+
+Apply $\partial/\partial t_b$ and $\partial^2/\partial x_b^2$ to (1).
+\begin{align*}
+\frac{\partial}{\partial t_b}K_0(b,a)
+&=\frac{\partial}{\partial t_b}K_V(b,a)
++\frac{i}{\hbar}\int \frac{\partial}{\partial t_b}K_0(b,c)V(c)K_V(c,a)\,d\tau_c
+\tag{2}
+\\
+\frac{\partial^2}{\partial x_b^2}K_0(b,a)
+&=\frac{\partial^2}{\partial x_b^2}K_V(b,a)
++\frac{i}{\hbar}\int \frac{\partial^2}{\partial x_b^2}K_0(b,c)V(c)K_V(c,a)\,d\tau_c
+\tag{3}
+\end{align*}
+
+Multiply (3) by $-\hbar^2/2m$.
+\begin{multline*}
+-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,a)
+\\
+=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_V(b,a)
++\frac{i}{\hbar}\int\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,c)\right)
+V(c)K_V(c,a)\,d\tau_c
+\tag{4}
+\end{multline*}
+
+From equation (6.20)
+\begin{equation*}
+\frac{i}{\hbar}\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,a)\right)
+=
+-\frac{\partial}{\partial t_b}K_0(b,a)
++\delta(t_b-t_a)\delta(x_b-x_a)
+\end{equation*}
+
+It follows that
+\begin{multline*}
+\frac{i}{\hbar}\int\left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,c)\right)
+V(c)K_V(c,a)\,d\tau_c
+\\
+=-\int\frac{\partial}{\partial t_b}K_0(b,c)V(c)K_V(c,a)\,d\tau_c
++V(b)K_V(b,a)
+\tag{5}
+\end{multline*}
+
+where we have used the identity
+\begin{equation*}
+\int\delta(t_b-t_a)\delta(x_b-x_a)V(c)K_V(c,a)\,d\tau_c
+=V(b)K_V(b,a)
+\end{equation*}
+
+Substitute (5) into (4) to obtain
+\begin{multline*}
+-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_0(b,a)
+=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2}K_V(b,a)
+\\
+{}-\int\frac{\partial}{\partial t_b}K_0(b,c)V(c)K_V(c,a)\,d\tau_c
++V(b)K_V(b,a)
+\tag{6}
+\end{multline*}
+
+Substitute (2) and (6) into (6.20) to obtain (6.21).
+
+\end{document}

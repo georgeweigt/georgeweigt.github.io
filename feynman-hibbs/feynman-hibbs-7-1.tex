@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+7-1.
+If $S\big(x(t)\big)=\int_{t_a}^{t_b}L(\dot x,x,t)\,dt$, show that, for any
+$s$ inside the range $t_a$ to $t_b$,
+\begin{equation*}
+\frac{\delta S}{\delta x(s)}=-\frac{d}{ds}\left(\frac{\partial L}{\partial\dot x}\right)
++\frac{\partial L}{\partial x}
+\end{equation*}
+where the partial derivatives are evaluated at $t=s$.
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (2.6)
+\begin{equation*}
+\delta S=\int_{t_a}^{t_b}\left(-\frac{d}{dt}\frac{\partial L}{\partial\dot x}
++\frac{\partial L}{\partial x}\right)\delta x(t)\,dt
+\end{equation*}
+
+Let $t_a=t_b=s$ to obtain
+\begin{equation*}
+\delta S=\left(-\frac{d}{ds}\frac{\partial L}{\partial\dot x}
++\frac{\partial L}{\partial x}\right)\delta x(s)
+\end{equation*}
+
+Divide through by $\delta x(s)$.
+\begin{equation*}
+\frac{\delta S}{\delta x(s)}=
+-\frac{d}{ds}\frac{\partial L}{\partial\dot x}
++\frac{\partial L}{\partial x}
+\end{equation*}
+
+\end{document}

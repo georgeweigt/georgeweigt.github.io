@@ -1,0 +1,263 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\U{\vert\Phi_0\vert^2}
+
+\begin{document}
+
+8-5.
+A transition element which employs the same wave
+function as both the initial and final states is called an expectation value.
+Thus the expectation value of $F$ for the ground state $\Phi_0$ of
+equation (8.83) is
+\begin{equation*}
+\langle\Phi_0|F|\Phi_0\rangle
+=\int\cdots\int
+\Phi_0^*F\Phi_0\,dQ_1\,dQ_2\cdots dQ_{N-1}
+\tag{8.84}
+\end{equation*}
+
+(The integral over complex variables is defined as equal to the
+corresponding integral over real normal coordinates $Q_\alpha^c$
+and $Q_\alpha^s$.)
+Show that the following expectation values are correct (for $\alpha\ne0$).
+\begin{equation*}
+\begin{aligned}
+\langle\Phi_0^*|Q_\alpha|\Phi_0\rangle
+&=\langle\Phi_0^*|Q_\alpha^*|\Phi_0\rangle=0
+\\
+\langle\Phi_0^*|Q_\alpha^2|\Phi_0\rangle
+&=\langle\Phi_0^*|Q_\alpha^{*2}|\Phi_0\rangle=0
+\\
+\langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle
+&=\frac{\hbar}{2\omega_\alpha}\langle\Phi_0^*|1|\Phi_0\rangle
+\\
+\langle\Phi_0^*|Q_\alpha^*Q_\alpha|\Phi_0\rangle&=0,\quad\alpha\ne\beta
+\end{aligned}
+\tag{8.85}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+From problem 8-4,
+\begin{equation*}
+\U
+=\Phi_0^*\Phi_0
+=\exp\left(
+-\frac{1}{\hbar}
+\sum_{\alpha=1}^{N-1}
+\omega_\alpha\left((Q_\alpha^c)^2+(Q_\alpha^s)^2\right)
+\right)
+\end{equation*}
+
+We will use the following integrals.
+\begin{align*}
+&\int_{-\infty}^\infty\exp(-ax^2+b)\,dx=\sqrt{\frac{\pi}{a}}\exp(b)
+\tag{1}
+\\
+&\int_{-\infty}^\infty x\exp(-ax^2+b)\,dx=0
+\tag{2}
+\\
+&\int_{-\infty}^\infty x^2\exp(-ax^2+b)\,dx=\frac{1}{2a}\sqrt{\frac{\pi}{a}}\exp(b)
+\tag{3}
+\end{align*}
+
+Here are some specific examples with $a=\omega_1/\hbar$.
+\begin{align*}
+&\int_{-\infty}^\infty
+\U\,dQ_1^c=\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\U
+\tag{4}
+\\
+&\int_{-\infty}^\infty Q_1^c
+\U\,dQ_1^c=0
+\tag{5}
+\\
+&\int_{-\infty}^\infty (Q_1^c)^2
+\U\,dQ_1^c
+=\frac{\hbar}{2\omega_1}
+\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\U
+\tag{6}
+\end{align*}
+
+Multiplying $\U$ by an exponential cancels a factor, i.e., in (1) and (4),
+\begin{equation*}
+\exp(b)=\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)\U
+\end{equation*}
+
+Compute the expectation value for $Q_1$.
+Let
+\begin{equation*}
+I=\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{Q_1^c-iQ_1^s}{\sqrt2}\right)
+\U\,dQ_1^c\,dQ_1^s
+\end{equation*}
+
+By integral (2), $I=0$ hence by equation (8.84)
+\begin{equation*}
+\langle\Phi_0^*|Q_1|\Phi_0\rangle=0
+\end{equation*}
+
+Compute the expectation value for $Q_1^*$.
+Let
+\begin{equation*}
+I=\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{Q_1^c+iQ_1^s}{\sqrt2}\right)
+\U\,dQ_1^c\,dQ_1^s
+\end{equation*}
+
+As above, $I=0$ hence
+\begin{equation*}
+\langle\Phi_0^*|Q_1^*|\Phi_0\rangle=0
+\end{equation*}
+
+Compute the expectation value for $Q_1^2$.
+Let
+\begin{equation*}
+I=\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{Q_1^c-iQ_1^s}{\sqrt2}\right)^2
+\U\,dQ_1^c\,dQ_1^s
+\end{equation*}
+
+Rewrite as
+\begin{multline*}
+I=-i\int_{-\infty}^\infty\int_{-\infty}^\infty
+Q_1^cQ_1^s
+\U\,dQ_1^c\,dQ_1^s
+\\
+{}+\frac{1}{2}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+(Q_1^c)^2
+\U\,dQ_1^c\,dQ_1^s
+-\frac{1}{2}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+(Q_1^s)^2
+\U\,dQ_1^c\,dQ_1^s
+\end{multline*}
+
+The first integral vanishes by (2).
+The remaining integrals cancel hence
+\begin{equation*}
+\langle\Phi_0^*|Q_1^2|\Phi_0\rangle=0
+\end{equation*}
+
+Compute the expectation value for $Q_1^{*2}$.
+(As above except for a sign change.)
+\begin{multline*}
+I=i\int_{-\infty}^\infty\int_{-\infty}^\infty
+Q_1^cQ_1^s
+\U\,dQ_1^c\,dQ_1^s
+\\
+{}+\frac{1}{2}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+(Q_1^c)^2
+\U\,dQ_1^c\,dQ_1^s
+-\frac{1}{2}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+(Q_1^s)^2
+\U\,dQ_1^c\,dQ_1^s
+\end{multline*}
+
+By the same arguments as $Q_1^2$
+\begin{equation*}
+\langle\Phi_0^*|Q_1^{*2}|\Phi_0\rangle=0
+\end{equation*}
+
+Compute the expectation value for $Q_1^*Q_1$.
+Let
+\begin{equation*}
+I=\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{(Q_1^c)^2+(Q_1^s)^2}{2}\right)
+\U\,dQ_1^c\,dQ_1^s
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+I=\frac{1}{2}\int_{-\infty}^\infty\left(\int_{-\infty}^\infty (Q_1^c)^2
+\U\,dQ_1^c\right)\,dQ_1^s
++\frac{1}{2}\int_{-\infty}^\infty\left(\int_{-\infty}^\infty (Q_1^s)^2
+\U\,dQ_1^s\right)\,dQ_1^c
+\end{equation*}
+
+By integral (3) with $a=\omega_1/\hbar$,
+\begin{multline*}
+I=
+\frac{\hbar}{4\omega_1}
+\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\int_{-\infty}^\infty
+\U\,dQ_1^s
+\\
+{}+\frac{\hbar}{4\omega_1}
+\left(\frac{\pi\hbar}{\omega_1}\right)^{1/2}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
+\int_{-\infty}^\infty
+\U\,dQ_1^c
+\end{multline*}
+
+By integral (1),
+\begin{multline*}
+I=
+\frac{\hbar}{4\omega_1}
+\frac{\pi\hbar}{\omega_1}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
+\U
+\\
+{}+
+\frac{\hbar}{4\omega_1}
+\frac{\pi\hbar}{\omega_1}
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^s)^2\right)
+\exp\left(\frac{\omega_1}{\hbar}(Q_1^c)^2\right)
+\U
+\end{multline*}
+
+Integrate over the remaining measure as in (8.84).
+\begin{multline*}
+\langle\Phi_0^*|Q_1^*Q_1|\Phi_0\rangle
+=\int_{-\infty}^\infty\cdots\int_{-\infty}^\infty I\,dQ_2^c\,dQ_2^s\cdots dQ_{N-1}^c\,dQ_{N-1}^s
+\\
+=\frac{\hbar}{2\omega_1}
+\frac{\pi\hbar}{\omega_1}
+\prod_{k=2}^{N-1}\frac{\pi\hbar}{\omega_k}
+\tag{7}
+\end{multline*}
+
+Note that the exponentials cancel with $u$.
+
+\bigskip
+Compute the normalization constant.
+By integral (1),
+\begin{equation*}
+\langle\Phi_0^*|1|\Phi_0\rangle
+=\prod_{k=1}^{N-1}\frac{\pi\hbar}{\omega_k}
+\tag{8}
+\end{equation*}
+
+Hence by (7) and (8),
+\begin{equation*}
+\langle\Phi_0^*|Q_1^*Q_1|\Phi_0\rangle=\frac{\hbar}{2\omega_1}\langle\Phi_0^*|1|\Phi_0\rangle
+\end{equation*}
+
+Compute the expectation value for $Q_1^*Q_2$.
+Let
+\begin{equation*}
+I=\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+\left(\frac{Q_1^cQ_2^c-Q_1^sQ_2^s-iQ_1^cQ_2^s-iQ_1^sQ_2^c}{2}\right)
+\U\,dQ_1^c\,dQ_1^s\,dQ_2^c\,dQ_2^s
+\end{equation*}
+
+By integral (2) we have $I=0$, hence by equation (8.84)
+\begin{equation*}
+\langle\Phi_0^*|Q_1^*Q_2|\Phi_0\rangle=0
+\end{equation*}
+
+\end{document}

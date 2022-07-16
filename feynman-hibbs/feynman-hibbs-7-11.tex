@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+7-11.
+Show this.
+\begin{equation*}
+\int_{-\infty}^\infty
+\chi^*(x)\frac{\hbar}{i}\frac{\partial\psi(x)}{\partial x}\,dx
+=\int_{-\infty}^\infty
+\chi^*(p)p\psi(p)\frac{dp}{2\pi\hbar}
+\tag{7.81}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (7.80).
+\begin{align*}
+\chi(p)&=\int_{-\infty}^\infty\chi(x)\exp\left(-\frac{ipx}{\hbar}\right)\,dx
+\tag{7.80a}
+\\
+\psi(p)&=\int_{-\infty}^\infty\psi(x)\exp\left(-\frac{ipx}{\hbar}\right)\,dx
+\tag{7.80b}
+\end{align*}
+
+The associated inverse transforms are
+\begin{align*}
+\chi(x)&=\frac{1}{2\pi\hbar}\int_{-\infty}^\infty\chi(p)\exp\left(\frac{ipx}{\hbar}\right)\,dp
+\\
+\psi(x)&=\frac{1}{2\pi\hbar}\int_{-\infty}^\infty\psi(p)\exp\left(\frac{ipx}{\hbar}\right)\,dp
+\tag{1}
+\end{align*}
+
+Complex conjugate (7.80a).
+\begin{equation*}
+\chi^*(p)=\int_{-\infty}^\infty\chi^*(x)\exp\left(\frac{ipx}{\hbar}\right)\,dx
+\tag{2}
+\end{equation*}
+
+By equation (1)
+\begin{equation*}
+\frac{\hbar}{i}\frac{\partial\psi(x)}{\partial x}=
+\frac{1}{2\pi\hbar}\int_{-\infty}^\infty p\psi(p)\exp\left(\frac{ipx}{\hbar}\right)\,dp
+\tag{3}
+\end{equation*}
+
+Substitute (2) and (3) into (7.81).
+\begin{multline*}
+\frac{1}{2\pi\hbar}\int_{-\infty}^\infty
+\chi^*(x)
+\left(\int_{-\infty}^\infty p\psi(p)\exp\left(\frac{ipx}{\hbar}\right)\,dp\right)
+\,dx
+\\
+=\int_{-\infty}^\infty
+\left(\int_{-\infty}^\infty\chi^*(x)\exp\left(\frac{ipx}{\hbar}\right)\,dx\right)
+p\psi(p)\,\frac{dp}{2\pi\hbar}
+\end{multline*}
+
+By the distributive law the integrals are equivalent.
+\begin{multline*}
+\frac{1}{2\pi\hbar}\int_{-\infty}^\infty\int_{-\infty}^\infty
+\chi^*(x)
+p\psi(p)\exp\left(\frac{ipx}{\hbar}\right)
+\,dp\,dx
+\\
+=\int_{-\infty}^\infty\int_{-\infty}^\infty
+\chi^*(x)\exp\left(\frac{ipx}{\hbar}\right)
+p\psi(p)
+\,dx\,\frac{dp}{2\pi\hbar}
+\end{multline*}
+
+
+\end{document}

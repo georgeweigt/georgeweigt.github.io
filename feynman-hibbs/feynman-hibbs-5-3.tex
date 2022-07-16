@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-3. Assume $f(x)$ is normalized, that is,
+\begin{equation*}
+\int_{-\infty}^\infty f^*(x)f(x)\,dx=1
+\end{equation*}
+
+Under this constraint, show that the state $f(x)$ which has the
+highest probability of having property $G$ is $f(x)=g(x)$.
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (5.32).
+\begin{equation*}
+P(G)=\left|\int_{-\infty}^\infty g^*(x)f(x)\,dx\right|^2
+\tag{5.32}
+\end{equation*}
+
+If $f(x)=g(x)$ then
+\begin{equation*}
+P(G)=\left|\int_{-\infty}^\infty f^*(x)f(x)\,dx\right|^2=1
+\end{equation*}
+
+which is the highest probability.
+
+\end{document}

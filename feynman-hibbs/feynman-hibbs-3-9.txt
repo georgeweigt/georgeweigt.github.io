@@ -1,0 +1,77 @@
+-- Feynman and Hibbs problem 3-9
+
+-- Tba is tb - ta
+-- Tbc is tb - tc
+-- Tca is tc - ta
+
+Tba = Tbc + Tca
+
+"Verify equations (5), (6), and (7)"
+
+D = i m (xb - xc)^2 / (2 hbar Tbc) + i (xb + xc) Tbc f / (2 hbar) +
+    i m (xc - xa)^2 / (2 hbar Tca) + i (xc + xa) Tca f / (2 hbar)
+
+A = i m (1 / Tbc + 1 / Tca) / (2 hbar)
+
+B = i f Tba / (2 hbar) - i m (xb / Tbc + xa / Tca) / hbar
+
+C = i f (xb Tbc + xa Tca) / (2 hbar) +
+    i m (xb^2 / Tbc + xa^2 / Tca) / (2 hbar)
+
+check(D == A xc^2 + B xc + C)
+
+"ok"
+
+"Verify equation (8) solution of integral"
+
+check(-pi / A == -2 pi hbar Tbc Tca / (i m Tba))
+
+D = -B^2 / (4 A) + C
+
+A = i m (xb - xa)^2 / (2 hbar Tba)
+
+B = i f Tba (xb + xa) / (2 hbar)
+
+C = -i f^2 Tba Tbc Tca / (8 hbar m)
+
+check(D == A + B + C)
+
+"ok"
+
+"Verify equation (10) complete the cube"
+
+A = (tb - ta)^3
+
+B = (tb - tc)^3 + (tc - ta)^3 + 3 (tb - ta) (tb - tc) (tc - ta)
+
+check(A == B)
+
+"ok"
+
+"Verify equation (12) combine exponentials"
+
+A = -(tb - tc)^3 / (24 hbar m)
+
+B = -(tc - ta)^3 / (24 hbar m)
+
+C = -(tb - ta) (tb - tc) (tc - ta) / (8 hbar m)
+
+D = -(tb - ta)^3 / (24 hbar m)
+
+check(A + B + C == D)
+
+"ok"
+
+"Verify equation (14) cancellation of coefficients"
+
+D = m / (2 pi i hbar Tba)
+
+A = m / (2 pi i hbar Tbc)
+
+B = m / (2 pi i hbar Tca)
+
+C = -2 pi hbar Tbc Tca / (i m Tba)
+
+check(sqrt(D) == sqrt(A B C))
+
+"ok"

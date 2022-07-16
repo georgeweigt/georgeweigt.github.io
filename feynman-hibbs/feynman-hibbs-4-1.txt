@@ -1,0 +1,84 @@
+-- Feynman and Hibbs problem 4-1
+
+x = (x1,x2,x3)
+eta = (eta1,eta2,eta3)
+
+-- Directional derivative (unnormalized)
+
+D(f) = dot(eta,d(f,x))
+
+-- Gaussian integral
+
+G(f) = do(
+f = f (2 pi i hbar epsilon / m)^(3/2),
+f = eval(f, eta1^2, i hbar epsilon / m),
+f = eval(f, eta2^2, i hbar epsilon / m),
+f = eval(f, eta3^2, i hbar epsilon / m),
+f = eval(f, eta1, 0),
+f = eval(f, eta2, 0),
+f = eval(f, eta3, 0),
+f) -- return f
+
+"Verify equation (13)"
+
+B = G(psi())
+
+C = psi() (2 pi i hbar epsilon / m)^(3/2)
+
+check(B == C)
+
+"ok"
+
+"Verify equation (14)"
+
+B = G(D(psi()))
+
+check(B == 0)
+
+"ok"
+
+"Verify equation (15)"
+
+B = G(D(D(psi())))
+
+C = i hbar epsilon / m *
+    (2 pi i hbar epsilon / m)^(3/2) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3))
+
+check(B == C)
+
+"ok"
+
+"Verify equation (16)"
+
+f = psi() + D(psi()) + 1/2 D(D(psi()))
+
+B = G(f)
+
+B = B (1 - i epsilon / hbar V)
+
+B = eval(B,epsilon^(7/2),0) -- discard epsilon^2
+
+B = B / (2 pi i hbar epsilon / m)^(3/2) -- cancel A
+B = B - psi() -- cancel psi
+B = B / epsilon -- cancel epsilon
+
+C = i hbar / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    (-1) i / hbar V psi()
+
+check(B == C)
+
+"ok"
+
+"Compare with Feynman and Hibbs equation (4.13)"
+
+C = -hbar^2 / (2 m) *
+    (d(psi(),x1,x1) + d(psi(),x2,x2) + d(psi(),x3,x3)) +
+    V psi()
+
+C = -i / hbar C
+
+check(B == C)
+
+"ok"

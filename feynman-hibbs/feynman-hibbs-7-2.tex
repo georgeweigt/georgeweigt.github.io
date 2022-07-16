@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+7-2.
+If $F\big(x(t)\big)=x(t)$, show that
+\begin{equation*}
+\frac{\delta F}{\delta x(s)}=\delta(t-s)
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (7.20).
+\begin{equation*}
+F\big(x(t)+\eta(t)\big)=F\big(x(t)\big)+\int\frac{\delta F}{\delta x(s)}\eta(s)\,ds+\cdots
+\tag{7.20}
+\end{equation*}
+
+For $F\big(x(t)\big)=x(t)$ we have
+\begin{equation*}
+F\big(x(t)+\eta(t)\big)=x(t)+\eta(t)
+\end{equation*}
+
+Then by equation (7.20) to first order
+\begin{equation*}
+\eta(t)=\int\frac{\delta F}{\delta x(s)}\eta(s)\,ds
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{\delta F}{\delta x(s)}=
+\begin{cases}
+1 & t=s
+\\
+0 & t\ne s
+\end{cases}
+\end{equation*}
+
+\end{document}

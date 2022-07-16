@@ -1,0 +1,13 @@
+-- Feynman and Hibbs problem 4-4
+
+"Verify equation (4.23) for the Hamiltonian in (4.15)"
+
+H(f) = -hbar^2 / (2 m) d(f,x,x) + V(x,t) f
+
+A = H(x psi(x,t)) - x H(psi(x,t))
+A
+
+B = -hbar^2 / m d(psi(x,t),x)
+B
+
+test(A == B, "ok", "?")

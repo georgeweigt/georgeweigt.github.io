@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-5.
+The integral over $t_c$ in equation (6.28) can be performed
+approximately using the method of stationary phase.
+By studying the application of such a method to this integral,
+show that most of the contribution to the integral comes from
+values of $t_c$ near the region $t_c=r_a/u$, the time at which
+the electron would arrive at the center of the atom if it
+moved in a classical manner.
+\begin{align*}
+K^{(1)}(b,a)&=-\frac{i}{\hbar}\int K_0(b,c)V(c)K_0(c,a)\,d\tau_c
+\\
+&=-\frac{i}{\hbar}\int\int_0^T
+\left(\frac{m}{2\pi i\hbar(T-t_c)}\right)^{3/2}
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar(T-t_c)}\right)
+\\
+&\qquad{}\times
+V(\mathbf x_c)
+\left(\frac{m}{2\pi i\hbar t_c}\right)^{3/2}
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar t_c}\right)
+\,dt_c\,d^3\mathbf x_c
+\tag{6.28}
+\end{align*}
+
+\bigskip
+\hrule
+
+\bigskip
+The phase of the exponential in (6.28) is
+\begin{equation*}
+g(t_c)=
+\frac{|\mathbf x_b-\mathbf x_c|^2}{T-t_c}
++
+\frac{|\mathbf x_c-\mathbf x_a|^2}{t_c}
+\end{equation*}
+
+Then for
+\begin{equation*}
+t_c=\frac{T|\mathbf x_c-\mathbf x_a|}{|\mathbf x_b-\mathbf x_c|+|\mathbf x_c-\mathbf x_a|}
+\end{equation*}
+the phase is stationary, that is,
+\begin{equation*}
+g'(t_c)=
+\frac{|\mathbf x_b-\mathbf x_c|^2}{(T-t_c)^2}
++
+\frac{|\mathbf x_c-\mathbf x_a|^2}{t_c^2}
+=0
+\end{equation*}
+
+For $r_a$ and $r_b\gg|\mathbf x_c|$
+\begin{align*}
+|\mathbf x_c-\mathbf x_a|&\approx r_a % -\frac{\mathbf x_a\cdot\mathbf x_c}{r_a}
+\\
+|\mathbf x_b-\mathbf x_c|&\approx r_b % -\frac{\mathbf x_b\cdot\mathbf x_c}{r_b}
+\end{align*}
+
+Hence
+\begin{equation*}
+t_c=\frac{Tr_a}{r_a+r_b}
+\end{equation*}
+
+\end{document}
+
+Consider equation (6.33).
+\begin{align*}
+K^{(1)}(b,a)&\approx
+-\frac{i}{\hbar}
+\left(\frac{m}{2\pi i\hbar T}\right)^{5/2}
+T
+\left(\frac{1}{r_a}+\frac{1}{r_b}\right)
+\exp\left(\frac{im}{2\hbar T}(r_a+r_b)^2\right)
+\\
+&\qquad{}\times\int
+\exp\left(\frac{im}{\hbar T}(r_a+r_b)(\mathbf i_a\cdot\mathbf x_c-\mathbf i_b\cdot\mathbf x_c)\right)
+V(\mathbf x_c)
+\,d^3\mathbf x_c
+\end{align*}
+
+\end{document}

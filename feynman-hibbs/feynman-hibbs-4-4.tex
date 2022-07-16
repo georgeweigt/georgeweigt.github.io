@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-4.
+Show that
+\begin{equation*}
+\frac{\partial^2}{\partial x^2}x=x\frac{\partial^2}{\partial x^2}+2\frac{\partial}{\partial x}
+\tag{4.22}
+\end{equation*}
+and therefore for the $H$ in equation (4.15)
+\begin{equation*}
+Hx-xH=-\frac{\hbar^2}{m}\frac{\partial}{\partial x}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+We have
+\begin{equation*}
+\frac{\partial}{\partial x}(x\psi)=\psi+x\frac{\partial}{\partial x}\psi
+\end{equation*}
+
+Differentiate a second time.
+\begin{align*}
+\frac{\partial^2}{\partial x^2}(x\psi)
+&=\frac{\partial}{\partial x}\left(\psi+x\frac{\partial}{\partial x}\psi\right)
+\\
+&=\frac{\partial}{\partial x}\psi+\frac{\partial}{\partial x}\psi+x\frac{\partial^2}{\partial x^2}\psi
+\\
+&=2\frac{\partial}{\partial x}\psi+x\frac{\partial^2}{\partial x^2}\psi
+\end{align*}
+
+This is equation (4.15).
+\begin{equation*}
+H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x,t)
+\end{equation*}
+
+Solve for $\partial^2/\partial x^2$.
+\begin{equation*}
+\frac{\partial^2}{\partial x^2}=-\frac{2m}{\hbar^2}(H-V(x,t))
+\tag{1}
+\end{equation*}
+
+By equation (4.22) above
+\begin{equation*}
+\frac{\partial^2}{\partial x^2}x-x\frac{\partial^2}{\partial x^2}=2\frac{\partial}{\partial x}
+\tag{2}
+\end{equation*}
+
+Substitute (1) into (2).
+\begin{equation*}
+-\frac{2m}{\hbar^2}(H-V(x,t))x+x\frac{2m}{\hbar^2}(H-V(x,t))=2\frac{\partial}{\partial x}
+\end{equation*}
+
+The two $V$ terms cancel.
+Multiply both sides by $-\hbar^2/2m$.
+\begin{equation*}
+Hx-xH=-\frac{\hbar^2}{m}\frac{\partial}{\partial x}
+\end{equation*}
+
+\end{document}

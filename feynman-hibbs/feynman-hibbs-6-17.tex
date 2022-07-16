@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-17.
+Interpret equation (6.72) by explaining the meaning of each term.
+Then explain and verify the equation for the second-order coefficient
+\begin{align*}
+&\lambda_{mn}^{(2)}=\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{t_a}^{t_c}
+\sum_j
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_c)\right)V_{mj}(t_c)
+\\
+&\quad{}\times\exp\left(-\frac{i}{\hbar}E_j(t_c-t_d)\right)V_{jn}(t_d)
+\exp\left(-\frac{i}{\hbar}E_n(t_d-t_a)\right)\,dt_d\,dt_c
+\tag{6.74}
+\end{align*}
+
+\bigskip
+\hrule
+
+\bigskip
+Start with equation (6.13).
+\begin{multline*}
+K^{(2)}(b,a)=\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{-\infty}^\infty
+\int_{t_a}^{t_c}
+\int_{-\infty}^\infty
+K_0(b,c)V(c)K_0(c,d)V(d)K_0(d,a)
+\\
+{}\times dx_d\,dt_d\,dx_c\,dt_c
+\end{multline*}
+
+Substitute $K_U$ for $K_0$.
+(See problem 6-1.)
+\begin{multline*}
+K^{(2)}(b,a)=\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{-\infty}^\infty
+\int_{t_a}^{t_c}
+\int_{-\infty}^\infty
+K_U(b,c)V(c)K_U(c,d)V(d)K_U(d,a)
+\\
+{}\times dx_d\,dt_d\,dx_c\,dt_c
+\end{multline*}
+
+By equation (6.66), substitute sums over eigenstates for $K_U$.
+\begin{align*}
+&K^{(2)}(b,a)=\sum_m\sum_j\sum_n
+\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{-\infty}^\infty
+\int_{t_a}^{t_c}
+\int_{-\infty}^\infty
+\\
+&\quad\phi_m(x_b)\phi_m^*(x_c)\;V(c)\;\phi_j(x_c)\phi_j^*(x_d)\;V(d)\;\phi_n(x_d)\phi_n^*(x_a)
+\\
+&\quad\times
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_c)\right)
+\exp\left(-\frac{i}{\hbar}E_j(t_c-t_d)\right)
+\exp\left(-\frac{i}{\hbar}E_n(t_d-t_a)\right)
+\\
+&\quad{}\times dx_d\,dt_d\,dx_c\,dt_c
+\end{align*}
+
+By equation (6.71), substitute $V_{mn}$ for integrals over $x$.
+\begin{align*}
+&K^{(2)}(b,a)=\sum_m\sum_j\sum_n
+\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{t_a}^{t_c}
+\phi_m(x_b)V_{mj}(t_c)V_{jn}(t_d)\phi_n^*(x_a)
+\\
+&\quad\times
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_c)\right)
+\exp\left(-\frac{i}{\hbar}E_j(t_c-t_d)\right)
+\exp\left(-\frac{i}{\hbar}E_n(t_d-t_a)\right)
+\\
+&\quad{}\times dt_d\,dt_c
+\end{align*}
+
+Finally, by equation (6.68) we obtain $\lambda_{mn}^{(2)}$.
+\begin{align*}
+&\lambda_{mn}^{(2)}(t_b,t_a)=\sum_j\left(-\frac{i}{\hbar}\right)^2
+\int_{t_a}^{t_b}
+\int_{t_a}^{t_c}
+V_{mj}(t_c)V_{jn}(t_d)
+\\
+&\quad{}\times
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_c)\right)
+\exp\left(-\frac{i}{\hbar}E_j(t_c-t_d)\right)
+\exp\left(-\frac{i}{\hbar}E_n(t_d-t_a)\right)
+\\
+&\quad{}\times dt_d\,dt_c
+\end{align*}
+
+Here are equations (6.68) and (6.71).
+\begin{gather*}
+K_V(b,a)=\sum_m\sum_n\lambda_{mn}(t_b,t_a)\phi_m(x_b)\phi_n^*(x_a)\tag{6.68}
+\\
+V_{mn}(t_c)=\int_{-\infty}^\infty\phi_m^*(x_c)V(x_c,t_c)\phi_n(x_c)\,dx_c\tag{6.71}
+\end{gather*}
+
+\end{document}

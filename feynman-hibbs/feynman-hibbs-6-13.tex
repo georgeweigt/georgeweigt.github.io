@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-13.
+Assume that $V(\mathbf r,t)$ is independent of time.
+Substitute the free particle kernel $K_0$ into equation
+(6.61) and integrate over $t_c$ to show that
+\begin{multline*}
+\psi(b)=
+\exp\left(-\frac{iE_at_b}{\hbar}\right)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_b}{\hbar}\right)
+\\
+{}-\exp\left(-\frac{iE_at_b}{\hbar}\right)
+\frac{m}{2\pi\hbar^2}
+\int
+\frac{1}{R_{bc}}
+\exp\left(\frac{ipR_{bc}}{\hbar}\right)
+V(\mathbf x_c)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_c}{\hbar}\right)
+\,d^3\mathbf x_c
+\tag{6.62}
+\end{multline*}
+where $R_{bc}$ is the distance from the variable point of integration
+$\mathbf x_c$ to the final point $\mathbf x_b$ and $p$ is the
+magnitude of the momentum of the electron.
+
+\bigskip
+\hrule
+
+\bigskip
+This is equation (6.61).
+\begin{multline*}
+\psi(b)=
+\exp\left(-\frac{iE_at_b}{\hbar}\right)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_b}{\hbar}\right)
+\\
+{}-\frac{i}{\hbar}\int_0^{t_b}\int
+K_0(b,c)V(c)
+\exp\left(-\frac{iE_at_c}{\hbar}\right)
+\exp\left(\frac{i\mathbf p_a\cdot\mathbf x_c}{\hbar}\right)
+\,d^3\mathbf x_c\,dt_c
+\tag{6.61}
+\end{multline*}
+
+This is the integral over $t_c$ from (6.61) with $V(c)$ independent of time.
+\begin{equation*}
+I=\int_0^{t_b}K_0(b,c)
+\exp\left(-\frac{iE_at_c}{\hbar}\right)
+\,dt_c
+\end{equation*}
+
+Substitute $E_a=p^2/2m$.
+\begin{equation*}
+I=\int_0^{t_b}K_0(b,c)
+\exp\left(-\frac{ip^2t_c}{2m\hbar}\right)
+\,dt_c
+\end{equation*}
+
+Substitute $K_0$ from problem 4-12.
+\begin{equation*}
+I=\int_0^{t_b}
+\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{3/2}
+\exp\left(\frac{imR_{bc}^2}{2\hbar(t_b-t_c)}\right)
+\exp\left(-\frac{ip^2t_c}{2m\hbar}\right)
+\,dt_c
+\end{equation*}
+
+Let
+\begin{align*}
+f&=\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{3/2}
+\\
+g&=\frac{m R_{bc}^2}{2(t_b-t_c)}-\frac{p^2t_c}{2m}
+\\
+\lambda&=\frac{1}{\hbar}
+\end{align*}
+
+Then
+\begin{equation*}
+I=\int_0^{t_b}f\exp(i\lambda g)\,dt_c
+\end{equation*}
+
+The phase of the exponential is stationary (i.e., $g'=0$) for
+\begin{equation*}
+t_c=t_b-\frac{mR_{bc}}{p}
+\end{equation*}
+
+By the method of stationary phase
+\begin{equation*}
+I\approx\pm\left(\frac{2\pi i}{\lambda g''}\right)^{1/2}
+f\exp(i\lambda g)\bigg|_{t_c}
+\end{equation*}
+
+Hence
+\begin{equation*}
+I\approx-\frac{im}{2\pi\hbar R_{bc}}
+\exp\left(\frac{ipR_{bc}}{\hbar}-\frac{ip^2t_b}{2m\hbar}\right)
+\end{equation*}
+
+The integral can also be written as
+\begin{equation*}
+-\frac{im}{2\pi\hbar}
+\frac{1}{R_{bc}}
+\exp\left(\frac{ipR_{bc}}{\hbar}\right)
+\exp\left(-\frac{iE_at_b}{\hbar}\right)
+\tag{1}
+\end{equation*}
+
+Substitute (1) into (6.61) to obtain (6.62).
+
+\bigskip
+Note that the method of stationary phase requires $0<t_c<t_b$ so the above
+solution is valid for physical values that satisfy
+\begin{equation*}
+0<\frac{mR_{bc}}{p}<t_b
+\end{equation*}
+
+Hence (6.62) is not true in general but is {\it probably} true if $t_b$ is large.
+
+\bigskip
+Just for the fun of it, check physical dimensions.
+\begin{equation*}
+\frac{mR_{bc}}{p}\propto
+\frac{\text{mass}\times\text{length}}{\text{mass}\times\text{length}/\text{time}}
+=\text{time}
+\end{equation*}
+
+\end{document}

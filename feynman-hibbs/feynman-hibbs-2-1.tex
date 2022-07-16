@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+2-1.
+For a free particle $L=(m/2)\dot x^2.$
+Show that the action $S_{cl}$ corresponding to the classical motion
+of a free particle is
+\begin{equation*}
+S_{cl}=\frac{m}{2}\frac{(x_b-x_a)^2}{t_b-t_a}
+\tag{2.8}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+We will need equation (2.7) to determine the classical motion $x(t)$.
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
+\tag{2.7}
+\end{equation*}
+
+For the Lagrangian $L$ given in problem 2-1 we have
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=m\ddot x
+\qquad
+\frac{\partial L}{\partial x}=0
+\end{equation*}
+
+By equation (2.7) we have for the classical acceleration $\ddot x(t)$
+\begin{equation*}
+\ddot x(t)=0
+\end{equation*}
+
+Hence velocity $\dot x$ is constant and equals distance divided by time.
+\begin{equation*}
+\dot x=\frac{x_b-x_a}{t_b-t_a}
+\tag{1}
+\end{equation*}
+
+Substitute (1) into $L$.
+\begin{equation*}
+L=\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2
+\tag{2}
+\end{equation*}
+
+Integrate (2) to obtain $S_{cl}$.
+\begin{align*}
+S_{cl}
+&=\int_{t_a}^{t_b}L\,dt
+\\
+&=\frac{m}{2}\left(\frac{x_b-x_a}{t_b-t_a}\right)^2 t\,\bigg|_{t_a}^{t_b}
+=\frac{m}{2}\frac{(x_b-x_a)^2}{t_b-t_a}
+\end{align*}
+
+\end{document}

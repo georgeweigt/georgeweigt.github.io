@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-8.
+Note that equation (5.44) implies $G_A^*(x,x')=G_A(x',x)$.
+With this in mind show that for any two wave functions
+$g(x)$ and $f(x)$, both of which approach 0 as $x$ goes to $\pm\infty$,
+\begin{equation*}
+\int_{-\infty}^\infty
+g^*(x)\mathcal Af(x)\,dx=
+\int_{-\infty}^\infty
+\big(\mathcal Ag(x)\big)^*f(x)\,dx
+\tag{5.47}
+\end{equation*}
+Any operator, such as $\mathcal A$, for which equation (5.47)
+holds is called {\it hermitian} (see equation 4.30).
+
+\bigskip
+\hrule
+
+\bigskip
+From equations (5.45) and (5.43)
+\begin{equation*}
+\mathcal Af(x)=\int_{-\infty}^\infty G_A(x,x')f(x')\,dx'
+\tag{1}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\int_{-\infty}^\infty g^*(x)\mathcal Af(x)\,dx
+=\int_{-\infty}^\infty g^*(x)
+\left(\int_{-\infty}^\infty G_A(x,x')f(x')\,dx'\right)
+\,dx
+\end{equation*}
+
+Combine factors.
+\begin{equation*}
+{}=\int_{-\infty}^\infty
+\int_{-\infty}^\infty G_A(x,x')g^*(x)f(x')\,dx'
+\,dx
+\end{equation*}
+
+By equation (5.44) substitute $G_A^*(x',x)$ for $G_A(x,x')$.
+\begin{equation*}
+{}=\int_{-\infty}^\infty
+\int_{-\infty}^\infty G_A^*(x',x)g^*(x)f(x')\,dx'
+\,dx
+\end{equation*}
+
+By complex conjugation of a product
+\begin{equation*}
+{}=\int_{-\infty}^\infty
+\int_{-\infty}^\infty\big(G_A(x',x)g(x)\big)^*f(x')\,dx'
+\,dx
+\end{equation*}
+
+Factor out $f(x')\,dx'$.
+\begin{equation*}
+{}=\int_{-\infty}^\infty
+\left(\int_{-\infty}^\infty\big(G_A(x',x)g(x)\big)^*\,dx\right)f(x')\,dx'
+\end{equation*}
+
+Then by equation (1)
+\begin{equation*}
+{}=\int_{-\infty}^\infty\big(\mathcal Ag(x')\big)^*f(x')\,dx'
+\end{equation*}
+
+\end{document}

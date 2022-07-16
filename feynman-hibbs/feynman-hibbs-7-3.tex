@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+7-3.
+If
+\begin{multline*}
+F\big(j(\mathbf r,t)\big)=
+\\
+\exp\left(
+\frac{1}{2}\int\int\int\int
+j(\mathbf r_1,t_1)j(\mathbf r_2,t_2)R(\mathbf r_2-\mathbf r_1,t_2-t_1)
+\,d^3\mathbf r_2\,dt_2\,d^3\mathbf r_1\,dt_1
+\right)
+\end{multline*}
+
+where the integrals extend over all space and time, show that
+\begin{equation*}
+\frac{\delta F}{\delta j(\mathbf x,s)}
+=F\int\int j(\mathbf r,t)
+\tfrac{1}{2}
+\big(R(\mathbf r-\mathbf x,t-s)+R(\mathbf x-\mathbf r,s-t)\big)
+\,d^3\mathbf r\,dt
+\tag{7.27}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+By equation (7.20) to first order we have
+\begin{equation*}
+F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)
+-F\big(j(\mathbf r,t)\big)
+=\int\int
+\frac{\delta F}{\delta j(\mathbf x,s)}\eta(\mathbf x,s)\,d^3\mathbf x\,ds
+\end{equation*}
+
+Let
+\begin{multline*}
+I(f_1,f_2)=
+\\
+\frac{1}{2}
+\int\int\int\int
+f_1(\mathbf r_1,t_1)f_2(\mathbf r_2,t_2)R(\mathbf r_2-\mathbf r_1,t_2-t_1)
+\,d^3\mathbf r_2\,dt_2\,d^3\mathbf r_1\,dt_1
+\end{multline*}
+
+Then
+\begin{align*}
+F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)=F\big(j(\mathbf r,t)\big)
+\exp\big(I(j,\eta)\big)\exp\big(I(\eta,j)\big)\exp\big(I(\eta,\eta)\big)
+\end{align*}
+
+Use the approximation $\exp(x)=1+x$ to obtain to first order in $\eta$
+\begin{equation*}
+F\big(j(\mathbf r,t)+\eta(\mathbf r,t)\big)
+=F\big(j(\mathbf r,t)\big)\big(1+I(j,\eta)+I(\eta,j)\big)
+\end{equation*}
+
+Then by equation (7.20)
+\begin{equation*}
+F\big(j(\mathbf r,t)\big)I(j,\eta)+F\big(j(\mathbf r,t)\big)I(\eta,j)
+=\int\int
+\frac{\delta F}{\delta j(\mathbf x,s)}\eta(\mathbf x,s)\,d^3\mathbf x\,ds
+\tag{1}
+\end{equation*}
+
+Substitute (7.27) into (1).
+The $F\big(j(\mathbf r,t)\big)$ cancel leaving
+\begin{align*}
+&I(j,\eta)+I(\eta,j)=
+\\
+&\qquad\frac{1}{2}\int\int\int\int
+j(\mathbf r,t)R(\mathbf r-\mathbf x,t-s)\eta(\mathbf x,s)\,d^3\mathbf r\,dt\,d^3\mathbf x\,ds
+\\
+&\qquad{}+\frac{1}{2}\int\int\int\int
+j(\mathbf r,t)R(\mathbf x-\mathbf r,s-t)\eta(\mathbf x,s)\,d^3\mathbf r\,dt\,d^3\mathbf x\,ds
+\end{align*}
+which is easily verified.
+
+\end{document}

@@ -1,0 +1,206 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-9.
+Find the kernel for a particle in a constant field $f$
+where the Lagrangian is
+\begin{equation*}
+L=\frac{m}{2}\dot x^2+fx
+\tag{3.61}
+\end{equation*}
+
+The result is
+\begin{equation*}
+K=\left(\frac{m}{2\pi i\hbar T}\right)^{1/2}
+\exp\left(\frac{i}{\hbar}\left(
+\frac{m(x_b-x_a)^2}{2T}
++\frac{fT(x_b+x_a)}{2}
+-\frac{f^2T^3}{24m}
+\right)\right)
+\tag{3.62}
+\end{equation*}
+
+where $T=t_b-t_a$.
+
+\bigskip
+\hrule
+
+\bigskip
+From problem 2-3 we have for the action $S$
+\begin{equation*}
+S(b,a)=\frac{m(x_b-x_a)^2}{2T}+\frac{fT(x_b+x_a)}{2}-\frac{f^2T^3}{24m}
+\tag{1}
+\end{equation*}
+where $T=t_b-t_a$.
+
+\bigskip
+Consider equation (3.51).
+\begin{equation*}
+K(b,a)=F(T)\exp\left(\frac{iS(b,a)}{\hbar}\right)
+\tag{3.51}
+\end{equation*}
+
+Substitute (1) into (3.51).
+\begin{equation*}
+K(b,a)=
+F(T)\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
+\right)
+\tag{2}
+\end{equation*}
+
+We now proceed to solve for $F(T)$.
+Consider equation (2.31).
+\begin{equation*}
+K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
+\tag{2.31}
+\end{equation*}
+
+Substitute (3.51) into (2.31) to obtain
+\begin{equation*}
+K(b,a)=F(t_b-t_c)F(t_c-t_a)\int_{-\infty}^\infty
+\exp\left(\frac{iS(b,c)}{\hbar}+\frac{iS(c,a)}{\hbar}\right)
+\,dx_c
+\tag{3}
+\end{equation*}
+
+Substitute (1) into (3)
+and rewrite the result as powers of $x_c$.
+\begin{multline*}
+K(b,a)=F(t_b-t_c)F(t_c-t_a)
+\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
+\\[1ex]
+{}\times
+\int_{-\infty}^\infty
+\exp\left(Ax_c^2+Bx_c+C\right)
+\,dx_c
+\tag{4}
+\end{multline*}
+where
+\begin{align*}
+A&=\frac{im}{2\hbar}\left(\frac{1}{t_b-t_c}+\frac{1}{t_c-t_a}\right)
+\tag{5}
+\\
+B&=\frac{ifT}{2\hbar}-\frac{im}{\hbar}\left(\frac{x_b}{t_b-t_c}+\frac{x_a}{t_c-t_a}\right)
+\tag{6}
+\\
+C&=\frac{if}{2\hbar}\big(x_b(t_b-t_c)+x_a(t_c-t_a)\big)+\frac{im}{2\hbar}
+\left(\frac{x_b^2}{t_b-t_c}+\frac{x_a^2}{t_c-t_a}\right)
+\tag{7}
+\end{align*}
+
+Note that the exponential involving $f^2$ is independent of $x_c$
+and is factored out of the integrand in (4).
+
+\bigskip
+Solve the integral in (4).
+\begin{align*}
+&\int_{-\infty}^{\infty}\exp(Ax_c^2+Bx_c+C)\,dx_c
+=\left(-\frac{\pi}{A}\right)^{1/2}
+\exp\left(-\frac{B^2}{4A}+C\right)
+\\
+&\quad{}=\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\\
+&\quad{}\times\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T(t_b-t_c)(t_c-t_a)}{8\hbar m}
+\right)
+\tag{8}
+\end{align*}
+
+Substitute (8) into (4) to obtain
+\begin{align*}
+&K(b,a)=F(t_b-t_c)F(t_c-t_a)
+\exp\left(-\frac{if^2(t_b-t_c)^3}{24\hbar m}-\frac{if^2(t_c-t_a)^3}{24\hbar m}\right)
+\\
+&\quad{}\times
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\\
+&\quad{}\times
+\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T(t_b-t_c)(t_c-t_a)}{8\hbar m}
+\right)
+\tag{9}
+\end{align*}
+
+Note that
+\begin{equation*}
+T^3=(t_b-t_c)^3+(t_c-t_a)^3+3T(t_b-t_c)(t_c-t_a)
+\tag{10}
+\end{equation*}
+
+Use (10) to combine exponentials involving $f^2$ in (9).
+\begin{align*}
+&K(b,a)=F(t_b-t_c)F(t_c-t_a)
+\\
+&\quad{}\times
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\\
+&\quad{}\times
+\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
+\right)
+\tag{11}
+\end{align*}
+
+Equating (2) with (11) cancels the exponentials and leaves
+\begin{equation*}
+F(T)=F(t_b-t_c)F(t_c-t_a)
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\tag{12}
+\end{equation*}
+
+From problem 3-7, let
+\begin{equation*}
+F(t)=\left(\frac{m}{2\pi i\hbar t}\right)^{1/2} g(t)
+\tag{13}
+\end{equation*}
+
+Substitute (13) into (12) to obtain
+\begin{multline*}
+\left(\frac{m}{2\pi i\hbar T}\right)^{1/2} g(T)
+=\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^{1/2} g(t_b-t_c)
+\\
+{}\times
+\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^{1/2} g(t_c-t_a)
+\left(-\frac{2\pi\hbar(t_b-t_c)(t_c-t_a)}{imT}\right)^{1/2}
+\end{multline*}
+
+The coefficients cancel leaving
+\begin{equation*}
+g(T)=g(t_b-t_c)g(t_c-t_a)
+\tag{14}
+\end{equation*}
+
+Hence
+\begin{equation*}
+g(t)=1
+\end{equation*}
+and
+\begin{equation*}
+F(T)=\left(\frac{m}{2\pi i\hbar T}\right)^{1/2}
+\tag{15}
+\end{equation*}
+
+Substitute (15) into (2).
+\begin{equation*}
+K(b,a)=\left(\frac{m}{2\pi i\hbar T}\right)^{1/2}
+\exp\left(
+\frac{im(x_b-x_a)^2}{2\hbar T}
++\frac{ifT(x_b+x_a)}{2\hbar}
+-\frac{if^2T^3}{24\hbar m}
+\right)
+\end{equation*}
+
+\end{document}

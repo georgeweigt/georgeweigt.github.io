@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-8.
+Show from the fact that $H$ is hermitian that $E$ is real.
+Hint: Choose $f=g=\phi$ in equation (4.30).
+
+\bigskip
+\hrule
+
+\bigskip
+The Hamiltonian $H$ is an eigenfunction with corresponding eigenvalue $E$.
+\begin{equation*}
+H\phi(x)=E\phi(x)
+\tag{4.42}
+\end{equation*}
+
+Since $H$ is hermitian we have from equation (4.30)
+\begin{equation*}
+\int_{-\infty}^\infty(Hg)^*f\,dx=\int_{-\infty}^\infty g^*(Hf)\,dx
+\tag{4.30}
+\end{equation*}
+
+Substitute $\phi$ into $f$ and $g$.
+\begin{equation*}
+\int_{-\infty}^\infty(H\phi)^*\phi\,dx=\int_{-\infty}^\infty \phi^*(H\phi)\,dx
+\end{equation*}
+
+Replace $H$ with eigenvalue $E$.
+\begin{equation*}
+\int_{-\infty}^\infty (E\phi)^*\phi\,dx=\int_{-\infty}^\infty \phi^*E\phi\,dx
+\end{equation*}
+
+Since $E$ is a constant it can be factored out of the integrands.
+\begin{equation*}
+E^*\int_{-\infty}^\infty\phi^*\phi\,dx=E\int_{-\infty}^\infty \phi^*\phi\,dx
+\end{equation*}
+
+The integrals are identical hence
+\begin{equation*}
+E^*=E
+\end{equation*}
+
+\end{document}

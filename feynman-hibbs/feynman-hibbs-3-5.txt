@@ -1,0 +1,8 @@
+-- Feynman and Hibbs problem 3-5
+
+K0 = sqrt(m / 2 / pi / i / hbar / (t - tc)) *
+     exp(i m (x - xc)^2 / 2 / hbar / (t - tc))
+
+K = K0 psi(xc,tc)
+
+d(K,t) == -i / hbar (-hbar^2 / 2 / m d(K,x,x))

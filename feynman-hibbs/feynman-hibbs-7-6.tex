@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+7-6.
+Show, for a particle moving in three-dimensional space $x$, $y$, $z$,
+\begin{align*}
+\langle(x_{k+1}-x_k)^2\rangle
+=\langle(y_{k+1}-y_k)^2\rangle
+&=\langle(z_{k+1}-z_k)^2\rangle
+=-\frac{\hbar\epsilon}{im}\langle1\rangle
+\tag{7.50}
+\\
+\langle(x_{k+1}-x_k)(y_{k+1}-y_k)\rangle
+&=\langle(x_{k+1}-x_k)(z_{k+1}-z_k)\rangle
+\\
+&=\langle(y_{k+1}-y_k)(z_{k+1}-z_k)\rangle=0
+\tag{7.51}
+\end{align*}
+
+\bigskip
+\hrule
+
+\bigskip
+To extend (7.33) to three dimensions, change derivative to gradient, hence
+\begin{equation*}
+\left\langle\nabla_kF\right\rangle=-\frac{i}{\hbar}\left\langle F\nabla_kS\right\rangle
+\tag{1}
+\end{equation*}
+where
+\begin{equation*}
+\nabla_k
+=\mathbf i\frac{\partial}{\partial x}
++\mathbf j\frac{\partial}{\partial y}
++\mathbf k\frac{\partial}{\partial z}
+\end{equation*}
+and
+\begin{equation*}
+\mathbf i=\begin{pmatrix}1\\0\\0\end{pmatrix},
+\quad
+\mathbf j=\begin{pmatrix}0\\1\\0\end{pmatrix},
+\quad
+\mathbf k=\begin{pmatrix}0\\0\\1\end{pmatrix}
+\end{equation*}
+
+Let
+\begin{equation*}
+F=x_k+y_k+z_k
+\end{equation*}
+
+Then
+\begin{align*}
+\nabla_kF
+&=\frac{\partial F}{\partial x_k}\mathbf i
++\frac{\partial F}{\partial y_k}\mathbf j
++\frac{\partial F}{\partial z_k}\mathbf k
+\\
+&=\mathbf i+\mathbf j+\mathbf k
+\end{align*}
+
+Hence
+\begin{equation*}
+\langle\nabla_kF\rangle
+=\langle1\rangle\mathbf i
++\langle1\rangle\mathbf j
++\langle1\rangle\mathbf k
+\tag{2}
+\end{equation*}
+
+By equation (7.43)
+\begin{align*}
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
+&=\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
+\\
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
+&=\left\langle y_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
+\\
+\left\langle(x_k+y_k+z_k)\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+&=\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+\end{align*}
+
+Hence
+\begin{equation*}
+\langle F\nabla_kS\rangle
+=\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
++\left\langle y_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
++\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+\tag{3}
+\end{equation*}
+
+By equations (1), (2), and (3)
+\begin{align*}
+\langle1\rangle\mathbf i
+&=-\frac{i}{\hbar}\left\langle x_k\frac{\partial S}{\partial x_k}\right\rangle\mathbf i
+\\
+\langle1\rangle\mathbf j
+&=-\frac{i}{\hbar}\left\langle y_k\frac{\partial S}{\partial y_k}\right\rangle\mathbf j
+\\
+\langle1\rangle\mathbf k
+&=-\frac{i}{\hbar}\left\langle z_k\frac{\partial S}{\partial z_k}\right\rangle\mathbf k
+\end{align*}
+
+Then by the same arguments in the book for equation (7.49) we have
+\begin{align*}
+\left\langle(x_{k+1}-x_k)^2\right\rangle\mathbf i&=-\frac{\hbar\epsilon}{im}\langle1\rangle\mathbf i
+\\
+\left\langle(y_{k+1}-y_k)^2\right\rangle\mathbf j&=-\frac{\hbar\epsilon}{im}\langle1\rangle\mathbf j
+\\
+\left\langle(z_{k+1}-z_k)^2\right\rangle\mathbf k&=-\frac{\hbar\epsilon}{im}\langle1\rangle\mathbf k
+\end{align*}
+
+Hence (7.50) is shown to be true.
+
+\bigskip
+The action for a particle in three dimensions is
+\begin{equation*}
+S=\int_{t_a}^{t_b}\left(\frac{m}{2}\left(\dot x^2+\dot y^2+\dot z^2\right)-V(x,y,z)\right)\,dt
+\end{equation*}
+
+Hence
+\begin{equation*}
+\nabla_kS
+=\frac{\partial S}{\partial x_k}\mathbf i
++\frac{\partial S}{\partial y_k}\mathbf j
++\frac{\partial S}{\partial z_k}\mathbf k
+\end{equation*}
+where
+\begin{align*}
+\frac{\partial S}{\partial x_k}
+&=-m\left(\frac{x_{k+1}-x_k}{\epsilon}-\frac{x_k-x_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial x}\bigg|_{x_k,y_k,z_k}
+\\
+\frac{\partial S}{\partial y_k}
+&=-m\left(\frac{y_{k+1}-y_k}{\epsilon}-\frac{y_k-y_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial y}\bigg|_{x_k,y_k,z_k}
+\\
+\frac{\partial S}{\partial z_k}
+&=-m\left(\frac{z_{k+1}-z_k}{\epsilon}-\frac{z_k-z_{k-1}}{\epsilon}\right)
+-\epsilon\frac{\partial V}{\partial z}\bigg|_{x_k,y_k,z_k}
+\end{align*}
+
+% FIXME show (7.51)
+
+\end{document}

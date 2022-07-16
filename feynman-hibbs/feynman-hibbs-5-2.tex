@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-2. If we transform only in the time and not the spatial variables,
+defining
+\begin{multline*}
+k(x_b,E_b,x_a,E_a)
+\\
+=\int\int
+\exp\left(\frac{iE_bt_b}{\hbar}\right)
+K(x_b,t_b,x_a,t_a)
+\exp\left(-\frac{iE_at_a}{\hbar}\right)
+\,dt_b\,dt_a
+\tag{5.20}
+\end{multline*}
+
+show that for a system with a time-independent hamiltonian $H$
+\begin{equation*}
+k(x_b,E_b,x_a,E_a)=2\pi\hbar^2i\delta(E_b-E_a)\sum_n
+\frac{\phi_n(x_b)\phi_n^*(x_a)}{E_a-E_n+i\epsilon}
+\end{equation*}
+
+where $E_n$ and $\phi_n(x)$ are the eigenvalues and eigenfunctions of $H$.
+
+\bigskip
+\hrule
+
+\bigskip
+
+% FIXME incomplete
+
+\end{document}

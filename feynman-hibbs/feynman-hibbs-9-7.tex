@@ -1,0 +1,281 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\U{\vert\Phi_0\vert^2}
+
+\begin{document}
+
+9-7.
+Show, for the vacuum state, the expectation value
+of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$
+is $(\hbar/2kc)\delta_{\mathbf k,\mathbf q}$ and that
+of $\bar a_{1,\mathbf k}\bar a_{1,\mathbf q}$
+is $(\hbar/2kc)\delta_{-\mathbf k,\mathbf q}$.
+Develop a formula for the expectation of
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r$
+for integral $r$ and explain thereby how the expectation of such
+quantities as
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s$
+can be got for $\mathbf q\ne\mathbf k$.
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+Show that the expectation of the product of any odd number of
+$\bar a$'s is zero and that you can compute the expectation value of
+any product of $\bar a$'s or $\bar a^*$'s for the vacuum state.
+
+\bigskip
+\hrule
+
+\bigskip
+We will use the following table of integrals.
+\begin{align*}
+&\int_{-\infty}^\infty\exp(-ax^2+b)\,dx=\sqrt{\frac{\pi}{a}}\exp(b)
+\tag{1}
+\\
+&\int_{-\infty}^\infty x\exp(-ax^2+b)\,dx=0
+\tag{2}
+\\
+&\int_{-\infty}^\infty x^2\exp(-ax^2+b)\,dx=\frac{1}{2a}\sqrt{\frac{\pi}{a}}\exp(b)
+\tag{3}
+\end{align*}
+
+For simplicity of notation, let
+\begin{equation*}
+A=\bar a_{1,\mathbf k}^c
+\qquad
+B=\bar a_{1,\mathbf k}^s
+\qquad
+C=\bar a_{1,\mathbf q}^c
+\qquad
+D=\bar a_{1,\mathbf q}^s
+\end{equation*}
+
+These formulas convert $\bar a$ to sine and cosine modes.
+\begin{equation*}
+\bar a_{1,\mathbf k}=\frac{1}{\sqrt2}(A-iB)
+\qquad
+\bar a_{1,\mathbf q}=\frac{1}{\sqrt2}(C-iD)
+\tag{4}
+\end{equation*}
+
+Adapted from equation (8.84)
+\begin{equation*}
+\langle\Phi_0|f|\Phi_0\rangle
+=\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+f\U
+\,dA\,dB\,dC\,dD
+\end{equation*}
+
+The following $\U$ is adapted from equation (9.43).
+Symbol $q$ is a mode (physical unit $\text{meter}^{-1}$), not an electric charge.
+Note that we {\it could} include other modes in addition to $k$ and $q$.
+However, integrals over unused modes are
+cancelled by the normalization constant.
+\begin{equation*}
+\U=\Phi_0^*\Phi_0=\exp\left(
+-\frac{kc}{\hbar}A^2
+-\frac{kc}{\hbar}B^2
+-\frac{qc}{\hbar}C^2
+-\frac{qc}{\hbar}D^2
+\right)
+\end{equation*}
+
+Compute the normalization constant $K$.
+\begin{equation*}
+K=\langle\Phi_0|1|\Phi_0\rangle
+=\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+\U\,dA\,dB\,dC\,dD
+\end{equation*}
+
+By integral (1) for each factor in the measure and with $a=kc/\hbar$
+\begin{equation*}
+K=
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\end{equation*}
+
+Compute the expectation of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}$.
+From (4) we have
+\begin{equation*}
+\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}=\frac{A^2+B^2}{2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
+=\frac{1}{K}\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+\left(\frac{A^2+B^2}{2}\right)
+\U\,dA\,dB\,dC\,dD
+\end{equation*}
+
+Rewrite as
+\begin{multline*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
+=\frac{1}{2K}
+\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+A^2
+\U\,dA\,dB\,dC\,dD
+\\{}+
+\frac{1}{2K}
+\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+B^2
+\U\,dA\,dB\,dC\,dD
+\end{multline*}
+
+By integrals (1) and (3) with $a=kc/\hbar$ we have
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle
+=\frac{1}{K}\frac{\hbar}{2kc}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{kc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\left(\frac{\pi\hbar}{qc}\right)^{1/2}
+\end{equation*}
+
+The radicals are cancelled by the normalization constant $K$, hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k}|\Phi_0\rangle=\frac{\hbar}{2kc}
+\tag{5}
+\end{equation*}
+
+Compute the expectation of $\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}$.
+\begin{equation*}
+\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}
+=\frac{AC+BD-iAD+iBC}{2}
+\end{equation*}
+
+Hence
+\begin{multline*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=
+\\
+\frac{1}{K}\int\limits_{-\infty}^\infty\cdots\int\limits_{-\infty}^\infty
+\left(\frac{AC+BD-iAD+iBC}{2}\right)
+\U\,dA\,dB\,dC\,dD
+\end{multline*}
+
+By integral (2) all terms are zero, hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=0
+\tag{6}
+\end{equation*}
+
+Combine (5) and (6) to obtain
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{2kc}\delta_{\mathbf k,\mathbf q}
+\end{equation*}
+
+By equation (8.77)
+\begin{equation*}
+\bar a_{1,\mathbf k}^*=\bar a_{1,-\mathbf k}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0|\bar a_{1,-\mathbf k}\bar a_{1,\mathbf q}|\Phi_0\rangle=\frac{\hbar}{2kc}\delta_{\mathbf k,\mathbf q}
+\end{equation*}
+
+(9-7 cont'd)
+Develop a formula for the expectation of
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r$
+for integral $r$ and explain thereby how the expectation of such
+quantities as
+$(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s$
+can be got for $\mathbf q\ne\mathbf k$.
+
+\bigskip
+By the binomial theorem
+\begin{equation*}
+\left(\frac{A^2+B^2}{2}\right)^r=\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}A^{2j}B^{2(r-j)}
+\tag{7}
+\end{equation*}
+
+To compute the expectation of (7) we need the following integral.
+\begin{align*}
+\int_{-\infty}^\infty x^{2n}\exp(-ax^2+b)
+&=\frac{1\cdot3\cdot5\cdots(2n-1)}{2^na^n}\sqrt{\frac{\pi}{a}}\exp(b)
+\\
+&=(2n-1)!!
+\left(\frac{1}{2a}\right)^n
+\sqrt{\frac{\pi}{a}}\exp(b)
+\tag{8}
+\end{align*}
+
+From equation (8), define the following function $F$.
+(The $\sqrt{\pi/a}$ factor is left out because it gets cancelled by the normalization constant $K$.)
+\begin{equation*}
+F(n)=(2n-1)!!\left(\frac{\hbar}{2kc}\right)^n
+\end{equation*}
+
+Note that
+\begin{equation*}
+F(j)F(r-j)=
+(2j-1)!!\,(2r-2j-1)!!
+\left(\frac{\hbar}{2kc}\right)^j
+\left(\frac{\hbar}{2kc}\right)^{r-j}
+\end{equation*}
+
+It turns out that
+\begin{equation*}
+\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}(2j-1)!!\,(2r-2j-1)!!=r!
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0^*|(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r|\Phi_0\rangle
+=r!\left(\frac{\hbar}{2kc}\right)^r
+\end{equation*}
+
+Regarding the $\mathbf q\ne\mathbf k$ part of the problem, we have
+\begin{multline*}
+\left(\frac{A^2+B^2}{2}\right)^r\left(\frac{C^2+D^2}{2}\right)^s={}
+\\
+\left(\frac{1}{2^r}\sum_{j=0}^r\binom{r}{j}A^{2j}B^{2(r-j)}\right)
+\left(\frac{1}{2^s}\sum_{k=0}^s\binom{s}{k}C^{2k}D^{2(r-k)}\right)
+\end{multline*}
+
+Hence
+\begin{equation*}
+\langle\Phi_0^*|
+(\bar a_{1,\mathbf k}^*\bar a_{1,\mathbf k})^r
+(\bar a_{1,\mathbf q}^*\bar a_{1,\mathbf q})^s
+|\Phi_0\rangle
+=r!\left(\frac{\hbar}{2kc}\right)^r
+s!\left(\frac{\hbar}{2qc}\right)^s
+\end{equation*}
+
+(9-7 cont'd)
+Show that the expectation of 
+$(\bar a_{1,\mathbf k})^2$ or
+$(\bar a_{1,\mathbf k}^*)^2$ vanishes.
+
+\bigskip
+We have
+\begin{equation*}
+(\bar a_{1,\mathbf k})^2=\frac{A^2-B^2}{2}-iAB
+\qquad
+(\bar a_{1,\mathbf k}^*)^2=\frac{A^2-B^2}{2}+iAB
+\end{equation*}
+
+The integrals of $A^2$ and $-B^2$ cancel each other.
+The integral of $AB$ vanishes by integral (2).
+
+\bigskip
+(9-7 cont'd)
+Show that the expectation of the product of any odd number of
+$\bar a$'s is zero and that you can compute the expectation value of
+any product of $\bar a$'s or $\bar a^*$'s for the vacuum state.
+
+% FIXME answer last question
+
+\end{document}

@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+2-2.
+For a harmonic oscillator $L=(m/2)(\dot x^2-\omega^2x^2)$.
+With $T$ equal to $t_b-t_a$, show that the classical action is
+\begin{equation*}
+S_{cl}=\frac{m\omega}{2\sin\omega T}
+\left(\left(x_b^2+x_a^2\right)\cos\omega T-2x_bx_a\right)
+\tag{2.9}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+We will need equation (2.7) to determine the classical motion $x(t)$.
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
+\tag{2.7}
+\end{equation*}
+
+For the Lagrangian $L$ given in problem 2-2 we have
+\begin{equation*}
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot x}\right)=m\ddot x
+\qquad
+\frac{\partial L}{\partial x}=-m\omega^2x
+\end{equation*}
+
+By equation (2.7) we have for the classical acceleration $\ddot x(t)$
+\begin{equation*}
+\ddot x(t)=-\omega^2x
+\tag{1}
+\end{equation*}
+
+The well-known solution to (1) is
+\begin{equation*}
+x(t)=A\sin(\omega t)+B\cos(\omega t)
+\end{equation*}
+
+We have the following boundary conditions.
+\begin{equation*}
+x(0)=x_a
+\qquad
+x(T)=x_b
+\end{equation*}
+
+Solve for $B$.
+\begin{equation*}
+B=x(0)=x_a
+\end{equation*}
+
+For $x(T)$ we have
+\begin{equation*}
+x(T)=A\sin(\omega T)+B\cos(\omega T)
+\end{equation*}
+
+Solve for $A$.
+\begin{equation*}
+A=\frac{x(T)-B\cos(\omega T)}{\sin(\omega T)}=
+\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}
+\end{equation*}
+
+Hence the equation of motion is
+\begin{equation*}
+x(t)=\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\sin(\omega t)+x_a\cos(\omega t)
+\tag{2}
+\end{equation*}
+
+Differentiate $x(t)$ to obtain velocity $\dot x(t)$.
+\begin{equation*}
+\dot x(t)=\frac{d}{dt}x(t)=
+\omega\left(
+\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\cos(\omega t)-x_a\sin(\omega t)
+\right)
+\tag{3}
+\end{equation*}
+
+Using the action integral
+\begin{equation*}
+S=\int_0^T L\,dt
+\end{equation*}
+we have for the classical action
+\begin{align*}
+S_{cl}&=\frac{m}{2}\int_0^T (\dot{x}^2-\omega^2 x^2)\,dt
+\\[1ex]
+&=\frac{m}{2}\left(
+\int_0^T\dot{x}^2\,dt
+-\int_0^T\omega^2x^2\,dt\right)
+\end{align*}
+
+Let $u=v=\dot x$ and note that
+\begin{align*}
+\dot u&=\ddot x
+\\[1ex]
+\int v\,dt&=x
+\end{align*}
+
+Apply integration by parts to the integral of $\dot x^2$.
+\begin{align*}
+\int_0^T \dot x^2\,dt
+&=\int_0^T uv\,dt
+\\[1ex]
+&=\left(u\int v\,dt\right)_0^T
+-\int_0^T\dot u\left(\int v\,dt\right)\,dt
+\\[1ex]
+&=\dot xx\bigg|_0^T-\int_0^T \ddot xx\,dt
+\end{align*}
+
+Hence
+\begin{equation*}
+S_{cl}=\frac{m}{2}\left(
+\dot xx\bigg|_0^T-\int_0^T \ddot xx\,dt
+-\int_0^T\omega^2x^2\,dt
+\right)
+\end{equation*}
+The two integrals on the right cancel by $\ddot x=-\omega^2x$ from equation (1).
+
+\bigskip
+We now have
+\begin{equation*}
+S_{cl}=\frac{m}{2}\dot xx\bigg|_0^T
+=\frac{m}{2}\dot x(T)x(T)-\frac{m}{2}\dot x(0)x(0)
+\tag{4}
+\end{equation*}
+
+By evaluation of $x(t)$ and $\dot x(t)$ at $t=T$ and $t=0$ we have
+\begin{equation*}
+S_{cl}=\frac{m\omega}{2\sin(\omega T)}
+\left(\left(x_b^2+x_a^2\right)\cos(\omega T)-2x_b x_a\right)
+\tag{5}
+\end{equation*}
+
+\end{document}

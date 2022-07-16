@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-3.
+Prove that the relation $\phi_{\mathbf k}=4\pi\rho_{\mathbf k}/k^2$
+simply means that $\phi_{\mathbf k}$ at any instant is the Coulomb
+potential from the charges at that instant, so that, for example,
+if $\rho$ comes from a number of charges $q_i$ at distances $R_i$
+from a point, the potential at the point is
+$\phi=\sum_iq_i/R_i$.
+
+\bigskip
+\hrule
+
+\bigskip
+Integrate using polar coordinates.
+\begin{equation*}
+\int_0^{2\pi}\int_0^\pi\int_0^\infty
+\frac{4\pi\rho_{\mathbf k}(t)}{k^2}\exp(ikR)\,k^2\sin\theta\,dk\,d\theta\,d\phi
+=\frac{16\pi^2i\rho_{\mathbf k}(t)}{R}
+\tag{1}
+\end{equation*}
+
+The result is a Coulomb potential for
+$\rho_{\mathbf k}(t)\propto -iq$.
+
+\bigskip
+The following integrals show how (1) is obtained.
+\begin{equation*}
+\int_0^\infty\exp(-a x)\,dx=\frac{1}{a}
+\qquad
+\int_0^\pi\sin\theta\,d\theta=2
+\qquad
+\int_0^{2\pi}d\phi=2\pi
+\end{equation*}
+
+Note: For multiple charges $q_i$ we have
+\begin{align*}
+\rho(\mathbf r,t)&=\sum_iq_i\delta(R_i)
+\\
+\phi(\mathbf r,t)&=\sum_i\frac{q_i}{R_i}
+\end{align*}
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-3.
+Show that the complex conjugate function $\psi^*$,
+defined as the function $\psi$ with every $i$ changed to $-i$,
+satisfies
+\begin{equation*}
+\frac{\partial\psi^*}{\partial t}=+\frac{i}{\hbar}(H\psi)^*
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+Start with equation (4.14).
+\begin{equation*}
+\frac{\partial\psi}{\partial t}=-\frac{i}{\hbar}H\psi
+\tag{4.14}
+\end{equation*}
+
+Conjugate both sides.
+\begin{equation*}
+\left(\frac{\partial\psi}{\partial t}\right)^*=+\frac{i}{\hbar}(H\psi)^*
+\end{equation*}
+
+It is well known that conjugation and differentiation commute, hence
+\begin{equation*}
+\left(\frac{\partial\psi}{\partial t}\right)^*=\frac{\partial\psi^*}{\partial t}=+\frac{i}{\hbar}(H\psi)^*
+\end{equation*}
+
+However, just for the fun of it, let us complete the proof without using the commutation rule.
+
+\bigskip
+Consider equation (2.22).
+\begin{equation*}
+K(b,a)=\lim_{\epsilon\rightarrow0}\frac{1}{A^N}\int\cdots\int
+\exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\tag{2.22}
+\end{equation*}
+
+Differentiate (2.22) with respect to $t_b$.
+\begin{equation*}
+\frac{\partial}{\partial t_b}K(b,a)
+\\
+=
+\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
+\int\cdots\int
+\frac{i}{\hbar}\frac{\partial}{\partial t_b}S(b,a)
+\exp\left(\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\end{equation*}
+
+Then conjugate.
+\begin{multline*}
+\left(\frac{\partial}{\partial t_b}K(b,a)\right)^*
+\\
+=\lim_{\epsilon\rightarrow0}\frac{1}{A^N}
+\int\cdots\int
+-\frac{i}{\hbar}\frac{\partial}{\partial t_b}S(b,a)
+\exp\left(-\frac{i}{\hbar}S(b,a)\right)\,dx_1\cdots dx_{N-1}
+\end{multline*}
+
+Clearly the result is the same for conjugate first then differentiate, hence
+\begin{equation*}
+\left(\frac{\partial}{\partial t_b}K(b,a)\right)^*
+=\frac{\partial}{\partial t_b}K^*(b,a)
+\tag{1}
+\end{equation*}
+
+Now consider this form of equation (4.2) that has $x,t$ instead of $x_b,t_b$.
+\begin{equation*}
+\psi(x,t)=\int_{\infty}^\infty K(x,t,x_a,t_a)\psi(x_a,t_a)\,dx_a
+\tag{2}
+\end{equation*}
+
+Differentiate (2) with respect to $t$ then conjugate.
+Note that $\psi(x_a,t_a)$ is a constant with respect to $t$.
+\begin{equation*}
+\left(\frac{\partial}{\partial t}\psi(x,t)\right)^*
+=\int_{\infty}^\infty\left(\frac{\partial}{\partial t}K(x,t,x_a,t_a)\right)^*\psi^*(x_a,t_a)\,dx_a
+\end{equation*}
+
+Now do the reverse, conjugate (2) then differentiate.
+\begin{equation*}
+\frac{\partial}{\partial t}\psi^*(x,t)
+=\int_{\infty}^\infty\frac{\partial}{\partial t}K^*(x,t,x_a,t_a)\psi^*(x_a,t_a)\,dx_a
+\end{equation*}
+
+By equation (1) the integrals are equivalent, hence
+\begin{equation*}
+\left(\frac{\partial}{\partial t}\psi(x,t)\right)^*=\frac{\partial}{\partial t}\psi^*(x,t)
+\end{equation*}
+
+\end{document}

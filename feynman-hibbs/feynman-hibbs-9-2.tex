@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-2.
+Explain why the charge density corresponding to a single
+charge $q$ located at the point $\mathbf x(t)=(x(t),y(t),z(t))$
+at time $t$ is
+\begin{equation*}
+\rho(\mathbf r,t)=q
+\delta(r_x-x(t))
+\delta(r_y-y(t))
+\delta(r_z-z(t))
+=q\delta^3(\mathbf r-\mathbf x(t))
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+For a point charge $q$ at $\mathbf x(t)$ the charge density is
+\begin{equation*}
+\rho(\mathbf r,t)
+=\begin{cases}
+q & \mathbf r=\mathbf x(t)
+\\
+0 & \mathbf r\ne\mathbf x(t)
+\end{cases}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\rho(\mathbf r,t)=q\delta^3(\mathbf r-\mathbf x(t))
+\tag{1}
+\end{equation*}
+
+(9-2 cont'd)
+Show that
+\begin{equation*}
+\rho_{\mathbf k}(t)=q\exp(-i\mathbf k\cdot\mathbf x(t))
+\tag{2}
+\end{equation*}
+
+From equation (9.14)
+\begin{equation*}
+\rho(\mathbf r,t)=\int\rho_{\mathbf k}(t)
+\exp(i\mathbf k\cdot\mathbf r)
+\frac{d^3\mathbf k}{(2\pi)^3}
+\tag{3}
+\end{equation*}
+
+Substitute (2) into (3).
+\begin{equation*}
+\rho(\mathbf r,t)=\frac{q}{(2\pi)^3}
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\exp\big(i\mathbf k\cdot(\mathbf r-\mathbf x(t))\big)
+\,dk_x\,dk_y\,dk_z
+\end{equation*}
+
+Recall the following definition of a delta function.
+\begin{equation*}
+\delta(a)=\frac{1}{2\pi}\int_{-\infty}^\infty\exp(iax)\,dx
+=\begin{cases}
+1 & a=0
+\\
+0 & a\ne0
+\end{cases}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\rho(\mathbf r,t)=q\delta^3(\mathbf r-\mathbf x(t))
+\end{equation*}
+
+By equation (1) this is the correct result,
+hence (2) is correct.
+
+\bigskip
+(9-2 cont'd)
+Explain why the current density is
+\begin{equation*}
+\mathbf j(\mathbf r,t)=q\dot{\mathbf x}(t)\delta^3(\mathbf r-\mathbf x(t))
+\end{equation*}
+
+(9-2 cont'd)
+If we have a number of charges $q_i$ located at $\mathbf x_i(t)$,
+the values $\rho_{\mathbf k}$ and $\mathbf j_{\mathbf k}$ are
+\begin{equation*}
+\rho_{\mathbf k}=\sum_iq_i\exp(-i\mathbf k\cdot\mathbf x_i(t))
+\qquad
+\mathbf j_{\mathbf k}
+=\sum_iq_i\dot{\mathbf x}_i(t)
+\exp(-\mathbf k\cdot\mathbf x_i(t))
+\tag{9.16}
+\end{equation*}
+
+From equation (9.14)
+\begin{equation*}
+\mathbf j(\mathbf r,t)
+=\int\mathbf j_{\mathbf k}(t)
+\exp(i\mathbf k\cdot\mathbf r)
+\frac{d^3\mathbf k}{(2\pi)^3}
+\tag{4}
+\end{equation*}
+
+Substitute (9.16) into (4).
+\begin{equation*}
+\mathbf j(\mathbf r,t)
+=\frac{q}{(2\pi)^3}\dot{\mathbf x}(t)
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\int_{-\infty}^\infty
+\exp\big(i\mathbf k\cdot(\mathbf r-\mathbf x(t))\big)
+\,dk_x\,dk_y\,dk_z
+\end{equation*}
+
+Hence
+\begin{equation*}
+\mathbf j(\mathbf r,t)=q\dot{\mathbf x}(t)\delta^3(\mathbf r-\mathbf x(t))
+\end{equation*}
+
+\end{document}

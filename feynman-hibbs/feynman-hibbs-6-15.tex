@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-15.
+Recall that in problem 5-4 we defined a particular integral as the
+transition amplitude to go from state $\psi(x)$ to state $\chi(x)$.
+Show that the function $\lambda_{mn}$ satisfies this definition
+when the initial state is the eigenfunction $\phi_n(x)$ and the
+final state is the eigenfunction $\phi_m(x)$.
+
+\bigskip
+\hrule
+
+\bigskip
+From problem 5-4 the transition amplitude is
+\begin{equation*}
+\langle m|n\rangle=
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\phi_m^*(x_b)K_V(b,a)\phi_n(x_a)
+\,dx_a\,dx_b
+\tag{1}
+\end{equation*}
+
+Consider equation (6.68).
+\begin{equation*}
+K_V(b,a)=\sum_m\sum_n\lambda_{mn}(t_b,t_a)\phi_m(x_b)\phi_n^*(x_a)
+\tag{6.68}
+\end{equation*}
+
+Substitute (6.68) into (1).
+\begin{multline*}
+\langle m|n\rangle=
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\phi_m^*(x_b)
+\\
+{}\times
+\left(\sum_{m'}\sum_{n'}\lambda_{m'n'}(t_b,t_a)\phi_{m'}(x_b)\phi_{n'}^*(x_a)\right)
+\phi_n(x_a)
+\,dx_a\,dx_b
+\end{multline*}
+
+By distributive law
+\begin{equation*}
+\langle m|n\rangle=
+\sum_{m'}\sum_{n'}\lambda_{m'n'}(t_b,t_a)
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\phi_m^*(x_b)\phi_{m'}(x_b)
+\phi_{n'}^*(x_a)\phi_n(x_a)
+\,dx_a\,dx_b
+\end{equation*}
+
+By orthogonality of eigenfunctions
+\begin{equation*}
+\langle m|n\rangle=
+\lambda_{mn}(t_b,t_a)\int_{-\infty}^\infty\int_{-\infty}^\infty
+\phi_m^*(x_b)\phi_m(x_b)
+\phi_n^*(x_a)\phi_n(x_a)
+\,dx_a\,dx_b
+\end{equation*}
+
+By normalization of eigenfunctions
+\begin{equation*}
+\langle m|n\rangle=
+\lambda_{mn}(t_b,t_a)
+\end{equation*}
+
+\end{document}

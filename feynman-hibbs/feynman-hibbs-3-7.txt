@@ -1,0 +1,12 @@
+-- Feynman and Hibbs problem 3-7
+
+-- Verify equation (4)
+
+i = quote(i) -- Clear symbol i to avoid branch cuts
+
+A = sqrt(m / 2 / pi / i / hbar / (t + s))
+B = sqrt(m / 2 / pi / i / hbar / t)
+C = sqrt(m / 2 / pi / i / hbar / s)
+D = sqrt(2 pi i hbar t s / m / (t + s))
+
+A == B C D

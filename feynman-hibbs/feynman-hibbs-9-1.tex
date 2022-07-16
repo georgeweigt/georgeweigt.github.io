@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\begin{document}
+
+9-1.
+Show that $\mathbf E$, $\mathbf B$, and $\mathbf k$ are
+mutually perpendicular for this plane-wave solution.
+\begin{equation*}
+\mathbf A(\mathbf r,t)=\mathbf a_{\mathbf k}(t)
+\exp(i\mathbf k\cdot\mathbf r)
+\tag{9.12}
+\end{equation*}
+
+\bigskip
+\hrule
+
+\bigskip
+For an arbitrary vector $\mathbf k'$
+choose a rotation matrix $\mathbf R$ such that
+\begin{equation*}
+\mathbf k=\mathbf R\,\mathbf k'=\begin{pmatrix}0\\0\\k\end{pmatrix}
+\end{equation*}
+where $k=|\mathbf k'|$.
+
+\bigskip
+By the requirement that $\mathbf a_{\mathbf k}(t)\cdot\mathbf k=0$, let
+\begin{equation*}
+\mathbf a_{\mathbf k}(t)=a(t)\begin{pmatrix}1\\1\\0\end{pmatrix}
+\end{equation*}
+
+Then by equation (9.12)
+\begin{equation*}
+\mathbf A=\mathbf a_{\mathbf k}(t)\exp(i\mathbf k\cdot\mathbf r)
+=\begin{pmatrix}
+a(t)\exp(ikz)
+\\[1ex]
+a(t)\exp(ikz)
+\\[1ex]
+0
+\end{pmatrix}
+\end{equation*}
+
+By equation (9.9) with $\phi=0$
+\begin{equation*}
+\mathbf E=-\frac{1}{c}\frac{\partial\mathbf A}{\partial t}=
+-\frac{1}{c}\frac{da(t)}{dt}
+\begin{pmatrix}
+\exp(ikz)
+\\[1ex]
+\exp(ikz)
+\\[1ex]
+0
+\end{pmatrix}
+\end{equation*}
+
+By equation (9.7)
+\begin{equation*}
+\mathbf B=\nabla\times\mathbf A=
+\begin{pmatrix}
+-ia(t)\exp(ikz)
+\\[1ex]
+ia(t)\exp(ikz)
+\\[1ex]
+0
+\end{pmatrix}
+\end{equation*}
+
+By inspection we have $\mathbf k\cdot\mathbf E=0$, $\mathbf k\cdot\mathbf B=0$,
+and $\mathbf E\cdot\mathbf B=0$, hence all three vectors are mutually perpendicular.
+
+\end{document}

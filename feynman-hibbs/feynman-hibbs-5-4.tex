@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+5-4.
+Suppose the wave function for a system is $\psi(x)$ at time $t_a$.
+Suppose further that the behavior of the system described by
+the kernel $K(x_b,t_b,x_a,t_a)$ for motions in the interval
+$t_b\ge t\ge t_a$.
+Show that the probability that the system is found to be in state
+$\chi(x)$ at time $t_b$ is given by the square of the integral
+\begin{equation*}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\chi^*(x_b)
+K(x_b,t_b,x_a,t_a)
+\psi(x_a)
+\,dx_a\,dx_b
+\tag{1}
+\end{equation*}
+
+We call this integral the {\it transition amplitude} to go from
+state $\psi(x)$ to state $\chi(x)$.
+
+\bigskip
+\hrule
+
+\bigskip
+From equation (3.42)
+\begin{equation*}
+\psi(x_b,t_b)=\int_{-\infty}^\infty
+K(x_b,t_b,x_a,t_a)
+\psi(x_a,t_a)
+\,dx_a
+\end{equation*}
+
+Hence the integral over $x_a$ in (1) is equivalent to $\psi(x_b)$.
+\begin{equation*}
+\int_{-\infty}^\infty\int_{-\infty}^\infty
+\chi^*(x_b)
+K(x_b,t_b,x_a,t_a)
+\psi(x_a)
+\,dx_a\,dx_b
+=\int_{-\infty}^\infty
+\chi^*(x_b)
+\psi(x_b)
+\,dx_b
+\end{equation*}
+
+Then by equation (5.32)
+\begin{equation*}
+P(\mathrm X)=\left|
+\int_{-\infty}^\infty
+\chi^*(x_b)
+\psi(x_b)
+\,dx_b
+\right|^2
+\end{equation*}
+
+where $\mathrm X$ is upper-case $\chi$.
+
+\end{document}

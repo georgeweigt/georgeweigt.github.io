@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\parindent=0pt
+
+\begin{document}
+
+3-12.
+If the wave function for a harmonic oscillator is (at $t=0$)
+\begin{equation*}
+\psi(x,0)=\exp\left(-\frac{m\omega}{2\hbar}(x-a)^2\right)
+\tag{3.67}
+\end{equation*}
+
+then using equation (3.42) and the results of problem 3-8, show that
+\begin{multline*}
+\psi(x,T)=
+\\
+\exp\left(
+-\frac{i\omega T}{2}-\frac{m\omega}{2\hbar}
+\left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
+\right)
+\tag{3.68}
+\end{multline*}
+
+and find the probability distribution $\vert\psi\vert^2$.
+
+\bigskip
+\hrule
+
+\bigskip
+From problem 3-8
+\begin{multline*}
+K(x,T,x_c,0)=
+\\
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
+\exp\left(
+\frac{im\omega}{2\hbar\sin(\omega T)}\left((x^2+x_c^2)\cos(\omega T)-2xx_c\right)
+\right)
+\tag{2}
+\end{multline*}
+
+From equation (3.42)
+\begin{equation*}
+\psi(x,T)=\int_{-\infty}^\infty K(x,T,x_c,0)\psi(x_c,0)\,dx_c
+\tag{3}
+\end{equation*}
+
+Substitute (3.68) and (2) into (3) to obtain
+\begin{align*}
+&\psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
+\\
+&\quad{}\times\int_{-\infty}^\infty
+\exp\left(
+\frac{im\omega}{2\hbar\sin(\omega T)}\left((x^2+x_c^2)\cos(\omega T)-2xx_c\right)
+\right)
+\\
+&\quad{}\times\exp\left(-\frac{m\omega}{2\hbar}(x_c-a)^2\right)\,dx_c
+\end{align*}
+
+Rewrite as
+\begin{equation*}
+\psi(x,T)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^{1/2}
+\int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)\,dx_c
+\tag{4}
+\end{equation*}
+
+where
+\begin{align*}
+A&=\frac{m\omega}{2\hbar}\left(\frac{i\cos(\omega T)}{\sin(\omega T)}-1\right)
+=\frac{im\omega\exp(i\omega T)}{2\hbar\sin(\omega T)}
+\\
+B&=\frac{m\omega}{\hbar}\left(a-\frac{ix}{\sin(\omega T)}\right)
+\\
+C&=\frac{m\omega}{2\hbar}\left(\frac{ix^2\cos(\omega T)}{\sin(\omega T)}-a^2\right)
+\end{align*}
+
+Solve the integral.
+\begin{equation*}
+\int_{-\infty}^\infty\exp(Ax_c^2+Bx_c+C)
+=\left(-\frac{\pi}{A}\right)^{1/2}
+\exp\left(-\frac{B^2}{4A}+C\right)
+\tag{5}
+\end{equation*}
+
+where
+\begin{equation*}
+-\frac{\pi}{A}
+=\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}
+\tag{6}
+\end{equation*}
+
+and
+\begin{equation*}
+-\frac{B^2}{4A}+C
+=-\frac{m\omega}{2\hbar}
+\left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
+\tag{7}
+\end{equation*}
+
+Note that
+\begin{equation*}
+\underset{\substack{\\[1ex]\text{from equation (4)}}}
+{\frac{m\omega}{2\pi i\hbar\sin(\omega T)}}
+\times
+\underset{\substack{\\[1ex]\text{from equation (6)}}}
+{\frac{2\pi i\hbar\sin(\omega T)}{m\omega\exp(i\omega T)}}
+=\exp(-i\omega T)
+\tag{8}
+\end{equation*}
+
+Substitute the solved integral (5) into (3) to obtain
+\begin{multline*}
+\psi(x,T)=\exp\left(-\frac{i\omega T}{2}\right)
+\\
+{}\times
+\exp\left(
+-\frac{m\omega}{2\hbar}
+\left(x^2-2ax\exp(-i\omega T)+a^2\cos(\omega T)\exp(-i\omega T)\right)
+\right)
+\end{multline*}
+
+% FIXME find probability distribution
+
+\end{document}

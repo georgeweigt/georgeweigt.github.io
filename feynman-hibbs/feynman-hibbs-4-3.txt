@@ -1,0 +1,13 @@
+-- Feynman and Hibbs problem 4-3
+
+-- Show that conjugation and differentiation commute for exponential
+
+f = exp(i/hbar S(x,t))
+
+A = conj(d(f,t))
+B = d(conj(f),t)
+
+A
+B
+
+test(A == B, "ok", "?")

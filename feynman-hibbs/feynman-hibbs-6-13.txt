@@ -1,0 +1,28 @@
+-- Feynman and Hibbs problem 6-13
+
+Ea = p^2 / (2 m)
+
+lambda = 1 / hbar
+
+f = (m / (2 pi i hbar (tb - tc)))^(3/2)
+
+g = m Rbc^2 / (2 (tb - tc)) - Ea tc
+
+gp = d(g,tc)
+gpp = d(g,tc,tc)
+
+tc = tb - Rbc m / p
+
+"Verify tc"
+
+check(gp == 0)
+
+"ok"
+
+"Coefficient"
+
+simplify(-f sqrt(2 pi i / (lambda gpp)))
+
+"Exponential"
+
+simplify(exp(i lambda g))

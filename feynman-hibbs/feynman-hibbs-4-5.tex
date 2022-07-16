@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+4-5.
+Using the relation
+\begin{equation*}
+K(b,a)=\int_{-\infty}^\infty K(b,c)K(c,a)\,dx_c
+\tag{4.26}
+\end{equation*}
+with $t_c-t_a=\epsilon$, an infinitesimal, show that if $t_b$ is greater than $t_a$,
+the kernel $K$ satisfies
+\begin{equation*}
+\frac{\partial}{\partial t_a}K(b,a)=+\frac{i}{\hbar}H_a^*K(b,a)
+\end{equation*}
+where $H_a$ now operates on the $a$ variables only.
+
+\bigskip
+\hrule
+
+\bigskip
+Expand the arguments of $K$ in (4.26).
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int_{-\infty}^\infty K(x_b,t_b,x_c,t_c)K(x_c,t_c,x_a,t_a)\,dx_c
+\end{equation*}
+
+Substitute $t_a=t_c-\epsilon$.
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int_{-\infty}^\infty K(x_b,t_b,x_c,t_c)K(x_c,t_c,x_a,t_c-\epsilon)\,dx_c
+\end{equation*}
+
+Consider the following Taylor series expansion of $K(x_c,t_a+\epsilon,x_a,t_a)$.
+\begin{equation*}
+K(x_c,t_a+\epsilon,x_a,t_a)\approx K(x_c,t_a,x_a,t_a)+\epsilon\frac{\partial}{\partial t_a}K(x_c,t_a,x_a,t_a)
+\end{equation*}
+
+\begin{equation*}
+\lim_{\epsilon\rightarrow0}\int_{-\infty}^\infty K(x_b,t_b,x_c,t_c)K(x_c,t_c,x_a,t_c-\epsilon)\,dx_c
+=\int_{-\infty}^\infty K(x_b,t_b,x_c,t_c)\,dx_c
+\end{equation*}
+
+% FIXME incomplete
+
+\end{document}

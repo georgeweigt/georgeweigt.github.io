@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\parindent=0pt
+
+\newcommand\INT{\int_{\mathbb R^3}}
+
+\begin{document}
+
+6-21.
+Consider the special case that the perturbing potential
+$V$ has no matrix elements except between the two states
+1 and 2; and further, suppose these states are degenerate,
+that is, suppose $E_1=E_2$.
+Let $V_{12}=V_{21} = v$ and let $V_{11}$, $V_{22}$, and
+all other $V_{mn}$ be zero.
+Show that
+\begin{align*}
+\lambda_{11}&=1-\frac{v^2T^2}{2\hbar^2}+\frac{v^4T^4}{24\hbar^4}-\cdots&=\cos\frac{vT}{\hbar}
+\tag{6.81}
+\\
+\lambda_{12}&=-i\frac{vT}{\hbar}+i\frac{v^3T^3}{6\hbar^3}-\cdots&=-i\sin\frac{vT}{\hbar}
+\tag{6.82}
+\end{align*}
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (6.75).
+\begin{multline*}
+\lambda_{mn}(t_b,t_a)=\delta_{mn}
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_a)\right)
+\\
+{}-\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\exp\left(-\frac{i}{\hbar}E_m(t_b-t_a)\right)
+\sum_jV_{mj}(t_c)\lambda_{jn}(t_c,t_a)\,dt_c
+\tag{6.75}
+\end{multline*}
+
+Let $E=E_1=E_2$ and $T=t_b-t_a$.
+Then by (6.75) we have
+\begin{align*}
+\lambda_{11}(t_b,t_a)&=
+\exp\left(-\frac{iET}{\hbar}\right)
+-\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\exp\left(-\frac{i}{\hbar}E(t_b-t_c)\right)
+v(t_c)\lambda_{21}(t_c,t_a)\,dt_c
+\\
+\lambda_{12}(t_b,t_a)&=
+-\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\exp\left(-\frac{i}{\hbar}E(t_b-t_c)\right)
+v(t_c)\lambda_{21}(t_c,t_a)\,dt_c
+\\
+\lambda_{21}(t_b,t_a)&=
+-\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\exp\left(-\frac{i}{\hbar}E(t_b-t_c)\right)
+v(t_c)\lambda_{12}(t_c,t_a)\,dt_c
+\\
+\lambda_{22}(t_b,t_a)&=
+\exp\left(-\frac{iET}{\hbar}\right)
+-\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\exp\left(-\frac{i}{\hbar}E(t_b-t_c)\right)
+v(t_c)\lambda_{12}(t_c,t_a)\,dt_c
+\end{align*}
+
+\end{document}
