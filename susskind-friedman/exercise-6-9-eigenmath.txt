@@ -32,6 +32,8 @@ T1 = (ud + du) / sqrt(2)
 T2 = (uu + dd) / sqrt(2)
 T3 = (uu - dd) / sqrt(2)
 
+"Verify eigenvalues"
+
 check(dot(sigmax,taux,S) == -S)
 check(dot(sigmay,tauy,S) == -S)
 check(dot(sigmaz,tauz,S) == -S)

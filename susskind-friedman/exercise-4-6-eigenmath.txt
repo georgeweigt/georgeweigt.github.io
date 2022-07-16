@@ -13,8 +13,12 @@ xl = (1,-1) / sqrt(2)
 yi = (1,i) / sqrt(2)
 yo = (1,-i) / sqrt(2)
 
-dot(conj(xr),Psi) dot(conj(Psi),xr) == (1 + cos(omega t)) / 2
-dot(conj(xl),Psi) dot(conj(Psi),xl) == (1 - cos(omega t)) / 2
+"Verify probabilities"
 
-dot(conj(yi),Psi) dot(conj(Psi),yi) == (1 + sin(omega t)) / 2
-dot(conj(yo),Psi) dot(conj(Psi),yo) == (1 - sin(omega t)) / 2
+check(dot(conj(xr),Psi) dot(conj(Psi),xr) == (1 + cos(omega t)) / 2)
+check(dot(conj(xl),Psi) dot(conj(Psi),xl) == (1 - cos(omega t)) / 2)
+
+check(dot(conj(yi),Psi) dot(conj(Psi),yi) == (1 + sin(omega t)) / 2)
+check(dot(conj(yo),Psi) dot(conj(Psi),yo) == (1 - sin(omega t)) / 2)
+
+"ok"

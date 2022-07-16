@@ -28,8 +28,8 @@ tauy = kronecker(I,tauy)
 
 S = (ud - du) / sqrt(2) -- singlet state
 
-check(dot(tauy,S) == (-i uu - i dd) / sqrt(2))
-check(dot(sigmax,tauy,S) == (-i du - i ud) / sqrt(2))
+"Verify expectation value"
+
 check(dot(conj(S),sigmax,tauy,S) == 0)
 
 "ok"

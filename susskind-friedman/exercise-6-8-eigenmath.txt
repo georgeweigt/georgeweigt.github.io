@@ -29,10 +29,14 @@ tauy = kronecker(I,tauy)
 T2 = (uu + dd) / sqrt(2)
 T3 = (uu - dd) / sqrt(2)
 
-dot(conj(T2),sigmaz,tauz,T2)
-dot(conj(T2),sigmax,taux,T2)
-dot(conj(T2),sigmay,tauy,T2)
+"Verify expectation values"
 
-dot(conj(T3),sigmaz,tauz,T3)
-dot(conj(T3),sigmax,taux,T3)
-dot(conj(T3),sigmay,tauy,T3)
+check(dot(conj(T2),sigmaz,tauz,T2) == 1)
+check(dot(conj(T2),sigmax,taux,T2) == 1)
+check(dot(conj(T2),sigmay,tauy,T2) == -1)
+
+check(dot(conj(T3),sigmaz,tauz,T3) == 1)
+check(dot(conj(T3),sigmax,taux,T3) == -1)
+check(dot(conj(T3),sigmay,tauy,T3) == 1)
+
+"ok"

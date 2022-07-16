@@ -28,6 +28,8 @@ tauy = kronecker(I,tauy)
 
 T1 = (ud + du) / sqrt(2)
 
-dot(conj(T1),sigmaz,tauz,T1)
-dot(conj(T1),sigmax,taux,T1)
-dot(conj(T1),sigmay,tauy,T1)
+"Verify expectation values"
+
+check(dot(conj(T1),sigmaz,tauz,T1) == -1)
+check(dot(conj(T1),sigmax,taux,T1) == 1)
+check(dot(conj(T1),sigmay,tauy,T1) == 1)

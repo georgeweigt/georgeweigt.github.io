@@ -26,6 +26,8 @@ tauz = kronecker(I,tauz)
 taux = kronecker(I,taux)
 tauy = kronecker(I,tauy)
 
+"Verify Table 1"
+
 check(dot(sigmaz,uu) == uu)
 check(dot(sigmaz,ud) == ud)
 check(dot(sigmaz,du) == -du)
