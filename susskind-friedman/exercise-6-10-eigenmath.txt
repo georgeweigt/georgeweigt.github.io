@@ -74,7 +74,7 @@ check(dot(H,dd) == 1/2 omega dd)
 A = exp(-i omega t / (2 hbar))
 B = exp(3 i omega t / (2 hbar))
 
-check(A T1 / sqrt(2) + B S / sqrt(2) == 1/2 (0,A+B,A-B,0))
-check(A T1 / sqrt(2) - B S / sqrt(2) == 1/2 (0,A-B,A+B,0))
+check((A T1 + B S) / sqrt(2) == 1/2 (0,A+B,A-B,0))
+check((A T1 - B S) / sqrt(2) == 1/2 (0,A-B,A+B,0))
 
 "ok"
