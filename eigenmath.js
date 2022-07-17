@@ -262,6 +262,23 @@ alloc_tensor()
 	return {dim:[], elem:[]};
 }
 function
+annotate_result(p1, p2)
+{
+	if (!isusersymbol(p1))
+		return 0;
+
+	if (p1 == p2)
+		return 0; // A = A
+
+	if (p1 == symbol(SYMBOL_I) && isimaginaryunit(p2))
+		return 0;
+
+	if (p1 == symbol(SYMBOL_J) && isimaginaryunit(p2))
+		return 0;
+
+	return 1;
+}
+function
 any_radical_factors(h)
 {
 	var i, n;
@@ -12818,33 +12835,6 @@ prefixform(p)
 	else
 		outbuf += " ? ";
 }
-function
-prep_symbol_equals(p1, p2)
-{
-	push(p2);
-
-	if (!issymbol(p1))
-		return;
-
-	if (p1 == p2)
-		return; // A = A
-
-	if (iskeyword(p1))
-		return; // keyword like "float"
-
-	if (p1 == symbol(SYMBOL_I) && isimaginaryunit(p2))
-		return;
-
-	if (p1 == symbol(SYMBOL_J) && isimaginaryunit(p2))
-		return;
-
-	p2 = pop();
-
-	push_symbol(SETQ);
-	push(p1);
-	push(p2);
-	list(3);
-}
 var primetab = [
 2,3,5,7,11,13,17,19,
 23,29,31,37,41,43,47,53,
@@ -14108,8 +14098,15 @@ print_result()
 	if (p2 == symbol(NIL))
 		return;
 
-	prep_symbol_equals(p1, p2);
+	if (annotate_result(p1, p2)) {
+		push_symbol(SETQ);
+		push(p1);
+		push(p2);
+		list(3);
+		p2 = pop();
+	}
 
+	push(p2);
 	display();
 }
 const BLACK = 1;
