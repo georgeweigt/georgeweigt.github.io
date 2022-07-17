@@ -67,9 +67,31 @@ Consider equation (4.30).
 
 Note that $|uu\rangle$ and $|dd\rangle$ are eigenvectors of $\mathbf H$.
 \begin{align*}
-\mathbf H|uu\rangle&=\frac{\omega}{2}|uu\rangle
+\mathbf H|uu\rangle&=\frac{\omega}{2}
+\begin{pmatrix}
+1&0&0&0
+\\
+0&-1&2&0
+\\
+0&2&-1&0
+\\
+0&0&0&1
+\end{pmatrix}
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{\omega}{2}|uu\rangle
 \\[1ex]
-\mathbf H|dd\rangle&=\frac{\omega}{2}|dd\rangle
+\mathbf H|dd\rangle&=\frac{\omega}{2}
+\begin{pmatrix}
+1&0&0&0
+\\
+0&-1&2&0
+\\
+0&2&-1&0
+\\
+0&0&0&1
+\end{pmatrix}
+\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
+=\frac{\omega}{2}|dd\rangle
 \end{align*}
 
 By (4.30) with $E_{uu}=E_{dd}=\omega/2$ we have
