@@ -86,10 +86,21 @@ For the initial state $|ud\rangle$ we have
 \end{equation*}
 
 By equation (4.30) with $E_{T_1}=\omega/2$ and $E_{sing}=-3\omega/2$ we have
-\begin{equation*}
-|\Psi_{ud}(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
+\begin{align*}
+|\Psi_{ud}(t)\rangle
+&=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
 +\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|sing\rangle
-\end{equation*}
+\\[1ex]
+&=\frac{1}{2}\begin{pmatrix}
+0
+\\[1ex]
+\exp(-i\omega t/2\hbar)+\exp(3i\omega t/2\hbar)
+\\[1ex]
+\exp(-i\omega t/2\hbar)-\exp(3i\omega t/2\hbar)
+\\[1ex]
+0
+\end{pmatrix}
+\end{align*}
 
 For the initial state $|du\rangle$ we have
 \begin{equation*}
@@ -98,9 +109,20 @@ For the initial state $|du\rangle$ we have
 \end{equation*}
 
 By equation (4.30) with $E_{T_1}=\omega/2$ and $E_{sing}=-3\omega/2$ we have
-\begin{equation*}
-|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
+\begin{align*}
+|\Psi_{du}(t)\rangle
+&=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
 -\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|sing\rangle
-\end{equation*}
+\\[1ex]
+&=\frac{1}{2}\begin{pmatrix}
+0
+\\[1ex]
+\exp(-i\omega t/2\hbar)-\exp(3i\omega t/2\hbar)
+\\[1ex]
+\exp(-i\omega t/2\hbar)+\exp(3i\omega t/2\hbar)
+\\[1ex]
+0
+\end{pmatrix}
+\end{align*}
 
 \end{document}

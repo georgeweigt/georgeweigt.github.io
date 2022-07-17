@@ -59,20 +59,22 @@ check(dot(H,T3) == 1/2 omega T3)
 
 "ok"
 
-"Verify initial states"
+"Verify other formulas"
 
 check(uu = (T2 + T3) / sqrt(2))
 check(ud = (T1 + S) / sqrt(2))
 check(du = (T1 - S) / sqrt(2))
 check(dd = (T2 - T3) / sqrt(2))
 
-"ok"
-
-"Verify up-down basis"
-
 check(dot(H,uu) == 1/2 omega uu)
 check(dot(H,ud) == omega du - 1/2 omega ud)
 check(dot(H,du) == omega ud - 1/2 omega du)
 check(dot(H,dd) == 1/2 omega dd)
+
+A = exp(-i omega t / (2 hbar))
+B = exp(3 i omega t / (2 hbar))
+
+check(A T1 / sqrt(2) + B S / sqrt(2) == 1/2 (0,A+B,A-B,0))
+check(A T1 / sqrt(2) - B S / sqrt(2) == 1/2 (0,A-B,A+B,0))
 
 "ok"
