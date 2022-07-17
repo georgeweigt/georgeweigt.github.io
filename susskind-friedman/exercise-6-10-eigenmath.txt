@@ -1,0 +1,69 @@
+"Exercise 6.10"
+
+u = (1,0)
+d = (0,1)
+
+uu = kronecker(u,u)
+ud = kronecker(u,d)
+du = kronecker(d,u)
+dd = kronecker(d,d)
+
+sigmaz = ((1,0),(0,-1))
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+
+tauz = ((1,0),(0,-1))
+taux = ((0,1),(1,0))
+tauy = ((0,-i),(i,0))
+
+I = ((1,0),(0,1))
+
+sigmaz = kronecker(sigmaz,I)
+sigmax = kronecker(sigmax,I)
+sigmay = kronecker(sigmay,I)
+
+tauz = kronecker(I,tauz)
+taux = kronecker(I,taux)
+tauy = kronecker(I,tauy)
+
+S = (ud - du) / sqrt(2) -- singlet state
+
+T1 = (ud + du) / sqrt(2)
+T2 = (uu + dd) / sqrt(2)
+T3 = (uu - dd) / sqrt(2)
+
+H = dot(sigmax,taux) + dot(sigmay,tauy) + dot(sigmaz,tauz)
+H = 1/2 omega H
+H
+
+I = unit(4)
+
+"Characteristic polynomial"
+
+p = det(H - lambda I)
+p
+
+"Verify eigenvalues"
+
+check(eval(p,lambda,-3 omega / 2) == 0)
+check(eval(p,lambda,omega / 2) == 0)
+
+"ok"
+
+"Verify eigenvectors"
+
+check(dot(H,S) == -3/2 omega S)
+check(dot(H,T1) == 1/2 omega T1)
+check(dot(H,T2) == 1/2 omega T2)
+check(dot(H,T3) == 1/2 omega T3)
+
+"ok"
+
+"Verify initial states"
+
+check(uu = (T2 + T3) / sqrt(2))
+check(ud = (T1 + S) / sqrt(2))
+check(du = (T1 - S) / sqrt(2))
+check(dd = (T2 - T3) / sqrt(2))
+
+"ok"

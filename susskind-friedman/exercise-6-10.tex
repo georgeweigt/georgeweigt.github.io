@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+Exercise 6.10.
+A system of two spins has the Hamiltonian
+\begin{equation*}
+\mathbf H=\frac{\omega}{2}\vec\sigma\cdot\vec\tau
+\end{equation*}
+
+What are the possible energies of the system, and what are the
+eigenvectors of the Hamiltonian?
+
+\bigskip
+Suppose the system starts in the state $|uu\rangle$.
+What is the state at any later time?
+Answer the same question for initial states of
+$|ud\rangle$, $|du\rangle$, and $|dd\rangle$.
+
+\bigskip
+\hrule
+
+\bigskip
+Consider equation (4.28).
+\begin{equation*}
+\mathbf H|E_j\rangle=E_j|E_j\rangle
+\tag{4.28}
+\end{equation*}
+
+By (4.28) the possible energies are the eigenvalues of $\mathbf H$.
+From Exercise 6.9 the eigenvalues of $\vec\sigma\cdot\vec\tau$ are $-3$ and 1.
+Hence the possible energies are $-3\omega/2$ and $\omega/2$.
+Also from Exercise 6.9 the eigenvectors are
+$|sing\rangle$, $|T_1\rangle$, $|T_2\rangle$, and $|T_3\rangle$.
+
+\bigskip
+Without using Exercise 6.9 we have
+\begin{equation*}
+\mathbf H=\frac{\omega}{2}
+\begin{pmatrix}
+1&0&0&0
+\\
+0&-1&2&0
+\\
+0&2&-1&0
+\\
+0&0&0&1
+\end{pmatrix}
+\end{equation*}
+
+The characteristic polynomial of $\mathbf H$ is
+\begin{equation*}
+|\mathbf H-\lambda\mathbf I|
+=\lambda^4-\tfrac{3}{2}\lambda^2\omega^2+\lambda\omega^3-\tfrac{3}{16}\omega^4=0
+\end{equation*}
+
+The roots of the characteristic polynomial are $\lambda=-3\omega/2$ and $\lambda=\omega/2$.
+These $\lambda$ are the eigenvalues of $\mathbf H$ and hence the possible energies.
+
+\bigskip
+Consider equation (4.30).
+\begin{equation*}
+\alpha_j(t)=\alpha_j(0)\exp\left(-\frac{iE_jt}{\hbar}\right)
+\tag{4.30}
+\end{equation*}
+
+For the initial state $|uu\rangle$ we have
+\begin{equation*}
+|\Psi(0)\rangle=|uu\rangle=\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{1}{\sqrt2}|T_2\rangle+\frac{1}{\sqrt2}|T_3\rangle
+\end{equation*}
+
+By equation (4.30) with $E_{T_2}=E_{T_3}=\omega/2$ we have
+\begin{equation*}
+|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_2\rangle
++\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_3\rangle
+\end{equation*}
+
+For the initial state $|ud\rangle$ we have
+\begin{equation*}
+|\Psi(0)\rangle=|ud\rangle=\begin{pmatrix}0\\1\\0\\0\end{pmatrix}
+=\frac{1}{\sqrt2}|T_1\rangle+\frac{1}{\sqrt2}|S\rangle
+\end{equation*}
+
+By equation (4.30) with $E_{T_1}=\omega/2$ and $E_S=-3\omega/2$ we have
+\begin{equation*}
+|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
++\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|S\rangle
+\end{equation*}
+
+For the initial state $|du\rangle$ we have
+\begin{equation*}
+|\Psi(0)\rangle=|du\rangle=\begin{pmatrix}0\\0\\1\\0\end{pmatrix}
+=\frac{1}{\sqrt2}|T_1\rangle-\frac{1}{\sqrt2}|S\rangle
+\end{equation*}
+
+By equation (4.30) with $E_{T_1}=\omega/2$ and $E_S=-3\omega/2$ we have
+\begin{equation*}
+|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
+-\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|S\rangle
+\end{equation*}
+
+For the initial state $|dd\rangle$ we have
+\begin{equation*}
+|\Psi(0)\rangle=|dd\rangle=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
+=\frac{1}{\sqrt2}|T_2\rangle-\frac{1}{\sqrt2}|T_3\rangle
+\end{equation*}
+
+By equation (4.30) with $E_{T_2}=E_{T_3}=\omega/2$ we have
+\begin{equation*}
+|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_2\rangle
+-\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_3\rangle
+\end{equation*}
+
+\end{document}
