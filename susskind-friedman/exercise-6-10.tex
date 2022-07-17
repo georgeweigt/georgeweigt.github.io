@@ -65,33 +65,35 @@ Consider equation (4.30).
 \tag{4.30}
 \end{equation*}
 
-For the initial state $|uu\rangle$ we have
-\begin{equation*}
-|\Psi(0)\rangle=|uu\rangle=\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
-=\frac{1}{\sqrt2}|T_2\rangle+\frac{1}{\sqrt2}|T_3\rangle
-\end{equation*}
+Note that $|uu\rangle$ and $|dd\rangle$ are eigenvectors of $\mathbf H$.
+\begin{align*}
+\mathbf H|uu\rangle&=\frac{\omega}{2}|uu\rangle
+\\[1ex]
+\mathbf H|dd\rangle&=\frac{\omega}{2}|dd\rangle
+\end{align*}
 
-By equation (4.30) with $E_{T_2}=E_{T_3}=\omega/2$ we have
-\begin{equation*}
-|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_2\rangle
-+\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_3\rangle
-\end{equation*}
+By (4.30) with $E_{uu}=E_{dd}=\omega/2$ we have
+\begin{align*}
+|\Psi_{uu}(t)\rangle&=\exp\left(-\frac{i\omega t}{2\hbar}\right)|uu\rangle
+\\
+|\Psi_{dd}(t)\rangle&=\exp\left(-\frac{i\omega t}{2\hbar}\right)|dd\rangle
+\end{align*}
 
 For the initial state $|ud\rangle$ we have
 \begin{equation*}
-|\Psi(0)\rangle=|ud\rangle=\begin{pmatrix}0\\1\\0\\0\end{pmatrix}
+|ud\rangle=\begin{pmatrix}0\\1\\0\\0\end{pmatrix}
 =\frac{1}{\sqrt2}|T_1\rangle+\frac{1}{\sqrt2}|S\rangle
 \end{equation*}
 
 By equation (4.30) with $E_{T_1}=\omega/2$ and $E_S=-3\omega/2$ we have
 \begin{equation*}
-|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
+|\Psi_{ud}(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
 +\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|S\rangle
 \end{equation*}
 
 For the initial state $|du\rangle$ we have
 \begin{equation*}
-|\Psi(0)\rangle=|du\rangle=\begin{pmatrix}0\\0\\1\\0\end{pmatrix}
+|du\rangle=\begin{pmatrix}0\\0\\1\\0\end{pmatrix}
 =\frac{1}{\sqrt2}|T_1\rangle-\frac{1}{\sqrt2}|S\rangle
 \end{equation*}
 
@@ -99,18 +101,6 @@ By equation (4.30) with $E_{T_1}=\omega/2$ and $E_S=-3\omega/2$ we have
 \begin{equation*}
 |\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_1\rangle
 -\frac{1}{\sqrt2}\exp\left(\frac{3i\omega t}{2\hbar}\right)|S\rangle
-\end{equation*}
-
-For the initial state $|dd\rangle$ we have
-\begin{equation*}
-|\Psi(0)\rangle=|dd\rangle=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
-=\frac{1}{\sqrt2}|T_2\rangle-\frac{1}{\sqrt2}|T_3\rangle
-\end{equation*}
-
-By equation (4.30) with $E_{T_2}=E_{T_3}=\omega/2$ we have
-\begin{equation*}
-|\Psi(t)\rangle=\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_2\rangle
--\frac{1}{\sqrt2}\exp\left(-\frac{i\omega t}{2\hbar}\right)|T_3\rangle
 \end{equation*}
 
 \end{document}

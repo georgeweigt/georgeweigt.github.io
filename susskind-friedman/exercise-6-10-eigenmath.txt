@@ -67,3 +67,12 @@ check(du = (T1 - S) / sqrt(2))
 check(dd = (T2 - T3) / sqrt(2))
 
 "ok"
+
+"Verify up-down basis"
+
+check(dot(H,uu) == 1/2 omega uu)
+check(dot(H,ud) == omega du - 1/2 omega ud)
+check(dot(H,du) == omega ud - 1/2 omega du)
+check(dot(H,dd) == 1/2 omega dd)
+
+"ok"
