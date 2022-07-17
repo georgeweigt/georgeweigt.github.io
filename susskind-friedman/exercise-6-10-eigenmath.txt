@@ -26,7 +26,7 @@ tauz = kronecker(I,tauz)
 taux = kronecker(I,taux)
 tauy = kronecker(I,tauy)
 
-S = (ud - du) / sqrt(2) -- singlet state
+sing = (ud - du) / sqrt(2)
 
 T1 = (ud + du) / sqrt(2)
 T2 = (uu + dd) / sqrt(2)
@@ -52,7 +52,7 @@ check(eval(p,lambda,omega / 2) == 0)
 
 "Verify eigenvectors"
 
-check(dot(H,S) == -3/2 omega S)
+check(dot(H,sing) == -3/2 omega sing)
 check(dot(H,T1) == 1/2 omega T1)
 check(dot(H,T2) == 1/2 omega T2)
 check(dot(H,T3) == 1/2 omega T3)
@@ -62,19 +62,13 @@ check(dot(H,T3) == 1/2 omega T3)
 "Verify other formulas"
 
 check(uu = (T2 + T3) / sqrt(2))
-check(ud = (T1 + S) / sqrt(2))
-check(du = (T1 - S) / sqrt(2))
+check(ud = (T1 + sing) / sqrt(2))
+check(du = (T1 - sing) / sqrt(2))
 check(dd = (T2 - T3) / sqrt(2))
 
 check(dot(H,uu) == 1/2 omega uu)
 check(dot(H,ud) == omega du - 1/2 omega ud)
 check(dot(H,du) == omega ud - 1/2 omega du)
 check(dot(H,dd) == 1/2 omega dd)
-
-A = exp(-i omega t / (2 hbar))
-B = exp(3 i omega t / (2 hbar))
-
-check((A T1 + B S) / sqrt(2) == 1/2 (0,A+B,A-B,0))
-check((A T1 - B S) / sqrt(2) == 1/2 (0,A-B,A+B,0))
 
 "ok"
