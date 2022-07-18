@@ -160,6 +160,9 @@ add_terms(n) // n is number of terms on stack
 
 	combine_terms(h);
 
+	if (simplify_terms(h))
+		combine_terms(h);
+
 	n = stack.length - h;
 
 	if (n == 0) {
@@ -10702,6 +10705,11 @@ isradical(p)
 	return car(p) == symbol(POWER) && isposint(cadr(p)) && isfraction(caddr(p));
 }
 function
+isradicalterm(p)
+{
+	return car(p) == symbol(MULTIPLY) && isnum(cadr(p)) && isradical(caddr(p));
+}
+function
 isrational(p)
 {
 	return "a" in p;
@@ -15590,6 +15598,24 @@ simplify_pass3()
 	}
 
 	push(p1);
+}
+function
+simplify_terms(h)
+{
+	var i, n = 0, p1, p2;
+	for (i = h; i < stack.length; i++) {
+		p1 = stack[i];
+		if (isradicalterm(p1)) {
+			push(p1);
+			evalf();
+			p2 = pop();
+			if (!equal(p1, p2)) {
+				stack[i] = p2;
+				n++;
+			}
+		}
+	}
+	return n;
 }
 function
 sin()
