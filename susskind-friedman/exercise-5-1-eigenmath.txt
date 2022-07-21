@@ -13,3 +13,20 @@ d = (L11 + L22) / 2
 
 L = a sigmax + b sigmay + c sigmaz + d I
 L
+
+"Verify L"
+
+check(L == ((L11,L12),(L21,L22)))
+
+L12 = x + i y
+L21 = conj(L12)
+
+a = real(L12)
+b = -imag(L12)
+
+c = (L11 - L22) / 2
+d = (L11 + L22) / 2
+
+check(L == a sigmax + b sigmay + c sigmaz + d I)
+
+"ok"
