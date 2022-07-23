@@ -8190,10 +8190,13 @@ exptanh()
 	add();
 	divide();
 }
+// factors N or N^M where N and M are rational numbers, returns factors on stack
+
 function
 factor()
 {
-	var numer, denom, INPUT, BASE, EXPO;
+	var numer, denom;
+	var INPUT, BASE, EXPO;
 
 	INPUT = pop();
 
@@ -8212,15 +8215,15 @@ factor()
 			return;
 		}
 
-		numer = BASE.a;
-		denom = BASE.b;
-
 		if (isnegativenumber(BASE)) {
 			push_symbol(POWER);
 			push_integer(-1);
 			push(EXPO);
 			list(3); // leave on stack
 		}
+
+		numer = BASE.a;
+		denom = BASE.b;
 
 		if (!bignum_equal(numer, 1))
 			factor_bignum(numer, EXPO);
@@ -8241,11 +8244,11 @@ factor()
 		return;
 	}
 
-	numer = INPUT.a;
-	denom = INPUT.b;
-
 	if (isnegativenumber(INPUT))
 		push_integer(-1);
+
+	numer = INPUT.a;
+	denom = INPUT.b;
 
 	if (!bignum_equal(numer, 1))
 		factor_bignum(numer, one);
