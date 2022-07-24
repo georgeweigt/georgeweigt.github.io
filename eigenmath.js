@@ -8181,7 +8181,7 @@ exptanh()
 function
 factor_bignum(N, M)
 {
-	var i, h, n;
+	var h, i, n;
 	var BASE, EXPO;
 
 	// greater than 31 bits?
