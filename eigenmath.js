@@ -2038,6 +2038,38 @@ cmpfunc()
 	p1 = pop();
 	return cmp_numbers(p1, p2);
 }
+// push coefficients of polynomial P(X) on stack
+
+function
+coeffs(P, X)
+{
+	var C;
+
+	for (;;) {
+
+		push(P);
+		push(X);
+		push_integer(0);
+		subst();
+		evalf();
+		C = pop();
+
+		push(C);
+
+		push(P);
+		push(C);
+		subtract();
+		P = pop();
+
+		if (iszero(P))
+			break;
+
+		push(P);
+		push(X);
+		divide();
+		P = pop();
+	}
+}
 function
 combine_factors(h)
 {
@@ -2406,6 +2438,7 @@ const RANK = "rank";
 const RATIONALIZE = "rationalize";
 const REAL = "real";
 const RECT = "rect";
+const ROOTS = "roots";
 const ROTATE = "rotate";
 const RUN = "run";
 const SGN = "sgn";
@@ -4654,6 +4687,75 @@ divisor_factor(p)
 	}
 
 	return 0;
+}
+// push all divisors of n
+
+function
+divisors(n)
+{
+	var h, i, k;
+
+	h = stack.length;
+
+	factor_int(n);
+
+	k = stack.length;
+
+	// contruct divisors by recursive descent
+
+	push_integer(1);
+
+	divisors_nib(h, k);
+
+	// move
+
+	n = stack.length - k;
+
+	for (i = 0; i < n; i++)
+		stack[h + i] = stack[k + i];
+
+	stack.splice(h + n); // pop all
+}
+
+//	Generate all divisors for a factored number
+//
+//	Input:		Factor pairs on stack (base, expo)
+//
+//			h	first pair
+//
+//			k	just past last pair
+//
+//	Output:		Divisors on stack
+//
+//	For example, the number 12 (= 2^2 3^1) has 6 divisors:
+//
+//	1, 2, 3, 4, 6, 12
+
+function
+divisors_nib(h, k)
+{
+	var i, n;
+	var ACCUM, BASE, EXPO;
+
+	if (h == k)
+		return;
+
+	ACCUM = pop();
+
+	BASE = stack[h + 0];
+	EXPO = stack[h + 1];
+
+	push(EXPO);
+	n = pop_integer();
+
+	for (i = 0; i <= n; i++) {
+		push(ACCUM);
+		push(BASE);
+		push_integer(i);
+		power();
+		multiply();
+		divisors_nib(h + 2, k);
+	}
 }
 function
 dlog(p1, p2)
@@ -7035,6 +7137,22 @@ eval_rect(p1)
 	rect();
 }
 function
+eval_roots(p1)
+{
+	push(cadr(p1));
+	evalf();
+
+	p1 = cddr(p1);
+
+	if (iscons(p1)) {
+		push(car(p1));
+		evalf();
+	} else
+		push_symbol(SYMBOL_X);
+
+	roots();
+}
+function
 eval_rotate(p1)
 {
 	var c, m, n, opcode, phase, psi;
@@ -8999,6 +9117,91 @@ findf(p, q) // is q in p?
 	}
 
 	return 0;
+}
+// coefficients are on the stack
+
+function
+findroot(h)
+{
+	var i, j, k, m, n;
+	var C, T, X;
+
+	C = stack[h]; // constant term
+
+	if (!isrational(C))
+		stopf("root finder");
+
+	if (iszero(C)) {
+		push_integer(0);
+		return 1;
+	}
+
+	k = stack.length;
+	push(C);
+	numerator();
+	n = pop_integer();
+	divisors(n); // push divisors of n
+
+	m = stack.length;
+	push(C);
+	denominator();
+	n = pop_integer();
+	divisors(n); // push divisors of n
+
+	for (i = k; i < m; i++) {
+		for (j = m; j < stack.length; j++) {
+
+			push(stack[i]);
+			push(stack[j]);
+			divide();
+			X = pop();
+
+			findroot_eval(h, k - h, X);
+
+			T = pop();
+
+			if (iszero(T)) {
+				stack.splice(k); // pop all
+				push(X);
+				return 1;
+			}
+
+			push(X);
+			negate();
+			X = pop();
+
+			findroot_eval(h, k - h, X);
+
+			T = pop();
+
+			if (iszero(T)) {
+				stack.splice(k); // pop all
+				push(X);
+				return 1;
+			}
+		}
+	}
+
+	stack.splice(k); // pop all
+
+	return 0; // no root
+}
+
+// evaluate p(x) at x = X using horner's rule
+
+function
+findroot_eval(h, n, X)
+{
+	var i;
+
+	push(stack[h + n - 1]);
+
+	for (i = n - 1; i > 0; i--) {
+		push(X);
+		multiply();
+		push(stack[h + i - 1]);
+		add();
+	}
 }
 function
 flatten_factors(h)
@@ -13930,6 +14133,32 @@ rect()
 
 	multiply();
 }
+// divide by X - A
+
+function
+reduce(h, A)
+{
+	var i, t;
+
+	t = stack.length - 1;
+
+	for (i = t; i > h; i--) {
+		push(A);
+		push(stack[i]);
+		multiply();
+		push(stack[i - 1]);
+		add();
+		stack[i - 1] = pop();
+	}
+
+	if (!iszero(stack[h]))
+		stopf("root finder");
+
+	for (i = h; i < t; i++)
+		stack[i] = stack[i + 1];
+
+	pop(); // one less coeff on stack
+}
 function
 reduce_radical_double(h, COEFF)
 {
@@ -14061,6 +14290,80 @@ restore_symbol(p)
 	p2 = frame.pop();
 	p1 = frame.pop();
 	set_symbol(p, p1, p2);
+}
+function
+roots()
+{
+	var h, i, n;
+	var A, C, LIST, P, X;
+
+	X = pop();
+	P = pop();
+
+	h = stack.length;
+
+	coeffs(P, X); // put coeffs on stack
+
+	LIST = symbol(NIL);
+
+	while (stack.length - h > 1) {
+
+		C = pop(); // leading coeff
+
+		if (iszero(C))
+			continue;
+
+		// divide through by C
+
+		for (i = h; i < stack.length; i++) {
+			push(stack[i]);
+			push(C);
+			divide();
+			stack[i] = pop();
+		}
+
+		push_integer(1); // leading coeff
+
+		if (findroot(h) == 0)
+			break;
+
+		A = pop(); // root
+
+		push(A);
+		push(LIST);
+		cons(); // prepend A to list LIST
+		LIST = pop();
+
+		reduce(h, A); // divide by X - A
+	}
+
+	stack.splice(h); // pop all
+
+	n = lengthf(LIST);
+
+	if (n == 0)
+		stopf("no roots found");
+
+	if (n == 1) {
+		push(car(LIST));
+		return;
+	}
+
+	for (i = 0; i < n; i++) {
+		push(car(LIST));
+		LIST = cdr(LIST);
+	}
+
+	sort(n);
+
+	A = alloc_vector(n);
+
+	for (i = 0; i < n; i++)
+		A.elem[i] = stack[h + i];
+
+	stack.splice(h); // pop all
+
+	push(A);
 }
 /* exported run */
 
@@ -15393,6 +15696,12 @@ sinh()
 	list(2);
 }
 function
+sort(n)
+{
+	var t = stack.splice(stack.length - n).sort(cmp_expr);
+	stack = stack.concat(t);
+}
+function
 sort_factors(h)
 {
 	var t = stack.splice(h).sort(cmp_factors);
@@ -15934,6 +16243,7 @@ var symtab = {
 "rationalize":	{printname:RATIONALIZE,	func:eval_rationalize},
 "real":		{printname:REAL,	func:eval_real},
 "rect":		{printname:RECT,	func:eval_rect},
+"roots":	{printname:ROOTS,	func:eval_roots},
 "rotate":	{printname:ROTATE,	func:eval_rotate},
 "run":		{printname:RUN,		func:eval_run},
 "sgn":		{printname:SGN,		func:eval_sgn},
