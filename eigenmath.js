@@ -9128,11 +9128,8 @@ findroot(h)
 
 	C = stack[h]; // constant term
 
-	if (!isrational(C))
-		stopf("root finder");
-
 	if (iszero(C)) {
-		push_integer(0);
+		push_integer(0); // root is zero
 		return 1;
 	}
 
@@ -14152,7 +14149,7 @@ reduce(h, A)
 	}
 
 	if (!iszero(stack[h]))
-		stopf("root finder");
+		stopf("root finder kaput");
 
 	for (i = h; i < t; i++)
 		stack[i] = stack[i + 1];
@@ -14304,6 +14301,12 @@ roots()
 
 	coeffs(P, X); // put coeffs on stack
 
+	// check coeffs
+
+	for (i = h; i < stack.length; i++)
+		if (!isrational(stack[i]))
+			stopf("roots: coeffs");
+
 	LIST = symbol(NIL);
 
 	while (stack.length - h > 1) {
@@ -14341,11 +14344,13 @@ roots()
 
 	n = lengthf(LIST);
 
-	if (n == 0)
-		stopf("no roots found");
+	if (n == 0) {
+		push_symbol(NIL); // no roots found
+		return;
+	}
 
 	if (n == 1) {
-		push(car(LIST));
+		push(car(LIST)); // one root found
 		return;
 	}
 

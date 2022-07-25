@@ -1,7 +1,5 @@
 -- Verify amplitude squared for Rutherford scattering
 
--- eigenmath.org/rutherford-scattering-2.txt
-
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)

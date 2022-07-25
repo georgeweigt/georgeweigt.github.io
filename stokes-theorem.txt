@@ -1,5 +1,3 @@
--- www.eigenmath.org/stokes-theorem.txt
-
 "Surface integral"
 z = 4 - x^2 - y^2
 F = (y,z,x)
