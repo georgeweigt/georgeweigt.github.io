@@ -6934,6 +6934,22 @@ eval_not(p1)
 		push_integer(0);
 }
 function
+eval_nroots(p1)
+{
+	push(cadr(p1));
+	evalf();
+
+	p1 = cddr(p1);
+
+	if (iscons(p1)) {
+		push(car(p1));
+		evalf();
+	} else
+		push_symbol(SYMBOL_X);
+
+	nroots();
+}
+function
 eval_number(p1)
 {
 	push(cadr(p1));
@@ -12597,23 +12613,6 @@ const DELTA = 1e-6;
 const EPSILON = 1e-9;
 
 function
-eval_nroots(p1)
-{
-	push(cadr(p1));
-	evalf();
-
-	p1 = cddr(p1);
-
-	if (iscons(p1)) {
-		push(car(p1));
-		evalf();
-	} else
-		push_symbol(SYMBOL_X);
-
-	nroots();
-}
-
-function
 nroots()
 {
 	var h, i, n;
@@ -12727,14 +12726,14 @@ nfindroot(cr, ci, n, ar, ai)
 
 	// divide by leading coeff
 
-	br = cr[n - 1];
-	bi = ci[n - 1];
+	xr = cr[n - 1];
+	xi = ci[n - 1];
 
-	t = br * br + bi * bi;
+	t = xr * xr + xi * xi;
 
 	for (i = 0; i < n - 1; i++) {
-		cr[i] = (cr[i] * br + ci[i] * bi) / t;
-		ci[i] = (ci[i] * br - cr[i] * bi) / t;
+		cr[i] = (cr[i] * xr + ci[i] * xi) / t;
+		ci[i] = (ci[i] * xr - cr[i] * xi) / t;
 	}
 
 	cr[n - 1] = 1.0;
@@ -12868,10 +12867,14 @@ nreduce(cr, ci, n, ar, ai)
 {
 	var k;
 
+	// divide
+
 	for (k = n - 1; k > 0; k--) {
 		cr[k - 1] += cr[k] * ar - ci[k] * ai;
 		ci[k - 1] += ci[k] * ar + cr[k] * ai;
 	}
+
+	// shift
 
 	for (k = 0; k < n - 1; k++) {
 		cr[k] = cr[k + 1];
