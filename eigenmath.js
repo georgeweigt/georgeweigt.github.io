@@ -12876,6 +12876,11 @@ nreduce(cr, ci, n, ar, ai)
 		ci[k - 1] += ci[k] * ar + cr[k] * ai;
 	}
 
+	// check
+
+	if (zabs(cr[0], ci[0]) > DELTA)
+		stopf("nroots: residual error"); // not a root
+
 	// shift
 
 	for (k = 0; k < n - 1; k++) {
@@ -14452,7 +14457,7 @@ reduce(h, A)
 	}
 
 	if (!iszero(stack[h]))
-		stopf("root finder kaput");
+		stopf("roots: residual error");
 
 	for (i = h; i < t; i++)
 		stack[i] = stack[i + 1];
