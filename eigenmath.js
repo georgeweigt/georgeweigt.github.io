@@ -12557,12 +12557,12 @@ nroots()
 // uses secant method
 
 function
-nfindroot(cr, ci, n, ar, ai)
+nfindroot(cr, ci, n, par, pai)
 {
 	var i, j;
 	var d;
-	var br, dfr, dxr, far, fbr, tr = [], xr, yr;
-	var bi, dfi, dxi, fai, fbi, ti = [], xi, yi;
+	var ar, br, dfr, dxr, far, fbr, tr = [], xr, yr;
+	var ai, bi, dfi, dxi, fai, fbi, ti = [], xi, yi;
 
 	// if const term is zero then root is zero
 
@@ -12571,8 +12571,8 @@ nfindroot(cr, ci, n, ar, ai)
 	// term will be exactly zero from coeffs(), no need for arbitrary cutoff
 
 	if (cr[0] == 0 && ci[0] == 0) {
-		ar[0] = 0;
-		ai[0] = 0;
+		par[0] = 0;
+		pai[0] = 0;
 		return;
 	}
 
@@ -12595,40 +12595,43 @@ nfindroot(cr, ci, n, ar, ai)
 
 	for (i = 0; i < 100; i++) {
 
-		ar[0] = urandom();
-		ai[0] = urandom();
+		ar = urandom();
+		ai = urandom();
 
-		fata(cr, ci, n, ar[0], ai[0], tr, ti);
+		fata(cr, ci, n, ar, ai, tr, ti);
 
 		far = tr[0];
 		fai = ti[0];
 
-		br = ar[0];
-		bi = ai[0];
+		br = ar;
+		bi = ai;
 
 		fbr = far;
 		fbi = fai;
 
-		ar[0] = urandom();
-		ai[0] = urandom();
+		ar = urandom();
+		ai = urandom();
 
 		for (j = 0; j < 1000; j++) {
 
-			fata(cr, ci, n, ar[0], ai[0], tr, ti);
+			fata(cr, ci, n, ar, ai, tr, ti);
 
 			far = tr[0];
 			fai = ti[0];
 
-			if (zabs(far, fai) < EPSILON)
+			if (zabs(far, fai) < EPSILON) {
+				par[0] = ar;
+				pai[0] = ai;
 				return;
+			}
 
 			if (zabs(far, fai) < zabs(fbr, fbi)) {
 
-				xr = ar[0];
-				xi = ai[0];
+				xr = ar;
+				xi = ai;
 
-				ar[0] = br;
-				ai[0] = bi;
+				ar = br;
+				ai = bi;
 
 				br = xr;
 				bi = xi;
@@ -12645,8 +12648,8 @@ nfindroot(cr, ci, n, ar, ai)
 
 			// dx = b - a
 
-			dxr = br - ar[0];
-			dxi = bi - ai[0];
+			dxr = br - ar;
+			dxi = bi - ai;
 
 			// df = fb - fa
 
@@ -12665,8 +12668,8 @@ nfindroot(cr, ci, n, ar, ai)
 
 			// a = b - y * fb
 
-			ar[0] = br - (yr * fbr - yi * fbi);
-			ai[0] = bi - (yr * fbi + yi * fbr);
+			ar = br - (yr * fbr - yi * fbi);
+			ai = bi - (yr * fbi + yi * fbr);
 		}
 	}
 
@@ -12714,8 +12717,6 @@ nreduce(cr, ci, n, ar, ai)
 		cr[k - 1] += cr[k] * ar - ci[k] * ai;
 		ci[k - 1] += ci[k] * ar + cr[k] * ai;
 	}
-
-	// check
 
 	if (zabs(cr[0], ci[0]) > DELTA)
 		stopf("nroots: residual error"); // not a root
