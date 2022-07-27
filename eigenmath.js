@@ -12479,7 +12479,7 @@ nroots()
 
 	n = stack.length - h; // number of coeffs on stack
 
-	// convert coeffs to doubles
+	// convert coeffs to floating point
 
 	for (i = 0; i < n; i++) {
 
@@ -12502,7 +12502,7 @@ nroots()
 
 	stack.splice(h); // pop all
 
-	// divide by leading coeff
+	// divide p(x) by leading coeff
 
 	xr = cr[n - 1];
 	xi = ci[n - 1];
@@ -12544,9 +12544,11 @@ nroots()
 		multiply();
 		add();
 
-		// divide by X - A
+		// divide p(x) by x - a
 
-		nreduce(cr, ci, n, ar, ai); // leading coeff is still 1
+		nreduce(cr, ci, n, ar, ai);
+
+		// note: leading coeff of p(x) is still 1
 
 		n--;
 	}
@@ -14435,7 +14437,7 @@ roots()
 		if (!isrational(stack[i]))
 			stopf("roots: coeffs");
 
-	// divide through by leading coeff
+	// divide p(x) by leading coeff
 
 	for (i = 0; i < n - 1; i++) {
 		push(stack[h + i]);
@@ -14453,9 +14455,15 @@ roots()
 		if (findroot(h, n) == 0)
 			break; // no root found
 
-		A = stack[stack.length - 1]; // root
+		// A is the root
 
-		reduce(h, n, A); // leading coeff is still 1
+		A = stack[stack.length - 1];
+
+		// divide p(x) by X - A
+
+		reduce(h, n, A);
+
+		// note: leading coeff of p(x) is still 1
 
 		n--;
 	}
@@ -14463,14 +14471,8 @@ roots()
 	n = stack.length - k; // number of roots on stack
 
 	if (n == 0) {
-		stack[h] = symbol(NIL); // no roots
-		stack.splice(h + 1); // pop all
-		return;
-	}
-
-	if (n == 1) {
-		stack[h] = stack[k]; // one root
-		stack.splice(h + 1); // pop all
+		stack.splice(h); // pop all
+		push_symbol(NIL); // no roots
 		return;
 	}
 
@@ -14487,8 +14489,9 @@ roots()
 		}
 
 	if (n == 1) {
-		stack[h] = stack[k]; // one root
-		stack.splice(h + 1); // pop all
+		A = stack[k];
+		stack.splice(h); // pop all
+		push(A); // one root
 		return;
 	}
 
