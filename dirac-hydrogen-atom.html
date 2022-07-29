@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Eigenmath Demo</title>
-</head>
-<body>
-
-<script src="eigenmath.js"></script>
-
-This script can be pasted into the Eigenmath app.
-<br>
-<br>
-
-<table><tr><td>
-<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
 -- Verify Dirac's equation (32)
 
 psi(n,m) = 1 / sqrt(pi a0 (n + 1/2)) *
@@ -85,13 +70,4 @@ H(Pn) - H(P) == hbar^2 / (2 mu) (inv(dot(P,P)) - inv(dot(Pn,Pn)))
 "Verify Schroedinger equation"
 
 -hbar^2 / (2 mu) dot(P,P) - k inv(R) == Enm
-</textarea>
-</td><td>
-<button onclick="run()" style="font-size:20pt">Run</button>
-</td></tr></table>
-
-<p>
-<div id="stdout"></div>
-
-</body>
-</html>
+</textarea><p><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
