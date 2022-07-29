@@ -19,4 +19,4 @@ psi = dot(H2,H1,H0,f,H3,X3,H2,H1,H0,ket0)
 P = hadamard(psi,conj(psi))
 for(k,1,8, P[k] = P[k] + P[k + 8]) -- bit 3 don't care
 draw(P[ceiling(x)],x)
-</textarea><p><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
+</textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
