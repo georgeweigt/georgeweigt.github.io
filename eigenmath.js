@@ -12530,11 +12530,12 @@ nroots()
 
 		mag = zabs(ar, ai);
 
-		if (Math.abs(ar / mag) < DELTA)
-			ar = 0;
-
-		if (Math.abs(ai / mag) < DELTA)
-			ai = 0;
+		if (mag != 0) {
+			if (Math.abs(ar / mag) < DELTA)
+				ar = 0;
+			if (Math.abs(ai / mag) < DELTA)
+				ai = 0;
+		}
 
 		// push root
 
