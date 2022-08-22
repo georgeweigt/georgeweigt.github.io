@@ -1,0 +1,28 @@
+<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+"Exercise 7.1"
+
+u = (1,0)
+d = (0,1)
+
+uu = kronecker(u,u)
+ud = kronecker(u,d)
+du = kronecker(d,u)
+dd = kronecker(d,d)
+
+sigmaz = ((1,0),(0,-1))
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+
+tauz = ((1,0),(0,-1))
+taux = ((0,1),(1,0))
+tauy = ((0,-i),(i,0))
+
+I = ((1,0),(0,1))
+
+check(dot(kronecker(I,taux),uu) == ud)
+check(dot(kronecker(I,taux),ud) == uu)
+check(dot(kronecker(I,taux),du) == dd)
+check(dot(kronecker(I,taux),dd) == du)
+
+"ok"
+</textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
