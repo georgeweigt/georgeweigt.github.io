@@ -10,6 +10,11 @@ I = ((1,0),(0,1))
 taux = ((0,1),(1,0))
 T = kronecker(I,taux)
 
+"Tensor product"
+T
+
+"Verify Alice's spin"
+
 check(dot(T,uu) == ud)
 check(dot(T,ud) == uu)
 check(dot(T,du) == dd)
