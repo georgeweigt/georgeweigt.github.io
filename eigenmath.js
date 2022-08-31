@@ -2460,6 +2460,7 @@ const TESTGT = "testgt";
 const TESTLE = "testle";
 const TESTLT = "testlt";
 const TRANSPOSE = "transpose";
+const TTY = "tty";
 const UNIT = "unit";
 const ZERO = "zero";
 
@@ -5933,12 +5934,14 @@ function
 eval_clear()
 {
 	save_symbol(symbol(TRACE));
+	save_symbol(symbol(TTY));
 
 	binding = {};
 	usrfunc = {};
 
 	initscript();
 
+	restore_symbol(symbol(TTY));
 	restore_symbol(symbol(TRACE));
 
 	push_symbol(NIL);
@@ -6591,8 +6594,10 @@ eval_infixform(p1)
 	push(cadr(p1));
 	evalf();
 	p1 = pop();
+
 	outbuf = "";
 	infixform_expr(p1);
+
 	push_string(outbuf);
 }
 function
@@ -10055,7 +10060,9 @@ init()
 }
 var init_script = [
 "i = sqrt(-1)",
+"last = 0",
 "trace = 0",
+"tty = 0",
 "cross(u,v) = dot(u,(((0,0,0),(0,0,-1),(0,1,0)),((0,0,1),(0,0,0),(-1,0,0)),((0,-1,0),(1,0,0),(0,0,0))),v)",
 "curl(u) = (d(u[3],y) - d(u[2],z),d(u[1],z) - d(u[3],x),d(u[2],x) - d(u[1],y))",
 "div(u) = d(u[1],x) + d(u[2],y) + d(u[3],z)",
@@ -13965,6 +13972,14 @@ prefixform(p)
 		outbuf += " ? ";
 }
 function
+print_infixform(p)
+{
+	outbuf = "";
+	infixform_expr(p);
+	infixform_write("\n");
+	printbuf(outbuf, BLACK);
+}
+function
 print_result()
 {
 	var p1, p2;
@@ -13983,8 +13998,11 @@ print_result()
 		p2 = pop();
 	}
 
-	push(p2);
-	display();
+	if (iszero(get_binding(symbol(TTY)))) {
+		push(p2);
+		display();
+	} else
+		print_infixform(p2);
 }
 const BLACK = 1;
 const BLUE = 2;
@@ -16610,6 +16628,7 @@ var symtab = {
 "last":		{printname:LAST,	func:eval_user_symbol},
 "pi":		{printname:PI,		func:eval_user_symbol},
 "trace":	{printname:TRACE,	func:eval_user_symbol},
+"tty":		{printname:TTY,		func:eval_user_symbol},
 
 "d":		{printname:SYMBOL_D,	func:eval_user_symbol},
 "i":		{printname:SYMBOL_I,	func:eval_user_symbol},
