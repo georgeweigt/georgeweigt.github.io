@@ -7,7 +7,9 @@ pcross(v) = (d(v[3],y) - d(v[2],z),
              d(v[1],z) - d(v[3],x),
              d(v[2],x) - d(v[1],y))
 
-check(pcross(A psi()) == pcross(A) psi() + cross(d(psi(),(x,y,z)),A))
+ppsi = d(psi(),(x,y,z))
+
+check(pcross(A psi()) == pcross(A) psi() + cross(ppsi,A))
 
 "ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
