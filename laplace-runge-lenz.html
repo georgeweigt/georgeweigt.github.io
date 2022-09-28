@@ -1,5 +1,5 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
-"Verify quantum LRL operators (1=ok)"
+"Verify quantum LRL operators"
 
 R = sqrt(x^2 + y^2 + z^2)
 
@@ -43,13 +43,15 @@ H(f) = 1 / (2 m) P2(f) - Z / R f
 
 psi = f(x,y,z)
 
-Ax(Lx(psi)) + Ay(Ly(psi)) + Az(Lz(psi)) == 0
+check(Ax(Lx(psi)) + Ay(Ly(psi)) + Az(Lz(psi)) == 0)
 
-Lx(Ax(psi)) + Ly(Ay(psi)) + Lz(Az(psi)) == 0
+check(Lx(Ax(psi)) + Ly(Ay(psi)) + Lz(Az(psi)) == 0)
 
-H(Ax(psi)) - Ax(H(psi)) == 0
-H(Ay(psi)) - Ay(H(psi)) == 0
-H(Az(psi)) - Az(H(psi)) == 0
+check(H(Ax(psi)) == Ax(H(psi)))
+check(H(Ay(psi)) == Ay(H(psi)))
+check(H(Az(psi)) == Az(H(psi)))
 
-A2(psi) == 2 / m H(L2(psi) + hbar^2 psi) + Z^2 psi
+check(A2(psi) == 2 / m H(L2(psi) + hbar^2 psi) + Z^2 psi)
+
+"ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
