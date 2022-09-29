@@ -1,7 +1,7 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
 -- define notes
 
-r = 2.0^(1/12)
+r = 2^(1/12)
 
 A4 = 440
 A4sharp = 440 r
@@ -19,6 +19,8 @@ G5sharp = 440 r^11
 -- notes C F G
 
 f = sin(2 pi C5 t) + sin(2 pi F5 t) + sin(2 pi G5 t)
+
+f = float(f)
 
 xrange = (0,0.05)
 draw(f,t)
