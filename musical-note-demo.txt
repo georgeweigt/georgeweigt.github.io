@@ -1,19 +1,21 @@
+-- define notes
+
 r = 2.0^(1/12)
 
 A4 = 440
-A4sharp = 440 * r
-B4 = 440 * r^2
-C5 = 440 * r^3
-C5sharp = 440 * r^4
-D5 = 440 * r^5
-D5sharp = 440 * r^6
-E5 = 440 * r^7
-F5 = 440 * r^8
-F5sharp = 440 * r^9
-G5 = 440 * r^10
-G5sharp = 440 * r^11
+A4sharp = 440 r
+B4 = 440 r^2
+C5 = 440 r^3
+C5sharp = 440 r^4
+D5 = 440 r^5
+D5sharp = 440 r^6
+E5 = 440 r^7
+F5 = 440 r^8
+F5sharp = 440 r^9
+G5 = 440 r^10
+G5sharp = 440 r^11
 
--- Chord C-F-G
+-- notes C F G
 
 f = sin(2 pi C5 t) + sin(2 pi F5 t) + sin(2 pi G5 t)
 
