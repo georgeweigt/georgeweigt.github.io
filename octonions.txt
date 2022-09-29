@@ -65,11 +65,11 @@ test(and(M(M(x,x),y)=M(x,M(x,y)),
 
 w = M(x,y)
 
-test(dot(w,w)=dot(x,x)*dot(y,y),"pass","fail")
+test(dot(w,w)=dot(x,x)*dot(y,y),"ok","fail")
 
 "Checking product of an octonion and its conjugate is real."
 
-test(M(x,C(x))=dot(x,x)*e0,"pass","fail")
+test(M(x,C(x))=dot(x,x)*e0,"ok","fail")
 
 "Checking octonion multiplication table."
 
@@ -145,15 +145,4 @@ check(M(e7,e5)=-e2)
 check(M(e7,e6)=e1)
 check(M(e7,e7)=-e0)
 
-"pass"
-
--- this is T after transpose
-
-U = ((e0,e1,e2,e3,e4,e5,e6,e7),
-     (-e1,e0,-e3,e2,-e5,e4,e7,-e6),
-     (-e2,e3,e0,-e1,-e6,-e7,e4,e5),
-     (-e3,-e2,e1,e0,-e7,e6,-e5,e4),
-     (-e4,e5,e6,e7,e0,-e1,-e2,-e3),
-     (-e5,-e4,e7,-e6,e1,e0,e3,-e2),
-     (-e6,-e7,-e4,e5,e2,-e3,e0,e1),
-     (-e7,e6,-e5,-e4,e3,e2,-e1,e0))
+"ok"

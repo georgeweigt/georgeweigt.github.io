@@ -58,11 +58,11 @@ test(and(M(M(x,x),y)=M(x,M(x,y)),
 
 w = M(x,y)
 
-test(dot(w,w)=dot(x,x)*dot(y,y),"pass","fail")
+test(dot(w,w)=dot(x,x)*dot(y,y),"ok","fail")
 
 "Checking product of a quaternion and its conjugate is real."
 
-test(M(x,C(x))=dot(x,x)*e0,"pass","fail")
+test(M(x,C(x))=dot(x,x)*e0,"ok","fail")
 
 "Checking quaternion multiplication table."
 
@@ -86,12 +86,5 @@ check(M(e3,e1)=e2)
 check(M(e3,e2)=-e1)
 check(M(e3,e3)=-e0)
 
-"pass"
-
--- this is T after transpose
-
-U = ((e0,e1,e2,e3),
-     (-e1,e0,-e3,e2),
-     (-e2,e3,e0,-e1),
-     (-e3,-e2,e1,e0))
+"ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
