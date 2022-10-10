@@ -1,0 +1,121 @@
+<html>
+<body>
+<script src='https://georgeweigt.github.io/eigenmath.js'></script>
+<textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+
+"Exercise 7.12 - rap sheet 3  (Dr. W.Lindner)"
+
+"Calculate Alice's density matrix for sigma_z for the 'near-singlet' state T."
+
+u = (1,0)
+d = (0,1)
+
+uu = (1,0,0,0)
+ud = (0,1,0,0)
+du = (0,0,1,0)
+dd = (0,0,0,1)
+
+--"density matrix is rho_aa'= <a|psi><psi|a'> "
+
+-- wave function:
+--      uu     ud     du          dd
+--      1      2      3           4
+psi =  (0, sqrt(0.6), -sqrt(0.4), 0)
+
+"1. check normalized:"
+dot(psi,psi)
+"ok."
+
+"2. calculate ALICE's density matrix"
+"   using rho_a'a = Sum( psi*(a,b).psi(a',b), b=uu,ud,du,dd)"
+
+rhouu = psi[1]*psi[1]+psi[2]*psi[2]
+rhouu
+
+rhoud = psi[3]*psi[1]+psi[4]*psi[2]
+rhoud
+
+rhodu = psi[1]*psi[3]+psi[2]*psi[4]
+rhodu
+
+rhodd = psi[3]*psi[3]+psi[4]*psi[4]
+rhodd
+
+"ALICE density matrix:"
+rhoAlice = ((rhouu,rhoud),(rhodu,rhodd))
+rhoAlice
+
+"3. trace of squared density matrix"
+
+rhoAlice^2
+Tr(M)=contract(M)   -- trace of matrix
+Tr(rhoAlice^2)
+
+"4. expectation values"
+
+sigmaz = ((1,0),(0,-1))
+sigmax = ((0,1),(1, 0))
+sigmay = ((0,-i),(i,0))
+
+tauz = ((1,0),(0,-1))
+taux = ((0,1),(1,0))
+tauy = ((0,-i),(i,0))
+
+I = ((1,0),(0,1))
+
+sigmaz = kronecker(sigmaz,I)
+--sigmaz
+sigmax = kronecker(sigmax,I)
+sigmay = kronecker(sigmay,I)
+
+tauz = kronecker(I,tauz)
+--tauz
+taux = kronecker(I,taux)
+tauy = kronecker(I,tauy)
+
+"Verify expectation values E = <..> of near_singlet state T"
+
+T = sqrt(0.6) ud - sqrt(0.4) du
+
+"<sigma_z> etc.:"
+
+EZsigma = dot(conj(T), sigmaz, T)  --ok
+EZsigma
+
+EXsigma = dot(conj(T), sigmax, T)
+EXsigma
+
+EYsigma = dot(conj(T), sigmay, T)
+EYsigma
+
+"<tau_z> etc.:"
+
+EZtau = dot( conj(T),tauz, T)   -- ok
+EZtau 
+
+EXtau = dot( conj(T),taux, T)
+EXtau
+ 
+EYtau = dot( conj(T),tauy, T)
+EYtau
+
+"5. composite expectation values:"
+"<tau_z sigma_z>:"
+EZtauZsigma = dot(conj(T), tauz,sigmaz, T)   -- ok
+EZtauZsigma
+
+"<tau_x sigma_x>:"
+EXtauXsigma = dot(conj(T), taux, sigmax, T)
+EXtauXsigma
+
+"6. Correlation <tauZ sigmaZ> - <tauZ><sigmaZ>:"
+--  <tz sz> - <tz><sz>
+dot(conj(T),tauz,sigmaz,T) - 
+      dot(conj(T),tauz,T) * dot(conj(T),sigmaz,T)
+
+</textarea>
+<button onclick='run()'>Run</button>
+<p>
+<div id='stdout'></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<body>
+<script src='https://georgeweigt.github.io/eigenmath.js'></script>
+<textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+
+"Exercise 7.8  (Dr. W.Lindner)"
+
+u = (1,0)
+d = (0,1)
+
+uu = (1,0,0,0)
+ud = (0,1,0,0)
+du = (0,0,1,0)
+dd = (0,0,0,1)
+
+-- waves:
+--      uu   ud   du   dd
+--      1    2    3    4
+psi1 = (1/2, 1/2, 1/2, 1/2)
+psi2 = (1/sqrt(2),0,0, 1/sqrt(2))
+psi3 = (3/5, 4/5, 0,   0)
+
+-- per example:
+psi = psi3
+
+"1. calculate ALICE's density matrix"
+"using rho_a'a = Sum( psi*(a,b).psi(a',b) b=uu,ud,du,dd"
+
+rhouu = psi[1]*psi[1]+psi[2]*psi[2]
+rhouu
+
+rhoud = psi[3]*psi[1]+psi[4]*psi[2]
+rhoud
+
+rhodu = psi[1]*psi[3]+psi[2]*psi[4]
+rhodu
+
+rhodd = psi[3]*psi[3]+psi[4]*psi[4]
+rhodd
+
+"ALICE density matrix:"
+rhoAlice = ((rhouu,rhoud),(rhodu,rhodd))
+rhoAlice
+
+"2. calculate BOB's density matrix"
+"using rho_b'b = Sum( psi*(a,b).psi(a,b') a=uu,ud,du,dd"
+--      uu   ud   du   dd
+--      1    2    3    4
+
+rhouu = psi[1]*psi[1]+psi[3]*psi[3]
+rhouu
+
+rhoud = psi[2]*psi[1]+psi[4]*psi[3]
+rhoud
+
+rhodu = psi[1]*psi[2]+psi[3]*psi[4]
+rhodu
+
+rhodd = psi[2]*psi[2]+psi[4]*psi[4]
+rhodd
+
+"BOB density matrix:"
+rhoBob = ((rhouu,rhoud),(rhodu,rhodd))
+rhoBob
+
+</textarea>
+<button onclick='run()'>Run</button>
+<p>
+<div id='stdout'></div>
+</body>
+</html>

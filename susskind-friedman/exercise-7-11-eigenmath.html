@@ -1,0 +1,56 @@
+<html>
+<body>
+<script src='https://georgeweigt.github.io/eigenmath.js'></script>
+<textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+
+"Exercise 7.11  (Dr. W.Lindner)"
+
+"Calculate Alice's density matrix for sigma_z for the 'near-singlet' state."
+
+u = (1,0)
+d = (0,1)
+
+uu = (1,0,0,0)
+ud = (0,1,0,0)
+du = (0,0,1,0)
+dd = (0,0,0,1)
+
+-- "density matrix is rho_aa'= <a|psi><psi|a'> "
+
+-- wave function:
+--     uu   ud         du          dd
+--     1    2          3           4
+psi = (0,   sqrt(0.6), -sqrt(0.4), 0)
+
+"check normalized:"
+dot(psi,psi)
+"ok."
+
+"calculate ALICE's density matrix"
+"using rho_a'a = Sum( psi*(a,b).psi(a',b), b=uu,ud,du,dd)"
+
+rhouu = psi[1]*psi[1] + psi[2]*psi[2]
+rhouu
+
+rhoud = psi[3]*psi[1] + psi[4]*psi[2]
+rhoud
+
+rhodu = psi[1]*psi[3] + psi[2]*psi[4]
+rhodu
+
+rhodd = psi[3]*psi[3] + psi[4]*psi[4]
+rhodd
+
+"ALICE density matrix:"
+rhoAlice = ((rhouu,rhoud),(rhodu,rhodd))
+rhoAlice
+
+rhoAlice^2
+Tr(M)=contract(M)   -- Tr = trace of matrix
+Tr(rhoAlice^2)
+</textarea>
+<button onclick='run()'>Run</button>
+<p>
+<div id='stdout'></div>
+</body>
+</html>
