@@ -1,4 +1,4 @@
--- define notes
+-- note frequencies in hertz (cycles per second)
 
 r = 2^(1/12)
 
@@ -15,11 +15,11 @@ F5sharp = 440 r^9
 G5 = 440 r^10
 G5sharp = 440 r^11
 
--- notes C F G
+-- chord C F G (multiply freq by 2 pi to convert to radians)
 
 f = sin(2 pi C5 t) + sin(2 pi F5 t) + sin(2 pi G5 t)
 
-f = float(f)
+f = float(f) -- convert to floating point for faster drawing
 
 xrange = (0,0.05)
 draw(f,t)
