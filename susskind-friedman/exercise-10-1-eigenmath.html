@@ -1,0 +1,34 @@
+<html>
+<body>
+<script src='https://georgeweigt.github.io/eigenmath.js'></script>
+<textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+
+"exercise 10.1 (Dr.W.Lindner)"
+
+-- This is only a little ('trivial') syntactic gym with EigenMath ;)
+
+"The solution .."
+
+x = A*cos(omega t) + B*sin(omega t)
+x
+
+".. fullfills (10.8), because both sides gives equal results:"
+
+" x'="
+d(x,t)
+
+" x''="
+d(x,t,2)         -- RHS equals
+
+" -w^2*x ="
+- omega^2 * x    -- LHS 
+
+check(- omega^2 * x == d(x,t,2))
+"ok."
+
+</textarea>
+<button onclick='run()'>Run</button>
+<p>
+<div id='stdout'></div>
+</body>
+</html>
