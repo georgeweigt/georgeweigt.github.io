@@ -1,4 +1,4 @@
--- note frequencies in hertz (cycles per second)
+-- frequencies in hertz (cycles per second)
 
 r = 2^(1/12)
 
