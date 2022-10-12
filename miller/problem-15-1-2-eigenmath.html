@@ -1,12 +1,12 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
 "Problem 15.1.2"
 
-ahat(f) = sqrt(1/2) (f xi + d(f,xi))
-a1hat(f) = sqrt(1/2) (f xi - d(f,xi))
+ket(n) = test(n == 0, ket0, sqrt(1/n) a1hat(ket(n - 1)))
 
 ket0 = pi^(-1/4) exp(-xi^2 / 2) -- see equation (15.33)
 
-ket(n) = test(n == 0, ket0, sqrt(1/n) a1hat(ket(n - 1)))
+ahat(f) = sqrt(1/2) (f xi + d(f,xi))
+a1hat(f) = sqrt(1/2) (f xi - d(f,xi))
 
 A(n) = a1hat(ahat(a1hat(ket(n))))
 B(n) = (n + 1) a1hat(ket(n))
