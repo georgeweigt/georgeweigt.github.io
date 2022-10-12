@@ -10,7 +10,9 @@ ket(n) = test(n == 0, ket0, a1hat(ket(n - 1)))
 
 T(n) = a1hat(ahat(a1hat(ket(n)))) == (n + 1) a1hat(ket(n))
 
-for(n,0,5,check(T(n) == 1))
+-- check for n = 0 to 10
+
+for(n,0,10,check(T(n) == 1))
 
 "ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
