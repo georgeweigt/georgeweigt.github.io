@@ -1,0 +1,17 @@
+<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+"Problem 15.5.1"
+
+"Verify commutator"
+
+ahat(f) = sqrt(1/2) (f xi + d(f,xi))
+a1hat(f) = sqrt(1/2) (f xi - d(f,xi))
+
+xihat(f) = sqrt(1/2) (a1hat(f) + ahat(f))
+pihat(f) = i sqrt(1/2) (a1hat(f) - ahat(f))
+
+C = xihat(pihat(psi(xi))) - pihat(xihat(psi(xi)))
+
+check(C == i psi(xi))
+
+"ok"
+</textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
