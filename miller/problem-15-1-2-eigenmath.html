@@ -2,14 +2,14 @@
 "Problem 15.1.2"
 
 ahat(f) = sqrt(1/2) (f xi + d(f,xi))
-ahat1(f) = sqrt(1/2) (f xi - d(f,xi))
+adag(f) = sqrt(1/2) (f xi - d(f,xi))
 
 ket0 = pi^(-1/4) exp(-xi^2 / 2) -- see equation (15.33)
 
-ket(n) = test(n == 0, ket0, sqrt(1/n) ahat1(ket(n - 1)))
+ket(n) = test(n == 0, ket0, sqrt(1/n) adag(ket(n - 1)))
 
-A(n) = ahat1(ahat(ahat1(ket(n))))
-B(n) = (n + 1) ahat1(ket(n))
+A(n) = adag(ahat(adag(ket(n))))
+B(n) = (n + 1) adag(ket(n))
 
 -- check for n = 0 to 10
 
