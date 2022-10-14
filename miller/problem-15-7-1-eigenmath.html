@@ -1,8 +1,8 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
 "Problem 15.7.1"
 
-U = u(x,y,xi)
-V = v(x,y,xi)
+U = 1
+V = 1
 
 ahat(f) = sqrt(1/2) (f xi + d(f,xi))
 adag(f) = sqrt(1/2) (f xi - d(f,xi))
@@ -15,7 +15,7 @@ Psi = psi(t,x,y,xi)
 
 C = E(B(Psi)) - B(E(Psi))
 
-D = i hbar sqrt(mu0 / epsilon0) omega (U V + xi U d(V,xi))
+D = i hbar sqrt(mu0 / epsilon0) omega
 
 check(C == D Psi)
 
