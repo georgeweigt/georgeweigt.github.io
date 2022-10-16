@@ -4,10 +4,10 @@
 "Verify commutator"
 
 ahat(f) = sqrt(1/2) (f xi + d(f,xi))
-adag(f) = sqrt(1/2) (f xi - d(f,xi))
+ahatdag(f) = sqrt(1/2) (f xi - d(f,xi))
 
-xihat(f) = sqrt(1/2) (adag(f) + ahat(f))
-pihat(f) = i sqrt(1/2) (adag(f) - ahat(f))
+xihat(f) = sqrt(1/2) (ahatdag(f) + ahat(f))
+pihat(f) = i sqrt(1/2) (ahatdag(f) - ahat(f))
 
 C = xihat(pihat(psi(xi))) - pihat(xihat(psi(xi)))
 

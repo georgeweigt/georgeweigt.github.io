@@ -4,9 +4,9 @@
 "Verify commutator"
 
 ahat(f) = sqrt(1/2) (f xi + d(f,xi))
-adag(f) = sqrt(1/2) (f xi - d(f,xi))
+ahatdag(f) = sqrt(1/2) (f xi - d(f,xi))
 
-C = ahat(adag(psi(xi))) - adag(ahat(psi(xi)))
+C = ahat(ahatdag(psi(xi))) - ahatdag(ahat(psi(xi)))
 
 check(C == psi(xi))
 
