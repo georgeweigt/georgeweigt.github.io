@@ -8,13 +8,11 @@
 
 <script src="eigenmath.js"></script>
 
-Enter an Eigenmath script here then click Run<br>
-
-<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
-212^17
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt" autofocus placeholder="Enter an Eigenmath script here then click Run">
 </textarea>
 <button onclick="run()">Run</button>
-<input type="submit" value="Planck" onclick="readfile('plancks-law.txt')">
+<input type="submit" value="1" onclick="readfile('1.txt')">
+<input type="submit" value="2" onclick="readfile('plancks-law.txt')">
 <input type="file" id="choosefile"><br>
 
 <div id="stdout"></div><br>
