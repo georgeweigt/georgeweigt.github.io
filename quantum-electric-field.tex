@@ -1,114 +1,61 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
-\usepackage{amssymb} % mathbb
-\usepackage{mathrsfs} % mathscr
-
+\parindent=0pt
 \begin{document}
 
-\noindent
-Consider a light wave propagating in the $z$ direction.
-For simplicity let the light be linearly polarized with electric
-field vector $\vec{E}$ pointing in the $x$ direction.
+Let $|\Psi\rangle$ be a coherent state where $\bar n$ is the expected number of photons.
 \begin{equation*}
-\vec{E}(t,x,y,z)=\begin{pmatrix}E_x\cos(kz-\omega t)\\0\\0\end{pmatrix}
+|\Psi\rangle=\sum_{n=0}^\infty
+\sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
+\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+|n\rangle
 \end{equation*}
 
-\noindent
-Symbol $\omega$ is angular frequency and $k$ is the wave number~$k=\omega/c$.
-
-\bigskip
-\noindent
-The corresponding wave function is
+It can be shown that
 \begin{equation*}
-\psi=A\left|n-\tfrac{1}{2}\right\rangle
-+B\left|n+\tfrac{1}{2}\right\rangle
+\hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
 \end{equation*}
 
-\noindent
-where $n$ is the number of photons per unit volume and
-\begin{align*}
-A&=\exp\left(-i\left(n-\tfrac{1}{2}\right)\omega t\right)\\
-B&=\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
-\end{align*}
-
-\noindent
-The electric field operator is
+It follows that
 \begin{equation*}
-\hat{\mathscr{E}}=C\hat{a}+\bar{C}\hat{a}^\dagger
+\langle\Psi|\hat a^\dag=\left(\hat a|\Psi\rangle\right)^\dag=\sqrt{\bar n}\exp(i\omega t)\langle\Psi|
 \end{equation*}
 
-\noindent
-where $\hat{a}$ and $\hat{a}^\dagger$ are the lowering and raising operators such that
-\begin{align*}
-a\left|n+\tfrac{1}{2}\right\rangle&=\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle\\
-a^\dagger\left|n-\tfrac{1}{2}\right\rangle&=\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle
-\end{align*}
-
-\noindent
-The quantity $C$ is
+Let $\hat E$ be the electric field operator
 \begin{equation*}
-C=\sqrt{\frac{\hbar\omega}{2V\varepsilon_0}}\,\exp(ikz),
+\hat E=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}
+(\hat a-\hat a^\dag)
 \end{equation*}
 
-\noindent
-where $V$ is a unit volume.
+The expected electric field is
+\begin{equation*}
+\langle\hat E\rangle
+=\langle\Psi|\hat E|\Psi\rangle
+=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}
+\langle\Psi|(\hat a-\hat a^\dag)|\Psi\rangle
+\end{equation*}
 
-\bigskip
-\noindent
-Apply electric field operator $\hat{\mathscr{E}}$ to wave function $\psi$.
-\begin{align*}
-\hat{\mathscr{E}}\psi
-&=C\hat{a}\psi+\bar{C}\hat{a}^\dagger\psi\\
-&=CA\sqrt{n-1}\,\left|n-\tfrac{3}{2}\right\rangle+CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
-+\bar{C}A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle+\bar{C}B\sqrt{n+1}\,\left|n+\tfrac{3}{2}\right\rangle
-\end{align*}
+Hence
+\begin{equation*}
+\langle\hat E\rangle
+=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}
+\left(\sqrt{\bar n}\exp(-i\omega t)\langle\Psi|\Psi\rangle-\sqrt{\bar n}\exp(i\omega t)\langle\Psi|\Psi\rangle\right)
+\end{equation*}
 
-\noindent
-The observed electric field is the eigenvalue $\mathscr{E}$ such that $\hat{\mathscr{E}}\psi=\mathscr{E}\psi$.
-\begin{align*}
-\mathscr{E}
-&=\psi^\dagger\hat{\mathscr{E}}\psi\\
-&=\left\langle n-\tfrac{1}{2}\right|\bar{A}CB\sqrt{n}\,\left|n-\tfrac{1}{2}\right\rangle
-+\left\langle n+\tfrac{1}{2}\right|\bar{B}\bar{C}A\sqrt{n}\,\left|n+\tfrac{1}{2}\right\rangle\\
-&=\sqrt{n}\,C\exp(-i\omega t)+\sqrt{n}\,\bar{C}\exp(i\omega t)\\
-&=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}\cos(kz-\omega t)
-\end{align*}
+By $\langle\Psi|\Psi\rangle=1$ we have
+\begin{equation*}
+\langle\hat E\rangle
+=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}
+\left(\sqrt{\bar n}\exp(-i\omega t)-\sqrt{\bar n}\exp(i\omega t)\right)
+\end{equation*}
 
-\noindent
-Identifying $\mathscr{E}$ as the first component of $\vec{E}$ we have
-$$
-E_x\cos(kz-\omega t)=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}\cos(kz-\omega t)
-$$
-Hence the electric field amplitude $E_x$ is proportional to the square root of photon density.
-$$
-E_x=\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}
-$$
-
-\end{document}
-
-\noindent
-The following example calculates the SI constant
-for converting photon density to volts per meter.
-The SI unit of electric field strength is volts per meter.
-Yellow light with wavelength $\lambda=600$ nanometers is used for
-angular frequency~$\omega$.
-The result is
-$$
-\sqrt{\frac{2n\hbar\omega}{V\varepsilon_0}}
-=2.7\times10^{-4}\,\text{volt}\,\text{meter}^{-1}\times\sqrt{n}
-$$
-
-\noindent
-The symbol $V$ is a one cubic meter unit volume.
-The script also converts volts per meter to base units.
-$$
-1\,\text{volt}\,\text{meter}^{-1}
-=1\,\text{kilogram}\,\text{meter}\,\text{ampere}^{-1}\,\text{second}^{-3}
-$$
-
-%\noindent
-%``Quantum Mechanics for Engineers, Section A.23 Quantization of radiation''\\
-%\verb$http://www.eng.fsu.edu/~dommelen/quantum/style_a/qftqem.html$
+Recalling that
+\begin{equation*}
+2\sin(\omega t)=i\exp(-i\omega t)-i\exp(i\omega t)
+\end{equation*}
+we have
+\begin{equation*}
+\langle\hat E\rangle=\sqrt{\frac{2\hbar\omega\bar n}{\epsilon_0}}\sin(\omega t)
+\end{equation*}
 
 \end{document}
