@@ -1,0 +1,12 @@
+"Line integral"
+P = 1 - y
+Q = x
+x = 2 cos(t)
+y = 2 sin(t)
+defint(P d(x,t) + Q d(y,t), t, 0, 2pi)
+
+"Surface integral"
+x = quote(x) -- clear x
+y = quote(y) -- clear y
+h = sqrt(4 - x^2)
+defint(d(Q,x) - d(P,y), y, -h, h, x, -2, 2)
