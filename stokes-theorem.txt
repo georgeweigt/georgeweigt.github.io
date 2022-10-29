@@ -1,7 +1,7 @@
 "Surface integral"
-z = 4 - x^2 - y^2
-F = (y,z,x)
-S = (x,y,z)
+Z = 4 - x^2 - y^2 -- little z is used by curl
+F = (y,Z,x)
+S = (x,y,Z)
 f = dot(curl(F),cross(d(S,x),d(S,y)))
 x = r cos(theta)
 y = r sin(theta)
