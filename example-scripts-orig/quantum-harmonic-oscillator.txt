@@ -1,0 +1,38 @@
+# Ref. "Quantum harmonic oscillator" in Wikipedia
+
+# Compute psi_n(x) for n = 3
+
+n = 3
+m = hbar / omega
+X = sqrt(m * omega / hbar) * x
+H = (-1)^n * exp(X^2) * d(exp(-X^2),n)
+C = (m * omega / pi / hbar)^(1/4) / sqrt(2^n * n!)
+psi = C * exp(-m * omega * x^2 / 2 / hbar) * H
+
+# Define a function to integrate f(x) numerically
+
+d = 1/10
+summa(f) = float(d*sum(k,-50,50,eval(f,x,d*k)))
+
+"Check normalization"
+summa(psi * psi)
+
+"Expectation value for position"
+summa(psi * x * psi)
+
+"Expectation value for momentum"
+summa(psi * (-i * hbar) * d(psi,x))
+
+"Expectation value for kinetic energy"
+K = psi * (-hbar^2 / 2 / m) * d(psi,x,2)
+summa(K)
+
+"Expectation value for potential energy"
+V = psi * (m * omega^2 / 2) * x^2 * psi
+summa(V)
+
+"Expectation value for Hamiltonian (total energy)"
+summa(K + V)
+
+"Energy eigenvalue"
+hbar * omega * (n + 0.5)
