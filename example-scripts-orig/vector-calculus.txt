@@ -1,7 +1,7 @@
-# This script tests 10 vector calculus identities.
+-- This script tests 10 vector calculus identities.
 
-# Define the cross product, div, grad, curl and laplacian for
-# rectangular coordinates.
+-- Define the cross product, div, grad, curl and laplacian for
+-- rectangular coordinates.
 
 cross(u,v) = (
   u[2] v[3] - u[3] v[2],
@@ -21,18 +21,18 @@ curl(f) = (
 
 laplacian(f) = d(d(f,x),x) + d(d(f,y),y) + d(d(f,z),z)
 
-# Note: Functions can be left undefined, such as FX(), FY(), etc.
-# These "generic" functions, when evaluated by the derivative function d(),
-# are considered to be dependent on all variables.
-# Basically what this means is that d() does no evaluation at all.
-# For example, d(FX(),x) returns the expression d(FX(),x).
+-- Note: Functions can be left undefined, such as FX(), FY(), etc.
+-- These "generic" functions, when evaluated by the derivative function d(),
+-- are considered to be dependent on all variables.
+-- Basically what this means is that d() does no evaluation at all.
+-- For example, d(FX(),x) returns the expression d(FX(),x).
 
-# Define generic vector functions F and G.
+-- Define generic vector functions F and G.
 
 F = (FX(),FY(),FZ())
 G = (GX(),GY(),GZ())
 
-# Now check the 10 identities.
+-- Now check the 10 identities.
 
 "Checking the following identities:"
 
@@ -44,7 +44,7 @@ check(A = 0)
 
 "2. curl(grad f) = 0"
 
-A = curl(grad(f())) # Note the use of generic scalar function f() here.
+A = curl(grad(f())) -- Note the use of generic scalar function f() here.
 
 check(A = 0)
 
@@ -80,7 +80,7 @@ B = dot(grad(F),G)+dot(grad(G),F)+cross(G,curl(F))+cross(F,curl(G))
 
 check(A = B)
 
-# Note: It turns out that (G . grad)F actually means (grad F) . G
+-- Note: It turns out that (G . grad)F actually means (grad F) . G
 
 "7. div(fF) = f div F + grad f . F"
 
@@ -114,6 +114,6 @@ B = F div(G) - G div(F) + dot(grad(F),G) - dot(grad(G),F)
 
 check(A = B)
 
-# If we get here then everything worked.
+-- If we get here then everything worked.
 
-"OK"
+"ok"
