@@ -1,4 +1,4 @@
-"Verify quantum electric field formulas"
+"Verify formulas"
 
 E2 = -hbar omega / (2 epsilon0) *
 (nbar exp(-2 i omega t) + nbar exp(2 i omega t) - 2 nbar - 1)
