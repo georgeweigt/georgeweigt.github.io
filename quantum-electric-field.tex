@@ -60,4 +60,98 @@ we have
 
 Hence the peak amplitude is proportional to $\sqrt{\bar n}$.
 
+\bigskip
+The total energy of the electromagnetic field per unit volume is
+\begin{equation*}
+U=\frac{\epsilon_0}{2}|\mathbf E|^2+\frac{1}{2\mu_0}|\mathbf B|^2
+\end{equation*}
+
+For linearly polarized light we can by suitable rotation obtain
+\begin{equation*}
+\mathbf E=\begin{pmatrix}E_x\\0\\0\end{pmatrix},
+\quad
+\mathbf B=\begin{pmatrix}0\\B_y\\0\end{pmatrix}
+\end{equation*}
+
+Hence in the rotated frame
+\begin{equation*}
+U=\frac{\epsilon_0}{2}E_x^2+\frac{1}{2\mu_0}B_y^2
+\end{equation*}
+
+For the quantum field we have
+\begin{equation*}
+U=\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle+\frac{1}{2\mu_0}\langle\hat B_y^2\rangle
+\end{equation*}
+where
+\begin{equation*}
+\hat E_x=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}(\hat a-\hat a^\dag),
+\quad
+\hat B_y=\sqrt{\frac{\hbar\omega\mu_0}{2}}(\hat a+\hat a^\dag)
+\end{equation*}
+
+For the coherent state we have
+\begin{align*}
+\langle\Psi|\hat a\hat a|\Psi\rangle&=\left(\sqrt{\bar n}\exp(-i\omega t)\right)^2
+& &=\bar n\exp(-2i\omega t)
+\\
+\langle\Psi|\hat a\hat a^\dag|\Psi\rangle&=\langle\Psi|(\hat a^\dag\hat a+1)|\Psi\rangle
+& &=\bar n+1
+\\
+\langle\Psi|\hat a^\dag\hat a|\Psi\rangle
+&=\left(\sqrt{\bar n}\exp(i\omega t)\right)\left(\sqrt{\bar n}\exp(-i\omega t)\right)
+& &=\bar n
+\\
+\langle\Psi|\hat a^\dag\hat a^\dag|\Psi\rangle&=\left(\sqrt{\bar n}\exp(i\omega t)\right)^2
+& &=\bar n\exp(2i\omega t)
+\end{align*}
+
+Hence
+\begin{align*}
+\langle\hat E_x^2\rangle
+=\langle\Psi|\hat E\hat E|\Psi\rangle
+&=-\frac{\hbar\omega}{2\epsilon_0}
+\langle\Psi|(\hat a-\hat a^\dag)(\hat a-\hat a^\dag)|\Psi\rangle
+\\
+&=-\frac{\hbar\omega}{2\epsilon_0}
+\left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)-2\bar n-1\right)
+\end{align*}
+and
+\begin{align*}
+\langle\hat B_y^2\rangle
+=\langle\Psi|\hat B_y\hat B_y|\Psi\rangle
+&=\frac{\hbar\omega\mu_0}{2}
+\langle\Psi|(\hat a+\hat a^\dag)(\hat a+\hat a^\dag)|\Psi\rangle
+\\
+&=\frac{\hbar\omega\mu_0}{2}
+\left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)+2\bar n+1\right)
+\end{align*}
+
+Noting that
+\begin{align*}
+4\sin(\omega t)^2&=-\exp(-2i\omega t)-\exp(2i\omega t)+2\\
+4\cos(\omega t)^2&=\exp(-2i\omega t)+\exp(2i\omega t)+2
+\end{align*}
+we have
+\begin{align*}
+\langle\hat E_x^2\rangle
+&=\frac{2\bar n\hbar\omega}{\epsilon_0}\sin(\omega t)^2+\frac{\hbar\omega}{2\epsilon_0}
+\\[1ex]
+\langle\hat B_y^2\rangle
+&=2\bar n\hbar\omega\mu_0\cos(\omega t)^2+\frac{\hbar\omega\mu_0}{2}
+\end{align*}
+
+Rewrite as
+\begin{align*}
+\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle&=\bar n\hbar\omega\sin(\omega t)^2+\frac{\hbar\omega}{4}
+\\[1ex]
+\frac{1}{2\mu_0}\langle\hat B_y^2\rangle&=\bar n\hbar\omega\cos(\omega t)^2+\frac{\hbar\omega}{4}
+\end{align*}
+
+Hence the total energy per unit volume is
+\begin{equation*}
+U=\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle
++\frac{1}{2\mu_0}\langle\hat B_y^2\rangle
+=\left(\bar n+\tfrac{1}{2}\right)\hbar\omega
+\end{equation*}
+
 \end{document}
