@@ -1,17 +1,23 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
 "Verify formulas"
 
-E2 = -hbar omega / (2 epsilon0) *
-(nbar exp(-2 i omega t) + nbar exp(2 i omega t) - 2 nbar - 1)
+E = i sqrt(nbar hbar omega / 2 / epsilon0) (exp(-i omega t) - exp(i omega t))
+B = sqrt(nbar hbar omega mu0 / 2) (exp(-i omega t) + exp(i omega t))
 
-B2 = hbar omega mu0 / 2 *
-(nbar exp(-2 i omega t) + nbar exp(2 i omega t) + 2 nbar + 1)
+check(E == sqrt(2 nbar hbar omega / epsilon0) sin(omega t))
+check(B == sqrt(2 nbar hbar omega mu0) cos(omega t))
 
-check(E2 == 2 nbar hbar omega / epsilon0 sin(omega t)^2 +
-hbar omega / (2 epsilon0))
+E2 = -hbar omega / (2 epsilon0) (nbar exp(-2 i omega t) +
+nbar exp(2 i omega t) - 2 nbar - 1)
 
-check(B2 == 2 nbar hbar omega mu0 expcos(omega t)^2 +
-hbar omega mu0 / 2)
+B2 = hbar omega mu0 / 2 (nbar exp(-2 i omega t) +
+nbar exp(2 i omega t) + 2 nbar + 1)
+
+check(E2 ==
+2 nbar hbar omega / epsilon0 sin(omega t)^2 + hbar omega / (2 epsilon0))
+
+check(B2 ==
+2 nbar hbar omega mu0 expcos(omega t)^2 + hbar omega mu0 / 2)
 
 check(epsilon0 / 2 E2 + 1 / (2 mu0) B2 == (nbar + 1/2) hbar omega)
 
