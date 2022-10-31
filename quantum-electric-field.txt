@@ -6,11 +6,11 @@ B = sqrt(nbar hbar omega mu0 / 2) (exp(-i omega t) + exp(i omega t))
 check(E == sqrt(2 nbar hbar omega / epsilon0) sin(omega t))
 check(B == sqrt(2 nbar hbar omega mu0) cos(omega t))
 
-E2 = -hbar omega / (2 epsilon0) (nbar exp(-2 i omega t) +
-nbar exp(2 i omega t) - 2 nbar - 1)
+E2 = -hbar omega / 2 / epsilon0 *
+(nbar exp(-2 i omega t) + nbar exp(2 i omega t) - 2 nbar - 1)
 
-B2 = hbar omega mu0 / 2 (nbar exp(-2 i omega t) +
-nbar exp(2 i omega t) + 2 nbar + 1)
+B2 = hbar omega mu0 / 2 *
+(nbar exp(-2 i omega t) + nbar exp(2 i omega t) + 2 nbar + 1)
 
 check(E2 ==
 2 nbar hbar omega / epsilon0 sin(omega t)^2 + hbar omega / (2 epsilon0))
