@@ -13,7 +13,7 @@ B2 = hbar omega mu0 / 2 *
 (nbar exp(-2 i omega t) + nbar exp(2 i omega t) + 2 nbar + 1)
 
 check(E2 ==
-2 nbar hbar omega / epsilon0 sin(omega t)^2 + hbar omega / (2 epsilon0))
+2 nbar hbar omega / epsilon0 sin(omega t)^2 + hbar omega / 2 / epsilon0)
 
 check(B2 ==
 2 nbar hbar omega mu0 expcos(omega t)^2 + hbar omega mu0 / 2)
