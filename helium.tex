@@ -1,5 +1,4 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 
 \begin{document}
@@ -284,14 +283,15 @@ I(r_1)=
 
 \noindent
 Solve the integrals.
-\begin{equation*}
+\begin{multline*}
 I(r_1)=
 \frac{4\alpha^3}{r_1}
 \left.
 \exp(-2\alpha r_2)\left(-\frac{r_2^2}{2\alpha}-\frac{r_2}{2\alpha^2}-\frac{1}{4\alpha^3}
 \right)\right|_0^{r_1}
-+4\alpha^3\left.\exp(-2\alpha r_2)\left(-\frac{r_2}{2\alpha}-\frac{1}{4\alpha^2}\right)\right|_{r_1}^\infty
-\end{equation*}
+\\
+{}+4\alpha^3\left.\exp(-2\alpha r_2)\left(-\frac{r_2}{2\alpha}-\frac{1}{4\alpha^2}\right)\right|_{r_1}^\infty
+\end{multline*}
 
 \noindent
 Evaluate per limits.
@@ -316,18 +316,19 @@ I=4\alpha^3\int\limits_0^\infty
 
 \noindent
 Expand the integrand.
-\begin{equation*}
+\begin{multline*}
 I=4\alpha^3\int\limits_0^\infty\exp(-2\alpha r_1)\,r_1\,dr_1
 -4\alpha^3\int\limits_0^\infty\exp(-4\alpha r_1)\,r_1\,dr_1
+\\
 -4\alpha^4\int\limits_0^\infty\exp(-4\alpha r_1)\,r_1^2\,dr_1
-\end{equation*}
+\end{multline*}
 
 \noindent
 Solve the integrals.
 \begin{multline*}
 I=\exp(-2\alpha r_1)\left(-2\alpha^2r_1-\alpha\right)\bigg|_0^\infty
+-\exp(-4\alpha r_1)\left(-\alpha^2r_1-\tfrac{1}{4}\alpha\right)\bigg|_0^\infty
 \\
-{}-\exp(-4\alpha r_1)\left(-\alpha^2r_1-\tfrac{1}{4}\alpha\right)\bigg|_0^\infty
 {}-\exp(-4\alpha r_1)\left(-\alpha^3r_1^2-\tfrac{1}{2}\alpha^2r_1-\tfrac{1}{8}\alpha\right)\bigg|_0^\infty
 \end{multline*}
 

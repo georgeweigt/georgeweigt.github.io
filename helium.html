@@ -5,7 +5,9 @@ f = sin(theta1) sin(theta2)
 
 I = defint(f,theta1,0,pi,theta2,0,pi,phi1,0,2pi,phi2,0,2pi)
 
-I == 16 pi^2
+check(I == 16 pi^2)
+
+"ok"
 
 "Verify equation (2)"
 
@@ -20,7 +22,9 @@ I = 16 pi^2 integral(f,r1,r2)
 I = 0 - eval(I,r1,0) -- I evaluated at r1 = infinity is zero
 I = 0 - eval(I,r2,0) -- I evaluated at r2 = infinity is zero
 
-I == 1/2 alpha^2
+check(I == 1/2 alpha^2)
+
+"ok"
 
 "Verify equation (3)"
 
@@ -31,43 +35,51 @@ I = 16 pi^2 integral(f,r1,r2)
 I = 0 - eval(I,r1,0) -- I evaluated at r1 = infinity is zero
 I = 0 - eval(I,r2,0) -- I evaluated at r2 = infinity is zero
 
-I == -Z alpha
+check(I == -Z alpha)
+
+"ok"
 
 "Verify equation (6)"
 
 A = 4 alpha^3 / r1 integral(exp(-2 alpha r2) r2^2, r2)
 B = 4 alpha^3 integral(exp(-2 alpha r2) r2, r2)
 
-A == 4 alpha^3 / r1 exp(-2 alpha r2) *
-      (-r2^2 / (2 alpha) - r2 / (2 alpha^2) - 1 / (4 alpha^3))
+check(A == 4 alpha^3 / r1 exp(-2 alpha r2) *
+(-r2^2 / (2 alpha) - r2 / (2 alpha^2) - 1 / (4 alpha^3)))
 
-B == 4 alpha^3 exp(-2 alpha r2) (-r2 / (2 alpha) - 1 / (4 alpha^2))
+check(B == 4 alpha^3 exp(-2 alpha r2) (-r2 / (2 alpha) - 1 / (4 alpha^2)))
 
 A = eval(A,r2,r1) - eval(A,r2,0)
 B = 0 - eval(B,r2,r1)
 
 I = A + B
 
-I == 1/r1 - 1/r1 exp(-2 alpha r1) - alpha exp(-2 alpha r1)
+check(I == 1/r1 - 1/r1 exp(-2 alpha r1) - alpha exp(-2 alpha r1))
+
+"ok"
 
 "Verify equation (7)"
 
 I = 4 alpha^3 integral(exp(-2 alpha r1) I r1^2, r1)
 
-I == exp(-2 alpha r1) (-2 alpha^2 r1 - alpha) -
-     exp(-4 alpha r1) (-alpha^2 r1 - 1/4 alpha) -
-     exp(-4 alpha r1) (-alpha^3 r1^2 - 1/2 alpha^2 r1 - 1/8 alpha)
+check(I == exp(-2 alpha r1) (-2 alpha^2 r1 - alpha) -
+exp(-4 alpha r1) (-alpha^2 r1 - 1/4 alpha) -
+exp(-4 alpha r1) (-alpha^3 r1^2 - 1/2 alpha^2 r1 - 1/8 alpha))
 
 I = 0 - eval(I,r1,0)
 
-I == 5/8 alpha
+check(I == 5/8 alpha)
+
+"ok"
 
 "Verify equation (5)"
 
 P(f,n) = eval(d((x^2 - 1)^n, x, n), x, f) / (2^n n!) -- Rodrigues's formula
 
-defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2
-defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0
-defint(P(expcos(theta),2) expsin(theta), theta, 0, pi) == 0
-defint(P(expcos(theta),10) expsin(theta), theta, 0, pi) == 0
+check(defint(P(expcos(theta),0) expsin(theta), theta, 0, pi) == 2)
+check(defint(P(expcos(theta),1) expsin(theta), theta, 0, pi) == 0)
+check(defint(P(expcos(theta),2) expsin(theta), theta, 0, pi) == 0)
+check(defint(P(expcos(theta),10) expsin(theta), theta, 0, pi) == 0)
+
+"ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
