@@ -1,82 +1,71 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{slashed}
-
+\parindent=0pt
 \begin{document}
 
-\noindent
 Let $\phi$ be the field
 \begin{equation*}
-\phi(x,y,z,t)=p_xx+p_yy+p_zz-Et
+\phi=p_xx+p_yy+p_zz-Et
 \end{equation*}
 where
 \begin{equation*}
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-\noindent
-Fermion fields are represented by
-the following solutions to the Dirac equation.
-\begin{equation*}
-\psi_1=\underset{\text{fermion spin up}}
-{
-\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
+Fermion fields are the following solutions to the Dirac equation.
+\begin{align*}
+\psi_1&=\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 \exp\left(\frac{i\phi}{\hbar}\right)
-}
-\qquad
-\psi_2=\underset{\text{fermion spin down}}
-{
-\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
+& \psi_2&=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \exp\left(\frac{i\phi}{\hbar}\right)
-}
-\end{equation*}
-\begin{equation*}
-\psi_7=\underset{\text{anti-fermion spin up}}
-{
-\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
+\\
+\\
+\psi_3&=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-}
-\qquad
-\psi_8=\underset{\text{anti-fermion spin down}}
-{
-\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
+& \psi_4&=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-}
-\end{equation*}
+\end{align*}
 
-\noindent
 A spinor is the vector part of $\psi$.
-The following spinors are used for scattering calculations.
-Symbol $u$ indicates a fermion and symbol $v$ indicates an anti-fermion.
+\begin{align*}
+u_1&=\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
+& u_2&=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
+\\
+\\
+v_1&=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
+& v_2&=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+\end{align*}
+
+This is the spacetime momentum vector $p$.
 \begin{equation*}
-u_1=\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
-\quad
-u_2=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
-\quad
-v_1=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
-\quad
-v_2=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+p=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
 \end{equation*}
 
-\noindent
-This is the corresponding space-time momentum vector $p$.
-$$
-p=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
-$$
+Spinors are solutions to the momentum-space Dirac equations
+\begin{equation*}
+\slashed pu=mcu,
+\quad
+\slashed pv=-mcv
+\end{equation*}
+where
+\begin{equation*}
+\slashed p=p^\mu g_{\mu\nu}\gamma^\nu
+\end{equation*}
 
-\noindent
-Spinors are solutions to the following momentum-space Dirac equations where
-$\slashed{p}=p^\mu g_{\mu\nu}\gamma^\nu$.
-$$
-\slashed{p}u=mcu\qquad\slashed{p}v=-mcv
-$$
-Up and down spinors have the following ``completeness property.''
-$$
-u_1\bar{u}_1+u_2\bar{u}_2=(E/c+mc)(\slashed{p}+mc)\qquad
-v_1\bar{v}_1+v_2\bar{v}_2=(E/c+mc)(\slashed{p}-mc)
-$$
-The spinor adjoints are $\bar{u}=u^\dag\gamma^0$ and $\bar{v}=v^\dag\gamma^0$.
-The adjoint is a row vector hence $u\bar{u}$ and $v\bar{v}$ are outer products.
+Up and down spinors have the following completeness property.
+\begin{align*}
+u_1\bar u_1+u_2\bar u_2&=(E/c+mc)(\slashed p+mc)
+\\
+v_1\bar v_1+v_2\bar v_2&=(E/c+mc)(\slashed p-mc)
+\end{align*}
+
+Spinor adjoints are
+\begin{equation*}
+\bar u=u^\dag\gamma^0,
+\quad
+\bar v=v^\dag\gamma^0
+\end{equation*}
+hence $u\bar u$ and $v\bar v$ are $4\times4$ matrices.
 
 \end{document}
