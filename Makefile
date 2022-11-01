@@ -1,4 +1,4 @@
-.PHONY: default
+.PHONY: default clean
 
 %.pdf: %.tex
 	pdflatex $<
@@ -14,3 +14,6 @@
 default:
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed -e "s/.*Box.*//" -e "s/\.txt/\.html/") ; do make $$file ; done
+
+clean:
+	rm -f *.aux *.log *.synctex.gz
