@@ -22,11 +22,11 @@ These are the spin operators.
 
 Expectation of spin operators is a projection of $s$ onto Euclidean space.
 \begin{equation*}
-\langle x\rangle=\langle s|\sigma_x|s\rangle,
+\langle x\rangle=\langle s|\sigma_x|s\rangle=s^\dag\sigma_x s,
 \quad
-\langle y\rangle=\langle s|\sigma_y|s\rangle,
+\langle y\rangle=\langle s|\sigma_y|s\rangle=s^\dag\sigma_y s,
 \quad
-\langle z\rangle=\langle s|\sigma_z|s\rangle
+\langle z\rangle=\langle s|\sigma_z|s\rangle=s^\dag\sigma_z s
 \end{equation*}
 
 Let
@@ -42,12 +42,12 @@ P=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatri
 
 In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ and
 \begin{equation*}
-P^\alpha=\bar s_\beta\sigma^{\alpha\beta}{}_\gamma s^\gamma
+P^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
 
 In Eigenmath a transpose is needed to swap $\alpha$ and $\beta$ so that summed-over indices are adjacent.
 \begin{equation*}
-P^\alpha=\bar s_\beta\sigma^{\beta\alpha}{}_\gamma s^\gamma
+P^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
 Hence the code is
