@@ -1,0 +1,23 @@
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+sigmaz = ((1,0),(0,-1))
+
+sigma = (sigmax,sigmay,sigmaz)
+
+"Verify spin commutation relations"
+
+check(dot(sigmax,sigmay) - dot(sigmay,sigmax) == 2 i sigmaz)
+check(dot(sigmay,sigmaz) - dot(sigmaz,sigmay) == 2 i sigmax)
+check(dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay)
+
+"ok"
+
+"Verify expectation of spin state"
+
+s = cos(theta/2) (1,0) + sin(theta/2) exp(i phi) (0,1)
+
+P = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
+
+check(dot(conj(s),transpose(sigma),s) == P)
+
+"ok"
