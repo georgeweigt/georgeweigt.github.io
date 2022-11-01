@@ -12,7 +12,7 @@ check(dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay)
 
 "ok"
 
-"Verify expectation of spin state"
+"Verify polarization vector"
 
 s = cos(theta/2) (1,0) + sin(theta/2) exp(i phi) (0,1)
 
