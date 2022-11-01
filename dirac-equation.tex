@@ -1,11 +1,10 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 
 \begin{document}
 
 \noindent
-This is the Dirac equation.
+This is Dirac's equation.
 \begin{equation*}
 i\hbar\left(
 \frac{\gamma^0}{c}\frac{\partial}{\partial t}+
@@ -17,15 +16,15 @@ i\hbar\left(
 \end{equation*}
 
 \noindent
-The following set of gamma matrices is known as the ``Dirac representation.''
-{\small
-\begin{gather*}
-\gamma^0=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}\quad
-\gamma^1=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}\quad
-\gamma^2=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}\quad
-\gamma^3=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
-\end{gather*}
-}
+Gamma matrices for the ``Dirac representation'' are
+\begin{align*}
+\gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
+& \gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
+\\
+\\
+\gamma^2&=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}
+& \gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
+\end{align*}
 
 \noindent
 Let $\phi$ be the field
@@ -39,44 +38,36 @@ E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 
 \noindent
 The four positive wave solutions to the Dirac equation are
-{\small
-\begin{equation*}
-\psi_1=\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
+\begin{align*}
+\psi_1&=\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
-\qquad
-\psi_2=\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
+& \psi_2&=\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
-\end{equation*}
-\begin{equation*}
-\psi_3=\begin{pmatrix}p_z\\p_x+ip_y\\E/c-mc\\0\end{pmatrix}
+\\
+\\
+\psi_3&=\begin{pmatrix}p_z\\p_x+ip_y\\E/c-mc\\0\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
-\qquad
-\psi_4=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c-mc\end{pmatrix}
+& \psi_4&=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c-mc\end{pmatrix}
 \exp\left(\frac{i\phi}{\hbar}\right)
-\end{equation*}
-}
+\end{align*}
 
 \noindent
 The four negative wave solutions are
-{\small
-\begin{equation*}
-\psi_5=\begin{pmatrix}E/c-mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
+\begin{align*}
+\psi_5&=\begin{pmatrix}E/c-mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-\qquad
-\psi_6=\begin{pmatrix}0\\E/c-mc\\p_x-ip_y\\-p_z\end{pmatrix}
+& \psi_6&=\begin{pmatrix}0\\E/c-mc\\p_x-ip_y\\-p_z\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-\end{equation*}
-\begin{equation*}
-\psi_7=\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
+\\
+\\
+\psi_7&=\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-\qquad
-\psi_8=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
+& \psi_8&=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
 \exp\left(-\frac{i\phi}{\hbar}\right)
-\end{equation*}
-}
+\end{align*}
 
 \noindent
-The negative wave solutions flip the sign of the $mc$ term.
+Negative wave solutions flip the sign of the $mc$ term.
 
 \bigskip
 \noindent

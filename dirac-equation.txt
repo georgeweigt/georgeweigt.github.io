@@ -1,5 +1,3 @@
--- Verify solutions to the Dirac equation
-
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
@@ -24,13 +22,15 @@ D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma2,d(psi,y)) +
          dot(gamma3,d(psi,z))
 
-"Verify solutions (1=ok)"
+"Verify solutions"
 
-i hbar D(psi1) == m c psi1
-i hbar D(psi2) == m c psi2
-i hbar D(psi3) == m c psi3
-i hbar D(psi4) == m c psi4
-i hbar D(psi5) == m c psi5
-i hbar D(psi6) == m c psi6
-i hbar D(psi7) == m c psi7
-i hbar D(psi8) == m c psi8
+check(i hbar D(psi1) == m c psi1)
+check(i hbar D(psi2) == m c psi2)
+check(i hbar D(psi3) == m c psi3)
+check(i hbar D(psi4) == m c psi4)
+check(i hbar D(psi5) == m c psi5)
+check(i hbar D(psi6) == m c psi6)
+check(i hbar D(psi7) == m c psi7)
+check(i hbar D(psi8) == m c psi8)
+
+"ok"
