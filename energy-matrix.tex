@@ -1,44 +1,37 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
-
+\parindent=0pt
 \begin{document}
 
-\noindent
 Consider a system of two electrons with the following eigenstates.
 \begin{align*}
-|0\rangle&=(1,0,0,0)\qquad\text{no electrons}\\
-|1\rangle&=(0,1,0,0)\qquad\text{one electron in state $\phi_1$}\\
-|2\rangle&=(0,0,1,0)\qquad\text{one electron in state $\phi_2$}\\
-|3\rangle&=(0,0,0,1)\qquad\text{two electrons, one in state $\phi_1$, one in state $\phi_2$}
+|0\rangle&=(1,0,0,0)\quad\text{no electrons}\\
+|1\rangle&=(0,1,0,0)\quad\text{one electron in state $\phi_1$}\\
+|2\rangle&=(0,0,1,0)\quad\text{one electron in state $\phi_2$}\\
+|3\rangle&=(0,0,0,1)\quad\text{two electrons, one in state $\phi_1$, one in state $\phi_2$}
 \end{align*}
 
-\noindent
 Let electron states $\phi_n$ be modeled by a one dimensional box of length $L$.
 \begin{equation*}
 \phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
 \end{equation*}
 
-\noindent
 Let $|\xi\rangle$ be an arbitrary normalized state vector.
 \begin{equation*}
-|\xi\rangle=c_0|0\rangle+c_1|1\rangle+c_2|2\rangle+c_3|3\rangle,\qquad\langle\xi|\xi\rangle=1
+|\xi\rangle=c_0|0\rangle+c_1|1\rangle+c_2|2\rangle+c_3|3\rangle,\quad\langle\xi|\xi\rangle=1
 \end{equation*}
 
-\noindent
 Let us determine an energy matrix $\hat{E}$ such that the expected
 energy $\langle E \rangle$ in state $|\xi\rangle$ is
 \begin{equation*}
 \langle E\rangle=\langle\xi|\hat{E}|\xi\rangle
 \end{equation*}
 
-\noindent
 Energy matrix $\hat{E}$ is the sum of kinetic and potential energy matrices.
 \begin{equation*}
 \hat{E}=\hat{K}+\hat{V}
 \end{equation*}
 
-\noindent
 Kinetic energy matrix $\hat{K}$ can be computed from energy eigenvalues of the box model.
 \begin{equation*}
 \hat{K}=\begin{pmatrix}
@@ -47,11 +40,10 @@ Kinetic energy matrix $\hat{K}$ can be computed from energy eigenvalues of the b
 0 & 0 & E_2 & 0\\
 0 & 0 & 0 & E_1+E_2
 \end{pmatrix},
-\qquad
+\quad
 E_n=\frac{n^2\pi^2\hbar^2}{2mL^2}
 \end{equation*}
 
-\noindent
 Potential energy matrix $\hat{V}$ has one entry due to Coulomb interaction in the two electron state.
 \begin{equation*}
 \hat{V}=
@@ -63,20 +55,17 @@ Potential energy matrix $\hat{V}$ has one entry due to Coulomb interaction in th
 \end{pmatrix}
 \end{equation*}
 
-\noindent
 Let $\psi(x,y)$ be the antisymmetrized wavefunction of the two electrons.
 \begin{equation*}
 \psi(x,y)=\frac{1}{\sqrt{2}}\big(\phi_1(x)\phi_2(y)-\phi_1(y)\phi_2(x)\big)
 \end{equation*}
 
-\noindent
 Then
 \begin{equation*}
 V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L
 \psi^*(x,y)\left(\frac{1}{|x-y|}\right)\psi(x,y)\,dx\,dy
 \end{equation*}
 
-\noindent
 Let us now choose $L=10^{-9}$ meters and compute numerical values.
 For $\hat{K}$ we have
 \begin{equation*}
@@ -88,7 +77,6 @@ For $\hat{K}$ we have
 \end{pmatrix}
 \end{equation*}
 
-\noindent
 Computing $V$ by numerical integration we have
 \begin{equation*}
 \hat{V}=\begin{pmatrix}
@@ -99,7 +87,6 @@ Computing $V$ by numerical integration we have
 \end{pmatrix}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 \hat{E}=\hat{K}+\hat{V}=\begin{pmatrix}
