@@ -4,11 +4,20 @@
 \parindent=0pt
 \begin{document}
 
-Electron spin state $s$ is a unit vector in $\mathbb{C}^2$.
+Spin state $s$ is a unit vector in $\mathbb{C}^2$.
 \begin{equation*}
-s=\begin{pmatrix}c_1\\c_2\end{pmatrix},
+|s\rangle=\begin{pmatrix}c_1\\c_2\end{pmatrix},
 \quad
-|s|=s^\dag s=c_1^*c_1+c_2^*c_2=1
+c_1^*c_1+c_2^*c_2=1
+\end{equation*}
+
+Here is $|s\rangle$ as a linear combination of basis states ``up'' and ``down.''
+\begin{equation*}
+|s\rangle=c_1|u\rangle+c_2|d\rangle,
+\quad
+|u\rangle=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+|d\rangle=\begin{pmatrix}0\\1\end{pmatrix}
 \end{equation*}
 
 These are the spin operators.
@@ -22,25 +31,34 @@ These are the spin operators.
 
 Expectation of spin operators is a projection of $s$ onto Euclidean space.
 \begin{equation*}
-\langle x\rangle=\langle s|\sigma_x|s\rangle=s^\dag\sigma_x s,
+\langle x\rangle=\langle s|\sigma_x|s\rangle,
 \quad
-\langle y\rangle=\langle s|\sigma_y|s\rangle=s^\dag\sigma_y s,
+\langle y\rangle=\langle s|\sigma_y|s\rangle,
 \quad
-\langle z\rangle=\langle s|\sigma_z|s\rangle=s^\dag\sigma_z s
+\langle z\rangle=\langle s|\sigma_z|s\rangle
 \end{equation*}
 
-Let
+Spin polarization vector $\mathbf P$ is
+\begin{equation*}
+\mathbf P=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
+=\langle s|\sigma|s\rangle
+\end{equation*}
+where
 \begin{equation*}
 \sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
 \end{equation*}
 
-Then the spin polarization vector $P$ is
+Let $\theta$ and $\phi$ be polar and azimuth angles such that
 \begin{equation*}
-P=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
-=s^\dag\sigma s
+\mathbf P=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
 \end{equation*}
 
-In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ and
+Then
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
 \begin{equation*}
 P^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
@@ -50,19 +68,7 @@ In Eigenmath a transpose is needed to swap $\alpha$ and $\beta$ so that summed-o
 P^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
-Hence the code is
-\begin{equation*}
-\text{\tt P = dot(conj(s),transpose(sigma),s)}
-\end{equation*}
-
-Let $\theta$ and $\phi$ be polar and azimuth angles such that
-\begin{equation*}
-P=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
-\end{equation*}
-
-The corresponding spin state is
-\begin{equation*}
-s=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
-\end{equation*}
+Hence the Eigenmath code is
+{\tt P = dot(conj(s),transpose(sigma),s)}
 
 \end{document}
