@@ -38,9 +38,9 @@ Expectation of spin operators is a projection of $s$ onto Euclidean space.
 \langle z\rangle=\langle s|\sigma_z|s\rangle
 \end{equation*}
 
-Spin polarization vector $\mathbf P$ is
+Let $\mathbf S$ be spin polarization vector
 \begin{equation*}
-\mathbf P=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
+\mathbf S=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
 =\langle s|\sigma|s\rangle
 \end{equation*}
 where
@@ -50,7 +50,7 @@ where
 
 Let $\theta$ and $\phi$ be polar and azimuth angles such that
 \begin{equation*}
-\mathbf P=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
+\mathbf S=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
 \end{equation*}
 
 Then
@@ -60,17 +60,17 @@ Then
 
 In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
 \begin{equation*}
-P^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
+S^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
 
 A transpose swaps $\alpha$ and $\beta$ so that summed-over indices are adjacent.
 \begin{equation*}
-P^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
+S^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
 Hence the Eigenmath code is
 \begin{equation*}
-\text{\tt P = dot(conj(s),transpose(sigma),s)}
+\text{\tt S = dot(conj(s),transpose(sigma),s)}
 \end{equation*}
 
 \end{document}

@@ -13,13 +13,13 @@ check(dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay)
 
 "ok"
 
-"Verify polarization vector"
+"Verify spin polarization vector"
 
 s = (cos(theta/2), sin(theta/2) exp(i phi))
 
-P = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
+S = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
 
-check(dot(conj(s),transpose(sigma),s) == P)
+check(dot(conj(s),transpose(sigma),s) == S)
 
 "ok"
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
