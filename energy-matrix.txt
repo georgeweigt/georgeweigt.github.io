@@ -62,7 +62,7 @@ psi = sqrt(1/2) (phi(1,x) phi(2,y) - phi(1,y) phi(2,x))
 
 C = e^2 / (4 pi epsilon0)
 
-D = abs((x - y) / meter) meter -- trick to handle abs of meter
+D = abs((x - y) / meter) meter -- trick to cancel meter inside abs
 
 f = conj(psi) psi / D
 
