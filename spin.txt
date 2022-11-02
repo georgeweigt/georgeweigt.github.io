@@ -14,7 +14,7 @@ check(dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay)
 
 "Verify polarization vector"
 
-s = cos(theta/2) (1,0) + sin(theta/2) exp(i phi) (0,1)
+s = (cos(theta/2), sin(theta/2) exp(i phi))
 
 P = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
 
