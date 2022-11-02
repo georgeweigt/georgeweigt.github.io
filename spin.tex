@@ -63,12 +63,14 @@ In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
 P^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
 
-In Eigenmath a transpose is needed to swap $\alpha$ and $\beta$ so that summed-over indices are adjacent.
+A transpose swaps $\alpha$ and $\beta$ so that summed-over indices are adjacent.
 \begin{equation*}
 P^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
 Hence the Eigenmath code is
-{\tt P = dot(conj(s),transpose(sigma),s)}
+\begin{equation*}
+\text{\tt P = dot(conj(s),transpose(sigma),s)}
+\end{equation*}
 
 \end{document}

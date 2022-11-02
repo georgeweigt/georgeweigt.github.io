@@ -1,8 +1,4 @@
 <html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
--- Energy matrix
-
--- Run time about 10 seconds
-
 ket0 = (1,0,0,0)
 ket1 = (0,1,0,0)
 ket2 = (0,0,1,0)
@@ -12,7 +8,7 @@ phi(n,x) = sqrt(2 / L) sin(n pi x / L)
 
 -- numerical integrator
 
-N = 100
+N = 50
 
 S(f) = (L/N)^2 sum(j,1,N,sum(k,1,N,
        test(j == k,0,eval(f,x,(j - 0.5) L/N,y,(k - 0.5) L/N))))
