@@ -76,12 +76,12 @@ Then by deduction similar to that for $\langle\hat E\rangle$ we obtain
 \langle\hat B\rangle=\sqrt{2\bar n\hbar\omega\mu_0}\cos(\omega t)
 \end{equation*}
 
-The total energy per unit volume is
+The energy of an electromagnetic wave is
 \begin{equation*}
 U=\frac{\epsilon_0}{2}|\mathbf E|^2+\frac{1}{2\mu_0}|\mathbf B|^2
 \end{equation*}
 
-For linearly polarized light and a suitable rotation matrix $R$ we have
+For linear polarization and a suitable rotation matrix $R$ we have
 \begin{equation*}
 R\mathbf E=\begin{pmatrix}E_x\\0\\0\end{pmatrix},
 \quad
@@ -93,18 +93,24 @@ Hence in the rotated frame
 U=\frac{\epsilon_0}{2}E_x^2+\frac{1}{2\mu_0}B_y^2
 \end{equation*}
 
-For the quantum field we have
+For a quantum field we have
 \begin{equation*}
 U=\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle+\frac{1}{2\mu_0}\langle\hat B_y^2\rangle
 \end{equation*}
 where
-\begin{equation*}
-\hat E_x=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}(\hat a-\hat a^\dag),
-\quad
-\hat B_y=\sqrt{\frac{\hbar\omega\mu_0}{2}}(\hat a+\hat a^\dag)
-\end{equation*}
+\begin{align*}
+\langle\hat E_x^2\rangle
+&=\langle\Psi|\hat E_x\hat E_x|\Psi\rangle
+=-\frac{\hbar\omega}{2\epsilon_0}
+\langle\Psi|(\hat a-\hat a^\dag)(\hat a-\hat a^\dag)|\Psi\rangle
+\\
+\langle\hat B_y^2\rangle
+&=\langle\Psi|\hat B_y\hat B_y|\Psi\rangle
+=\frac{\hbar\omega\mu_0}{2}
+\langle\Psi|(\hat a+\hat a^\dag)(\hat a+\hat a^\dag)|\Psi\rangle
+\end{align*}
 
-For the coherent state we have
+For the coherent state
 \begin{align*}
 \langle\Psi|\hat a\hat a|\Psi\rangle&=\left(\sqrt{\bar n}\exp(-i\omega t)\right)^2
 & &=\bar n\exp(-2i\omega t)
@@ -125,23 +131,13 @@ The expectation $\bar n+1$ for $\hat a\hat a^\dag$ is from the commutator
 \hat a\hat a^\dag-\hat a^\dag\hat a=1
 \end{equation*}
 
-Hence
+By substitution
 \begin{align*}
 \langle\hat E_x^2\rangle
-=\langle\Psi|\hat E_x\hat E_x|\Psi\rangle
-&=-\frac{\hbar\omega}{2\epsilon_0}
-\langle\Psi|(\hat a-\hat a^\dag)(\hat a-\hat a^\dag)|\Psi\rangle
-\\
 &=-\frac{\hbar\omega}{2\epsilon_0}
 \left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)-2\bar n-1\right)
-\end{align*}
-and
-\begin{align*}
-\langle\hat B_y^2\rangle
-=\langle\Psi|\hat B_y\hat B_y|\Psi\rangle
-&=\frac{\hbar\omega\mu_0}{2}
-\langle\Psi|(\hat a+\hat a^\dag)(\hat a+\hat a^\dag)|\Psi\rangle
 \\
+\langle\hat B_y^2\rangle
 &=\frac{\hbar\omega\mu_0}{2}
 \left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)+2\bar n+1\right)
 \end{align*}
