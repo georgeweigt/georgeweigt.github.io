@@ -83,29 +83,29 @@ U=\frac{\epsilon_0}{2}|\mathbf E|^2+\frac{1}{2\mu_0}|\mathbf B|^2
 
 For linear polarization and a suitable rotation matrix $R$ we have
 \begin{equation*}
-R\mathbf E=\begin{pmatrix}E_x\\0\\0\end{pmatrix},
+R\mathbf E=\begin{pmatrix}E\\0\\0\end{pmatrix},
 \quad
-R\mathbf B=\begin{pmatrix}0\\B_y\\0\end{pmatrix}
+R\mathbf B=\begin{pmatrix}0\\B\\0\end{pmatrix}
 \end{equation*}
 
 Hence in the rotated frame
 \begin{equation*}
-U=\frac{\epsilon_0}{2}E_x^2+\frac{1}{2\mu_0}B_y^2
+U=\frac{\epsilon_0}{2}E^2+\frac{1}{2\mu_0}B^2
 \end{equation*}
 
 For a quantum field we have
 \begin{equation*}
-U=\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle+\frac{1}{2\mu_0}\langle\hat B_y^2\rangle
+U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle+\frac{1}{2\mu_0}\langle\hat B^2\rangle
 \end{equation*}
 where
 \begin{align*}
-\langle\hat E_x^2\rangle
-&=\langle\Psi|\hat E_x\hat E_x|\Psi\rangle
+\langle\hat E^2\rangle
+&=\langle\Psi|\hat E\hat E|\Psi\rangle
 =-\frac{\hbar\omega}{2\epsilon_0}
 \langle\Psi|(\hat a-\hat a^\dag)(\hat a-\hat a^\dag)|\Psi\rangle
 \\
-\langle\hat B_y^2\rangle
-&=\langle\Psi|\hat B_y\hat B_y|\Psi\rangle
+\langle\hat B^2\rangle
+&=\langle\Psi|\hat B\hat B|\Psi\rangle
 =\frac{\hbar\omega\mu_0}{2}
 \langle\Psi|(\hat a+\hat a^\dag)(\hat a+\hat a^\dag)|\Psi\rangle
 \end{align*}
@@ -133,11 +133,11 @@ The expectation $\bar n+1$ for $\hat a\hat a^\dag$ is from the commutator
 
 By substitution
 \begin{align*}
-\langle\hat E_x^2\rangle
+\langle\hat E^2\rangle
 &=-\frac{\hbar\omega}{2\epsilon_0}
 \left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)-2\bar n-1\right)
 \\
-\langle\hat B_y^2\rangle
+\langle\hat B^2\rangle
 &=\frac{\hbar\omega\mu_0}{2}
 \left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)+2\bar n+1\right)
 \end{align*}
@@ -149,24 +149,24 @@ Noting that
 \end{align*}
 we have
 \begin{align*}
-\langle\hat E_x^2\rangle
+\langle\hat E^2\rangle
 &=\frac{2\bar n\hbar\omega}{\epsilon_0}\sin(\omega t)^2+\frac{\hbar\omega}{2\epsilon_0}
 \\
-\langle\hat B_y^2\rangle
+\langle\hat B^2\rangle
 &=2\bar n\hbar\omega\mu_0\cos(\omega t)^2+\frac{\hbar\omega\mu_0}{2}
 \end{align*}
 
 Rewrite as
 \begin{align*}
-\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle&=\bar n\hbar\omega\sin(\omega t)^2+\frac{\hbar\omega}{4}
+\frac{\epsilon_0}{2}\langle\hat E^2\rangle&=\bar n\hbar\omega\sin(\omega t)^2+\frac{\hbar\omega}{4}
 \\
-\frac{1}{2\mu_0}\langle\hat B_y^2\rangle&=\bar n\hbar\omega\cos(\omega t)^2+\frac{\hbar\omega}{4}
+\frac{1}{2\mu_0}\langle\hat B^2\rangle&=\bar n\hbar\omega\cos(\omega t)^2+\frac{\hbar\omega}{4}
 \end{align*}
 
 Hence the total energy per unit volume is
 \begin{equation*}
-U=\frac{\epsilon_0}{2}\langle\hat E_x^2\rangle
-+\frac{1}{2\mu_0}\langle\hat B_y^2\rangle
+U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle
++\frac{1}{2\mu_0}\langle\hat B^2\rangle
 =\left(\bar n+\tfrac{1}{2}\right)\hbar\omega
 \end{equation*}
 
