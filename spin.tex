@@ -38,9 +38,9 @@ Expectation of spin operators is a projection of $s$ onto Euclidean space.
 \langle z\rangle=\langle s|\sigma_z|s\rangle
 \end{equation*}
 
-Let $\mathbf S$ be the spin polarization vector formed from $s$.
+Let $\mathbf u$ be the spin direction vector formed from $s$.
 \begin{equation*}
-\mathbf S=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
+\mathbf u=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
 =\langle s|\sigma|s\rangle,
 \quad
 \sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
@@ -48,7 +48,7 @@ Let $\mathbf S$ be the spin polarization vector formed from $s$.
 
 Let $\theta$ and $\phi$ be polar and azimuth angles such that
 \begin{equation*}
-\mathbf S=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
+\mathbf u=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
 \end{equation*}
 
 Then
@@ -58,17 +58,17 @@ Then
 
 In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
 \begin{equation*}
-S^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
+u^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
 
 A transpose swaps $\alpha$ and $\beta$ so that summed-over indices are adjacent.
 \begin{equation*}
-S^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
+u^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
 Hence the Eigenmath code is
 \begin{equation*}
-\text{\tt S = dot(conj(s),transpose(sigma),s)}
+\text{\tt u = dot(conj(s),transpose(sigma),s)}
 \end{equation*}
 
 \end{document}

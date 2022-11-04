@@ -12,12 +12,12 @@ check(dot(sigmaz,sigmax) - dot(sigmax,sigmaz) == 2 i sigmay)
 
 "ok"
 
-"Verify spin polarization vector"
+"Verify spin direction vector"
 
 s = (cos(theta/2), sin(theta/2) exp(i phi))
 
-S = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
+u = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
 
-check(dot(conj(s),transpose(sigma),s) == S)
+check(dot(conj(s),transpose(sigma),s) == u)
 
 "ok"
