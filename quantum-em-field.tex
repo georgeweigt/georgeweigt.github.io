@@ -144,30 +144,30 @@ Using the expectation values derived above we now have
 
 Noting that
 \begin{align*}
-4\sin(\omega t)^2&=-\exp(-2i\omega t)-\exp(2i\omega t)+2\\
+-4\sin(\omega t)^2&=\exp(-2i\omega t)+\exp(2i\omega t)-2\\
 4\cos(\omega t)^2&=\exp(-2i\omega t)+\exp(2i\omega t)+2
 \end{align*}
 we have
 \begin{align*}
 \langle\hat E^2\rangle
-&=\frac{2\bar n\hbar\omega}{\epsilon_0}\sin(\omega t)^2+\frac{\hbar\omega}{2\epsilon_0}
+&=-\frac{\hbar\omega}{2\epsilon_0}\left(-4\bar n\sin(\omega t)^2-1\right)
 \\
 \langle\hat B^2\rangle
-&=2\bar n\hbar\omega\mu_0\cos(\omega t)^2+\frac{\hbar\omega\mu_0}{2}
+&=\frac{\hbar\omega\mu_0}{2}\left(4\bar n\cos(\omega t)^2+1\right)
 \end{align*}
 
 Rewrite as
 \begin{align*}
-\frac{\epsilon_0}{2}\langle\hat E^2\rangle&=\bar n\hbar\omega\sin(\omega t)^2+\frac{\hbar\omega}{4}
+\frac{\epsilon_0}{2}\langle\hat E^2\rangle&=\hbar\omega\left(\bar n\sin(\omega t)^2+\frac{1}{4}\right)
 \\
-\frac{1}{2\mu_0}\langle\hat B^2\rangle&=\bar n\hbar\omega\cos(\omega t)^2+\frac{\hbar\omega}{4}
+\frac{1}{2\mu_0}\langle\hat B^2\rangle&=\hbar\omega\left(\bar n\cos(\omega t)^2+\frac{1}{4}\right)
 \end{align*}
 
 Hence the total energy per unit volume is
 \begin{equation*}
 U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle
 +\frac{1}{2\mu_0}\langle\hat B^2\rangle
-=\left(\bar n+\tfrac{1}{2}\right)\hbar\omega
+=\hbar\omega\left(\bar n+\tfrac{1}{2}\right)
 \end{equation*}
 
 Check units of $U$.
@@ -230,6 +230,41 @@ Substitute $n+1$ for index $n$.
 Hence
 \begin{equation*}
 \hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
+\end{equation*}
+
+\section*{Number state}
+For the number state $|n\rangle$ we have
+\begin{align*}
+\langle n|\hat a\hat a|n\rangle&=0
+\\
+\langle n|\hat a\hat a^\dag|n\rangle&=n+1
+\\
+\langle n|\hat a^\dag\hat a|n\rangle&=n
+\\
+\langle n|\hat a^\dag\hat a^\dag|n\rangle&=0
+\end{align*}
+
+Hence
+\begin{align*}
+\langle\hat E^2\rangle
+&=-\frac{\hbar\omega}{2\epsilon_0}(-2n-1)
+\\
+\langle\hat B^2\rangle
+&=\frac{\hbar\omega\mu_0}{2}(2n+1)
+\end{align*}
+
+Rewrite as
+\begin{align*}
+\frac{\epsilon_0}{2}\langle\hat E^2\rangle&=\hbar\omega\left(\tfrac{1}{2}n+\tfrac{1}{4}\right)
+\\
+\frac{1}{2\mu_0}\langle\hat B^2\rangle&=\hbar\omega\left(\tfrac{1}{2}n+\tfrac{1}{4}\right)
+\end{align*}
+
+Hence the total energy per unit volume is
+\begin{equation*}
+U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle
++\frac{1}{2\mu_0}\langle\hat B^2\rangle
+=\hbar\omega\left(n+\tfrac{1}{2}\right)
 \end{equation*}
 
 \end{document}
