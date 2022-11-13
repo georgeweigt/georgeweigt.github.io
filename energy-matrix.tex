@@ -16,23 +16,23 @@ Let electron states $\phi_n$ be modeled by a one dimensional box of length $L$.
 \phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)
 \end{equation*}
 
-Let $|\xi\rangle$ be an arbitrary normalized state vector.
+Let $|\xi\rangle$ be a state vector.
 \begin{equation*}
 |\xi\rangle=c_0|0\rangle+c_1|1\rangle+c_2|2\rangle+c_3|3\rangle,\quad\langle\xi|\xi\rangle=1
 \end{equation*}
 
-Let us determine an energy matrix $\hat{E}$ such that the expected
-energy $\langle E \rangle$ in state $|\xi\rangle$ is
+Let us determine matrix $\hat{E}$ such that the expected
+energy $\langle E \rangle$ is
 \begin{equation*}
 \langle E\rangle=\langle\xi|\hat{E}|\xi\rangle
 \end{equation*}
 
-Energy matrix $\hat{E}$ is the sum of kinetic and potential energy matrices.
+Matrix $\hat{E}$ is the sum of kinetic energy $\hat K$ and potential energy $\hat V$.
 \begin{equation*}
 \hat{E}=\hat{K}+\hat{V}
 \end{equation*}
 
-Kinetic energy matrix $\hat{K}$ can be computed from energy eigenvalues of the box model.
+Matrix $\hat{K}$ can be determined from energy eigenvalues of the box model.
 \begin{equation*}
 \hat{K}=\begin{pmatrix}
 0 & 0 & 0 & 0\\
@@ -44,7 +44,7 @@ Kinetic energy matrix $\hat{K}$ can be computed from energy eigenvalues of the b
 E_n=\frac{n^2\pi^2\hbar^2}{2mL^2}
 \end{equation*}
 
-Potential energy matrix $\hat{V}$ has one entry due to Coulomb interaction in the two electron state.
+Matrix $\hat{V}$ has one entry due to Coulomb interaction in the two electron state.
 \begin{equation*}
 \hat{V}=
 \begin{pmatrix}
@@ -67,7 +67,6 @@ V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L
 \end{equation*}
 
 Let us now choose $L=10^{-9}$ meters and compute numerical values.
-For $\hat{K}$ we have
 \begin{equation*}
 \hat{K}=\begin{pmatrix}
 0 & 0 & 0 & 0\\
@@ -102,7 +101,7 @@ The expected energy is
 \langle E\rangle=\langle\xi|\hat E|\xi\rangle=0.38\,|c_1|+1.50\,|c_2|+6.55\,|c_3|
 \end{equation*}
 
-For a uniform probability distribution $|c_i|=\tfrac{1}{4}$ we have
+For a state $|\xi\rangle$ with uniform probability distribution $|c_i|=\tfrac{1}{4}$ we have
 \begin{equation*}
 \langle E\rangle=\tfrac{1}{4}(0.38+1.50+6.55)=2.11\,\text{eV}
 \end{equation*}
