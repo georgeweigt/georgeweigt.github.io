@@ -74,5 +74,11 @@ Ehat
 
 "Expected value for uniform distribution"
 
-xi = (1/2,1/2,1/2,1/2)
+c0 = 1/2 exp(i a0)
+c1 = 1/2 exp(i a1)
+c2 = 1/2 exp(i a2)
+c3 = 1/2 exp(i a3)
+
+xi = (c0,c1,c2,c3)
+
 dot(conj(xi),Ehat,xi)
