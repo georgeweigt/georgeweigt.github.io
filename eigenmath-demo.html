@@ -8,36 +8,13 @@
 
 <script src="eigenmath.js"></script>
 
-Enter an Eigenmath script here (or click a demo button) then click Run.
-<br>
-<br>
-
-<table>
-<tr>
-<td>
-<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt" autofocus placeholder="Enter an Eigenmath script here then click Run">
 </textarea>
-</td>
-<td>
-<input type="submit" value="Demo 1" onclick="readfile('plancks-law.txt')">
-<br>
-<br>
-<input type="submit" value="Demo 2" onclick="readfile('schwarzschild-metric.txt')">
-<br>
-<br>
-<input type="submit" value="Demo 3" onclick="readfile('draw-demo.txt')">
-<br>
-<br>
-<input type="file" id="choosefile">
-<br>
-<br>
 <button onclick="run()">Run</button>
-</td>
-</tr>
-</table>
+<input type="submit" value="Demo" onclick="readfile('2.txt')">
+<input type="file" id="choosefile"><br>
 
-<p>
-<div id="stdout"></div>
+<div id="stdout"></div><br>
 
 <script>
 
