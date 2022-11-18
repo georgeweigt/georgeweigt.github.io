@@ -51,7 +51,7 @@ Matrix $\hat{V}$ has one entry due to Coulomb interaction in the two electron st
 0 & 0 & 0 & 0\\
 0 & 0 & 0 & 0\\
 0 & 0 & 0 & 0\\
-0 & 0 & 0 & V
+0 & 0 & 0 & \langle V\rangle
 \end{pmatrix}
 \end{equation*}
 
@@ -62,7 +62,7 @@ Let $\psi(x,y)$ be the antisymmetrized wavefunction of the two electrons.
 
 Then
 \begin{equation*}
-V=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L
+\langle V\rangle=\frac{e^2}{4\pi\epsilon_0}\int_0^L\int_0^L
 \psi^*(x,y)\left(\frac{1}{|x-y|}\right)\psi(x,y)\,dx\,dy
 \end{equation*}
 
@@ -76,7 +76,7 @@ Let us now choose $L=10^{-9}$ meters and compute numerical values.
 \end{pmatrix}
 \end{equation*}
 
-Computing $V$ by numerical integration we have
+Computing $\langle V\rangle$ by numerical integration we have
 \begin{equation*}
 \hat{V}=\begin{pmatrix}
 0 & 0 & 0 & 0\\
