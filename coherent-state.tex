@@ -7,7 +7,7 @@ Let $|\Psi\rangle$ be a coherent state where $\bar n$ is the expected number of 
 \begin{equation*}
 |\Psi\rangle=\sum_{n=0}^\infty
 \sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
 |n\rangle
 \end{equation*}
 
@@ -138,11 +138,11 @@ Using the expectation values derived above we now have
 \begin{align*}
 \langle\hat E^2\rangle
 &=-\frac{\hbar\omega}{2\epsilon_0}
-\left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)-2\bar n-1\right)
+\bigl(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)-2\bar n-1\bigr)
 \\
 \langle\hat B^2\rangle
 &=\frac{\hbar\omega\mu_0}{2}
-\left(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)+2\bar n+1\right)
+\bigl(\bar n\exp(-2i\omega t)+\bar n\exp(2i\omega t)+2\bar n+1\bigr)
 \end{align*}
 
 Noting that
@@ -188,7 +188,7 @@ Apply operator $\hat a$ to coherent state $|\Psi\rangle$ to obtain
 \hat a|\Psi\rangle
 =\sum_{n=0}^\infty
 \sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
 \sqrt n|n-1\rangle
 \end{equation*}
 
@@ -197,7 +197,7 @@ The $n=0$ term vanishes hence the sum can start from $n=1$.
 \hat a|\Psi\rangle
 =\sum_{n=1}^\infty
 \sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
 \sqrt n|n-1\rangle
 \end{equation*}
 
@@ -206,7 +206,7 @@ The $\sqrt n$ cancels with $n$ factorial.
 \hat a|\Psi\rangle
 =\sum_{n=1}^\infty
 \sqrt{\frac{\bar n^n\exp(-\bar n)}{(n-1)!}}
-\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
 |n-1\rangle
 \end{equation*}
 
@@ -216,7 +216,7 @@ Factor out $\sqrt{\bar n}\exp(-i\omega t)$.
 =\sqrt{\bar n}\exp(-i\omega t)
 \sum_{n=1}^\infty
 \sqrt{\frac{\bar n^{n-1}\exp(-\bar n)}{(n-1)!}}
-\exp\left(-i\left(n-\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n-\tfrac{1}{2}\bigr)\omega t\Bigr)
 |n-1\rangle
 \end{equation*}
 
@@ -226,7 +226,7 @@ Substitute $n+1$ for index $n$.
 =\sqrt{\bar n}\exp(-i\omega t)
 \sum_{n=0}^\infty
 \sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\left(-i\left(n+\tfrac{1}{2}\right)\omega t\right)
+\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
 |n\rangle
 \end{equation*}
 
