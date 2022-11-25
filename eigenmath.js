@@ -9435,7 +9435,7 @@ get_binding(p)
 		stopf("symbol error");
 	p = binding[p.printname];
 	if (p == undefined)
-		p = symbol(NIL);
+		p = symbol(NIL); // symbol is not defined yet
 	return p;
 }
 function
