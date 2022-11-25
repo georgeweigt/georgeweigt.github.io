@@ -5866,7 +5866,12 @@ eval_arg(p1)
 function
 eval_binding(p1)
 {
-	push(get_binding(cadr(p1)));
+	var p2;
+	p1 = cadr(p1);
+	p2 = get_binding(p1);
+	if (p2 == symbol(NIL))
+		p2 = p1;
+	push(p2);
 }
 function
 eval_ceiling(p1)
@@ -9426,6 +9431,8 @@ get_operator_height(font_num)
 function
 get_binding(p)
 {
+	if (!isusersymbol(p))
+		stopf("symbol error");
 	p = binding[p.printname];
 	if (p == undefined)
 		p = symbol(NIL);
@@ -9434,6 +9441,8 @@ get_binding(p)
 function
 get_usrfunc(p)
 {
+	if (!isusersymbol(p))
+		stopf("symbol error");
 	p = usrfunc[p.printname];
 	if (p == undefined)
 		p = symbol(NIL);
@@ -15379,6 +15388,8 @@ set_component(LVAL, RVAL, h)
 function
 set_symbol(p, b, u)
 {
+	if (!isusersymbol(p))
+		stopf("symbol error");
 	if (journaling)
 		journal.push(p, get_binding(p), get_usrfunc(p));
 	binding[p.printname] = b;
