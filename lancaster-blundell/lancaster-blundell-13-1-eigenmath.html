@@ -9,9 +9,13 @@ Jz = -i epsilon3
 
 U = ((-1/sqrt(2),i/sqrt(2),0),(0,0,1),(1/sqrt(2),i/sqrt(2),0))
 
-inv(U) == conj(transpose(U))
+Udag = transpose(conj(U))
 
-dot(U,Jx,transpose(conj(U)))
-dot(U,Jy,transpose(conj(U)))
-dot(U,Jz,transpose(conj(U)))
+"Verify that U is unitary"
+check(inv(U) == Udag)
+"ok"
+
+dot(U,Jx,Udag)
+dot(U,Jy,Udag)
+dot(U,Jz,Udag)
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
