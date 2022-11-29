@@ -1,0 +1,24 @@
+<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:12pt'>
+-- See p. 54
+
+A = (A0(),A1(),A2(),A3())
+X = (x0,x1,x2,x3)
+
+F(mu,nu) = d(A[nu],X[mu]) - d(A[mu],X[nu])
+
+E = (F(1,2),F(1,3),F(1,4))
+B = (F(4,3),F(2,4),F(3,2))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+F = ((F(1,1),F(1,2),F(1,3),F(1,4)),
+     (F(2,1),F(2,2),F(2,3),F(2,4)),
+     (F(3,1),F(3,2),F(3,3),F(3,4)),
+     (F(4,1),F(4,2),F(4,3),F(4,4)))
+
+FF = contract(dot(gmunu,transpose(F),gmunu,F))
+
+-- Verify equation (5.31)
+
+-1/4 FF == -1/2 (dot(B,B) - dot(E,E))
+</textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
