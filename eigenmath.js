@@ -2158,7 +2158,14 @@ collect_coeffs()
 
 	stack.splice(stack.length - n / 2); // pop
 
-	add_terms(stack.length - h);
+	n = stack.length - h;
+
+	if (n > 1) {
+		list(n);
+		push_symbol(ADD);
+		swap();
+		cons() // makes ADD head of list
+	}
 }
 function
 combine_factors(h)
