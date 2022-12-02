@@ -2076,13 +2076,13 @@ function
 collect_coeffs()
 {
 	var h, i, j, k, n;
-	var p1, p2, p3;
+	var p1, F, X;
 
-	p2 = pop(); // x
-	p1 = pop(); // expr
+	X = pop();
+	F = pop();
 
-	if (!iscons(p1)) {
-		push(p1);
+	if (!iscons(F)) {
+		push(F);
 		return;
 	}
 
@@ -2090,40 +2090,40 @@ collect_coeffs()
 
 	// depth first
 
-	push(car(p1));
-	p1 = cdr(p1);
-	while (iscons(p1)) {
-		push(car(p1));
-		push(p2);
+	push(car(F));
+	F = cdr(F);
+	while (iscons(F)) {
+		push(car(F));
+		push(X);
 		collect_coeffs();
-		p1 = cdr(p1);
+		F = cdr(F);
 	}
 	list(stack.length - h);
-	p1 = pop();
+	F = pop();
 
-	if (car(p1) != symbol(ADD)) {
-		push(p1);
+	if (car(F) != symbol(ADD)) {
+		push(F);
 		return;
 	}
 
 	// partition terms
 
-	p1 = cdr(p1);
+	F = cdr(F);
 
-	while (iscons(p1)) {
-		p3 = car(p1);
-		if (car(p3) == symbol(MULTIPLY)) {
-			push(p3);
-			push(p2);
-			partition_integrand(); // push const part then push var part
-		} else if (findf(p3, p2)) {
+	while (iscons(F)) {
+		p1 = car(F);
+		if (car(p1) == symbol(MULTIPLY)) {
+			push(p1);
+			push(X);
+			partition_integrand();	// push const part then push var part
+		} else if (findf(p1, X)) {
 			push_integer(1);	// const part
-			push(p3);		// var part
+			push(p1);		// var part
 		} else {
-			push(p3);		// const part
+			push(p1);		// const part
 			push_integer(1);	// var part
 		}
-		p1 = cdr(p1);
+		F = cdr(F);
 	}
 
 	// combine const parts of matching var parts
