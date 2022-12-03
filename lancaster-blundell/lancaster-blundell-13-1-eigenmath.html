@@ -11,11 +11,15 @@ U = ((-1/sqrt(2),i/sqrt(2),0),(0,0,1),(1/sqrt(2),i/sqrt(2),0))
 
 Udag = transpose(conj(U))
 
-"Verify that U is unitary"
+"Verify U is unitary"
 check(inv(U) == Udag)
 "ok"
 
-dot(U,Jx,Udag)
-dot(U,Jy,Udag)
-dot(U,Jz,Udag)
+Jxprime = dot(U,Jx,Udag)
+Jyprime = dot(U,Jy,Udag)
+Jzprime = dot(U,Jz,Udag)
+
+Jxprime
+Jyprime
+Jzprime
 </textarea><button onclick='run()'>Run</button><p><div id='stdout'></div></body></html>
