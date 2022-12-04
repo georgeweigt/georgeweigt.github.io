@@ -3237,8 +3237,12 @@ decomp_sum(F, X)
 
 	n = stack.length - h;
 
-	if (n > 1)
-		add_terms(n);
+	if (n > 1) {
+		list(n);
+		push_symbol(ADD);
+		swap();
+		cons(); // makes ADD head of list
+	}
 }
 
 function
@@ -3259,7 +3263,7 @@ decomp_product(F, X)
 		p1 = cdr(p1);
 	}
 
-	// multiply together all constant factors
+	// combine constant factors
 
 	h = stack.length;
 	p1 = cdr(F);
@@ -3271,8 +3275,12 @@ decomp_product(F, X)
 
 	n = stack.length - h;
 
-	if (n > 1)
-		multiply_factors(n);
+	if (n > 1) {
+		list(n);
+		push_symbol(MULTIPLY);
+		swap();
+		cons(); // makes MULTIPLY head of list
+	}
 }
 function
 denominator()
@@ -12947,7 +12955,7 @@ outer()
 function
 partition_integrand()
 {
-	var h;
+	var h, n;
 	var p1, F, X;
 
 	X = pop();
@@ -12963,10 +12971,16 @@ partition_integrand()
 		p1 = cdr(p1);
 	}
 
-	if (h == stack.length)
+	n = stack.length - h;
+
+	if (n == 0)
 		push_integer(1);
-	else
-		multiply_factors(stack.length - h);
+	else if (n > 1) {
+		list(n);
+		push_symbol(MULTIPLY);
+		swap();
+		cons(); // makes MULTIPLY head of list
+	}
 
 	// push var part
 
@@ -12978,10 +12992,16 @@ partition_integrand()
 		p1 = cdr(p1);
 	}
 
-	if (h == stack.length)
+	n = stack.length - h;
+
+	if (n == 0)
 		push_integer(1);
-	else
-		multiply_factors(stack.length - h);
+	else if (n > 1) {
+		list(n);
+		push_symbol(MULTIPLY);
+		swap();
+		cons(); // makes MULTIPLY head of list
+	}
 }
 function
 polar()
