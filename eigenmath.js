@@ -3183,7 +3183,7 @@ decomp_sum(F, X)
 			if (car(p2) == symbol(MULTIPLY)) {
 				push(p2);
 				push(X);
-				partition_integrand();	// push const part then push var part
+				partition_term();	// push const part then push var part
 			} else {
 				push_integer(1);	// const part
 				push(p2);		// var part
@@ -10280,7 +10280,7 @@ integral()
 	if (car(F) == symbol(MULTIPLY)) {
 		push(F);
 		push(X);
-		partition_integrand();
+		partition_term();
 		F = pop();		// pop var part
 		integral_nib(F, X);
 		multiply();		// multiply by const part
@@ -12953,7 +12953,7 @@ outer()
 	push(p3);
 }
 function
-partition_integrand()
+partition_term()
 {
 	var h, n;
 	var p1, F, X;
@@ -12961,7 +12961,7 @@ partition_integrand()
 	X = pop();
 	F = pop();
 
-	// push const part
+	// push const factors
 
 	h = stack.length;
 	p1 = cdr(F);
@@ -12982,7 +12982,7 @@ partition_integrand()
 		cons(); // makes MULTIPLY head of list
 	}
 
-	// push var part
+	// push var factors
 
 	h = stack.length;
 	p1 = cdr(F);
