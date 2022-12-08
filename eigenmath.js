@@ -6682,71 +6682,6 @@ eval_inner(p1)
 	}
 }
 function
-eval_integral(p1)
-{
-	var flag, i, n, X, Y;
-
-	push(cadr(p1));
-	evalf();
-	p1 = cddr(p1);
-
-	if (!iscons(p1)) {
-		push_symbol(SYMBOL_X);
-		integral();
-		return;
-	}
-
-	flag = 0;
-
-	while (iscons(p1) || flag) {
-
-		if (flag) {
-			X = Y;
-			flag = 0;
-		} else {
-			push(car(p1));
-			evalf();
-			X = pop();
-			p1 = cdr(p1);
-		}
-
-		if (isnum(X)) {
-			push(X);
-			n = pop_integer();
-			push_symbol(SYMBOL_X);
-			X = pop();
-			for (i = 0; i < n; i++) {
-				push(X);
-				integral();
-			}
-			continue;
-		}
-
-		if (iscons(p1)) {
-
-			push(car(p1));
-			evalf();
-			Y = pop();
-			p1 = cdr(p1);
-
-			if (isnum(Y)) {
-				push(Y);
-				n = pop_integer();
-				for (i = 0; i < n; i++) {
-					push(X);
-					integral();
-				}
-				continue;
-			}
-
-			flag = 1;
-		}
-
-		push(X);
-		integral();
-	}
-}
-function
 eval_inv(p1)
 {
 	push(cadr(p1));
@@ -10240,183 +10175,6 @@ inrange(x, y)
 {
 	return x > -0.5 && x < DRAW_WIDTH + 0.5 && y > -0.5 && y < DRAW_HEIGHT + 0.5;
 }
-function
-integral()
-{
-	var h, p1, F, X;
-
-	X = pop();
-	F = pop();
-
-	if (!isusersymbol(X))
-		stopf("integral: symbol expected");
-
-	if (car(F) == symbol(ADD)) {
-		h = stack.length;
-		p1 = cdr(F);
-		while (iscons(p1)) {
-			push(car(p1));
-			push(X);
-			integral();
-			p1 = cdr(p1);
-		}
-		add_terms(stack.length - h);
-		return;
-	}
-
-	if (car(F) == symbol(MULTIPLY)) {
-		push(F);
-		push(X);
-		partition_term();
-		F = pop();		// pop var part
-		integral_nib(F, X);
-		multiply();		// multiply by const part
-		return;
-	}
-
-	integral_nib(F, X);
-}
-
-function
-integral_nib(F, X)
-{
-	var h;
-
-	save_symbol(symbol(SA));
-	save_symbol(symbol(SB));
-	save_symbol(symbol(SX));
-
-	set_symbol(symbol(SX), X, symbol(NIL));
-
-	// put constants in F(X) on the stack
-
-	h = stack.length;
-
-	push_integer(1); // 1 is a candidate for a or b
-
-	push(F);
-	push(X);
-	decomp(); // push const coeffs
-
-	integral_lookup(F, h);
-
-	restore_symbol(symbol(SX));
-	restore_symbol(symbol(SB));
-	restore_symbol(symbol(SA));
-}
-function
-integral_classify(p)
-{
-	var t = 0;
-
-	if (iscons(p)) {
-		while (iscons(p)) {
-			t |= integral_classify(car(p));
-			p = cdr(p);
-		}
-		return t;
-	}
-
-	if (p == symbol(EXP1))
-		return 1;
-
-	if (p == symbol(LOG))
-		return 2;
-
-	if (p == symbol(SIN) || p == symbol(COS) || p == symbol(TAN))
-		return 4;
-
-	return 0;
-}
-function
-integral_lookup(F, h)
-{
-	var t, table;
-
-	t = integral_classify(F);
-
-	if ((t & 1) && integral_search(F, h, integral_tab_exp))
-		return;
-
-	if ((t & 2) && integral_search(F, h, integral_tab_log))
-		return;
-
-	if ((t & 4) && integral_search(F, h, integral_tab_trig))
-		return;
-
-	if (car(F) == symbol(POWER))
-		table = integral_tab_power;
-	else
-		table = integral_tab;
-
-	if (integral_search(F, h, table))
-		return;
-
-	stopf("integral: no solution found");
-}
-function
-integral_search(F, h, table)
-{
-	var i, n, I, C;
-
-	n = table.length;
-
-	for (i = 0; i < n; i += 3) {
-
-		scan1(table[i + 0]); // integrand
-		I = pop();
-
-		scan1(table[i + 2]); // condition
-		C = pop();
-
-		if (integral_search_nib(F, I, C, h))
-			break;
-	}
-
-	if (i == n)
-		return 0;
-
-	stack.splice(h); // pop all
-
-	scan1(table[i + 1]); // answer
-	evalf();
-
-	return 1;
-}
-
-function
-integral_search_nib(F, I, C, h)
-{
-	var i, j, n, p1;
-
-	n = stack.length;
-
-	for (i = h; i < n; i++) {
-
-		set_symbol(symbol(SA), stack[i], symbol(NIL));
-
-		for (j = h; j < n; j++) {
-
-			set_symbol(symbol(SB), stack[j], symbol(NIL));
-
-			push(C);			// condition ok?
-			evalf();
-			p1 = pop();
-			if (iszero(p1))
-				continue;		// no, go to next j
-
-			push(F);			// F = I?
-			push(I);
-			evalf();
-			subtract();
-			p1 = pop();
-			if (iszero(p1))
-				return 1;		// yes
-		}
-	}
-
-	return 0;					// no
-}
 var integral_tab_exp = [
 
 // x^n exp(a x + b)
@@ -11303,6 +11061,253 @@ var integral_tab = [
 	"(-x sqrt(1 - x^2) (16 x^6 - 24 x^4 + 2 x^2 + 3) + 3 arcsin(x)) 1/128",
 	"1",
 ];
+
+function
+eval_integral(p1)
+{
+	var flag, i, n, X, Y;
+
+	push(cadr(p1));
+	evalf();
+
+	p1 = cddr(p1);
+
+	if (!iscons(p1)) {
+		push_symbol(SYMBOL_X);
+		integral();
+		return;
+	}
+
+	flag = 0;
+
+	while (iscons(p1) || flag) {
+
+		if (flag) {
+			X = Y;
+			flag = 0;
+		} else {
+			push(car(p1));
+			evalf();
+			X = pop();
+			p1 = cdr(p1);
+		}
+
+		if (isnum(X)) {
+			push(X);
+			n = pop_integer();
+			push_symbol(SYMBOL_X);
+			X = pop();
+			for (i = 0; i < n; i++) {
+				push(X);
+				integral();
+			}
+			continue;
+		}
+
+		if (!isusersymbol(X))
+			stopf("integral");
+
+		if (iscons(p1)) {
+
+			push(car(p1));
+			evalf();
+			Y = pop();
+			p1 = cdr(p1);
+
+			if (isnum(Y)) {
+				push(Y);
+				n = pop_integer();
+				for (i = 0; i < n; i++) {
+					push(X);
+					integral();
+				}
+				continue;
+			}
+
+			flag = 1;
+		}
+
+		push(X);
+		integral();
+	}
+}
+
+function
+integral()
+{
+	var h, p1, F, X;
+
+	X = pop();
+	F = pop();
+
+	if (!isusersymbol(X))
+		stopf("integral: symbol expected");
+
+	if (car(F) == symbol(ADD)) {
+		h = stack.length;
+		p1 = cdr(F);
+		while (iscons(p1)) {
+			push(car(p1));
+			push(X);
+			integral();
+			p1 = cdr(p1);
+		}
+		add_terms(stack.length - h);
+		return;
+	}
+
+	if (car(F) == symbol(MULTIPLY)) {
+		push(F);
+		push(X);
+		partition_term();	// push const part then push var part
+		F = pop();		// pop var part
+		integral_nib(F, X);
+		multiply();		// multiply by const part
+		return;
+	}
+
+	integral_nib(F, X);
+}
+
+function
+integral_nib(F, X)
+{
+	var h;
+
+	save_symbol(symbol(SA));
+	save_symbol(symbol(SB));
+	save_symbol(symbol(SX));
+
+	set_symbol(symbol(SX), X, symbol(NIL));
+
+	// put constants in F(X) on the stack
+
+	h = stack.length;
+
+	push_integer(1); // 1 is a candidate for a or b
+
+	push(F);
+	push(X);
+	decomp(); // push const coeffs
+
+	integral_lookup(h, F);
+
+	restore_symbol(symbol(SX));
+	restore_symbol(symbol(SB));
+	restore_symbol(symbol(SA));
+}
+
+function
+integral_lookup(h, F)
+{
+	var t;
+
+	t = integral_classify(F);
+
+	if ((t & 1) && integral_search(h, F, integral_tab_exp, integral_tab_exp.length))
+		return;
+
+	if ((t & 2) && integral_search(h, F, integral_tab_log, integral_tab_log.length))
+		return;
+
+	if ((t & 4) && integral_search(h, F, integral_tab_trig, integral_tab_trig.length))
+		return;
+
+	if (car(F) == symbol(POWER)) {
+		if (integral_search(h, F, integral_tab_power, integral_tab_power.length))
+			return;
+	} else {
+		if (integral_search(h, F, integral_tab, integral_tab.length))
+			return;
+	}
+
+	stopf("integral: no solution found");
+}
+
+function
+integral_classify(p)
+{
+	var t = 0;
+
+	if (iscons(p)) {
+		while (iscons(p)) {
+			t |= integral_classify(car(p));
+			p = cdr(p);
+		}
+		return t;
+	}
+
+	if (p == symbol(EXP1))
+		return 1;
+
+	if (p == symbol(LOG))
+		return 2;
+
+	if (p == symbol(SIN) || p == symbol(COS) || p == symbol(TAN))
+		return 4;
+
+	return 0;
+}
+
+function
+integral_search(h, F, table, n)
+{
+	var i, C, I;
+
+	for (i = 0; i < n; i += 3) {
+
+		scan1(table[i + 0]); // integrand
+		I = pop();
+
+		scan1(table[i + 2]); // condition
+		C = pop();
+
+		if (integral_search_nib(h, F, I, C))
+			break;
+	}
+
+	if (i == n)
+		return 0;
+
+	stack.splice(h); // pop all
+
+	scan1(table[i + 1]); // answer
+	evalf();
+
+	return 1;
+}
+
+function
+integral_search_nib(h, F, I, C)
+{
+	var i, j, p1;
+
+	for (i = h; i < stack.length; i++) {
+
+		set_symbol(symbol(SA), stack[i], symbol(NIL));
+
+		for (j = h; j < stack.length; j++) {
+
+			set_symbol(symbol(SB), stack[j], symbol(NIL));
+
+			push(C);			// condition ok?
+			evalf();
+			p1 = pop();
+			if (iszero(p1))
+				continue;		// no, go to next j
+
+			push(F);			// F = I?
+			push(I);
+			evalf();
+			subtract();
+			p1 = pop();
+			if (iszero(p1))
+				return 1;		// yes
+		}
+	}
+
+	return 0;					// no
+}
 function
 inv()
 {
