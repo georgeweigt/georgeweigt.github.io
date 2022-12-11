@@ -30,8 +30,8 @@ check(det(R) = 1)
 
 U = (U1,U2,U3)
 
-check(U^2 = dot(R,U)^2)
+check(dot(U,U) = dot(dot(R,U),dot(R,U)))
 
 -- If we get here then everything worked, print OK.
 
-"OK"
+"ok"
