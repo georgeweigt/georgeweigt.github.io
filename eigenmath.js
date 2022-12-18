@@ -282,10 +282,10 @@ annotate_result(p1, p2)
 	if (p1 == p2)
 		return 0; // A = A
 
-	if (p1 == symbol(SYMBOL_I) && isimaginaryunit(p2))
+	if (p1 == symbol(I_LOWER) && isimaginaryunit(p2))
 		return 0;
 
-	if (p1 == symbol(SYMBOL_J) && isimaginaryunit(p2))
+	if (p1 == symbol(J_LOWER) && isimaginaryunit(p2))
 		return 0;
 
 	return 1;
@@ -2474,14 +2474,10 @@ const LAST = "last";
 const PI = "pi";
 const TRACE = "trace";
 
-const SYMBOL_D = "d";
-const SYMBOL_I = "i";
-const SYMBOL_J = "j";
-const SYMBOL_S = "s";
-const SYMBOL_T = "t";
-const SYMBOL_X = "x";
-const SYMBOL_Y = "y";
-const SYMBOL_Z = "z";
+const D_LOWER = "d";
+const I_LOWER = "i";
+const J_LOWER = "j";
+const X_LOWER = "x";
 
 const EXP1 = "$e";
 const SA = "$a";
@@ -4008,11 +4004,11 @@ emit_power(p)
 	}
 
 	if (isimaginaryunit(p)) {
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 			emit_italic_string("j");
 			return;
 		}
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 			emit_italic_string("i");
 			return;
 		}
@@ -6156,7 +6152,7 @@ eval_derivative(p1)
 	p1 = cddr(p1);
 
 	if (!iscons(p1)) {
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 		derivative();
 		return;
 	}
@@ -6178,7 +6174,7 @@ eval_derivative(p1)
 		if (isnum(X)) {
 			push(X);
 			n = pop_integer();
-			push_symbol(SYMBOL_X);
+			push_symbol(X_LOWER);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -6278,7 +6274,7 @@ eval_draw(p1)
 	T = caddr(p1);
 
 	if (!isusersymbol(T))
-		T = symbol(SYMBOL_X);
+		T = symbol(X_LOWER);
 
 	save_symbol(T);
 
@@ -6878,7 +6874,7 @@ eval_nroots(p1)
 		push(car(p1));
 		evalf();
 	} else
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 
 	nroots();
 }
@@ -7098,7 +7094,7 @@ eval_roots(p1)
 		push(car(p1));
 		evalf();
 	} else
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 
 	roots();
 }
@@ -7859,7 +7855,7 @@ eval_user_function(p1)
 	// undefined function?
 
 	if (FUNC_DEFN == symbol(NIL)) {
-		if (FUNC_NAME == symbol(SYMBOL_D)) {
+		if (FUNC_NAME == symbol(D_LOWER)) {
 			expanding++;
 			eval_derivative(p1);
 			expanding--;
@@ -9667,7 +9663,7 @@ infixform_factor(p)
 
 	// use d if for derivative if d not defined
 
-	if (car(p) == symbol(DERIVATIVE) && get_usrfunc(symbol(SYMBOL_D)) == symbol(NIL)) {
+	if (car(p) == symbol(DERIVATIVE) && get_usrfunc(symbol(D_LOWER)) == symbol(NIL)) {
 		infixform_write("d");
 		infixform_arglist(p);
 		return;
@@ -9737,11 +9733,11 @@ infixform_power(p)
 	}
 
 	if (isimaginaryunit(p)) {
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_J)))) {
+		if (isimaginaryunit(get_binding(symbol(J_LOWER)))) {
 			infixform_write("j");
 			return;
 		}
-		if (isimaginaryunit(get_binding(symbol(SYMBOL_I)))) {
+		if (isimaginaryunit(get_binding(symbol(I_LOWER)))) {
 			infixform_write("i");
 			return;
 		}
@@ -11038,7 +11034,7 @@ eval_integral(p1)
 	p1 = cddr(p1);
 
 	if (!iscons(p1)) {
-		push_symbol(SYMBOL_X);
+		push_symbol(X_LOWER);
 		integral();
 		return;
 	}
@@ -11060,7 +11056,7 @@ eval_integral(p1)
 		if (isnum(X)) {
 			push(X);
 			n = pop_integer();
-			push_symbol(SYMBOL_X);
+			push_symbol(X_LOWER);
 			X = pop();
 			for (i = 0; i < n; i++) {
 				push(X);
@@ -12820,7 +12816,7 @@ order_factor(p)
 	if (p == symbol(EXP1))
 		return 5;
 
-	if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(SYMBOL_D))
+	if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(D_LOWER))
 		return 6;
 
 	if (car(p) == symbol(POWER)) {
@@ -12836,7 +12832,7 @@ order_factor(p)
 		if (p == symbol(EXP1))
 			return 5;
 
-		if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(SYMBOL_D))
+		if (car(p) == symbol(DERIVATIVE) || car(p) == symbol(D_LOWER))
 			return 6;
 	}
 
@@ -16711,14 +16707,10 @@ var symtab = {
 "trace":	{printname:TRACE,	func:eval_user_symbol},
 "tty":		{printname:TTY,		func:eval_user_symbol},
 
-"d":		{printname:SYMBOL_D,	func:eval_user_symbol},
-"i":		{printname:SYMBOL_I,	func:eval_user_symbol},
-"j":		{printname:SYMBOL_J,	func:eval_user_symbol},
-"s":		{printname:SYMBOL_S,	func:eval_user_symbol},
-"t":		{printname:SYMBOL_T,	func:eval_user_symbol},
-"x":		{printname:SYMBOL_X,	func:eval_user_symbol},
-"y":		{printname:SYMBOL_Y,	func:eval_user_symbol},
-"z":		{printname:SYMBOL_Z,	func:eval_user_symbol},
+"d":		{printname:D_LOWER,	func:eval_user_symbol},
+"i":		{printname:I_LOWER,	func:eval_user_symbol},
+"j":		{printname:J_LOWER,	func:eval_user_symbol},
+"x":		{printname:X_LOWER,	func:eval_user_symbol},
 
 "$e":		{printname:EXP1,	func:eval_user_symbol},
 "$a":		{printname:SA,		func:eval_user_symbol},
