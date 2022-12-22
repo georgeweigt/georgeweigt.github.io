@@ -10,7 +10,7 @@ H(f) = dot(phat(f),alpha) + beta m f
 
 L(f) = cross(X,phat(f))
 
-Psi = psi()
+Psi = psi(x,y,z)
 
 check(H(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
