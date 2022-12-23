@@ -45,17 +45,13 @@ check(H(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
 check(cross(gamma,gamma) == -cross(alpha,alpha))
 
-S(f) = test(rank(f) == 0, S1(f), S2(f))
+axa = cross(alpha,alpha)
 
--- f is a scalar function
+HS = -i/4 H(axa Psi)
 
-S1(f) = -i/4 cross(alpha,alpha f)
+SH = -i/4 (dot(axa[1],H(Psi)),dot(axa[2],H(Psi)),dot(axa[3],H(Psi)))
 
--- f is a 4x4 matrix
-
-S2(f) = -i/4 cross(alpha,(dot(alpha1,f),dot(alpha2,f),dot(alpha3,f)))
-
-check(H(S(Psi)) - S(H(Psi)) == -i cross(phat(Psi),alpha))
+check(HS - SH == -i cross(phat(Psi),alpha))
 
 "ok"
 </textarea><button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
