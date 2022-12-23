@@ -19,7 +19,7 @@ alpha = (alpha1,alpha2,alpha3)
 
 beta = gamma0
 
-phat(f) = -i d(f,(x,y,z))
+phat(f) = -i (d(f,x), d(f,y), d(f,z))
 
 Psi = psi(x,y,z)
 
@@ -27,7 +27,7 @@ H(f) = test(rank(f) == 0, H1(f), H2(f))
 
 -- f is a scalar function
 
-H1(f) = -i (dot(alpha1,d(f,x)) + dot(alpha2,d(f,y)) + dot(alpha3,d(f,z)))
+H1(f) = -i (dot(alpha1,d(f,x)) + dot(alpha2,d(f,y)) + dot(alpha3,d(f,z)) + m dot(beta,f))
 
 -- f is a vector
 
@@ -35,7 +35,7 @@ H2(f) = (H1(f[1]),H1(f[2]),H1(f[3]))
 
 "Verify commutator [H,L]"
 
-L(f) = cross((x,y,z),-i (d(f,x),d(f,y),d(f,z)))
+L(f) = cross((x,y,z),phat(f))
 
 check(H(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
@@ -45,11 +45,11 @@ check(H(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
 check(cross(gamma,gamma) == -cross(alpha,alpha))
 
-axa = cross(alpha,alpha)
+S = -i/4 cross(alpha,alpha)
 
-HS = -i/4 H(axa Psi)
+HS = H(S Psi)
 
-SH = -i/4 (dot(axa[1],H(Psi)),dot(axa[2],H(Psi)),dot(axa[3],H(Psi)))
+SH = (dot(S[1],H(Psi)), dot(S[2],H(Psi)), dot(S[3],H(Psi)))
 
 check(HS - SH == -i cross(phat(Psi),alpha))
 
