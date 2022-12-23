@@ -23,15 +23,21 @@ phat(f) = -i d(f,(x,y,z))
 
 Psi = psi(x,y,z)
 
-H(f) = -i (dot(alpha1,d(f,x)) + dot(alpha2,d(f,y)) + dot(alpha3,d(f,z)))
+H(f) = test(rank(f) == 0, H1(f), H2(f))
 
-HH(f) = (H(f[1]),H(f[2]),H(f[3]))
+-- f is a scalar function
+
+H1(f) = -i (dot(alpha1,d(f,x)) + dot(alpha2,d(f,y)) + dot(alpha3,d(f,z)))
+
+-- f is a vector
+
+H2(f) = (H1(f[1]),H1(f[2]),H1(f[3]))
 
 "Verify commutator [H,L]"
 
 L(f) = cross((x,y,z),-i (d(f,x),d(f,y),d(f,z)))
 
-check(HH(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
+check(H(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
 "ok"
 
@@ -39,11 +45,17 @@ check(HH(L(Psi)) - L(H(Psi)) == i cross(phat(Psi),alpha))
 
 check(cross(gamma,gamma) == -cross(alpha,alpha))
 
-S(f) = -i/4 cross(alpha,alpha f)
+S(f) = test(rank(f) == 0, S1(f), S2(f))
 
-SS(f) = -i/4 cross(alpha,(dot(alpha1,f),dot(alpha2,f),dot(alpha3,f)))
+-- f is a scalar function
 
-check(HH(S(Psi)) - SS(H(Psi)) == -i cross(phat(Psi),alpha))
+S1(f) = -i/4 cross(alpha,alpha f)
+
+-- f is a 4x4 matrix
+
+S2(f) = -i/4 cross(alpha,(dot(alpha1,f),dot(alpha2,f),dot(alpha3,f)))
+
+check(H(S(Psi)) - S(H(Psi)) == -i cross(phat(Psi),alpha))
 
 "ok"
 </textarea><button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
