@@ -18,7 +18,7 @@ C1 = ((3, 0,-1,    0),
       (2,-1, 0,    0),
       (0, 0, 1,   c3))   
 
-run("downloads/gjBox.txt")
+run("gjBox.txt")
 R=RREF(C1) 
 R
 sol1=subst(3,c3, R)   -- substitute 3 for free c3 in R
