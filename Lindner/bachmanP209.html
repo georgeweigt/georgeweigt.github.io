@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 13
+--| 2    Prerequisites
+--| 2.2  Gradients
+
+"EXERCISE 2.9"
+-- GIVEN: 
+--    f(x,y) = sin(x*y^2)
+--    point P=(pi/4,1), vector V=(sqrt(2)/2, sqrt(2)/2).
+-- WANTED:
+--    Calculate the directional derivative of f at P directed to V.
+
+"SOLUTION:"
+
+f(x,y) = sin(x*y^2)          -- f: R^2 --> R
+X  = (x,y)                   -- global system
+V  = (sqrt(2)/2,sqrt(2)/2)   -- in direction
+V
+P = (pi/4, 1)                -- at point
+P
+
+-- directional derivative 'DvFp' of F at p directed to V
+DvFp(f,v,p) = eval( dot(d(f,X),v) , x,p[1], y,p[2])
+DvFp(f,V,P)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
