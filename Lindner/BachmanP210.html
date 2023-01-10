@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 13
+--| 2    Prerequisites
+--| 2.2  Gradients
+
+"EXERCISE 2.10"
+-- GIVEN: 
+--    f(x,y) = x*y^2.
+--    P = (2,3)         a point in R^2.
+-- WANTED:
+--    1. Calculate grad of f.
+--    2. Compute D(1,5)f(2,3) i.e. DvFp.
+--    3. Find a vector of length 1 that points in the direction
+--       of steepest ascent at the point (2,3)."
+--    4. Calculate largest slope of a tangent line to the graph of f if (x,y)=(2,3).
+
+
+"SOLUTION:"
+
+X = (x,y)                      -- playing in R^2
+--------------------------------- DEF of directional derivative D
+grad(f)  =      d(f,X)         -- gradient of f
+
+D(f,x,a) = dot( d(f,x), a)     -- directional derivative of f direction a
+                               -- directional derivative of f in v at p:
+DvFp(f,v,p) = eval( dot(d(f,X),v) , x,p[1], y,p[2])
+--------------------------------- 
+
+f(x,y) = x*y^2             -- f: R^2 --> R
+X  = (x,y)                 -- global KOS
+V  = (1,5)                 -- in direction
+Vo = V/abs(V)              -- in normed direction
+P  = (2,3)                 -- at point
+
+"1. compute grad(f)."
+d(f,X)
+
+
+"2. compute dirD(f) at (2,3) along (1,5)."
+X  = (x,y)                 -- global xyz-system
+V  = (1,5)                 -- in direction vector
+P  = (2,3)                 -- at point
+
+DeltaV = eval(  D(f,X,V),   x,P[1], y,P[2])
+DeltaV
+
+
+"3. compute normed vector of steepest ascent."
+-- the magnitude of the gradient vector represents the largest slope 
+-- of a tangent line through a particular point.
+
+U = d(f,X)/abs(d(f,X))   -- normed direction
+U = eval(U, x,P[1], y,P[2])
+U       
+(9/15, 12/15)  -- ;)                 
+
+"4. compute largest slope at (2,3)."
+abs(d(f,X))
+eval(abs(d(f,X)), x,P[1], y,P[2])
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

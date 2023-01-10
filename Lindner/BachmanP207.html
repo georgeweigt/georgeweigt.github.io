@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 12
+--| 2    Prerequisites
+--| 2.2  Gradients
+
+"EXERCISE 2.7"
+
+-- GIVEN: 
+--    f(x,y) = x y 
+--    point P=(2,1) and vector v=(sqrt(2)/2,-sqrt(2)/2).
+-- WANTED:
+--    Compute the slope of the line tangent to f at P in direction v.
+
+"SOLUTION:"
+
+"| Fact:"
+"| the slope of L is a*df/dx +b*df/dy , where df's are evaluated"
+"| at the point (x0, y0)."
+-- REMARK: The quantity a*df/dx|(x0,y0)+b*df/dy|(x0,y0) is defined to be the
+-- DIRECTIONAL DERIVATIVE of f, at the point (x0,y0), in the direction V.
+
+f = x^2*y^3
+
+L = sqrt(2)/2 * d(f,x) - sqrt(2)/2 * d(f,y)
+L
+
+P=(2,1)
+LP = eval(L, x,P[1], y,P[2])
+LP
+
+stop 2.7 -4*sqrt(2)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
