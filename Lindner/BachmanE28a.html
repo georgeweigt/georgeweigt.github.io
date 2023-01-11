@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 66
+--| 4      Differential Forms
+--| 4.7.3  3-Forms on R^3
+
+"EXAMPLE 4.7.3."
+-- GIVEN: 
+--    ω = (x^2 +y^2) dx∧dy + z dy∧dz.
+--    S = the subset of the cylinder x^2 + y^2 = 1 between the planes z=0 and z=1.
+-- WANTED:
+--    Compute Vol(S).
+
+"SOLUTION:"
+
+
+--------------- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+--------------- 
+
+"1.) Choose parameterization!"
+-- S is parameterized using Psi : R --> S:
+
+Psi(t,z) = (cos(t), sin(t), z  )
+--         R:   0..2pi      0..1
+Psi
+
+"2.) Find tangential vector basis (part.derivives of Psi)"
+
+Psit = d(Psi,t)        
+Psit
+
+Psiz = d(Psi,z)        
+Psiz 
+
+"3.) Plug the tangent vectors into w at the point Psi(t,z)!" 
+
+dxdy = ext23(dx,dy, Psit,Psiz)  -- 1st det
+dxdy
+
+dydz = ext23(dy,dz, Psit,Psiz)  -- 2nd det
+dydz
+
+-- use parameterization from above
+x = r*cos(t)
+y = r*sin(t)
+z = z
+
+omega = (x^2+y^2) * dxdy + z * dydz
+omega 
+
+"4.) Integrate the resulting function over R! "
+--   Because one has to use |cos| we correct to
+
+Iomega = 4 * defint(omega, t,0,pi/2, z,0,1)  
+Iomega 
+
+"Check:"
+4 * defint(z*cos(t), t,0,pi/2, z,0,1)
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

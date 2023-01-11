@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 22
+--| 2    Prerequisites
+--| 2.6  Parameterized regions in R^2 and R^3
+
+
+"EXERCISE 2.40"
+-- GIVEN: two parameterizations in R^2 resp. R^3
+--    phi(r,t)   = (2r cos(t),r sin(t)), where r:1..2 and t:0..pi/2.
+--    psi(r,t,p) = (2r sin(p)cos(t),r sin(p)sin(t),r cos(p))
+--                  where 0<=r<=1, 0<=t<=pi/2 and 0<=t<=pi.
+-- WANTED:
+--    1. Sketch the region in R^2 parameterized by phi.
+--    2. Sketch the region in R^3 parameterized by psi.
+
+
+"SOLUTION:"
+
+Phiell(r,theta) = test( and( 0 <= theta,theta <= 2 pi,
+                             0 <= r,r <= 1 ),
+                      (3r cos(theta), 2r sin(theta) ),                         
+                      "input not allowed")   
+
+Phiell(1,1)
+
+
+-- somehow simpler:
+
+P1(r,t) = (2r cos(t),r sin(t))  -- where 1 <= r <= 2 and 0 <= t <= 2pi.
+P1
+
+-- plot
+xrange = (-5,5)
+yrange = (-5,5)
+trange = (0,4pi)
+f(t) = test(
+       and(0   <= t,t <=2pi) ,(2 cos(t), sin(t)),
+       and(2pi <= t,t <=4pi) , (4 cos(t),2 sin(t)))
+draw(f,t)
+
+
+
+"2.)"
+"Go to "
+"     https://c3d.libretexts.org/CalcPlot3D/index.html"
+"Then under ADD TO GRAPH (select) > .."
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

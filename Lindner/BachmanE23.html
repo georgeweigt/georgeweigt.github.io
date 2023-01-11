@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 2
+--| 4    Differential Forms
+--| 4.5  Integrating n-forms on R^m
+
+"EXAMPLE 23"
+-- GIVEN: 
+--    φ(a,b,c) = (a+b, a+c, bc, a^2), where 0 ≤ a,b,c ≤ 1.
+--    M = image of φ with the induced orientation.
+--    ω = dy∧dz∧dw − dx∧dz∧dw − 2y dx∧dy∧dz
+-- WANTED:
+--    Calculate integral(w|M).
+
+
+------------ DEF of wedge product w1^w2^w3 in R^4
+--           adaption of definition n=3 and m=4 (R^4)
+
+ext34(w1,w2,w3, v1,v2,v3) = do(
+             val4(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3], dw,v[4]),
+      det((( val4(w1,v1), val4(w2,v1), val4(w3,v1)),
+           ( val4(w1,v2), val4(w2,v2), val4(w3,v2)),
+           ( val4(w1,v3), val4(w2,v3), val4(w3,v3)) )))
+
+-- ------------------------------- basis 1-forms on TpR^2
+
+-- Parametrization with 0<=a,b,c <=1
+Phi(a,b,c) = (a+b, a+c, b*c, a^2)
+Phi
+
+-- Tangential vectors in TpM
+V1 = d(Phi,a)
+V1
+
+V2 = d(Phi,b)
+V2
+
+V3 = d(Phi,c)
+V3
+
+-- apply parametrization 
+x = a+b
+y = a+c
+z = b*c
+w = a^2
+
+-- calculate omega as integrand
+omega =     ext34(dy,dz,dw, V1,V2,V3) - 
+            ext34(dx,dz,dw, V1,V2,V3) -
+        2*y*ext34(dx,dy,dz, V1,V2,V3) 
+omega
+omega = simplify(omega)
+
+-- integrate gamma on Omega
+Iomega = defint(omega, a,0,1, b,0,1, c,0,1)
+Iomega
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

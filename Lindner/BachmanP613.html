@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 89
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+
+"EXERCISE 6.13"
+-- GIVEN: 
+--    w = the 1-form on R^3 given by w = yz dx + xz dy + xy dz.
+--    C = the curve parameterized by
+--        Phi(t) =(4t/pi*cos(t),4t/pi*sin(t), 4t/pi) with t:0..pi/4
+-- WANTED:
+--    Calculate ∫(w|C)."
+
+"SOLUTION:"
+		
+-- DEF of 'wedge' product w in R^3
+ext13(w, v) = eval(w, dx,v[1], dy,v[2], dz,v[3]) 
+
+-- Parametrization with 0<=t<=1pi/4
+Phi(t) = (4t/pi*cos(t),4t/pi*sin(t), 4t/pi)   
+Phi                           -- t: 0..pi/4
+
+-- Tangential vector in Tp
+V = d(Phi,t)
+V
+
+df = y*z*ext13(dx,V) + x*z*ext13(dy,V) + x*y*ext13(dz,V)  
+df
+
+-- use parameterization
+x = 4t/pi*cos(t)
+y = 4t/pi*sin(t)
+z = 4t/pi
+
+df
+
+-- integrate df along C
+df = circexp(df)
+df
+IC = defint(df, t,0,pi/4)
+IC
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

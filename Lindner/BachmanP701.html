@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 98
+--| 7.    MANIFOLDS
+--| 7.1   Pull-backs
+
+
+"EXERCISE 7.1 (pullback)"
+-- GIVEN: 
+--    ω = x^2*dy^dz + y^2*dz^dw is a 2-form on R^4.
+--    φ(a,b,c) = (a,b,c, a*b*c).
+
+-- WANTED:
+--    Determine φ∗ω.
+
+"SOLUTION:"
+
+omega    = x^2*dydz + y^2*dzdw    
+omega    -- 1-form on R^3
+
+Phi(a,b,c) = (a,b,c, a*b*c)          
+Phi      -- is a map from R^3 to R^4
+
+-- test
+
+DPhi = d(Phi,(a,b,c)) 
+DPhi
+
+V = dot( d(Phi,(a,b,c)), (1,0,0) )   -- (1,1,b) ok
+V
+
+-- step by step by brain:
+-- omega    = x^2*dydz + y^2*dzdw     -- 2-form on R^4
+--            Phi(a,b,c) evaluate on (x,y,z,u) in w
+-- w(Phi)   =     a^2*dydz + b^2*dzdw    
+--            then w evaluate on (dx,dy,dz) by V=(1,0,0,bc)
+-- w(Phi)(1,0,0,bc) = a^2*1 + ab*1  + b^2*b*c     
+--               = a-b+ab+ab+b^2
+--               = a-b+2ab+b^2
+
+1
+stop 7.1 -b^3c*da^dc + (a^2 -ab^2c)*db^dc
+-----------------------------------------------------
+
+-- Now do the 2 steps with EigenMath using 2 helpers:
+
+valX(w,v) = eval(w, x,v[1], y,v[2], z,v[3])
+
+PhiSTARomega = valX(omega, Phi(a,b))
+PhiSTARomega    
+
+valDX(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])
+valDX(PhiSTARomega, V)
+
+
+
+-- basis in R^2
+E1=(1,0,0)
+E2=(0,1,0)
+E3=(0,0,1)
+
+PhiSomega(E) = do(
+   valX(w,v) = eval(w,  x,v[1],  y,v[2],  z,v[3], u,v[4]),
+   valDX(w,v)= eval(w, dx,v[1], dy,v[2], dz,v[3]),
+   DPhi      = d(Phi,(a,b,c)), 
+   V         = dot( DPhi, E ), 
+   PhiSTARomega = valX(omega, Phi(a,b,c)),
+   valDX(PhiSTARomega, V) )  -- return value
+
+PhiSomega
+
+PhiSomega(E1)
+PhiSomega(E2)
+
+PhiSTARomega = PhiSomega(E1)*da + PhiSomega(E2)*db
+PhiSTARomega
+
+
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

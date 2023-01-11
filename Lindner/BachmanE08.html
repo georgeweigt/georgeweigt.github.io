@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 2
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXAMPLE 8"
+
+Phi(u,v) = (u, v, sqrt(1-u^2-v^2))  -- 0 <= u^2+v^2 <= 1
+Phi
+
+
+"Go to "
+"     https://c3d.libretexts.org/CalcPlot3D/index.html"
+"Then in ADD_TO_GRAPH, select: PARAMETRIC SURFACE, and set:"
+"      x(u,v) = u"
+"      y(u,v) = v"
+"      z(u,v) = sqrt(1-u^2-v^2)"
+"Choose -1<0u<=1."
+"Choose  0<=v<=1."
+"Set 'x' in [x]."
+"Press RETURN."
+"You may watch now the plot from all sides .. :)"
+"(You should hide the other plot with [ ], i.e. cancel 'x')"
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

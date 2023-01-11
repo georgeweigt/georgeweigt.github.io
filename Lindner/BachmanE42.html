@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 94
+--| 6.  STOKES' Theorem
+--| 6.3 Vector calculus and generalized Stokes' Theorem
+
+"EXAMPLE 42"
+
+-- GIVEN: 
+--    F=(x*y, y*z, x^2)  vector field in R^3
+-- WANTED:
+--    1. determine the associated 1-form wF
+--    2. Calculate the derivative dwF of wF
+
+"SOLUTION:"
+
+F=(x*y, y*z, x^2)
+F
+--       f        g        h
+omegaF = x*y*dx + y*z*dy + x^2*dz
+omegaF
+
+--IF  ω = f(x,y,z)dx + g(x,y,z)dy + h(x,y,z)dz
+--THEN dw = (dg|x-df|y)dx^dy + (dh|y-dg|z)dy^dz +(dh|x-df|z)dx^dz
+
+f=x*y
+g=y*z
+h=x^2
+
+domegaF = (d(g,x)-d(f,y))*dxdy +
+          (d(h,y)-d(g,z))*dydz + (d(h,x)-d(f,z))*dxdz
+domegaF
+
+curl(U) = (d(U[3],y) - d(U[2],z),
+           d(U[1],z) - d(U[3],x),
+           d(U[2],x) - d(U[1],y)) 
+
+curl(F)
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

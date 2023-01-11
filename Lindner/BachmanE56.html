@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 123
+--| 8    Differential Geometry via Differential Forms
+--| 8.2  Frame fields and Gaussian curvature
+
+"EXAMPLE 56"
+-- GIVEN: 
+--    S = sphere in R^3 of radius R.
+-- WANTED:
+--    compute the Gaussian curvature K of S.
+
+-- Remark [Bachman:] "Geometric properties of S follow from the way E1 and E2
+-- vary from one point of S to the next. To this end,
+-- we now examine the COVARIANT DERIVATIVES of E1 and E2."
+
+"---------------Gaussian curvature------------"
+"|              K = - dOmega(E1, E2)          "
+"--------------------------------------------------"
+"We compute the Gaussian curvature of a sphere S of radius R."
+
+"_1_: choose frame field on TpS via parameterization"
+
+Psi(t,p) = (R*sin(p)cos(t), R*sin(p)sin(t), R*cos(p))
+Psi
+
+-- The partial derivatives of this give tangent vectors to S:
+
+d(Psi,t)
+d(Psi,p)
+
+"orthogonality test:"
+dot(d(Psi,t), d(Psi,p))
+
+-- To get a frame field, we must divide each tangent vector 
+-- by its magnitude to get UNIT vectors:
+
+abs(d(Psi,t))
+-- help to simplfy
+-- R^2 cos(t)^2sin(p)^2+R^2 sin(t)^2sin(p)^2
+-- = R^2 sin(p)^2*(cos(t)^2+sin(t)^2)
+-- = R^2 sin(p)^2* 1
+
+E1 = 1/(R*sin(p)) * d(Psi,t)
+E1
+
+abs(d(Psi,p))
+-- ..= R^2*cos(p)^2 + R^2*sin(p)^2 |sqrt
+--   = R^2 |sqrt
+E2 = 1/R * d(Psi,p)
+E2
+
+"_2_:  calculate 1-form Omega aus dE1 & E2"
+ E1 = (-sin(t)    ,  cos(t)   , 0)
+dE1 = (-cos(t)*dt , -sin(t)*dt, 0)
+dE1
+
+E2
+
+-- Remember the fact p. 124:
+-- covariant derivation: (covDvE1).E2 = dE1.E2
+
+Omega = dot(dE1, E2)   
+Omega
+
+-- simplify(Omega):
+--   -cos(p)*cos(t)^2*dt - cos(p)*sin(t)^2*dt
+--   -cos(p)*dt*(cos(t)^2+sin(t)^2)
+--   -cos(p)*dt*  1
+
+Omega = -cos(p)*dt
+
+"_3_: calculate d_Omega (because K =  -d_omega(E1,E2)):"
+
+-- Remember: derivative of a 1-form in TpS:
+--           cf. 5.2 p.73: 
+-- IF w=f(t,p)*dt+g(t,p)*dp THEN dw=(d(g,t) - d(f,p))*dtdp
+
+f(t,p)= - cos(p)
+Omega = - cos(p)*dt +0*dp
+Omega
+
+-- GAUSS form dOmega
+dOmega = -d(-cos(p),p) * dtdp     -- use 5.2 
+dOmega
+
+"_4_: calculate matrix dPhi^dtheta(E1,E2):"  -- i.e. dφ^dθ(E1, E2)
+
+-- shape of matrix, we seek for:
+dPhidthetaE1E2 =( (dpE1, dtE1), (dpE2, dtE2) )   
+dPhidthetaE1E2
+
+-- Remember p.123:
+-- dθ(􏰈∂Ψ􏰉/dθ)= dφ(􏰈∂Ψ/dφ)=1 and dθ(􏰈∂Ψ􏰉/dφ)= dφ(􏰈∂Ψ/dθ)=0􏰉 , ergo:
+
+dpE1 = 0
+dpE1
+dtE1 = 1/(R*sin(p))    -- i.e. dθ(E1)
+dtE1
+dpE2 = 1/R
+dpE2
+dtE2 = 0
+dtE2
+M=( (dpE1,dtE1), (dpE2,dtE2) )
+M
+det(M)
+
+K = -sin(p)*det(M)
+K
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

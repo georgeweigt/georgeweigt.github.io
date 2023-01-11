@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 53
+--| 4    Differential Forms
+--| 4.3  Orientations
+
+-- [Bachman, p.53]: "Which orientation do you use? 
+-- To fix this, we need to see how we can define a 2-form on some
+-- tangent space TpR^3, where p is a point of M, that yields an 
+-- orientation of M consistent with the one induced by a 
+-- parameterization φ. This is not so hard. 
+-- If dx ∧ dy􏰆 (∂φ/∂x(xp,yp), ∂φ/∂y(xp,yp)􏰇) is positive, 
+-- then we simply let ν := dx ∧ dy. 
+-- If it is negative, then we let ν := −dx ∧ dy. 
+-- In the unlikely event that dx ∧ dy􏰆 (∂φ/∂x(xp,yp), ∂φ/∂x(xp,yp)􏰇) = 0, 
+-- we can remedy things by either changing the
+-- point p or by using dx ∧ dz instead of dx ∧ dy. 
+-- Once we have defined ν, we know how to integrate M 
+-- using any other parameterization."
+
+
+"EXERCISE 4.12"
+-- GIVEN: 
+--    ψ = parameterization of the sphere of radius 1
+--        with ψ(θ,φ) = (sinφ cosθ, sinφ sinθ, cosφ).
+--    α = dx ∧ dy + 2dy ∧ dz. 
+--    β = dx ∧ dy − 2dy ∧ dz. 
+--    γ = dx ∧ dz.
+-- WANTED:
+--    Which of the three 2-forms on T( √2 ,0, √2 )R^3 determine the
+--    same orientation on the sphere as that induced by ψ?
+
+"SOLUTION:"
+
+--------------------- DEF of exterior product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) ) ) )
+
+
+-- Parametrization with 0<=p<=pi and 0<=t<=2pi
+Phi(t,p) = (sin(p)*cos(t),sin(p)*sin(t),cos(p))
+Phi
+
+arccos(sqrt(2)/2)
+
+P=( sqrt(2)/2 , 0, sqrt(2)/2 )
+
+Phi(0,pi/4)
+
+x = sin(p)*cos(t)
+y = sin(p)*sin(t)
+z = cos(p)
+
+-- Tangential vectors in TpM
+V1 = d(Phi,t)
+V1
+V1p=eval(V1, x,sqrt(2)/2, y,0, z,sqrt(2)/2)
+V1p
+
+V2 = d(Phi,p)
+V2
+V2p=eval(V2, x,sqrt(2)/2, y,0, z,sqrt(2)/2)
+V1p
+
+-- orientation test on nu=dx^dy ('normal' 2-form)
+nu = ext23(dx,dy,V1p,V2p) 
+nu
+
+
+
+"1.)"  -- α = dx ∧ dy + 2dy ∧ dz
+-- calculate omega as integrand
+alpha = ext23(dx,dy,V1,V2) + 2*ext23(dy,dz,V1,V2) 
+alpha
+
+simplify(alpha)
+
+-- integrate alpha along region R
+Ialpha = defint(alpha, t,0,2pi, p,0,2pi)
+Ialpha
+
+stop 
+4.12
+1. Opposite orientation
+2. Same orientation
+3. Does not determine an orientation        
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

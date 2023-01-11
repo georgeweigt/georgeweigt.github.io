@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 72
+--| 5.    Differentiation of Differential Forms
+--| 5.3   Interlude: 0-Forms
+
+
+"EXAMPLE 32"
+-- WANTED:
+--    calculate d( 􏰀x^2(y+z^2) dx∧dy + z(x^3 +y) dy∧dz􏰁 )
+
+"SOLUTION:"
+
+val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])
+
+-- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = det( ((val3(w1,v1), val3(w2,v1)),
+                            (val3(w1,v2), val3(w2,v2)) ))
+
+-- DEF of wedge product w1^w2^w3 in R^3
+ext33(w1,w2,w3, v1,v2,v3) = 
+      det((( val3(w1,v1), val3(w2,v1), val3(w3,v1) ),
+           ( val3(w1,v2), val3(w2,v2), val3(w3,v2) ),
+           ( val3(w1,v3), val3(w2,v3), val3(w3,v3) )))
+
+-- directional derivation of omega(v) at direction w
+Delta3(omega,v,w) = dot(d(val3(omega,w),X),v)
+
+-- derivative dω of form ω
+domega3(omega, v,w) = Delta3(omega,v,w) - Delta3(omega,w,v)
+
+V = (v1,v2,v3)
+W = (w1,w2,w3)
+U = (u1,u2,u3)
+
+f(x,y,z) = x^2*(y+z^2)
+g(x,y,z) = z*(x^3+y)
+h(x,y,z) = 0
+
+-- general 2-form
+omega(V,W) =   f(x,y,z)*ext23(dx,dy, V,W) + 
+               g(x,y,z)*ext23(dy,dz, V,W) + 
+               h(x,y,z)*ext23(dx,dz, V,W)  
+        
+-- definition of dw(U,V,W) , cf. p.73
+domega(U,V,W) = dot( d(omega3(V,W),X), U) -
+                dot( d(omega3(U,W),X), V) +
+                dot( d(omega3(U,V),X), W)
+
+omega(V,W)
+domega(U,V,W)
+
+
+-- IF omega = f dydz -g dxdz +h dxdy
+-- THEN domega = (df/dx+dg/dy+dh/dz) * dx^dy^dz. (divergence)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 39
+--| 3    Forms
+--| 3.6  n-Forms
+
+"EXAMPLE 14: 1-forms on TpR^3"
+-- GIVEN: 
+--    a =dx+2dy-dz, b =3dx-dy+dz, c =-dx-3dy+dz are 1-forms in in TpR^3.
+-- WANTED:
+--    Which volume form is a^b^c ?
+
+"SOLUTION:"
+
+"solution using explict formula p.38 using ext33:"
+
+------------------ DEF of wedge (exterior) product w1^w2^w3 in R^3
+--                 along the formula in text at p. 38
+
+f3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])  -- helper function
+
+ext33(w1,w2,w3, v1,v2,v3) = 
+      det((( f3(w1,v1), f3(w2,v1), f3(w3,v1) ),
+           ( f3(w1,v2), f3(w2,v2), f3(w3,v2) ),
+           ( f3(w1,v3), f3(w2,v3), f3(w3,v3) )))
+
+a = dx+2dy-dz 
+b = 3dx-dy+dz 
+c = -dx-3dy+dz 
+
+-- this is also ok:
+--omega(dx,dy,dz) = dx+2dy-dz
+--nu(dx,dy,dz)    = 3dx-dy+dz
+--psi(dx,dy,dz)   = -dx-3dy+dz
+
+-- basis in TpR^3
+E1=(1,0,0)
+E2=(0,1,0)
+E3=(0,0,1)
+
+-- calculate the volume-form omega^nu^psi alias a^b^c
+
+-- ext33 : TpR3 x TpR3 x TpR3 x R3 x R3 x R3   --> R
+--   ext33( omega,  nu,    psi,   E1,  E2,  E3)    -- ok
+
+A = ext33( a, b, c,  E1, E2, E3)  
+A
+
+B = 4 * ext33(dx,dy,dz,  E1,E2,E3)     -- this is 4 dx^dy^dz at ..
+B
+
+A==B
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

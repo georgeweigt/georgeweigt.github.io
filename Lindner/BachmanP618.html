@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 90
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+
+"EXERCISE 6.18"
+-- GIVEN: 
+--    w = (x+y^3) dx + 3x*y^2 dy be diff. 1-form on R^2.
+--    Q be the rectangle {(x,y)|0 ≤ x ≤ 3,0 ≤ y ≤ 2}.
+
+-- WANTED:
+--    1. calculate dw.
+--    2. Calculate ∫(w|∂Q) using Stokes.
+--    3. Calculate ∫(w|∂Q) directly.
+
+"SOLUTION:"
+		
+
+-- Let 
+-- Let 
+-- plot sigma
+-- x = t
+-- y = 2
+xrange = (-4,4)
+yrange = (-4,4)
+trange = (0, 3)
+draw((x,y),t)
+
+
+"1.) calculate dw"
+"use FACT 5.2: If w=f.dx+g.dy THEN dw=(dg/dx-fd/dy)dxdy."
+
+-- DEF of wedge (ext|erior) product w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+-- Parametrization of Q
+Phi(x,y)=(x, 2)   
+----       x: 0..3  y: 0..2
+Phi                          
+
+-- Tangential vector in Tp
+V1 = d(Phi,r)
+V1
+V2 = d(Phi,t)
+V2
+
+"calculate dw:"
+f(x,y) = (x+y^3)
+d(f,y)
+g(x,y) = 3x*y^2 
+d(g,x)
+
+domega = (d(g,x) - d(f,y))* ext22(dx,dy,V1,V2)  
+domega
+
+"2.)"
+-- We use STOKES: ∫w|∂σ = ∫∂w|σ.
+
+domega
+
+x=quote(x)  -- reset x
+y=quote(y)
+
+-- integrate dw on Q
+IQ = defint(domega, x,0,3, y,0,2)
+IQ
+
+
+"3)" 
+"L,R,T and B represent the 1-cells that are the "
+"left, right, top and bottom of Q, respectively."
+
+--  ------------------------------ Parametrization of bottom
+"B bottom:"
+
+B(t) = (0,0)+t*(1,0)              --  R t: 0..3
+B                          
+
+-- Tangential vector in Tp
+V = d(B,t)
+V
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2])  
+
+-- use parametrization
+x=t
+y=0
+
+omega = (x+y^3)*ext12(dx,V) + 3x*y^2*ext12(dy,V)  
+omega
+
+-- integrate omega along B
+IB = defint(omega, t,0,3)
+IB
+
+--  ------------------------------ Parametrization of T
+"T top:"
+
+T(t) = (0,2)+t*(1,0)              --  R t: 0..3
+T                          
+
+-- Tangential vector in Tp
+V = d(T,t)
+V
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2])  
+
+-- use parametrization
+x=t
+y=2
+omega = (x+y^3)*ext12(dx,V) + 3x*y^2*ext12(dy,V)  
+omega
+
+-- integrate omega along T
+IT = - defint(omega, t,0,3)      
+IT
+
+--  ------------------------------ Parametrization of L
+"L left:"
+L(t) = (0,0)+t*(0,1)              --  R y: 0..2
+L                          
+
+-- Tangential vector in Tp
+V = d(L,t)
+V
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2])  
+
+-- use parametrization
+x=t
+y=2
+omega = (x+y^3)*ext12(dx,V) + 3x*y^2*ext12(dy,V)  
+omega
+
+-- integrate omega along L
+IL =  defint(omega, t,0,2)      
+IL
+
+-- ------------------------------ Parametrization of R
+"R right:"
+R(t) = (0,0)+t*(0,1)              --  R y: 0..2
+R                          
+
+-- Tangential vector in Tp
+V = d(R,t)
+V
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2])  
+
+-- use parametrization
+x=0
+y=t
+omega = (x+y^3)*ext12(dx,V) + 3x*y^2*ext12(dy,V)  
+omega
+
+-- integrate omega along L
+IR = - defint(omega, t,0,2)      
+IR
+
+"I_B+I_R+I_L+I_T ="
+IB+IR+IL+IT
+
+-- ------------------------------- 
+stop  6.18  0 0 0 opposite 4.5 4.5
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

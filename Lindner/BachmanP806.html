@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 127
+--| 8    Differential Geometry via Differential Forms
+--| 8.2  Frame fields and Gaussian curvature
+
+
+"EXERCISE 8.6"
+-- GIVEN: 
+--    H = helicoid with parameterization Psi(t,T) = (t*cos(T), t*sin(T), T).
+-- WANTED:
+--    compute the Gaussian curvature K of helicoid H.
+
+"SOLUTION:"
+		
+-- with parameterization
+--    T = Theta, t = r?
+Psi(t,T) = (t*cos(T), t*sin(T), T)
+Psi
+
+-- The partial derivatives of this give tangent vectors to S:
+
+d(Psi,t)
+d(Psi,T)
+
+-- othogonal test:
+dot(d(Psi,t), d(Psi,T))
+
+" ... FIRST construct frame field on H:"
+-- To get a frame field, we divide each vector 
+-- by its magnitude to get the unit vectors:
+ 
+abs(d(Psi,t))
+-- = cos(t)^2 + sin(t)^2+0^2
+-- = 1
+
+E1 = 1 * d(Psi,t)
+E1
+
+abs(d(Psi,T))
+-- = t^2*cos(T)^2 + t^2*sin(T)^2 +1|sqrt
+-- = (t^2 +1) |sqrt
+E2 = 1/sqrt(t^2 +1) * d(Psi,T)
+E2
+
+"... calculate 1-form Omega aus dE1.E2"
+ E1 = ( cos(T)    ,  sin(T)   , 0)
+dE1 = (-sin(T)*dT ,  cos(T)*dT, 0)
+dE1
+
+E2
+
+"... Omega:"
+Omega = dot(dE1, E2) 
+Omega
+Omega = simplify(Omega)
+Omega
+
+
+"... derivative of this 1-form in TpS:"
+--              cf. 5.2, p.73: 
+--   IF w=f(t,T)*dt+g(t,T)*dT THEN dw=(d(g,t) - d(f,T))*dtdT
+--   here:     0*dt+t/sqrt(t^2+1)*dT
+
+f(t,T) = 0
+g(t,T) = t/sqrt(t^2+1)
+dOmega = d(g,t)*dtdT
+dOmega
+
+-- .. *(t^2+1)/(t^2+1)
+dOmega = (t^2+1)^(-3/2)*dtDT
+dOmega
+-dOmega
+
+"... Now calculate the Gaussian curvature:"
+
+dtE1 = 1
+dtE1
+dTE1 = 0
+dTE1
+dtE2 = 0
+dtE2
+dTE2 = 1/sqrt(t^2 +1)
+dTE2
+
+M = ((dtE1,dtE2), (dTE1,dTE2))
+M
+det(M)
+K = -(t^2+1)^(-3/2)*det(M)
+K
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

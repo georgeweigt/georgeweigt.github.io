@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 20
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXERCISE 2.28."
+-- WANTED:
+--   Find parameterizations of the surfaces described in Problem 2.14.
+
+"SOLUTION:"
+
+-- cylCoord: (r,θ,z) - watch the identifier
+-- sphCoord: (ρ,θ,φ)
+-- 1. θ = π/4
+-- 2. z = r^2 .
+-- 3. ρ = φ.
+-- 4. ρ = cos φ.
+-- 5. r = cos θ.
+-- 6. z = √(r^2 − 1). 
+-- 7. z = √(r^2 + 1). 
+-- 8. r = θ.
+
+"1."
+"The equation is given in cyl/sphCoords by theta = pi/4"
+
+z = quote(z)      -- clear z
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+theta = pi/4   -- substitute pi/4 for theta to translate to rect
+
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+psi1(r,z)=(x,y,z)
+psi1
+
+-- i.e. explicit:
+
+psi1(r,z)=(r/sqrt(2), r/sqrt(2) ,z)
+psi1
+
+-- φ(u,z) = (u,u,z)
+
+"Clear theta for the following computations!"
+theta
+theta=quote(theta)   -- clear theta = pi/4 
+theta
+
+
+"2. Equation: z = r^2 (cylCoords)"
+"The equation is given in cyl/sphCoords z = r^2"
+
+theta = quote(theta)  -- clear theta, was pi/4 
+
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+z = r^2   -- substitute r^2 for z to translate to rect
+
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+psi2(r,theta)=(x,y,z)
+psi2
+
+-- i.e. explicit:
+
+psi2(r,theta)=(r cos(theta), r sin(theta) ,r^2)
+psi2
+
+"Clear substitution for z!"
+z
+z=quote(z)
+z
+
+"3. Equation: rho = phi (i.e. sphCoords)"
+
+-- from spherical:
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+-- claer phi and rho
+phi=quote(phi)
+rho=quote(rho)
+
+rho = phi  -- substitute phi for rho for translate to rect
+           -- in a semi-automatic way using EigenMath
+
+-- .. to rectangular:
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+psi3(theta,phi)=(x,y,z)
+psi3
+
+-- i.e. explicit:
+
+psi3(theta,phi)=(phi sin(phi) cos(theta), 
+                phi sin(phi) sin(theta),
+                phi cos(phi))
+psi3(theta,phi)
+
+"Clear substitution for rho!"
+rho
+rho=quote(rho)
+rho
+
+" ... and so on .."
+
+"7."
+"The equation z = sqrt(r^2 + 1) describes a surface in cyl-coords."
+"Translate to rectCo (x,y,z)."
+
+-- cyl Coords:
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+z = sqrt(r^2 + 1)  -- substitute sqrt(r^2 + 1) for z for rect.Coords
+
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+psi7(r,theta)=(x,y,z)
+psi7
+
+-- i.e. explicit:
+
+psi7(r,theta)=(r cos(theta), r sin(theta) ,sqrt(r^2 + 1))
+psi7
+
+"clear z!"
+z
+z=quote(z)   -- clear z=sqrt(r^2 + 1)
+z
+
+"8."
+"The equation r = theta describes a surface in cyl-coords."
+"Translate to rectCo (x,y,z)."
+
+-- cyl Coords:
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+r = theta  -- substitute theta for r for rect.Coords
+
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+psi8(theta,z)=(x,y,z)
+psi8
+
+-- i.e. explicit:
+
+psi8(theta,z)=(r cos(theta), r sin(theta) ,z)
+psi8
+
+"Clear r!"
+r
+r=quote(r)   -- clear r = theta 
+r
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

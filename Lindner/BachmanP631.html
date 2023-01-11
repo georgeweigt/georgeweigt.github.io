@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 98
+--| 6.    STOKES' Theorem
+--| 6.3   Vector calculus and .. the generalized Stokes’ Theorem
+
+"EXERCISE 6.31 (Gauss' Divergence Theorem)"
+"||      Int(F.dS)|dV = Int(grad.F)|V = Int(dwF)|V"
+
+-- GIVEN: 
+--    S = the portion of the graph of z=4-x^2-y^2 that lies
+--        above the plane z = 0.
+--    W = (-y,x,z^2), a vector field on R^3.
+--    V = the region of R^3 that lies between S and z = 0.
+-- WANTED:
+--    Compute ∫(F.dS)|dV .
+--    
+
+"SOLUTION:"
+		
+
+"(1.) Compute Nabla.W = div(W)."
+
+X=(x,y,z)
+W=(-y, x, z^2)
+W
+
+div(U) = d(U[1],x) + d(U[2],y) + d(U[3],z)
+
+div(W) 
+
+-- Look at the surface via:
+-- https://c3d.libretexts.org/CalcPlot3D/index.html
+-- we solve the translated problem Int(dwF)|V.
+
+"(2.) Integrate div(F) over V."
+
+-- use parmeterization of V with div(W) = 2z from (1)
+x = r*cos(t)
+y = r*sin(t)
+z = 4-r^2 
+
+-- integrate div(W) on V
+
+IV = defint(2*(4-r^2), r,0,2,  t,0,2pi)
+IV
+
+-- not equal (3) because of other integrand ?? Fix it!
+
+"(3.) Use Gauss'DivTheo to compute surface integral over dV."
+--    Int(F.dS)|dV = Int(div F)|V = Int(dwF)|V
+
+-- reset x,y,z
+do( x=quote(x), y=quote(y), z=quote(z)) 
+W=(-y,x,z^2)
+
+-- corresponding 1-form to vector field W
+omegaW = -y*dx +x*dy + z^2*dz
+omegaW
+
+--  differentiate it
+f = -y
+g = x
+h = z^2
+
+domegaW = (d(g,x)-d(f,y))*dxdy +
+          (d(h,y)-d(g,z))*dydz + (d(h,x)-d(f,z))*dxdz
+domegaW
+
+-- parameterize V
+-- for z=0=4-x^2-y^2, ie x^2+y^2=2^2 ie crcle of radius 2 in plane
+-- therefore we use polar coordinates
+-- we have z=4-x^2-y^2 = 4-r^2*cos(t)^2-r^2*sin(t)^2 = 4-r^2
+
+Psi(r,t) = (r*cos(t),r*sin(t), 4-r^2) 
+         -- r: 0..2        t: 0..2pi
+Psi
+
+-- DEF of wedge (exterior) product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+-- Tangential vectors in TpV
+V1 = d(Psi,r)
+V1
+V2 = d(Psi,t)
+V2
+
+-- see above domegaW ie domega:
+domega = 2 *ext23(dx,dy,V1,V2)     -- 2-form in R^3
+domega
+
+-- use parmeterization (but not necessary here ;)
+x = r*cos(t)
+y = r*sin(t)
+z = 4-r^2 
+domega
+
+domega=simplify(domega)
+domega
+
+-- integrate dw on V
+IV = defint(domega, r,0,2,  t,0,2pi)
+IV
+
+"(4.) Integrate W over dV."
+"Same as (3.) because of Int(F.dS)|dV = Int(div F)|V = Int(dwF)|V."
+
+
+-------------------------------------------
+stop 6.31 no answer given
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 98
+--| 7.    MANIFOLDS
+--| 7.1   Pull-backs
+
+
+"EXAMPLE 45 (pullback)"
+
+-- GIVEN: 
+--    ω      = ydx + zdy + xdz is a 1-form on R^3.
+--    φ(a,b) = (a+b, a−b, ab)  is a map from R^2 to R^3.
+-- WANTED:
+--    φ∗ω will be a 1-form on R^2. Determine which one.
+
+"SOLUTION:"
+
+omega    = y*dx +z*dy + x*dz    
+omega       -- 1-form on R^3
+
+Phi(a,b) = (a+b,a-b,a*b)          
+Phi      -- is a map from R^2 to R^3
+         -- (a,b) --> (a+b,a-b,a*b)
+
+"1.) FIRST identify Phi*w via action on basis."
+-- Therefore Phi*omega is 1-form on R^2.
+-- Determine action on basis in R^2 to identify Phi*w.
+-- We first do a step by step 'handish' solution.
+
+DPhi = d(Phi,(a,b)) 
+DPhi
+
+V = dot( d(Phi,(a,b)), (1,0) )   -- (1,1,b) ok
+V
+
+-- step by step by mind:
+-- omega    = y*dx +z*dy + x*dz     -- 1-form on R^3
+-- w        = y*dx +z*dy + x*dz     -- short w = omega
+--            Phi(a,b) evaluate on (x,y,z) in w
+-- w(Phi)   =     (a-b)*dx + ab*dy + (a+b)*dz    
+--            then w evaluate on (dx,dy,dz) by V=(1,1,b)
+-- w(Phi)(1,1,b) = (a-b)*1 + ab*1  + (a+b)*b     
+--               = a-b+ab+ab+b^2
+--               = a-b+2ab+b^2
+
+-- Now do the 2 steps with EigenMath using 2 helpers:
+
+valX(w,v) = eval(w, x,v[1], y,v[2], z,v[3])
+
+PhiSTARomega = valX(omega, Phi(a,b))
+PhiSTARomega    
+
+valDX(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])
+valDX(PhiSTARomega, V)
+
+-- now abstract the process to a procedure
+
+-- basis in R^2
+E1=(1,0)
+E2=(0,1)
+
+PhiSomega(E) = do(
+   valX(w,v) = eval(w,  x,v[1],  y,v[2],  z,v[3]),
+   valDX(w,v)= eval(w, dx,v[1], dy,v[2], dz,v[3]),
+   DPhi      = d(Phi,(a,b)), 
+   V         = dot( DPhi, E ), 
+   PhiSTARomega = valX(omega, Phi(a,b)),
+   valDX(PhiSTARomega, V) )  -- return value
+
+PhiSomega
+
+PhiSomega(E1)
+PhiSomega(E2)
+
+PhiSTARomega = PhiSomega(E1)*da + PhiSomega(E2)*db
+PhiSTARomega
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

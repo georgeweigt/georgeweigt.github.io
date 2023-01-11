@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 61
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+"EXAMPLE 28."
+-- GIVEN: 
+--    V = {(r,θ,z)|1 ≤ r ≤ 2, 0 ≤ z ≤ 1}.
+--   (V is the region between the cylinders of radii 1 and 2 
+--       and between the planes z = 0 and z = 1.) 
+-- WANTED:
+--    calculate􏰐  ∫ z(x^2+y^2)|V dx∧dy∧dz= ?
+
+"SOLUTION:"
+
+--------------- DEF of wedge product w1^w2^w3 in R^3
+ext33(w1,w2,w3, v1,v2,v3) = do(
+             -- define helper function val(ue) of form w on vector v
+             val3(w,v)    = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             -- use helper in definition of ext(erior) product
+      det((( val3(w1,v1), val3(w2,v1), val3(w3,v1) ),
+           ( val3(w1,v2), val3(w2,v2), val3(w3,v2) ),
+           ( val3(w1,v3), val3(w2,v3), val3(w3,v3) ))))
+--------------- 
+
+-- V is best parameterized using cylindrical coordinates:
+Phi(r,t,z) = (r cos(t), r sin(t), z) 
+--            1..2  0..2pi        0..1                
+Phi     
+               
+-- tangential vectors in TpR^3
+Phir = d(Phi,r)     
+Phir
+Phit = d(Phi,t)        
+Phit
+Phiz = d(Phi,z)        
+Phiz
+
+-- volume element
+--             dx^dy^dz
+dxdydz = ext33(dx,dy,dz, Phir,Phit,Phiz)  
+dxdydz
+
+dxdydz=simplify(dxdydz)
+dxdydz
+
+-- use parameterisation to transform z*(x^2+y^2)
+x = r cos(t)
+y = r sin(t)
+z = z
+
+omega = z*(x^2+y^2) * dxdydz
+omega 
+omega=simplify(omega)
+omega
+
+Iomega = defint(omega, r,1,2, t,0,2pi, z,0,1)  
+Iomega 
+Iomega=simplify(Iomega)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

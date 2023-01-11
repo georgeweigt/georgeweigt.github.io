@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 89
+--| 5.    Differentiation of Differential Forms
+--| 5.1.  The derivative of a differential 1-form
+
+
+"EXERCISE 5.1"
+-- GIVEN: 
+--     ω = xy^2 dx + x^3z dy - (y+z^9) dz
+--     V = ⟨1,2,3⟩ and W =⟨-1,0,1⟩.
+-- WANTED:
+--    1. Compute ∇V ω(W) and ∇W ω(V) at the point (2,3,-1).
+--    2. Compute dω(V, W) at the point (2,3,-1).
+
+"SOLUTION:"
+		
+-- Now: in case of a 1-form ω on R^3 and a vector field V , 
+-- we define the derivative of ω.
+-- Notation: Delta := ∇.
+
+X = (x,y,z)           -- standard directions in R^3
+
+-- Evaluation of ω at vector v
+val3(w, v) = eval(w, dx,v[1], dy,v[2], dz,v[3])
+
+-- directional derivation of ω(v) in direction w at point p
+Delta3(omega,v,w,p) = eval(dot(d(val3(omega,w),X),v), 
+                           x,p[1], y,p[2], z,p[3])
+
+-- derivative dω of 1-form ω
+Delta(omega, v,w,p) = Delta3(omega,v,w,p) - Delta3(omega,w,v,p)
+
+omega = x*y^2*dx + x^3*z*dy - (y+z^9)*dz
+omega 
+
+V = (1,2,3)
+W = (-1,0,1)
+p = (2,3,-1)
+
+"0:"
+V
+omega
+val3(omega,V)          -- i.e. omega(V)
+d(val3(omega,V), X)    -- grad
+
+"1)"
+W
+dot( d(val3(omega,V),X), W)
+
+"2)"
+p
+eval( dot( d(val3(omega,V),X), W), x,p[1], y,p[2], z,p[3] )
+
+"3) now with W an V interchanged"
+W
+val3(omega,W)              -- i.e. omega(W)
+d(val3(omega,W), X)
+dot( d(val3(omega,W),X), V)
+
+"4)"
+eval( dot( d(val3(omega,W),X), V), x,p[1], y,p[2],  z,p[3])
+Delta3(omega,V,W,p)
+
+"5)"
+Delta3(omega,V,W,p)
+Delta3(omega,W,V,p)
+
+"6)"
+Delta(omega, v,w,p) = Delta3(omega,v,w,p) - Delta3(omega,w,v,p) 
+Delta(omega, V,W,p)
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

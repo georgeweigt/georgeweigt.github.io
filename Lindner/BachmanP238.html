@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 22
+--| 2    Prerequisites
+--| 2.6  Parameterized regions in R^2 and R^3
+
+
+"EXERCISE 2.38"
+
+-- GIVEN: 
+--    R = region in R^2 bounded by the ellipse with x-intercepts 3 and −3 
+--        and y-intercepts 2 and −2.
+--    
+-- WANTED:
+--    a parameterization for the region R. 
+
+"SOLUTION:"
+
+Phipolar(t,theta) = test( and( 1 <= theta,theta <= 2,
+                               0 <= t,t <= 1 ),
+                   ( (t*f2(theta) + (1 − t)*f1(theta)) * cos(theta), 
+                     (t*f2(theta) + (1 − t)*f1(theta)) * sin(theta) ),                         
+                   "input not allowed")   
+
+Phipolar(1,1)
+
+-- plot 
+
+Prtheta(t,theta) = ( (t*f2(theta) + (1 − t)*f1(theta)) * cos(theta), 
+                     (t*f2(theta) + (1 − t)*f1(theta)) * sin(theta) )
+
+Prtheta(1,1)
+Prtheta(1,pi)
+
+f1(theta) = cos(theta)   -- =r
+f2(theta) = theta
+
+Prtheta(1,pi)
+
+-- plot (to fix)
+xrange = (-4,4)
+yrange = (-4,4)
+trange = (0,2pi)
+r = 1
+x = (t*f2(theta) + (1 − t)*f1(theta)) * cos(theta)  
+y = (t*f2(theta) + (1 − t)*f1(theta)) * sin(theta)  
+draw((x,y),t)
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

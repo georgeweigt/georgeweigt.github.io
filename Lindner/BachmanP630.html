@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 98
+--| 6.    STOKES' Theorem
+--| 6.3 Vector calculus and generalized Stokes Theorem
+
+"EXERCISE 6.30 (Gauss' Divergence Theorem)"
+"||      Int(F.dS)|dV = Int(grad.F)|V = Int(dwF)|V"
+
+
+-- GIVEN: 
+--    F = (xy^2, y^3, x^2y^2), a vector field on R^3.
+--    V = the cube 0<= x,y,z <=1.
+-- WANTED:
+--    Compute ∫(F.dS)|dV .
+
+"SOLUTION:"
+
+"We solve the translated problem Int(dwF)|V."
+"-- compute d(omegaF) alias dwF:"
+
+F = (x*y^2, y^3, x^2*y^2)
+F
+omegaF = x*y^2*dx +y^3*dy + x^2*y^2*dz
+omegaF
+
+f = x*y^2
+g = y^3
+h = x^2*y^2
+
+domegaF = (d(g,x)-d(f,y))*dxdy +
+          (d(h,y)-d(g,z))*dydz + (d(h,x)-d(f,z))*dxdz
+domegaF
+
+
+"-- parameterize V"
+
+Psi(x,y) = (x, y, 1)    --  x: 0..1  y: 0..1
+
+-- DEF of wedge (exterior) product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+-- Tangential vectors in TpV
+Vx = d(Psi,x)
+Vx
+Vy = d(Psi,y)
+Vy
+
+"-- Compute Int(F.dS)|dV :"
+
+domega = -2x*y  *ext23(dx,dy, Vx,Vy) +
+          2x*y^2*ext23(dx,dz, Vx,Vy) +
+          2x^2*y*ext23(dy,dz, Vx,Vy)     -- 2-form in R^3
+domega
+
+-- use parmeterization (but not necessary here ;)
+x = x 
+y = y
+z = 1
+
+domega
+
+-- integrate dw on V
+IV = defint(domega, x,0,1, y,0,1)
+IV
+
+"k.o. - other answer or error ??"
+
+-------------------------------------------
+stop 6.30 4/3    
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

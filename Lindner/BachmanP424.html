@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 61
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+
+"EXERCISE 4.24"
+
+-- GIVEN: 
+--    H = top half of the unit sphere with parameterization 
+--        from  rectangular coordinates (x,y) --> (x,y,􏰔1−x^2 −y^2)
+--        where sqrt(x^2+y^2) ≤ 1.
+--    ω = 1/x dy∧dz-1/y dx^dz is a 2-form.
+-- WANTED:
+--    Integrate w over H.
+--    (Hint: See 4.3)
+
+"SOLUTION:"
+
+
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+
+Phi(u,v) = (u,v, sqrt(1-u^2-v^2))                   
+Phi     
+               
+Phiu = d(Phi,u)      -- tangential vectors in TpR^2
+Phiu
+Phiv = d(Phi,v)        
+Phiv
+
+x = u --  cos(v)    --u                  -- use parametrization
+y = v --  sin(v)  -- v
+z = sqrt(1-u^2-v^2)
+
+omega = 1/x * ext23(dy,dz, Phiu,Phiv)  - 1/y * ext23(dx,dz, Phiu,Phiv) 
+omega 
+omega = 6 u^3 v +6 u^3 cos(v)sin(v)
+omega
+
+Iomega = defint(omega, u,-3,3, v,0,1)  
+Iomega 
+
+"Error .."
+
+stop 4.24  6pi
+
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

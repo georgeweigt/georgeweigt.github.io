@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 16
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXECISE 2.19."
+
+-- GIVEN: 
+--    the equations r = cos(θ), y = sin(x), x = sin(y).
+-- WANTED:
+--    draw their graphs using Eigenmath.
+
+"SOLUTION:"
+"1."
+-- alternative via polar sys
+xrange = (-2,2)
+yrange = (-2,2)
+trange = (0,pi)
+r = cos(t)
+x = r cos(t)  
+y = r sin(t)  
+f = (x,y)        
+draw( f ,t)
+
+-- alias ((cos t)^2, cos(t)*sin(t))
+draw((cos(t)^2, cos(t)*sin(t)),t)
+
+"2."
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (-2pi,2pi)
+f = (t, sin(t))
+draw( f ,t)
+
+"3."
+"We have: x=sin(y) ==> y=arcsin(x)"
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (-1,1)
+f = (t, arcsin(t))
+draw( f ,t)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

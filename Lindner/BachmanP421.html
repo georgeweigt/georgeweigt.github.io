@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 61
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+
+"EXERCISE 4.21"
+
+-- GIVEN: 
+--    R = region in the first quadrant of R^2, 
+--        below the line y = x and bounded by x^2 + y2 = 4. 
+--    ω = 􏰈1 + y^2/x^2 􏰉 dx ∧ dy     a the 2-form.
+-- WANTED:
+--    Integrate ω over R.
+
+"SOLUTION:"
+
+--------------------- DEF of wedge(=ext22) w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) ))
+                        )
+--------------------- DEF of w1^w2 in R^2
+
+f(x,y) = (1 + y^2/x^2)
+
+-- calculate limits of ∫:
+-- x   = sqrt(4-x^2)
+-- x^2 = 4-x^2
+-- 2 x^2 = 4
+-- x^2 = 2
+-- x = sqrt(2)
+-- now ∫[0,√2]+∫[√2,2]
+
+-- first part [0,√2] using y=x
+Phi(u,v) = (u, v) -- choose parametrization [a,b]x[0,1]
+Phi                    
+Phiu = d(Phi,u)        -- tangential vectors in TpR^2
+Phiu
+Phiv = d(Phi,v)        
+Phiv
+
+x = u                  -- use parametrization
+y = v
+
+omega = f(x,y) * ext22(dx,dy, Phiu,Phiv)  
+omega 
+
+Iomega = defint(omega, u,0,sqrt(2), v,0,sqrt(2))  -- integrate omega
+Iomega
+
+stop 4.21  2
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

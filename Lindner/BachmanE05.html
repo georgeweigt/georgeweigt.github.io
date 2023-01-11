@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 2
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXAMPLE 5."
+
+-- WANTED:
+--   Draw the top half of a circle of radius 1.
+
+"SOLUTION:"
+
+"1st parameterization in R^2 using equation:"
+
+P1(t) = (t, sqrt(1-t^2))
+P1
+
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (-1,1)
+draw((t, sqrt(1-t^2)),t)
+
+"2nd parameterization via polar sys:"
+
+P2(t) = (cos(t), sin(t))  -- where 0 <= t <= pi.
+P2
+ 
+xrange = (-2,2)
+yrange = (-2,2)
+trange = (0,pi)
+r = 1
+x = r cos(t)  
+y = r sin(t)  
+draw((x,y),t)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

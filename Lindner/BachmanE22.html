@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 55
+--| 4    Differential Forms
+--| 4.4  Integrating 1-forms on R^m
+
+"EXAMPLE 22"
+
+-- GIVEN: 
+--    C = curve in R2 parameterized by graph of x=y^2, where 0 ≤ t ≤ 2.
+--    ν = dx + dy  is 1-form.
+-- WANTED:
+--   calculate 􏰑∫ν|C.  (Read ν|C as 'ν with integral domain C')
+
+"SOLUTION:"
+
+---------------------------------- DEF of wedge product w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2])
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+val(w,v) = eval(w, dx,v[1], dy,v[2])
+
+-- Parametrization wit 0<=t<=
+Phi(t) = (t^2, t)
+Phi
+
+-- Tangential vector in Tp
+V = d(Phi,t)
+V
+
+x=t^2
+y=t
+
+w = val(dx,V) + val(dy,V)  
+w
+
+-- integrate w along C
+Iw = defint(w, t,0,1)
+Iw
+
+"alternativ orientation:"
+
+V = d(Phi,t)
+Vo = eval(V, t,0)
+Vo   -- pointing in opposite direction '>'
+
+-- Parametrization wit 0<=t<=
+Phi(t) = (t, sqrt(t))
+Phi
+
+-- Tangential vector in Tp
+V = d(Phi,t)
+V
+
+x = t
+y = sqrt(t)
+
+w = val(dx,V) + val(dy,V)  
+w
+
+-- integrate w along C
+Iw = - defint(w, t,0,1)
+Iw
+ 
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

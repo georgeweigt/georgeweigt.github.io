@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 22
+--| 2    Prerequisites
+--| 2.6  Parameterized regions in R^2 and R^3
+
+"[Bachman:] Note, that the interesting part of this parameterization is the "
+"specification of the domain. Without this, we are just giving the"
+"translation from polar to rectangular coordinates."
+
+"EXERCISE 2.36"
+-- GIVEN: 
+--    B = the ball of radius 1 in R^3
+--        i.e., the set of points satisfying x^2 + y^2 + z^2 ≤ 1.
+-- WANTED:
+--    1. find a parameterization for B using spherical coordinates.
+
+"SOLUTION:"
+
+Ball1(rho,theta,phi) = test( and(0<=theta, theta<= 2 pi,
+                             0<=rho, rho<=1,
+                             0<=phi, phi<= pi),
+                (rho sin(phi) cos(theta), 
+                 rho sin(phi) sin(theta), 
+                 rho cos(phi)), 
+                "input not allowed")   
+
+float(Ball1(1,2,1))
+
+Ball2(rho,theta,phi) = test( and(
+                             0<=rho, rho<=1,
+                             0<=theta, theta<= pi/2,
+                             0<=phi, phi<= pi/2),
+                (rho sin(phi) cos(theta), 
+                 rho sin(phi) sin(theta), 
+                 rho cos(phi)), 
+                "input not allowed")   
+
+Ball2(1,pi/2,pi/2)
+
+Ball3(rho,theta,phi) = test( and(
+                             0  <= rho,rho <=1,
+                             pi <=theta,theta<= 3 pi/2,
+                             pi/2 <=phi,phi<= pi),
+                (rho sin(phi) cos(theta), 
+                 rho sin(phi) sin(theta), 
+                 rho cos(phi)), 
+                "input not allowed")   
+
+Ball3(1,pi/2,pi/2)
+
+--
+"EXAMPLE.  Circle of radius 1 at (0,0)."
+
+xrange = (-4,4)
+yrange = (-4,4)
+trange = (0,2pi)
+r = 1
+f(theta) = test( and(0<=theta, theta<= 2 pi),
+                (cos(theta),sin(theta)), "Error")   
+                -- here we must have f(theta), not only f
+draw(f,theta)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

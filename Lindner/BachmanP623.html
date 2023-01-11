@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 91
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes Theorem
+
+
+"EXERCISE 6.23"
+
+-- GIVEN: 
+--    S = the can-shaped surface in R3 whose side is the cylinder of 
+--        radius 1 (centered on the z-axis), and whose top and bottom are 
+--        in the planes z = 1 and z = 0, respectively.
+--    w = z^2 dx^dy.
+
+-- WANTED:
+--    calculate ∫(w|S). Use generalized Stokes' Theorem. 
+
+"SOLUTION:"
+		
+-- We use STOKES: ∫w|∂σ = ∫∂w|σ. "
+"Plan: 1. Calculate dw. 2. Then calculate Integral(dw|C)."
+
+"1.) calculate dw."
+-- We use  ∫w|∂s = ∫∂w|s. 
+
+-- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+-- Parametrization of can S
+Phi(t,z) = (1 cos(t), 1 sin(t), z) 
+--                0..2pi        0..1 (0=z and plane z=1)                
+Phi
+
+-- Tangential vector in Tp
+Vt = d(Phi,t)
+Vt
+Vz = d(Phi,z)
+Vz
+
+omega = (z^2)* ext23(dx,dy,Vt,Vz)   -- 2-form in R^2
+omega
+
+dxdy = ext23(dx,dy, Vt,Vz)  -- 1st det
+dxdy
+
+-- use parameterization from above
+x = 1*cos(t)
+y = 1*sin1(t)
+z
+
+omega = z^2 * dxdy
+omega 
+
+"4.) Integrate the resulting function over R! "
+
+-- Because one has to use |cos| we correct to
+
+Iomega = defint(omega, t,0,pi/2, z,0,1)  
+Iomega 
+ "Should be 6.23 pi.- Fix it."
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

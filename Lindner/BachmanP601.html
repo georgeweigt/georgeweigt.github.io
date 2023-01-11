@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 84
+--| 6.    STOKES' Theorem
+--| 6.1   Cells and Chains
+
+
+"EXERCISE 6.1"
+-- GIVEN: 
+--    f is the 0-form x^2*y^3.
+--    points p = (−1,1), q =(1,−1), and r = (−1,−1).
+-- WANTED:
+--    compute the integral of f over the 0-chaines p−q;r-p.
+
+"SOLUTION:"
+		
+f(x,y) = x^2*y^3
+
+integate(f,p) = eval(f, x,p[1], y,p[2])   
+                -- 0-form f integrated at p
+
+-- FACT(p.84): IF     C = sum(ni,Si)
+--             THEN ∫w|C = sum ni*∫w
+
+p=(-1,1)
+q=(-1,-1)
+r=(-1,-1)
+
+"1."
+integate(f,p) - integate(f,q)
+integate(f,r) - integate(f,p)
+
+"2."
+integate(f,p) + integate(f,q)- integate(f,r)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

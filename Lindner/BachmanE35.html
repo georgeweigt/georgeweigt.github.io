@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p.85
+--| 6.    STOKES' Theorem
+--| 6.1   Cells and Chains
+
+
+-- If n-cell sigma is the image of the
+-- parameterization   φ : I^n → R^m 
+-- then the boundary of sigma is p.d.:
+
+deltasigma2(x) = (Phi(1,x[2])-Phi(0,x[2])) -
+                 (Phi(x[1],1)-Phi(x[1],0))
+
+deltasigma2
+
+deltasigma3(x) = (Phi(1,x[2],x[3])-Phi(0,x[2],x[3])) -
+                 (Phi(x[1],1,x[3])-Phi(x[1],0,x[3])) +
+                 (Phi(x[1],x[2],1)-Phi(x[1],x[2],0))
+
+
+-- now EXAMPLE 35:
+
+"EXAMPLE 35."
+-- GIVEN: 
+--    
+--    
+-- WANTED:
+--    
+
+"SOLUTION:"
+
+Phi(r,t) = (r cos(pi*t), r sin(pi*t))
+x = (r,t)
+deltasigma2(x)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

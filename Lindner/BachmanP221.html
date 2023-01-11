@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 17
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXECISE 2.21."
+-- GIVEN: 
+--    φ(t) = (cos t, sin t) (where 0 ≤ t ≤ π)
+--    ψ(t) = (t, √1 − t2)  (where −1 ≤ t ≤ 1)
+--    P = (√2/2, √2/2) and Q=(-√2/2, √2/2)
+-- WANTED:
+--    1. Show via sketch of the graphs of φ and ψ, that both parameterize
+--       the top half of the unit circle.
+--    2. Sketch the (velocity)vectors dφ/dt and dψ/dt at P and Q.
+
+"SOLUTION:"
+"Derivative of a general parameter|ization (f(t), g(t)):"
+
+phi(t)=(f(t), g(t))
+d(phi,t)
+
+"1. phi(t)"
+phi(t)=(cos(t), sin(t))       -- t: 0 ..pi
+phi
+
+d(phi,t)
+
+dphi = transpose(d(phi,t))
+dphi
+dphi1 = eval(dphi, t,pi/4)
+dphi1
+
+"parameterization of the top half of the unit circle:"
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (0,pi)
+draw( (cos(t),sin(t)),t)
+
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (0,pi)
+draw( (sqrt(2)/2,sqrt(2)/2)+ t dphi1,t)
+
+"Fig.2.6:"
+-- Draw curve and velocityvector."
+xrange = (-5,5) 
+yrange = (-5,5) 
+trange = (0,7) 
+
+f(t) = test(
+       and(0 < t,t<pi) , (cos(t),sin(t)),
+       and(pi < t,t<2pi) , (sqrt(2)/2,sqrt(2)/2)+ (t-pi)*dphi1 )
+draw(f,t)
+
+
+
+"2. psi(t)"
+psi(t)=(t, sqrt(1-t^2))    -- t: −1 .. 1
+d(psi,t)
+dpsi = transpose(d(psi,t))
+dpsi
+dpsi1 = eval(dpsi, t,0)
+dpsi1
+
+xrange = (-3,3)
+yrange = (-3,3)
+trange = (-1,1)
+draw( (0,1)+ t dpsi1,t)
+
+
+"Fig.2.6:"
+-- Draw curve and velocityvector."
+xrange = (-5,5) 
+yrange = (-5,5) 
+trange = (-1,7) 
+
+f(t) = test(
+       and(-1 < t,t <1) , psi(t) ,
+       and(-2 < t,t <3) , (0,1)+ (t-1)*dpsi1 )
+draw(f,t)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

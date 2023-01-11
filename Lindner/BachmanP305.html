@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 31
+--| 3    Forms
+--| 3.3  Multiplying 1-forms
+
+"EXERCISE 3.5."
+-- GIVEN: 
+--    w(dx,dy) = 2dx - 3dy.
+--    v(dx,dy) = dx +  dy.
+--    V1 =(-1,2) and V2 =(1,1).
+-- WANTED:
+--    1. Compute w(V1), v(V1), w(V2), v(V2).
+--    2. compute w^v(V1, V2).
+--    3. Find a constant c such that w^v = c dx^dy.
+"SOLUTION:"
+
+
+w(dx,dy) = 2 dx - 3 dy
+w
+v(dx,dy) = dx + dy
+v
+
+V1=(-1,2)
+V1
+V2=(1,1)
+V2
+
+"1.)"
+w(-1,2)     -- omega at (-1,2) as function evaluation
+v(-1,2)
+w(1,1)
+v(1,1)
+
+"2.)"
+wedge = det( ((w(-1,2),v(-1,2)),(w(1,1),v(1,1)) ))
+wedge
+
+"3.)"
+-- w^v = c dx^dy
+
+V1=(a,b)
+V2=(c,d)
+
+"LHS:"
+-- wedge w^v
+Epsilonwv = det( ((w(a,b),v(a,b)),(w(c,d),v(c,d)) ))
+Epsilonwv
+
+".. RHS:"
+-- with new defined 'factors' wx and wy
+
+wx(dx,dy) = dx
+wx
+wy(dx,dy) = dy
+wy
+
+-- wedge wx^vy
+EpsilonwXwY = det( ((wx(a,b),wy(a,b)),(wx(c,d),wy(c,d)) ))
+EpsilonwXwY
+
+"Ergo: c=5 "
+
+"3.) solution in one step:"
+"Now using selfmade wedge product function ext22"
+"and evaluating on two general vectors:"
+
+-- DEF of wedge (=exterior) product w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+             det( ((val22(w1,v1), val22(w2,v1)),
+                   (val22(w1,v2), val22(w2,v2)) )))
+
+V1=(a,b)
+V2=(c,d)
+
+ext22(w,v, V1, V2)
+--    dx^dy
+ext22(dx,dy, V1, V2)
+
+"compare LHS = c*RHS ..!"
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

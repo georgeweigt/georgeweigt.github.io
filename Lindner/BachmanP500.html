@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 67
+--| 5.    Differentiation of Differential Forms
+--| 5.1.  The derivative of a differential 1-form
+
+
+"Exercise 5.0 :) at p.71"
+
+-- how to vary a function f(x,y) in the direction of a vector W 
+-- at a point p: 
+------------------------------- DEF of directional derivative D
+grad(f)  =      d(f,x)       -- gradient of f
+
+D(f,x,a) = dot( d(f,x), a)   -- directional derivative of f in a
+------------------------------- Bachman p.12, p.71
+
+-- 0th ext02 = wedge product = val2 = function evaluation
+val2(omega, v) = eval(omega, dx,v[1], dy,v[2])  
+
+"1.)"
+-- Now: in case of a 1-form ω on R^2 and a vector field V , 
+-- we take the directional derivative of the function ω(V):
+
+-- standard directions in R^2
+X = (x,y)           
+-- Lexicon:
+-- f = omega
+-- W = a
+-- V = x
+-- p . p
+
+omega = y dx - x^2 dy
+omega
+
+V = (1,2)
+W = (2,3)
+p = (1,1)
+
+"calculate omega(V):"
+val2(omega,V)                -- i.e. omega(V)
+
+d(val2(omega,V), X)          -- X means in R^2
+
+"directional derivative Nabla_W omega(V)"
+dot( d(val2(omega,V),X), W)
+
+"evaluated at point p=(1,1):"
+eval( dot( d(val2(omega,V),X), W), x,p[1], y,p[2])
+
+"2.)"
+-- What about the variation of ω(W ), 
+-- in the direction of V at the point p?
+
+"calculate omega(W):"
+val2(omega,W)              -- i.e. omega(W)
+d(val2(omega,W), X)        -- differentiate omega(W)
+
+"directional derivative Nabla_V omega(W)"
+dot( d(val2(omega,W),X), V)
+
+"evaluated at point p=(1,1):"
+eval( dot( d(val2(omega,W),X), V), x,p[1], y,p[2])
+
+"3.)  we abstract a bit"
+
+Delta2(omega,v,w,p) = eval(dot(d(val2(omega,w),X),v), x,p[1], y,p[2])
+Delta2
+
+Delta2(omega,W,V,p)    -- cf. 1.
+Delta2(omega,V,W,p)    -- cf. 2.
+
+"4.)"
+-- We want dω, the derivative of ω, to be a 2-form.
+-- Hence, dω(V,W) should equal −dω(W,V). 
+-- How can we use the variations above to define dω so this is true? 
+
+domega2(omega, v,w,p) = 
+         eval( dot( d(val2(omega,w),X), v), x,p[1], y,p[2]) -
+         eval( dot( d(val2(omega,v),X), w), x,p[1], y,p[2])
+                   
+domega2(omega, V,W,p)
+
+domega2(omega, v,w,p) = Delta2(omega,v,w,p) - Delta2(omega,w,v,p)
+domega2(omega, V,W,p)
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

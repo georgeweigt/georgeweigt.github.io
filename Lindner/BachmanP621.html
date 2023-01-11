@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 91
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+"EXERCISE 6.21"
+-- GIVEN: 
+--    w = -y^2 dx + x^2 dy is a 1-form on R2.
+--    S = the 2-cell in R^2 parameterized 
+--        by (r cosh(t),r sinh(t)), 􏰑where r: 0..1 and t: -1..1. 
+-- WANTED:
+--    Calculate ∫(w|S) .
+--    
+
+"SOLUTION:"
+
+-- plot part of 2-cell S for r=2
+x = 2*cosh(t)          -- (1)
+y = 2*sinh(t)
+xrange = (-4,4)
+yrange = (-4,4)
+trange = (-1, 1)
+draw((x,y),t)
+
+
+-- reset x,y because of (1)
+x=quote(x)
+y=quote(y)
+
+"Plan: 1. Calculate dw. 2. Then calculate Integral(dw|C)."
+
+"1.) calculate dw"
+"use FACT 5.2: IF w=f.dx+g.dy THEN dw=(dg/dx-fd/dy)dx.dy."
+-- We use STOKES: ∫w|∂σ = ∫∂w|σ.
+
+--------------------- DEF of wedge product w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+-- Parametrization of 2-cell C
+Phi(r,t)=(r*cosh(t), r*sinh(t))  -- r: 0..1  t: -1..1
+Phi                          
+
+-- Tangential vectors in TpS
+V1 = d(Phi,r)
+V1
+
+V2 = d(Phi,t)
+V2
+
+"Compute dw:"
+f(x,y) = -y^2
+d(f,y)
+g(x,y) =  x^2
+d(g,x)
+
+domega = (d(g,x) - d(f,y))* ext22(dx,dy,V1,V2)   
+domega                      -- 2-form in R^2
+
+"2.)  use STOKES: Int(w|ds) = Int(dw|s)"
+
+-- parmeterization of sigma
+x = r*cosh(t)
+y = r*sinh(t)
+
+domega
+domega = circexp(domega)
+domega
+
+-- integrate dw on S=sigma
+Isigma = defint(domega, r,0,1, t,-1,1)
+Isigma
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

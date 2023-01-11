@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 61
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+
+"EXERCISE 4.23"
+
+-- GIVEN: 
+--    R = region of the xy-plane bounded by the ellipse 9x^2 + 4y^2 = 36.
+--    ω = x2dx∧dy   the 2-form.
+-- WANTED:
+--    Integrate ω over R.
+--    (Hint: See Problem 2.39)
+
+"SOLUTION:"
+
+"Region R to integrate:"
+xrange = (-10,10) 
+yrange = (-10,10) 
+trange = (0,2pi) 
+f(t) = (4 cos(t), 9 sin(t))
+draw(f,t)
+
+
+--------------------- DEF of wedge(=ext22) w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) ))
+                        )
+--------------------- DEF of w1^w2 in R^2
+
+"Ist 4.25 !"
+f(x,y) = x^2
+
+"Find a parameterization for the region in R2 bounded by the ellipse"
+"whose x-intercepts are 3 and -3 and y-intercepts are 2 and -2. "
+
+-- 0 <= theta,theta <= 2 p
+-- 0 <= r,r <= 1
+
+-- Phiell(r,t) = (3r cos(t), 2r sin(t) )  -- ellipse
+
+Phi(u,v) = (u        ,v g(u))
+Phi(u,v) = (3u cos(v),v 2u sin(v))                   
+Phi     
+               
+Phiu = d(Phi,u)      -- tangential vectors in TpR^2
+Phiu
+Phiv = d(Phi,v)        
+Phiv
+
+x = u -- 3u cos(v)    --u                  -- use parametrization
+y = v -- 2u sin(v)  -- v
+
+omega = x^2 * ext22(dx,dy, Phiu,Phiv)  
+omega 
+omega = 6 u^3 v +6 u^3 cos(v)sin(v)
+omega
+
+Iomega = defint(omega, u,-3,3, v,0,1)  
+Iomega 
+
+"Error .."
+
+stop 4.23  6pi
+
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

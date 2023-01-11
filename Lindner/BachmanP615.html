@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 90
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+
+"EXERCISE 6.15"
+
+-- GIVEN: 
+--    w = -y^2 dx + x^2 dy 1-form on R^2.
+--    σ = the 2-cell in R^2 parameterized by φ(u,v)=(2u-v,u+v), 1≤u≤2, 0≤v≤1.
+-- WANTED:
+--    Calculate ∫w|∂Q .
+
+"SOLUTION:"
+		
+"We use FACT 5.2: IF w = f.dx+g.dy "
+"                 THEN dw = (dg/dx-fd/dy)dxdy."
+-- We use STOKES: ∫w|∂s = ∫∂w|s. 
+
+-- DEF of wedge product w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+-- Parametrization 
+Phi(u,v) = (2u-v, u+v)   
+----         u: 1..2  v: 0..1
+Phi                          
+
+-- Tangential vector in Tp
+V1 = d(Phi,u)
+V1
+V2 = d(Phi,v)
+V2
+
+omega = -y^2 dx + x^2 dy
+omega
+
+"Use fact 5.2."
+f(x,y) = -y^2
+d(f,y)
+g(x,y) = x^2
+d(g,x)
+
+domega = (d(g,x) - d(f,y))* ext22(dx,dy,V1,V2)   
+domega                      -- 2-form in R^2
+
+-- use parmeterization (x,y are to be seen ;)
+x = 2u-v
+y = u+v
+
+domega
+
+-- Now use STOKES: ∫w|∂s = ∫∂w|s. 
+-- integrate dw on sigma
+
+Isigma = defint(domega, u,1,2, v,0,1)
+Isigma
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

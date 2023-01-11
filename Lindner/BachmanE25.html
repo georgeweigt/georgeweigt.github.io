@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 58
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+"EXAMPLE 25"
+-- GIVEN: 
+--    I = the interval [0,1].
+--    ω = 1/√(1-x^2) dx be a 1-form on R^1 over I
+-- WANTED:
+--    Integrate ω on I.
+
+---------- DEF of wedge product of w on v in R^1
+val(w,v) = eval(w, dx,v[1]) 
+----------
+
+--  parametrization Phi:[0,pi/2] --> [0,1]
+Phi(t) = sin(t)     
+Phi
+
+-- tangential vector in TpR
+V = d(Phi,t)        
+V
+
+-- apply parametrization
+x = sin(t)          
+
+--dV = val(dx,V)
+--dV
+
+-- calculate omega as integrand
+omega = 1/sqrt(1-x^2) * val(dx, V)  
+omega
+
+-- Let's simplify a bit:
+-- 1-sin(t)^2 = cos(t)^2, 
+-- ergo: omega = cos(t) / cos(t) =1
+
+-- differential form to integrate
+omega = 1/cos(t) * val(dx, V)     
+omega
+
+Iomega = defint(omega, t,0,pi/2)  -- integrate omega
+Iomega
+
+"Do the integral via LHS the traditional way:"
+
+x = quote(x)
+I01 = defint( 1/sqrt(1-x^2), x,0,1)
+I01
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

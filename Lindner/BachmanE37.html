@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 88
+--| 6.    STOKES' Theorem
+--| 6.1   Cells and Chains
+
+
+"EXAMPLE 37" (wL)
+-- GIVEN: 
+--    x dy   1-form in R^2
+-- WANTED:
+--    compute the area of a sphere of radius r in R^2
+
+"SOLUTION:"
+
+-- FACT (p.86)
+-- IF w= a dx2^dx3 (a:R^3-->R) THEN dw = da/dx1 dx1^dx2^dx3 (1)
+
+omega = x dy        -- 1-form in R^2
+omega
+
+domega = d(x,x) * dxdy         -- 2-form on R^2
+domega                         -- 1 * dx^dy
+
+-- We have: ∫w|ds = ∫dw|s.
+-- We compute the area of a sphere of radius r in R^2
+
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+Phi(r,t) = (r cos(t), r sin(t))  
+--          0..R  0..2pi
+Phi
+
+V1 = d(Phi,r)
+V1
+
+V2 = d(Phi,t)
+V2
+
+x = r cos(t) 
+y = r sin(t)
+
+-- we calculate the volume elements
+dxdy = ext22(dx,dy, V1,V2)  -- obiges  domega = d(x,x) * dxdy   
+                            -- 2-form on R^2
+dxdy
+
+Area = defint(dxdy, r,0,R, t,0,2pi)
+Area
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

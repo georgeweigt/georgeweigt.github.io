@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 57
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+"EXAMPLE 24"
+-- GIVEN: 
+--    the 1-form ω = √u du
+--    I = [1,5] interval in R
+-- WANTED:
+--    integrate ω over I
+
+"SOLUTION:"
+
+-------------- DEF of wedge product w1 in R^1
+val(w,v) = eval(w, dx,v[1])    -- alias ext11
+-------------- 
+
+-- Parametrization of [1,5] via Phi : [0,2] --> [1,5]
+
+Phi(x) = x^2+1
+Phi
+
+-- Tangential vector in Tp
+Vx = d(Phi,x)
+Vx
+
+-- apply Parametrization 
+y = x^2+1
+
+-- calculate omega as integrand
+omega = sqrt(y) * val(dx, Vx) 
+omega
+omega = simplify(omega)
+
+-- integrate omega on Omega
+Iomega = defint(omega, x,0,2)
+Iomega
+
+"Do the integral via LHS the traditional way:"
+
+I15 = defint(sqrt(u), u,1,5)
+I15
+float(I15)
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
