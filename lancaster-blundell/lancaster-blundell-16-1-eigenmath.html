@@ -1,4 +1,10 @@
-<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:1em'>
+<html>
+<head>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<textarea id="stdin">
 phi = sqrt(2 / a) sin(n pi x / a)
 
 E = hbar^2 / (2 m) (n pi / a)^2
@@ -21,4 +27,8 @@ I = integral(f,t)
 G = 0 - eval(I,t,0)
 check(G == i hbar / (omega - En + i epsilon))
 "ok"
-</textarea><button onclick='run()' style='font-size:1.5em'>Run</button><br><div id='stdout'></div></body></html>
+</textarea>
+<button onclick='run()'>Run</button><br>
+<div id='stdout'></div>
+</body>
+</html>

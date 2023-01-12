@@ -1,4 +1,10 @@
-<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:1em'>
+<html>
+<head>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<textarea id="stdin">
 "Problem 15.1.1"
 
 "Verify commutator"
@@ -11,4 +17,8 @@ C = ahat(ahatdag(psi(xi))) - ahatdag(ahat(psi(xi)))
 check(C == psi(xi))
 
 "ok"
-</textarea><button onclick='run()' style='font-size:1.5em'>Run</button><br><div id='stdout'></div></body></html>
+</textarea>
+<button onclick='run()'>Run</button><br>
+<div id='stdout'></div>
+</body>
+</html>
