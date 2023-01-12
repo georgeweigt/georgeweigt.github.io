@@ -6,7 +6,7 @@
 %.html: %.txt
 	echo "<html><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin' rows='24' cols='80' style='font-family:courier;font-size:1em'>" > $*.html
 	cat $*.txt >> $*.html
-	echo "</textarea><button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>" >> $*.html
+	echo "</textarea><button onclick='run()' style='font-size:1.5em'>Run</button><br><div id='stdout'></div></body></html>" >> $*.html
 
 # $$ sends a single $ to the shell
 # sed changes .tex to .pdf
