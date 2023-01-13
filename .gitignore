@@ -1,6 +1,7 @@
+*.swp
+*.tmp
+
 *.aux
 *.log
-*.out
 *.synctex.gz
-*.swp
 *.toc
