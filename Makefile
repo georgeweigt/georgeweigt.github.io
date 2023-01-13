@@ -4,7 +4,7 @@
 	pdflatex $<
 
 %.html: %.txt
-	cat html-intro $*.txt html-outro > $*.html
+	cat html-intro $< html-outro > $*.html
 
 # $$ sends a single $ to the shell
 # sed changes .tex to .pdf
