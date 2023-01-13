@@ -1,5 +1,7 @@
 .PHONY: default clean
 
+# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+
 %.pdf: %.tex
 	pdflatex $<
 
