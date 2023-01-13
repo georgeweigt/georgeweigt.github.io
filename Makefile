@@ -16,4 +16,4 @@ default:
 	for file in $$(ls *.txt | sed -e "s/.*Box.*//" -e "s/\.txt/\.html/") ; do make $$file ; done
 
 clean:
-	rm -f *.aux *.log *.synctex.gz
+	rm -f *.aux *.log *.synctex.gz *.toc
