@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+-- permutation tensor eijkl as TABLE
+eijkl=zero(4,4,4,4)
+n=4
+for(i,1,n, for(j,1,n, for(k,1,n, for(l,1,n,
+        eijkl[i,j,k,l] = (i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12 ) )))
+
+eijkl  
+eijkl[3,4,2,1]   -- -1
+eijkl[1,2,3,4]   --  1
+eijkl[1,2,1,4]   --  0   ok
+
+-- permutation tensor eijkl as FUNCTION
+Eijkl(i,j,k,l) = (i-j)*(i-k)*(i-l)*(j-k)*(j-l)*(k-l)/12
+
+Eijkl(3,4,2,1)   -- -1
+Eijkl(1,2,3,4)   --  1
+Eijkl(1,2,1,4)   --  0   ok
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

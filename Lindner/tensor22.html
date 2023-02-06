@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+-- metric tensor in cylindrical coordinates
+gdd = zero(3,3)
+      gdd[1,1]= 1
+      gdd[2,2]= r^2
+      gdd[3,3]= 1
+
+gdd
+
+-- X is cylindrical coordinates, t means theta
+X = (r,t,z) 
+X
+
+-- calculate guu, i.e. the inverse of gij
+guu = inv(gdd)
+guu
+
+n=3   -- we are now in a 3-dimensional world
+Gamma=zero(n,n,n)   -- tensor of type (3,3,3)
+
+for( k,1,n,
+    for( l,1,n,
+        for( m,1,n,
+             Gamma[k,l,m] = 
+                sum(i,1,2, guu[k,i]/2 * 
+                      ( d(gdd[m,i],X[l]) + 
+                        d(gdd[l,i],X[m]) - 
+                        d(gdd[m,l],X[i]) )
+                ))))
+
+Gamma            --(1)
+Gamma[1,2,2]     --(2)
+Gamma[2,1,2]
+Gamma[2,2,1]
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

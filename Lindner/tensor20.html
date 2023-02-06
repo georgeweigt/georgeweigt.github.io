@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+-- metric tensor in affine coordinates
+gdd = zero(2,2)
+      gdd[1,1]= 4
+      gdd[1,2]= 1
+      gdd[2,1]= 1
+      gdd[2,2]= 1
+
+--  use Cartesian coordinates
+X = (x,y) 
+
+-- calculate inverse guu to gdd
+guu = inv(gdd)
+guu
+
+-- calculate CHRISTOFFEL tensor
+Gamma=zero(2,2,2)    -- tensor shape
+for( k,1,2,          -- fill Gamma
+    for( l,1,2,
+        for( m,1,2,
+             Gamma[k,l,m] =                    -- (1)
+                sum(i,1,2, guu[k,i]/2 *        -- (2)
+                      ( d( gdd[m,i], X[l]) +   -- (3)
+                        d( gdd[l,i], X[m]) - 
+                        d( gdd[m,l], X[i]) )
+                ))))
+
+Gamma           -- (4)
+Gamma[1,2,2]    -- (5)
+Gamma[2,1,2]
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

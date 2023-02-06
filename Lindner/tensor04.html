@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+Eijk(i,j,k) = (j-i)*(k-i)*(k-j)/2           -- permutation tensor
+
+do( E1=(1,0,0), E2=(0,1,0), E3=(0,0,1))     -- basis in R^3
+E=(E1,E2,E3)
+
+Cross(a,b) = sum(i,1,3, 
+               sum(j,1,3, sum(k,1,3,        -- implicit EINSTEIN summation
+                 Eijk(i,j,k) * E[i]*a[j]*b[k] ))) -- the tensorial formula
+
+Cross((1,2,3),(4,5,6))      -- test tensorial Cross product formula
+cross((1,2,3),(4,5,6))      -- check using build-in cross
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
