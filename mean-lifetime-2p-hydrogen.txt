@@ -1,3 +1,4 @@
+"Mean lifetime of 2p hydrogen"
 
 psi(n,l,m) = R(n,l) Y(l,m)
  
@@ -40,6 +41,8 @@ rmag(fin,fout) = do(
   conj(ax) ax + conj(ay) ay + conj(az) az
 )
 
+-- psi(2,1,1) and psi(2,1,-1) yield the same result
+
 r21mag = rmag(psi(2,1,0),psi(1,0,0))
 r21mag
 
@@ -70,7 +73,7 @@ kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
-pi = float(pi)
+pi = float(pi) -- use numerical value of pi
 
 a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
 
