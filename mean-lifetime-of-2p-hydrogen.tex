@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+What is the mean lifetime of $2p$ hydrogen?
+
+\bigskip
+\hrule
+
+\bigskip
+Let us begin by writing down the wave function $\psi$ for hydrogen.
+\begin{equation*}
+\psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_{lm}(\theta,\phi)
+\end{equation*}
+where
+\begin{gather*}
+R_{nl}(r)=
+\frac{2}{n^2}
+\bigg(\frac{(n-l-1)!}{(n+l)!}\bigg)^{1/2}
+\bigg(\frac{2r}{na_0}\bigg)^l
+L_{n-l-1}^{2l+1}\bigg(\frac{2r}{na_0}\bigg)
+\exp\bigg(-\frac{r}{na_0}\bigg)
+a_0^{-3/2}
+\\[1ex]
+L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
+\\[1ex]
+Y_{lm}(\theta,\phi)=(-1)^m
+\bigg(\frac{2l+1}{4\pi}\bigg)^{1/2}
+\bigg(\frac{(l-m)!}{(l+m)!}\bigg)^{1/2}
+P_l^m(\cos\theta)\exp(im\phi)
+\\[1ex]
+P_n^m(x)=\frac{1}{2^n n!}(1-x^2)^{m/2}\frac{d^{n+m}}{dx^{n+m}}(x^2-1)^n
+\\[1ex]
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}\approx0.529\times10^{-10}\,\text{meter}
+%\\[1ex]
+%\mu=\frac{m_e m_p}{m_e+m_p}\approx{9.10}\times10^{-31}\,\text{kilogram}
+\end{gather*}
+
+The state $2p$ means that $n=2$ and $l=1$.
+That leaves three ways to choose $m$ hence all of the following processes correspond to the transition
+$2p\rightarrow1s$.
+\begin{equation*}
+\left.\begin{aligned}
+&\psi_{2,1,1}
+\\
+&\psi_{2,1,0}
+\\
+&\psi_{2,1,-1}
+\end{aligned}\right\}\rightarrow\psi_{1,0,0}
+\end{equation*}
+
+\end{document}
