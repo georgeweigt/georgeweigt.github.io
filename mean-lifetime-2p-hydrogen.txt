@@ -1,0 +1,86 @@
+
+psi(n,l,m) = R(n,l) Y(l,m)
+ 
+R(n,l) = 2 / n^2 *
+         a0^(-3/2) *
+         sqrt((n - l - 1)! / (n + l)!) *
+         (2 r / (n a0))^l *
+         L(2 r / (n a0),n - l - 1,2 l + 1) *
+         exp(-r / (n a0))
+
+L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
+
+Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(cos(theta),l,m) exp(i m phi)
+
+P(f,n,m) = eval(1 / (2^n n!) (1 - x^2)^(m/2) *
+           d((x^2 - 1)^n,x,n + m),x,f)
+
+-- E(n) returns the nth energy eigenvalue
+
+E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
+
+-- integrate f
+
+I(f) = do(
+  f = f r^2 sin(theta), -- multiply by volume element
+  f = eval(f, sqrt(1 - cos(theta)^2), sin(theta)), -- simplify
+  f = eval(f, 1 / sqrt(1 - cos(theta)^2), 1 / sin(theta)), -- simplify
+  f = eval(f, 1 / (1 - cos(theta)^2), 1 / sin(theta)^2), -- simplify
+  f = eval(f, 1 / (1 - cos(theta)^2)^(3/2), 1 / sin(theta)^3), -- simplify
+  f = defint(f,theta,0,pi,phi,0,2pi),
+  f = integral(f,r),
+  0 - eval(f,r,0)
+)
+
+rmag(fin,fout) = do(
+  ax = I(conj(fout) r sin(theta) cos(phi) fin),
+  ay = I(conj(fout) r sin(theta) sin(phi) fin),
+  az = I(conj(fout) r cos(theta) fin),
+  conj(ax) ax + conj(ay) ay + conj(az) az
+)
+
+r21mag = rmag(psi(2,1,0),psi(1,0,0))
+r21mag
+
+-- physical constants (h and k are exact values)
+
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878128 10^(-12) farad / meter
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+k = 1.380649 10^(-23) joule / kelvin
+me = 9.1093837015 10^(-31) kilogram
+mp = 1.67262192369 10^(-27) kilogram
+mu = me mp / (me + mp)
+
+-- derived units
+
+coulomb = ampere second
+farad = coulomb / volt
+joule = kilogram meter^2 / second^2
+volt = joule / coulomb
+
+-- base units (for printing)
+
+ampere = "ampere"
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+pi = float(pi)
+
+a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
+
+omega21 = (E(2) - E(1)) / hbar
+
+"Transition rate"
+
+A21 = e^2 / (3 pi epsilon0 hbar c^3) omega21^3 r21mag
+A21
+
+"Mean lifetime"
+
+1 / A21
