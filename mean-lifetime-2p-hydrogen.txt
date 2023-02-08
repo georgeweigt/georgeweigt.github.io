@@ -43,7 +43,7 @@ x21 = I(r sin(theta) cos(phi) f21)
 y21 = I(r sin(theta) sin(phi) f21)
 z21 = I(r cos(theta) f21)
 
--- print(x21,y21,z21)
+-- print(x21,y21,z21) -- uncomment to print x21, y21, z21
 
 r21sq = conj(x21) x21 + conj(y21) y21 + conj(z21) z21
 r21sq
