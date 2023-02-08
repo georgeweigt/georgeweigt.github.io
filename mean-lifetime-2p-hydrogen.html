@@ -35,17 +35,17 @@ I(f) = do(
   0 - eval(f,r,0) -- return value
 )
 
-rmagsq(fin,fout) = do(
-  ax = I(conj(fout) r sin(theta) cos(phi) fin),
-  ay = I(conj(fout) r sin(theta) sin(phi) fin),
-  az = I(conj(fout) r cos(theta) fin),
-  conj(ax) ax + conj(ay) ay + conj(az) az -- return value
-)
+psi2 = psi(2,1,0) -- try psi(2,1,1) and psi(2,1,-1) also
+psi1 = psi(1,0,0)
 
--- psi(2,1,1) and psi(2,1,-1) yield the same result
+f21 = conj(psi1) psi2
 
-r21magsq = rmagsq(psi(2,1,0),psi(1,0,0))
-r21magsq
+x21 = I(r sin(theta) cos(phi) f21)
+y21 = I(r sin(theta) sin(phi) f21)
+z21 = I(r cos(theta) f21)
+
+r21sq = conj(x21) x21 + conj(y21) y21 + conj(z21) z21
+r21sq
 
 -- physical constants (h and k are exact values)
 
@@ -82,7 +82,7 @@ omega21 = (E(2) - E(1)) / hbar
 
 "Transition rate"
 
-A21 = e^2 / (3 pi epsilon0 hbar c^3) omega21^3 r21magsq
+A21 = e^2 / (3 pi epsilon0 hbar c^3) omega21^3 r21sq
 A21
 
 "Mean lifetime"
