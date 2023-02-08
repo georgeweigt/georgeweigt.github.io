@@ -32,14 +32,14 @@ I(f) = do(
   f = eval(f, 1 / (1 - cos(theta)^2)^(3/2), 1 / sin(theta)^3), -- simplify
   f = defint(f,theta,0,pi,phi,0,2pi),
   f = integral(f,r),
-  0 - eval(f,r,0)
+  0 - eval(f,r,0) -- return value
 )
 
 rmagsq(fin,fout) = do(
   ax = I(conj(fout) r sin(theta) cos(phi) fin),
   ay = I(conj(fout) r sin(theta) sin(phi) fin),
   az = I(conj(fout) r cos(theta) fin),
-  conj(ax) ax + conj(ay) ay + conj(az) az
+  conj(ax) ax + conj(ay) ay + conj(az) az -- return value
 )
 
 -- psi(2,1,1) and psi(2,1,-1) yield the same result
