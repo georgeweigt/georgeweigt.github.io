@@ -1,16 +1,19 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
-"Verify linear combinations of spherical harmonic eigenfunctions (1=ok)"
+"Verify linear combinations of spherical harmonic eigenfunctions"
 
 Y(l,m) = (-1)^m sqrt((2l + 1)/(4pi) (l - m)!/(l + m)!) *
-         P(expcos(theta),l,m) exp(i m phi)
+         P(l,m) exp(i m phi)
 
-P(f,n,m) = eval(1/(2^n n!) (1 - x^2)^(m/2) *
-           d((x^2 - 1)^n,x,n + m),x,f)
+-- associated legendre of cos theta
+
+P(l,m) = test(m < 0, (-1)^(-m) (l + m)! / (l - m)! P(l,-m),
+         1 / (2^l l!) sin(theta)^m *
+         eval(d((x^2 - 1)^l,x,l + m),x,cos(theta)))
 
 -- Laplacian
 
-Lap(f) = 1/expsin(theta) d(expsin(theta) d(f,theta),theta) +
-         1/expsin(theta)^2 d(f,phi,2)
+Lap(f) = 1/sin(theta) d(sin(theta) d(f,theta),theta) +
+         1/sin(theta)^2 d(f,phi,2)
 
 c1 = x1 + i y1
 c2 = x2 + i y2
@@ -19,14 +22,12 @@ c4 = x4 + i y4
 c5 = x5 + i y5
 
 "Verify for l=1"
-
 psi = c1 Y(1,0) + c2 Y(1,1) + c3 Y(1,-1)
-
--Lap(psi) == 1 (1 + 1) psi
+check(-Lap(psi) == 1 (1 + 1) psi)
+"ok"
 
 "Verify for l=2"
-
 psi = c1 Y(2,0) + c2 Y(2,1) + c3 Y(2,2) + c4 Y(2,-1) + c5 Y(2,-2)
-
--Lap(psi) == 2 (2 + 1) psi
+check(-Lap(psi) == 2 (2 + 1) psi)
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
