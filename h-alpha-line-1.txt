@@ -37,14 +37,14 @@ I(f) = do(
   f = circexp(f), -- convert to exponential form
   f = defint(f,theta,0,pi,phi,0,2pi),
   f = integral(f,r),
-  0 - eval(f,r,0)
+  0 - eval(f,r,0) -- return value
 )
 
 X(fk,fi) = do(
   xki = I(conj(fk) r sin(theta) cos(phi) fi),
   yki = I(conj(fk) r sin(theta) sin(phi) fi),
   zki = I(conj(fk) r cos(theta) fi),
-  conj(xki) xki + conj(yki) yki + conj(zki) zki
+  conj(xki) xki + conj(yki) yki + conj(zki) zki -- return value
 )
 
 X3s2p = X(psi(2,1,1),psi(3,0,0)) +
