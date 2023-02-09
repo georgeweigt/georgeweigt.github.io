@@ -19,10 +19,13 @@ L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
 -- Y returns a spherical harmonic eigenfunction
 
 Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
-         P(cos(theta),l,m) exp(i m phi)
+         P(l,m) exp(i m phi)
 
-P(f,n,m) = eval(1 / (2^n n!) (1 - x^2)^(m/2) *
-           d((x^2 - 1)^n,x,n + m),x,f)
+-- associated legendre of cos theta
+
+P(l,m) = test(m < 0, (-1)^(-m) (l + m)! / (l - m)! P(l,-m),
+         1 / (2^l l!) sin(theta)^m *
+         eval(d((x^2 - 1)^l,x,l + m),x,cos(theta)))
 
 -- E(n) returns the nth energy eigenvalue
 
@@ -32,10 +35,7 @@ E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
 
 I(f) = do(
   f = f r^2 sin(theta), -- multiply by volume element
-  f = eval(f, sqrt(1 - cos(theta)^2),        sin(theta)),       -- simplify
-  f = eval(f, 1 / sqrt(1 - cos(theta)^2),    1 / sin(theta)),   -- simplify
-  f = eval(f, 1 / (1 - cos(theta)^2),        1 / sin(theta)^2), -- simplify
-  f = eval(f, 1 / (1 - cos(theta)^2)^(3/2),  1 / sin(theta)^3), -- simplify
+  f = circexp(f), -- convert to exponential form
   f = defint(f,theta,0,pi,phi,0,2pi),
   f = integral(f,r),
   0 - eval(f,r,0)
