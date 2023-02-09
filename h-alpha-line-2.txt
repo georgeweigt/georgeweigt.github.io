@@ -41,10 +41,10 @@ I(f) = do(
 )
 
 X(fk,fi) = do(
-  ax = I(conj(fk) r sin(theta) cos(phi) fi),
-  ay = I(conj(fk) r sin(theta) sin(phi) fi),
-  az = I(conj(fk) r cos(theta) fi),
-  float(conj(ax) ax + conj(ay) ay + conj(az) az)
+  xki = I(conj(fk) r sin(theta) cos(phi) fi),
+  yki = I(conj(fk) r sin(theta) sin(phi) fi),
+  zki = I(conj(fk) r cos(theta) fi),
+  float(conj(xki) xki + conj(yki) yki + conj(zki) zki)
 )
 
 "2p 3s"
