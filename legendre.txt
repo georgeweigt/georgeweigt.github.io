@@ -1,3 +1,5 @@
+-- test m to eliminate denominators
+
 P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
          1/(2^l l!) (1 - x^2)^(m/2) d((x^2 - 1)^l,x,l + m))
 
