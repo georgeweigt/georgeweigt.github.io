@@ -68,8 +68,7 @@ Pn = P + n hbar unit(4,4)
 
 H(P) = -hbar^2 / (2 mu) inv(dot(P,P))
 
-check(H(Pn) - H(P) ==
-hbar^2 / (2 mu) (inv(dot(P,P)) - inv(dot(Pn,Pn))))
+check(H(Pn) - H(P) == hbar^2 / (2 mu) (inv(dot(P,P)) - inv(dot(Pn,Pn))))
 
 "ok"
 
