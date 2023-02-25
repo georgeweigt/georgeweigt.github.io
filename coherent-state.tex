@@ -11,14 +11,19 @@ Let $|\Psi\rangle$ be a coherent state where $\bar n$ is the expected number of 
 |n\rangle
 \end{equation*}
 
-Operator $\hat a$ is an eigenfunction of $|\Psi\rangle$.
+Let $\hat a$ be the following operator.
+\begin{equation*}
+\hat a|n\rangle=\sqrt n|n-1\rangle
+\end{equation*}
+
+Apply operator $\hat a$ to coherent state $|\Psi\rangle$ to obtain (see derivation below)
 \begin{align*}
 \hat a|\Psi\rangle&=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
 \\
 \langle\Psi|\hat a^\dag&=\left(\hat a|\Psi\rangle\right)^\dag=\sqrt{\bar n}\exp(i\omega t)\langle\Psi|
 \end{align*}
 
-Let $\hat E$ be the electric field operator
+Let $\hat E$ be the following electric field operator.
 \begin{equation*}
 \hat E=i\sqrt{\frac{\hbar\omega}{2\epsilon_0}}
 (\hat a-\hat a^\dag)
