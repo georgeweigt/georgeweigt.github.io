@@ -1,0 +1,38 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+This is the Maxwell-Boltzmann velocity distribution.
+Technically, it's a joint probability density function of $v_x$, $v_y$, and $v_z$.
+\begin{equation*}
+f(v_x,v_y,v_z)=
+\bigg(\frac{m}{2\pi kT}\bigg)^{3/2}
+\exp\bigg({-}\frac{m(v_x^2+v_y^2+v_z^2)}{2kT}\bigg)
+\end{equation*}
+
+In spherical coordinates with $v=\sqrt{v_x^2+v_y^2+v_z^2}$ we have
+\begin{equation*}
+f(v,\theta,\phi)=
+\bigg(\frac{m}{2\pi kT}\bigg)^{3/2}
+\exp\bigg({-}\frac{mv^2}{2kT}\bigg)
+\end{equation*}
+
+By integrating over $\theta$ and $\phi$ we obtain Maxwell's speed distribution,
+also a probability density function.
+\begin{equation*}
+f(v)=4\pi\bigg(\frac{m}{2\pi kT}\bigg)^{3/2}
+v^2\exp\bigg({-}\frac{mv^2}{2kT}\bigg)
+\end{equation*}
+
+Noting that
+\begin{equation*}
+dv_x\,dv_y\,dv_z=v^2\sin\theta\,dv\,d\theta\,d\phi
+\end{equation*}
+and $\cos(0)-\cos(\pi)=2$, the integral can be done by inspection.
+\begin{equation*}
+f(v)=\int_0^{2\pi}\int_0^\pi f(v,\theta,\phi)\,v^2\sin\theta\,d\theta\,d\phi
+=4\pi v^2f(v,\theta,\phi)
+\end{equation*}
+
+\end{document}

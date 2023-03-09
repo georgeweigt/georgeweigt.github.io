@@ -1,0 +1,15 @@
+-- Maxwell-Boltzmann velocity distribution
+
+fB = (m / (2 pi k T))^(3/2) exp(-m v^2 / (2 k T))
+fB
+
+-- Maxwell speed distribution
+
+fM = defint(fB v^2 sin(theta), phi, 0, 2 pi, theta, 0, pi)
+fM
+
+"Verify integral"
+
+check(fM == 4 pi v^2 fB)
+
+"ok"

@@ -1,0 +1,17 @@
+<html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+-- Maxwell-Boltzmann velocity distribution
+
+fB = (m / (2 pi k T))^(3/2) exp(-m v^2 / (2 k T))
+fB
+
+-- Maxwell speed distribution
+
+fM = defint(fB v^2 sin(theta), phi, 0, 2 pi, theta, 0, pi)
+fM
+
+"Verify integral"
+
+check(fM == 4 pi v^2 fB)
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
