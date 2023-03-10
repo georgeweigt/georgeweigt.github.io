@@ -3,9 +3,9 @@
 fB = (m / (2 pi k T))^(3/2) exp(-m v^2 / (2 k T))
 fB
 
--- Maxwell speed distribution
+-- Maxwell speed distribution (integrate over theta, then phi)
 
-fM = defint(fB v^2 sin(theta), phi, 0, 2 pi, theta, 0, pi)
+fM = defint(fB v^2 sin(theta), theta, 0, pi, phi, 0, 2 pi)
 fM
 
 "Verify integral"
