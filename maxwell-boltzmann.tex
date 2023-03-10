@@ -18,7 +18,11 @@ f(v,\theta,\phi)=
 \exp\bigg({-}\frac{mv^2}{2kT}\bigg)
 \end{equation*}
 
-By integrating over $\theta$ and $\phi$ we obtain Maxwell's speed distribution,
+By integrating over
+\begin{equation*}
+d\Omega=v^2\sin\theta\,d\theta\,d\phi
+\end{equation*}
+we obtain Maxwell's speed distribution,
 also a probability density function.
 \begin{equation*}
 f(v)=4\pi\bigg(\frac{m}{2\pi kT}\bigg)^{3/2}
@@ -26,10 +30,6 @@ v^2\exp\bigg({-}\frac{mv^2}{2kT}\bigg)
 \end{equation*}
 
 Noting that
-\begin{equation*}
-dv_x\,dv_y\,dv_z=v^2\sin\theta\,dv\,d\theta\,d\phi
-\end{equation*}
-and
 \begin{equation*}
 \int_0^\pi\sin\theta\,d\theta=\cos(0)-\cos(\pi)=2
 \end{equation*}
