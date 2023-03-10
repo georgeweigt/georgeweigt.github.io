@@ -18,10 +18,7 @@ f(v,\theta,\phi)=
 \exp\bigg({-}\frac{mv^2}{2kT}\bigg)
 \end{equation*}
 
-By integrating over
-\begin{equation*}
-d\Omega=v^2\sin\theta\,d\theta\,d\phi
-\end{equation*}
+By integrating over $\theta$ and $\phi$
 we obtain Maxwell's speed distribution,
 also a probability density function.
 \begin{equation*}
@@ -31,6 +28,10 @@ v^2\exp\bigg({-}\frac{mv^2}{2kT}\bigg)
 
 Noting that
 \begin{equation*}
+dv_x\,dv_y\,dv_z=v^2\sin\theta\,dv\,d\theta\,d\phi
+\end{equation*}
+and
+\begin{equation*}
 \int_0^\pi\sin\theta\,d\theta=\cos(0)-\cos(\pi)=2
 \end{equation*}
 the integral can be done by inspection.
@@ -39,11 +40,8 @@ f(v)=\int_0^{2\pi}\int_0^\pi f(v,\theta,\phi)\,v^2\sin\theta\,d\theta\,d\phi
 =4\pi v^2f(v,\theta,\phi)
 \end{equation*}
 
-Historically, the speed distribution came first.
+Historically, the speed distribution came first.\footnote{\tt https://mathshistory.st-andrews.ac.uk/Projects/Johnson/chapter-6/}
 Maxwell derived it in 1867.
 Boltzmann extended Maxwell's work a year later in 1868.
-
-\bigskip
-{\footnotesize \verb$https://mathshistory.st-andrews.ac.uk/Projects/Johnson/chapter-6/$}
 
 \end{document}
