@@ -26,15 +26,17 @@ f(v)=4\pi\bigg(\frac{m}{2\pi kT}\bigg)^{3/2}
 v^2\exp\bigg({-}\frac{mv^2}{2kT}\bigg)
 \end{equation*}
 
-Noting that
+Recall that
 \begin{equation*}
 dv_x\,dv_y\,dv_z=v^2\sin\theta\,dv\,d\theta\,d\phi
 \end{equation*}
+
 and
 \begin{equation*}
 \int_0^\pi\sin\theta\,d\theta=\cos(0)-\cos(\pi)=2
 \end{equation*}
-the integral can be done by inspection.
+
+Hence the integral can be done by inspection.
 \begin{equation*}
 f(v)=\int_0^{2\pi}\int_0^\pi f(v,\theta,\phi)\,v^2\sin\theta\,d\theta\,d\phi
 =4\pi v^2f(v,\theta,\phi)
