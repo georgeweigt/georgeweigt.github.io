@@ -22,8 +22,8 @@ Einstein uses the following argument to derive Planck's law.
 \bigskip
 \noindent
 Consider a gas at temperature $T$.
-Let $N$ be the number of molecules in the gas
-and let $N_n$ be the number of molecules with internal energy $E_n$.
+Let $N$ be the number of gas molecules
+and let $N_n$ be the number of molecules with energy $E_n$.
 By the Maxwell-Boltzmann distribution we have
 \begin{equation*}
 \frac{N_n}{N}=p_n\exp\left(-\frac{E_n}{kT}\right)
@@ -31,8 +31,7 @@ By the Maxwell-Boltzmann distribution we have
 \end{equation*}
 
 \noindent
-where $k$ is Boltzmann's constant.
-The coefficient $p_n$ is a statistical weighting factor that does not depend on $T$.
+Coefficient $p_n$ is a statistical weighting factor that does not depend on $T$.
 
 \bigskip
 \noindent
@@ -40,7 +39,7 @@ Let us now consider the processes by which an atom or molecule transitions betwe
 The processes are absorption, induced emission, and spontaneous emission.
 Let $E_m$ and $E_n$ be energy levels such that $E_m>E_n$.
 Let $N_{m\rightarrow n}/\Delta t$ be the number of atoms or molecules that transition from energy level $E_m$ to $E_n$ in time $\Delta t$.
-Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients with dimensions such that
+Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \begin{equation*}
 \frac{N_{n\rightarrow m}}{\Delta t}
 =\underset{\ABSORPTION}{\BNM N_n \RHO},
@@ -129,7 +128,7 @@ hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \noindent
 Einstein reasoned that equation (3) is true in general based on the assumption that
 the factors involved do not depend on $T$.
-By substitution in the absorption term we can now eliminate $\BNM p_n$ and obtain
+Hence we can substitute $B_{mn}p_m$ for $B_{nm}p_n$ in the absorption term and write
 \begin{equation*}
 \underset{\ABSORPTION}{\BMN p_m \RHO\exp\left(\frac{E_m-E_n}{kT}\right)}
 =\underset{\INDUCED}{\BMN p_m \RHO}
