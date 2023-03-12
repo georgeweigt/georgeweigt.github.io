@@ -1,4 +1,4 @@
--- Verify Einstein's equilibrium formula (2) for Lyman-alpha line
+-- Verify Einstein's equilibrium equation (2) for Lyman-alpha line
 
 -- spontaneous emission
 
@@ -21,7 +21,7 @@ A21
 B21
 B12
 
-"Verify Einstein equilibrium formula"
+"Verify Einstein equilibrium equation (2)"
 
 rho = (2 h nu^3 / c^2) / (exp(h nu / (k T)) - 1)
 
@@ -67,10 +67,8 @@ pi = float(pi) -- use numerical value of pi
 
 a0 = epsilon0 h^2 / (pi e^2 mu)
 
-"Numerical values"
-
 a0
-A21
 nu
+A21
 B21
 B12
