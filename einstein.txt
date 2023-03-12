@@ -34,7 +34,7 @@ B21 rho p2 exp(-E(2) / (k T)) + A21 p2 exp(-E(2) / (k T)))
 
 "ok"
 
--- physical constants (h and k are exact values)
+-- physical constants (c, h, and k are exact values)
 
 c = 299792458.0 meter / second
 e = 1.602176634 10^(-19) coulomb
@@ -65,7 +65,10 @@ second = "second"
 
 pi = float(pi) -- use numerical value of pi
 
-a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
+-- Bohr radius (NIST value of 5.29177e-11 is for me, not mu)
+
+a0 = epsilon0 h^2 / (pi e^2 mu)
+a0
 
 A21
 nu
