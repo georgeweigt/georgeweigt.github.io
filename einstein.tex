@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
+%\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath}
 
 \newcommand\BNM{B_{nm}} % absorption
@@ -82,12 +82,13 @@ Divide through by $N$.
 
 \noindent
 Then by the Maxwell-Boltzmann distribution (1) we have
-\begin{equation*}
+\begin{multline*}
 \underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(-\frac{E_n}{kT}\right)}
+\\
 =\underset{\INDUCED}{\BMN p_m \RHO\exp\left(-\frac{E_m}{kT}\right)}
 +\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{E_m}{kT}\right)}
 \tag{2}
-\end{equation*}
+\end{multline*}
 
 \noindent
 Multiply both sides by $\exp(E_m/kT)$.
@@ -197,10 +198,10 @@ Then by substitution we obtain Planck's law.
 \noindent
 Let us now consider the values of the $A$ and $B$ coefficients.
 The coefficient for spontaneous emission can be computed from quantum mechanics.
-For example, for the hydrogen transition $2p\,\text{--}\,1s$ we have
+For example, for the hydrogen transition $2p\rightarrow1s$ we have
 \begin{equation*}
-A_{21}=\frac{e^{10}m_e}{26244\,\pi^5\varepsilon_0^5\hbar^6 c^3}
-=6.27\times10^8\,\text{second}^{-1}
+A_{21}=\frac{16e^8}{6561\varepsilon_0^4h^4c^3a_0}
+=6.26\times10^8\,\text{second}^{-1}
 \end{equation*}
 
 \noindent
@@ -223,7 +224,7 @@ g=(2\ell+1)(2m_s+1)
 \end{equation*}
 
 \noindent
-Hence for hydrogen $2p\,\text{--}\,1s$ we have
+Hence for hydrogen $2p\rightarrow1s$ we have
 \begin{align*}
 g_1&=2\qquad(\ell=0,\,m_s=1/2)
 \\
