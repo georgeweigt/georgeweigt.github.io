@@ -61,15 +61,15 @@ kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
-"Numerical values"
-
 pi = float(pi) -- use numerical value of pi
 
 -- Bohr radius (NIST value of 5.29177e-11 is for me, not mu)
 
 a0 = epsilon0 h^2 / (pi e^2 mu)
-a0
 
+"Numerical values"
+
+a0
 A21
 nu
 B21
