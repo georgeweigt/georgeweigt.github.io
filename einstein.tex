@@ -165,18 +165,24 @@ Solve for $\RHO$.
 \end{equation*}
 
 \noindent
-We now consider an approximation of $\RHO$ for the case of a large exponential term.
+We now consider the case of large exponentials such that
+\begin{equation*}
+\exp\left(\frac{E_m-E_n}{kT}\right)\approx\exp\left(\frac{E_m-E_n}{kT}\right)-1
+\end{equation*}
+
+Hence for large exponentials
 \begin{equation*}
 \RHO\approx
 \frac{\AMN}{\BMN}\exp\left(-\frac{E_m-E_n}{kT}\right)
 \end{equation*}
 
 \noindent
-Then by equivalence with Wien's law (which is accurate for large $\nu$)
+By equivalence with Wien's law (which is accurate for large $\nu$) we have
 \begin{equation*}
-\rho_\text{wien}(\nu,T)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
+\rho(\nu,T)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
 \end{equation*}
-we have
+
+Hence
 \begin{equation*}
 \frac{\AMN}{\BMN}=\frac{2h\nu^3}{c^2}
 \tag{4}
