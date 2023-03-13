@@ -5,7 +5,8 @@
 \newcommand\BNM{B_{nm}} % absorption
 \newcommand\BMN{B_{mn}} % induced emission
 \newcommand\AMN{A_{mn}} % spontaneous emission
-\newcommand\RHO{\rho(\nu,T)}
+%\newcommand\RHO{\rho(\nu,T)}
+\newcommand\RHO{\rho_\nu(T)}
 
 \newcommand\ABSORPTION{\substack{\\[1ex] \text{absorption}}}
 \newcommand\INDUCED{\substack{\\[1ex] \text{induced}\\ \text{emission}}}
@@ -50,7 +51,7 @@ Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \noindent
 Absorption and induced emission are proportional to $\RHO$
 which is the radiant energy density of the gas
-as a function of radiant frequency $\nu$ and temperature $T$.
+for frequency $\nu$ and temperature $T$.
 The $A$ and $B$ coefficients do not depend on $T$.
 
 \bigskip
@@ -179,7 +180,7 @@ Hence for large exponentials
 \noindent
 By equivalence with Wien's law (which is accurate for large $\nu$) we have
 \begin{equation*}
-\rho(\nu,T)=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
+\RHO=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
 \end{equation*}
 
 Hence
