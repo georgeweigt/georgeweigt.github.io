@@ -191,23 +191,6 @@ alloc_vector(n)
 	return p;
 }
 function
-annotate_result(p1, p2)
-{
-	if (!isusersymbol(p1))
-		return 0;
-
-	if (p1 == p2)
-		return 0; // A = A
-
-	if (p1 == symbol(I_LOWER) && isimaginaryunit(p2))
-		return 0;
-
-	if (p1 == symbol(J_LOWER) && isimaginaryunit(p2))
-		return 0;
-
-	return 1;
-}
-function
 any_radical_factors(h)
 {
 	var i, n;
@@ -945,12 +928,14 @@ cmp_args(p1)
 	evalf();
 	p2 = pop();
 	push(p2);
+	if (!isnum(p2))
 		floatfunc();
 
 	push(caddr(p1));
 	evalf();
 	p2 = pop();
 	push(p2);
+	if (!isnum(p2))
 		floatfunc();
 
 	return cmpfunc();
@@ -1539,6 +1524,7 @@ const EIGENVEC = "eigenvec";
 const ERF = "erf";
 const ERFC = "erfc";
 const EVAL = "eval";
+const EXIT = "exit";
 const EXP = "exp";
 const EXPCOS = "expcos";
 const EXPCOSH = "expcosh";
@@ -3627,6 +3613,12 @@ var ymax;
 
 var draw_array;
 function
+dupl()
+{
+	if (stack.length)
+		push(stack[stack.length - 1]);
+}
+function
 emit_axes()
 {
 	var dx, dy, x, y;
@@ -5567,7 +5559,7 @@ denominator()
 function
 eval_derivative(p1)
 {
-	var i, n, flag, X, Y;
+	var flag, i, n, X, Y;
 
 	push(cadr(p1));
 	evalf();
@@ -5865,6 +5857,18 @@ dlog(p1, p2)
 	divide();
 }
 
+//	derivative of derivative
+//
+//	example: d(d(f(x,y),y),x)
+//
+//	p1 = d(f(x,y),y)
+//
+//	p2 = x
+//
+//	cadr(p1) = f(x,y)
+//
+//	caddr(p1) = y
+
 function
 dd(p1, p2)
 {
@@ -6137,7 +6141,7 @@ derfc(p1, p2)
 function
 d_tensor_tensor(p1, p2)
 {
-	var i, j, m, n, p3;
+	var i, j, k, m, n, p3;
 
 	n = p1.elem.length;
 	m = p2.elem.length;
@@ -6155,11 +6159,17 @@ d_tensor_tensor(p1, p2)
 
 	// dim info
 
-	for (i = 0; i < p1.dim.length; i++)
-		p3.dim[i] = p1.dim[i];
+	k = 0;
 
-	for (j = 0; j < p2.dim.length; j++)
-		p3.dim[i + j] = p2.dim[j];
+	n = p1.dim.length;
+
+	for (i = 0; i < n; i++)
+		p3.dim[k++] = p1.dim[i];
+
+	n = p2.dim.length;
+
+	for (i = 0; i < n; i++)
+		p3.dim[k++] = p2.dim[i];
 
 	push(p3);
 }
@@ -6649,6 +6659,11 @@ eval_eval(p1)
 		p1 = cddr(p1);
 	}
 	evalf();
+}
+function
+eval_exit()
+{
+	push_symbol(NIL);
 }
 function
 eval_exp(p1)
@@ -8913,6 +8928,62 @@ eval_minormatrix(p1)
 
 	minormatrix(i, j);
 }
+
+function
+minormatrix(row, col)
+{
+	var i, j, k, m, n, p1, p2;
+
+	p1 = pop();
+
+	n = p1.dim[0];
+	m = p1.dim[1];
+
+	if (n == 2 && m == 2) {
+		if (row == 1) {
+			if (col == 1)
+				push(p1.elem[3]);
+			else
+				push(p1.elem[2]);
+		} else {
+			if (col == 1)
+				push(p1.elem[1]);
+			else
+				push(p1.elem[0]);
+		}
+		return;
+	}
+
+	if (n == 2)
+		p2 = alloc_vector(m - 1);
+
+	if (m == 2)
+		p2 = alloc_vector(n - 1);
+
+	if (n > 2 && m > 2)
+		p2 = alloc_matrix(n - 1, m - 1);
+
+	row--;
+	col--;
+
+	k = 0;
+
+	for (i = 0; i < n; i++) {
+
+		if (i == row)
+			continue;
+
+		for (j = 0; j < m; j++) {
+
+			if (j == col)
+				continue;
+
+			p2.elem[k++] = p1.elem[m * i + j];
+		}
+	}
+
+	push(p2);
+}
 function
 eval_mod(p1)
 {
@@ -8953,17 +9024,7 @@ modfunc()
 	}
 
 	if (isrational(p1) && isrational(p2)) {
-		push(p1);
-		push(p1);
-		push(p2);
-		divide();
-		absfunc();
-		floorfunc();
-		push(p2);
-		multiply();
-		if (p1.sign == p2.sign)
-			negate(); // p1 and p2 have same sign
-		add();
+		mod_rationals(p1, p2);
 		return;
 	}
 
@@ -8974,6 +9035,35 @@ modfunc()
 	d2 = pop_double();
 
 	push_double(d1 % d2);
+}
+
+function
+mod_rationals(p1, p2)
+{
+	if (isinteger(p1) && isinteger(p2)) {
+		mod_integers(p1, p2);
+		return;
+	}
+	push(p1);
+	push(p1);
+	push(p2);
+	divide();
+	absfunc();
+	floorfunc();
+	push(p2);
+	multiply();
+	if (p1.sign == p2.sign)
+		negate();
+	add();
+}
+
+function
+mod_integers(p1, p2)
+{
+	var a, b;
+	a = bignum_mod(p1.a, p2.a);
+	b = bignum_int(1);
+	push_bignum(p1.sign, a, b);
 }
 function
 eval_multiply(p1)
@@ -9061,6 +9151,9 @@ eval_not(p1)
 	else
 		push_integer(0);
 }
+const DELTA = 1e-6;
+const EPSILON = 1e-9;
+
 function
 eval_nroots(p1)
 {
@@ -9076,6 +9169,288 @@ eval_nroots(p1)
 		push_symbol(X_LOWER);
 
 	nroots();
+}
+
+function
+nroots()
+{
+	var h, i, n;
+	var A, P, X, RE, IM;
+	var ar, ai, d, xr, xi, yr, yi;
+	var cr = [], ci = [];
+	var tr = [], ti = [];
+
+	X = pop();
+	P = pop();
+
+	h = stack.length;
+
+	coeffs(P, X); // put coeffs on stack
+
+	n = stack.length - h; // number of coeffs on stack
+
+	// convert coeffs to floating point
+
+	for (i = 0; i < n; i++) {
+
+		push(stack[h + i]);
+		real();
+		floatfunc();
+		RE = pop();
+
+		push(stack[h + i]);
+		imag();
+		floatfunc();
+		IM = pop();
+
+		if (!isdouble(RE) || !isdouble(IM))
+			stopf("nroots: coeffs");
+
+		cr[i] = RE.d;
+		ci[i] = IM.d;
+	}
+
+	stack.splice(h); // pop all
+
+	// divide p(x) by leading coeff
+
+	xr = cr[n - 1];
+	xi = ci[n - 1];
+
+	d = xr * xr + xi * xi;
+
+	for (i = 0; i < n - 1; i++) {
+		yr = (cr[i] * xr + ci[i] * xi) / d;
+		yi = (ci[i] * xr - cr[i] * xi) / d;
+		cr[i] = yr;
+		ci[i] = yi;
+	}
+
+	cr[n - 1] = 1.0;
+	ci[n - 1] = 0.0;
+
+	// find roots
+
+	while (n > 1) {
+
+		nfindroot(cr, ci, n, tr, ti);
+
+		ar = tr[0];
+		ai = ti[0];
+
+		if (Math.abs(ar) < DELTA * Math.abs(ai))
+			ar = 0;
+
+		if (Math.abs(ai) < DELTA * Math.abs(ar))
+			ai = 0;
+
+		// push root
+
+		push_double(ar);
+		push_double(ai);
+		push(imaginaryunit);
+		multiply();
+		add();
+
+		// divide p(x) by x - a
+
+		nreduce(cr, ci, n, ar, ai);
+
+		// note: leading coeff of p(x) is still 1
+
+		n--;
+	}
+
+	n = stack.length - h; // number of roots on stack
+
+	if (n == 0) {
+		push_symbol(NIL); // no roots
+		return;
+	}
+
+	if (n == 1)
+		return; // one root
+
+	sort(n);
+
+	A = alloc_vector(n);
+
+	for (i = 0; i < n; i++)
+		A.elem[i] = stack[h + i];
+
+	stack.splice(h); // pop all
+
+	push(A);
+}
+
+function
+nfindroot(cr, ci, n, par, pai)
+{
+	var i, j;
+	var d;
+	var ar, br, dfr, dxr, far, fbr, tr = [], xr, yr;
+	var ai, bi, dfi, dxi, fai, fbi, ti = [], xi, yi;
+
+	// if const term is zero then root is zero
+
+	// note: use exact zero, not "close to zero"
+
+	// term will be exactly zero from coeffs(), no need for arbitrary cutoff
+
+	if (cr[0] == 0.0 && ci[0] == 0.0) {
+		par[0] = 0.0;
+		pai[0] = 0.0;
+		return;
+	}
+
+	// secant method
+
+	for (i = 0; i < 100; i++) {
+
+		ar = urandom();
+		ai = urandom();
+
+		fata(cr, ci, n, ar, ai, tr, ti);
+
+		far = tr[0];
+		fai = ti[0];
+
+		br = ar;
+		bi = ai;
+
+		fbr = far;
+		fbi = fai;
+
+		ar = urandom();
+		ai = urandom();
+
+		for (j = 0; j < 1000; j++) {
+
+			fata(cr, ci, n, ar, ai, tr, ti);
+
+			far = tr[0];
+			fai = ti[0];
+
+			if (zabs(far, fai) < EPSILON) {
+				par[0] = ar;
+				pai[0] = ai;
+				return;
+			}
+
+			if (zabs(far, fai) < zabs(fbr, fbi)) {
+
+				xr = ar;
+				xi = ai;
+
+				ar = br;
+				ai = bi;
+
+				br = xr;
+				bi = xi;
+
+				xr = far;
+				xi = fai;
+
+				far = fbr;
+				fai = fbi;
+
+				fbr = xr;
+				fbi = xi;
+			}
+
+			// dx = b - a
+
+			dxr = br - ar;
+			dxi = bi - ai;
+
+			// df = fb - fa
+
+			dfr = fbr - far;
+			dfi = fbi - fai;
+
+			// y = dx / df
+
+			d = dfr * dfr + dfi * dfi;
+
+			if (d == 0.0)
+				break;
+
+			yr = (dxr * dfr + dxi * dfi) / d;
+			yi = (dxi * dfr - dxr * dfi) / d;
+
+			// a = b - y * fb
+
+			ar = br - (yr * fbr - yi * fbi);
+			ai = bi - (yr * fbi + yi * fbr);
+		}
+	}
+
+	stopf("nroots: convergence error");
+}
+
+// compute f at a
+
+function
+fata(cr, ci, n, ar, ai, far, fai)
+{
+	var k;
+	var xr, xi, yr, yi;
+
+	yr = cr[n - 1];
+	yi = ci[n - 1];
+
+	for (k = n - 2; k >= 0; k--) {
+
+		// x = a * y
+
+		xr = ar * yr - ai * yi;
+		xi = ar * yi + ai * yr;
+
+		// y = x + c
+
+		yr = xr + cr[k];
+		yi = xi + ci[k];
+	}
+
+	far[0] = yr;
+	fai[0] = yi;
+}
+
+// divide by x - a
+
+function
+nreduce(cr, ci, n, ar, ai)
+{
+	var k;
+
+	// divide
+
+	for (k = n - 1; k > 0; k--) {
+		cr[k - 1] += cr[k] * ar - ci[k] * ai;
+		ci[k - 1] += ci[k] * ar + cr[k] * ai;
+	}
+
+	if (zabs(cr[0], ci[0]) > DELTA)
+		stopf("nroots: residual error"); // not a root
+
+	// shift
+
+	for (k = 0; k < n - 1; k++) {
+		cr[k] = cr[k + 1];
+		ci[k] = ci[k + 1];
+	}
+}
+
+function
+zabs(r, i)
+{
+	return Math.sqrt(r * r + i * i);
+}
+
+function
+urandom()
+{
+	return 4.0 * Math.random() - 2.0;
 }
 function
 eval_number(p1)
@@ -9095,6 +9470,27 @@ eval_numerator(p1)
 	push(cadr(p1));
 	evalf();
 	numerator();
+}
+
+function
+numerator()
+{
+	var p1;
+
+	p1 = pop();
+
+	if (isrational(p1)) {
+		push_bignum(p1.sign, bignum_copy(p1.a), bignum_int(1));
+		return;
+	}
+
+	while (divisor(p1)) {
+		push(p1);
+		cancel_factor();
+		p1 = pop();
+	}
+
+	push(p1);
 }
 function
 eval_or(p1)
@@ -9126,12 +9522,96 @@ eval_outer(p1)
 		p1 = cdr(p1);
 	}
 }
+
+function
+outer()
+{
+	var i, j, k, n, ncol, nrow, p1, p2, p3;
+
+	p2 = pop();
+	p1 = pop();
+
+	if (!istensor(p1) || !istensor(p2)) {
+		push(p1);
+		push(p2);
+		multiply();
+		return;
+	}
+
+	// sync diffs
+
+	nrow = p1.elem.length;
+	ncol = p2.elem.length;
+
+	p3 = alloc_tensor();
+
+	for (i = 0; i < nrow; i++)
+		for (j = 0; j < ncol; j++) {
+			push(p1.elem[i]);
+			push(p2.elem[j]);
+			multiply();
+			p3.elem[i * ncol + j] = pop();
+		}
+
+	// dim info
+
+	k = 0;
+
+	n = p1.dim.length;
+
+	for (i = 0; i < n; i++)
+		p3.dim[k++] = p1.dim[i];
+
+	n = p2.dim.length
+
+	for (i = 0; i < n; i++)
+		p3.dim[k++] = p2.dim[i];
+
+	push(p3);
+}
 function
 eval_polar(p1)
 {
 	push(cadr(p1));
 	evalf();
 	polar();
+}
+
+function
+polar()
+{
+	var i, n, p1, p2;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			polar();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	push(p1);
+	mag();
+	push(imaginaryunit);
+	push(p1);
+	arg();
+	p2 = pop();
+	if (isdouble(p2)) {
+		push_double(p2.d / Math.PI);
+		push_symbol(PI);
+		multiply_factors(3);
+	} else {
+		push(p2);
+		multiply_factors(2);
+	}
+	expfunc();
+	multiply();
 }
 function
 eval_power(p1)
@@ -9164,6 +9644,196 @@ eval_power(p1)
 
 	expanding++;
 }
+
+function
+power()
+{
+	var h, i, n, p1, BASE, EXPO;
+
+	EXPO = pop();
+	BASE = pop();
+
+	if (istensor(BASE) && istensor(EXPO)) {
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
+		return;
+	}
+
+	if (istensor(EXPO)) {
+		p1 = copy_tensor(EXPO);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(BASE);
+			push(p1.elem[i]);
+			power();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	if (istensor(BASE)) {
+		p1 = copy_tensor(BASE);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			push(EXPO);
+			power();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	if (BASE == symbol(EXP1) && isdouble(EXPO)) {
+		push_double(Math.E);
+		BASE = pop();
+	}
+
+	if (BASE == symbol(PI) && isdouble(EXPO)) {
+		push_double(Math.PI);
+		BASE = pop();
+	}
+
+	if (isnum(BASE) && isnum(EXPO)) {
+		power_numbers(BASE, EXPO);
+		return;
+	}
+
+	// expr^0
+
+	if (iszero(EXPO)) {
+		push_integer(1);
+		return;
+	}
+
+	// 0^expr
+
+	if (iszero(BASE)) {
+		push_symbol(POWER);
+		push(BASE);
+		push(EXPO);
+		list(3);
+		return;
+	}
+
+	// 1^expr
+
+	if (isplusone(BASE)) {
+		push_integer(1);
+		return;
+	}
+
+	// expr^1
+
+	if (isplusone(EXPO)) {
+		push(BASE);
+		return;
+	}
+
+	// BASE is an integer?
+
+	if (isinteger(BASE)) {
+		// raise each factor in BASE to power EXPO
+		// EXPO is not numerical, that case was handled by power_numbers() above
+		h = stack.length;
+		push(BASE);
+		factor_factor();
+		n = stack.length - h;
+		for (i = 0; i < n; i++) {
+			p1 = stack[h + i];
+			if (car(p1) == symbol(POWER)) {
+				push_symbol(POWER);
+				push(cadr(p1)); // base
+				push(caddr(p1)); // expo
+				push(EXPO);
+				multiply();
+				list(3);
+			} else {
+				push_symbol(POWER);
+				push(p1);
+				push(EXPO);
+				list(3);
+			}
+			stack[h + i] = pop();
+		}
+		if (n > 1) {
+			sort_factors(h);
+			list(n);
+			push_symbol(MULTIPLY);
+			swap();
+			cons(); // prepend MULTIPLY to list
+		}
+		return;
+	}
+
+	// BASE is a numerical fraction?
+
+	if (isfraction(BASE)) {
+		// power numerator, power denominator
+		// EXPO is not numerical, that case was handled by power_numbers() above
+		push(BASE);
+		numerator();
+		push(EXPO);
+		power();
+		push(BASE);
+		denominator();
+		push(EXPO);
+		negate();
+		power();
+		multiply();
+		return;
+	}
+
+	// BASE = e ?
+
+	if (BASE == symbol(EXP1)) {
+		power_natural_number(EXPO);
+		return;
+	}
+
+	// (a + b) ^ c
+
+	if (car(BASE) == symbol(ADD)) {
+		power_sum(BASE, EXPO);
+		return;
+	}
+
+	// (a b) ^ c  -->  (a ^ c) (b ^ c)
+
+	if (car(BASE) == symbol(MULTIPLY)) {
+		h = stack.length;
+		p1 = cdr(BASE);
+		while (iscons(p1)) {
+			push(car(p1));
+			push(EXPO);
+			power();
+			p1 = cdr(p1);
+		}
+		multiply_factors(stack.length - h);
+		return;
+	}
+
+	// (a ^ b) ^ c  -->  a ^ (b c)
+
+	if (car(BASE) == symbol(POWER)) {
+		push(cadr(BASE));
+		push(caddr(BASE));
+		push(EXPO);
+		multiply_expand(); // always expand products of exponents
+		power();
+		return;
+	}
+
+	// none of the above
+
+	push_symbol(POWER);
+	push(BASE);
+	push(EXPO);
+	list(3);
+}
 function
 eval_prefixform(p1)
 {
@@ -9186,6 +9856,52 @@ eval_print(p1)
 		p1 = cdr(p1);
 	}
 	push_symbol(NIL);
+}
+
+function
+print_result()
+{
+	var p1, p2;
+
+	p2 = pop(); // result
+	p1 = pop(); // input
+
+	if (p2 == symbol(NIL))
+		return;
+
+	if (annotate_result(p1, p2)) {
+		push_symbol(SETQ);
+		push(p1);
+		push(p2);
+		list(3);
+		p2 = pop();
+	}
+
+	if (iszero(get_binding(symbol(TTY)))) {
+		push(p2);
+		display();
+	} else
+		print_infixform(p2);
+}
+
+// returns 1 if result should be annotated
+
+function
+annotate_result(p1, p2)
+{
+	if (!isusersymbol(p1))
+		return 0;
+
+	if (p1 == p2)
+		return 0; // A = A
+
+	if (p1 == symbol(I_LOWER) && isimaginaryunit(p2))
+		return 0;
+
+	if (p1 == symbol(J_LOWER) && isimaginaryunit(p2))
+		return 0;
+
+	return 1;
 }
 function
 eval_product(p1)
@@ -9254,7 +9970,6 @@ eval_rank(p1)
 	push(cadr(p1));
 	evalf();
 	p1 = pop();
-
 	if (istensor(p1))
 		push_integer(p1.dim.length);
 	else
@@ -9267,6 +9982,45 @@ eval_rationalize(p1)
 	evalf();
 	rationalize();
 }
+
+function
+rationalize()
+{
+	var i, n, p0, p1, p2;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			rationalize();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	p2 = one;
+
+	while (divisor(p1)) {
+		p0 = pop();
+		push(p0);
+		push(p1);
+		cancel_factor();
+		p1 = pop();
+		push(p0);
+		push(p2);
+		multiply_noexpand();
+		p2 = pop();
+	}
+
+	push(p1);
+	push(p2);
+	reciprocate();
+	multiply_noexpand();
+}
 function
 eval_real(p1)
 {
@@ -9274,12 +10028,132 @@ eval_real(p1)
 	evalf();
 	real();
 }
+
+function
+real()
+{
+	var i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			real();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	push(p1);
+	rect();
+	p1 = pop();
+	push(p1);
+	push(p1);
+	conjfunc();
+	add();
+	push_rational(1, 2);
+	multiply();
+}
 function
 eval_rect(p1)
 {
 	push(cadr(p1));
 	evalf();
 	rect();
+}
+
+function
+rect()
+{
+	var h, i, n, p1, p2, BASE, EXPO;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			rect();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	if (car(p1) == symbol(ADD)) {
+		p1 = cdr(p1);
+		h = stack.length;
+		while (iscons(p1)) {
+			push(car(p1));
+			rect();
+			p1 = cdr(p1);
+		}
+		add_terms(stack.length - h);
+		return;
+	}
+
+	if (car(p1) == symbol(MULTIPLY)) {
+		p1 = cdr(p1);
+		h = stack.length;
+		while (iscons(p1)) {
+			push(car(p1));
+			rect();
+			p1 = cdr(p1);
+		}
+		multiply_factors(stack.length - h);
+		return;
+	}
+
+	if (car(p1) != symbol(POWER)) {
+		push(p1);
+		return;
+	}
+
+	BASE = cadr(p1);
+	EXPO = caddr(p1);
+
+	// handle sum in exponent
+
+	if (car(EXPO) == symbol(ADD)) {
+		p1 = cdr(EXPO);
+		h = stack.length;
+		while (iscons(p1)) {
+			push_symbol(POWER);
+			push(BASE);
+			push(car(p1));
+			list(3);
+			rect();
+			p1 = cdr(p1);
+		}
+		multiply_factors(stack.length - h);
+		return;
+	}
+
+	// return mag(p1) * cos(arg(p1)) + i sin(arg(p1)))
+
+	push(p1);
+	mag();
+
+	push(p1);
+	arg();
+	p2 = pop();
+
+	push(p2);
+	cosfunc();
+
+	push(imaginaryunit);
+	push(p2);
+	sinfunc();
+	multiply();
+
+	add();
+
+	multiply();
 }
 function
 eval_roots(p1)
@@ -9297,16 +10171,293 @@ eval_roots(p1)
 
 	roots();
 }
+
+function
+roots()
+{
+	var h, i, j, k, n;
+	var A, P, X;
+
+	X = pop();
+	P = pop();
+
+	h = stack.length;
+
+	coeffs(P, X); // put coeffs on stack
+
+	k = stack.length;
+
+	n = k - h; // number of coeffs on stack
+
+	// check coeffs
+
+	for (i = 0; i < n; i++)
+		if (!isrational(stack[h + i]))
+			stopf("roots: coeffs");
+
+	// find roots
+
+	while (n > 1) {
+
+		if (findroot(h, n) == 0)
+			break; // no root found
+
+		// A is the root
+
+		A = stack[stack.length - 1];
+
+		// divide p(x) by X - A
+
+		reduce(h, n, A);
+
+		n--;
+	}
+
+	n = stack.length - k; // number of roots on stack
+
+	if (n == 0) {
+		stack.length = h; // pop all
+		push_symbol(NIL); // no roots
+		return;
+	}
+
+	sort(n); // sort roots
+
+	// eliminate repeated roots
+
+	for (i = 0; i < n - 1; i++)
+		if (equal(stack[k + i], stack[k + i + 1])) {
+			for (j = i + 1; j < n - 1; j++)
+				stack[k + j] = stack[k + j + 1];
+			i--;
+			n--;
+		}
+
+	if (n == 1) {
+		A = stack[k];
+		stack.length = h; // pop all
+		push(A); // one root
+		return;
+	}
+
+	A = alloc_vector(n);
+
+	for (i = 0; i < n; i++)
+		A.elem[i] = stack[k + i];
+
+	stack.length = h; // pop all
+
+	push(A);
+}
+
+function
+findroot(h, n)
+{
+	var i, j, m, p, q, r;
+	var A, C, PA;
+
+	// check constant term
+
+	if (iszero(stack[h])) {
+		push_integer(0); // root is zero
+		return 1;
+	}
+
+	// eliminate denominators
+
+	for (i = 0; i < n; i++) {
+		C = stack[h + i];
+		if (isinteger(C))
+			continue;
+		push(C);
+		denominator();
+		C = pop();
+		for (j = 0; j < n; j++) {
+			push(stack[h + j]);
+			push(C);
+			multiply();
+			stack[h + j] = pop();
+		}
+	}
+
+	p = stack.length;
+
+	push(stack[h]);
+	m = pop_integer();
+	divisors(m); // divisors of constant term
+
+	q = stack.length;
+
+	push(stack[h + n - 1]);
+	m = pop_integer();
+	divisors(m); // divisors of leading coeff
+
+	r = stack.length;
+
+	for (i = p; i < q; i++) {
+		for (j = q; j < r; j++) {
+
+			// try positive A
+
+			push(stack[i]);
+			push(stack[j]);
+			divide();
+			A = pop();
+
+			horner(h, n, A);
+
+			PA = pop(); // polynomial evaluated at A
+
+			if (iszero(PA)) {
+				stack.length = p; // pop all
+				push(A);
+				return 1; // root on stack
+			}
+
+			// try negative A
+
+			push(A);
+			negate();
+			A = pop();
+
+			horner(h, n, A);
+
+			PA = pop(); // polynomial evaluated at A
+
+			if (iszero(PA)) {
+				stack.length = p; // pop all
+				push(A);
+				return 1; // root on stack
+			}
+		}
+	}
+
+	stack.length = p; // pop all
+
+	return 0; // no root
+}
+
+// evaluate p(x) at x = A using horner's rule
+
+function
+horner(h, n, A)
+{
+	var i;
+
+	push(stack[h + n - 1]);
+
+	for (i = n - 2; i >= 0; i--) {
+		push(A);
+		multiply();
+		push(stack[h + i]);
+		add();
+	}
+}
+
+// push all divisors of n
+
+function
+divisors(n)
+{
+	var h, i, k;
+
+	h = stack.length;
+
+	factor_int(n);
+
+	k = stack.length;
+
+	// contruct divisors by recursive descent
+
+	push_integer(1);
+
+	divisors_nib(h, k);
+
+	// move
+
+	n = stack.length - k;
+
+	for (i = 0; i < n; i++)
+		stack[h + i] = stack[k + i];
+
+	stack.length = h + n; // pop all
+}
+
+//	Generate all divisors for a factored number
+//
+//	Input:		Factor pairs on stack (base, expo)
+//
+//			h	first pair
+//
+//			k	just past last pair
+//
+//	Output:		Divisors on stack
+//
+//	For example, the number 12 (= 2^2 3^1) has 6 divisors:
+//
+//	1, 2, 3, 4, 6, 12
+
+function
+divisors_nib(h, k)
+{
+	var i, n;
+	var ACCUM, BASE, EXPO;
+
+	if (h == k)
+		return;
+
+	ACCUM = pop();
+
+	BASE = stack[h + 0];
+	EXPO = stack[h + 1];
+
+	push(EXPO);
+	n = pop_integer();
+
+	for (i = 0; i <= n; i++) {
+		push(ACCUM);
+		push(BASE);
+		push_integer(i);
+		power();
+		multiply();
+		divisors_nib(h + 2, k);
+	}
+}
+
+// divide by X - A
+
+function
+reduce(h, n, A)
+{
+	var i;
+
+	for (i = n - 1; i > 0; i--) {
+		push(A);
+		push(stack[h + i]);
+		multiply();
+		push(stack[h + i - 1]);
+		add();
+		stack[h + i - 1] = pop();
+	}
+
+	if (!iszero(stack[h]))
+		stopf("roots: residual error"); // not a root
+
+	// move
+
+	for (i = 0; i < n - 1; i++)
+		stack[h + i] = stack[h + i + 1];
+}
 function
 eval_rotate(p1)
 {
-	var c, m, n, opcode, phase, psi;
+	var m, n, c, PSI, OPCODE, PHASE;
 
 	push(cadr(p1));
 	evalf();
-	psi = pop();
+	PSI = pop();
 
-	if (!istensor(psi) || psi.dim.length > 1 || psi.elem.length > 32768 || (psi.elem.length & (psi.elem.length - 1)) != 0)
+	if (!istensor(PSI) || PSI.dim.length > 1 || PSI.elem.length > 32768 || (PSI.elem.length & (PSI.elem.length - 1)) != 0)
 		stopf("rotate error 1 first argument is not a vector or dimension error");
 
 	c = 0;
@@ -9318,28 +10469,28 @@ eval_rotate(p1)
 		if (!iscons(cdr(p1)))
 			stopf("rotate error 2 unexpected end of argument list");
 
-		opcode = car(p1);
+		OPCODE = car(p1);
 		push(cadr(p1));
 		evalf();
 		n = pop_integer();
 
-		if (n > 14 || (1 << n) >= psi.elem.length)
+		if (n > 14 || (1 << n) >= PSI.elem.length)
 			stopf("rotate error 3 qubit number format or range");
 
 		p1 = cddr(p1);
 
-		if (opcode == symbol("C")) {
+		if (OPCODE == symbol("C")) {
 			c |= 1 << n;
 			continue;
 		}
 
-		if (opcode == symbol("H")) {
-			rotate_h(psi, c, n);
+		if (OPCODE == symbol("H")) {
+			rotate_h(PSI, c, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("P")) {
+		if (OPCODE == symbol("P")) {
 			if (!iscons(p1))
 				stopf("rotate error 2 unexpected end of argument list");
 			push(car(p1));
@@ -9348,25 +10499,25 @@ eval_rotate(p1)
 			push(imaginaryunit);
 			multiply();
 			expfunc();
-			phase = pop();
-			rotate_p(psi, c, n, phase);
+			PHASE = pop();
+			rotate_p(PSI, PHASE, c, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("Q")) {
-			rotate_q(psi, n);
+		if (OPCODE == symbol("Q")) {
+			rotate_q(PSI, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("V")) {
-			rotate_v(psi, n);
+		if (OPCODE == symbol("V")) {
+			rotate_v(PSI, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("W")) {
+		if (OPCODE == symbol("W")) {
 			m = n;
 			if (!iscons(p1))
 				stopf("rotate error 2 unexpected end of argument list");
@@ -9374,27 +10525,27 @@ eval_rotate(p1)
 			p1 = cdr(p1);
 			evalf();
 			n = pop_integer();
-			if (n > 14 || (1 << n) >= psi.elem.length)
+			if (n > 14 || (1 << n) >= PSI.elem.length)
 				stopf("rotate error 3 qubit number format or range");
-			rotate_w(psi, c, m, n);
+			rotate_w(PSI, c, m, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("X")) {
-			rotate_x(psi, c, n);
+		if (OPCODE == symbol("X")) {
+			rotate_x(PSI, c, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("Y")) {
-			rotate_y(psi, c, n);
+		if (OPCODE == symbol("Y")) {
+			rotate_y(PSI, c, n);
 			c = 0;
 			continue;
 		}
 
-		if (opcode == symbol("Z")) {
-			rotate_z(psi, c, n);
+		if (OPCODE == symbol("Z")) {
+			rotate_z(PSI, c, n);
 			c = 0;
 			continue;
 		}
@@ -9402,34 +10553,34 @@ eval_rotate(p1)
 		stopf("rotate error 4 unknown rotation code");
 	}
 
-	push(psi);
+	push(PSI);
 }
 
 // hadamard
 
 function
-rotate_h(psi, c, n)
+rotate_h(PSI, c, n)
 {
 	var i;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if (i & n) {
-			push(psi.elem[i ^ n]);		// KET0
-			push(psi.elem[i]);		// KET1
+			push(PSI.elem[i ^ n]);		// KET0
+			push(PSI.elem[i]);		// KET1
 			add();
 			push_rational(1, 2);
 			sqrtfunc();
 			multiply();
-			push(psi.elem[i ^ n]);		// KET0
-			push(psi.elem[i]);		// KET1
+			push(PSI.elem[i ^ n]);		// KET0
+			push(PSI.elem[i]);		// KET1
 			subtract();
 			push_rational(1, 2);
 			sqrtfunc();
 			multiply();
-			psi.elem[i] = pop();		// KET1
-			psi.elem[i ^ n] = pop();	// KET0
+			PSI.elem[i] = pop();		// KET1
+			PSI.elem[i ^ n] = pop();	// KET0
 		}
 	}
 }
@@ -9437,18 +10588,18 @@ rotate_h(psi, c, n)
 // phase
 
 function
-rotate_p(psi, c, n, phase)
+rotate_p(PSI, PHASE, c, n)
 {
 	var i;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if (i & n) {
-			push(psi.elem[i]);		// KET1
-			push(phase);
+			push(PSI.elem[i]);		// KET1
+			push(PHASE);
 			multiply();
-			psi.elem[i] = pop();		// KET1
+			PSI.elem[i] = pop();		// KET1
 		}
 	}
 }
@@ -9456,80 +10607,74 @@ rotate_p(psi, c, n, phase)
 // swap
 
 function
-rotate_w(psi, c, m, n)
+rotate_w(PSI, c, m, n)
 {
 	var i;
 	m = 1 << m;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if ((i & m) && !(i & n)) {
-			push(psi.elem[i]);
-			push(psi.elem[i ^ m ^ n]);
-			psi.elem[i] = pop();
-			psi.elem[i ^ m ^ n] = pop();
+			push(PSI.elem[i]);
+			push(PSI.elem[i ^ m ^ n]);
+			PSI.elem[i] = pop();
+			PSI.elem[i ^ m ^ n] = pop();
 		}
 	}
 }
 
-// pauli x
-
 function
-rotate_x(psi, c, n)
+rotate_x(PSI, c, n)
 {
 	var i;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if (i & n) {
-			push(psi.elem[i ^ n]);		// KET0
-			push(psi.elem[i]);		// KET1
-			psi.elem[i ^ n] = pop();	// KET0
-			psi.elem[i] = pop();		// KET1
+			push(PSI.elem[i ^ n]);		// KET0
+			push(PSI.elem[i]);		// KET1
+			PSI.elem[i ^ n] = pop();	// KET0
+			PSI.elem[i] = pop();		// KET1
 		}
 	}
 }
 
-// pauli y
-
 function
-rotate_y(psi, c, n)
+rotate_y(PSI, c, n)
 {
 	var i;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if (i & n) {
 			push(imaginaryunit);
 			negate();
-			push(psi.elem[i ^ n]);		// KET0
+			push(PSI.elem[i ^ n]);		// KET0
 			multiply();
 			push(imaginaryunit);
-			push(psi.elem[i]);		// KET1
+			push(PSI.elem[i]);		// KET1
 			multiply();
-			psi.elem[i ^ n] = pop();	// KET0
-			psi.elem[i] = pop();		// KET1
+			PSI.elem[i ^ n] = pop();	// KET0
+			PSI.elem[i] = pop();		// KET1
 		}
 	}
 }
 
-// pauli z
-
 function
-rotate_z(psi, c, n)
+rotate_z(PSI, c, n)
 {
 	var i;
 	n = 1 << n;
-	for (i = 0; i < psi.elem.length; i++) {
+	for (i = 0; i < PSI.elem.length; i++) {
 		if ((i & c) != c)
 			continue;
 		if (i & n) {
-			push(psi.elem[i]);		// KET1
+			push(PSI.elem[i]);		// KET1
 			negate();
-			psi.elem[i] = pop();		// KET1
+			PSI.elem[i] = pop();		// KET1
 		}
 	}
 }
@@ -9537,11 +10682,11 @@ rotate_z(psi, c, n)
 // quantum fourier transform
 
 function
-rotate_q(psi, n)
+rotate_q(PSI, n)
 {
-	var i, j, phase;
+	var i, j, PHASE;
 	for (i = n; i >= 0; i--) {
-		rotate_h(psi, 0, i);
+		rotate_h(PSI, 0, i);
 		for (j = 0; j < i; j++) {
 			push_rational(1, 2);
 			push_integer(i - j);
@@ -9551,22 +10696,22 @@ rotate_q(psi, n)
 			evalf();
 			multiply_factors(3);
 			expfunc();
-			phase = pop();
-			rotate_p(psi, 1 << j, i, phase);
+			PHASE = pop();
+			rotate_p(PSI, PHASE, 1 << j, i);
 		}
 	}
 	for (i = 0; i < (n + 1) / 2; i++)
-		rotate_w(psi, 0, i, n - i);
+		rotate_w(PSI, 0, i, n - i);
 }
 
 // inverse qft
 
 function
-rotate_v(psi, n)
+rotate_v(PSI, n)
 {
-	var i, j, phase;
+	var i, j, PHASE;
 	for (i = 0; i < (n + 1) / 2; i++)
-		rotate_w(psi, 0, i, n - i);
+		rotate_w(PSI, 0, i, n - i);
 	for (i = 0; i <= n; i++) {
 		for (j = i - 1; j >= 0; j--) {
 			push_rational(1, 2);
@@ -9578,10 +10723,10 @@ rotate_v(psi, n)
 			multiply_factors(3);
 			negate();
 			expfunc();
-			phase = pop();
-			rotate_p(psi, 1 << j, i, phase);
+			PHASE = pop();
+			rotate_p(PSI, PHASE, 1 << j, i);
 		}
-		rotate_h(psi, 0, i);
+		rotate_h(PSI, 0, i);
 	}
 }
 function
@@ -9667,6 +10812,196 @@ eval_simplify(p1)
 	push(cadr(p1));
 	evalf();
 	simplify();
+}
+
+function
+simplify()
+{
+	var h, i, n, p1;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			simplify();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	// already simple?
+
+	if (!iscons(p1)) {
+		push(p1);
+		return;
+	}
+
+	h = stack.length;
+	push(car(p1));
+	p1 = cdr(p1);
+
+	while (iscons(p1)) {
+		push(car(p1));
+		simplify();
+		p1 = cdr(p1);
+	}
+
+	list(stack.length - h);
+	evalf();
+
+	simplify_pass1();
+	simplify_pass2(); // try exponential form
+	simplify_pass3(); // try polar form
+}
+
+function
+simplify_pass1()
+{
+	var p1, NUM, DEN, R, T;
+
+	p1 = pop();
+
+	// already simple?
+
+	if (!iscons(p1)) {
+		push(p1);
+		return;
+	}
+
+	if (car(p1) == symbol(ADD)) {
+		push(p1);
+		rationalize();
+		T = pop();
+		if (car(T) == symbol(ADD)) {
+			push(p1); // no change
+			return;
+		}
+	} else
+		T = p1;
+
+	push(T);
+	numerator();
+	NUM = pop();
+
+	push(T);
+	denominator();
+	evalf(); // to expand denominator
+	DEN = pop();
+
+	// if DEN is a sum then rationalize it
+
+	if (car(DEN) == symbol(ADD)) {
+		push(DEN);
+		rationalize();
+		T = pop();
+		if (car(T) != symbol(ADD)) {
+			// update NUM
+			push(T);
+			denominator();
+			evalf(); // to expand denominator
+			push(NUM);
+			multiply();
+			NUM = pop();
+			// update DEN
+			push(T);
+			numerator();
+			DEN = pop();
+		}
+	}
+
+	// are NUM and DEN congruent sums?
+
+	if (car(NUM) != symbol(ADD) || car(DEN) != symbol(ADD) || lengthf(NUM) != lengthf(DEN)) {
+		// no, but NUM over DEN might be simpler than p1
+		push(NUM);
+		push(DEN);
+		divide();
+		T = pop();
+		if (complexity(T) < complexity(p1))
+			p1 = T;
+		push(p1);
+		return;
+	}
+
+	push(cadr(NUM)); // push first term of numerator
+	push(cadr(DEN)); // push first term of denominator
+	divide();
+
+	R = pop(); // provisional ratio
+
+	push(R);
+	push(DEN);
+	multiply();
+
+	push(NUM);
+	subtract();
+
+	T = pop();
+
+	if (iszero(T))
+		p1 = R;
+
+	push(p1);
+}
+
+// try exponential form
+
+function
+simplify_pass2()
+{
+	var p1, p2;
+
+	p1 = pop();
+
+	// already simple?
+
+	if (!iscons(p1)) {
+		push(p1);
+		return;
+	}
+
+	push(p1);
+	circexp();
+	rationalize();
+	evalf(); // to normalize
+	p2 = pop();
+
+	if (complexity(p2) < complexity(p1)) {
+		push(p2);
+		return;
+	}
+
+	push(p1);
+}
+
+// try polar form
+
+function
+simplify_pass3()
+{
+	var p1, p2;
+
+	p1 = pop();
+
+	if (car(p1) != symbol(ADD) || isusersymbolsomewhere(p1) || !findf(p1, imaginaryunit)) {
+		push(p1);
+		return;
+	}
+
+	push(p1);
+	polar();
+	p2 = pop();
+
+	if (!iscons(p2)) {
+		push(p2);
+		return;
+	}
+
+	push(p1);
 }
 function
 eval_sin(p1)
@@ -10544,6 +11879,97 @@ eval_testlt(p1)
 		push_integer(0);
 }
 function
+eval_transpose(p1)
+{
+	var m, n;
+	var p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+	push(p2);
+
+	if (!istensor(p2) || p2.dim.length < 2)
+		return;
+
+	p1 = cddr(p1);
+
+	if (!iscons(p1)) {
+		transpose(1, 2);
+		return;
+	}
+
+	while (iscons(p1)) {
+
+		push(car(p1));
+		evalf();
+		n = pop_integer();
+
+		push(cadr(p1));
+		evalf();
+		m = pop_integer();
+
+		transpose(n, m);
+
+		p1 = cddr(p1);
+	}
+}
+
+function
+transpose(n, m)
+{
+	var i, j, k, ndim, nelem;
+	var index = [];
+	var p1, p2;
+
+	p1 = pop();
+
+	ndim = p1.dim.length;
+	nelem = p1.elem.length;
+
+	if (n < 1 || n > ndim || m < 1 || m > ndim)
+		stopf("transpose: index error");
+
+	n--; // make zero based
+	m--;
+
+	p2 = copy_tensor(p1);
+
+	// interchange indices n and m
+
+	p2.dim[n] = p1.dim[m];
+	p2.dim[m] = p1.dim[n];
+
+	for (i = 0; i < ndim; i++)
+		index[i] = 0;
+
+	for (i = 0; i < nelem; i++) {
+
+		k = 0;
+
+		for (j = 0; j < ndim; j++) {
+			if (j == n)
+				k = k * p1.dim[m] + index[m];
+			else if (j == m)
+				k = k * p1.dim[n] + index[n];
+			else
+				k = k * p1.dim[j] + index[j];
+		}
+
+		p2.elem[k] = p1.elem[i];
+
+		// increment index
+
+		for (j = ndim - 1; j >= 0; j--) {
+			if (++index[j] < p1.dim[j])
+				break;
+			index[j] = 0;
+		}
+	}
+
+	push(p2);
+}
+function
 eval_unit(p1)
 {
 	var i, j, n;
@@ -10554,7 +11980,7 @@ eval_unit(p1)
 	n = pop_integer();
 
 	if (n < 1)
-		stopf("unit: index error");
+		stopf("unit: index err");
 
 	if (n == 1) {
 		push_integer(1);
@@ -10677,28 +12103,41 @@ eval_user_symbol(p1)
 function
 eval_zero(p1)
 {
-	var i, m, n, p2;
+	var h, i, m, n;
 
 	p1 = cdr(p1);
-	p2 = alloc_tensor();
-
+	h = stack.length;
 	m = 1;
 
 	while (iscons(p1)) {
 		push(car(p1));
 		evalf();
+		dupl();
 		n = pop_integer();
 		if (n < 2)
-			stopf("zero");
-		p2.dim.push(n);
+			stopf("zero: dim err");
 		m *= n;
 		p1 = cdr(p1);
 	}
 
-	for (i = 0; i < m; i++)
-		p2.elem[i] = zero;
+	n = stack.length - h;
 
-	push(p2);
+	if (n == 0) {
+		push_integer(0); // scalar zero
+		return;
+	}
+
+	p1 = alloc_tensor();
+
+	for (i = 0; i < m; i++)
+		p1.elem[i] = zero;
+
+	// dim info
+
+	for (i = 0; i < n; i++)
+		p1.dim[n - i - 1] = pop_integer();
+
+	push(p1);
 }
 function
 evalf()
@@ -12871,71 +14310,6 @@ lookup(s)
 	return p;
 }
 function
-minormatrix(row, col)
-{
-	var i, j, k, m, n, p1, p2;
-
-	p1 = pop();
-
-	n = p1.dim[0];
-	m = p1.dim[1];
-
-	if (n == 2 && m == 2) {
-		if (row == 1) {
-			if (col == 1)
-				push(p1.elem[3]);
-			else
-				push(p1.elem[2]);
-		} else {
-			if (col == 1)
-				push(p1.elem[1]);
-			else
-				push(p1.elem[0]);
-		}
-		return;
-	}
-
-	if (n == 2)
-		p2 = alloc_vector(m - 1);
-
-	if (m == 2)
-		p2 = alloc_vector(n - 1);
-
-	if (n > 2 && m > 2)
-		p2 = alloc_matrix(n - 1, m - 1);
-
-	row--;
-	col--;
-
-	k = 0;
-
-	for (i = 0; i < n; i++) {
-
-		if (i == row)
-			continue;
-
-		for (j = 0; j < m; j++) {
-
-			if (j == col)
-				continue;
-
-			p2.elem[k++] = p1.elem[m * i + j];
-		}
-	}
-
-	push(p2);
-}
-function
-mod_integers(p1, p2)
-{
-	var a, b;
-
-	a = bignum_mod(p1.a, p2.a);
-	b = bignum_int(1);
-
-	push_bignum(p1.sign, a, b);
-}
-function
 multiply()
 {
 	multiply_factors(2);
@@ -13389,308 +14763,6 @@ normalize_power_factors(h)
 		}
 	}
 }
-const DELTA = 1e-6;
-const EPSILON = 1e-9;
-
-function
-nroots()
-{
-	var h, i, n;
-	var A, P, X, RE, IM;
-	var ar, ai, d, xr, xi, yr, yi;
-	var cr = [], ci = [];
-	var tr = [], ti = [];
-
-	X = pop();
-	P = pop();
-
-	h = stack.length;
-
-	coeffs(P, X); // put coeffs on stack
-
-	n = stack.length - h; // number of coeffs on stack
-
-	// convert coeffs to floating point
-
-	for (i = 0; i < n; i++) {
-
-		push(stack[h + i]);
-		real();
-		floatfunc();
-		RE = pop();
-
-		push(stack[h + i]);
-		imag();
-		floatfunc();
-		IM = pop();
-
-		if (!isdouble(RE) || !isdouble(IM))
-			stopf("nroots: coeffs");
-
-		cr[i] = RE.d;
-		ci[i] = IM.d;
-	}
-
-	stack.splice(h); // pop all
-
-	// divide p(x) by leading coeff
-
-	xr = cr[n - 1];
-	xi = ci[n - 1];
-
-	d = xr * xr + xi * xi;
-
-	for (i = 0; i < n - 1; i++) {
-		yr = (cr[i] * xr + ci[i] * xi) / d;
-		yi = (ci[i] * xr - cr[i] * xi) / d;
-		cr[i] = yr;
-		ci[i] = yi;
-	}
-
-	cr[n - 1] = 1;
-	ci[n - 1] = 0;
-
-	// find roots
-
-	while (n > 1) {
-
-		nfindroot(cr, ci, n, tr, ti);
-
-		ar = tr[0];
-		ai = ti[0];
-
-		if (Math.abs(ar) < DELTA * Math.abs(ai))
-			ar = 0;
-
-		if (Math.abs(ai) < DELTA * Math.abs(ar))
-			ai = 0;
-
-		// push root
-
-		push_double(ar);
-		push_double(ai);
-		push(imaginaryunit);
-		multiply();
-		add();
-
-		// divide p(x) by x - a
-
-		nreduce(cr, ci, n, ar, ai);
-
-		// note: leading coeff of p(x) is still 1
-
-		n--;
-	}
-
-	n = stack.length - h; // number of roots on stack
-
-	if (n == 0) {
-		push_symbol(NIL); // no roots
-		return;
-	}
-
-	if (n == 1)
-		return; // one root
-
-	sort(n);
-
-	A = alloc_vector(n);
-
-	for (i = 0; i < n; i++)
-		A.elem[i] = stack[h + i];
-
-	stack.splice(h); // pop all
-
-	push(A);
-}
-
-function
-nfindroot(cr, ci, n, par, pai)
-{
-	var i, j;
-	var d;
-	var ar, br, dfr, dxr, far, fbr, tr = [], xr, yr;
-	var ai, bi, dfi, dxi, fai, fbi, ti = [], xi, yi;
-
-	// if const term is zero then root is zero
-
-	// note: use exact zero, not "close to zero"
-
-	// term will be exactly zero from coeffs(), no need for arbitrary cutoff
-
-	if (cr[0] == 0 && ci[0] == 0) {
-		par[0] = 0;
-		pai[0] = 0;
-		return;
-	}
-
-	// secant method
-
-	for (i = 0; i < 100; i++) {
-
-		ar = urandom();
-		ai = urandom();
-
-		fata(cr, ci, n, ar, ai, tr, ti);
-
-		far = tr[0];
-		fai = ti[0];
-
-		br = ar;
-		bi = ai;
-
-		fbr = far;
-		fbi = fai;
-
-		ar = urandom();
-		ai = urandom();
-
-		for (j = 0; j < 1000; j++) {
-
-			fata(cr, ci, n, ar, ai, tr, ti);
-
-			far = tr[0];
-			fai = ti[0];
-
-			if (zabs(far, fai) < EPSILON) {
-				par[0] = ar;
-				pai[0] = ai;
-				return;
-			}
-
-			if (zabs(far, fai) < zabs(fbr, fbi)) {
-
-				xr = ar;
-				xi = ai;
-
-				ar = br;
-				ai = bi;
-
-				br = xr;
-				bi = xi;
-
-				xr = far;
-				xi = fai;
-
-				far = fbr;
-				fai = fbi;
-
-				fbr = xr;
-				fbi = xi;
-			}
-
-			// dx = b - a
-
-			dxr = br - ar;
-			dxi = bi - ai;
-
-			// df = fb - fa
-
-			dfr = fbr - far;
-			dfi = fbi - fai;
-
-			// y = dx / df
-
-			d = dfr * dfr + dfi * dfi;
-
-			if (d == 0)
-				break;
-
-			yr = (dxr * dfr + dxi * dfi) / d;
-			yi = (dxi * dfr - dxr * dfi) / d;
-
-			// a = b - y * fb
-
-			ar = br - (yr * fbr - yi * fbi);
-			ai = bi - (yr * fbi + yi * fbr);
-		}
-	}
-
-	stopf("nroots: convergence error");
-}
-
-// compute f at a
-
-function
-fata(cr, ci, n, ar, ai, far, fai)
-{
-	var k;
-	var xr, xi, yr, yi;
-
-	yr = cr[n - 1];
-	yi = ci[n - 1];
-
-	for (k = n - 2; k >= 0; k--) {
-
-		// x = a * y
-
-		xr = ar * yr - ai * yi;
-		xi = ar * yi + ai * yr;
-
-		// y = x + c
-
-		yr = xr + cr[k];
-		yi = xi + ci[k];
-	}
-
-	far[0] = yr;
-	fai[0] = yi;
-}
-
-// divide by x - a
-
-function
-nreduce(cr, ci, n, ar, ai)
-{
-	var k;
-
-	// divide
-
-	for (k = n - 1; k > 0; k--) {
-		cr[k - 1] += cr[k] * ar - ci[k] * ai;
-		ci[k - 1] += ci[k] * ar + cr[k] * ai;
-	}
-
-	if (zabs(cr[0], ci[0]) > DELTA)
-		stopf("nroots: residual error"); // not a root
-
-	// shift
-
-	for (k = 0; k < n - 1; k++) {
-		cr[k] = cr[k + 1];
-		ci[k] = ci[k + 1];
-	}
-}
-
-function
-zabs(r, i)
-{
-	return Math.sqrt(r * r + i * i);
-}
-
-function
-urandom()
-{
-	return 4.0 * Math.random() - 2.0;
-}
-function
-numerator()
-{
-	var p = pop();
-
-	if (isrational(p)) {
-		push_bignum(p.sign, bignum_copy(p.a), bignum_int(1));
-		return;
-	}
-
-	while (divisor(p)) {
-		push(p);
-		cancel_factor();
-		p = pop();
-	}
-
-	push(p);
-}
 //  1   number
 //  2   number to power (root)
 //  3   -1 to power (imaginary)
@@ -13728,67 +14800,6 @@ order_factor(p)
 	}
 
 	return 4;
-}
-function
-outer()
-{
-	var i, j, k, n, ncol, nrow, p1, p2, p3;
-
-	p2 = pop();
-	p1 = pop();
-
-	if (!istensor(p1) && !istensor(p2)) {
-		push(p1);
-		push(p2);
-		multiply();
-		return;
-	}
-
-	if (istensor(p1) && !istensor(p2)) {
-		p3 = p1;
-		p1 = p2;
-		p2 = p3;
-	}
-
-	if (!istensor(p1) && istensor(p2)) {
-		p2 = copy_tensor(p2);
-		n = p2.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1);
-			push(p2.elem[i]);
-			multiply();
-			p2.elem[i] = pop();
-		}
-		push(p2);
-		return;
-	}
-
-	p3 = alloc_tensor();
-
-	nrow = p1.elem.length;
-	ncol = p2.elem.length;
-
-	for (i = 0; i < nrow; i++)
-		for (j = 0; j < ncol; j++) {
-			push(p1.elem[i]);
-			push(p2.elem[j]);
-			multiply();
-			p3.elem[i * ncol + j] = pop();
-		}
-
-	k = 0;
-
-	n = p1.dim.length;
-
-	for (i = 0; i < n; i++)
-		p3.dim[k++] = p1.dim[i];
-
-	n = p2.dim.length
-
-	for (i = 0; i < n; i++)
-		p3.dim[k++] = p2.dim[i];
-
-	push(p3);
 }
 function
 partition_term()
@@ -13876,42 +14887,6 @@ erfc(x)
 	return 1.0 - erf(x);
 }
 function
-polar()
-{
-	var i, n, p1, p2;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			polar();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	push(p1);
-	mag();
-	push(imaginaryunit);
-	push(p1);
-	arg();
-	p2 = pop();
-	if (isdouble(p2)) {
-		push_double(p2.d / Math.PI);
-		push_symbol(PI);
-		multiply_factors(3);
-	} else {
-		push(p2);
-		multiply_factors(2);
-	}
-	expfunc();
-	multiply();
-}
-function
 pop()
 {
 	if (stack.length == 0)
@@ -13956,195 +14931,6 @@ pop_integer()
 		n = p.d;
 
 	return n;
-}
-function
-power()
-{
-	var h, i, n, p1, BASE, EXPO;
-
-	EXPO = pop();
-	BASE = pop();
-
-	if (istensor(BASE) && istensor(EXPO)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
-
-	if (istensor(EXPO)) {
-		p1 = copy_tensor(EXPO);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(BASE);
-			push(p1.elem[i]);
-			power();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	if (istensor(BASE)) {
-		p1 = copy_tensor(BASE);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			push(EXPO);
-			power();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	if (BASE == symbol(EXP1) && isdouble(EXPO)) {
-		push_double(Math.E);
-		BASE = pop();
-	}
-
-	if (BASE == symbol(PI) && isdouble(EXPO)) {
-		push_double(Math.PI);
-		BASE = pop();
-	}
-
-	if (isnum(BASE) && isnum(EXPO)) {
-		power_numbers(BASE, EXPO);
-		return;
-	}
-
-	// expr^0
-
-	if (iszero(EXPO)) {
-		push_integer(1);
-		return;
-	}
-
-	// 0^expr
-
-	if (iszero(BASE)) {
-		push_symbol(POWER);
-		push(BASE);
-		push(EXPO);
-		list(3);
-		return;
-	}
-
-	// 1^expr
-
-	if (isplusone(BASE)) {
-		push_integer(1);
-		return;
-	}
-
-	// expr^1
-
-	if (isplusone(EXPO)) {
-		push(BASE);
-		return;
-	}
-
-	// BASE is an integer?
-
-	if (isinteger(BASE)) {
-		// raise each factor in BASE to power EXPO
-		// EXPO is not numerical, that case was handled by power_numbers() above
-		h = stack.length;
-		push(BASE);
-		factor_factor();
-		n = stack.length - h;
-		for (i = 0; i < n; i++) {
-			p1 = stack[h + i];
-			if (car(p1) == symbol(POWER)) {
-				push_symbol(POWER);
-				push(cadr(p1)); // base
-				push(caddr(p1)); // expo
-				push(EXPO);
-				multiply();
-				list(3);
-			} else {
-				push_symbol(POWER);
-				push(p1);
-				push(EXPO);
-				list(3);
-			}
-			stack[h + i] = pop();
-		}
-		if (n > 1) {
-			sort_factors(h);
-			list(n);
-			push_symbol(MULTIPLY);
-			swap();
-			cons();
-		}
-		return;
-	}
-
-	// BASE is a numerical fraction?
-
-	if (isfraction(BASE)) {
-		// power numerator, power denominator
-		// EXPO is not numerical, that case was handled by power_numbers() above
-		push(BASE);
-		numerator();
-		push(EXPO);
-		power();
-		push(BASE);
-		denominator();
-		push(EXPO);
-		negate();
-		power();
-		multiply();
-		return;
-	}
-
-	// BASE = e ?
-
-	if (BASE == symbol(EXP1)) {
-		power_natural_number(EXPO);
-		return;
-	}
-
-	// (a + b) ^ c
-
-	if (car(BASE) == symbol(ADD)) {
-		power_sum(BASE, EXPO);
-		return;
-	}
-
-	// (a b) ^ c  -->  (a ^ c) (b ^ c)
-
-	if (car(BASE) == symbol(MULTIPLY)) {
-		h = stack.length;
-		p1 = cdr(BASE);
-		while (iscons(p1)) {
-			push(car(p1));
-			push(EXPO);
-			power();
-			p1 = cdr(p1);
-		}
-		multiply_factors(stack.length - h);
-		return;
-	}
-
-	// (a ^ b) ^ c  -->  a ^ (b c)
-
-	if (car(BASE) == symbol(POWER)) {
-		push(cadr(BASE));
-		push(caddr(BASE));
-		push(EXPO);
-		multiply_expand(); // always expand products of exponents
-		power();
-		return;
-	}
-
-	// none of the above
-
-	push_symbol(POWER);
-	push(BASE);
-	push(EXPO);
-	list(3);
 }
 function
 power_complex_double(BASE, EXPO, X, Y)
@@ -14870,7 +15656,7 @@ power_sum(BASE, EXPO)
 		return;
 	}
 
-	if (expanding == 0 || !issmallinteger(EXPO)|| isnegativenumber(EXPO)) {
+	if (expanding == 0 || !issmallinteger(EXPO) || isnegativenumber(EXPO)) {
 		push_symbol(POWER);
 		push(BASE);
 		push(EXPO);
@@ -14953,31 +15739,6 @@ print_infixform(p)
 	infixform_expr(p);
 	infixform_write("\n");
 	printbuf(outbuf, BLACK);
-}
-function
-print_result()
-{
-	var p1, p2;
-
-	p2 = pop(); // result
-	p1 = pop(); // input
-
-	if (p2 == symbol(NIL))
-		return;
-
-	if (annotate_result(p1, p2)) {
-		push_symbol(SETQ);
-		push(p1);
-		push(p2);
-		list(3);
-		p2 = pop();
-	}
-
-	if (iszero(get_binding(symbol(TTY)))) {
-		push(p2);
-		display();
-	} else
-		print_infixform(p2);
 }
 const BLACK = 1;
 const BLUE = 2;
@@ -15122,166 +15883,10 @@ push_symbol(p)
 	push(symbol(p));
 }
 function
-rationalize()
-{
-	var i, n, p0, p1, p2;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			rationalize();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	p2 = one;
-
-	while (divisor(p1)) {
-		p0 = pop();
-		push(p0);
-		push(p1);
-		cancel_factor();
-		p1 = pop();
-		push(p0);
-		push(p2);
-		multiply_noexpand();
-		p2 = pop();
-	}
-
-	push(p1);
-	push(p2);
-	reciprocate();
-	multiply_noexpand();
-}
-function
-real()
-{
-	var i, n, p1;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			real();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	push(p1);
-	rect();
-	p1 = pop();
-	push(p1);
-	push(p1);
-	conjfunc();
-	add();
-	push_rational(1, 2);
-	multiply();
-}
-function
 reciprocate()
 {
 	push_integer(-1);
 	power();
-}
-function
-rect()
-{
-	var h, i, n, p1, p2, BASE, EXPO;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			rect();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	if (car(p1) == symbol(ADD)) {
-		p1 = cdr(p1);
-		h = stack.length;
-		while (iscons(p1)) {
-			push(car(p1));
-			rect();
-			p1 = cdr(p1);
-		}
-		add_terms(stack.length - h);
-		return;
-	}
-
-	if (car(p1) == symbol(MULTIPLY)) {
-		p1 = cdr(p1);
-		h = stack.length;
-		while (iscons(p1)) {
-			push(car(p1));
-			rect();
-			p1 = cdr(p1);
-		}
-		multiply_factors(stack.length - h);
-		return;
-	}
-
-	if (car(p1) != symbol(POWER)) {
-		push(p1);
-		return;
-	}
-
-	BASE = cadr(p1);
-	EXPO = caddr(p1);
-
-	// handle sum in exponent
-
-	if (car(EXPO) == symbol(ADD)) {
-		p1 = cdr(EXPO);
-		h = stack.length;
-		while (iscons(p1)) {
-			push_symbol(POWER);
-			push(BASE);
-			push(car(p1));
-			list(3);
-			rect();
-			p1 = cdr(p1);
-		}
-		multiply_factors(stack.length - h);
-		return;
-	}
-
-	// return mag(p1) * cos(arg(p1)) + i sin(arg(p1)))
-
-	push(p1);
-	mag();
-
-	push(p1);
-	arg();
-	p2 = pop();
-
-	push(p2);
-	cosfunc();
-
-	push(imaginaryunit);
-	push(p2);
-	sinfunc();
-	multiply();
-
-	add();
-
-	multiply();
 }
 function
 reduce_radical_double(h, COEFF)
@@ -15414,282 +16019,6 @@ restore_symbol(p)
 	p2 = frame.pop();
 	p1 = frame.pop();
 	set_symbol(p, p1, p2);
-}
-function
-roots()
-{
-	var h, i, j, k, n;
-	var A, P, X;
-
-	X = pop();
-	P = pop();
-
-	h = stack.length;
-
-	coeffs(P, X); // put coeffs on stack
-
-	k = stack.length;
-
-	n = k - h; // number of coeffs on stack
-
-	// check coeffs
-
-	for (i = h; i < k; i++)
-		if (!isrational(stack[i]))
-			stopf("roots: coeffs");
-
-	// find roots
-
-	while (n > 1) {
-
-		if (findroot(h, n) == 0)
-			break; // no root found
-
-		// A is the root
-
-		A = stack[stack.length - 1];
-
-		// divide p(x) by X - A
-
-		reduce(h, n, A);
-
-		n--;
-	}
-
-	n = stack.length - k; // number of roots on stack
-
-	if (n == 0) {
-		stack.splice(h); // pop all
-		push_symbol(NIL); // no roots
-		return;
-	}
-
-	sort(n); // sort roots
-
-	// eliminate repeated roots
-
-	for (i = 0; i < n - 1; i++)
-		if (equal(stack[k + i], stack[k + i + 1])) {
-			for (j = i + 1; j < n - 1; j++)
-				stack[k + j] = stack[k + j + 1];
-			i--;
-			n--;
-		}
-
-	if (n == 1) {
-		A = stack[k];
-		stack.splice(h); // pop all
-		push(A); // one root
-		return;
-	}
-
-	A = alloc_vector(n);
-
-	for (i = 0; i < n; i++)
-		A.elem[i] = stack[k + i];
-
-	stack.splice(h); // pop all
-
-	push(A);
-}
-
-function
-findroot(h, n)
-{
-	var i, j, m, p, q, r;
-	var A, C, PA;
-
-	// check constant term
-
-	if (iszero(stack[h])) {
-		push_integer(0); // root is zero
-		return 1;
-	}
-
-	// eliminate denominators
-
-	for (i = 0; i < n; i++) {
-		C = stack[h + i];
-		if (isinteger(C))
-			continue;
-		push(C);
-		denominator();
-		C = pop();
-		for (j = 0; j < n; j++) {
-			push(stack[h + j]);
-			push(C);
-			multiply();
-			stack[h + j] = pop();
-		}
-	}
-
-	p = stack.length;
-
-	push(stack[h]);
-	m = pop_integer();
-	divisors(m); // divisors of constant term
-
-	q = stack.length;
-
-	push(stack[h + n - 1]);
-	m = pop_integer();
-	divisors(m); // divisors of leading coeff
-
-	r = stack.length;
-
-	for (i = p; i < q; i++) {
-		for (j = q; j < r; j++) {
-
-			// try positive A
-
-			push(stack[i]);
-			push(stack[j]);
-			divide();
-			A = pop();
-
-			horner(h, n, A);
-
-			PA = pop(); // polynomial evaluated at A
-
-			if (iszero(PA)) {
-				stack.splice(p); // pop all
-				push(A);
-				return 1; // root on stack
-			}
-
-			// try negative A
-
-			push(A);
-			negate();
-			A = pop();
-
-			horner(h, n, A);
-
-			PA = pop(); // polynomial evaluated at A
-
-			if (iszero(PA)) {
-				stack.splice(p); // pop all
-				push(A);
-				return 1; // root on stack
-			}
-		}
-	}
-
-	stack.splice(p); // pop all
-
-	return 0; // no root
-}
-
-// evaluate p(x) at x = A using horner's rule
-
-function
-horner(h, n, A)
-{
-	var i;
-
-	push(stack[h + n - 1]);
-
-	for (i = n - 2; i >= 0; i--) {
-		push(A);
-		multiply();
-		push(stack[h + i]);
-		add();
-	}
-}
-
-// push all divisors of n
-
-function
-divisors(n)
-{
-	var h, i, k;
-
-	h = stack.length;
-
-	factor_int(n);
-
-	k = stack.length;
-
-	// contruct divisors by recursive descent
-
-	push_integer(1);
-
-	divisors_nib(h, k);
-
-	// move
-
-	n = stack.length - k;
-
-	for (i = 0; i < n; i++)
-		stack[h + i] = stack[k + i];
-
-	stack.splice(h + n); // pop all
-}
-
-//	Generate all divisors for a factored number
-//
-//	Input:		Factor pairs on stack (base, expo)
-//
-//			h	first pair
-//
-//			k	just past last pair
-//
-//	Output:		Divisors on stack
-//
-//	For example, the number 12 (= 2^2 3^1) has 6 divisors:
-//
-//	1, 2, 3, 4, 6, 12
-
-function
-divisors_nib(h, k)
-{
-	var i, n;
-	var ACCUM, BASE, EXPO;
-
-	if (h == k)
-		return;
-
-	ACCUM = pop();
-
-	BASE = stack[h + 0];
-	EXPO = stack[h + 1];
-
-	push(EXPO);
-	n = pop_integer();
-
-	for (i = 0; i <= n; i++) {
-		push(ACCUM);
-		push(BASE);
-		push_integer(i);
-		power();
-		multiply();
-		divisors_nib(h + 2, k);
-	}
-}
-
-// divide by X - A
-
-function
-reduce(h, n, A)
-{
-	var i;
-
-	for (i = n - 1; i > 0; i--) {
-		push(A);
-		push(stack[h + i]);
-		multiply();
-		push(stack[h + i - 1]);
-		add();
-		stack[h + i - 1] = pop();
-	}
-
-	if (!iszero(stack[h]))
-		stopf("roots: residual error"); // not a root
-
-	// move
-
-	for (i = 0; i < n - 1; i++)
-		stack[h + i] = stack[h + i + 1];
 }
 /* exported run */
 
@@ -16568,192 +16897,6 @@ sgn()
 		push_integer(1);
 }
 function
-simplify()
-{
-	var h, i, n, p1;
-
-	p1 = pop();
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			simplify();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	// already simple?
-
-	if (!iscons(p1)) {
-		push(p1);
-		return;
-	}
-
-	h = stack.length;
-	push(car(p1));
-	p1 = cdr(p1);
-
-	while (iscons(p1)) {
-		push(car(p1));
-		simplify();
-		p1 = cdr(p1);
-	}
-
-	list(stack.length - h);
-	evalf();
-
-	simplify_pass1();
-	simplify_pass2(); // try exponential form
-	simplify_pass3(); // try polar form
-}
-function
-simplify_pass1()
-{
-	var p1, NUM, DEN, R, T;
-
-	p1 = pop();
-
-	// already simple?
-
-	if (!iscons(p1)) {
-		push(p1);
-		return;
-	}
-
-	if (car(p1) == symbol(ADD)) {
-		push(p1);
-		rationalize();
-		T = pop();
-		if (car(T) == symbol(ADD)) {
-			push(p1); // no change
-			return;
-		}
-	} else
-		T = p1;
-
-	push(T);
-	numerator();
-	NUM = pop();
-
-	push(T);
-	denominator();
-	evalf(); // to expand denominator
-	DEN = pop();
-
-	// if DEN is a sum then rationalize it
-
-	if (car(DEN) == symbol(ADD)) {
-		push(DEN);
-		rationalize();
-		T = pop();
-		if (car(T) != symbol(ADD)) {
-			// update NUM
-			push(T);
-			denominator();
-			evalf(); // to expand denominator
-			push(NUM);
-			multiply();
-			NUM = pop();
-			// update DEN
-			push(T);
-			numerator();
-			DEN = pop();
-		}
-	}
-
-	// are NUM and DEN congruent sums?
-
-	if (car(NUM) != symbol(ADD) || car(DEN) != symbol(ADD) || lengthf(NUM) != lengthf(DEN)) {
-		// no, but NUM over DEN might be simpler than p1
-		push(NUM);
-		push(DEN);
-		divide();
-		T = pop();
-		if (complexity(T) < complexity(p1))
-			p1 = T;
-		push(p1);
-		return;
-	}
-
-	push(cadr(NUM)); // push first term of numerator
-	push(cadr(DEN)); // push first term of denominator
-	divide();
-
-	R = pop(); // provisional ratio
-
-	push(R);
-	push(DEN);
-	multiply();
-
-	push(NUM);
-	subtract();
-
-	T = pop();
-
-	if (iszero(T))
-		p1 = R;
-
-	push(p1);
-}
-// try exponential form
-
-function
-simplify_pass2()
-{
-	var p1, p2;
-
-	p1 = pop();
-
-	// already simple?
-
-	if (!iscons(p1)) {
-		push(p1);
-		return;
-	}
-
-	push(p1);
-	circexp();
-	rationalize();
-	evalf(); // to normalize
-	p2 = pop();
-
-	if (complexity(p2) < complexity(p1)) {
-		push(p2);
-		return;
-	}
-
-	push(p1);
-}
-// try polar form
-
-function
-simplify_pass3()
-{
-	var p1, p2;
-
-	p1 = pop();
-
-	if (car(p1) != symbol(ADD) || isusersymbolsomewhere(p1) || !findf(p1, imaginaryunit)) {
-		push(p1);
-		return;
-	}
-
-	push(p1);
-	polar();
-	p2 = pop();
-
-	if (!iscons(p2)) {
-		push(p2);
-		return;
-	}
-
-	push(p1);
-}
-function
 simplify_terms(h)
 {
 	var i, n = 0, p1, p2;
@@ -16959,97 +17102,6 @@ trace_input()
 		printbuf(instring.substring(trace1, trace2), BLUE);
 }
 function
-eval_transpose(p1)
-{
-	var m, n;
-	var p2;
-
-	push(cadr(p1));
-	evalf();
-	p2 = pop();
-	push(p2);
-
-	if (!istensor(p2) || p2.dim.length < 2)
-		return;
-
-	p1 = cddr(p1);
-
-	if (!iscons(p1)) {
-		transpose(1, 2);
-		return;
-	}
-
-	while (iscons(p1)) {
-
-		push(car(p1));
-		evalf();
-		n = pop_integer();
-
-		push(cadr(p1));
-		evalf();
-		m = pop_integer();
-
-		transpose(n, m);
-
-		p1 = cddr(p1);
-	}
-}
-
-function
-transpose(n, m)
-{
-	var i, j, k, ndim, nelem;
-	var index = [];
-	var p1, p2;
-
-	p1 = pop();
-
-	ndim = p1.dim.length;
-	nelem = p1.elem.length;
-
-	if (n < 1 || n > ndim || m < 1 || m > ndim)
-		stopf("transpose: index error");
-
-	n--; // make zero based
-	m--;
-
-	p2 = copy_tensor(p1);
-
-	// interchange indices n and m
-
-	p2.dim[n] = p1.dim[m];
-	p2.dim[m] = p1.dim[n];
-
-	for (i = 0; i < ndim; i++)
-		index[i] = 0;
-
-	for (i = 0; i < nelem; i++) {
-
-		k = 0;
-
-		for (j = 0; j < ndim; j++) {
-			if (j == n)
-				k = k * p1.dim[m] + index[m];
-			else if (j == m)
-				k = k * p1.dim[n] + index[n];
-			else
-				k = k * p1.dim[j] + index[j];
-		}
-
-		p2.elem[k] = p1.elem[i];
-
-		// increment index
-
-		for (j = ndim - 1; j >= 0; j--) {
-			if (++index[j] < p1.dim[j])
-				break;
-			index[j] = 0;
-		}
-	}
-
-	push(p2);
-}
-function
 undo()
 {
 	var p, b, u;
@@ -17114,6 +17166,7 @@ var symtab = {
 "erf":		{printname:ERF,		func:eval_erf},
 "erfc":		{printname:ERFC,	func:eval_erfc},
 "eval":		{printname:EVAL,	func:eval_eval},
+"exit":		{printname:EXIT,	func:eval_exit},
 "exp":		{printname:EXP,		func:eval_exp},
 "expcos":	{printname:EXPCOS,	func:eval_expcos},
 "expcosh":	{printname:EXPCOSH,	func:eval_expcosh},
