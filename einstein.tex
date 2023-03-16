@@ -39,10 +39,10 @@ Let $N_{m\rightarrow n}/\Delta t$ be the number of atoms or molecules that trans
 Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \begin{equation*}
 \frac{N_{n\rightarrow m}}{\Delta t}
-=\underset{\ABSORPTION}{\BNM N_n \RHO},
+=\underset{\ABSORPTION}{\RHO\BNM N_n},
 \qquad
 \frac{N_{m\rightarrow n}}{\Delta t}
-=\underset{\INDUCED}{\BMN N_m \RHO}
+=\underset{\INDUCED}{\RHO\BMN N_m}
 +
 \underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
@@ -61,34 +61,33 @@ At equilibrium, the transition rates are equal.
 \noindent
 Hence
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM N_n \RHO}
-=\underset{\INDUCED}{\BMN N_m \RHO}
+\underset{\ABSORPTION}{\RHO\BNM N_n}
+=\underset{\INDUCED}{\RHO\BMN N_m}
 +\underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
 \noindent
 Divide through by $N$.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM \frac{N_n}{N} \RHO}
-=\underset{\INDUCED}{\BMN \frac{N_m}{N} \RHO}
+\underset{\ABSORPTION}{\RHO\BNM \frac{N_n}{N}}
+=\underset{\INDUCED}{\RHO\BMN \frac{N_m}{N}}
 +\underset{\SPONTANEOUS}{\AMN \frac{N_m}{N}}
 \end{equation*}
 
 \noindent
 Then by the Maxwell-Boltzmann distribution (1) we have
-\begin{multline*}
-\underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(-\frac{E_n}{kT}\right)}
-\\
-=\underset{\INDUCED}{\BMN p_m \RHO\exp\left(-\frac{E_m}{kT}\right)}
+\begin{equation*}
+\underset{\ABSORPTION}{\RHO\BNM p_n\exp\left(-\frac{E_n}{kT}\right)}
+=\underset{\INDUCED}{\RHO\BMN p_m\exp\left(-\frac{E_m}{kT}\right)}
 +\underset{\SPONTANEOUS}{\AMN p_m\exp\left(-\frac{E_m}{kT}\right)}
 \tag{2}
-\end{multline*}
+\end{equation*}
 
 \noindent
 Multiply both sides by $\exp(E_m/kT)$.
 \begin{equation*}
-\underset{\ABSORPTION}{\BNM p_n \RHO\exp\left(\frac{E_m-E_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN p_m \RHO}
+\underset{\ABSORPTION}{\RHO\BNM p_n\exp\left(\frac{E_m-E_n}{kT}\right)}
+=\underset{\INDUCED}{\RHO\BMN p_m}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
@@ -101,8 +100,8 @@ Note that for increasing $T$ we have
 \noindent
 It follows that for $T\rightarrow\infty$ the equilibrium formula is
 \begin{equation*}
-\BNM p_n \RHO
-=\BMN p_m \RHO
+\RHO\BNM p_n
+=\RHO\BMN p_m
 +\AMN p_m
 \end{equation*}
 
@@ -123,10 +122,10 @@ hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \noindent
 Einstein reasoned that equation (3) is true in general based on the assumption that
 the factors involved do not depend on $T$.
-Hence we can substitute $B_{mn}p_m$ for $B_{nm}p_n$ in the absorption term and write
+Hence we can substitute $B_{mn}p_m$ into the absorption term and write
 \begin{equation*}
-\underset{\ABSORPTION}{\BMN p_m \RHO\exp\left(\frac{E_m-E_n}{kT}\right)}
-=\underset{\INDUCED}{\BMN p_m \RHO}
+\underset{\ABSORPTION}{\RHO\BMN p_m\exp\left(\frac{E_m-E_n}{kT}\right)}
+=\underset{\INDUCED}{\RHO\BMN p_m}
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
