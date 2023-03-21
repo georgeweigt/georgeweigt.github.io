@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+Phi(u,v) = (2 sin(v) cos(u), 2 sin(v) sin(u), 2 cos(v))
+Phi        -- show Phi
+Phi(1,1)
+float(Phi(1,1))         
+Phi(pi/3,pi/3)         
+Phi(a,b)              
+
+Phi(u,v) = test( and( and(0 <= u,u <= 2pi),             --(1)
+                      and(0 <= v,v <= pi)),
+          (2 sin(v) cos(u), 2 sin(v) sin(u), 2 cos(v)), --(2)
+          "u or v not allowed." )                       --(3)
+
+float(Phi(1,1))         
+Phi(-pi/3,pi/3)         -- output: 'u or v not allowed.'
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

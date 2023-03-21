@@ -1,0 +1,120 @@
+################ (2023) Dr.W.G. Lindner,  Leichlingen DE
+###   diffgeoBox        Differential Geometry box 
+################        for calculations of curvature
+
+-- ------------------------- skeleton/ pattern 
+phi(u,v) = (.., .., ..)     -- parametrization
+phiu = d(phi,u)           -- tangential space basis
+phiv = d(phi,v)
+U    = (u,v)              -- coordinates on TpS
+
+-- surface metric tensor = 1st fund. form
+g(i,j) = dot(d(phi, U[i]), d(phi,U[j]))
+g = ( (g(1,1),g(1,2)),  (g(2,1),g(2,2)) )
+do( E=g[1,1], F=g[1,2], G=g[2,2])   -- classic names for g
+
+-- inverse of g 
+gu = inv(g)
+gu
+V = 1/sqrt(det(g))
+
+-- surface normal vector field
+N = cross(phiu, phiv)
+
+-- 2nd fund. form
+h = zero(2,2)
+    h[1,1] = 1/V* dot( cross(d(phi,u), d(phi,v)), d(phi,u,u))
+    h[1,2] = 1/V* dot( cross(d(phi,u), d(phi,v)), d(phi,u,v))
+    h[2,1] = h[1,2]
+    h[2,2] = 1/V* dot( cross(d(phi,u), d(phi,v)), d(phi,v,v))
+do( L=h[1,1], M=h[1,2], N=h[2,2])   -- classic names for h
+
+-- shape operator
+A = dot(gu, h)
+A = dot( inv(((E,F),(F,G))) , ((L,M),(M,N)) )  -- classic formula
+
+K = det(A)        -- GAUSS curvature
+H = contract(A)    -- mean curvature
+
+
+
+-- ----------------------------
+--   GammaI/II, Kintrinsic and RIEMANN curvature tensors as functions
+-- ----------------------------
+GammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +
+                        d(g[i,k],U[j]) - d(g[i,j],U[k]) )
+
+GammaII(k,l,m) = sum(i,1,2, gu[k,i]*1/2 *
+                ( d(g[m,i],U[l]) + d(g[l,i],U[m]) - d(g[m,l],U[i]) ))
+
+-- intrinsic curvature
+Kintrinsic(u,v)= do(
+     Ch111 = GammaII(1,1,1),
+     Ch121 = GammaII(1,2,1),
+     Ch211 = GammaII(2,1,1),
+     Ch221 = GammaII(2,2,1),
+     Ch222 = GammaII(2,2,2),
+     Kintrinsic1 = 1/g[1,1]*( d(Ch211,v) - d(Ch221,u) + 
+                              Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121) ),
+     Kintrinsic1)
+
+-- RIEMANN curvature tensor RI = Rijkl of 1st kind as function 
+RiemI(b,m,s,q) = d(GammaI[b,m,q],U[s]) - d(GammaI[b,m,s],U[q]) +
+                     sum(n,1,2, GammaI[b,n,s]*GammaII[n,m,q] ) - 
+                     sum(n,1,2, GammaI[b,n,q]*GammaII[n,m,s] )
+
+-- RIEMANN curvature tensor RII = Ri^jkl of 2nd kind as function
+RiemII(b,m,s,q) = d(GammaII[b,m,q],U[s]) - d(GammaII[b,m,s],U[q]) +
+                     sum(n,1,2, GammaII[b,n,s]*GammaII[n,m,q] )   - 
+                     sum(n,1,2, GammaII[b,n,q]*GammaII[n,m,s] )
+
+-- RICCI tensor coefficients
+Ricci(m,q) = sum( s,1,2, RII(s,m,s,q)) ) 
+
+-- RICCI tensor
+Ric = zero(2,2)
+   for( m,1,2, for( q,1,2, Ricci(m,q) = sum( s,1,2, RiemII(s,m,s,q)) ))
+
+--RICCI curvature scalar
+Rcs  = sum( i,1,2, sum(j,1,2, gu[i,j]*Ric(i,j)) )
+
+
+
+-- ----------------------------
+--   GammaI/II, Kintrinsic and RIEMANN curvature tensors as tensors
+-- ----------------------------
+
+-- CHRISTOFFEL symbols as tensors (aka array, matrix) (G. Weigt)
+GammaI = 1/2 (Dg + transpose(Dg,2,3) - transpose(Dg,2,3,1,2)) 
+GammaII = dot(gu, GammaI)
+
+-- intrinsic curvature by table
+Kintrinsic(u,v)= do(
+     Ch111 = GammaII[1,1,1],
+     Ch121 = GammaII[1,2,1],
+     Ch211 = GammaII[2,1,1],
+     Ch221 = GammaII[2,2,1],
+     Ch222 = GammaII[2,2,2],
+     Kintrinsic1 = 1/g[1,1]*( d(Ch211,v) - d(Ch221,u) + 
+                 Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121) ),
+     Kintrinsic1)
+
+-- RIEMANN curvature tensor RI and RII (G. Weigt)
+      T1= d(GammaII, U)
+      T2 = dot(transpose(GammaII,2,3), GammaII)
+RII = transpose(T1,3,4) -T1+ transpose(T2,2,3) - transpose(T2,2,3,3,4)
+RI = dot(g, RII)  
+
+-- Ricci tensor 
+Ric = contract(RII,1,3)
+
+-- Ricci curvature scalar
+R = contract( dot(gu ,Ric) )
+
+---- DEFINITION of covariant derivative using GammaII
+covD(Y,X)= ( X[1]*d(Y[1],u) + X[2]*d(Y[1],v) + 
+             sum(i,1,2, sum(j,1,2, X[i]*Y[j]*GammaII[1,i,j])),  --*Eu
+             X[1]*d(Y[2],u)+X[2]*d(Y[2],v) + 
+             sum(i,1,2, sum(j,1,2, X[i]*Y[j]*GammaII[2,i,j])) ) --*Ev
+
+ 

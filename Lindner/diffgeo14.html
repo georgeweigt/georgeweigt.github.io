@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+-- HYPERBOLIC PARABOLOID 
+phi(u,v) = (u , v, u*v)                       --(1)
+--          x   y  z
+
+U = (u,v)                                     --(2)
+
+g(i,j) = dot(d(phi, U[i]), d(phi,U[j]))       --(3)
+g(1,1)
+eval(g(1,1), u1,2, u2,3)                      --(4)
+
+g = ((g(1,1),g(1,2)),                         --(5)
+     (g(2,1),g(2,2)) )
+g
+
+"CHRISTOFFEL symbol Gijk of 1st kind without using g, see (7.1)"
+
+Gamma1(i,j,k) = dot( d(phi, U[i], U[j]), d(phi, U[k]) )  --(6)
+
+Gamma1(1,2,2)                                 --(7)
+Gamma1(2,2,2)
+
+-- index pattern for 8 entries 
+Gamma1 = ( ((Gamma1(1,1,1), Gamma1(1,1,2)),   --(8) 1st matrix      
+            (Gamma1(1,2,1), Gamma1(1,2,2))),
+           ((Gamma1(2,1,1), Gamma1(2,1,2)),   --(9) 2nd matrix
+            (Gamma1(2,2,1), Gamma1(2,2,2))) )
+Gamma1                                        --(10)
+
+
+"CHRISTOFFEL symbol Gijk of 1st kind with g, see (7.2)"
+
+GammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +      --(11)
+                        d(g[i,k],U[j]) - 
+                        d(g[i,j],U[k]) )
+
+GammaI(1,2,2)                                 --(12)
+GammaI(2,2,1)
+
+GammaI = ( ((GammaI(1,1,1),GammaI(1,1,2)),    --(13)
+            (GammaI(1,2,1),GammaI(1,2,2))),
+           ((GammaI(2,1,1),GammaI(2,1,2)),
+            (GammaI(2,2,1),GammaI(2,2,2))) )
+
+GammaI      
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

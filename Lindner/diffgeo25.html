@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+"sine GORDON equation" 
+X = (x,y)                                 -- u and v depends on x and y
+U = (u(x,y), v(x,y))                                     
+g = ((1,cos(u(x,y))), (cos(u(x,y)),1))    --(1)
+g
+gu = inv(g)
+gu                                        --(2)
+     gu[1,1] = 1/sin(u(x,y))^2
+     gu[1,2] = - cos(u(x,y))/sin(u(x,y))^2
+     gu[2,1] = gu[1,2]
+     gu[2,2] = 1/sin(u(x,y))^2
+gu
+
+Dg = d(g,X)
+Dg
+
+GammaI = 1/2 (Dg + transpose(Dg,2,3) - transpose(Dg,2,3,1,2))   
+GammaI
+GammaII = dot(gu, GammaI)
+GammaII
+
+"RIEMANN Ri^jkl tensor."
+T1 = d(GammaII, X)                    
+T2 = dot(transpose(GammaII,2,3), GammaII)  
+RII = transpose(T1,3,4) - T1 + transpose(T2,2,3) - transpose(T2,2,3,3,4)     
+RII   
+
+"RIEMANN Rijkl tensor."
+RI = dot(g, RII) 
+RI
+
+"RICCI tensor."
+Ric = contract(RII,1,3)
+Ric
+
+"RICCI curvature scalar"
+R = contract( dot( gu, transpose(Ric)))  
+R 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+-- HYPERBOLIC PARABOLOID 
+phi(u,v) = (u , v, u*v)                       --(1)
+--          x   y  z
+
+U = (u,v)                                     --(2)
+
+g(i,j) = dot(d(phi, U[i]), d(phi,U[j]))       --(3)
+g(1,1)
+eval(g(1,1), u1,2, u2,3)                      --(4)
+
+g = ((g(1,1),g(1,2)),                         --(5)
+     (g(2,1),g(2,2)) )
+g
+
+gu = inv(g)     -- .u means up i.e. inverse of metric  (14)
+gu
+
+-- GammaII as function GammaII()
+--                                     index pattern   (+)  
+--     gu[k,m]*( d(g[m,i],u[j]) +      ij
+--               d(g[m,j],u[i]) -      ji
+--               d(g[i,j],u[m])) )     ij
+
+GammaII(k,i,j) = 1/2* sum(m,1,2,                     --(15)
+                 gu[k,m]*( d(g[m,i],U[j]) + 
+                           d(g[m,j],U[i]) - d(g[i,j],U[m]) ))
+
+GammaII(2,2,2)
+GammaII(2,2,2)
+
+GammaII = ( ((GammaII(1,1,1),GammaII(1,1,2)),        --(16)
+             (GammaII(1,2,1),GammaII(1,2,2))),  
+            ((GammaII(2,1,1),GammaII(2,1,2)),
+             (GammaII(2,2,1),GammaII(2,2,2))) )
+
+GammaII
+
+
+"RIEMANN curature tensor Rijkl of 1st kind as function"
+RI(b,m,s,q) = d(GammaI[b,m,q],u[s]) -               --(17)
+              d(GammaI[b,m,s],u[q]) +
+                 sum(n,1,2, GammaI[b,n,s]*GammaII[n,m,q] ) -
+                 sum(n,1,2, GammaI[b,n,q]*GammaII[n,m,s] )
+                
+RI1212 = RI(1,2,1,2)
+RI1212
+
+"RIEMANN curature tensor Ri^jkl of 2nd kind as function"
+RII(b,m,s,q) =  d(GammaII[b,m,q],u[s]) -           --(18)
+                d(GammaII[b,m,s],u[q]) +
+                   sum(n,1,2, GammaII[b,n,s]*GammaII[n,m,q] ) -
+                   sum(n,1,2, GammaII[b,n,q]*GammaII[n,m,s] )
+
+RII1212 = RII(1,2,1,2)
+RII1212
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

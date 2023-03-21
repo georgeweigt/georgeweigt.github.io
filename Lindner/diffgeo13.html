@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+"GAUSS and mean curvature of HELICOID"
+-- coefficients of fff
+E =1
+F = 0
+G = v^2+1
+
+-- coefficients of sff
+L = 0
+M = (v^2+1)^(-1/2)
+N = 0
+
+-- shape operator via (5.2)
+A = dot( inv(((E,F),(F,G))) , ((L,M),(M,N)) )
+A                                 --(0)
+
+"GAUSS curvature via (6.1)"
+K = det(A)
+K                                 --(1)
+
+"mean curvature via (6.2)"
+H = contract(A)
+H                                 --(2)
+
+"principal curvature via (6.3)"
+det(A - lambda unit(2))           --(3)
+
+lambda1 = 1/(v^2+1)               --(4)
+lambda1
+lambda2 = -1/(v^2+1)
+lambda2
+
+"K and H and lambda at p=(1,1)"
+--           p:1    1
+Ap = eval(A, u,1, v,1)       --(5)
+Ap
+
+Kp = det(Ap)                 --(6)
+Kp
+
+Hp = contract(Ap)            --(7)
+Hp
+
+lambda1p = eval(lambda1, u,1, v,1)  -- (8)
+lambda1p
+lambda2p = eval(lambda2, u,1, v,1)
+lambda2p
+
+"K and H and lambda as functions at p=(u,v)"
+Ap(p) = eval(A, u,p[1], v,p[2])      --(9)
+Ap
+Ap(1,1)
+
+Kp(p) = det(Ap(p))                   --(10)
+Kp
+Kp(1,1)    -- -1/4
+
+Hp(p) = contract(Ap(p))              --(11)
+Hp(1,1)    -- 0
+
+lambdap(p) = det(Ap(p)-x*unit(2))    --(12)
+lambdap
+lambdap(1,1)    -- x^2-1/4 
+
+"calculate principal directions at p=(1,1)"
+
+roots(lambdap(1,1),x)                  --(13) 
+           -- [-0.5, 0.5]
+Ap(1,1)-1/2*unit(2)                    --(14)
+           -- ansatz for EigVevctors
+
+dot(Ap(1,1)-1/2*unit(2), (x,y))        --(15)
+
+dot(Ap(1,1)+1/2*unit(2), (x,y))        --(16)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

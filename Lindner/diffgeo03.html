@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+f(x,y,z) = x^2 + y^2 - z^2
+f
+p = (0,0,1)
+X = (x,y,z)  -- coordinates in ambient space
+
+d(f,X)       -- (1)  d(f,X) = grad(f) i.e. all partial derivates
+
+gradfp = eval(d(f,X), x,0, y,0, z,1)
+gradfp       -- (2)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
