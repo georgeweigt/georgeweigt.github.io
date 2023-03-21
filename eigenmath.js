@@ -3904,8 +3904,8 @@ adj()
 		return;
 	}
 
-	if (p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
-		stopf("adj");
+	if (!issquarematrix(p1))
+		stopf("adj: square matrix expected");
 
 	n = p1.dim[0];
 
@@ -4975,11 +4975,11 @@ eval_cofactor(p1)
 	evalf();
 	j = pop_integer();
 
-	if (!istensor(p2) || p2.dim.length != 2 || p2.dim[0] != p2.dim[1])
-		stopf("cofactor");
+	if (!issquarematrix(p2))
+		stopf("cofactor: square matrix expected");
 
 	if (i < 1 || i > p2.dim[0] || j < 0 || j > p2.dim[1])
-		stopf("cofactor");
+		stopf("cofactor: index err");
 
 	push(p2);
 
@@ -6235,7 +6235,7 @@ det()
 		return;
 	}
 
-	if (p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
+	if (!issquarematrix(p1))
 		stopf("det: square matrix expected");
 
 	n = p1.dim[0];
@@ -6407,7 +6407,7 @@ eval_eigenvec(p1)
 	floatfunc();
 	p1 = pop();
 
-	if (!istensor(p1) || p1.dim.length != 2 || p1.dim[0] != p1.dim[1])
+	if (!issquarematrix(p1))
 		stopf("eigenvec: square matrix expected");
 
 	n = p1.dim[0];
@@ -8919,10 +8919,10 @@ eval_minormatrix(p1)
 	j = pop_integer();
 
 	if (!istensor(p2) || p2.dim.length != 2)
-		stopf("minormatrix");
+		stopf("minormatrix: matrix expected");
 
 	if (i < 1 || i > p2.dim[0] || j < 0 || j > p2.dim[1])
-		stopf("minormatrix");
+		stopf("minormatrix: index err");
 
 	push(p2);
 
@@ -11344,6 +11344,54 @@ eval_subst(p1)
 	evalf();
 	subst();
 	evalf(); // normalize
+}
+
+function
+subst()
+{
+	var h, i, n, p1, p2, p3;
+
+	p3 = pop(); // new expr
+	p2 = pop(); // old expr
+
+	if (p2 == symbol(NIL) || p3 == symbol(NIL))
+		return;
+
+	p1 = pop(); // expr
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			push(p2);
+			push(p3);
+			subst();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	if (equal(p1, p2)) {
+		push(p3);
+		return;
+	}
+
+	if (iscons(p1)) {
+		h = stack.length;
+		while (iscons(p1)) {
+			push(car(p1));
+			push(p2);
+			push(p3);
+			subst();
+			p1 = cdr(p1);
+		}
+		list(stack.length - h);
+		return;
+	}
+
+	push(p1);
 }
 function
 eval_sum(p1)
@@ -17027,53 +17075,6 @@ function
 stopf(errmsg)
 {
 	throw errmsg;
-}
-function
-subst()
-{
-	var h, i, n, p1, p2, p3;
-
-	p3 = pop(); // new expr
-	p2 = pop(); // old expr
-
-	if (p2 == symbol(NIL) || p3 == symbol(NIL))
-		return;
-
-	p1 = pop(); // expr
-
-	if (istensor(p1)) {
-		p1 = copy_tensor(p1);
-		n = p1.elem.length;
-		for (i = 0; i < n; i++) {
-			push(p1.elem[i]);
-			push(p2);
-			push(p3);
-			subst();
-			p1.elem[i] = pop();
-		}
-		push(p1);
-		return;
-	}
-
-	if (equal(p1, p2)) {
-		push(p3);
-		return;
-	}
-
-	if (iscons(p1)) {
-		h = stack.length;
-		while (iscons(p1)) {
-			push(car(p1));
-			push(p2);
-			push(p3);
-			subst();
-			p1 = cdr(p1);
-		}
-		list(stack.length - h);
-		return;
-	}
-
-	push(p1);
 }
 function
 subtract()
