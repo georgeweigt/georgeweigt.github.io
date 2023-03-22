@@ -9,6 +9,9 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 
+do( e=quote(e), i=quote(i))
+A = ((a,b,c),(d,e,f),(g,h,i))
+
 #  helper function to output all minormatrix'es
 MiMa(A)= do( e = quote(e), i = quote(i),    --(1)
              MM = zero(3,3,2,2),            --(2)
@@ -17,6 +20,7 @@ MiMa(A)= do( e = quote(e), i = quote(i),    --(1)
                  MM[k,j] = minormatrix(A,k,j))),  --(3)
              MM)                            --(4)
 
+A = ((a,b,c),(d,e,f),(g,h,i))
 MiMa(A)
 	  
 </textarea>

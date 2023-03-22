@@ -2,8 +2,7 @@
 ###        cqBox        Functions for quaternion algebra
 ################           inside Clifford Algebra cl(3)
 
-run("downloads/EVA2.txt")
-tty=1
+run("EVA2.txt")
 cl(3)     
 do(E=e0, I=e12, J=e23, K=e13 )  -- even subalgebra of cl(3)
 

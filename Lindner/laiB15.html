@@ -9,14 +9,28 @@
 <table><tr><td>
 <textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
 
-R=(3,1)
-P=(0,0)
-Q=(2,4)            -- because line L = L(P,Q)
-L=P+t*(P-Q)
-L
-dot(R-L,P-Q)       -- we conclude t = -1/2
-F=eval(L, t, -1/2)
-F 
+n = 2
+Em(k,i,j) = do( M=unit(n,n), M[j,i]=k, M)  -- Elementary matrix
+
+A = ((1,-2),(2,-4))        
+B = (3,6)                
+LS= ((1,-2,3),(2,-4,6))          -- augmented system (A|B)
+LS
+
+RREF = dot( Em(-2,1,2), LS)   
+RREF                             -- (1)
+
+-- construction of a pseudoinverse via RREF
+
+AE = ((1,-2, 1,0),(2,-4, 0,1))   -- (2)
+AE
+
+Apsi = Em(-2,1,2)                -- (3)  a (ps)eudo (i)nverse for A
+Apsi
+
+dot(Apsi, AE)                    -- (4)
+dot(Apsi, A)                     -- (5)
+dot(A,Apsi,A) == A               -- (6)
 
 </textarea>
 </td><td>

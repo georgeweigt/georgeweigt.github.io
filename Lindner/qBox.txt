@@ -1,7 +1,6 @@
 ################ (2021) Dr.W.G. Lindner,  Leichlingen DE
 ###         qBox        Functions for quaternion algebra
 ################
-tty=0                       -- compact notation ON
 
 E=(1,0,0,0)                 -- (1)
 I=(0,1,0,0)
