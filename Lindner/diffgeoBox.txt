@@ -37,6 +37,7 @@ H
 Dg = d(g, U)              -- partial derivatives 
 
 -- ------------------------- BEGIN of code by G. Weigt
+
 GammaI = 1/2 (Dg + transpose(Dg,2,3) - transpose(Dg,2,3,1,2)) 
 GammaII = dot(gu, GammaI)
 GammaII
@@ -54,18 +55,8 @@ Ric
                           -- RICCI curvature scalar
 R = contract( dot( gu, transpose(Ric)))  
 R
--- ------------------------- END of code by G. Weigt
 
-Kintrinsic(u,v)= do(      -- intrinsic curvature
-     Ch111 = GammaII(1,1,1),
-     Ch121 = GammaII(1,2,1),
-     Ch211 = GammaII(2,1,1),
-     Ch221 = GammaII(2,2,1),
-     Ch222 = GammaII(2,2,2),
-     Kintrinsic1 = 1/g[1,1]*( 
-                     d(Ch211,v) - d(Ch221,u) + 
-                     Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121)),
-     Kintrinsic1)
+-- ------------------------- END of code by G. Weigt
 
 -- CHRISTOFFEL symbols coefficients
 gammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +
@@ -75,6 +66,18 @@ gammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +
 gammaII(k,l,m) = sum(i,1,2, gu[k,i]*1/2 *
                 ( d(g[m,i],U[l]) + d(g[l,i],U[m]) - d(g[m,l],U[i]) ))
 --gammaII(1,2,2)
+
+Kintrinsic(u,v)= do(      -- intrinsic curvature
+     Ch111 = gammaII(1,1,1),
+     Ch121 = gammaII(1,2,1),
+     Ch211 = gammaII(2,1,1),
+     Ch221 = gammaII(2,2,1),
+     Ch222 = gammaII(2,2,2),
+     Kintrinsic1 = 1/g[1,1]*( 
+                     d(Ch211,v) - d(Ch221,u) + 
+                     Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121)),
+     Kintrinsic1)
+
 
 -- RIEMANN curvature Rijkl coefficients 
 RiemI(b,m,s,q) = d(gammaI(b,m,q),U[s]) - d(gammaI(b,m,s),U[q]) +

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH    Dr. W.G. Lindner 3/2023
+
+phi(u,v) = (u,v, u v)    
+phiu = d(phi,u)           
+phiv = d(phi,v)
+U    = (u,v)              
+
+"1st fund. form"
+
+g(i,j) = dot(d(phi, U[i]), d(phi,U[j]))
+g      = ((g(1,1),g(1,2)), (g(2,1),g(2,2)))
+g
+gu = inv(g)               -- inverse metric
+Dg = d(g, U)              -- partial derivatives 
+
+"2nd fund. form"
+
+V      = 1/sqrt(det(g))  
+h(i,j) = 1/V*dot( cross(d(phi,u), d(phi,v)), d(phi,U[i],U[j]))
+h      = ( (h(1,1),h(1,2)), (h(2,1),h(2,2)))
+h
+
+"CHRISTOFFEL symbols coefficients as functions"
+
+gammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +
+                        d(g[i,k],U[j]) - d(g[i,j],U[k]) )
+gammaI(1,2,2)
+
+gammaII(k,l,m) = sum(i,1,2, gu[k,i]*1/2 *
+                ( d(g[m,i],U[l]) + d(g[l,i],U[m]) - d(g[m,l],U[i]) ))
+gammaII(1,2,2)
+
+"Kintrinsic as function"
+
+Kintrinsic(u,v)= do(      -- intrinsic curvature
+     Ch111 = gammaII(1,1,1),
+     Ch121 = gammaII(1,2,1),
+     Ch211 = gammaII(2,1,1),
+     Ch221 = gammaII(2,2,1),
+     Ch222 = gammaII(2,2,2),
+     Kintrinsic1 = 1/g[1,1]*( 
+                     d(Ch211,v) - d(Ch221,u) + 
+                     Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121)),
+     Kintrinsic1)
+
+"call Kintrinsic:"
+Kintrinsic(u,v)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
