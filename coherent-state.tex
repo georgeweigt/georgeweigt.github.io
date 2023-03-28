@@ -191,61 +191,39 @@ Check units.
 \hbar\omega=h\nu\propto\text{joule}\,\text{second}\times\frac{1}{\text{second}}=\text{joule}
 \end{equation*}
 
+\newpage
+
 We will now show that
 \begin{equation*}
 \hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
 \end{equation*}
 
-Apply operator $\hat a$ to coherent state $|\Psi\rangle$ to obtain
+Let
 \begin{equation*}
-\hat a|\Psi\rangle
-=\sum_{n=0}^\infty
-\sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
+c_n=\sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
 \exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
-\sqrt n|n-1\rangle
 \end{equation*}
 
-The $n=0$ term vanishes hence the sum can start from $n=1$.
+It follows that
 \begin{equation*}
-\hat a|\Psi\rangle
-=\sum_{n=1}^\infty
-\sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
-\sqrt n|n-1\rangle
-\end{equation*}
-
-The $\sqrt n$ cancels with $n$ factorial.
-\begin{equation*}
-\hat a|\Psi\rangle
-=\sum_{n=1}^\infty
-\sqrt{\frac{\bar n^n\exp(-\bar n)}{(n-1)!}}
-\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
-|n-1\rangle
-\end{equation*}
-
-Factor out $\sqrt{\bar n}\exp(-i\omega t)$.
-\begin{equation*}
-\hat a|\Psi\rangle
-=\sqrt{\bar n}\exp(-i\omega t)
-\sum_{n=1}^\infty
-\sqrt{\frac{\bar n^{n-1}\exp(-\bar n)}{(n-1)!}}
-\exp\Bigl(-i\bigl(n-\tfrac{1}{2}\bigr)\omega t\Bigr)
-|n-1\rangle
-\end{equation*}
-
-Substitute $n+1$ for index $n$.
-\begin{equation*}
-\hat a|\Psi\rangle
-=\sqrt{\bar n}\exp(-i\omega t)
-\sum_{n=0}^\infty
-\sqrt{\frac{\bar n^n\exp(-\bar n)}{n!}}
-\exp\Bigl(-i\bigl(n+\tfrac{1}{2}\bigr)\omega t\Bigr)
-|n\rangle
+c_n=\sqrt\frac{\bar n}{n}\exp(-i\omega t)c_{n-1}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
+\hat ac_n|n\rangle=c_n\sqrt{n}|n-1\rangle=\sqrt{\bar n}\exp(-i\omega t)c_{n-1}|n-1\rangle
+\tag{3}
+\end{equation*}
+
+Noting that $\hat a|0\rangle=0$ we can write the summation index starting from 1.
+\begin{equation*}
+\hat a|\Psi\rangle=\hat a\sum_{n=1}^\infty c_n|n\rangle
+\end{equation*}
+
+Hence by (3) we have
+\begin{equation*}
+\hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)\sum_{n=1}^\infty c_{n-1}|n-1\rangle
+=\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
 \end{equation*}
 
 \end{document}
