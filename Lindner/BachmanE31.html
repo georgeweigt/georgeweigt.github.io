@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 72
+--| 5.    Differentiation of Differential Forms
+--| 5.3   Interlude: 0-Forms
+
+
+"EAMPLE 31"
+-- WANTED:
+--    calculate d􏰀( xy dx - xy dy + xy^2z^3 dz)􏰁
+
+"SOLUTION:"
+
+val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])
+
+-- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = det( ((val3(w1,v1), val3(w2,v1)),
+                            (val3(w1,v2), val3(w2,v2)) ))
+
+f(x,y,z) = x*y
+g(x,y,z) = -x*y
+h(x,y,z) = x*y^2*z^3
+
+-- general 1-form
+omega = f(x,y,z)*dx + g(x,y,z)*dy + h(x,y,z)*dz -- (1-form in R^3)
+omega
+
+-- (2-form in R^3)
+domega(V1,V2) = (d(g(x,y,z),x)-d(f(x,y,z),y))*ext23(dx,dy,V1,V2) + 
+                (d(h(x,y,z),y)-d(g(x,y,z),z))*ext23(dy,dz,V1,V2) +
+                (d(h(x,y,z),x)-d(f(x,y,z),z))*ext23(dx,dz,V1,V2) 
+
+DxDy = (d(g(x,y,z),x)-d(f(x,y,z),y))
+DxDy
+DyDz = (d(h(x,y,z),y)-d(g(x,y,z),z))
+DyDz
+DxDz = (d(h(x,y,z),x)-d(f(x,y,z),z))
+DxDz
+
+"Result:"
+DxDy * dxdy + DyDz*dydz + DxDz*dxdz
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

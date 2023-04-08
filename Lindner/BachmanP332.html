@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 39
+--| 3    Forms
+--| 3.6  n-Forms
+
+"EXERCISE 3.32.3"
+-- GIVEN: 
+--    w(dx,dy,dz) = dx+5dy-dz, v(dx,dy,dz) = 2dx-dy+dz,
+--    gamma(dx, dy, dz) = -dx + dy + 2dz.
+--    a = 3dx^dy+2dy^dz-dx^dz.
+--    V1 =(1,0,2), V2 =(1,1,2) and V3 =(0,2,3).
+-- WANTED:
+--    1. compute w ∧ v ∧ gamma(V1, V2, V3).
+--    2. Find a constant c such that w^v^gamma = c dx^dy^dz.
+--    3. Find a constant c such that a^gamma = c dx^dy^dz.
+
+"SOLUTION:"
+
+------------------ DEF of wedge (exterior) product w1^w2^w3 in R^3
+--                 along the formula in text at p. 38
+
+f3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3])  -- helper function
+
+ext33(w1,w2,w3, v1,v2,v3) = 
+      det((( f3(w1,v1), f3(w2,v1), f3(w3,v1) ),
+           ( f3(w1,v2), f3(w2,v2), f3(w3,v2) ),
+           ( f3(w1,v3), f3(w2,v3), f3(w3,v3) )))
+
+-- data
+w(dx,dy,dz) = dx+5dy-dz
+v(dx,dy,dz) = 2dx-dy+dz
+g(dx,dy,dz) = -dx+dy+2dz
+
+V1=(1,0,2)
+V2=(1,1,2)
+V3=(0,2,3)
+
+"1.)"
+-- ext33 : TpR3 x TpR3 x TpR3 x R3 x R3 x R3   --> R
+   ext33(  w,     v,     g,     V1,  V2,  V3)  
+
+"2.)"
+
+V1=(a1,a2,a3)
+V2=(b1,b2,b3)
+V3=(c1,c2,c3)
+
+"compare coefficients:"
+ext33(  w, v,  g,   V1,V2,V3)
+ext33( dx, dy, dz,  V1,V2,V3)
+"Ergo: c= - 29"
+
+
+"3."
+
+-- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) )))
+
+
+-- a = 3*ext23(dx,dy, V1,V2)+2*ext23(dy,dz, V1,V2)-ext23(dx,dz, V1,V2)
+-- a
+-- LHS = a^g = ?
+
+RHS = c*ext33(dx,dy,dz, V1,V2,V3)
+RHS  
+
+-- calculation aside:
+--   y = -dx +dy +2dz
+--   a = 3 dx.dy + 2dy.dz -dx.dz
+-- a^y = (3 dx.dy + 2dy.dz -dx.dz)^(-dx +dy +2dz)
+--     = - 3 dx.dy.dx -2dy.dz.dx +dx.dz.dx 
+--               0                  0
+--       + 3 dx.dy.dy +2dy.dz.dy -dx.dz.dy
+--               0        0     
+--       + 6 dx.dy.dz +4dy.dz.dz -2dx.dz.dz
+--                        0          0
+--     = -2dy.dz.dx - dx.dz.dy + 6 dx.dy.dz 
+--     = -2dx.dy.dz + dx.dy.dz + 6dx.dy.dz
+--     = 5 dx.dy.dz
+
+5
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

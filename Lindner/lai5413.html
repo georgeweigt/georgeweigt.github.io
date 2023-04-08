@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+---
+----      GAUSS (m)atrix for elimination downstairs
+Gm(k,A) = do( n   = dim(A,1), -- get the dim
+              Gmm = unit(n),  -- k th column
+              for(i,k+1,n, Gmm[i,k] = - A[i,k]/A[k,k]),
+              Gmm )
+
+----       GAUSS matrix for elimination (u)pstairs
+Gu(k,A) = do( n   = dim(A,1), -- get the dim
+              Guu = unit(n),  -- k th column
+              for(i,k,1, Guu[i,k] = - A[i,k]/A[k,k]),
+              Guu )
+
+
+----    Gauss (n)ormalization of diagonal
+Gn(A)   = do( n = dim(A,1), -- get the dim
+              Gnn = unit(n),  -- k th column
+              for(k,1,n, Gnn[k,k] = 1/A[k,k]),
+              Gnn )
+
+
+
+A=((2,4,-2), 
+   (4,9,-3), 
+   (-2,-3,7))
+
+AE = ((2,4,-2,  1,0,0),       --(0)
+      (4,9,-3,  0,1,0), 
+      (-2,-3,7, 0,0,1 ))
+AE
+
+X=((x,y,z), (u,v,w), (r,s,t))
+X
+
+dot(A,X)                     --(1) A*X=E i.e. should be E
+
+inv(A)                       --(2) to re-construct
+
+
+doGm(j,V)=dot(Gm(j,V),V)
+doGu(j,V)=dot(Gu(j,V),V)
+doGn(V)=dot(Gn(V),V)
+
+
+dim(AE,2)
+dot(Gm(1,AE), AE)
+M1=doGm(1,AE)
+M1
+M2=doGm(2,M1)
+M2
+M3=doGu(3,M2)
+M3
+M4=doGu(2,M3)
+M4
+iA=doGn(M4)
+iA
+---
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 39
+--| 3    Forms
+--| 3.6  n-Forms
+
+"EXERCISE 3.34"
+-- GIVEN: 
+--    V1 = (1,1,1), V2 = (1,0,1), V3 = (0,1,-1)
+--    w=(dx+dy)^(2dx+dz)^dz   a the 3-form.
+-- WANTED:
+--    1. Expand and simplify w.
+--    2. Plug the vectors V1,V2,V3 into w.
+
+"SOLUTION:"
+
+"1. calculation via paper&pencil"
+
+-- w = (dx+dy)^(2dx+dz)^dz 
+--   = (dx+dy)^(2dx^dz+dz^dz)
+--   =                   0    
+--   = (dx+dy)^(2dx^dz)
+--   = dx^2dx^dz + dy^2dx^dz
+--       0
+--   = -2 dx^dy^dz
+
+"2. calculation via Eigenmath:"
+
+V1=(1,1,1)
+V2=(1,0,1)
+V3=(0,1,-1)
+
+ext33(w1,w2,w3, v1,v2,v3) = do(
+             val3(w,v)    = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det((( val3(w1,v1), val3(w2,v1), val3(w3,v1) ),
+           ( val3(w1,v2), val3(w2,v2), val3(w3,v2) ),
+           ( val3(w1,v3), val3(w2,v3), val3(w3,v3) ))))
+
+--         w=(dx+dy)^(2dx+dz)^dz in Eigenmath language:
+
+value = ext33(dx+dy, 2*dx+dz, dz, V1,V2,V3)
+value
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

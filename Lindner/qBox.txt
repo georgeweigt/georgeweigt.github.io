@@ -1,0 +1,55 @@
+################ (2021) Dr.W.G. Lindner,  Leichlingen DE
+###         qBox        Functions for quaternion algebra
+################
+
+E=(1,0,0,0)                 -- (1)
+I=(0,1,0,0)
+J=(0,0,1,0)
+K=(0,0,0,1)
+
+
+addQ(x,y)  = (x[1]+y[1])*E + (x[2]+y[2])*I+
+             (x[3]+y[3])*J + (x[4]+y[4])*K    
+
+scalQ(r,x) = r*x[1]*E + r*x[2]*I + r*x[3]*J + r*x[4]*K 
+
+multQ(x,y) = (x[1]*y[1]-x[2]*y[2]-x[3]*y[3]-x[4]*y[4])*E + 
+             (x[1]*y[2]+x[2]*y[1]+x[3]*y[4]-x[4]*y[3])*I + 
+             (x[1]*y[3]-x[2]*y[4]+x[3]*y[1]+x[4]*y[2])*J +
+             (x[1]*y[4]+x[2]*y[3]-x[3]*y[2]+x[4]*y[1])*K
+
+conjQ(q)   = q[1]*E-q[2]*I-q[3]*J-q[4]*K
+
+magQ(q)    = sqrt(q[2]^2+q[1]^2+q[3]^2+q[4]^2) 
+
+normalQ(q) = q/magQ(q)
+unitQ(q)   = normalQ(q)
+
+invQ(x)    = (x[1]*E - x[2]*I - x[3]*J -x[4]*K)/(x[1]^2 + x[2]^2 + x[3]^2+x[4]^2)
+
+
+inpQ(q)    = dot(q,q)
+
+pRq(p,q)   =  multQ(q[1]*E+q[2]*I+q[3]*J+q[4]*K ,  -- q
+                multQ(0*E+p[1]*I+p[2]*J+p[3]*K,    -- p
+                  q[1]*E-q[2]*I-q[3]*J-q[4]*K))    -- conjQ(q)
+
+Raxis(q)    = (unitQ(q)[2],unitQ(q)[3],unitQ(q)[4])    
+                                  -- axis  of corresponding 3D rotation
+Rangle(q)   = 2*arccos(q[1])      -- angle of corresponding 3D rotation
+RalphaQ(q)  = RangleQ(q)
+
+scalarQ(q)  = q[1]  
+
+vector3Q(q) = (q[2],q[3],q[4])    -- as vector in R^3
+
+vectorQ(q)  = (0,vq[2],q[3],q[4]) -- as quaternion in R^4
+
+argQ(q)     = arccos( scalarQ(q)/magQ(q) )
+
+polarQ(q)   = do( theta = arccos( q[1]/magQ(q) ),
+                  cth   = cos( theta),
+                  sth   = float( sin(theta)),
+                  (cth*q[1], sth*q[2], sth*q[3], sth*q[4]))
+
+polar1Q(q)  = magQ(q)*(cos(argQ(q))*E + sin(argQ(q))*vectorQ(q))

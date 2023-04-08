@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("EVA2.txt")
+tty=0
+cl(3)     
+do(E=e0, I=e12, J=e23, K=e13 )
+    
+x = (x1,0,0,0,x2,x3,x4,0)   -- arbitrary test input 
+a = 1E+2I+3J+4K             -- concrete test input
+
+magnitude(x)                -- here we see (+,+,+)!
+magnitude(a)                -- formerly: magQ(a)
+
+tty=1
+normalize(x)
+normalize(a)                -- formerly: normalQ(a)
+ 
+unit1(q) = normalize(q)     -- alias
+unit1(a)
+
+inverse(x)                 
+inverse(a)                  -- formerly: invQ(a)
+
+quot1(q,n) = gp(q, inverse(n)) -- division of quaternions
+
+a = 1E+2I+3J+4K             -- concrete test inputs
+b = 5E+6I+7J+8K
+quot1(a,b)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

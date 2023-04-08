@@ -1,0 +1,31 @@
+################ (2021) Dr.W.G. Lindner,  Leichlingen DE
+###        cqBox        Functions for quaternion algebra
+################           inside Clifford Algebra cl(3)
+
+run("EVA2.txt")
+cl(3)     
+do(E=e0, I=e12, J=e23, K=e13 )  -- even subalgebra of cl(3)
+
+rad(x)    = float(x*pi/180)     -- Input: Winkel in Grad[°]
+degree(x) = float(x*180/pi)     -- Input: Winkel in radiant[rad]
+
+dsg(u)    = dispgrd(u)          -- syn. sugar
+norm(q)   = magnitude(q) 
+unitq(q)  = normalize(q)
+quot(p,q) = gp(p, inverse(q))
+
+--------------
+-- polar forms
+--------------
+
+V(q)        = unitq( q-cj(q) ) 
+
+phi(q)      = float( arccos( (q+cj(q))[1]/2/magnitude(q)))  
+arg2(q)     = arccos( real1(q)[1]/magnitude(q) )
+
+polar3(q)   = magnitude(q) * ( cos(phi(q))*E + sin(phi(q))*V(q) )
+
+polar2(q)   = do( theta = arg2(q),
+                  ct    = cos(theta),
+                  st    = float(sin(theta)),
+                  ct*q[1]*E+st*q[5]*I+st*q[6]*J+st*q[7]*K)

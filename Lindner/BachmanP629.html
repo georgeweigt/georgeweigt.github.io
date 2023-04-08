@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 97
+--| 6.    STOKES' Theorem
+--| 6.3 Vector calculus and generalized Stokes Theorem
+
+"EXERCISE 6.29"
+
+-- GIVEN: 
+--    F = (0,-z,0), a vector field on R^3.
+--    P = the portion of a paraboloid parameterized by
+--        Psi(r,t) = (r cos(t), r*sin(t), r^2) with r: 0..1  t: 0..pi/2.
+-- WANTED:
+--    1. Calculate N(abla)xF = curl(F).
+--    2. Find  α with ∫(α|P) = Int(NxF.dS)|P.
+--    3. calculate ∫(F.ds)|dP.
+
+"SOLUTION:"
+		
+-- Let 
+"1.) Calculate N(abla)xF = curl(F)"
+
+-- it's  i.e. curl(F):
+curl(U) = (d(U[3],y) - d(U[2],z),
+           d(U[1],z) - d(U[3],x),
+           d(U[2],x) - d(U[1],y)) 
+
+F=(0,-z,0)
+curl(F)
+
+"2.) Find alpha with Int(alpa|P) = Int(NxF.dS)|P."
+
+-- Start (1) with a vector field F, 
+--       (2) form the associated 1-form ω1F ..
+
+omegaF = 0*dx-z*dy+0*dz
+omegaF
+
+--       (3) differentiate it, 
+f = 0
+g = -z
+h = 0
+domegaF = (d(g,x)-d(f,y))*dxdy +
+          (d(h,y)-d(g,z))*dydz + (d(h,x)-d(f,z))*dxdz
+
+alpha = domegaF
+alpha
+
+"3.) Let P be the portion of a paraboloid parameterized by"
+"     Psi(r,t) = (r cos(t),r*sin(t), r^2) with r: 0..1  t: 0..pi/2."
+"     Use 2. to calculate Int(F.ds)|dP!"
+
+-- by using formula p.97 above we have:
+-- ∫(F.ds)|dP = ∫NxF.dS|P = ∫ dw1F|P = ∫α|P.
+-- So we have to integrate d(alpa) over P:
+
+Psi(r,t) = (r*cos(t), r*sin(t), r^2)        
+--          r: 0..1         t: 0..pi/2
+
+-- calculate ∫α.
+
+-- DEF of wedge (exterior) product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+-- Tangential vectors in Tp
+Vr = d(Psi,r)
+Vr
+Vt = d(Psi,t)
+Vt
+
+alpha = 1 * ext23(dx,dy,Vr,Vt)   -- 2-form in R^2
+alpha
+alpha = simplify(alpha)
+alpha
+
+-- use parmeterization 
+x = r*cos(t) 
+y = r*sin(t)
+z = r^2
+
+alpha
+
+-- integrate α on P
+Ialpha = defint(alpha, r,0,1, t,0,pi/2)
+Ialpha
+
+"k.o. - should be -2/3 ??"
+
+-------------------------------------------
+stop 6.29 1. (1,0,0) 2. a=dy^dz 3. -2/3
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

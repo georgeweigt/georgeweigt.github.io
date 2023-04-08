@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 50
+--| 4    Differential Forms
+--| 4.2  Integrating differential 2-forms
+
+"EXERCISE 4.9"
+-- GIVEN: 
+--    w = y dx^dz be a differential 2-form on R^3.
+--    S parameterized by graph of z=f(x)= x^3
+--      by rotation around z-axis for 0<=x<=1.
+-- WANTED:
+--    Calculate integral(w|S).
+
+"SOLUTION:"
+
+--------------------- DEF of exterior product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) ) ) )
+
+
+-- parameterize the graph of f
+-- use cylindrical coords
+
+x = r cos(theta)
+y = r sin(theta)
+z = x^3         -- =  f(x)
+
+Psi(r,theta)=(x,y,z)
+Psi
+
+-- so explicit:
+Psi(r,t)=(r cos(t),r sin(t), r^3*cos(t)^3)
+--          x        y            z
+ 
+-- Tangential vectors in TpM
+V1 = d(Psi,r)
+V1
+V2 = d(Psi,t)
+V2
+
+-- use parameterization
+y = r sin(theta)
+
+-- calculate omega as integrand
+omega = y * ext23(dx,dz, V1,V2) 
+omega
+
+" STOP:  omega = 0 ??  - fix it!"
+-- integrate omega on region [0, 1] x [0,2pi]
+--                              x       t
+Iomega = defint(omega, r,0,1, t,0,2pi)
+Iomega
+
+stop 3/5*pi
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

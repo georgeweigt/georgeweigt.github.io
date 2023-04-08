@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 68
+--| 4.8    Nonlinear forms (optional)
+--| 4.8.1  Surface area
+
+"Exercise 4.32."
+-- GIVEN: 
+--    Φ(ρ,θ)=(ρcosθ,ρsinθ,±√(r^2 −ρ^2)  parameterization.
+--    S = sphere of radius r in R^3 using the parameterizations Φ
+--        for the top and bottom halves, where 0 ≤ ρ ≤ r and 0 ≤ θ ≤ 2π.
+-- WANTED:
+--    compute the surface area of S.
+
+"SOLUTION:"
+		
+--------------- DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+--------------- 
+
+-- A parameterization is given by
+
+Phi(R,t) = (R cos(t),R sin(t), sqrt(r^2-R^2))   -- R=rho
+--            where 0 <=R<= r and 0 <=t<= 2pi.
+
+Phit = d(Phi,t)
+Phit
+
+Phip = d(Phi,p)
+Phip
+
+-- we calculate the volume elements
+
+dydz = ext23(dy,dz, Phit,Phip) 
+dydz
+
+dxdz = ext23(dx,dz, Phit,Phip) 
+dxdz
+
+dxdy = ext23(dx,dy, Phit,Phip) 
+dxdy
+
+"         We help to simplify:"
+
+dxdy = -r^2*cos(p)sin(p) * (cos(t)^2+sin(t)^2)
+--     -r^2*cos(p)sin(p) * (cos(t)^2+sin(t)^2)
+dxdy = -r^2*cos(p)sin(p) * 1
+dxdy
+
+area = sqrt(dydz^2 + dxdz^2 + dxdy^2)   -- area = dS :)
+area
+
+-- Comment:
+-- "output area:"
+-- cos(t)^2*sin(p)^4 + sin(p)^4*sin(t)^2 + cos(p)^2*sin(p)^2 
+-- "output text:"
+-- sin(p)^4*cos(t)^2 + sin(p)^4*sin(t)^2 + sin(p)^2*cos(p)^2
+-- sin(p)^4 *(cos(t)^2 + sin(t)^2) + sin(p)^2*cos(p)^2
+-- sin(p)^4 *(         1         ) + sin(p)^2*cos(p)^2
+
+area = r^2 * sqrt( sin(p)^4 + sin(p)^2*cos(p)^2)
+area
+area = r^2 * sqrt(sin(p)^2) * sqrt( sin(p)^2 + cos(p)^2)
+area
+area = r^2 * sin(p)
+area
+
+SurfaceArea = defint(area, p,0,pi, t,0,2pi)
+SurfaceArea
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+f(x,y) = (0.8*x + 0.1*y, 0.2*x + 0.9*y)
+M = zero(4,2)
+
+M[1] = ( f(5,20)[1], f(5,20)[2] )
+
+for(i,2,4, 
+          M[i] = f( M[i-1,1], M[i-1,2] )) --(1) 
+M[4]                                      --(2)
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+
+<p>
+<div id="stdout"></div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+
+-- metric tensor in polar coordinates
+gdd = zero(2,2)
+      gdd[1,1]= 1
+      gdd[2,2]= r^2
+
+-- use polar coordinates
+X = (r,theta) 
+
+-- calculate guu
+guu = inv(gdd)
+
+-- calculate all partial derivations w.r.t. r, theta
+gddd = d( gdd, X)     
+gddd                 --(1)
+
+-- calculate CHRISTOFFEL tensor 1st kind
+-- see explanation in previous example 24
+
+Gammaddd = 1/2*(gddd +                   
+                transpose(gddd,2,3) -      
+                transpose(gddd,2,3,1,2))    
+                                         
+Gammaddd            --(2)
+
+-- raise first index using guu, i.e. .ddd -> .udd
+Gammaudd = dot(guu,Gammaddd) -- (3)
+Gammaudd
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

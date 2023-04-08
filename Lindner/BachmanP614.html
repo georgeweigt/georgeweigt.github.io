@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 89
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+
+"EXERCISE 6.14"
+-- GIVEN: 
+--    C = the curve to be seen in the picture.
+--    w = sin(y)dx + x*cos(y) dy  1-form.
+-- WANTED:
+--    Calculate ∫w|C.
+--    
+
+"SOLUTION: (not ready, please fix.)"
+
+-- plot something like .. not exactly ;)
+-- use exp ? log?
+
+k = 1.5
+r =  k*theta
+x = -r*cos(theta)
+y =  r*sin(theta)
+xrange = (-10,10)
+yrange = (-10,10)
+trange = (0, 4 pi)
+draw((x,y),theta)
+
+xrange = (-2,2)
+yrange = (-2,2)
+trange = (0,4pi)
+r = exp(-0.5t)
+x = r cos(t)  
+y = r sin(t)  
+f = (x,y)    -- alias ((cos t)^2, cos(t)*sin(t))
+draw( f ,t)
+
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2]) 
+
+-- Parametrization with -1<=t<=1
+Phi(t) = (1.5*t cos(t),1.5*t sin(t))
+Phi                           -- t: 0..1
+
+-- Tangential vector in Tp
+V = d(Phi,t)
+V
+
+ext12(dx,V)
+ext12(dy,V)
+
+df = sin(x)*ext12(dx,V) +  x*cos(y)*ext12(dy,V)  
+df
+df = circexp(df)
+df
+
+-- usr param
+x=1.5*t cos(t)
+y=1.5*t sin(t)
+
+-- integrate df along C
+IC = defint(df, t,0,4pi)
+IC
+
+stop  6.14 2
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

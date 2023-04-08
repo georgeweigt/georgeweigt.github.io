@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 20
+--| 2    Prerequisites
+--| 2.5  Parameterized surfaces in R^3
+
+"EXERCISE 2.31."
+-- GIVEN: 
+--    1. A right, circular cone centered on the z-axis with vertex at the origin.
+--    2. The xz-plane.
+--    3. The xy-plane.
+--    4. A plane that is at an angle of pi with both the x/y-axes.
+--    5. The surface found by revolving the graph of z = x (where x >= 0)
+--       around the z-axis.
+-- WANTED:
+--    Find rectangular, cylindrical and spherical equations for these shapes.
+
+x=quote(x)
+y=quote(y)
+z=quote(z)
+
+"1. cone(O,z)"
+"  - rectangular (cartesian):"
+Cone(x,y)=(x, y , sqrt(x^2+y^2))
+Cone(x,y)
+
+"  - cylindrical:"
+x = r cos(theta)
+y = r sin(theta)
+z = r
+ConeCyl(r,theta)=(x, y , z)
+ConeCyl(r,theta)=(r cos(theta), r sin(theta), r)
+ConeCyl(r,theta)
+
+"  - spherical:"
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+phi = pi/4
+
+ConeSph(rho,theta)=(x,y,z)
+ConeSph(rho,theta)
+-- i.e. explicit:
+ConeSph(rho,theta)=(rho cos(theta), rho sin(theta) ,rho/sqrt(2))
+ConeSph(rho,theta)
+
+
+"2. --------------------------- xz-plane"
+x=quote(x)
+y=quote(y)
+z=quote(z)
+phi=quote(phi)
+r
+rho
+theta
+phi
+
+"  - rectangular (cartesian):"
+xzPlane(x,z)=(x, 0 , z)
+xzPlane(x,z)
+
+"  - cylindrical:"
+x = r cos(theta)
+y = r sin(theta)
+z = r
+
+theta=0
+
+xzPlaneCyl(r,z)=(x, y , z)
+xzPlaneCyl(r,z)=(r, 0, r)
+xzPlaneCyl(r,z)
+
+"  - spherical:"
+-- clear all
+do( x=quote(x), y=quote(y), z=quote(z))
+do( phi=quote(phi), r=quote(r), z=quote(z))
+do( rho=quote(rho), theta=quote(theta), phi=quote(phi))
+
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+theta=0
+
+xzPlaneSph(rho,phi)=(x,y,z)
+xzPlaneSph(rho,phi)
+-- i.e. explicit:
+xzPlaneSph(rho,phi)=(rho sin(phi), 0 , cos(phi))
+xzPlaneSph(rho,phi)
+
+"3. xy-plane (analog) .."
+
+"4. --------------------------- z=x+y surface"
+
+-- clear all
+do( x=quote(x), y=quote(y), z=quote(z))
+do( phi=quote(phi), r=quote(r), z=quote(z))
+do( rho=quote(rho), theta=quote(theta), phi=quote(phi))
+r
+rho
+theta
+phi
+
+"  - rectangular (cartesian):"
+S(x,z)=(x, y, x+y)
+S(x,z)
+
+"  - cylindrical:"
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+z = x+y
+
+cylS(r,theta)=(x, y , z)
+
+cylS(r,theta)=(r cos(theta), 
+               r sin(theta), 
+               r (cos(theta)+sin(theta)))
+cylS(r,theta)
+
+"  - spherical:"
+-- clear all
+do( x=quote(x), y=quote(y), z=quote(z))
+do( phi=quote(phi), r=quote(r), z=quote(z))
+do( rho=quote(rho), theta=quote(theta), phi=quote(phi))
+
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+z=x+y
+
+SphS(rho,theta, phi)=(x,y,z)
+SphS(rho,phi)
+-- i.e. explicit:
+SphS(rho,theta,phi)=(rho sin(phi) cos(theta) , 
+               rho sin(phi) sin(theta) , 
+               rho sin(phi) cos(theta)+rho sin(phi) sin(theta))
+SphS(rho,theta,phi)
+
+"4. --------------------------- z=(x^2+y^2)^3/2 surface (Flaeche)"
+
+-- clear all
+do( x=quote(x), y=quote(y), z=quote(z))
+do( phi=quote(phi), r=quote(r), z=quote(z))
+do( rho=quote(rho), theta=quote(theta), phi=quote(phi))
+r
+rho
+theta
+phi
+
+"  - rectangular (cartesian):"
+F(x,y,z)=(x, y, (x^2+y^2)^(3/2))
+F
+
+"  - cylindrical:"
+x = r cos(theta)
+y = r sin(theta)
+z = z
+
+z = (x^2+y^2)^(3/2)
+simplify(z)
+
+
+Fcyl(r,theta)=(x, y , z)
+Fcyl
+simplify(Fcyl)
+
+Fcyl(r,theta)=(r cos(theta), 
+               r sin(theta), 
+               r^3)
+Fcyl
+
+"  - spherical:"
+-- clear all
+do( x=quote(x), y=quote(y), z=quote(z))
+do( phi=quote(phi), r=quote(r), z=quote(z))
+do( rho=quote(rho), theta=quote(theta), phi=quote(phi))
+
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+
+z = (x^2+y^2)^(3/2)
+z = (r^2 sin(p)^2 (cos(t)^2  + sin(t)^2 ))^(3/2)  -- p=phi
+z = (r^2 sin(phi)^2)^(3/2)
+
+simplify(z)
+
+Fsph(rho,theta,phi)=(x,y,z)
+Fsph
+
+-- i.e. explicit:
+Fsph(rho,theta,phi)=(rho sin(phi) cos(theta) , 
+                     rho sin(phi) sin(theta) , 
+                     rho^3 sin(phi)^3)
+Fsph
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

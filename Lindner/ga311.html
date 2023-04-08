@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+#  QUATERNIONs as vector space - NO use of EVA
+tty=0                       -- compact notation OFF
+
+E = (1,0,0,0)               -- (1) basis 
+I = (0,1,0,0)
+J = (0,0,1,0)
+K = (0,0,0,1)
+
+x = (x0,x1,x2,x3)           -- (2) a arbitrary quaternion as 4D vector
+x
+xQ = a*E + b*I + c*J + d*K  -- (3) arbitrary quaternion in basis E,I,J,K
+xQ
+y = (y1,y2,y3,y4)
+
+addQ1(x,y) = (x[1]+y[1],x[2]+y[2],x[3]+y[3],x[4]+y[4])     --(3)
+
+addQ(x,y) = (x[1]+y[1])*E + (x[2]+y[2])*I+
+            (x[3]+y[3])*J + (x[4]+y[4])*K                  -- (4)
+
+scalQ(r,x) = r*x[1]*E + r*x[2]*I + r*x[3]*J + r*x[4]*K     -- (5)
+
+x = (1,2,3,4)     -- example quaternion as vector in R^4 
+y = 5E+6I+7J+8K   -- example quaternion in basis {E,I,J,K} representation 
+
+addQ1(x,y)
+addQ(x,y)
+x+y                                 -- (6) 
+
+scalQ(2,x)
+2*x                                 -- (7) 
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

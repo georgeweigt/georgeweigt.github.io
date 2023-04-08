@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+-- C as algebra
+-- define new multiplication * for 2D row vectors
+
+star(u,v)= (u[1]*v[1]-u[2]*v[2],u[1]*v[2]+u[2]*v[1])
+
+-- rule C*            -- after '--' comes a comment
+do( u=(a,b), v=(c,d))
+star(u,v)
+star(v,u)
+star(u,v)==star(v,u)  -- operation * is commutative
+
+-- rule N*, existence of neutral resp. *
+tty = 1               -- now line oriented output 
+e1  = (1,0)
+z   = (x,y)
+star(z,e1)
+star(z,e1) == z
+
+-- rule I*, existence of inverse resp. *
+invC(z) = (z[1]/(z[1]^2+z[2]^2), -z[2]/(z[1]^2+z[2]^2))
+invC((2,1))
+star((2,1), invC((2,1)))
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

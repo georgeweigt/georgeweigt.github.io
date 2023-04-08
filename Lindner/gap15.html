@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("EVA2.txt")
+cl(3)     
+tty=0
+do(E=e0, I=e12, J=e13, K=e23 )  -- chose basis EIJK
+
+a = 1E + 2I + 3J + 4K
+a
+cj(a) 
+
+-- Determine the division of two 1-by-4 quaternions:
+-- q = [1 0 1 0];
+-- r = [1 0.5 0.5 0.75];
+-- d = quatdivide(q, r)
+-- d = 0.7273    0.1212    0.2424   -0.6061
+
+quot(p,q) = gp(p, inverse(q))
+
+q=1E + 0I + 1J + 0K       -- andere sortierung JK->KJ
+r=1E+0.5I+0.5J+0.75K
+quot(q,r)               
+
+
+-- Determine the inverse of q = [1 0 1 0]:
+-- qinv = quatinv([1 0 1 0])
+-- qinv = 0.5000  0  -0.5000  0
+
+q=1E+0I+1J+0K
+inverse(q)             
+
+-- Determine the modulus of q = [1 0 0 0]:
+-- mod = quatmod([1 0 0 0])
+-- mod = 1
+
+q=1E+0I+0J+0K
+magnitude(q)
+
+-- Determine Product of a Quaternion with Itself
+-- View MATLAB Command
+-- This example shows how to determine the product 
+-- of a 1-by-4 quaternion with itself.
+-- q = [1 0 1 0];
+-- mult = quatmultiply(q)
+-- mult(1×4) = 0     0     2     0
+
+q=1E+0I+1J+0K
+gp(q,q)
+
+-- Determine the norm of q = [.5 -.5 .5 0]:
+-- norm=quatnorm([.5 -.5 .5 0])
+-- norm = 0.7500
+
+q=0.5E-0.5I+0.5J+0K
+magnitude(q)                -- ??
+
+-- Normalize q = [1 0 1 0]:
+-- normal = quatnormalize([1 0 1 0])
+-- normal = 0.7071   0    0.7071     0
+
+q=1E+0I+1J+0K
+normalize(q)         
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

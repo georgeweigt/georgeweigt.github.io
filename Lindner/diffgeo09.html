@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+phi(u,v) = (u,v, u*v)
+phi
+
+"surface metric tensor alias fff"
+g = zero(2,2)
+g[1,1] = dot(d(phi,u), d(phi,u))
+g[1,2] = dot(d(phi,u), d(phi,v))
+g[2,1] = g[1,2]
+g[2,2] = dot(d(phi,v), d(phi,v))
+g
+
+"unit normal vector"
+N    = cross(d(phi,u),d(phi,v))
+N
+absN = abs(N)
+absN
+N    = N/absN
+N
+
+"sff in matrix/tensor shape using (4.1)"
+h = zero(2,2)
+h[1,1] = dot( d(phi,u,u), N)
+h[1,2] = dot( d(phi,u,v), N)
+h[2,1] = h[1,2]
+h[2,2] = dot( d(phi,v,v), N)
+h
+
+l = h[1,1]
+l
+m = h[1,2]
+m
+n = h[2,2]    -- use n because N is normal vector
+n
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 36
+--| 3    Forms
+--| 3.4  2-Forms on TpR^3
+
+"EXERCISE 3.24"
+
+"| FACT (p.36): if w is a 2-form on TpR^3, "
+"|      then there is a vector Vw such that "
+"|           w(V1,V2) = Vw . (V1 x V2)."
+
+-- GIVEN: 
+--    w = Fx*dy^dz-Fy*dx^dz+Fz*dx^dy
+-- WANTED:
+--    Verify Vw = (Fx, Fy, Fz).
+
+"SOLUTION:"
+
+V1 = (a1,a2,a3)
+V2 = (b1,b2,b3)
+
+"Start with LHS w=Fx*dy^dz-Fy*dx^dz+Fz*dx^dy:"
+
+------------ DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) )))
+
+LHS = Fx * ext23(dy, dz, V1,V2)  -      -- Fx*dy^dz
+      Fy * ext23(dx, dz, V1,V2)  +      -- Fy*dx^dz
+      Fz * ext23(dx, dy, V1,V2)         -- Fz*dx^dy
+
+LHS
+
+Vw = (Fx, Fy, Fz)
+
+cross(u,v) = (u[2] v[3] - u[3] v[2], u[3] v[1] - u[1] v[3], u[1] v[2] - u[2] v[1])
+
+V1xV2 = cross(V1,V2)
+V1xV2
+
+--        Vw . (V1 x V2)
+RHS = dot(Vw,  cross(V1,V2))
+RHS
+
+
+"We compare LHS and RHS and !see!: ok."
+ext23(omega, nu, (1,2,3),(-1,4,-2))
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

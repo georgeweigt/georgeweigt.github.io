@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("EVA2.txt")
+
+cl(3)
+
+s = 3*e0
+isScalar(s)
+
+v = 2*e1+3*e2+4*e3
+isVector(v)
+
+B = 4*e23
+isMvector(B)
+
+T = 3*e123
+isMvector(T)
+
+M = s+v+B+T
+isMvector(M)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

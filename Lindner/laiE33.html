@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+isMPI(P,A)= test(and(
+                 dot(A,P,A) == A,
+                 dot(P,A,P) == P,
+                 transpose(dot(P,A)) == dot(P,A),
+                 transpose(dot(A,P)) == dot(A,P)),
+                 " is MPI",
+                 " is NOT the MPI")
+
+mpiV(A) = test(  dot(A,A)==0,  
+                 0*A,
+                 1/dot(A,A) * A)
+
+A=((1,2),(1,2))
+A
+
+n=dim(A,1)                         -- (1)               
+                                   print(n)    
+null = zero(2,n)                   -- (2)
+ai = transpose(A)                  -- (3)
+-- j = 1
+                                   print(ai)
+Aip = zero(2,n)                    -- (4)
+Aip[1]= mpiV(ai[1])
+   A1p=Aip[1]  
+A1p                    -- (5)
+-- j = 2
+a2 = ai[2]                         -- (6)
+                                   print(a2)                           
+d2 = dot(A1p,a2)                   -- (7)
+                                   print(d2)
+c2 = a2 - ai[1]*d2                 -- (8)
+                                   print(c2)
+test( c2 == null[1],               -- (9)
+      b2 = (1+dot(d2,d2))^(-1)*dot(d2,A1p),  -- (11)
+      b2 = mpiV(c2))               -- (12)
+
+B2 = A1p - d2*b2                   -- (13)
+B2
+
+A2p = zero(2,n)                    -- (14)
+      A2p[1]= B2                   -- (15)  
+      A2p[2]= b2                   -- (16)
+A2p   -- i.e. mpi                  -- (17)
+
+-- test: 
+
+isMPI(A,A2p)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

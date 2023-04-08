@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 19
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXAMPLE 7."
+
+-- [Bachman, p.19:] " In R^2 we saw that a parameterization for a curve 
+-- could be found if you 
+-- - first use polar coordinates to describe it, 
+-- - then solve for r or theta, and 
+-- - then translate to rectangular coordinates. 
+-- To find a parameterization of a curve in R^3, an effective strategy
+-- is to find some way to 'eliminate' two coordinates 
+-- (in some coordinate system) and then translate into rectangular 
+-- coordinates. By 'eliminating' a coordinate we mean either expressing
+-- it as some constant or expressing it as a function of the third, 
+-- unknown coordinate. "
+
+-- GIVEN: 
+--    the intersection of the cone z^2 = x^2 + y^2 and the plane y = 2x.
+-- WANTED:
+--   parameterize one of the intersection lines in two ways
+
+"SOLUTION:"
+
+"1.)"
+
+y = 2 x            -- express y as function of x
+
+-- z^2 = x^2+y^2
+-- Goal: z=z(x)    -- express z as function of x
+-- z^2 = x^2 +(2x)^2 = 5x^2
+
+z = sqrt(5)*x
+
+-- parameterization
+--      x  y    z
+phi(x)=(x, 2 x, sqrt(5)*x)
+phi
+
+"2.)"
+"Use sperical coords!"
+phi = pi/4            -- 45°
+theta = arctan(2)     -- because tan(theta)=y/x=2
+
+phi2(rho) = (rho sin(pi/4)*cos(theta),   -- x
+             rho*sin(pi/4)*sin(theta),   -- y
+             rho cos(pi/4))              -- z
+
+phi2
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

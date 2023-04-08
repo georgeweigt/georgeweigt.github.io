@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+run("EVA2.txt")
+
+cl(3)
+v = 2*e1+3*e2+4*e3      -- a vector in G3
+v
+-- dot(v,v)             -- dot does NOT work
+inp(v,v)                -- inner product in cl(3)=G3
+
+v8 = (0,2,3,4,0,0,0,0)  -- v as vector in R^8
+dot(v8, v8)             -- here dot does work as inner product in R^8
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

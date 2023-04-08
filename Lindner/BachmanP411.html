@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 52
+--| 4    Differential Forms
+--| 4.2  Integrating differential 2-forms
+
+"EXERCISE 4.11"
+-- GIVEN: 
+--    S = the frustrum parameterized by 
+--        φ(r,θ) = (rcosθ,rsinθ,r)  with 1 ≤ r ≤ 2, 0 ≤ θ ≤ 2π.
+--    ω = z dx ∧ dy + 1 dy ∧ dz + 1 dx ∧ dz  a the 2-form.
+-- WANTED:
+--    Integrate w over S with the orientation induced by φ.
+
+"SOLUTION:"
+
+-- Comment: O R I E N T A T I O N. [Bachman p.52]
+-- Just use the “+” sign in Equation of int(S,w).! 
+
+--------------------- DEF of exterior product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) ) ) )
+
+
+-- Parametrization with 1<=r<=2 and 0<=t<=2pi
+Phi(r,t) = (r cos(t), r sin(t), r)
+Phi
+
+-- use it
+x = r cos(t)
+y = r sin(t)
+z = r
+
+-- Tangential vectors in TpM
+V1 = d(Phi,r)
+V1
+
+V2 = d(Phi,t)
+V2
+
+-- calculate omega as integrand
+omega = z*ext23(dx,dy,V1,V2) +
+          1/x*ext23(dy,dz,V1,V2) +1/y*ext23(dx,dz, V1,V2)
+omega
+simplify(omega)
+
+-- integrate omega along region R
+Iomega = defint(omega, r,1,2, t,0,2pi)
+Iomega
+    
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

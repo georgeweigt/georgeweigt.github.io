@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+mpi11(A) = do( At=A,  -- special case if A is VECTOR and 1/dot(At,A) <> 0
+                 dot( dot(At,A)^(-1), At))      
+
+bestFit(B,A)= dot( mpi11(A),B )       -- the Xo
+proj11(B,A)  =  A * dot( mpi11(A), B )
+   
+                       
+A=(2,4)
+B=(3,1)
+mp=mpi11(A)
+mp
+Xo=bestFit(B,A)
+Xo
+Bo=proj11(B,A)
+Bo
+
+Points=((3,1),(1,3),(4,0),(0,4),(3,3),(1,1))
+Points[1]
+Xo=bestFit(B,A)
+Xo
+
+X1=bestFit(Points[2],A)
+X1
+
+Xs = zero(6)    -- all best fit solutions Xo's
+for(n,1,6, Xs[n] = bestFit(Points[n],A) )
+Xs
+
+Bs=zero(2,6)    -- all proxima Bo's
+for(n,1,6,
+  do(
+    Bs[1,n] = float( proj11(Points[n],A) [1]),
+    Bs[2,n] = float( proj11(Points[n],A) [2]) 
+    ))
+
+Bs
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

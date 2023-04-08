@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 61
+--| 4    Differential Forms
+--| 4.6  The change of variables formula
+
+"EXERCISE 4.25"
+-- GIVEN: 
+--    R = the region of R^2 parameterized by
+--        φ(r,t) = (r cosh(t),r sinh(t)), 0 ≤ r ≤ 1, −1 ≤ t ≤ 1.
+--    f(x,y)=x^2−y^2 
+-- WANTED:
+--    Integrate the function f over R.
+
+"SOLUTION:"
+
+-- Hints: d/dt sinh(t) = cosh(t), d/dt cosh(t) = sinh(t)
+--        cosh^2(t) − sinh^2(t) = 1.
+
+--------------------- DEF of wedge(=ext22) w1^w2 in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) ))
+                        )
+--------------------- DEF of w1^w2 in R^2
+
+f(x,y) = x^2 - y^2
+
+-- Phi(u,v) = (u     , v g(u))
+Phi(r,t) = (r cosh(t), t r sinh(t))                   
+Phi     
+               
+Phir = d(Phi,r)      -- tangential vectors in TpR^2
+Phir
+Phit = d(Phi,t)        
+Phit
+
+x = r cosh(t)                  -- use parametrization
+y = r sinh(t)
+
+omega = f(x,y) * ext22(dx,dy, Phir,Phit)  
+omega 
+omega=simplify(omega)
+omega
+
+Iomega = defint(omega, r,0,1, t,0,1)  
+Iomega 
+
+"Error .."
+----------
+stop
+
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

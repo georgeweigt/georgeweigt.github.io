@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 49
+--| 4    Differential Forms
+--| 4.2  Integrating differential 2-forms
+
+"EXERCISE 4.4"
+-- GIVEN: 
+--    S = the surface with Psi(t,z) = (cos(t),sin(t),z).
+--    w = xyz dy ^ dz a differential 2-form on R^3.
+-- WANTED:
+--    Calculate integral(w|S).
+
+"SOLUTION:"
+
+
+--------------------- DEF of exterior product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) ) ) )
+
+
+-- Parametrization of S over 0<=z<=1 and 0<=t<=pi
+Psi(t,z) = (cos(t) ,sin(t), z)
+--            x       y     z
+Psi 
+
+-- Tangential vectors in TpM
+V1 = d(Psi,t)
+V1
+V2 = d(Psi,z)
+V2
+
+-- calculate omega as integrand using parameterization
+x = cos(t)
+y = sin(t)
+z = z
+
+omega = x*y*z * ext23(dy,dz, V1,V2)
+omega
+
+-- integrate omega on region [0, 2pi] x [-pi/4, pi/4]
+Iomega = defint(omega, t,0,pi, z,0,1)
+Iomega
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

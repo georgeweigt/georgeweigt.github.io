@@ -1,0 +1,119 @@
+############################ mpiBox.txt ##########################
+#  toolbox mpiBox.txt for Eigenmath.           (2020) Dr.W.Lindner  
+#  Use with the script    Moore-Penrose-pseudoinverse-Greville.pdf
+############################ mpiBox.txt ##########################
+
+
+mpi1(A)=do(At=transpose(A),         -- if A is matrix with detA<>0
+           dot(inv(dot(At,A)),At) )
+
+--------------------------- best fits ----------------------------
+
+bestFit(B,A)= dot(mpi1(A),B)                             -- the Xo
+
+proj1(B,A) =  dot(A, mpi1(A), B) 
+                             -- orthogonal projection of B onto 
+                             -- column space of A: the proximum Bo
+            
+oProj(B,A) = dot(A, dot( dot(A,A)^(-1), A, B)) 
+             
+
+EM(i,j,k,d) = do( M=unit(d,d), M[i,j]=k, M)
+
+mpi(A) = test( rank(A)=1,              --if A vector & dot(A,A)<>0
+               A * 1/dot(A,A) ,
+               rank(A)>1,              --if A matrix & det(A)<>0
+               do(At=transpose(A), dot(inv(dot(At,A)),At)) )
+         
+proj(B,A) = test( 
+              rank(A)=1,               --if A vector & dot(A,A)<>0
+              dot(A,B,A) / dot(A,A) ,
+              rank(A)>1,               --if A matrix & det(A)<>0
+              dot(A, mpi(A), B) )
+               
+
+Xfit(B,A) = dot(mpi(A),B)              -- the best fit solution Xo
+
+Yfit(B,A) = dot(A, mpi(A), B)          -- the proximum Bo
+
+---------------------------------------------------------
+-- solution set of Linear System AX=B using pinv P
+---------------------------------------------------------
+isPinv(P,A)= test(dot(A,P,A) == A, 
+                 "is pseudoinvers", 
+                 "is NOT pseudoinvers")
+
+isSolvable(A,B,P) = test(and(dot(A,P,A)==A, dot(A,P,B)==B), 
+                        "is solvable", 
+                        "is NOT solvable")
+
+solSet(A,B,P,X) =  do(        -- solution set of LinearSystem AX=B
+                      m=dim(dot(P,A),1), 
+                      n=dim(dot(P,A),2),
+                      E1=unit(m,n),
+                      dot(P,B) + dot( (E1-dot(P,A)), X)     --LSSS
+                     )
+
+isMPI(P,A)= test(and(
+                     dot(A,P,A)==A,
+                     dot(P,A,P)==P,
+                     transpose(dot(P,A))==dot(P,A),
+                     transpose(dot(A,P))==dot(A,P) ),
+                 " is MPI",
+                 " is NOT the MPI")
+
+mpi0(A)= dot( inv( dot(transpose(A),A) +0.0001*unit(dim(A,2)) ), transpose(A) ) 
+
+mpiV(A) = test(  dot(A,A)==0,  
+                 0*A,
+                 1/dot(A,A) * A)
+
+-----------    sequence of submatrices A1, A2, .. Ak i.e. A[:,1..k] 
+Ai(k) =  test( k=1, a[1],                     -- case ai is vector
+           do( AA=zero(k,dim(A,1)),           -- else k > 1 
+               for(i,1,k, AA[i]=a[i]),        
+               transpose(AA) ))
+
+----------------- Greville m x n ------------------   A  typ m x n
+--      procedure  GREVILLE  : A1+, A2+, .., An+  =   A+
+---------------------------------------------------   A+ typ n x m
+
+Greville(A)=
+     do( n=dim(A,2) ,        
+         m=dim(A,1) ,        
+         a = transpose(A) ,
+         null = zero(2,m) , 
+       do(  -- k=1
+         Ap = null ,  
+         Ap[1] = mpiV(a[1]) ,
+            -- k=2
+         di = dot(Ap[1],a[2]) ,
+         c  = a[2] - Ai(1)*di  ,
+         test( c == null[1] ,
+               b = (1+dot(di,di))^(-1)*dot(di,Ap[1]),
+               b = mpiV(c)) ,
+         B  = Ap[1] - di*b ,     
+         Ap = zero(2,m)  ,
+               Ap[1] = B ,
+               Ap[2] = b,  
+            -- k > 2
+         do(for(k,3,n,
+             di = dot(Ap,a[k]) ,   
+             c  = a[k] - dot(Ai(k-1),di),
+             test( c == null[1],
+                   b = (1+dot(di,di))^(-1)*dot(di,Ap),
+                   b = mpiV(c) ),
+             B = Ap - outer(di,b),
+             -- print(B),                    
+             Ap = zero(k,m),
+                  for(i,1,k-1, Ap[i] = B[i] ), 
+                  Ap[k] = b, 
+             Ap), -- close for, WATCH THE','
+         Ap) -- close do around for-loop    
+        )   -- close inner do
+       )  -- close outer do               
+    
+-----------------  END GREVILLE -----------------   
+############################ END mpiBox.txt ######################
+
+  

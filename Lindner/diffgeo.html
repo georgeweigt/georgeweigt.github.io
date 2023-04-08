@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+################ (2023) Dr.W.G. Lindner,  Leichlingen DE
+###   diffgeoBox        Differential Geometry box 
+################        
+
+-- ========================= Pattern to calculate
+--          K,H,kappa,Christoffel,Riemann,Ricci,R
+-- ------------------------- of parametization phi
+   
+phi(u,v) = (u,v, u+v)     -- parametrization, please adjust 3rd component
+phiu = d(phi,u)           -- tangential space basis
+phiv = d(phi,v)
+U    = (u,v)              -- coordinates on TpS
+
+                          -- surface metric tensor
+g(i,j) = dot(d(phi, U[i]), d(phi,U[j]))
+g      = ((g(1,1),g(1,2)), (g(2,1),g(2,2)))
+g
+do( E=g[1,1], F=g[1,2], G=g[2,2])   -- classic names for g
+
+gu = inv(g)               -- inverse of g 
+V  = 1/sqrt(det(g))       -- volume element
+N = cross(phiu, phiv)     -- surface normal vector field
+N
+                          -- 2nd fund. form
+h(i,j) = 1/V*dot( cross(d(phi,u), d(phi,v)), d(phi,U[i],U[j]))
+h      = ( (h(1,1),h(1,2)), (h(2,1),h(2,2)))
+h
+do( L=h[1,1], M=h[1,2], N=h[2,2])   -- classic names for h
+
+A = dot(gu, h)            -- shape operator
+A
+K = det(A)                -- GAUSS curvature
+K
+H = contract(A)           -- mean curvature
+H
+
+Dg = d(g, U)              -- partial derivatives 
+
+-- ------------------------- BEGIN of code by G. Weigt
+
+GammaI = 1/2 (Dg + transpose(Dg,2,3) - transpose(Dg,2,3,1,2)) 
+GammaII = dot(gu, GammaI)
+GammaII
+
+T1 = d(GammaII, U)                         
+T2 = dot(transpose(GammaII,2,3), GammaII)  
+RII = transpose(T1,3,4) -T1+ transpose(T2,2,3) - transpose(T2,2,3,3,4)     
+RII                       -- RIEMANN tensor Ri^jkl 2nd kind
+
+RI = dot(g, RII)          -- RIEMANN tensor Rijkl 1st kind
+RI
+
+Ric = contract(RII,1,3)   -- RICCI tensor
+Ric
+                          -- RICCI curvature scalar
+R = contract( dot( gu, transpose(Ric)))  
+R
+
+-- ------------------------- END of code by G. Weigt
+
+-- CHRISTOFFEL symbols coefficients
+gammaI(i,j,k) = 1/2 * ( d(g[j,k],U[i]) +
+                        d(g[i,k],U[j]) - d(g[i,j],U[k]) )
+--gammaI(1,2,2)
+
+gammaII(k,l,m) = sum(i,1,2, gu[k,i]*1/2 *
+                ( d(g[m,i],U[l]) + d(g[l,i],U[m]) - d(g[m,l],U[i]) ))
+--gammaII(1,2,2)
+
+Kintrinsic(u,v)= do(      -- intrinsic curvature
+     Ch111 = gammaII(1,1,1),
+     Ch121 = gammaII(1,2,1),
+     Ch211 = gammaII(2,1,1),
+     Ch221 = gammaII(2,2,1),
+     Ch222 = gammaII(2,2,2),
+     Kintrinsic1 = 1/g[1,1]*( 
+                     d(Ch211,v) - d(Ch221,u) + 
+                     Ch221*(Ch111-Ch221) + Ch211*(Ch222-Ch121)),
+     Kintrinsic1)
+
+
+-- RIEMANN curvature Rijkl coefficients 
+RiemI(b,m,s,q) = d(gammaI(b,m,q),U[s]) - d(gammaI(b,m,s),U[q]) +
+                     sum(n,1,2, gammaI(b,n,s)*gammaII(n,m,q) ) - 
+                     sum(n,1,2, gammaI(b,n,q)*gammaII(n,m,s) )
+--RiemI(1,2,1,2)
+
+-- RIEMANN curvature Ri^jkl coefficients
+RiemII(b,m,s,q) = d(gammaII(b,m,q),U[s]) - d(gammaII(b,m,s),U[q]) +
+                     sum(n,1,2, gammaII(b,n,s)*gammaII(n,m,q) )   - 
+                     sum(n,1,2, gammaII(b,n,q)*gammaII(n,m,s) )
+--RiemII(1,2,1,2)
+
+-- RICCI tensor coefficients
+Ricci(m,q) = sum( s,1,2, RiemII(s,m,s,q)) 
+--Ricci(1,2)
+
+--RICCI curvature scalar
+Rcs  = sum( i,1,2, sum(j,1,2, gu[i,j]*Ricci(i,j) ))
+--Rcs
+
+---- DEFINITION of covariant derivative
+covD(Y,X)= ( X[1]*d(Y[1],u) + X[2]*d(Y[1],v) + 
+             sum(i,1,2, sum(j,1,2, X[i]*Y[j]*GammaII[1,i,j])), 
+             X[1]*d(Y[2],u)+X[2]*d(Y[2],v) + 
+             sum(i,1,2, sum(j,1,2, X[i]*Y[j]*GammaII[2,i,j])) )
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

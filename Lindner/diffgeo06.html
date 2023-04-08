@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+"Cylinder"
+phi(u,v) = (a cos(v), a sin(v), u)
+a = 1
+phi                  -- display phi
+phi(1,pi)            -- look at p=(pi,1) in S
+
+phiu = d(phi,u)      -- partial derivative w.r.t. u
+phiu
+
+phiv = d(phi,v)
+phiv
+
+N = cross(phiu,phiv) -- exterior normal vector
+N
+
+absN = abs(N) 
+absN = 1              -- simplify via c^2+s^2=1
+
+absN
+N1 = N/absN            -- exterior unit length normal
+N1
+
+Np = eval(N1, u,1, v,pi) -- normal at point p Np
+float(Np)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

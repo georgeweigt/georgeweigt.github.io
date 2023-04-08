@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("Downloads/EVA2.txt")
+cl(1,1)
+do( E=e0, U=e12) 
+w = 5 E + 3 U
+wm = magnitude(w)   -- (1) hyperbolic length of w is 4
+wn = normalize(w)   -- (2) project w=5E+3U on H^1
+wn                  --     =(5/4,..,3/4)
+
+g(t) = (t, sqrt(t^2-1))   -- (3) parametrize H^1
+h = d(g(t))               -- (4) velocity vector at 
+h = sqrt(simplify(h[1]^2 - h[2]^2))
+h
+Lh = defint(h, t, 1, 5/4) -- (4) arc length alias arg
+Lh
+float(Lh)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

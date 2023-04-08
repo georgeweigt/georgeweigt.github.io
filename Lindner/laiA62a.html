@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+-- semi-automatic
+-- Find parametric form of plane 2x-y+4z=6
+E(x,y,z) = 2x-y+4z-6   -- = 0
+
+paraP(Q,U,V)    = Q+t*U+s*V 
+paraP3(A,B,C)   = paraP(A,B-A,C-A)
+
+-- 1. determine cut points
+E(0,0,z)        --i.e. z=6/4 =3/2 =1.5, gives point A
+E(0,y,0)        --i.e. y=-6,  gives point B
+E(x,0,0)        --i.e. x=3, gives point C=(3,0,0)
+-- 2. invoke paraP3 with A,B,C
+paraP3((0,0,1.5),(0,-6,0),(3,0,0))
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

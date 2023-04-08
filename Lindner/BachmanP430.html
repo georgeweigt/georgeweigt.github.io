@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 63
+--| 4      Differential Forms
+--| 4.6.3  3-Forms on R^3
+
+
+"EXERCISE 4.30."
+-- GIVEN: 
+--    V be the volume in R^3 parameterized by
+--    Ψ(r,θ,t) = (rcosθ,rsinθ,t2), 0≤r≤1, 0≤θ≤2π, 0≤t≤1.
+--    f(x,y,z) = √z
+-- WANTED:
+--    Use Ψ to integrate f over V.
+
+"SOLUTION:"
+
+--------------- DEF of wedge product w1^w2^w3 in R^3
+ext33(w1,w2,w3, v1,v2,v3) = do(
+             val3(w,v)    = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det((( val3(w1,v1), val3(w2,v1), val3(w3,v1) ),
+           ( val3(w1,v2), val3(w2,v2), val3(w3,v2) ),
+           ( val3(w1,v3), val3(w2,v3), val3(w3,v3) ))))
+--------------- DEF of wedge product w1^w2^w3 in R^3
+
+-- first octant i.e. 0<x 0<y 0<z
+-- V is parameterized using:
+Psi(r,theta,t) = (r cos(theta), r sin(theta), t^2)
+--                0..1  0..2pi                0..1
+Psi     
+               
+Psir = d(Psi,r)      -- tangential vectors in TpR^3
+Psir
+Psitheta = d(Psi,theta)        
+Psitheta
+Psit = d(Psi,t)        
+Psit
+
+dxdydz = ext33(dx,dy,dz, Psir,Psitheta,Psit)  -- volume element
+dxdydz
+dxdydz=simplify(dxdydz)
+dxdydz
+
+-- use parameterization to transform f(x,y,z)= sqrt(z)
+x = r cos(theta)
+y = r sin(theta)
+z = t^2
+
+omega = sqrt(z) dxdydz
+omega 
+omega=simplify(omega)
+omega
+
+Iomega = defint(omega, r,0,1, theta,0,2pi, t,0,1)  
+Iomega 
+Iomega=simplify(Iomega)
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

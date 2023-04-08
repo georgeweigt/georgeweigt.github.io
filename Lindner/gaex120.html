@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+w=2+3i
+z=3-5i
+u = u1 + u2*i
+v = v1 + v2*i
+
+ip(u,v) = real(u*conj(v))   -- inner product
+op(u,v) = imag(conj(u)*v)   -- outer product
+
+--a:
+ip(w,z)
+ip(z,z)
+
+op(w,z)
+op(w,w)
+
+-- b:
+real(u*conj(v))
+ip(u,v)
+
+-- c:
+ip(u, r*i*u)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

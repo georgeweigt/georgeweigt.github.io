@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 122
+--| 8    Differential Geometry via Differential Forms
+--| 8.1  Covariant derivatives
+
+
+"EXAMPLE 55."
+-- GIVEN: 
+--    W = (x*y^2, x+y)   a vector field in R^2.
+--    c = (t^2, t)        a curve in R^2
+--    v = c'(0)
+-- WANTED:
+--    compute covariant derivative covD(v,W) using dW.
+
+-----------------------------------------------------
+"3rd version CovDeri(v,W) via vector of 1-forms"
+"    whose components are the derivatives of the components of W:"
+"i.e.        NABLAvW = dW(V)."
+-----------------------------------------------------
+
+X    = (x,y)
+W    = (x*y^2, x + y)
+c(t) = (t^2,t)
+V    = eval(d(c,t) ,t,0)
+V
+P    = c(0)
+P
+
+-- stepwise calculation of covariant derivative
+
+DX = (dx,dy)    -- basis of TpR^2
+
+-- 1: construct vector of 1-forms associated to W
+dW(W) =(dot(d(W,X)[1],DX),dot(d(W,X)[2],DX))
+dW(W)
+
+-- 2: fix base point
+dWp(W,P) = eval(dW(W), x,P[1], y,P[2])
+dWp(W,P)
+
+-- 3: evaluate in direction of V=c'(0)
+eval(dWp(W,P), dx, V[1], dy, V[2])
+
+-- We abstract the procedure to a function:
+
+-- DEF (covariant derivative of W in direction of V in R^2)
+-----------------------------------------------------------
+DeltavW(W,V,P) = do( DX = (dx,dy),
+                 dW = (dot(d(W,X)[1],DX),dot(d(W,X)[2],DX)),
+                 A  = eval(dW,  x,P[1],  y,P[2]),
+                 B  = eval(A , dx,V[1], dy,V[2]),
+                 B) --- return value
+-----------------------------------------------------------
+DeltavW
+DeltavW(W,V,P)
+
+--------------------------------------  cov. Deri. rules
+-- (cov1)  Nv(X.Y) = (NvX).Y + X.(NvY)  N=NABLA
+-- (cov2)  Nv(fW) = (Nvf)W + f(NvW)
+-- (cov3)  d(V.W) = dV.W + V.dW
+-- (cov4)  dW(V).U =dW.U(V)
+--------------------------------------
+stop
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

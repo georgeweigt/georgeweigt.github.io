@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+A = ((2,2,4),(1,2,-5),(3,1,-3))
+B = (5,4,5)
+
+CoMa(A) = do( e = quote(e), i = quote(i), 
+              MM = zero(3,3),           
+              for(k,1,3,
+              for(j,1,3,
+                 MM[k,j] = cofactor(A,k,j))),
+              MM)               --(1)
+
+ca = CoMa(A)	                 --(2)
+ca
+
+aA = adj(A)                     --(3)
+aA
+
+           CoMa(A) == adj(A)    -- 0 = No
+transpose(CoMa(A)) == adj(A)    -- 1 = Yes
+
+# Term (5) of last session is nominator of x-value
+# = (1st column of CoMa(A)) * B
+# = (1st row of adj(A)) * B
+#   i.e. in EIGENMATH:
+
+dot(transpose(CoMa(A))[1], B)
+dot( adj(A)[1], B)
+
+# In summa we have: 
+
+CramerAdj(A,B)= dot(adj(A),B)/det(A)
+
+CramerAdj(A,B)  
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

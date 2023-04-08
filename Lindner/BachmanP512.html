@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 72
+--| 5.    Differentiation of Differential Forms
+--| 5.3   Interlude: 0-Forms
+
+
+"EXERCISE 5.12"
+
+-- GIVEN: 
+--    1.  x^2 sin(y-z).
+--    2.  sin(y) dx + cos(x) dy.
+--    3.  xy dx + xz dy + xyz dz.
+--    4.  xy^2 dx + x^3zdy − (y+z^9)dz.
+--    5.  xz^2 dx∧dy + xz^2 dy∧dz.
+--    6.  (x^2 +y^2)dy∧dz + (x^2 −y^2)dx∧dz.
+--    7.  xy^2 dy∧dz + x^3zdx∧dz − (y+z^9)dx∧dy. 
+--    8.  x^2y^3z^4 dx^dy^dz
+-- WANTED:
+--    find dω for each differential n-form ω 1.-8.
+
+"SOLUTION:"
+		
+
+"1.)   d(x^2 sin(y-z))=?"
+
+f(x,y,z) = x^2 sin(y-z)
+
+df = d(f,x) dx + d(f,y) dy + d(f,z) dz
+df
+
+"2.)   sin y dx + cos x dy (in R^2)"
+"Use 5.2 : IF w=f.dx+g.dy THEN dw=(dgx-dfy)dx^dy."
+
+f(x,y) = sin(y)
+g(x,y) = cos(x)
+
+domega = (d(g,x)-d(f,y))*dxdy
+domega
+"Ergo: dw = (-sinx-cosy)dx^dy."
+
+"3.)"
+f = x y
+g = x z
+h = x y z
+
+omega = f*dx + g*dy + h*dz -- (1-form in R^3)
+omega
+
+DxDy = d(g,x)-d(f,y)
+DxDy
+DyDz = d(h,y)-d(g,z)
+DyDz
+DxDz = d(h,x)-d(f,z)
+DxDz
+
+domega = DxDy * dxdy + DyDz*dydz + DxDz*dxdz   -- 2-form in R^3
+domega
+"Ergo: dw = (z-x)dx^dy + yz dx^dz + x(z-1)dy^dz"
+
+"4.)"
+f = x y^2
+g = x^3 z
+h = -(y+ z^9)
+
+omega = f*dx + g*dy + h*dz      -- (1-form in R^3)
+omega
+
+DxDy = d(g,x)-d(f,y)
+DxDy
+DyDz = d(h,y)-d(g,z)
+DyDz
+DxDz = d(h,x)-d(f,z)
+DxDz
+
+domega = DxDy * dxdy + DyDz*dydz + DxDz*dxdz   -- 2-form in R^3
+domega
+
+"Ergo:  dw = (3x^2z-2xy)dx^dy-(x^3+1)dy^dz."
+
+"5.)"
+-- FACT:
+-- IF    omega = f dydz -g dxdz +h dxdy
+-- THEN domega = (df/dx+dg/dy+dh/dz) * dx^dy^dz. (divergence)
+ 
+f = x z^2
+g = z*(x^3+y)
+h = 0
+
+omega = f*dxdy + x z^2 dydz
+omega
+
+domega = (d(f,x) + d(g,y) + d(h,z)) * dxdydz
+domega
+
+"i.e.  dw = (2xz+z^2)dx^dy^dz."
+
+"6.)"
+ 
+f = x^2+y2       -- or write f(x,y,z) = x^2+y^2 etc.
+g = (x^2-y^2)
+h = 0
+
+omega =  f*dydz - g*dxdz
+omega
+
+domega = (d(f,x) + d(g,y) + d(h,z)) * dxdydz
+domega
+
+"i.e.  dw =  (2x+2y)dx^dy^dz"
+
+"7.)"
+ 
+f(x,y,z) = x*y^2
+g(x,y,z) = x^3 z
+h(x,y,z) = -(y+z^9)
+
+omega =  f*dydz - g*dxdz + h*dxdy
+omega
+
+domega = (d(f,x) + d(g,y) + d(h,z)) * dxdydz
+domega
+"i.e.    dw = (y^2-9z^8)dx^dy^dz"
+
+"8.)"
+"Use FACT 5.8: IF f is 0-form, THEN d(f dxdydz) = df^dxdydz"
+ 
+f(x,y,z) = x^2*y^3*z^4
+
+omega =  f * dxdydz
+omega
+
+df = d(f,x) dx + d(f,y) dy + d(f,z) dz
+df
+
+domega = df * dxdydz
+domega
+"Ergo: = 0, because each summand has dx^dx=0 etc."
+
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

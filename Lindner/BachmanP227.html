@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 2
+--| 2    Prerequisites
+--| 2.4  Parameterized curves
+
+"EXERCISE 2.27"
+-- WANTED:
+--   Parameterize the curve that lies on a sphere of radius 1 such that theta = phi.
+
+"SOLUTION:"
+
+-- x^2+y^2+z^2=1
+-- in spherical coords:
+x = rho sin(phi) cos(theta)
+y = rho sin(phi) sin(theta)
+z = rho cos(phi)
+x
+y
+z
+
+rho   = 1
+theta = phi
+
+x
+y
+z
+
+-- parameterization
+
+Phi(phi)=(x,y,z)
+Phi
+-- explicit
+
+Phi(phi)=(cos(phi) sin(phi), sin(phi)^2, cos(phi))
+Phi
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

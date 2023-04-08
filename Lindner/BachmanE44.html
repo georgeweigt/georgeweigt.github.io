@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 97
+--| 6.    STOKES' Theorem
+--| 6.3 Vector calculus and generalized Stokes' Theorem
+
+
+"EXAMPLE 44"
+
+-- GIVEN: 
+--    C = curve of intersection of the cylinder x^2+y^2 = 1 and the plane z=x+1.
+--    F = (-x^2y, xy^2, z^3) is vector field in R^3.
+-- WANTED:
+--    calculate Integral(F.ds|C) using Stokes'.
+
+"SOLUTION:"
+-- by using formula at p.97 above and
+-- by translating to the language of differential forms
+-- and using the generalized Stokes' Theorem.
+
+-- Note: ∫(F.ds)|C = ∫ w1F|C.
+-- and :               w1F = −x^2*y*dx + x*y^2*dy + z^3*dz
+--                          is a 1-form in R^3
+
+
+"1.) calculate d(w1F)."
+
+-- associated differential form to Vf F
+w1F = −x^2*y*dx + x*y^2*dy + z^3*dz
+
+f = −x^2*y
+g = x*y^2
+h = z^3
+
+domegaF = (d(g,x)-d(f,y))*dxdy +
+          (d(h,y)-d(g,z))*dydz + (d(h,x)-d(f,z))*dxdz
+domegaF
+
+"2.) parameterize C = dD."
+
+-- Let D denote the subset of the plane z = x+1 bounded by C. 
+-- Then ∂D = C.
+
+-- The region D is parameterized by
+         -- x         y         z=x+1
+Psi(r,t) = (r cos(t), r sin(t), r cos(t) + 1)
+         -- 0..1  0..2pi
+
+"3.) calculate Int(d(w1F)|D=dC)."
+
+----- DEF of wedge (exterior) product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det( ((val3(w1,v1), val3(w2,v1)),
+            (val3(w1,v2), val3(w2,v2)) )))
+
+-- Tangential vectors in Tp
+Vr = d(Psi,r)
+Vr
+Vt = d(Psi,t)
+Vt
+
+domega = (x^2+y^2)* ext23(dx,dy,Vr,Vt)   
+domega              -- 2-form in R^2
+
+-- use parmeterization 
+x = r cos(t)
+y = r sin(t)
+z = r cos(t) + 1
+
+domega   -- transformed domega
+
+-- integrate dw on D
+Idw = defint(domega, t,0,2pi, r,0,1)
+Idw
+
+"Ok ;)"
+
+-------------------------------------------
+
+stop pi/2 VECTOR CALCULUS CHEAT CHEET below
+
+1.
+f(x,y,z)        ↔            ω3f = f dx∧dy∧dz.
+∇f vector field ↔ 1-form df : df = ω1|∇f.
+
+2.
+Start with a vector field F, 
+      form the associated 1-form ω1F ,
+      differentiate it, 
+      look at the corresponding vector field: curl F or ∇×F. 
+So,   ∇×F is vF associated  ≈ with the 2-form dω1F
+ie    dωF = ω2|∇×F. 
+
+  curl
+F −−−−→ ∇ × F
+
+IF  ω = f(x,y,z)dx + g(x,y,z)dy + h(x,y,z)dz
+THEN dw = (dg|x-df|y)dx^dy + (dh|y-dg|z)dydx +(dh|x-df|z)dxdz
+
+3.
+Finally, 
+  start with a vector field F = ⟨Fx,Fy,Fz⟩ 
+  then look at the 3-form dω2F = (∂Fx/dx + ∂Fy/dy + ∂Fz/dz )dx^dydz 
+  so: function (∂Fx/dx + ∂Fy/dy + ∂Fz/dz) is called div F, or ∇ · F. 
+  dω2F =ω3∇·F
+4.
+F = (F1(x,y,z),F2(x,y,z),F3(x,y,z))
+curl(U) = (d(U[3],y) - d(U[2],z),
+           d(U[1],z) - d(U[3],x),
+           d(U[2],x) - d(U[1],y)) 
+div(U) = d(U[1],x) + d(U[2],y) + d(U[3],z)
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

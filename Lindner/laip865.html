@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("gjBox.txt")
+
+-- parametric equation of line L: X=P+t*R=A+t*vec(AB)
+A=(1,-2,5)
+B=(4,6,-2)
+C=(1,2,3)
+
+L(t)= A+t*(B-A)             -- L fixed in P=A, R=vec(AB)
+L(t)
+E(r,s)= A+ r*(B-A) +s*(C-A) -- parametric eq for E fixed in A
+E(r,s)
+
+-- coordinate implicit equation Ec for E
+--      r  s   x  y  z  RHS   LS for x,y,z simultan
+Ec = (( 3, 0, -1, 0, 0,  -1), 
+      ( 8, 4,  0,-1, 0,   2),
+      (-7,-2,  0, 0,-1,  -5))
+RREF(Ec)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

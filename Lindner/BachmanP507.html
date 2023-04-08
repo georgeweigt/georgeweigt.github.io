@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 72
+--| 5.    Differentiation of Differential Forms
+--| 5.3   Interlude: 0-Forms
+
+
+"EXERCISE 5.7"
+-- GIVEN: 
+--    f = x^2*y^3, is a 0-form.
+--    points p=(-1,1), q=(1,-1),r=(-1,-1).
+-- WANTED:
+--    compute the integral of f over the points -p, -q and -r,
+--    with the indicated orientations.
+
+"SOLUTION:"
+		
+f(x,y) = x^2*y^3
+integate(f,p) = eval(f, x,p[1], y,p[2])   -- 0-form f integrated at p
+
+p=(-1,1)
+-integate(f,p)
+
+q=(-1,-1)
+-integate(f,q)
+
+r=(-1,-1)
+-integate(f,r)
+
+"derivative of a 1-form in R^2:"
+
+-- exterior or wedge product in R^2
+ext22(w1,w2, v1,v2) = do(
+             val22(w,v) = eval(w, dx,v[1], dy,v[2]),
+      det( ((val22(w1,v1), val22(w2,v1)),
+            (val22(w1,v2), val22(w2,v2)) )))
+
+omega = f(x,y)*dx
+omega
+
+domega0(f,v1,v2) = d(f,y) * ext22(dy,dx, v1,v2)
+
+V =(v1,v2,v3)
+W =(w1,w2,w3)
+
+domega0(f,V,W)
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

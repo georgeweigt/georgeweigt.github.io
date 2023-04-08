@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+##### HYPERBOLICS H
+do( E=(1,0), U=(0,1) ) 
+hynorm(w)   = sqrt(abs(w[1]^2-w[2]^2))  -- hyperbolic NORM of w
+
+-- EIGENMATH solution
+do( E=(1,0), U=(0,1) ) 
+w = 3E+2U
+hynorm(w)           -- output: 5^1/2 = 2.24
+abs(w)              -- the Euclidean length of w in R^2 
+                    -- is 13^1/2=3.6 !
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

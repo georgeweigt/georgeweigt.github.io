@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("gjBox.txt")
+
+-- LS2: {x-y-z=1,    x+y+4z=-1,   7x+6y-z=7}
+A2 = ((1,-1,-1, 1), (1,1,4, -1), (7,6,-1, 7)) -- inhomog. system
+B2 = RREF(A2)  --ok 
+B2
+
+A2h = ((1,-1,-1, 0), (1,1,4, 0), (7,6,-1, 0)) -- homog. system
+B2h = RREF(A2h)  
+B2h
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

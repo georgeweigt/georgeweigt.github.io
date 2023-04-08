@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+polar(1)
+polar(i)
+polar(-1)
+polar(-i)
+
+-- b:
+u=exp(1/3*i*pi)
+u
+rect(u)
+v=sqrt(2)*exp(1/3*i*pi)
+v
+rect(v)
+float(last)
+
+-- c:
+z=a+b*i
+polar(conj(z))
+
+-- d:
+z=a+b*i
+polar(inv(z))
+
+-- e:
+u=a+b*i
+v=r+s*i
+polar(u*v)
+
+phi=arg(u)
+psi=arg(v)
+mag(u)*mag(v)*exp((phi+psi)*i)
+sqrt((a^2+b^2)*(r^2+s^2))
+
+-- f:
+polar(u/v)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

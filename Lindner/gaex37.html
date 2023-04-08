@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("EVA2.txt")
+cl(3)     
+do(E=e0, I=e12, J=e23, K=e13 )
+
+rad(x)    = float(x*pi/180)   -- Input: Winkel in Grad[°]
+degree(x) = float(x*180/pi)   -- Input: Winkel in radiant[rad]
+
+dsg(u)    = dispgrd(u)
+norm(q)   = magnitude(q) -- syn. sugar
+unitq(q)  = normalize(q)
+quot(p,q) = gp(p, inverse(q))
+quot1(q,n) = quot(q,n) 
+
+    
+-- WOLFRAM CHECK quaternions: rotation
+
+a = 1E + 0I + 5J + 2K
+a
+
+-- ok
+cj(a) 
+
+-- ok arg et axis
+arg1(a)
+float(2*arccos(1/sqrt(30)))
+
+(0,sqrt(5/6),sqrt(2/15))
+float
+polar1(a)
+
+float(abs(a))
+
+-- ok
+b=1E+3I+4J+3^5K
+magnitude(b)
+float(5*sqrt(2363))
+
+-- ok: o+2i-1j-3k
+c=0E+2I-1J-3K
+norm(c)
+magnitude(c)
+float(sqrt(14))
+
+-- ok
+unitq(c)
+0E+sqrt(2/7)I-1/sqrt(14)J-3/sqrt(14)K
+float
+cj(c)
+
+-- ok
+inverse(c)
+-1/7I+1/14J+3/14K
+float
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

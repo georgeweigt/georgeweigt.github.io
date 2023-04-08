@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+---- implementation of volume formulae
+cross(u,v) = (u[2] v[3] - u[3] v[2], u[3] v[1] - u[1] v[3], u[1] v[2] - u[2] v[1])
+Box(A,B,C)       = dot(A, cross(B,C)) 
+
+VolBox(U,V,W)    = mag( Box(U,V,W) )
+VolBox4(A,B,C,D) = VolBox(B-A,C-A,D-A)
+VolPyr(A,B,C,D)  = 1/6 * VolBox4(A,B,C,D)
+
+-- interface examples: 
+--(1) volume of box spanned by U=(2,3,5),V=(2,-1,7), W=(3,9,2)
+do( U=(2,3,5),V=(2,-1,7), W=(3,9,2) )
+VolBox(U,V,W)
+
+1/6 * VolBox(U,V,W)    -- volume of associated pyramid
+
+--(2) volume pyramid: base A=(4,0,0), B=(4,5,1), C=(0,0,1) top: D=(-1,4,3)
+do( A=(4,0,0), B=(4,5,1), C=(0,0,1), D=(-1,4,3) )
+VolPyr(A,B,C,D)
+float(last)      -- Result: 19/21 ca. 0.905float(last)      
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

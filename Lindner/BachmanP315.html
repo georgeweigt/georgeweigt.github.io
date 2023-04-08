@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 33
+--| 3    Forms
+--| 3.3  Multiplying 1-forms
+
+"EXERCISE 3.15"
+-- GIVEN: 
+--    w(dx,dy,dz) = dx + 5dy - dz and v(dx,dy,dz) = 2dx - dy + dz.
+-- WANTED:
+--    Compute w^v((1,2,3), (-1,4,-2)).
+
+"SOLUTION:"
+
+-- ad hoc definition of wedge3 
+wedge3(w1,w2, v1,v2) = do(
+      a11 = eval(w1, dx,v1[1], dy,v1[2], dz,v1[3]),
+      a12 = eval(w2, dx,v1[1], dy,v1[2], dz,v1[3]),
+      a21 = eval(w1, dx,v2[1], dy,v2[2], dz,v2[3]),
+      a22 = eval(w2, dx,v2[1], dy,v2[2], dz,v2[3]),
+      det(((a11,a12),(a21,a22))))
+
+omega(dx,dy,dz) = dx +5dy - dz
+omega
+
+nu(dx,dy,dz) = 2dx -dy + dz
+nu
+
+wedge3(omega, nu, (1,2,3),(-1,4,-2))
+
+------------ DEF of wedge product w1^w2 in R^3
+ext23(w1,w2, v1,v2) = do(
+             val3(w,v) = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+             det( ((val3(w1,v1), val3(w2,v1)),
+                   (val3(w1,v2), val3(w2,v2)) )))
+
+ext23(omega, nu, (1,2,3),(-1,4,-2))
+
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

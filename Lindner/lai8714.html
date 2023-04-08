@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("gjBox.txt")
+
+-- LS4: {x-y-z=1,     x+y+4z=-1,  3x+y+7z=3}
+A4 =  ((1,-1,-1, 1), (1,1,4, -1), (3,1,7, 3))
+B4 = Ge(A4)  
+B4
+
+A4h = ((1,-1,-1, 0), (1,1,4, 0), (3,1,7, 0))
+B4h = doGu(2,Ge(A4h))  
+B4h
+C4h = ((1,0,3/2,0), (0,-2,-5,0), (0,0,1,a)) -- dummy = a
+D4h = RREF(C4h)
+D4h
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+## CRAMER rule for n x n matrices
+Cramer(A,B) = do( n = dim(A,1),       --(1)
+                  Z = zero(2,n),      --(2)
+                  Y = Z[1],           --(3)
+                  for( i,1,n,         --(4)
+                       Y[i] = det(Replace(B,A,i))/det(A) ),
+                  Y )                 --(5)
+
+A = ((3,2,-1),(2,1,2),(0,0,1))
+B = (6,4,1)
+
+cNN = Cramer(A,B)    --(6)
+cNN 
+
+Cramer(A,B)[2]       --(7)
+	  
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

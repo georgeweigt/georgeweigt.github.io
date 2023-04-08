@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 63
+--| 4      Differential Forms
+--| 4.6.3  3-Forms on R^3
+
+
+"EXERCISE 4.31."
+-- GIVEN: 
+--    ω = z/(x^2+y^2) dx∧dy∧dz is 3-form on R^3.
+--    R = region under the graph of f(x,y) = x^2+y^2 and (two cases)
+--        1. above the square with vertices (0,0,0),(1,0,0),(0,1,0),(1,1,0).
+--        2. at most one unit away from the z-axis.
+-- WANTED:
+--    Compute the integral of ω on R1 resp. R2.
+
+"SOLUTION:"
+		
+
+--------------- DEF of wedge product w1^w2^w3 in R^3
+ext33(w1,w2,w3, v1,v2,v3) = do(
+             val3(w,v)    = eval(w, dx,v[1], dy,v[2], dz,v[3]),
+      det((( val3(w1,v1), val3(w2,v1), val3(w3,v1) ),
+           ( val3(w1,v2), val3(w2,v2), val3(w3,v2) ),
+           ( val3(w1,v3), val3(w2,v3), val3(w3,v3) ))))
+--------------- DEF of wedge product w1^w2^w3 in R^3
+
+"1.)"
+
+-- V is parameterized as graph of f using:
+f(x,y) = x^2+y^2
+Psi(x,y,z) = (x,    y,      z*f(x,y))
+--            0..1  0..1    0..1
+Psi     
+     
+Psix = d(Psi,x)      -- tangential vectors in TpR^3
+Psix
+Psiy = d(Psi,y)        
+Psiy
+Psiz = d(Psi,z)        
+Psiz
+
+dxdydz = ext33(dx,dy,dz, Psix,Psiy,Psiz)  -- volume element
+dxdydz
+
+-- no parameterization necesssary
+
+omega = z/(x^2+y^2) * dxdydz
+omega 
+
+Iomega = defint(omega, x,0,1, y,0,1, z,0,1)  
+Iomega 
+
+
+"2.)"
+
+-- V is parameterized as graph of f using:
+f(x,y) = x^2+y^2
+
+Psi(r,t,z) = (r*cos(t), r*sin(t), z*f(r*cos(t), r*sin(t)))
+--            0..1  0..pi/2        0..1
+Psi = simplify(Psi)    
+Psi
+     
+Psir = d(Psi,r)      -- tangential vectors in TpR^3
+Psir
+Psit = d(Psi,t)        
+Psiy
+Psiz = d(Psi,z)        
+Psiz 
+
+dxdydz = ext33(dx,dy,dz, Psir,Psit,Psiz)  -- volume element
+dxdydz
+
+-- use parameterization from above
+
+x = r*cos(t)
+y = r*sin(t)
+z = z
+
+omega = z/(x^2+y^2) * dxdydz
+omega 
+omega = simplify(omega)
+omega
+
+Iomega = defint(omega, r,0,1, t,0,pi/2, z,0,1)  
+Iomega 
+
+
+f(t) = test(
+       and(0<=t,t<=1) , (0,0)+t*(1,0),
+       and(1<=t,t<=2) , (1,0)+(2-t)*(0,1),
+       and(2<=t,t<=3) , (1,1)+(3-t)*(-1,0),
+       and(3<=t,t<=4) , (0,1)+(4-t)*(0,-1),
+       t>4, "ok")
+xrange = (-2,2) 
+yrange = (-2,2) 
+trange = (0,4)
+draw(f,t)
+
+
+stop 4.31  1/3  pi/4
+
+ 
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

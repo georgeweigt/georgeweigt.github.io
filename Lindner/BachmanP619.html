@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 90
+--| 6.    STOKES' Theorem
+--| 6.2   The generalized Stokes’ Theorem
+
+
+"EXERCISE 6.19"
+-- GIVEN: 
+--    w = x^3 dx + (1/3x^3 +x*y^2)dy a 1-form in R^2.
+--    C = circle of r=3 centered in (0,0).
+-- WANTED:
+--    calculate ∫w|C.
+
+"SOLUTION:"
+		
+-- To do:
+-- calculate ∫(x^3 dx + (1/3x^3 +x*y^2) dy) on C.
+
+-- plot sigma
+x = 2 cos(t)               -- (1)
+y = 2 sin(t)
+xrange = (-4,4)
+yrange = (-4,4)
+trange = (0, 2pi)
+draw((x,y),t)
+
+-- We use STOKES: ∫w|∂σ = ∫∂w|σ. "
+
+-- reset x,y because of (1)
+x=quote(x)
+y=quote(y)
+
+"Plan: 1. Calculate dw. 2. Then calculate Integral(dw|C)."
+
+"1.) calculate dw"
+"use FACT 5.2: IF w=f.dx+g.dy THEN dw=(dg/dx-fd/dy)dx.dy."
+
+-- Parametrization of C = Phi(0..2pi)
+Phi(t)=(2 cos(t), 2 sin(t))  -- t:0..2pi
+Phi                          
+
+-- DEF of 'wedge' product w in R^2
+ext12(w, v) = eval(w, dx,v[1], dy,v[2])  -- evaluation of w at v
+
+-- Tangential vector in TpC
+V = d(Phi,t)
+V
+
+-- integrand 
+omega = x^3*ext12(dx,V) +  (1/3*x^3 +x*y^2)*ext12(dy,V)  
+omega
+
+-- use Parametrization
+x = 2 cos(t)
+y = 2 sin(t)
+
+-- integrate df along C
+IC = defint(omega, t,0,2 pi)
+IC
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

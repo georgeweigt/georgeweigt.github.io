@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 16
+--| 2    Prerequisites
+--| 2.3  Polar, cylindrical and spherical coordinates
+
+"EXERCISE 2.17"
+
+-- GIVEN: 
+--    phi(t) = (a*t+c, b*t+d)  parameterize a line in R^2.
+-- WANTED:
+--    1. Calculate the slope of line phi.
+--    2. Compare Phi with line Psi(t) = (a*t, b*t).
+
+"SOLUTION:"
+"2."
+phi(t) = (a*t + c, b*t + d)
+phi
+
+"Draw line phi .."
+xrange = (-5,5) 
+yrange = (-5,5) 
+trange = (-3,6) 
+do(a=1,b=2,c=3,d=4)
+phi = (a t + c, b t + d) 
+phi1= (a t , b t )
+draw(phi,t)
+draw(phi1,t)
+
+".. and watch the contrast:"
+
+do(a=1,b=2,c=3,d=4)
+f(t) = test(
+       t < 3 , (a t +c, b t +d),
+       t < 6 , (a (t-3) , b (t-3) ) )
+
+draw(f,t)
+
+
+"1."
+"| Warning (p.12): the directional derivative only represents a slope when |V| = 1!"
+
+-- reset a,b,c,d
+do(a=quote(a),b=quote(b),c=quote(c),d=quote(d))
+
+phi(t) = (a*t+c, b*t+d)    -- f: R^2 --> R
+X  = (x,y)                 -- global CoordSys
+V  = d(phi,t)              -- velocity vector of phi
+V
+V/a                        -- "one step along x-axis"
+L = (V/a)[2]               -- slope of line
+L
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

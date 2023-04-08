@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 121
+--| 8    Differential Geometry via Differential Forms
+--| 8.1  Covariant derivatives
+
+
+"EXAMPLE 54"
+-- GIVEN: 
+--    W = (x*y^2, x+y)  a vector field in R^2.
+--    c = (t^2, t)      a differentiable curve in R^2
+--    v = c'(0)         velocity at c(0)
+-- WANTED:
+--    compute covariant derivation covD(v,W).
+
+-- REMARK:
+-- Alias name for the covariant derivation here is 'DeltavW',
+--    because Eigenmath writes Delta as 'inverted Nable' and
+--    Delta may be read as '(cov.) Derivative'.
+
+"SOLUTION:"
+
+"1st  version of CovDeri(v,W) via curve c and "
+"     d/dt W(c(t))|t=0 := Nabla(W).c'(t) "
+"     i.e. covariant derivation using velocity vector of c."
+ 
+-- given data
+X = (x,y)
+W = (x*y^2, x + y)
+W
+
+c(t) = (t^2,t)
+c
+P = c(0)
+P
+
+-- STEPS for computation of covariant derivative
+-- 1: calculate partial derivatives of W
+Delta(W)=d(W,X)       -- Delta = Jacobi matrix
+Delta(W)
+
+-- 2: calculate Nabla(W)|c(0)
+DeltaWp = eval(Delta(W) ,x,c(0)[1], y,c(0)[2])
+DeltaWp
+
+-- 3: calculate c'(0) using c'(t)=d(c,t)
+V = eval(d(c,t) ,t,0)      
+V
+
+-- 4: compute covariant derivation 
+--             1.part  2.part
+DeltavW = dot( DeltaWp, V    )
+DeltavW
+
+-- in summa and as procedure:
+
+---- DEF covariant derivation using velocity vector of c
+--       curve c and field W are global defined 
+--------------------------------------------------------
+covDWc(W) = do( A = eval( d(W,X) ,x,c(0)[1], y,c(0)[2]),
+                V = eval( d(c,t) ,t,0),
+                C = dot(A,V), 
+                C)  -- return value
+--------------------------------------------------------
+
+covDWc(W)
+
+"2nd  version of CovDeri(v,W) via curve c and "
+"     d/dt W(c(t))|t=0 := Nabla(W).c'(t) "
+"     i.e. covariant derivation using velocity vector of c."
+
+-- covD as [∇W].V, here ∇=Delta=d(W,X) ;)
+--------------------------------------------
+DeltavW(W,V) = dot( d(W,X), V)
+eval(DeltavW(W,V), x,c(0)[1], y,c(0)[2])
+--------------------------------------------
+DeltavW
+--------------------------------------  cov. Deri. rules
+-- (cov1)  Nv(X.Y) = (NvX).Y + X.(NvY)  N=NABLA
+-- (cov2)  Nv(fW) = (Nvf)W + f(NvW)
+-- (cov3)  d(V.W) = dV.W + V.dW
+-- (cov4)  dW(V).U =dW.U(V)
+--------------------------------------
+stop
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

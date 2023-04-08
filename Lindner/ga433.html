@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH
+A = ((1,2),(3,4))   -- (1)
+B = (5,6)
+det(A)
+X = dot(inv(A),B)   -- (2)
+X
+
+run("EVA2.txt")
+cl(2)               -- calculate in G^2
+
+A1 = 1e1+3e2        -- (3) columnwise structure!
+A2 = 2e1+4e2
+B  = 5e1+6e2
+
+Det = outp(A1,A2)   -- (4)
+Det
+Det[4]              -- (5)
+
+x = outp(B,A2)[4]/outp(A1,A2)[4]  -- (6)
+x
+y = outp(A1,B)[4]/outp(A1,A2)[4]
+y
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

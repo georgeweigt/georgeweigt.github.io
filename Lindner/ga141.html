@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+run("EVA2.txt")           # load package EVA
+cl(2)                     # (1) specify the Clifford Algebra
+
+e0                        -- (2) the 4 basis vectors e0,e1,e2,e3
+e1
+e2
+e12
+
+U = 1e0+2e1+3e2+4e12   -- (3) a 4D vector as lin.comb.
+U
+V = -3e1+4e2
+V
+U+V                    -- (4) usual 4D addition
+U-V                    -- (5) .. and subtraction
+2U+3V                  -- (6) a lin.comb. of scalar multiples
+magnitude(V)           -- (7) the length of V
+Vn=normalize(V)        -- unit vector in direction of V
+Vn
+inp(Vn,Vn)             -- (8) the inner/scalar product
+inp(U,U)               -- feel at home
+
+gp(e0,e0)              -- (9) the gp = GeometricProduct
+gp(e1,e0)              --     as new algebraic multiplication  
+gp(e12,e12)            -- (10) a kind of imaginary unit
+	  
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

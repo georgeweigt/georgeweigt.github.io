@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+Replace(p,M,i) = do(X=M,  Xt=transpose(X), Xt[i]=p, 
+                    transpose(Xt))
+
+do( e=quote(e), i=quote(i))
+
+A=((a,b,c),(d,e,f),(g,h,i))
+
+     Replace((p,q,r), A, 1)                --(1)
+det( Replace((p,q,r),A,1) )                --(2)
+p*(e*i - f*h) + q*(c*h - b*i)+r*(b*f-c*e)  --(3)
+
+p * det(((e,f),(h,i))) -                   --(4)
+q * det(((b,c),(h,i))) +
+r * det(((b,c),(e,f)))
+
+p * cofactor(A,1,1) +                      --(5)
+q * cofactor(A,2,1) +
+r * cofactor(A,3,1)
+	  
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

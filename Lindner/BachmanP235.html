@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 20
+--| 2    Prerequisites
+--| 2.5  Parameterized surfaces in R^3
+
+"EXERCISE 2.35."
+
+-- GIVEN: 
+--    the parameterization phi(r,t) = (r cos(t),r sin(t),sqrt(r)), 
+--                                    where 0<=r<=2 and 0<=t<=2pi.
+-- WANTED:
+--    1. Sketch the surface parameterized by phi.
+--    2. Find two tangent vectors to this surface at the point (0,1,1).
+
+"SOLUTION:"
+
+-- Remember:
+-- rect.Coords: (x  ,y,     z)
+-- cyl.Coords : (r  ,theta, z)     theta->r->z
+-- sph.Coords : (rho,theta, phi)   theta->phi->rho
+
+-- S(u,v) = (f(u,v), g(u,v), h(u,v))  -- general surface
+-- d(S,(u,v))  -- Jacobi
+-- d(S,u)      -- dS/du
+-- d(S,v)      -- dS/dv
+
+
+"1.)"
+"Use parameterization data and then use CalcPlot3d (cf. Ex05)."
+
+Phi(r,phi)= (r cos(phi),r sin(phi),sqrt(r))
+Phi
+
+"2.)"
+"Which (r,phi) gives point (0,1,1)?"
+Phi(1,pi/2)
+
+Phir = d(Phi,r)
+Phir
+Phiphi = d(Phi,phi)
+Phiphi
+
+eval( d(Phi,r),   r,1, phi,pi/2)
+eval( d(Phi,phi), r,1, phi,pi/2)
+
+"ok."
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

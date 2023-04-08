@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 12/2022
+--| Bachman p. 72
+--| 5.    Differentiation of Differential Forms
+--| 5.1.  The derivative of a differential 1-form
+
+
+"EXERCISE 5.3"
+-- GIVEN: 
+--     ω = y dx−x2 dy  
+--    
+-- WANTED:
+--    1. Calculate dω.
+--    2. Verify:   dω((1,2),(2,3)) = 3 at the point (1,1).
+
+"SOLUTION:"
+		
+X = (x,y)          -- standard directions in R^2
+
+val2(w,v)          = eval(w, dx,v[1], dy,v[2])
+
+ext2(w1,w2, v1,v2) = det( ((val2(w1,v1), val2(w2,v1)),
+                           (val2(w1,v2), val2(w2,v2)) ))
+
+-- directional derivation of ω(v) at direction w at point p
+Delta2(omega,v,w,p) = eval(dot(d(val2(omega,w),X),v), x,p[1],y,p[2])
+
+-- derivative dω of 1-form ω
+domega2(omega, v,w,p) = Delta2(omega, v,w,p) - Delta2(omega, w,v,p)
+
+-- general ansatz:
+f(x,y) =  y
+g(x,y) = -x^2
+
+omega = f(x,y)*dx + g(x,y)*dy           -- (1)
+omega 
+
+"1. solution:"
+
+V = (1,2)
+W = (2,3)
+p = (1,1)
+
+Delta2(omega, V,W,p)
+Delta2(omega, W,V,p)
+
+domega2(omega, V,W,p)
+
+"2. solution:"
+
+domega = (d(g(x,y),x)-d(f(x,y),y))*ext2(dx,dy,V,W) 
+domega
+
+eval(domega, x,1, y,1)
+
+"i.e. dw = (-2x-1)dx^dy."
+
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

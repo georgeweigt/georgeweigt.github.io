@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+# EIGENMATH - Dr. W. Lindner 3/2023
+
+-- hyperbolic PARABOLOID 
+phi(u,v) = (u , v, u*v)                        --(1)
+
+U = (u,v)   -- region of phi                   --(2)
+
+gij(i,j) = dot( d(phi,U[i]), d(phi,U[j]))      --(3)
+
+g = zero(2,2)
+    for(i,1,2, for( j,1,2, g[i,j] = gij(i,j))) --(4)
+g   
+
+gu = inv(g)                                    --(5)
+gu
+
+Dg = d(g, U)                                   --(6)  
+Dg                
+
+"CHRISTOFFEL SYMBOL 1st kind"
+-- Analyse defining formula:                   --(7)
+-- 
+-- Gamma    = 1/2 (g     + g     - g    )     Formula 
+--      abc         ab,c    ac,b    bc,a      INDEX-PATTERN
+--      123         12 3    13 2    23 1      INDEX-PATTERN
+
+GammaI = 1/2 (Dg + transpose(Dg,2,3) - transpose(Dg,2,3,1,2))   --(8)
+           -- ok   transpose    c.b    transpose c.a and b.a
+GammaI     
+
+"CHRISTOFFEL SYMBOL 2nd kind"
+-- Analyse defining formula:
+--
+--      a      au
+-- Gamma    = g   . Gamma
+--       bc              ubc
+
+GammaII = dot(gu, GammaI)                       --(9)
+GammaII    
+
+
+"RIEMANN CURVATURE tensor Ri^jkl 2nd kind"
+-- Analyze formula, G=Gamma
+--  a       a        a        a      u      a     u
+-- R     = G      - G      + G    * G    - G   * G
+--   bcd     bd,c     bc,d     uc     bd     ud    bc
+--
+-- Index pattern:
+-- Ra.bcd = Ga.bd,c - Ga.bc,d  + Ga.uc*Gu.bd - Ga.ud*Gu.bc          
+--  1 234    1 24 3    1 23 4      T2          T2
+--           1 u3      u 24       1  4         23
+
+T1 = d(GammaII, U)                         --(10) 1st temporary result
+T2 = dot(transpose(GammaII,2,3), GammaII)  --(11) 2nd temporary result
+
+RII = transpose(T1,3,4) -T1+ transpose(T2,2,3) - transpose(T2,2,3,3,4)     
+      -- transpose d.c   ok     transpose c.b    transp. d.b then d.c
+RII   
+
+"RIEMANN CURVATURE tensor Rijkl 1st kind"
+-- with lowering the index (index juggling) via (7.7)
+
+RI = dot(g, RII)                            --(11)
+RI
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

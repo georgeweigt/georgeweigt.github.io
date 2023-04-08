@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+--| Dr. W. Lindner 1/2023
+--| Bachman p. 8
+--| 2    Prerequisites
+--| 2.1  Multivariable calculus
+
+"EXERCISE 2.3"
+-- GIVEN: 
+--    R is rectangle with vertices at (1,0), (2,0), (1,3) and (2,3).
+-- WANTED:
+--    Draw R using CAS Eigenmath.
+
+"SOLUTION:"
+
+xrange = (-5,5) 
+yrange = (-5,5) 
+trange = (1,9) 
+f(t) = test(
+       and(1 <= t,t <=2) , (t,0),
+       and(2 <= t,t <=5) , (1,t-2),
+       and(5 <= t,t <=6) , (1,3)+(t-5)*(1,0),
+       and(6 <= t,t <=9) , (2,0)+(t-6)*(0,1) )
+draw(f,t)
+
+
+
+"1.)"
+defint(x^2*y^2, x,1,2, y,0,3)
+
+"2.)"
+defint(1, x,1,2, y,0,3)
+
+"3.)"
+defint(x^2+y^2, x,1,2, y,0,3)
+
+"4.)"
+integral( sqrt(x+2/3*y))
+defint( sqrt(x+2/3*y), x,1,2, y,0,3)
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>

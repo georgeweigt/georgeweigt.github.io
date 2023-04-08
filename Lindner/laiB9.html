@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Demo</title>
+</head>
+<body>
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+<table><tr><td>
+<textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:12pt">
+
+mpi1(A)      = do(At=transpose(A), 
+                  dot(inv(dot(At,A)),At) )
+
+Xfit1(B,A) = dot(mpi1(A),B)     --Xo the best fit
+
+Yfit1(B,A) = dot(A, mpi1(A), B) --Bo the proximum
+                       
+A=((1,2),(1,0),(0,1))
+A
+B=(1,2,3)
+mp=mpi1(A)
+mp
+Xo=Xfit1(B,A)
+Xo
+Bo=Yfit1(B,A)        -- Yfit is proj(B,A)
+Bo                  -- solution a. 
+
+BBo = B-Bo          -- solution b. 
+BBo
+
+length = abs(BBo)   -- solution b. 
+length
+float
+
+</textarea>
+</td><td>
+<button onclick="run()" style="font-size:20pt">Run</button>
+</td></tr></table>
+<p>
+<div id="stdout"></div>
+</body>
+</html>
