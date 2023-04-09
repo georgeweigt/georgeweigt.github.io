@@ -1,7 +1,7 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
--- this works for integer a (k is a local var)
+-- this works for integer m
 
-L(x,n,a,k) = (n + a)! sum(k,0,n,(-x)^k / ((n - k)! (a + k)! k!))
+L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
 
 -- this works for real or complex a (y is a local var)
 
