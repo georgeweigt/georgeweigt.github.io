@@ -13345,7 +13345,7 @@ get_usrfunc(p)
 		stopf("symbol error");
 	p = usrfunc[p.printname];
 	if (p == undefined)
-		p = symbol(NIL); // no calls to set_symbol() since eval_clear()
+		p = symbol(NIL);
 	return p;
 }
 function
