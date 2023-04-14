@@ -11,7 +11,7 @@ Fermion spin state $|s\rangle$ is a unit vector in $\mathbb{C}^2$.
 c_1^*c_1+c_2^*c_2=1
 \end{equation*}
 
-Here is $|s\rangle$ as a linear combination of basis states ``up'' and ``down.''
+Here is spin state $|s\rangle$ as a linear combination of basis states ``up'' and ``down.''
 \begin{equation*}
 |s\rangle=c_1|u\rangle+c_2|d\rangle,
 \quad
@@ -68,8 +68,9 @@ u^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
 \end{equation*}
 
 Hence the Eigenmath code is
-\begin{equation*}
-\text{\tt u = dot(conj(s),transpose(sigma),s)}
-\end{equation*}
+{\footnotesize\begin{verbatim}
+sigma = (sigmax,sigmay,sigmaz)
+u = dot(conj(s),transpose(sigma),s)
+\end{verbatim}}
 
 \end{document}
