@@ -41,9 +41,9 @@ Expectation of spin operators is a projection of $s$ onto Euclidean space.
 Let $\mathbf u$ be the spin direction vector formed from $s$.
 \begin{equation*}
 \mathbf u=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
-=\langle s|\sigma|s\rangle,
+=\langle s|\boldsymbol\sigma|s\rangle,
 \quad
-\sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
+\boldsymbol\sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
 \end{equation*}
 
 Let $\theta$ and $\phi$ be polar and azimuth angles such that
@@ -53,10 +53,11 @@ Let $\theta$ and $\phi$ be polar and azimuth angles such that
 
 Then
 \begin{equation*}
-|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+|s\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
+=\cos\tfrac{\theta}{2}|u\rangle+\sin\tfrac{\theta}{2}\exp(i\phi)|d\rangle
 \end{equation*}
 
-In component notation $\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
+In component notation $\boldsymbol\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
 \begin{equation*}
 u^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
 \end{equation*}
