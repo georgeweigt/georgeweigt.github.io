@@ -29,13 +29,10 @@ I(f) = do(
 
 N = 5 -- arbitrary cutoff for demo
 
-Psi = zero(N)
 R = zero(N,N)
 Enm = zero(N,N)
 
-for(n,1,N, Psi[n] = psi(n,0))
-
-for(n,1,N, for(m,1,N, R[n,m] = I(conj(Psi[n]) r Psi[m])))
+for(n,1,N, for(m,1,N, R[n,m] = I(conj(psi(n,0)) r psi(m,0))))
 
 for(n,1,N, Enm[n,n] = E(n))
 
