@@ -27,7 +27,7 @@ I(f) = do(
   0 - eval(f,r,0)
 )
 
-N = 5 -- number 5 is arbitrary, chosen for demo
+N = 5 -- arbitrary cutoff for demo
 
 Psi = zero(N)
 R = zero(N,N)
