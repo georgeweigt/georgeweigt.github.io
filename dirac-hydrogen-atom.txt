@@ -15,13 +15,11 @@ a0 = hbar^2 / (k mu)
 
 L(x,n,a,y) = eval(y^(-a) exp(y) / n! d(exp(-y) y^(n + a), y, n), y, x)
 
+-- energy eigenvalues
+
 E(n) = -1/2 k^2 mu / hbar^2 / (n + 1/2)^2
 
-psi1 = psi(1,0)
-psi2 = psi(2,0)
-psi3 = psi(3,0)
-psi4 = psi(4,0)
-psi5 = psi(5,0)
+-- integrator
 
 I(f) = do(
   f = defint(f, phi, 0, 2 pi),
@@ -29,43 +27,17 @@ I(f) = do(
   0 - eval(f,r,0)
 )
 
-R = zero(5,5) -- number 5 is arbitrary, chosen for demo
+N = 5 -- number 5 is arbitrary, chosen for demo
 
-R[1,1] = I(conj(psi1) r psi1)
-R[1,2] = I(conj(psi1) r psi2)
-R[1,3] = I(conj(psi1) r psi3)
-R[1,4] = I(conj(psi1) r psi4)
-R[1,5] = I(conj(psi1) r psi5)
+Psi = zero(N)
+R = zero(N,N)
+Enm = zero(N,N)
 
-R[2,1] = I(conj(psi2) r psi1)
-R[2,2] = I(conj(psi2) r psi2)
-R[2,3] = I(conj(psi2) r psi3)
-R[2,4] = I(conj(psi2) r psi4)
-R[2,5] = I(conj(psi2) r psi5)
+for(n,1,N, Psi[n] = psi(n,0))
 
-R[3,1] = I(conj(psi3) r psi1)
-R[3,2] = I(conj(psi3) r psi2)
-R[3,3] = I(conj(psi3) r psi3)
-R[3,4] = I(conj(psi3) r psi4)
-R[3,5] = I(conj(psi3) r psi5)
+for(n,1,N, for(m,1,N, R[n,m] = I(conj(Psi[n]) r Psi[m])))
 
-R[4,1] = I(conj(psi4) r psi1)
-R[4,2] = I(conj(psi4) r psi2)
-R[4,3] = I(conj(psi4) r psi3)
-R[4,4] = I(conj(psi4) r psi4)
-R[4,5] = I(conj(psi4) r psi5)
-
-R[5,1] = I(conj(psi5) r psi1)
-R[5,2] = I(conj(psi5) r psi2)
-R[5,3] = I(conj(psi5) r psi3)
-R[5,4] = I(conj(psi5) r psi4)
-R[5,5] = I(conj(psi5) r psi5)
-
-Enm = ((E(1),0,0,0,0),
-       (0,E(2),0,0,0),
-       (0,0,E(3),0,0),
-       (0,0,0,E(4),0),
-       (0,0,0,0,E(5)))
+for(n,1,N, Enm[n,n] = E(n))
 
 -- solve for P
 
