@@ -1,6 +1,6 @@
--- this works for integer m
+-- this works for integer m (k is a local var)
 
-L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
+L(x,n,m,k) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
 
 -- this works for real or complex a (y is a local var)
 
