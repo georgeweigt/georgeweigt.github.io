@@ -1,6 +1,4 @@
--- Verify muon decay equation (1)
-
--- Run time is about 1 minute
+-- Run time is about 90 seconds
 
 p1 = (E1, p1x, p1y, p1z) -- muon
 p2 = (E2, p2x, p2y, p2z) -- muon neutrino
@@ -69,6 +67,8 @@ N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
 
 MMavg = 1/2 S / N
 
-"Verify (1=ok)"
+"Verify equation (1)"
 
-MMavg == 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+check(MMavg == 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
+
+"ok"
