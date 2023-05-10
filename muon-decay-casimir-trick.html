@@ -42,7 +42,9 @@ T = contract(dot(T1, gmunu, transpose(T2), gmunu))
 "Result"
 T
 
-"Verify (1=ok)"
+"Verify"
 
-1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4)
+check(1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
