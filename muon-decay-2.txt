@@ -1,3 +1,5 @@
+-- Verify probability density for muon decay
+
 -- Run time is about 90 seconds
 
 p1 = (E1, p1x, p1y, p1z) -- muon
