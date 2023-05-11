@@ -53,37 +53,41 @@ f12 = contract(contract(contract(T,3,5),2,3))
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
 f22 = contract(contract(contract(T,3,4),2,3))
 
-"Verify momentum formulas (1=ok)"
+"Verify momentum formulas"
 
-f11 == 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
-       64 m^2 dot(p1,gmunu,p2) -
-       32 m^2 dot(p1,gmunu,p3) -
-       32 m^2 dot(p1,gmunu,p4) + 32 m^4
+check(f11 == 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
+             64 m^2 dot(p1,gmunu,p2) -
+             32 m^2 dot(p1,gmunu,p3) -
+             32 m^2 dot(p1,gmunu,p4) + 32 m^4)
 
-f12 == 16 m^2 dot(p1,gmunu,p2) -
-       16 m^2 dot(p1,gmunu,p4) + 32 m^4
+check(f12 == 16 m^2 dot(p1,gmunu,p2) -
+             16 m^2 dot(p1,gmunu,p4) + 32 m^4)
 
-f22 == 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
-       32 m^2 dot(p1,gmunu,p2) -
-       32 m^2 dot(p1,gmunu,p3) -
-       64 m^2 dot(p1,gmunu,p4) + 32 m^4
+check(f22 == 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
+             32 m^2 dot(p1,gmunu,p2) -
+             32 m^2 dot(p1,gmunu,p3) -
+             64 m^2 dot(p1,gmunu,p4) + 32 m^4)
 
-"Verify Mandelstam formulas (1=ok)"
+"ok"
+
+"Verify Mandelstam formulas"
 
 s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
 u = dot(p1 - p4,gmunu,p1 - p4)
 
-f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
-f12 == 8 s m^2 + 8 u m^2 + 16 m^4
-f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
+check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
+check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
 m = 0
 
-s == 4 omega^2
-u == -2 omega^2 (expcos(theta) + 1)
+check(s == 4 omega^2)
+check(u == -2 omega^2 (expcos(theta) + 1))
 
-"Verify probability density (1=ok)"
+"ok"
+
+"Verify probability density"
 
 d11 = (s - m^2)^2
 d12 = (s - m^2) (u - m^2)
@@ -95,4 +99,6 @@ b = expcos(theta) + 1
 
 B = 2 (b/2 + 2/b)
 
-A == B
+check(A == B)
+
+"ok"

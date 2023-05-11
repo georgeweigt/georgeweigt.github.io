@@ -90,8 +90,10 @@ f11
 f12
 f22
 
-"Verify Casimir trick (1=ok)"
+"Verify Casimir trick"
 
-f11 == 1/N a11
-f12 == 1/N a12
-f22 == 1/N a22
+check(f11 == 1/N a11)
+check(f12 == 1/N a12)
+check(f22 == 1/N a22)
+
+"ok"

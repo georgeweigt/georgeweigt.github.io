@@ -37,11 +37,13 @@ f22 = 32 dot(p1,gmunu,p2) dot(p1,gmunu,p4) +
       32 m^2 dot(p1,gmunu,p3) -
       64 m^2 dot(p1,gmunu,p4) + 32 m^4
 
-"Verify probability density in center of mass frame (1=ok)"
+"Verify probability density in center of mass frame"
 
-f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
-f12 == 8 s m^2 + 8 u m^2 + 16 m^4
-f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
+check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
+check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
+
+"ok"
 
 -- transform momentum vectors to lab frame
 
@@ -52,22 +54,26 @@ p2 = dot(Lambda,p2)
 p3 = dot(Lambda,p3)
 p4 = dot(Lambda,p4)
 
-"Verify invariance of Mandelstam variables (1=ok)"
+"Verify invariance of Mandelstam variables"
 
-s == dot(p1 + p2,gmunu,p1 + p2)
-t == dot(p1 - p3,gmunu,p1 - p3)
-u == dot(p1 - p4,gmunu,p1 - p4)
+check(s == dot(p1 + p2,gmunu,p1 + p2))
+check(t == dot(p1 - p3,gmunu,p1 - p3))
+check(u == dot(p1 - p4,gmunu,p1 - p4))
 
-"Verify lab variables (1=ok)"
+"ok"
+
+"Verify lab variables"
 
 omegaL = p1[1]
 omegaLp = p3[1]
 
-s == 2 m omegaL + m^2
-t == 2 m (omegaLp - omegaL)
-u == -2 m omegaLp + m^2
+check(s == 2 m omegaL + m^2)
+check(t == 2 m (omegaLp - omegaL))
+check(u == -2 m omegaLp + m^2)
 
-"Verify probability density (1=ok)"
+"ok"
+
+"Verify probability density"
 
 omegaL = quote(omegaL)    -- clear omegaL
 omegaLp = quote(omegaLp)  -- clear omegaLp
@@ -88,5 +94,7 @@ A = 1/4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 B = 2 (omegaLp/omegaL + omegaL/omegaLp + (m/omegaL - m/omegaLp + 1)^2 - 1)
 
-A == B
+check(A == B)
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
