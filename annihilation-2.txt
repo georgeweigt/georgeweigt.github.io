@@ -1,4 +1,4 @@
--- Verify formulas for electron-positron annihilation
+-- Verify formulas for electron-positron annihilation (run time 1 minute)
 
 E = sqrt(p^2 + m^2)
 
@@ -53,38 +53,42 @@ f12 = contract(contract(contract(T,3,5),2,3))
 T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
 f22 = contract(contract(contract(T,3,4),2,3))
 
-"Verify momentum formulas (1=ok)"
+"Verify momentum formulas"
 
-f11 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
-       32 m^2 dot(p1,gmunu,p2) +
-       64 m^2 dot(p1,gmunu,p3) +
-       32 m^2 dot(p1,gmunu,p4) - 64 m^4
+check(f11 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
+             32 m^2 dot(p1,gmunu,p2) +
+             64 m^2 dot(p1,gmunu,p3) +
+             32 m^2 dot(p1,gmunu,p4) - 64 m^4)
 
-f12 == 16 m^2 dot(p1,gmunu,p3) +
-       16 m^2 dot(p1,gmunu,p4) - 32 m^4
+check(f12 == 16 m^2 dot(p1,gmunu,p3) +
+             16 m^2 dot(p1,gmunu,p4) - 32 m^4)
 
-f22 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
-       32 m^2 dot(p1,gmunu,p2) +
-       32 m^2 dot(p1,gmunu,p3) +
-       64 m^2 dot(p1,gmunu,p4) - 64 m^4
+check(f22 == 32 dot(p1,gmunu,p3) dot(p1,gmunu,p4) -
+             32 m^2 dot(p1,gmunu,p2) +
+             32 m^2 dot(p1,gmunu,p3) +
+             64 m^2 dot(p1,gmunu,p4) - 64 m^4)
 
-"Verify Mandelstam formulas (1=ok)"
+"ok"
+
+"Verify Mandelstam formulas"
 
 s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
 u = dot(p1 - p4,gmunu,p1 - p4)
 
-f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
-f12 == 8 s m^2 - 32 m^4
-f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
+check(f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4)
+check(f12 == 8 s m^2 - 32 m^4)
+check(f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4)
 
 m = 0
 
-s == 4 E^2
-t == 2 E^2 (expcos(theta) - 1)
-u == -2 E^2 (expcos(theta) + 1)
+check(s == 4 E^2)
+check(t == 2 E^2 (expcos(theta) - 1))
+check(u == -2 E^2 (expcos(theta) + 1))
 
-"Verify probability density (1=ok)"
+"ok"
+
+"Verify probability density"
 
 d11 = (t - m^2)^2
 d12 = (t - m^2) (u - m^2)
@@ -97,4 +101,6 @@ b = 1 - expcos(theta)
 
 B = 2 (a/b + b/a)
 
-A == B
+check(A == B)
+
+"ok"

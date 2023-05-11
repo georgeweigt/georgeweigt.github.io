@@ -51,38 +51,42 @@ T1 = contract(dot(X1,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-"Verify momentum formulas (1=ok)"
+"Verify momentum formulas"
 
-f11 == 32 dot(p1,gmunu,p2)^2 +
-       32 dot(p1,gmunu,p4)^2 -
-       64 m^2 dot(p1,gmunu,p3) + 64 m^4
+check(f11 == 32 dot(p1,gmunu,p2)^2 +
+             32 dot(p1,gmunu,p4)^2 -
+             64 m^2 dot(p1,gmunu,p3) + 64 m^4)
 
-f12 == -32 dot(p1,gmunu,p4)^2 -
-        32 m^2 dot(p1,gmunu,p2) +
-        32 m^2 dot(p1,gmunu,p3) -
-        32 m^2 dot(p1,gmunu,p4) - 32 m^4
+check(f12 == -32 dot(p1,gmunu,p4)^2 -
+             32 m^2 dot(p1,gmunu,p2) +
+             32 m^2 dot(p1,gmunu,p3) -
+             32 m^2 dot(p1,gmunu,p4) - 32 m^4)
 
-f22 == 32 dot(p1,gmunu,p3)^2 +
-       32 dot(p1,gmunu,p4)^2 +
-       64 m^2 dot(p1,gmunu,p2) + 64 m^4
+check(f22 == 32 dot(p1,gmunu,p3)^2 +
+             32 dot(p1,gmunu,p4)^2 +
+             64 m^2 dot(p1,gmunu,p2) + 64 m^4)
 
-"Verify Mandelstam formulas (1=ok)"
+"ok"
+
+"Verify Mandelstam formulas"
 
 s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
 u = dot(p1 - p4,gmunu,p1 - p4)
 
-f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
-f12 == -8 u^2 + 64 u m^2 - 96 m^4
-f22 == 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
+check(f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4)
+check(f12 == -8 u^2 + 64 u m^2 - 96 m^4)
+check(f22 == 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4)
 
 m = 0
 
-s == 4 E^2
-t == 2 E^2 (expcos(theta) - 1)
-u == -2 E^2 (expcos(theta) + 1)
+check(s == 4 E^2)
+check(t == 2 E^2 (expcos(theta) - 1))
+check(u == -2 E^2 (expcos(theta) + 1))
 
-"Verify probability density (1=ok)"
+"ok"
+
+"Verify probability density"
 
 d11 = t^2
 d12 = s t
@@ -92,5 +96,7 @@ A = 1/4 (f11/d11 - 2 f12/d12 + f22/d22)
 
 B = (expcos(theta)^2 + 3)^2 / (expcos(theta) - 1)^2
 
-A == B
+check(A == B)
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

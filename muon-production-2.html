@@ -47,15 +47,17 @@ T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)
 
 T = contract(dot(T1,transpose(T2)))
 
-"Verify probability density (1=ok)"
+"Verify probability density"
 
 f = 1 + expcos(theta)^2 +
     (m^2 + M^2) E^(-2) expsin(theta)^2 +
     m^2 M^2 E^(-4) expcos(theta)^2
 
-T == 64 E^4 f
+check(T == 64 E^4 f)
 
-"Verify momentum formula (1=ok)"
+"ok"
+
+"Verify momentum formula"
 
 f = 32 dot(p1,gmunu,p3) dot(p2,gmunu,p4) +
     32 dot(p1,gmunu,p4) dot(p2,gmunu,p3) +
@@ -63,9 +65,11 @@ f = 32 dot(p1,gmunu,p3) dot(p2,gmunu,p4) +
     32 M^2 dot(p1,gmunu,p2) +
     64 M^2 m^2
 
-T == f
+check(T == f)
 
-"Verify Mandelstam formula (1=ok)"
+"ok"
+
+"Verify Mandelstam formula"
 
 s = dot(p1 + p2,gmunu,p1 + p2)
 t = dot(p1 - p3,gmunu,p1 - p3)
@@ -74,5 +78,7 @@ u = dot(p1 - p4,gmunu,p1 - p4)
 f = 16 t^2 - 16 s u + 32 u (m^2 + M^2) - 8 s^2 +
     64 M^2 s + 64 m^2 s - 48 (m^2 + M^2)^2
 
-T == f
+check(T == f)
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

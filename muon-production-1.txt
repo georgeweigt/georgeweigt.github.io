@@ -85,6 +85,8 @@ T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)
 T = contract(dot(T1,transpose(T2)))
 T
 
-"Verify Casimir trick (1=ok)"
+"Verify Casimir trick"
 
-1/N S == T
+check(1/N S == T)
+
+"ok"
