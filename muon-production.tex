@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
@@ -77,26 +77,25 @@ will be used where needed.
 
 \bigskip
 \noindent
-This is the probability density for muon production.
-Symbol $s=(p_1+p_2)^2=4E^2$,
-symbol $s_j$ selects the spin of spinor $j$,
-and $e$ is electron charge.
+This is the probability density for spin state $abcd$.
+Symbol $s=(p_1+p_2)^2=4E^2$.
+Symbol $e$ is electron charge.
 \begin{equation*}
-|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
-=\frac{e^4}{s^2}\frac{1}{N}\left|(\bar{u}_3\gamma_\mu v_4)(\bar{v}_2\gamma^\mu u_1)\right|^2
+\big|\mathcal{M}_{abcd}\big|^2
+=\frac{e^4}{Ns^2}\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
 \end{equation*}
 
 \noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$
-is computed by summing $|\mathcal{M}|^2$ over all spin states
+is computed by summing $|\mathcal{M}_{abcd}|^2$ over all spin states
 and dividing by the number of inbound states.
 There are four inbound states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2|\mathcal{M}(s_1,s_2,s_3,s_4)|^2
+&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2|\mathcal{M}_{abcd}|^2
 \\
-&=\frac{e^4}{4s^2}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
-\frac{1}{N}\left|(\bar{u}_3\gamma_\mu v_4)(\bar{v}_2\gamma^\mu u_1)\right|^2
+&=\frac{e^4}{4Ns^2}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+\big|(\bar{u}_3\gamma_\mu v_4)(\bar{v}_2\gamma^\mu u_1)\big|^2
 \end{align*}
 
 \noindent
@@ -217,8 +216,8 @@ Run ``muon-production-5.txt'' to draw the probability density function.
 \noindent
 Run ``muon-production-1.txt'' to verify that
 $$
-\frac{1}{N}\sum_{s_1=1}^2\sum_{s_2=1}^2\sum_{s_3=1}^2\sum_{s_4=1}^2
-\left|(\bar{u}_3\gamma_\mu v_4)(\bar{v}_2\gamma^\mu u_1)\right|^2
+\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
 =
 \mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
 \mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
