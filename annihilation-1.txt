@@ -1,4 +1,6 @@
--- Verify Casimir trick for electron-positron annihilation (run time 1 minute)
+-- Verify Casimir trick for electron-positron annihilation
+
+-- Run time about 30 seconds
 
 E = sqrt(p^2 + m^2)
 
@@ -23,8 +25,6 @@ v22 = (p2[2] - i p2[3], -p2[4], 0, E + m)
 
 u1 = (u11,u12)
 v2 = (v21,v22)
-
-N = (E + m)^2
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -51,23 +51,29 @@ qslash2 = dot(q2,gmunu,gamma)
 t = dot(q1,gmunu,q1)
 u = dot(q2,gmunu,q2)
 
-"Sum over spin states"
+a1 = zero(2,2,4,4)
+a2 = zero(2,2,4,4)
 
-a11 = 0
-a12 = 0
-a22 = 0
-
-for(a,1,2,for(b,1,2,
-  a1 = dot(v2bar[b],gammaT,qslash1 + m I,gammaT,u1[a]),
-  a2 = dot(v2bar[b],gammaT,qslash2 + m I,gammaT,u1[a]),
-  a11 = a11 + contract(dot(a1,gmunu,transpose(conj(a1)),gmunu)),
-  a12 = a12 + contract(dot(a1,gmunu,conj(a2),gmunu)),
-  a22 = a22 + contract(dot(a2,gmunu,transpose(conj(a2)),gmunu))
+for(a,1,2, for(b,1,2,
+ a1[a,b] = dot(v2bar[b], gammaT, qslash1 + m I, gammaT, u1[a]),
+ a2[a,b] = dot(v2bar[b], gammaT, qslash2 + m I, gammaT, u1[a])
 ))
 
-a11
-a12
-a22
+"Sum over spin states"
+
+a11 = sum(a,1,2, sum(b,1,2,
+ contract(dot(a1[a,b], gmunu, transpose(conj(a1[a,b])), gmunu))
+))
+
+a12 = sum(a,1,2, sum(b,1,2,
+ contract(dot(a1[a,b], gmunu, conj(a2[a,b]), gmunu))
+))
+
+a22 = sum(a,1,2, sum(b,1,2,
+ contract(dot(a2[a,b], gmunu, transpose(conj(a2[a,b])), gmunu))
+))
+
+print(a11, a12, a22)
 
 "Casimir trick"
 
@@ -89,11 +95,11 @@ f12 = contract(contract(contract(T,3,5),2,3))
 T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
 f22 = contract(contract(contract(T,3,4),2,3))
 
-f11
-f12
-f22
+print(f11, f12, f22)
 
 "Verify Casimir trick"
+
+N = (E + m)^2
 
 check(f11 == 1/N a11)
 check(f12 == 1/N a12)
