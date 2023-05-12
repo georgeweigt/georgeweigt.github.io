@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-
+\parindent=0pt
 \begin{document}
 
 \noindent
@@ -71,15 +71,14 @@ v_{42}=\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}
 
 \noindent
 The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-Note that the spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2(E+M)^2$
-will be used where needed.
+Note that the spinors are not normalized.
+A combined spinor normalization constant $N=(E+m)^2(E+M)^2$
+will be used instead.
 
 \bigskip
 \noindent
 This is the probability density for spin state $abcd$.
-Symbol $s=(p_1+p_2)^2=4E^2$.
-Symbol $e$ is electron charge.
+Symbol $e$ is electron charge and $s=(p_1+p_2)^2=4E^2$.
 \begin{equation*}
 \big|\mathcal{M}_{abcd}\big|^2
 =\frac{e^4}{Ns^2}\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
@@ -92,14 +91,14 @@ and dividing by the number of inbound states.
 There are four inbound states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2|\mathcal{M}_{abcd}|^2
+&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2\big|\mathcal{M}_{abcd}\big|^2
 \\
 &=\frac{e^4}{4Ns^2}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
-\big|(\bar{u}_3\gamma_\mu v_4)(\bar{v}_2\gamma^\mu u_1)\big|^2
+\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
 \end{align*}
 
 \noindent
-Another way to compute $\langle|\mathcal{M}|^2\rangle$ is to use the Casimir trick.
+Another way to compute $\langle|\mathcal{M}|^2\rangle$ is to use the following Casimir trick.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4s^2}
