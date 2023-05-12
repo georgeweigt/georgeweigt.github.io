@@ -18,8 +18,6 @@ u22 = (0, E + m, p2[2] - i p2[3], -p2[4])
 u1 = (u11,u12)
 u2 = (u21,u22)
 
-N = (E + m)^2
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -36,26 +34,29 @@ pslash2 = dot(p2,gmunu,gamma)
 
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 
-"Sum over spin states"
+-- matrix elements
 
-S = 0
+M = zero(2,2)
 
-for(a,1,2,for(b,1,2,
-  M = dot(u2bar[b],gamma0,u1[a]),  -- M is an amplitude
-  f = M conj(M),                   -- f = |M|^2
-  S = S + f
+for(a,1,2, for(b,1,2,
+  M[a,b] = dot(u2bar[b], gamma0, u1[a])
 ))
 
+"Sum over spin states"
+
+S = sum(conj(M) M)
 S
+
+N = (E + m)^2 -- normalization for S
 
 "Casimir trick"
 
-T = contract(dot(pslash2 + m I,gamma0,pslash1 + m I,gamma0))
+T = contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
 T
 
 "Verify Casimir trick"
 
-check(1/N S == T)
+check(S/N == T)
 
 "ok"
 
