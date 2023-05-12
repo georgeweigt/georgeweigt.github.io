@@ -28,8 +28,6 @@ u42 = (0, p4[1] + m, p4[2] - i p4[3], -p4[4])
 u2 = (u21,u22)
 u4 = (u41,u42)
 
-N = (E + m)^2
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -52,23 +50,33 @@ q2 = p4 - p1
 qslash1 = dot(q1,gmunu,gamma)
 qslash2 = dot(q2,gmunu,gamma)
 
+a1 = zero(2,2,4,4)
+a2 = zero(2,2,4,4)
+
+for(a,1,2, for(b,1,2,
+  a1[a,b] = -dot(u4bar[b], gammaT, qslash1 + m I, gammaT, u2[a]),
+  a2[a,b] = -dot(u4bar[b], gammaT, qslash2 + m I, gammaT, u2[a])
+))
+
 "Sum over spin states"
 
-a11 = 0
-a12 = 0
-a22 = 0
+a11 = sum(a,1,2, sum(b,1,2,
+  contract(dot(a1[a,b], gmunu, transpose(conj(a1[a,b])), gmunu))
+))
 
-for(a,1,2,for(b,1,2,
-  a1 = -dot(u4bar[b],gammaT,qslash1 + m I,gammaT,u2[a]),
-  a2 = -dot(u4bar[b],gammaT,qslash2 + m I,gammaT,u2[a]),
-  a11 = a11 + contract(dot(a1,gmunu,transpose(conj(a1)),gmunu)),
-  a12 = a12 + contract(dot(a1,gmunu,conj(a2),gmunu)),
-  a22 = a22 + contract(dot(a2,gmunu,transpose(conj(a2)),gmunu))
+a12 = sum(a,1,2, sum(b,1,2,
+ contract(dot(a1[a,b], gmunu, conj(a2[a,b]), gmunu))
+))
+
+a22 = sum(a,1,2, sum(b,1,2,
+  contract(dot(a2[a,b], gmunu, transpose(conj(a2[a,b])), gmunu))
 ))
 
 a11
 a12
 a22
+
+N = (E + m)^2
 
 "Casimir trick"
 
