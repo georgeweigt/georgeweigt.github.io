@@ -33,8 +33,6 @@ u2 = (u21,u22)
 v3 = (v31,v32)
 u4 = (u41,u42)
 
-N = (E + m)^4
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -52,21 +50,33 @@ gammaL = transpose(dot(gmunu,gamma))
 v1bar = dot(conj(v1),gamma0) -- adjoint of v1
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
+w13 = zero(2,2,4)
+w42 = zero(2,2,4)
+w12 = zero(2,2,4)
+w43 = zero(2,2,4)
+
+for(a,1,2, for(b,1,2,
+ w13[a,b] = dot(v1bar[a], gammaT, v3[b]),
+ w42[a,b] = dot(u4bar[a], gammaL, u2[b]),
+ w12[a,b] = dot(v1bar[a], gammaT, u2[b]),
+ w43[a,b] = dot(u4bar[a], gammaL, v3[b])
+))
+
+-- matrix elements
+
+a1 = zero(2,2,2,2)
+a2 = zero(2,2,2,2)
+
+for(a,1,2, for(b,1,2, for(c,1,2, for(d,1,2,
+ a1[a,b,c,d] = dot(w13[a,c], w42[d,b]),
+ a2[a,b,c,d] = dot(w12[a,b], w43[d,c])
+))))
+
 "Sum over spin states"
 
-a11 = 0
-a12 = 0
-a22 = 0
-
-for(a,1,2,for(b,1,2,for(c,1,2,for(d,1,2,
-  a1 = dot(dot(v1bar[a],gammaT,v3[c]),
-           dot(u4bar[d],gammaL,u2[b])),
-  a2 = dot(dot(v1bar[a],gammaT,u2[b]),
-           dot(u4bar[d],gammaL,v3[c])),
-  a11 = a11 + a1 conj(a1),
-  a12 = a12 + a1 conj(a2),
-  a22 = a22 + a2 conj(a2)
-))))
+a11 = sum(conj(a1) a1)
+a12 = sum(conj(a2) a1)
+a22 = sum(conj(a2) a2)
 
 a11
 a12
@@ -100,6 +110,8 @@ f12
 f22
 
 "Verify Casimir trick"
+
+N = (E + m)^4
 
 check(f11 == 1/N a11)
 check(f12 == 1/N a12)
