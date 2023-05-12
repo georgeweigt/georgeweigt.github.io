@@ -34,8 +34,6 @@ v2 = (v21,v22)
 u3 = (u31,u32)
 v4 = (v41,v42)
 
-N = (E + m)^2 (E + M)^2
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -53,18 +51,25 @@ gammaL = transpose(dot(gmunu,gamma))
 v2bar = dot(conj(v2),gamma0) -- adjoint of v2
 u3bar = dot(conj(u3),gamma0) -- adjoint of u3
 
-"Sum over spin states"
+w21 = zero(2,2,4)
+w34 = zero(2,2,4)
 
-S = 0
+for(a,1,2, for(b,1,2,
+ w21[a,b] = dot(v2bar[a], gammaT, u1[b]),
+ w34[a,b] = dot(u3bar[a], gammaL, v4[b])
+))
 
-for(s1,1,2,for(s2,1,2,for(s3,1,2,for(s4,1,2,
-  X21 = dot(v2bar[s2],gammaT,u1[s1]),
-  X34 = dot(u3bar[s3],gammaL,v4[s4]),
-  a = dot(X21,X34),  -- a is an amplitude
-  f = a conj(a),     -- f is a probability density function
-  S = S + f
+-- matrix elements (use MX, M is used for muon mass)
+
+MX = zero(2,2,2,2)
+
+for(a,1,2, for(b,1,2, for(c,1,2, for(d,1,2,
+ MX[a,b,c,d] = dot(w21[b,a], w34[c,d])
 ))))
 
+"Sum over spin states"
+
+S = sum(conj(MX) MX)
 S
 
 "Casimir trick"
@@ -87,6 +92,8 @@ T
 
 "Verify Casimir trick"
 
-check(1/N S == T)
+N = (E + m)^2 (E + M)^2
+
+check(S/N == T)
 
 "ok"
