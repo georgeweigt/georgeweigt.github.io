@@ -1,7 +1,7 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 -- Verify muon decay formulas
 
--- Run time about 30 seconds
+-- Run time about 40 seconds
 
 -- Safari recommended, click through alerts on other browsers
 
@@ -69,7 +69,7 @@ for(a,1,2, for(b,1,2, for(c,1,2, for(d,1,2,
 
 "Sum over spin states"
 
-S = 1/2 GF^2 sum(conj(M) M)
+S = sum(conj(M) M)
 S
 
 E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
@@ -81,9 +81,7 @@ N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
 
 "Verify probability density"
 
--- multiplication by N is faster than dividing S by N
-
-check(1/2 S == N 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
+check(1/4 S == N 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
 "ok"
 
