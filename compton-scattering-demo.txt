@@ -109,9 +109,9 @@ f12 = contract(contract(contract(T,3,5),2,3))
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
 f22 = contract(contract(contract(T,3,4),2,3))
 
-check(f11 == 1/N a11)
-check(f12 == 1/N a12)
-check(f22 == 1/N a22)
+check(f11 == a11 / N)
+check(f12 == a12 / N)
+check(f22 == a22 / N)
 
 "ok"
 
