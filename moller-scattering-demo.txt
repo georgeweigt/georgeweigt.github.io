@@ -121,9 +121,9 @@ T1 = contract(dot(X4,gammaT,X1,gammaT),1,4)
 T2 = contract(dot(X3,gammaL,X2,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-check(f11 == 1/N a11)
-check(f12 == 1/N a12)
-check(f22 == 1/N a22)
+check(f11 == a11 / N)
+check(f12 == a12 / N)
+check(f22 == a22 / N)
 
 "ok"
 
