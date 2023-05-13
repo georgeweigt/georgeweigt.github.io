@@ -1,5 +1,5 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
--- Verify muon decay formulas
+-- Muon decay demo
 
 -- Run time about 30 seconds
 
@@ -87,14 +87,32 @@ check(1/2 S == N 64 GF^2 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
 "ok"
 
+"Verify Casimir trick"
+
 X = transpose(dot(gamma, I - gamma5))
 T1 = contract(dot(pslash4, X, pslash3, X), 1,4)
 T2 = contract(dot(pslash2, X, pslash1, X), 1,4)
 T = contract(dot(T1, gmunu, transpose(T2), gmunu))
 
-"Verify Casimir trick"
-
 check(1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
 "ok"
+
+-- Compute muon lifetime
+
+GF = 1.1663787 10^(-5) GeV^(-2)
+mmu = 1.883531627 10^(-28) kilogram
+h = 6.62607015 10^(-34) joule second
+c = 299792458 meter / second
+
+joule = kilogram meter^2 / second^2
+GeV = 10^9 1.602176634 10^(-19) joule
+
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+"Muon lifetime"
+
+float(96 pi^2 h / (GF^2 (mmu c^2)^5))
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
