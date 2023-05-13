@@ -1,4 +1,4 @@
--- Muon decay demo
+-- Verify muon decay formulas
 
 -- Run time about 30 seconds
 
