@@ -87,7 +87,6 @@ check(1/4 S == N 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
 "Verify Casimir trick"
 
-X = transpose(dot(gamma, I - gamma5))
 T1 = contract(dot(pslash4, X, pslash3, X), 1,4)
 T2 = contract(dot(pslash2, X, pslash1, X), 1,4)
 T = contract(dot(T1, gmunu, transpose(T2), gmunu))
