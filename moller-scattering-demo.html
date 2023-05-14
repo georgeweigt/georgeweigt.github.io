@@ -114,18 +114,6 @@ check(f22 == a22 / N)
 
 "ok"
 
-"Verify probability density"
-
-p12 = dot(p1, gmunu, p2)
-p13 = dot(p1, gmunu, p3)
-p14 = dot(p1, gmunu, p4)
-
-check(f11 == 32 p12^2 + 32 p14^2 - 64 m^2 p13 + 64 m^4)
-check(f12 == -32 p12^2 + 32 m^2 p12 + 32 m^2 p13 + 32 m^2 p14 - 32 m^4)
-check(f22 == 32 p12^2 + 32 p13^2 - 64 m^2 p14 + 64 m^4)
-
-"ok"
-
 "Verify Mandelstam formulas"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
@@ -138,11 +126,23 @@ check(f22 == 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4)
 
 "ok"
 
-"Verify formulas for m = 0"
+"Verify probability density"
 
-d11 = (t - m^2)^2
-d12 = (t - m^2) (u - m^2)
-d22 = (u - m^2)^2
+p12 = dot(p1, gmunu, p2)
+p13 = dot(p1, gmunu, p3)
+p14 = dot(p1, gmunu, p4)
+
+check(f11 == 32 p12^2 + 32 p14^2 - 64 m^2 p13 + 64 m^4)
+check(f12 == -32 p12^2 + 32 m^2 p12 + 32 m^2 p13 + 32 m^2 p14 - 32 m^4)
+check(f22 == 32 p12^2 + 32 p13^2 - 64 m^2 p14 + 64 m^4)
+
+"ok"
+
+"Verify probability density for m = 0"
+
+d11 = t^2
+d12 = t u
+d22 = u^2
 
 m = 0
 
@@ -151,9 +151,8 @@ check(t == 2 E^2 (expcos(theta) - 1))
 check(u == -2 E^2 (expcos(theta) + 1))
 
 f = 1/4 (f11/d11 - 2 f12/d12 + f22/d22)
-g = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
 
-check(f == g)
+check(f == 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2)
 
 -- Zee formula
 
@@ -161,9 +160,7 @@ f = 2 ((1 + expcos(theta/2)^4) / expsin(theta/2)^4 +
     2 / (expsin(theta/2)^2 expcos(theta/2)^2) +
     (1 + expsin(theta/2)^4) / expcos(theta/2)^4)
 
-g = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
-
-check(f == g)
+check(f == 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2)
 
 m = quote(m) -- undo m = 0
 

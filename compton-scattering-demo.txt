@@ -171,7 +171,7 @@ check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
 
 "ok"
 
-"Verify formulas for m = 0"
+"Verify probability density for m = 0"
 
 m = 0
 
