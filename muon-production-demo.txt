@@ -110,10 +110,13 @@ check(f == 16 t^2 - 16 s u + 32 u (m^2 + M^2) - 8 s^2 +
 
 "Verify probability density"
 
-check(f == 32 dot(p1,gmunu,p3) dot(p2,gmunu,p4) +
-           32 dot(p1,gmunu,p4) dot(p2,gmunu,p3) +
-           32 m^2 dot(p3,gmunu,p4) +
-           32 M^2 dot(p1,gmunu,p2) +
-           64 M^2 m^2)
+p12 = dot(p1,gmunu,p2)
+p13 = dot(p1,gmunu,p3)
+p14 = dot(p1,gmunu,p4)
+p23 = dot(p2,gmunu,p3)
+p24 = dot(p2,gmunu,p4)
+p34 = dot(p3,gmunu,p4)
+
+check(f == 32 p13 p24 + 32 p14 p23 + 32 m^2 p34 + 32 M^2 p12 + 64 M^2 m^2)
 
 "ok"

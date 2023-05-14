@@ -111,13 +111,15 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
-check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
-check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
-
 d11 = (s - m^2)^2
 d12 = (s - m^2) (u - m^2)
 d22 = (u - m^2)^2
+
+f = (f11/d11 + 2 f12/d12 + f22/d22) / 4
+
+check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
+check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
+check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
 "ok"
 
@@ -130,8 +132,6 @@ p14 = dot(p1,gmunu,p4)
 check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
 check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
 check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
-
-f = (f11/d11 + 2 f12/d12 + f22/d22) / 4
 
 w1 = omega^2 / m + omega (m^2 + omega^2)^(1/2) / m
 w2 = omega^2 exp(i theta) / (2 m) +
