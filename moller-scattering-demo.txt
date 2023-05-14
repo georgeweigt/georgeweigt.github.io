@@ -139,15 +139,15 @@ check(f22 == 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4)
 
 "Verify formulas for m = 0"
 
+d11 = (t - m^2)^2
+d12 = (t - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
 m = 0
 
 check(s == 4 E^2)
 check(t == 2 E^2 (expcos(theta) - 1))
 check(u == -2 E^2 (expcos(theta) + 1))
-
-d11 = t^2
-d12 = t u
-d22 = u^2
 
 f = 1/4 (f11/d11 - 2 f12/d12 + f22/d22)
 g = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
@@ -163,5 +163,7 @@ f = 2 ((1 + expcos(theta/2)^4) / expsin(theta/2)^4 +
 g = 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2
 
 check(f == g)
+
+m = quote(m) -- undo m = 0
 
 "ok"
