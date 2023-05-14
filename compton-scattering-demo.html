@@ -116,6 +116,10 @@ check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
 check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
 check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
+d11 = (s - m^2)^2
+d12 = (s - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
 "ok"
 
 "Verify probability density"
@@ -128,12 +132,6 @@ check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
 check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
 check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
 
-d11 = (s - m^2)^2
-d12 = (s - m^2) (u - m^2)
-d22 = (u - m^2)^2
-
--- f and g are probability densities
-
 f = (f11/d11 + 2 f12/d12 + f22/d22) / 4
 
 w1 = omega^2 / m + omega (m^2 + omega^2)^(1/2) / m
@@ -141,9 +139,7 @@ w2 = omega^2 exp(i theta) / (2 m) +
      omega^2 exp(-i theta) / (2 m) +
      omega (m^2 + omega^2)^(1/2) / m
 
-g = 2 (w2/w1 + w1/w2 + (m/w1 - m/w2 + 1)^2 - 1)
-
-check(f == g)
+check(f == 2 (w2/w1 + w1/w2 + (m/w1 - m/w2 + 1)^2 - 1))
 
 "ok"
 
@@ -179,7 +175,9 @@ m = 0
 check(s == 4 omega^2)
 check(u == -2 omega^2 (expcos(theta) + 1))
 
-check(f == expcos(theta) + 1 + 4 / (expcos(theta) + 1))
+a = expcos(theta) + 1
+
+check(f == 2 (a/2 + 2/a))
 
 m = quote(m) -- undo m = 0
 
