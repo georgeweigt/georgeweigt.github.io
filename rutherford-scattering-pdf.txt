@@ -1,4 +1,4 @@
--- Draw probability density for Rutherford scattering
+-- Draw pdf for Rutherford scattering
 
 pi = float(pi) -- use numerical value of pi
 N = 4          -- number of bins
