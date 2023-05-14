@@ -148,6 +148,8 @@ check(f == g)
 
 "Verify frame invariance of probability density"
 
+-- rotate to lab frame (electron at rest)
+
 Lambda = ((E/m,0,0,omega/m),(0,1,0,0),(0,0,1,0),(omega/m,0,0,E/m))
 
 p1 = dot(Lambda,p1)
