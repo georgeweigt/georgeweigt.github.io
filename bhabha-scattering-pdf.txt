@@ -27,7 +27,7 @@ draw(f,theta)
 
 f = M sin(theta)
 
-P = zero(N+1)
+P = zero(N)
 
 for(k,2,N,
   theta2 = k pi/N,
@@ -37,6 +37,8 @@ for(k,2,N,
 
 P = P / sum(P) -- normalize
 
+f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
 xrange = (1,N+1)
 yrange = (0,1)
-draw(P[floor(x)],x)
+draw(f,x)

@@ -1,7 +1,8 @@
 -- Draw pdf for Rutherford scattering
 
+N = 10 -- number of bins
+
 pi = float(pi) -- use numerical value of pi
-N = 4          -- number of bins
 a = pi / N
 
 M = 1 / (cos(theta) - 1)^2
@@ -15,21 +16,16 @@ I(a,b) = do(
   sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
 )
 
-"Probability density"
-
+"Probability density function"
 C = I(a,pi) -- normalization constant
-
 f = M sin(theta) / C
-f
-
-xrange = (a,pi)
-yrange = (0,3)
+xrange = (0,pi)
+yrange = (0,1)
 draw(f,theta)
 
-"Probability distribution"
+"Bin probability (first bin not observed)"
 
 f = M sin(theta)
-
 P = zero(N)
 
 for(k,2,N,
@@ -39,4 +35,9 @@ for(k,2,N,
 )
 
 P = P / sum(P) -- normalize
-P
+
+f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
+xrange = (1,N+1)
+yrange = (0,1)
+draw(f,x)

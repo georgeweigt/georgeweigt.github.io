@@ -1,5 +1,7 @@
 -- Draw pdf for muon pair production
 
+N = 10 -- number of bins
+
 pi = float(pi) -- use numerical value of pi
 
 M = 1 + cos(theta)^2
@@ -13,13 +15,29 @@ I(a,b) = do(
   sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
 )
 
-"Probability density"
+"Probability density function"
 
 C = I(0,pi) -- normalization constant
-
 f = M sin(theta) / C
-f
-
 xrange = (0,pi)
 yrange = (0,1)
 draw(f,theta)
+
+"Bin probability"
+
+f = M sin(theta)
+P = zero(N)
+
+for(k,1,N,
+  theta2 = k pi/N,
+  theta1 = theta2 - pi/N,
+  P[k] = I(theta1,theta2)
+)
+
+P = P / sum(P) -- normalize
+
+f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
+xrange = (1,N+1)
+yrange = (0,0.3)
+draw(f,x)
