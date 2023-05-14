@@ -1,11 +1,10 @@
--- Draw probability density for electron positron annihilation
+-- Draw pdf for Bhabha scattering
 
 pi = float(pi) -- use numerical value of pi
-N = 6          -- number of bins
+N = 4          -- number of bins
 a = pi / N
 
-M = (1 + cos(theta)) / (1 - cos(theta)) +
-    (1 - cos(theta)) / (1 + cos(theta))
+M = (cos(theta)^2 + 3)^2 / (cos(theta) - 1)^2
 
 f = M sin(theta) -- unnormalized probability density
 
@@ -18,13 +17,13 @@ I(a,b) = do(
 
 "Probability density"
 
-C = I(a, pi - a) -- normalization constant
+C = I(a,pi) -- normalization constant
 
 f = M sin(theta) / C
 f
 
-xrange = (a, pi - a)
-yrange = (0,1)
+xrange = (a,pi)
+yrange = (0,4)
 draw(f,theta)
 
 "Probability distribution"
@@ -33,7 +32,7 @@ f = M sin(theta)
 
 P = zero(N)
 
-for(k,2,N - 1,
+for(k,2,N,
   theta2 = k pi/N,
   theta1 = theta2 - pi/N,
   P[k] = I(theta1,theta2)
