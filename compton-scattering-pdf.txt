@@ -2,13 +2,6 @@
 
 N = 10 -- number of bins
 
-pi = float(pi) -- use numerical value of pi
-m = 0.511 -- MeV
-omega = 0.05 -- Mev
-omegap = m omega / (m + omega (1 - cos(theta)))
-M = omega/omegap + omegap/omega + cos(theta)^2 - 1
-f = (omegap/omega)^2 M sin(theta)
-
 -- integrate f from a to b
 
 I(a,b) = do(
@@ -16,7 +9,13 @@ I(a,b) = do(
   sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
 )
 
-f = f / I(0,pi) -- normalize f
+m = 0.511 -- MeV
+omega = 0.05 -- Mev
+omegap = m omega / (m + omega (1 - cos(theta)))
+M = omega/omegap + omegap/omega + cos(theta)^2 - 1
+f = (omegap/omega)^2 M sin(theta)
+pi = float(pi) -- use numerical value of pi
+f = f / I(0,pi) -- normalize
 
 "Probability density function (50 keV)"
 xrange = (0,pi)
@@ -25,7 +24,6 @@ draw(f,theta)
 
 "Bin probability"
 
-f = (omegap/omega)^2 M sin(theta)
 P = zero(N)
 
 for(k,1,N,
@@ -33,8 +31,6 @@ for(k,1,N,
   theta1 = theta2 - pi/N,
   P[k] = I(theta1,theta2)
 )
-
-P = P / sum(P) -- normalize
 
 f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
 
