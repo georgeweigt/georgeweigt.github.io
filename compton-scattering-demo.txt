@@ -6,6 +6,8 @@
 
 E = sqrt(omega^2 + m^2)
 
+N = (E + m)^2 -- normalization
+
 p1 = (omega, 0, 0, omega)
 p2 = (E, 0, 0, -omega)
 
@@ -54,8 +56,8 @@ a1 = zero(2,2,4,4)
 a2 = zero(2,2,4,4)
 
 for(a,1,2, for(b,1,2,
-  a1[a,b] = -dot(u4bar[b], gammaT, qslash1 + m I, gammaT, u2[a]),
-  a2[a,b] = -dot(u4bar[b], gammaT, qslash2 + m I, gammaT, u2[a])
+ a1[a,b] = -dot(u4bar[b], gammaT, qslash1 + m I, gammaT, u2[a]),
+ a2[a,b] = -dot(u4bar[b], gammaT, qslash2 + m I, gammaT, u2[a])
 ))
 
 "Sum over spin states"
@@ -74,20 +76,6 @@ a22 = sum(a,1,2, sum(b,1,2,
 
 S = a11 + a12 + conj(a12) + a22
 S
-
-"Verify probability density"
-
-N = (E + m)^2
-
-p12 = dot(p1,gmunu,p2)
-p13 = dot(p1,gmunu,p3)
-p14 = dot(p1,gmunu,p4)
-
-check(a11/N == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
-check(a12/N == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
-check(a22/N == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
-
-"ok"
 
 "Verify Casimir trick"
 
@@ -127,28 +115,36 @@ check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
 "ok"
 
-"Verify formulas for m = 0"
+"Verify probability density"
 
-m = 0
+p12 = dot(p1,gmunu,p2)
+p13 = dot(p1,gmunu,p3)
+p14 = dot(p1,gmunu,p4)
 
-check(s == 4 omega^2)
-check(u == -2 omega^2 (expcos(theta) + 1))
+check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
+check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
+check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
 
 d11 = (s - m^2)^2
 d12 = (s - m^2) (u - m^2)
 d22 = (u - m^2)^2
 
-A = (f11/d11 + 2 f12/d12 + f22/d22) / 4
+-- f and g are probability densities
 
-B = expcos(theta) + 1 + 4 / (expcos(theta) + 1)
+f = (f11/d11 + 2 f12/d12 + f22/d22) / 4
 
-check(A == B)
+w1 = omega^2 / m + omega (m^2 + omega^2)^(1/2) / m
+w2 = omega^2 exp(i theta) / (2 m) +
+     omega^2 exp(-i theta) / (2 m) +
+     omega (m^2 + omega^2)^(1/2) / m
+
+g = 2 (w2/w1 + w1/w2 + (m/w1 - m/w2 + 1)^2 - 1)
+
+check(f == g)
 
 "ok"
 
-"Verify invariance of Mandelstam variables"
-
-m = quote(m) -- clear m
+"Verify frame invariance"
 
 Lambda = ((E/m,0,0,omega/m),(0,1,0,0),(0,0,1,0),(omega/m,0,0,E/m))
 
@@ -157,29 +153,32 @@ p2 = dot(Lambda,p2)
 p3 = dot(Lambda,p3)
 p4 = dot(Lambda,p4)
 
+check(p1[1] == w1)
+check(p3[1] == w2)
+
 check(s == dot(p1 + p2, gmunu, p1 + p2))
 check(t == dot(p1 - p3, gmunu, p1 - p3))
 check(u == dot(p1 - p4, gmunu, p1 - p4))
 
+check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
+check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
+check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
+
+check(d11 = (s - m^2)^2)
+check(d12 = (s - m^2) (u - m^2))
+check(d22 = (u - m^2)^2)
+
 "ok"
 
-"Verify probability density in lab frame"
+"Verify formulas for m = 0"
 
-f11 = -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
-f12 = 8 s m^2 + 8 u m^2 + 16 m^4
-f22 = -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+m = 0
 
-d11 = (s - m^2)^2
-d12 = (s - m^2) (u - m^2)
-d22 = (u - m^2)^2
+check(s == 4 omega^2)
+check(u == -2 omega^2 (expcos(theta) + 1))
 
-A = (f11/d11 + 2 f12/d12 + f22/d22) / 4
+check(f == expcos(theta) + 1 + 4 / (expcos(theta) + 1))
 
-omegaL = p1[1]
-omegaLp = p3[1]
-
-B = 2 (omegaLp/omegaL + omegaL/omegaLp + (m/omegaL - m/omegaLp + 1)^2 - 1)
-
-check(A == B)
+m = quote(m) -- clear m
 
 "ok"
