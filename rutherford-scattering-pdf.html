@@ -3,13 +3,6 @@
 
 N = 10 -- number of bins
 
-pi = float(pi) -- use numerical value of pi
-a = pi / N
-
-M = 1 / (cos(theta) - 1)^2
-
-f = M sin(theta) -- unnormalized probability density
-
 -- integrate f from a to b
 
 I(a,b) = do(
@@ -17,16 +10,19 @@ I(a,b) = do(
   sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
 )
 
+M = 1 / (cos(theta) - 1)^2
+f = M sin(theta)
+pi = float(pi) -- use numerical value of pi
+a = pi / N
+f = f / I(a,pi) -- normalize
+
 "Probability density function"
-C = I(a,pi) -- normalization constant
-f = M sin(theta) / C
 xrange = (0,pi)
 yrange = (0,1)
 draw(f,theta)
 
 "Bin probability (first bin not observed)"
 
-f = M sin(theta)
 P = zero(N)
 
 for(k,2,N,
@@ -34,8 +30,6 @@ for(k,2,N,
   theta1 = theta2 - pi/N,
   P[k] = I(theta1,theta2)
 )
-
-P = P / sum(P) -- normalize
 
 f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
 
