@@ -1,14 +1,13 @@
 -- Draw pdf for Compton scattering
 
+N = 10 -- number of bins
+
 pi = float(pi) -- use numerical value of pi
-
 m = 0.511 -- MeV
-
+omega = 0.05 -- Mev
 omegap = m omega / (m + omega (1 - cos(theta)))
-
 M = omega/omegap + omegap/omega + cos(theta)^2 - 1
-
-f = (omegap/omega)^2 M sin(theta) -- unnormalized probability debsity
+f = (omegap/omega)^2 M sin(theta)
 
 -- integrate f from a to b
 
@@ -17,31 +16,16 @@ I(a,b) = do(
   sum(k,1,100,eval(f,theta,a + (k - 0.5) dtheta)) dtheta
 )
 
+f = f / I(0,pi) -- normalize f
+
+"Probability density function (50 keV)"
 xrange = (0,pi)
 yrange = (0,1)
+draw(f,theta)
 
-"Scattering angle probability density (5 keV)"
+"Bin probability"
 
-omega = 0.005
-C = I(0,pi)
-draw(f/C,theta)
-
-"Scattering angle probability density (50 keV)"
-
-omega = 0.05
-C = I(0,pi)
-draw(f/C,theta)
-
-"Scattering angle probability density (500 keV)"
-
-omega = 0.5
-C = I(0,pi)
-draw(f/C,theta)
-
-"Scattering angle probability distribution (500 keV)"
-
-omega = 0.5
-N = 4 -- number of bins
+f = (omegap/omega)^2 M sin(theta)
 P = zero(N)
 
 for(k,1,N,
@@ -51,4 +35,9 @@ for(k,1,N,
 )
 
 P = P / sum(P) -- normalize
-P
+
+f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
+xrange = (1,N+1)
+yrange = (0,0.3)
+draw(f,x)
