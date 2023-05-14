@@ -18,11 +18,8 @@ I(a,b) = do(
 )
 
 "Probability density function"
-
 C = I(a, pi - a) -- normalization constant
-
 f = M sin(theta) / C
-
 xrange = (0,pi)
 yrange = (0,0.5)
 draw(f,theta)
@@ -30,7 +27,6 @@ draw(f,theta)
 "Bin probability (first and last not observed)"
 
 f = M sin(theta)
-
 P = zero(N+1)
 
 for(k,2,N-1,
@@ -39,12 +35,8 @@ for(k,2,N-1,
   P[k] = I(theta1,theta2)
 )
 
--- normalize
-
-P = P / sum(P)
-
-f(x) = P[floor(x)]
+P = P / sum(P) -- normalize
 
 xrange = (1,N+1)
 yrange = (0,0.5)
-draw(f,x)
+draw(P[floor(x)],x)
