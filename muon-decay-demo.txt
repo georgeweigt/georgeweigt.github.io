@@ -47,11 +47,6 @@ gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
-pslash1 = dot(p1,gmunu,gamma)
-pslash2 = dot(p2,gmunu,gamma)
-pslash3 = dot(p3,gmunu,gamma)
-pslash4 = dot(p4,gmunu,gamma)
-
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
@@ -80,17 +75,22 @@ for(a,1,2, for(b,1,2, for(c,1,2, for(d,1,2,
 S = sum(conj(M) M)
 S
 
-"Verify probability density"
-
-check(1/4 S/N == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
-
-"ok"
-
 "Verify Casimir trick"
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+pslash3 = dot(p3,gmunu,gamma)
+pslash4 = dot(p4,gmunu,gamma)
 
 T1 = contract(dot(pslash4, X, pslash3, X), 1,4)
 T2 = contract(dot(pslash2, X, pslash1, X), 1,4)
 T = contract(dot(T1, gmunu, transpose(T2), gmunu))
+
+check(T == S/N)
+
+"ok"
+
+"Verify probability density"
 
 check(1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
