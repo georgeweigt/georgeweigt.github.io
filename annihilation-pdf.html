@@ -1,8 +1,9 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 -- Draw pdf for electron-positron annihilation
 
+N = 10 -- number of bins
+
 pi = float(pi) -- use numerical value of pi
-N = 6          -- number of bins
 a = pi / N
 
 M = (1 + cos(theta)) / (1 - cos(theta)) +
@@ -17,29 +18,35 @@ I(a,b) = do(
   sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
 )
 
-"Probability density"
+"Probability density function"
 
 C = I(a, pi - a) -- normalization constant
 
 f = M sin(theta) / C
-f
 
-xrange = (a, pi - a)
-yrange = (0,1)
+xrange = (0,pi)
+yrange = (0,0.5)
 draw(f,theta)
 
-"Probability distribution"
+"Bin probability (first and last not observed)"
 
 f = M sin(theta)
 
-P = zero(N)
+P = zero(N+1)
 
-for(k,2,N - 1,
+for(k,2,N-1,
   theta2 = k pi/N,
   theta1 = theta2 - pi/N,
   P[k] = I(theta1,theta2)
 )
 
-P = P / sum(P) -- normalize
-P
+-- normalize
+
+P = P / sum(P)
+
+f(x) = P[floor(x)]
+
+xrange = (1,N+1)
+yrange = (0,0.5)
+draw(f,x)
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
