@@ -17,7 +17,7 @@ f = f / I(a,pi-a) -- normalize
 
 "Probability density function"
 xrange = (0,pi)
-yrange = (0,0.5)
+yrange = (0,1)
 draw(f,theta)
 
 "Bin probability (first and last not observed)"
