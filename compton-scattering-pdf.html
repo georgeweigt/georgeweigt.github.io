@@ -11,14 +11,14 @@ I(a,b) = do(
 )
 
 m = 0.511 -- MeV
-omega = 0.05 -- Mev
+omega = 0.1 -- Mev
 omegap = m omega / (m + omega (1 - cos(theta)))
 M = omega/omegap + omegap/omega + cos(theta)^2 - 1
 f = (omegap/omega)^2 M sin(theta)
 pi = float(pi) -- use numerical value of pi
 f = f / I(0,pi) -- normalize
 
-"Probability density function (50 keV)"
+"Probability density function for 0.1 MeV"
 xrange = (0,pi)
 yrange = (0,1)
 draw(f,theta)
