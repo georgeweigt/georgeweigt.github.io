@@ -155,4 +155,17 @@ check(f == 2 (a/b + b/a))
 m = quote(m) -- undo m = 0
 
 "ok"
+
+"Verify integral of probability density"
+
+a = 1 + cos(theta)
+b = 1 - cos(theta)
+
+I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
+
+check((a/b + b/a) sin(theta) == d(I,theta))
+
+"ok"
+
+
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

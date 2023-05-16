@@ -21,6 +21,8 @@ I = m^4 / (-m w^3 - w^4 + w^4 cos(theta)) +
     m log(m + w - w cos(theta)) / w -
     m / (m + w (-cos(theta) + 1))
 
+pi = float(pi) -- use numerical value of pi
+
 F = (I - eval(I,theta,0)) / (eval(I,theta,pi) - eval(I,theta,0))
 
 "Cumulative distribution function"
@@ -32,11 +34,8 @@ draw(F,theta)
 "Bin probability"
 
 P = zero(N)
-
 for(k,1,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
-
 h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
-
 xrange = (1,N+1)
 yrange = (0,1)
 draw(h,x)

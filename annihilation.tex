@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz} % includes graphicx
-
+\parindent=0pt
 \begin{document}
 
 \noindent
@@ -184,10 +184,6 @@ Hence
 \end{equation*}
 
 \noindent
-Run ``annihilation-1.txt'' to verify the Casimir trick for electron positron annihilation.
-
-\bigskip
-\noindent
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
@@ -225,9 +221,6 @@ f_{12}&=8 s m^2 - 32 m^4
 \\
 f_{22}&=8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
 \end{align*}
-
-\noindent
-Run ``annihilation-2.txt'' to verify.
 
 \subsection*{High energy approximation}
 When $E\gg m$ a useful approximation is to set $m=0$ and obtain
@@ -321,82 +314,38 @@ d\sigma=
 
 \noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
-\begin{align*}
-I(\theta)&=
-\frac{2s}{2\pi\alpha^2}
-\int_0^{2\pi}\int d\sigma
-\\
-&=\int
+\begin{equation*}
+I(\theta)
+=\int
 \left(
 \frac{1+\cos\theta}{1-\cos\theta}+
 \frac{1-\cos\theta}{1+\cos\theta}
 \right)
-\sin\theta\,d\theta,
-\quad a\le\theta\le\pi-a
-\end{align*}
+\sin\theta\,d\theta
+\end{equation*}
+
+The result is
+\begin{equation*}
+I(\theta)=2\cos\theta+2\log(1-\cos\theta)-2\log(1+\cos\theta)
+\end{equation*}
 
 \noindent
+The cumulative distribution function is
+\begin{equation*}
+F(\theta)=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
+\quad
+a\le\theta\le\pi-a
+\end{equation*}
+
 Angular support is limited to an arbitrary $a>0$
 because $I(0)$ and $I(\pi)$ are undefined.
-Assume that $I(\theta)-I(a)$ is computable given $\theta$ by either symbolic
-or numerical integration.
 
 \bigskip
-\noindent
-Let $C$ be the normalization constant
-\begin{equation*}
-C=I(\pi-a)-I(a)
-\end{equation*}
-
-\noindent
-Then the cumulative distribution function $F(\theta)$ is
-\begin{equation*}
-F(\theta)=\frac{I(\theta)-I(a)}{C},
-\quad a\le\theta\le\pi-a
-\end{equation*}
-
-\noindent
 The probability of observing scattering events in the interval
-$\theta_1$ to $\theta_2$ can now be computed.
+$\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
-
-\noindent
-Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}=\frac{1}{C}
-\left(
-\frac{1+\cos\theta}{1-\cos\theta}+
-\frac{1-\cos\theta}{1+\cos\theta}
-\right)\sin\theta,
-\quad a\le\theta\le\pi-a
-\end{equation*}
-
-\noindent
-Run ``annihilation-4.txt" to plot $f(\theta)$ for $a=\pi/6=30^\circ$.
-
-\begin{center}
-\includegraphics[scale=0.5]{annihilation.png}
-\end{center}
-
-\noindent
-Probability distribution for $30^\circ$ bins ($a=30^\circ$).
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
-\hline
-$0^\circ$ & $30^\circ$ & -- \\
-$30^\circ$ & $60^\circ$ & 0.33 \\
-$60^\circ$ & $90^\circ$ & 0.17 \\
-$90^\circ$ & $120^\circ$ & 0.17 \\
-$120^\circ$ & $150^\circ$ & 0.33 \\
-$150^\circ$ & $180^\circ$ & -- \\
-\hline
-\end{tabular}
-\end{center}
 
 \subsection*{Data from DESY PETRA experiment}
 \noindent
@@ -423,8 +372,8 @@ $0.7312$ & 0.33204\\
 Data $x$ and $y$ have the following relationship
 with the differential cross section formula.
 \begin{equation*}
-x=\cos\theta
-\qquad
+x=\cos\theta,
+\quad
 y=\frac{d\sigma}{d\Omega}
 \end{equation*}
 

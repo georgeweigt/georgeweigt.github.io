@@ -3,11 +3,10 @@
 
 N = 10 -- number of bins
 
-I = 8 cos(theta) / (cos(theta)^2 - 1) - cos(theta)
+pi = float(pi) -- use numerical value of pi
 a = pi / N
-C = eval(I,theta,pi-a) - eval(I,theta,a)
-F = (I - eval(I,theta,a)) / C
-
+I = 8 cos(theta) / (cos(theta)^2 - 1) - cos(theta)
+F = (I - eval(I,theta,a)) / (eval(I,theta,pi-a) - eval(I,theta,a))
 
 "Cumulative distribution function"
 
@@ -18,11 +17,8 @@ draw(F,theta)
 "Bin probability (first and last not observed)"
 
 P = zero(N)
-
 for(k,2,N-1, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
-
 h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
-
 xrange = (1,N+1)
 yrange = (0,1)
 draw(h,x)

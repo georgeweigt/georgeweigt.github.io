@@ -2,10 +2,10 @@
 
 N = 10 -- number of bins
 
-I = 1 / (cos(theta) - 1)
+pi = float(pi) -- use numerical value of pi
 a = pi / N
-C = eval(I,theta,pi) - eval(I,theta,a)
-F = (I - eval(I,theta,a)) / C
+I = 1 / (cos(theta) - 1)
+F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
 
 "Cumulative distribution function"
 

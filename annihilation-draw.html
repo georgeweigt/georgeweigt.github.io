@@ -1,12 +1,12 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
--- Draw cdf for Rutherford scattering
+-- Draw cdf for electron-positron annihilation
 
 N = 10 -- number of bins
 
 pi = float(pi) -- use numerical value of pi
 a = pi / N
-I = 1 / (cos(theta) - 1)
-F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
+I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
+F = (I - eval(I,theta,a)) / (eval(I,theta,pi-a) - eval(I,theta,a))
 
 "Cumulative distribution function"
 
@@ -14,10 +14,10 @@ xrange = (0,pi)
 yrange = (0,1)
 draw(F,theta)
 
-"Bin probability (first bin not observed)"
+"Bin probability (first and last not observed)"
 
 P = zero(N)
-for(k,2,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+for(k,2,N-1, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
 h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
 xrange = (1,N+1)
 yrange = (0,1)
