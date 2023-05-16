@@ -97,18 +97,13 @@ check(f == S/N)
 
 "ok"
 
-"Verify Mandelstam formula"
+"Verify probability density formulas"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-check(f == 16 t^2 - 16 s u + 32 u (m^2 + M^2) - 8 s^2 +
-           64 M^2 s + 64 m^2 s - 48 (m^2 + M^2)^2)
-
-"ok"
-
-"Verify probability density"
+check(f == 16 t^2 - 16 s u + 32 u (m^2 + M^2) - 8 s^2 + 64 M^2 s + 64 m^2 s - 48 (m^2 + M^2)^2)
 
 p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
@@ -118,5 +113,7 @@ p24 = dot(p2,gmunu,p4)
 p34 = dot(p3,gmunu,p4)
 
 check(f == 32 p13 p24 + 32 p14 p23 + 32 m^2 p34 + 32 M^2 p12 + 64 M^2 m^2)
+
+check(f / (4 s^2) == 1 + expcos(theta)^2 + (m^2 + M^2) / E^2 expsin(theta)^2 + m^2 M^2 expcos(theta)^2 / E^4)
 
 "ok"

@@ -192,10 +192,9 @@ Hence
 d\sigma=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-Let $I(\theta)$ be the integral of $d\sigma$.
+Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{equation*}
-I(\theta)=\int_{\Omega} d\sigma
-=\frac{\alpha^2}{16E^2}\int_0^{2\pi}\int\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
+I(\theta)=\frac{\alpha^2}{16E^2}\int_0^{2\pi}\int\left(1+\cos^2\theta\right)\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
@@ -214,8 +213,7 @@ F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)}
 0\le\theta\le\pi
 \end{equation*}
 
-The probability of observing scattering in the interval
-$\theta_1$ to $\theta_2$ is
+The probability of observing scattering between $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
@@ -263,7 +261,7 @@ y=(2E)^2\frac{d\sigma}{d\cos\theta}
 \noindent
 The differential cross section for muon production is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}(1+\cos^2\theta)
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
 \end{equation*}
 
 \noindent
@@ -271,9 +269,9 @@ Let us compute predicted values $\hat{y}$ from the cross section formula.
 Start by finding the relationship between $d\Omega$ and $d\cos\theta$.
 Since $1+\cos^2\theta$ has no dependence on $\phi$ we have
 \begin{equation*}
-\int_\Omega(1+\cos^2\theta)\,d\Omega
-=\int_0^{2\pi}\int_0^{\pi}(1+\cos^2\theta)\sin\theta\,d\theta\,d\phi
-=2\pi\int_0^\pi(1+\cos^2\theta)\sin\theta\,d\theta
+\int_\Omega\big(1+\cos^2\theta\big)\,d\Omega
+=\int_0^{2\pi}\int_0^{\pi}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
+=2\pi\int_0^\pi\big(1+\cos^2\theta\big)\sin\theta\,d\theta
 \end{equation*}
 
 \noindent
@@ -293,21 +291,21 @@ We can now write
 \begin{align*}
 y&=(2E)^2\frac{d\sigma}{d\cos\theta}\\
 &=(2E)^2(2\pi)\frac{d\sigma}{d\Omega}\\
-&=(2E)^2(2\pi)\frac{\alpha^2}{16E^2}(1+\cos^2\theta)\\
-&=\frac{\pi\alpha^2}{2}(1+\cos^2\theta)
+&=(2E)^2(2\pi)\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\\
+&=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)
 \end{align*}
 
 \noindent
 Multiply by $(\hbar c)^2$ to convert to SI
 and multiply by $10^{37}$ to convert square meters to nanobarns.
 \begin{equation*}
-y=\frac{\pi\alpha^2}{2}(1+\cos^2\theta)\times(\hbar c)^2\times10^{37}
+y=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
 \noindent
 Replace $\cos\theta$ with explanatory variable $x$ to obtain $\hat{y}$.
 \begin{equation*}
-\hat{y}=\frac{\pi\alpha^2}{2}(1+x^2)\times(\hbar c)^2\times10^{37}
+\hat{y}=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
 \noindent
@@ -357,7 +355,7 @@ theory results in a better fit to the
 data.\footnote{F. Mandl and G. Shaw, {\it Quantum Field Theory Revised Edition,} 316.}
 
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=F(s)(1+\cos^2\theta)+G(s)\cos\theta
+\frac{d\sigma}{d\Omega}=F(s)\big(1+\cos^2\theta\big)+G(s)\cos\theta
 \end{equation*}
 
 \noindent
