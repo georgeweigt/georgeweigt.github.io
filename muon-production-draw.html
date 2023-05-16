@@ -3,19 +3,11 @@
 
 N = 10 -- number of bins
 
--- integrate f from a to b
-
-I(a,b) = do(
-  dtheta = (b - a) / 100,
-  sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
-)
-
-M = 1 + cos(theta)^2
-f = M sin(theta)
-pi = float(pi) -- use numerical value of pi
-f = f / I(0,pi) -- normalize
+F = -1/8 cos(theta)^3 - 3/8 cos(theta) + 1/2
+f = d(F,theta)
 
 "Probability density function"
+
 xrange = (0,pi)
 yrange = (0,1)
 draw(f,theta)
@@ -23,16 +15,10 @@ draw(f,theta)
 "Bin probability"
 
 P = zero(N)
-
-for(k,1,N,
-  theta2 = k pi/N,
-  theta1 = theta2 - pi/N,
-  P[k] = I(theta1,theta2)
-)
-
-f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
-
+pi = float(pi)
+for(k,1,N, P[k] = eval(F,theta,k pi / N) - eval(F,theta,(k - 1) pi / N))
+g(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
 xrange = (1,N+1)
 yrange = (0,0.3)
-draw(f,x)
+draw(g,x)
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

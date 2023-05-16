@@ -1,0 +1,22 @@
+-- Draw pdf for muon pair production
+
+N = 10 -- number of bins
+
+F = -1/8 cos(theta)^3 - 3/8 cos(theta) + 1/2
+f = d(F,theta)
+
+"Probability density function"
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(f,theta)
+
+"Bin probability"
+
+P = zero(N)
+pi = float(pi)
+for(k,1,N, P[k] = eval(F,theta,k pi / N) - eval(F,theta,(k - 1) pi / N))
+g(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+xrange = (1,N+1)
+yrange = (0,0.3)
+draw(g,x)
