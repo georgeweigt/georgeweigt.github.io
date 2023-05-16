@@ -158,7 +158,7 @@ For the momentum vectors given above the result is
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
 \end{equation*}
 
-\noindent
+\subsection*{Cross section}
 The Stanford Linear Collider
 had a collision energy of $2E=91$~GeV.
 For beam energies such as SLC where $E\gg M$ the above equation can be approximated as
@@ -189,31 +189,32 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta)\sin\theta\,d\theta\,d\phi
+d\sigma=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 Let $I(\theta)$ be the integral of $d\sigma$.
 \begin{equation*}
-I(\theta)=\frac{\alpha^2}{16E^2}\int_0^{2\pi}\int\big(1+\cos^2\theta)\sin\theta\,d\theta\,d\phi
+I(\theta)=\int_{\Omega} d\sigma
+=\frac{\alpha^2}{16E^2}\int_0^{2\pi}\int\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
 The result is
 \begin{equation*}
 I(\theta)=\frac{\pi\alpha^2}{8E^2}
-\left(-\frac{1}{3}\cos^3\theta-\cos\theta+\frac{4}{3}\right)
+\bigg({-}\frac{\cos^3\theta}{3}-\cos\theta\bigg)
 \end{equation*}
 
 \noindent
 The cumulative distribution function is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)}
-=-\frac{1}{8}\cos^3\theta-\frac{3}{8}\cos\theta+\frac{1}{2},
+=-\frac{\cos^3\theta}{8}-\frac{3\cos\theta}{8}+\frac{1}{2},
 \quad
 0\le\theta\le\pi
 \end{equation*}
 
-The probability of observing scattering events in the interval
+The probability of observing scattering in the interval
 $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
