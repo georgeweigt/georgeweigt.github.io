@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-
+\parindent=0pt
 \begin{document}
 
 \noindent
@@ -107,16 +107,6 @@ There are two inbound states.
 &=\frac{2Z^2e^4}{q^4}\left(E^2+m^2+p^2\cos\theta\right)
 \end{align*}
 
-\noindent
-Run ``rutherford-scattering-1.txt'' to verify the following formulas.
-\begin{gather*}
-\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
-=\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
-=4(E^2+m^2+p^2\cos\theta)
-\\
-q^4=(p_1-p_2)^4=16p^4\sin^4(\theta/2)=4p^4(\cos\theta-1)^2
-\end{gather*}
-
 \subsection*{Low energy approximation}
 For low energy electrons such that $p\ll m$ we can use the following approximation.
 \begin{equation*}
@@ -135,11 +125,13 @@ Substituting $e^4=16\pi^2\alpha^2$ and $q^4=4p^4(\cos\theta-1)^2$ we have
 \langle|\mathcal{M}|^2\rangle=\frac{16\pi^2m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
-\noindent
+\subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{16\pi^2}
-=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
+=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2},
+\quad
+p\ll m
 \end{equation*}
 
 \noindent
@@ -155,68 +147,27 @@ d\sigma=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
 
 \noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
-\begin{align*}
+\begin{equation*}
 I(\theta)
-&=\left(\frac{p^4}{m^2Z^2\alpha^2}\right)\frac{1}{2\pi}\int_0^{2\pi}\int d\sigma
-\\
-&=\int\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
-\\
-&=\frac{1}{\cos\theta-1},\quad a\le\theta\le\pi
-\end{align*}
+=\int\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
+=\frac{1}{\cos\theta-1}
+\end{equation*}
 
-\noindent
+The cumulative distribution function is
+\begin{equation*}
+F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},
+\quad
+a\le\theta\le\pi
+\end{equation*}
+
 Angular support is limited to an arbitrary $a>0$ because $I(0)$ is undefined.
 
 \bigskip
-\noindent
-Let $C$ be the normalization constant
-\begin{equation*}
-C=I(\pi)-I(a)
-\end{equation*}
-
-\noindent
-Then the cumulative distribution function $F(\theta)$ is
-\begin{equation*}
-F(\theta)=\frac{I(\theta)-I(a)}{C},
-\quad a\le\theta\le\pi
-\end{equation*}
-
-\noindent
 The probability of observing scattering events
-in the interval $\theta_1$ to $\theta_2$ can now be computed.
+in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
-
-\noindent
-Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{\sin\theta}{C(\cos\theta-1)^2}
-\end{equation*}
-
-\noindent
-Run ``rutherford-scattering-3.txt'' to draw a graph of $f(\theta)$ for $a=\pi/4=45^\circ$.
-
-\begin{center}
-\includegraphics[scale=0.5]{rutherford-scattering-1.png}
-\end{center}
-
-\noindent
-Probability distribution for $45^\circ$ bins ($a=45^\circ$).
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
-\hline
-$0^\circ$ & $45^\circ$ & -- \\
-$45^\circ$ & $90^\circ$ & 0.83 \\
-$90^\circ$ & $135^\circ$ & 0.14 \\
-$135^\circ$ & $180^\circ$ & 0.03 \\
-\hline
-\end{tabular}
-\end{center}
 
 \noindent
 Note:
