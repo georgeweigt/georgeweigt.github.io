@@ -1,0 +1,43 @@
+<html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+-- Draw cdf for Compton scattering
+
+N = 10 -- number of bins
+
+omega = 0.1 -- MeV
+omega
+
+m = 0.511 -- MeV
+w = omega
+
+I = m^4 / (-m w^3 - w^4 + w^4 cos(theta)) +
+    2 m^3 w / (-m w^3 - w^4 + w^4 cos(theta)) -
+    m^3 / (2 w (m + w (-cos(theta) + 1))^2) -
+    2 m^3 log(m + w - w cos(theta)) / w^3 -
+    m^2 w / (-m w^2 - w^3 + w^3 cos(theta)) +
+    m^2 / (w (-m + w (cos(theta) - 1))) -
+    m^2 cos(theta) / w^2 -
+    2 m^2 log(m + w - w cos(theta)) / w^2 -
+    m w^2 / (-m w^2 - w^3 + w^3 cos(theta)) +
+    m log(m + w - w cos(theta)) / w -
+    m / (m + w (-cos(theta) + 1))
+
+F = (I - eval(I,theta,0)) / (eval(I,theta,pi) - eval(I,theta,0))
+
+"Cumulative distribution function"
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(F,theta)
+
+"Bin probability"
+
+P = zero(N)
+
+for(k,1,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+
+h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
+xrange = (1,N+1)
+yrange = (0,1)
+draw(h,x)
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

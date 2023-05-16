@@ -181,3 +181,22 @@ check(f == 2 (a/2 + 2/a))
 m = quote(m) -- undo m = 0
 
 "ok"
+
+"Verify integral of probabiity density function"
+
+wp = m w / (m + w (1 - cos(theta)))
+f = (wp / w)^2 (w/wp + wp / w - sin(theta)^2) sin(theta)
+I = m^4 / (-m w^3 - w^4 + w^4 cos(theta)) +
+    2 m^3 w / (-m w^3 - w^4 + w^4 cos(theta)) -
+    m^3 / (2 w (m + w (-cos(theta) + 1))^2) -
+    2 m^3 log(m + w - w cos(theta)) / w^3 -
+    m^2 w / (-m w^2 - w^3 + w^3 cos(theta)) +
+    m^2 / (w (-m + w (cos(theta) - 1))) -
+    m^2 cos(theta) / w^2 -
+    2 m^2 log(m + w - w cos(theta)) / w^2 -
+    m w^2 / (-m w^2 - w^3 + w^3 cos(theta)) +
+    m log(m + w - w cos(theta)) / w -
+    m / (m + w (-cos(theta) + 1))
+check(f == d(I,theta))
+
+"ok"
