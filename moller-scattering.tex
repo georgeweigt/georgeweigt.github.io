@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
@@ -38,15 +38,15 @@ Here is the same diagram with momentum labels $p$ and Dirac spinor labels $u$.
 In center of mass coordinates the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\phantom{0}\\ \text{particle 1}}}
+\underset{\substack{\phantom{0}\\ \text{electron 1}}}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 &
 p_2&=
-\underset{\substack{\phantom{0}\\ \text{particle 2}}}
+\underset{\substack{\phantom{0}\\ \text{electron 2}}}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 &
 p_3&=
-\underset{\substack{\phantom{0}\\ \text{particle 3}}}
+\underset{\substack{\phantom{0}\\ \text{electron 3}}}
 {\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
@@ -55,7 +55,7 @@ p\cos\theta
 \end{pmatrix}}
 &
 p_4&=
-\underset{\substack{\phantom{0}\\ \text{particle 4}}}
+\underset{\substack{\phantom{0}\\ \text{electron 4}}}
 {\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
@@ -76,39 +76,39 @@ Azimuth angle $\phi$ cancels out in scattering calculations.
 The spinors are
 \begin{align*}
 u_{11}&=
-\underset{\substack{\phantom{0}\\ \text{particle 1}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{electron 1}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 &
 u_{12}&=
-\underset{\substack{\phantom{0}\\ \text{particle 1}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{electron 1}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 &
 u_{21}&=
-\underset{\substack{\phantom{0}\\ \text{particle 2}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{electron 2}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 &
 u_{22}&=
-\underset{\substack{\phantom{0}\\ \text{particle 2}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{electron 2}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \\[2ex]
 u_{31}&=
-\underset{\substack{\phantom{0}\\ \text{particle 3}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{electron 3}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 &
 u_{32}&=
-\underset{\substack{\phantom{0}\\ \text{particle 3}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{electron 3}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 &
 u_{41}&=
-\underset{\substack{\phantom{0}\\ \text{particle 4}\\ \text{spin up}}}
+\underset{\substack{\phantom{0}\\ \text{electron 4}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 &
 u_{42}&=
-\underset{\substack{\phantom{0}\\ \text{particle 4}\\ \text{spin down}}}
+\underset{\substack{\phantom{0}\\ \text{electron 4}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{align*}
 
-\noindent
+The second digit in spinor subscripts is 1 for spin up and 2 for spin down.
 The spinors shown above are not individually normalized.
 Instead, a combined spinor normalization constant
 $N=(E+m)^4$ will be used.
@@ -366,34 +366,26 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 Hence
 \begin{equation*}
 d\sigma=\frac{\alpha^2}{s}
-\frac{(\cos^2\theta+3)^2}{\sin^3\theta}\,d\theta\,d\phi
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^3\theta}\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
-Let $I(\theta)$ be the integral of $d\sigma$.
-\begin{align*}
-I(\theta)&=\int_0^{2\pi}\int d\sigma
-\\
-&=\frac{2\pi\alpha^2}{s}
-\int\frac{(\cos^2\theta+3)^2}{\sin^3\theta}\,d\theta
-\\
-&=\frac{2\pi\alpha^2}{s}\bigg(\frac{8\cos\theta}{\cos^2\theta-1}-\cos\theta\bigg),
-\quad a\le\theta\le\pi-a
-\end{align*}
+Let $I(\theta)$ be the following integral of $d\sigma$.
+\begin{equation*}
+I(\theta)=\int\frac{\left(\cos^2\theta+3\right)^2}{\sin^3\theta}\,d\theta
+=\frac{8\cos\theta}{\cos^2\theta-1}-\cos\theta
+\end{equation*}
 
 \noindent
-Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
-
-\bigskip
-\noindent
-The cumulative distribution function $F(\theta)$ is
+The cumulative distribution function is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},\quad a\le\theta\le\pi-a
 \end{equation*}
 
-\noindent
-The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$
-can now be computed.
+Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
+
+\bigskip
+The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
