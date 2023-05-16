@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
@@ -8,7 +8,7 @@
 
 \noindent
 Compton scattering occurs when a high energy photon such as a gamma ray interacts with an electron.
-In typical Compton scattering experiments the incident electron is at rest with zero velocity.
+In typical Compton scattering experiments the incident electron is at rest.
 However, it is easier to develop a theory using the center of mass frame in which
 the photon and the electron have equal and opposite momentum.
 The following diagram shows the photon and electron scattering through angle $\theta$
@@ -44,25 +44,27 @@ In center of mass coordinates the momentum vectors are
 {
 p_1=\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
 }
-\qquad
+\quad
 \underset{\text{inbound electron}}
 {
 p_2=\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
 }
-\qquad
+\quad
+p_3=
 \underset{\text{outbound photon}}
 {
-p_3=\begin{pmatrix}
+\begin{pmatrix}
 \omega\\
 \omega\sin\theta\cos\phi\\
 \omega\sin\theta\sin\phi\\
 \omega\cos\theta
 \end{pmatrix}
 }
-\qquad
+\quad
+p_4=
 \underset{\text{outbound electron}}
 {
-p_4=\begin{pmatrix}
+\begin{pmatrix}
 E\\
 -\omega\sin\theta\cos\phi\\
 -\omega\sin\theta\sin\phi\\
@@ -82,39 +84,43 @@ Azimuth angle $\phi$ cancels out in scattering calculations.
 \noindent
 The spinors are
 \begin{equation*}
-\underset{\text{inbound electron, spin up}}
+u_{21}=
+\underset{\substack{\text{inbound electron}\\\text{spin up}}}
 {
-u_{21}=\begin{pmatrix}
+\begin{pmatrix}
 E+m\\
 0\\
 -\omega\\
 0
 \end{pmatrix}
 }
-\qquad
-\underset{\text{inbound electron, spin down}}
+\quad
+u_{22}=
+\underset{\substack{\text{inbound electron}\\\text{spin down}}}
 {
-u_{22}=\begin{pmatrix}
+\begin{pmatrix}
 0\\
 E+m\\
 0\\
 \omega
 \end{pmatrix}
 }
-\qquad
-\underset{\text{outbound electron, spin up}}
+\quad
+u_{41}=
+\underset{\substack{\text{outbound electron}\\\text{spin up}}}
 {
-u_{41}=\begin{pmatrix}
+\begin{pmatrix}
 E+m\\
 0\\
 p_{4z}\\
 p_{4x}+ip_{4y}
 \end{pmatrix}
 }
-\qquad
-\underset{\text{outbound electron, spin down}}
+\quad
+u_{42}=
+\underset{\substack{\text{outbound electron}\\\text{spin down}}}
 {
-u_{42}=\begin{pmatrix}
+\begin{pmatrix}
 0\\
 E+m\\
 p_{4x}-ip_{4y}\\
@@ -160,8 +166,8 @@ u&=(p_1-p_4)^2
 \noindent
 Let
 \begin{equation*}
-a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a}
-\qquad
+a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a},
+\quad
 a_2=\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}
 \end{equation*}
 
@@ -221,7 +227,7 @@ f_{22}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_2a_2^*=\mathop{\rm Tr}
 
 \noindent
 Hence
-\begin{equation}
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
 \frac{e^4}{4}
@@ -231,9 +237,9 @@ Hence
 +\frac{f_{12}^*}{(s-m^2)(u-m^2)}
 +\frac{f_{22}}{(u-m^2)^2}
 \right)
-\end{equation}
+\tag{1}
+\end{equation*}
 
-\bigskip
 \noindent
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
@@ -262,8 +268,9 @@ t&=(p_1-p_3)^2
 \\
 u&=(p_1-p_4)^2
 \end{align*}
+
 the formulas are
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
 \\
@@ -271,11 +278,11 @@ f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
 \\
 f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \end{aligned}
-\end{equation}
+\tag{2}
+\end{equation*}
 
 \subsection*{High energy approximation}
-For high energy experiments that have $\omega\gg m$,
-a useful approximation is to set $m=0$ and obtain
+For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&=-8su
 \\
@@ -295,20 +302,20 @@ Hence
 \left(-\frac{u}{s}-\frac{s}{u}\right)
 \end{align*}
 
-\noindent
 Also for $m=0$ the Mandelstam variables $s$ and $u$ are
 \begin{align*}
 s&=4\omega^2
 \\
 u&=-2\omega^2(\cos\theta+1)
 \end{align*}
+
 Hence
-\begin{equation}
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =2e^4\left(
 \frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
 \right)
-\end{equation}
+\end{equation*}
 
 \subsection*{Lab frame}
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
@@ -322,7 +329,7 @@ E/m & 0 & 0 & \omega/m\\
 0 & 0 & 1 & 0\\
 \omega/m & 0 & 0 & E/m
 \end{pmatrix},
-\qquad
+\quad
 \Lambda p_2=\begin{pmatrix}m \\ 0 \\ 0 \\ 0\end{pmatrix}
 \end{equation*}
 
@@ -361,9 +368,7 @@ u&=(p_1-p_4)^2=-2 m \omega_L' + m^2
 \end{aligned}
 \end{equation*}
 
-\noindent
-Compute $\langle|\mathcal{M}|^2\rangle$ using equations (1) and (2)
-and the above $s$, $t$, and $u$ that involve $\omega_L$ and $\omega_L'$.
+Then from equations (1) and (2)
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=
 2e^4\left(
@@ -386,12 +391,16 @@ we have
 
 \noindent
 Hence
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=
-2e^4\left(
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=2e^4\left(
 \frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}+\cos^2\theta_L-1
 \right)
-\end{equation*}
+\\
+&=2e^4\left(
+\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}-\sin^2\theta_L
+\right)
+\end{align*}
 
 \subsection*{Cross section}
 Now that we have derived $\langle|\mathcal{M}|^2\rangle$
@@ -403,13 +412,13 @@ From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame vari
 \noindent
 The differential cross section for Compton scattering is
 \begin{align*}
-\frac{d\sigma}{d\Omega}&=\frac{\hbar^2}{64\pi^2m^2c^4}
+\frac{d\sigma}{d\Omega}&=\frac{1}{64\pi^2m^2}
 \left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
 \\
-&=\frac{e^4\hbar^2}{32\pi^2m^2c^4}
+&=\frac{e^4}{32\pi^2m^2}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
 \right)
 \end{align*}
 
@@ -417,17 +426,17 @@ The differential cross section for Compton scattering is
 Substitute $e^4=16\pi^2\alpha^2$ to obtain
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\alpha^2\hbar^2}{2m^2c^4}
+=\frac{\alpha^2}{2m^2}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
 \right)
 \end{equation*}
 
 \noindent
 The scattered photon frequency $\omega'$ is computed from the Compton equation.
 \begin{equation*}
-\omega'=\frac{m\omega}{m+\omega(1-\cos\theta)}
+\omega'=\frac{m\omega}{m+\omega\,(1-\cos\theta)}
 \end{equation*}
 
 \noindent
@@ -436,98 +445,59 @@ Recall that
 \begin{equation*}
 d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
+
 Hence
 \begin{equation*}
 d\sigma
-=\frac{\alpha^2\hbar^2}{2m^2c^4}
+=\frac{\alpha^2}{2m^2}
 \left(\frac{\omega'}{\omega}\right)^2
-\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
 \sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-\bigskip
-\noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
-\begin{align*}
-I(\theta)
-&=\left(\frac{2m^2c^4}{\alpha^2\hbar^2}\right)\frac{1}{2\pi}\int_0^{2\pi}\int d\sigma
-\\
-&=\int
+\begin{equation*}
+I(\theta)=
+\frac{\alpha^2}{2m^2}
+\int_0^{2\pi}\int
 \left(\frac{\omega'}{\omega}\right)^2
-\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
-\sin\theta\,d\theta,
-\quad0\le\theta\le\pi
-\end{align*}
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
+\sin\theta\,d\theta\,d\phi
+\end{equation*}
 
-\noindent
-Assume that $I(\theta)-I(0)$ is computable given $\theta$ by either symbolic or numerical integration.
+%The result is
+%\begin{equation*}
+%I(\theta)=
+%\end{equation*}
 
-\bigskip
-\noindent
-Let $C$ be the normalization constant
+The cumulative distribution function is
 \begin{equation*}
-C=I(\pi)-I(0)
+F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
+\quad
+0\le\theta\le\pi
 \end{equation*}
 
 \noindent
-Then the cumulative distribution function $F(\theta)$ is
-\begin{equation*}
-F(\theta)=\frac{I(\theta)-I(0)}{C},
-\quad0\le\theta\le\pi
-\end{equation*}
-
-\noindent
-The probability of observing scattering events in the interval
-$\theta_1$ to $\theta_2$ can now be computed.
+The probability of observing scattering between $\theta_1$ and $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
-\noindent
-The probability density function $f(\theta)$ is the derivative of $F(\theta)$.
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{1}{C}
-\left(\frac{\omega'}{\omega}\right)^2
-\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}+\cos^2\theta-1\right)
-\sin\theta
-\end{equation*}
-
-\noindent
-The following graph of $f(\theta)$ is for
-$\omega=500\,\text{keV}=1.2\times10^{20}\,\text{Hz}$.
-
-\begin{center}
-\includegraphics[scale=0.5]{compton-scattering.png}
-\end{center}
-
-\noindent
-Probability distribution for $45^\circ$ bins
-($\omega=500\,\text{keV}=1.2\times10^{20}\,\text{Hz}$).
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
-\hline
-$0^\circ$ & $45^\circ$ & 0.35 \\
-$45^\circ$ & $90^\circ$ & 0.34 \\
-$90^\circ$ & $135^\circ$ & 0.22 \\
-$135^\circ$ & $180^\circ$ & 0.09 \\
-\hline
-\end{tabular}
-\end{center}
-
 \subsection*{Thomson scattering}
-When $\omega$ is much smaller than the electron mass $m$ we have
+For $\omega\ll m$ we have
 \begin{equation*}
-\frac{m}{m+\omega(1-\cos\theta)}\approx1
+\frac{m}{m+\omega\,(1-\cos\theta)}\approx1
+\end{equation*}
+
+Hence we can use the approximation
+\begin{equation*}
+\omega=\omega'
 \end{equation*}
 
 \noindent
-Hence for $\omega\ll m$ the differential cross section is approximately
+It follows that
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2m^2}(1+\cos^2\theta)
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2m^2}\big(1+\cos^2\theta\big)
 \end{equation*}
 
 \noindent
@@ -561,7 +531,9 @@ $\phantom{+}0.73$ & $\phantom{0}3330$\\
 \noindent
 The data are for the center of mass frame and have the following relationship with the differential cross section formula.
 \begin{equation*}
-x=\cos\theta\qquad y=\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
+x=\cos\theta,
+\quad
+y=\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
 \end{equation*}
 
 \noindent
@@ -662,8 +634,8 @@ Here are a few notes regarding the Eigenmath scripts.
 Start by writing out $a_1$ and $a_2$ in full component form.
 \begin{equation*}
 a_1^{\mu\nu}
-=\bar{u}_{4\alpha}\gamma^{\mu\alpha}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\nu\rho}{}_\sigma u_2^\sigma
-\qquad
+=\bar{u}_{4\alpha}\gamma^{\mu\alpha}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\nu\rho}{}_\sigma u_2^\sigma,
+\quad
 a_2^{\nu\mu}
 =\bar{u}_{4\alpha}\gamma^{\nu\alpha}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\mu\rho}{}_\sigma u_2^\sigma
 \end{equation*}
@@ -672,8 +644,8 @@ a_2^{\nu\mu}
 Transpose $\gamma$ tensors to form inner products over $\alpha$ and $\rho$.
 \begin{equation*}
 a_1^{\mu\nu}
-=\bar{u}_{4\alpha}\gamma^{\alpha\mu}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\rho\nu}{}_\sigma u_2^\sigma
-\qquad
+=\bar{u}_{4\alpha}\gamma^{\alpha\mu}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\rho\nu}{}_\sigma u_2^\sigma,
+\quad
 a_2^{\nu\mu}
 =\bar{u}_{4\alpha}\gamma^{\alpha\nu}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\rho\mu}{}_\sigma u_2^\sigma
 \end{equation*}
