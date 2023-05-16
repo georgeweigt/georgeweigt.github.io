@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz} % includes graphicx
@@ -41,11 +41,17 @@ In a typical collider experiment the momentum vectors are
 \underset{\text{inbound positron}}
 {p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \quad
+p_3=
 \underset{\text{outbound photon}}
-{p_3=\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}}
+{
+\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}
+}
 \quad
+p_4=
 \underset{\text{outbound photon}}
-{p_4=\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}}
+{
+\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}
+}
 \end{equation*}
 
 \noindent
@@ -59,17 +65,29 @@ Azimuth angle $\phi$ cancels out in scattering calculations.
 \noindent
 The spinors are
 \begin{equation*}
-\underset{\text{inbound electron, spin up}}
-{u_{11}=\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+u_{11}=
+\underset{\substack{\text{inbound electron}\\\text{spin up}}}
+{
+\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+}
 \quad
-\underset{\text{inbound electron, spin down}}
-{u_{12}=\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
+u_{12}=
+\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
+}
 \quad
-\underset{\text{inbound positron, spin up}}
-{v_{21}=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
+v_{21}
+\underset{\substack{\text{inbound positron}\\\text{spin up}}}
+{
+=\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
+}
 \quad
-\underset{\text{inbound positron, spin down}}
-{v_{22}=\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
+v_{22}=
+\underset{\substack{\text{inbound positron}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
+}
 \end{equation*}
 
 \noindent
@@ -79,9 +97,9 @@ Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 \bigskip
 \noindent
 The following formula computes a probability density $|\mathcal{M}_{ab}|^2$
-for annihilation where $a$ is the spin state of the inbound electron and
-$b$ is the spin state of the inbound positron.
-The formula is from Feynman diagrams.
+for annihilation where $a$ is the spin of the inbound electron and
+$b$ is the spin of the inbound positron.
+The formula is derived from Feynman diagrams for annihilation.
 \begin{equation*}
 |\mathcal{M}_{ab}|^2
 =
@@ -109,8 +127,8 @@ u&=q_2^2=(p_1-p_4)^2
 \noindent
 Let
 \begin{equation*}
-a_1=\bar{v}_{2b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{1a}
-\qquad
+a_1=\bar{v}_{2b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{1a},
+\quad
 a_2=\bar{v}_{2b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{1a}
 \end{equation*}
 
@@ -273,13 +291,15 @@ Hence
 \subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
+\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{256\pi^2E^2}
 =
-\frac{e^4}{32\pi^2s}
+\frac{e^4}{128\pi^2E^2}
 \left(
 \frac{1+\cos\theta}{1-\cos\theta}+
 \frac{1-\cos\theta}{1+\cos\theta}
-\right),\quad s\gg m
+\right),
+\quad
+E\gg m
 \end{equation*}
 
 \noindent
@@ -287,7 +307,7 @@ Substituting $e^4=16\pi^2\alpha^2$ yields
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =
-\frac{\alpha^2}{2s}
+\frac{\alpha^2}{8E^2}
 \left(
 \frac{1+\cos\theta}{1-\cos\theta}+
 \frac{1-\cos\theta}{1+\cos\theta}
@@ -305,7 +325,7 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 Hence
 \begin{equation*}
 d\sigma=
-\frac{\alpha^2}{2s}
+\frac{\alpha^2}{8E^2}
 \left(
 \frac{1+\cos\theta}{1-\cos\theta}+
 \frac{1-\cos\theta}{1+\cos\theta}
@@ -423,10 +443,6 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 \noindent
 The result indicates that the model $d\sigma$ explains 98\% of the variance in the data.
 
-\bigskip
-\noindent
-Run ``annihilation-3.txt'' to verify.
-
 \subsection*{Notes}
 Here are some notes on how the Eigenmath scripts work.
 
@@ -437,7 +453,7 @@ it is instructive to write $a_1$ and $a_2$ in full component form.
 \begin{equation*}
 a_1^{\mu\nu}
 =\bar{v}_{2\alpha}\gamma^{\mu\alpha}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\nu\rho}{}_\sigma u_1^\sigma
-\qquad
+\quad
 a_2^{\nu\mu}
 =\bar{v}_{2\alpha}\gamma^{\nu\alpha}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\mu\rho}{}_\sigma u_1^\sigma
 \end{equation*}
@@ -447,7 +463,7 @@ Transpose the $\gamma$ tensors to form inner products over $\alpha$ and $\rho$.
 \begin{equation*}
 a_1^{\mu\nu}
 =\bar{v}_{2\alpha}\gamma^{\alpha\mu}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\rho\nu}{}_\sigma u_1^\sigma
-\qquad
+\quad
 a_2^{\nu\mu}
 =\bar{v}_{2\alpha}\gamma^{\alpha\nu}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\rho\mu}{}_\sigma u_1^\sigma
 \end{equation*}
