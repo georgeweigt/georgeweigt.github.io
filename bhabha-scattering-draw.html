@@ -1,39 +1,25 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
--- Draw pdf for Bhabha scattering
+-- Draw cdf for Bhabha scattering
 
 N = 10 -- number of bins
 
--- integrate f from a to b
-
-I(a,b) = do(
-  dtheta = (b - a) / 100,
-  sum(k,1,100,eval(f, theta, a + (k - 0.5) dtheta)) dtheta
-)
-
-M = (cos(theta)^2 + 3)^2 / (cos(theta) - 1)^2
-f = M sin(theta)
 pi = float(pi) -- use numerical value of pi
 a = pi / N
-f = f / I(a,pi) -- normalize
+I = 16/(cos(theta)-1) - 1/3 cos(theta)^3 - cos(theta)^2 - 9 cos(theta) - 16 log(1-cos(theta))
+F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
 
-"Probability density function"
+"Cumulative distribution function"
+
 xrange = (0,pi)
-yrange = (0,0.5)
-draw(f,theta)
+yrange = (0,1)
+draw(F,theta)
 
 "Bin probability (first bin not observed)"
 
 P = zero(N)
-
-for(k,2,N,
-  theta2 = k pi/N,
-  theta1 = theta2 - pi/N,
-  P[k] = I(theta1,theta2)
-)
-
-f(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
-
+for(k,2,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
 xrange = (1,N+1)
 yrange = (0,1)
-draw(f,x)
+draw(h,x)
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
