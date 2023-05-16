@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{slashed}
 \usepackage{tikz}
-
+\parindent=0pt
 \begin{document}
 
 \noindent
@@ -315,9 +315,7 @@ Hence
 &=4e^4\frac{\left(\cos^2\theta+3\right)^2}{(\cos\theta-1)^2(\cos\theta+1)^2}
 \\
 &=4e^4
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2
+\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{align*}
 
 \noindent
@@ -348,63 +346,49 @@ The differential cross section is
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
 =\frac{e^4}{16\pi^2s}
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2,\quad s\gg m
+\frac{(\cos^2\theta+3)^2}{\sin^4\theta},
+\quad s\gg m
 \end{equation*}
 
 \noindent
 Substituting $e^4=16\pi^2\alpha^2$ yields
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2}{s}
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2
+\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-\noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Recall that
 \begin{equation*}
 d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
+
 Hence
 \begin{equation*}
 d\sigma=\frac{\alpha^2}{s}
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2
-\sin\theta\,d\theta\,d\phi
+\frac{(\cos^2\theta+3)^2}{\sin^3\theta}\,d\theta\,d\phi
 \end{equation*}
 
 \noindent
-Let $I(\theta)$ be the following integral of $d\sigma$.
+Let $I(\theta)$ be the integral of $d\sigma$.
 \begin{align*}
-I(\theta)&=\frac{s}{2\pi\alpha^2}\int_0^{2\pi}\int d\sigma
+I(\theta)&=\int_0^{2\pi}\int d\sigma
 \\
-&=\int
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2
-\sin\theta\,d\theta,
+&=\frac{2\pi\alpha^2}{s}
+\int\frac{(\cos^2\theta+3)^2}{\sin^3\theta}\,d\theta
+\\
+&=\frac{2\pi\alpha^2}{s}\bigg(\frac{8\cos\theta}{\cos^2\theta-1}-\cos\theta\bigg),
 \quad a\le\theta\le\pi-a
 \end{align*}
 
 \noindent
 Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
-Assume that $I(\theta)-I(a)$ is computable given $\theta$ by either symbolic or numerical integration.
 
 \bigskip
 \noindent
-Let $C$ be the normalization constant
+The cumulative distribution function $F(\theta)$ is
 \begin{equation*}
-C=I(\pi-a)-I(a)
-\end{equation*}
-
-\noindent
-Then the cumulative distribution function $F(\theta)$ is
-\begin{equation*}
-F(\theta)=\frac{I(\theta)-I(a)}{C},\quad a\le\theta\le\pi-a
+F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},\quad a\le\theta\le\pi-a
 \end{equation*}
 
 \noindent
@@ -413,42 +397,6 @@ can now be computed.
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
-
-\noindent
-Probability density function $f(\theta)$ is the derivative of $F(\theta)$.
-\begin{equation*}
-f(\theta)
-=\frac{dF(\theta)}{d\theta}
-=\frac{1}{C}
-\left(
-\frac{\cos^2\theta+3}{\cos^2\theta-1}
-\right)^2
-\sin\theta
-\end{equation*}
-
-\noindent
-This is a graph of $f(\theta)$ for $a=\pi/6=30^\circ$.
-
-\begin{center}
-\includegraphics[scale=0.5]{moller-scattering.png}
-\end{center}
-
-\noindent
-Probability distribution for $30^\circ$ bins ($a=30^\circ$).
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$\theta_1$ & $\theta_2$ & $P(\theta_1\le\theta\le\theta_2)$\\
-\hline
-$0^\circ$ & $30^\circ$ & -- \\
-$30^\circ$ & $60^\circ$ & 0.40 \\
-$60^\circ$ & $90^\circ$ & 0.10 \\
-$90^\circ$ & $120^\circ$ & 0.10 \\
-$120^\circ$ & $150^\circ$ & 0.40 \\
-$150^\circ$ & $180^\circ$ & -- \\
-\hline
-\end{tabular}
-\end{center}
 
 \subsection*{Notes}
 In component notation, the trace operators of the Casimir trick become sums over

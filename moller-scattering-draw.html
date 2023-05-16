@@ -1,9 +1,13 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
--- Draw cdf for muon pair production
+-- Draw cdf for Moller scattering
 
 N = 10 -- number of bins
 
-F = -1/8 cos(theta)^3 - 3/8 cos(theta) + 1/2
+I = 8 cos(theta) / (cos(theta)^2 - 1) - cos(theta)
+a = pi / N
+C = eval(I,theta,pi-a) - eval(I,theta,a)
+F = (I - eval(I,theta,a)) / C
+
 
 "Cumulative distribution function"
 
@@ -11,11 +15,14 @@ xrange = (0,pi)
 yrange = (0,1)
 draw(F,theta)
 
-"Bin probability"
+"Bin probability (first and last not observed)"
 
 P = zero(N)
-for(k,1,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+
+for(k,2,N-1, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+
 h(x) = test(x < 1, 0, x >= N + 1, 0, P[floor(x)])
+
 xrange = (1,N+1)
 yrange = (0,1)
 draw(h,x)
