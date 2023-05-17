@@ -6,8 +6,8 @@
 \parindent=0pt
 \begin{document}
 
-\noindent
-Electron positron annihilation creates two photons.
+\section*{Annihilation}
+Electron-positron annihilation emits two photons.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -19,86 +19,84 @@ Electron positron annihilation creates two photons.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 Here is the same diagram with momentum and spinor labels.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
-\draw[thick,->] (2,0) node[anchor=west] {$p_2, v_2$} -- (0.6,0);
-\draw[thick,->] (-2,0) node[anchor=east] {$p_1, u_1$} -- (-0.6,0);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, v_{2b}$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, u_{1a}$} -- (-0.6,0);
 \draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3$};
 \draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4$};
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
 
-\noindent
 In a typical collider experiment the momentum vectors are
-\begin{equation*}
+\begin{align*}
+p_1&=
 \underset{\text{inbound electron}}
-{p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-\quad
+{
+\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
+}
+&
+p_2&=
 \underset{\text{inbound positron}}
-{p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-\quad
-p_3=
+{
+\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
+}
+&
+p_3&=
 \underset{\text{outbound photon}}
 {
 \begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}
 }
-\quad
-p_4=
+&
+p_4&=
 \underset{\text{outbound photon}}
 {
 \begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}
 }
-\end{equation*}
+\end{align*}
 
-\noindent
-Symbol $p$ is incident momentum,
-$E$ is total energy $E=\sqrt{p^2+m^2}$,
-and $m$ is electron mass.
+Symbol $p$ is incident momentum.
+Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
 
 \bigskip
-\noindent
 The spinors are
-\begin{equation*}
-u_{11}=
+\begin{align*}
+u_{11}&=
 \underset{\substack{\text{inbound electron}\\\text{spin up}}}
 {
 \begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
 }
-\quad
-u_{12}=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}
-{
-\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
-}
-\quad
-v_{21}=
+&
+v_{21}&=
 \underset{\substack{\text{inbound positron}\\\text{spin up}}}
 {
 \begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
 }
-\quad
-v_{22}=
+\\[1ex]
+u_{12}&=
+\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
+}
+&
+v_{22}&=
 \underset{\substack{\text{inbound positron}\\\text{spin down}}}
 {
 \begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
 }
-\end{equation*}
+\end{align*}
 
-The second digit in spinor subscripts is 1 for spin up and 2 for spin down.
-The spinors shown above are not individually normalized.
+Spinor subscripts have 1 for spin up and 2 for spin down.
+The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
-\noindent
-The following formula computes a probability density $|\mathcal{M}_{ab}|^2$
-for annihilation where $a$ is the spin of the inbound electron and
-$b$ is the spin of the inbound positron.
+This is the probability density for spin state $ab$.
 The formula is derived from Feynman diagrams for annihilation.
 \begin{equation*}
 |\mathcal{M}_{ab}|^2
@@ -169,7 +167,7 @@ of $aa^*$ over $\mu$ and $\nu$.
 \end{align*}
 
 \noindent
-Use the Casimir trick to replace sums over spins with matrix products.
+The Casimir trick uses matrix products to compute sums over spins.
 \begin{align*}
 f_{11}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_1^*=\mathop{\rm Tr}
 \left(

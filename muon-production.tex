@@ -6,7 +6,7 @@
 \parindent=0pt
 \begin{document}
 
-\noindent
+\section*{Muon pair production}
 A high energy electron and positron collision can create two muons.
 \begin{center}
 \begin{tikzpicture}
@@ -19,7 +19,6 @@ A high energy electron and positron collision can create two muons.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 Here is the same diagram with momentum and spinor labels.
 \begin{center}
 \begin{tikzpicture}
@@ -34,87 +33,111 @@ Here is the same diagram with momentum and spinor labels.
 
 \noindent
 In a typical collider experiment the momentum vectors are
-\begin{equation*}
+\begin{align*}
+p_1&=
 \underset{\text{inbound electron}}
-{p_1=\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-\quad
+{
+\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
+}
+&
+p_2&=
 \underset{\text{inbound positron}}
-{p_2=\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-\quad
-p_3=
-\underset{\text{outbound muon}}{
+{
+\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
+}
+&
+p_3&=
+\underset{\text{outbound muon}}
+{
 \begin{pmatrix}
 E\\
 \rho\sin\theta\cos\phi\\
 \rho\sin\theta\sin\phi\\
 \rho\cos\theta
-\end{pmatrix}}
-\quad
-p_4=
-\underset{\text{outbound anti-muon}}{
+\end{pmatrix}
+}
+&
+p_4&=
+\underset{\text{outbound anti-muon}}
+{
 \begin{pmatrix}
 E\\
 -\rho\sin\theta\cos\phi\\
 -\rho\sin\theta\sin\phi\\
 -\rho\cos\theta
-\end{pmatrix}}
-\end{equation*}
+\end{pmatrix}
+}
+\end{align*}
 
-\noindent
-where $E$ is beam energy, $p=\sqrt{E^2-m^2}$, $\rho=\sqrt{E^2-M^2}$,
+Symbol $E$ is beam energy, $p=\sqrt{E^2-m^2}$, $\rho=\sqrt{E^2-M^2}$,
 $m$ is electron mass $0.51\,\text{MeV}$,
 and $M$ is muon mass $106\,\text{MeV}$.
-The spinors are
-\begin{gather*}
-u_{11}=
-\underset{\substack{\text{inbound electron}\\\text{spin up}}}{
-\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
-\quad
-v_{21}=
-\underset{\substack{\text{inbound positron}\\\text{spin up}}}{
-\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
-\quad
-u_{31}=
-\underset{\substack{\text{outbound muon}\\\text{spin up}}}{
-\begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}}
-\quad
-v_{41}
-\underset{\substack{\text{outbound anti-muon}\\\text{spin up}}}{
-\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}}
-\\[1ex]
-u_{12}=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}{
-\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
-\quad
-v_{22}=
-\underset{\substack{\text{inbound positron}\\\text{spin down}}}{
-\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
-\quad
-u_{32}=
-\underset{\substack{\text{outbound muon}\\\text{spin down}}}{
-\begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}}
-\quad
-v_{42}=
-\underset{\substack{\text{outbound anti-muon}\\\text{spin down}}}{
-\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}}
-\end{gather*}
-
-\noindent
-The last digit in a spinor subscript is 1 for spin up and 2 for spin down.
-Note that the spinors are not normalized.
-A combined spinor normalization constant $N=(E+m)^2(E+M)^2$
-will be used instead.
 
 \bigskip
-\noindent
+The spinors are
+\begin{align*}
+u_{11}&=
+\underset{\substack{\text{inbound electron}\\\text{spin up}}}
+{
+\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+}
+&
+v_{21}&=
+\underset{\substack{\text{inbound positron}\\\text{spin up}}}
+{
+\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
+}
+&
+u_{31}&=
+\underset{\substack{\text{outbound muon}\\\text{spin up}}}
+{
+\begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}
+}
+&
+v_{41}&=
+\underset{\substack{\text{outbound anti-muon}\\\text{spin up}}}
+{
+\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}
+}
+\\[1ex]
+u_{12}&=
+\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
+}
+&
+v_{22}&=
+\underset{\substack{\text{inbound positron}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
+}
+&
+u_{32}&=
+\underset{\substack{\text{outbound muon}\\\text{spin down}}}
+{
+\begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}
+}
+&
+v_{42}&=
+\underset{\substack{\text{outbound anti-muon}\\\text{spin down}}}
+{
+\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}
+}
+\end{align*}
+
+Spinor subscripts have 1 for spin up and 2 for spin down.
+The spinors are not individually normalized.
+Instead, a combined spinor normalization constant $N=(E+m)^2(E+M)^2$ will be used.
+
+\bigskip
 This is the probability density for spin state $abcd$.
 Symbol $e$ is electron charge and $s=(p_1+p_2)^2=4E^2$.
+The formula is derived from Feynman diagrams for muon pair production.
 \begin{equation*}
 \big|\mathcal{M}_{abcd}\big|^2
 =\frac{e^4}{Ns^2}\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
 \end{equation*}
 
-\noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$
 is computed by summing $|\mathcal{M}_{abcd}|^2$ over all spin states
 and dividing by the number of inbound states.
@@ -127,8 +150,7 @@ There are four inbound states.
 \big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
 \end{align*}
 
-\noindent
-Another way to compute $\langle|\mathcal{M}|^2\rangle$ is to use the following Casimir trick.
+The Casimir trick uses matrix products to compute sums over spins.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4s^2}
@@ -136,8 +158,8 @@ Another way to compute $\langle|\mathcal{M}|^2\rangle$ is to use the following C
 \mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
 \end{equation*}
 
-\noindent
-Here is a third way to compute $\langle|\mathcal{M}|^2\rangle$.
+The following formula is equivalent to the Casimir trick.
+(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4s^2}

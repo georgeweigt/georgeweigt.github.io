@@ -6,7 +6,7 @@
 \parindent=0pt
 \begin{document}
 
-\noindent
+\section*{Compton scattering}
 Compton scattering is the result of photons interacting with electrons.
 In a typical Compton scattering experiment the electron is at rest.
 However, it is easier to develop a theory using the center of mass frame in which
@@ -29,28 +29,30 @@ Here is the same diagram with momentum and spinor labels.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
-\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_2$} -- (0.6,0);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_{2a}$} -- (0.6,0);
 \draw[thick,->] (-2,0) node[anchor=east] {$p_1$} -- (-0.6,0);
 \draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3$};
-\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_4$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_{4b}$};
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
 
 \noindent
 In center of mass coordinates the momentum vectors are
-\begin{equation*}
+\begin{align*}
+p_1&
 \underset{\text{inbound photon}}
 {
-p_1=\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
+=\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
 }
-\quad
+&
+p_2&=
 \underset{\text{inbound electron}}
 {
-p_2=\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
+\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
 }
-\quad
-p_3=
+&
+p_3&=
 \underset{\text{outbound photon}}
 {
 \begin{pmatrix}
@@ -60,8 +62,8 @@ p_3=
 \omega\cos\theta
 \end{pmatrix}
 }
-\quad
-p_4=
+&
+p_4&=
 \underset{\text{outbound electron}}
 {
 \begin{pmatrix}
@@ -71,20 +73,19 @@ E\\
 -\omega\cos\theta
 \end{pmatrix}
 }
-\end{equation*}
+\end{align*}
 
 \noindent
-Symbol $\omega$ is incident momentum,
-$E$ is total energy $E=\sqrt{\omega^2+m^2}$,
-and $m$ is electron mass.
+Symbol $\omega$ is incident momentum.
+Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
 
 \bigskip
 \noindent
 The spinors are
-\begin{equation*}
-u_{21}=
+\begin{align*}
+u_{21}&=
 \underset{\substack{\text{inbound electron}\\\text{spin up}}}
 {
 \begin{pmatrix}
@@ -94,19 +95,8 @@ E+m\\
 0
 \end{pmatrix}
 }
-\quad
-u_{22}=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}
-{
-\begin{pmatrix}
-0\\
-E+m\\
-0\\
-\omega
-\end{pmatrix}
-}
-\quad
-u_{41}=
+&
+u_{41}&=
 \underset{\substack{\text{outbound electron}\\\text{spin up}}}
 {
 \begin{pmatrix}
@@ -116,8 +106,19 @@ p_{4z}\\
 p_{4x}+ip_{4y}
 \end{pmatrix}
 }
-\quad
-u_{42}=
+\\[1ex]
+u_{22}&=
+\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+{
+\begin{pmatrix}
+0\\
+E+m\\
+0\\
+\omega
+\end{pmatrix}
+}
+&
+u_{42}&=
 \underset{\substack{\text{outbound electron}\\\text{spin down}}}
 {
 \begin{pmatrix}
@@ -127,17 +128,15 @@ p_{4x}-ip_{4y}\\
 -p_{4z}
 \end{pmatrix}
 }
-\end{equation*}
+\end{align*}
 
-\noindent
-The spinors shown above are not individually normalized.
+Spinor subscripts have 1 for spin up and 2 for spin down.
+The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
-\noindent
-The following formula computes a probability density $|\mathcal{M}_{ab}|^2$
-for Compton scattering where $a$ is the spin state of the inbound electron
-and $b$ is the spin state of the outbound electron.
+This is the probability density for spin state $ab$.
+The formula is derived from Feynman diagrams for Compton scattering.
 \begin{equation*}
 |\mathcal{M}_{ab}|^2
 =
@@ -155,7 +154,6 @@ q_1&=p_1+p_2
 q_2&=p_4-p_1=p_2-p_3
 \end{align*}
 
-\noindent
 Symbols $s$ and $u$ are Mandelstam variables
 \begin{align*}
 s&=(p_1+p_2)^2
@@ -163,7 +161,6 @@ s&=(p_1+p_2)^2
 u&=(p_1-p_4)^2
 \end{align*}
 
-\noindent
 Let
 \begin{equation*}
 a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a},
@@ -171,7 +168,6 @@ a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a},
 a_2=\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}
 \end{equation*}
 
-\noindent
 Then
 \begin{align*}
 |\mathcal{M}_{ab}|^2&=\frac{e^4}{N}\left|-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right|^2\\
@@ -188,7 +184,6 @@ Then
 \right)
 \end{align*}
 
-\noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is
 computed by summing $|\mathcal{M}_{ab}|^2$ over all spin and polarization states
 and then dividing by the number of inbound states.
@@ -196,7 +191,8 @@ There are four inbound states.
 The sum over polarizations is already accomplished by contraction of $aa^*$ over $\mu$ and $\nu$.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2\\
+&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2
+\\
 &=\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2
 \left(
 \frac{a_1a_1^*}{(s-m^2)^2}
@@ -206,8 +202,7 @@ The sum over polarizations is already accomplished by contraction of $aa^*$ over
 \right)
 \end{align*}
 
-\noindent
-Use the Casimir trick to replace sums over spins with matrix products.
+The Casimir trick uses matrix products to compute sums over spins.
 \begin{align*}
 f_{11}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_1^*=\mathop{\rm Tr}
 \left(
