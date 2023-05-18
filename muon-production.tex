@@ -31,7 +31,6 @@ Here is the same diagram with momentum and spinor labels.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 In a typical collider experiment the momentum vectors are
 \begin{align*}
 p_1&=
@@ -196,13 +195,11 @@ $$
 =\frac{e^4}{256\pi^2E^2}\big(1+\cos^2\theta\big)
 $$
 
-\noindent
 Recall that $e^2=4\pi\alpha$ hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
 \end{equation*}
 
-\noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Recall that
 \begin{equation*}
@@ -216,17 +213,14 @@ d\sigma=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
 
 Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{equation*}
-I(\theta)=\frac{\alpha^2}{16E^2}\int_0^{2\pi}\int\left(1+\cos^2\theta\right)\sin\theta\,d\theta\,d\phi
+I(\theta)=\int\left(1+\cos^2\theta\right)\sin\theta\,d\theta
 \end{equation*}
 
-\noindent
 The result is
 \begin{equation*}
-I(\theta)=\frac{\pi\alpha^2}{8E^2}
-\bigg({-}\frac{\cos^3\theta}{3}-\cos\theta\bigg)
+I(\theta)=-\frac{\cos^3\theta}{3}-\cos\theta
 \end{equation*}
 
-\noindent
 The cumulative distribution function is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)}
@@ -235,7 +229,7 @@ F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)}
 0\le\theta\le\pi
 \end{equation*}
 
-The probability of observing scattering between $\theta_1$ to $\theta_2$ is
+The probability of observing scattering between $\theta_1$ and $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}

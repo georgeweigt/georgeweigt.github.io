@@ -6,14 +6,14 @@ p1 = (E, 0, 0, p)
 p2 = (E, 0, 0, -p)
 
 p3 = (E,
-      p expsin(theta) expcos(phi),
-      p expsin(theta) expsin(phi),
-      p expcos(theta))
+      p sin(theta) cos(phi),
+      p sin(theta) sin(phi),
+      p cos(theta))
 
 p4 = (E,
-      -p expsin(theta) expcos(phi),
-      -p expsin(theta) expsin(phi),
-      -p expcos(theta))
+      -p sin(theta) cos(phi),
+      -p sin(theta) sin(phi),
+      -p cos(theta))
 
 -- spinors
 
@@ -113,7 +113,7 @@ check(f22 == a22 / N)
 
 "ok"
 
-"Verify Mandelstam formulas"
+"Verify probability density"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
@@ -129,10 +129,6 @@ check(f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4)
 check(f12 == -8 s^2 + 64 s m^2 - 96 m^4)
 check(f22 == 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4)
 
-"ok"
-
-"Verify probability density"
-
 p12 = dot(p1, gmunu, p2)
 p13 = dot(p1, gmunu, p3)
 p14 = dot(p1, gmunu, p4)
@@ -141,26 +137,30 @@ check(f11 == 32 p12^2 + 32 p14^2 - 64 m^2 p13 + 64 m^4)
 check(f12 == -32 p12^2 + 32 m^2 p12 + 32 m^2 p13 + 32 m^2 p14 - 32 m^4)
 check(f22 == 32 p12^2 + 32 p13^2 - 64 m^2 p14 + 64 m^4)
 
-"ok"
-
-"Verify probability density for m = 0"
+-- verify for m = 0
 
 m = 0
 
 check(s == 4 E^2)
-check(t == 2 E^2 (expcos(theta) - 1))
-check(u == -2 E^2 (expcos(theta) + 1))
+check(t == 2 E^2 (cos(theta) - 1))
+check(u == -2 E^2 (cos(theta) + 1))
 
-check(f == 4 (expcos(theta)^2 + 3)^2 / (expcos(theta)^2 - 1)^2)
+check(f == 4 (cos(theta)^2 + 3)^2 / (cos(theta)^2 - 1)^2)
 
 -- Zee formula
 
-g = 2 ((1 + expcos(theta/2)^4) / expsin(theta/2)^4 +
-    2 / (expsin(theta/2)^2 expcos(theta/2)^2) +
-    (1 + expsin(theta/2)^4) / expcos(theta/2)^4)
+g = 2 ((1 + cos(theta/2)^4) / sin(theta/2)^4 +
+    2 / (sin(theta/2)^2 cos(theta/2)^2) +
+    (1 + sin(theta/2)^4) / cos(theta/2)^4)
 
 check(f == g)
 
 m = quote(m) -- undo m = 0
+
+-- verify integral
+
+f = (cos(theta)^2 + 3)^2 / sin(theta)^4
+I = 8 cos(theta) / (cos(theta)^2 - 1) - cos(theta)
+check(f sin(theta) == d(I,theta))
 
 "ok"

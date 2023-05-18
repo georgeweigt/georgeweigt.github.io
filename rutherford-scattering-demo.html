@@ -6,9 +6,9 @@ E = sqrt(p^2 + m^2)
 p1 = (E, 0, 0, p)
 
 p2 = (E,
-      p expsin(theta) expcos(phi),
-      p expsin(theta) expsin(phi),
-      p expcos(theta))
+      p sin(theta) cos(phi),
+      p sin(theta) sin(phi),
+      p cos(theta))
 
 -- spinors
 
@@ -62,17 +62,13 @@ check(T == S/N)
 
 "Verify probability density"
 
-check(T == 4 E^2 + 4 m^2 + 4 p^2 expcos(theta))
-
-"ok"
-
-"Verify additional formulas"
+check(T == 4 E^2 + 4 m^2 + 4 p^2 cos(theta))
 
 q = p1 - p2
 q4 = dot(q,gmunu,q)^2
 
-check(q4 == 16 p^4 expsin(theta/2)^4)
-check(q4 == 4 p^4 (expcos(theta) - 1)^2)
+check(q4 == 16 p^4 sin(theta/2)^4)
+check(q4 == 4 p^4 (cos(theta) - 1)^2)
 
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

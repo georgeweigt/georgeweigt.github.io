@@ -10,14 +10,14 @@ p1 = (E, 0, 0, p)
 p2 = (E, 0, 0, -p)
 
 p3 = (E,
-      E expsin(theta) expcos(phi),
-      E expsin(theta) expsin(phi),
-      E expcos(theta))
+      E sin(theta) cos(phi),
+      E sin(theta) sin(phi),
+      E cos(theta))
 
 p4 = (E,
-      -E expsin(theta) expcos(phi),
-      -E expsin(theta) expsin(phi),
-      -E expcos(theta))
+      -E sin(theta) cos(phi),
+      -E sin(theta) sin(phi),
+      -E cos(theta))
 
 -- spinors
 
@@ -108,7 +108,7 @@ check(f22 == a22 / N)
 
 "ok"
 
-"Verify Mandelstam formulas"
+"Verify probability density"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
@@ -124,10 +124,6 @@ check(f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4)
 check(f12 == 8 s m^2 - 32 m^4)
 check(f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4)
 
-"ok"
-
-"Verify probability density"
-
 p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
@@ -136,34 +132,26 @@ check(f11 == 32 p13 p14 - 32 m^2 p12 + 64 m^2 p13 + 32 m^2 p14 - 64 m^4)
 check(f12 == 16 m^2 p13 + 16 m^2 p14 - 32 m^4)
 check(f22 == 32 p13 p14 - 32 m^2 p12 + 32 m^2 p13 + 64 m^2 p14 - 64 m^4)
 
-"ok"
-
-"Verify probability density for m = 0"
+-- verify for m = 0
 
 m = 0
 
 check(s == 4 E^2)
-check(t == 2 E^2 (expcos(theta) - 1))
-check(u == -2 E^2 (expcos(theta) + 1))
+check(t == 2 E^2 (cos(theta) - 1))
+check(u == -2 E^2 (cos(theta) + 1))
 
-a = 1 + expcos(theta)
-b = 1 - expcos(theta)
+a = 1 + cos(theta)
+b = 1 - cos(theta)
 
 check(f == 2 (a/b + b/a))
 
 m = quote(m) -- undo m = 0
 
-"ok"
-
-"Verify integral of probability density"
+-- verify integral of probability density
 
 a = 1 + cos(theta)
 b = 1 - cos(theta)
-
 I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
-
 check((a/b + b/a) sin(theta) == d(I,theta))
 
 "ok"
-
-
