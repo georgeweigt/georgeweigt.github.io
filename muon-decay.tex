@@ -35,21 +35,18 @@ c&=299792458\;\text{meter}\;\text{second}^{-1}\;\text{(exact)}
 1\,\text{eV}&=1.602176634\times10^{-19}\;\text{joule}\;\text{(exact)}
 \end{align*}
 
-\noindent
 Hence
 \begin{equation*}
 \tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 =2.18735\times10^{-6}\,\text{second}
 \end{equation*}
 
-\noindent
 The result is a bit smaller than the PDG value.
 \begin{equation*}
 \frac{\text{theoretical value}}{\text{measured value}}
 =\frac{2.18735\times10^{-6}\,\text{second}}{2.19698\times10^{-6}\;\text{second}}=0.9956
 \end{equation*}
 
-\noindent
 As the following diagram shows, a muon decays into a muon neutrino, an electron anti-neutrino,
 and an electron.
 \begin{center}
@@ -90,7 +87,6 @@ p_4&=
 {\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}}
 \end{align*}
 
-\noindent
 And we will use the following unnormalized spinors.
 \begin{align*}
 u_{11}&=
@@ -153,9 +149,8 @@ E_3&=\sqrt{(p_{3x})^2+(p_{3y})^2+(p_{3z})^2+m_3^2}
 E_4&=\sqrt{(p_{4x})^2+(p_{4y})^2+(p_{4z})^2+m_4^2}
 \end{align*}
 
-\noindent
-From the Feynman diagram above we have the following amplitude $\mathcal{M}_{abcd}$
-where each letter in $abcd$ can be either 1 (spin up) or 2 (spin down).
+This is the probability amplitude for spin state $abcd$.
+The formula is derived from Feynman diagrams for muon decay.
 \begin{equation*}
 \mathcal{M}_{abcd}=\frac{G_F}{\sqrt{2N}}
 \big(
@@ -174,19 +169,16 @@ where each letter in $abcd$ can be either 1 (spin up) or 2 (spin down).
 \big)
 \end{equation*}
 
-\noindent
 Symbol $N$ is the following spinor normalization constant.
 \begin{equation*}
 N=(E_1+m_\mu)(E_2+m_2)(E_3+m_3)(E_4+m_4)
 \end{equation*}
 
-\noindent
-Recall that the magnitude squared of an amplitude is a probability density and also an observable.
+Recall that the magnitude squared of an amplitude is a probability density.
 \begin{equation*}
 |\mathcal{M}_{abcd}|^2=\mathcal{M}_{abcd}^*\mathcal{M}_{abcd}
 \end{equation*}
 
-\noindent
 In a typical muon decay experiment the spins are not observed.
 Consequently, the experimental result is an average of spin states.
 The average is computed by summing over all spin states and dividing by the number of initial spin states.
@@ -198,14 +190,12 @@ The muon has two spin states hence the divisor is two.
 |\mathcal{M}_{abcd}|^2
 \end{equation*}
 
-\noindent
 The result is a simple formula.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=64G_F^2(p_1\cdot p_3)(p_2\cdot p_4)
 \tag{1}
 \end{equation*}
 
-\noindent
 In component notation we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=64G_F^2
@@ -222,7 +212,6 @@ g_{\mu\nu}=g_{\rho\sigma}=\begin{pmatrix}
 \end{pmatrix}
 \end{equation*}
 
-\noindent
 Muon decay rate $\Gamma$ is essentially an expectation value (weighted average)
 for all possible values of particle momentum.
 In the muon rest frame we have $p_1=(m_\mu,0,0,0)$ and by Fermi's golden rule
@@ -234,12 +223,10 @@ In the muon rest frame we have $p_1=(m_\mu,0,0,0)$ and by Fermi's golden rule
 \,\frac{d^3p_2}{E_2}\,\frac{d^3p_3}{E_3}\,\frac{d^3p_4}{E_4}
 \end{equation*}
 
-\noindent
 Altogether there are nine integrals, three for each of $p_2$, $p_3$, and $p_4$.
 The delta function restricts the integration space to values that conserve energy and momentum.
 
 \bigskip
-\noindent
 It can be shown that
 \begin{equation*}
 \Gamma=\frac{G_F^2 m_\mu^5}{192\pi^3}
@@ -251,7 +238,6 @@ Muon lifetime $\tau$ is the inverse of decay rate.
 \tau=\frac{1}{\Gamma}=\frac{192\pi^3}{G_F^2 m_\mu^5}
 \end{equation*}
 
-\noindent
 Change natural units to $h$ and $c$.
 \begin{equation*}
 \tau
@@ -259,7 +245,6 @@ Change natural units to $h$ and $c$.
 =\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 \end{equation*}
 
-\noindent
 Probability density $\langle|\mathcal{M}|^2\rangle$ can also be computed
 using the following Casimir trick.
 \begin{equation*}
@@ -271,14 +256,12 @@ using the following Casimir trick.
 \left(\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right)
 \end{equation*}
 
-\noindent
 The slashed symbols are $4\times4$ matrices computed as
 \begin{equation*}
 \slashed{p}=p\cdot\gamma
 =p^0\gamma^0-p^1\gamma^1-p^2\gamma^2-p^3\gamma^3
 \end{equation*}
 
-\noindent
 For example,
 \begin{equation*}
 \slashed{p}_1=\begin{pmatrix}
