@@ -6,24 +6,22 @@
 \parindent=0pt
 \begin{document}
 
-\noindent
-The following muon data is from Particle Data Group.%\footnote{\tt https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
+\section*{Muon decay}
+The following muon data is from Particle Data Group.
+% \footnote{\tt https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
 
 \begin{center}
 \includegraphics[scale=0.5]{muon-mean-life.png}
 \end{center}
 
-\noindent
 From ``V minus A'' theory we have the following formula for muon lifetime $\tau$.
 \begin{equation*}
 \tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 \end{equation*}
 
-\noindent
 Symbol $G_F$ is Fermi coupling constant, $m_\mu$ is muon mass.
 
 \bigskip
-\noindent
 From NIST we have
 \begin{align*}
 G_F&=1.1663787\times10^{-5}\;\text{GeV}^{-2}
@@ -74,61 +72,76 @@ Electron & $e^-$ & $p_4$ & $u_{41}$ & $u_{42}$
 
 \noindent
 We will use the following momentum vectors.
-\begin{equation*}
-p_1=
+\begin{align*}
+p_1&=
 \underset{\substack{\\[1ex] \mu^-}}
 {\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}}
-\qquad
-p_2=
+&
+p_2&=
 \underset{\substack{\\[1ex] \nu_\mu}}
 {\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}}
-\qquad
-p_3=
+&
+p_3&=
 \underset{\substack{\\[1ex] \bar{\nu}_e}}
 {\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}}
-\qquad
-p_4=
+&
+p_4&=
 \underset{\substack{\\[1ex] e^-}}
 {\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}}
-\end{equation*}
-
-\noindent
-And we will use the following unnormalized Dirac spinors.
-\begin{align*}
-u_{11}&=
-\underset{\substack{\\[1ex]\text{$\mu^-$ up}}}
-{\begin{pmatrix}E_1+m_\mu\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}}
-&
-u_{21}&=
-\underset{\substack{\\[1ex]\text{$\nu_\mu$ up}}}
-{\begin{pmatrix}E_2+m_2\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
-&
-v_{31}&=
-\underset{\substack{\\[1ex]\text{$\bar{\nu}_e$ up}}}
-{\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E_3+m_3\\0\end{pmatrix}}
-&
-u_{41}&=
-\underset{\substack{\\[1ex]\text{$e^-$ up}}}
-{\begin{pmatrix}E_4+m_4\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
-\\[2ex]
-u_{12}&=
-\underset{\substack{\\[1ex]\text{$\mu^-$ down}}}
-{\begin{pmatrix}0\\E_1+m_\mu\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}}
-&
-u_{22}&=
-\underset{\substack{\\[1ex]\text{$\nu_\mu$ down}}}
-{\begin{pmatrix}0\\E_2+m_2\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
-&
-v_{32}&=
-\underset{\substack{\\[1ex]\text{$\bar{\nu}_e$ down}}}
-{\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E_3+m_3\end{pmatrix}}
-&
-u_{42}&=
-\underset{\substack{\\[1ex]\text{$e^-$ down}}}
-{\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{align*}
 
 \noindent
+And we will use the following unnormalized spinors.
+\begin{align*}
+u_{11}&=
+\underset{\text{$\mu^-$ spin up}}
+{
+\begin{pmatrix}E_1+m_\mu\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}
+}
+&
+u_{21}&=
+\underset{\text{$\nu_\mu$ spin up}}
+{
+\begin{pmatrix}E_2+m_2\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}
+}
+&
+v_{31}&=
+\underset{\text{$\bar{\nu}_e$ spin up}}
+{
+\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E_3+m_3\\0\end{pmatrix}
+}
+&
+u_{41}&=
+\underset{\text{$e^-$ spin up}}
+{
+\begin{pmatrix}E_4+m_4\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}
+}
+\\[1ex]
+u_{12}&=
+\underset{\text{$\mu^-$ spin down}}
+{
+\begin{pmatrix}0\\E_1+m_\mu\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}
+}
+&
+u_{22}&=
+\underset{\text{$\nu_\mu$ spin down}}
+{
+\begin{pmatrix}0\\E_2+m_2\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}
+}
+&
+v_{32}&=
+\underset{\text{$\bar{\nu}_e$ spin down}}
+{
+\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E_3+m_3\end{pmatrix}
+}
+&
+u_{42}&=
+\underset{\text{$e^-$ spin down}}
+{
+\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}
+}
+\end{align*}
+
 Symbol $E_n$ is total energy of particle $n$.
 \begin{align*}
 E_1&=\sqrt{(p_{1x})^2+(p_{1y})^2+(p_{1z})^2+m_\mu^2}
