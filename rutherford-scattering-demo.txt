@@ -53,15 +53,15 @@ S
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 
-T = contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
+f = contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
 
-check(T == S/N)
+check(f == S/N)
 
 "ok"
 
 "Verify probability density"
 
-check(T == 4 E^2 + 4 m^2 + 4 p^2 cos(theta))
+check(f == 4 E^2 + 4 m^2 + 4 p^2 cos(theta))
 
 q = p1 - p2
 q4 = dot(q,gmunu,q)^2
