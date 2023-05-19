@@ -61,13 +61,14 @@ check(f == S/N)
 
 "Verify probability density"
 
-check(f == 4 E^2 + 4 m^2 + 4 p^2 cos(theta))
+check(1/4 f == E^2 + m^2 + p^2 cos(theta))
 
 q = p1 - p2
 q4 = dot(q,gmunu,q)^2
-
 check(q4 == 16 p^4 sin(theta/2)^4)
 check(q4 == 4 p^4 (cos(theta) - 1)^2)
+
+check(f/q4 == (E^2 + m^2 + p^2 cos(theta)) / (p^4 (cos(theta) - 1)^2))
 
 -- verify integral
 
