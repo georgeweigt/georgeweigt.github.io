@@ -151,7 +151,8 @@ m = quote(m) -- undo m = 0
 
 a = 1 + cos(theta)
 b = 1 - cos(theta)
+f = a/b + b/a
 I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
-check((a/b + b/a) sin(theta) == d(I,theta))
+check(f sin(theta) == d(I,theta))
 
 "ok"
