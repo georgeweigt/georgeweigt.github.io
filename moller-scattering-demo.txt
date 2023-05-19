@@ -160,7 +160,7 @@ m = quote(m) -- undo m = 0
 -- verify integral
 
 f = (cos(theta)^2 + 3)^2 / sin(theta)^4
-I = 8 cos(theta) / (cos(theta)^2 - 1) - cos(theta)
+I = -8 cos(theta) / sin(theta)^2 - cos(theta)
 check(f sin(theta) == d(I,theta))
 
 "ok"
