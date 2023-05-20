@@ -297,7 +297,6 @@ Combine terms so $\langle|\mathcal{M}|^2\rangle$ has a common denominator.
 \right)
 \end{equation*}
 
-\noindent
 For $m=0$ the Mandelstam variables are
 \begin{align*}
 s&=4E^2
@@ -340,21 +339,20 @@ The following equivalent formula can also be used.
 {\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
 \bigg)
 \end{multline*}
-For example, see A.~Zee, p.~134.
 
 \subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{e^4}{16\pi^2s}
+=\frac{\langle|\mathcal{M}|^2\rangle}{256\pi^2E^2}
+=\frac{e^4}{64\pi^2E^2}
 \frac{(\cos^2\theta+3)^2}{\sin^4\theta},
 \quad s\gg m
 \end{equation*}
 
 Substituting $e^4=16\pi^2\alpha^2$ yields
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{s}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}
 \frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
@@ -366,7 +364,7 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{s}
+d\sigma=\frac{\alpha^2}{4E^2}
 \frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
@@ -391,7 +389,39 @@ The probability of observing scattering events in the interval $\theta_1$ to $\t
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
-\subsection*{Notes}
+\subsection*{Note 1}
+A.~Zee page 134 has the differential cross section
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\bigg(\frac{e^2}{4\pi}\bigg)^2\frac{1}{8E^2}f(\theta)
+\end{equation*}
+where $f(\theta)$ is the probability density function
+\begin{equation*}
+f(\theta)=
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
++\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}
++\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
+\end{equation*}
+
+Probability density $f(\theta)$ is equivalent to
+\begin{equation*}
+f(\theta)=\frac{2(\cos^2\theta+3)^2}{\sin^4\theta}
+\end{equation*}
+
+Noting that
+\begin{equation*}
+e^4=16\pi^2\alpha^2
+\end{equation*}
+we have
+\begin{equation*}
+\bigg(\frac{e^2}{4\pi}\bigg)^2=\alpha^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+\end{equation*}
+
+\subsection*{Note 2}
 In component notation, the trace operators of the Casimir trick become sums over
 a repeated index, in this case $\alpha$.
 \begin{align*}
