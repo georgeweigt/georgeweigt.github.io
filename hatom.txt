@@ -11,7 +11,11 @@ R(n,l) = 2 / n^2 *
          L(2 r / (n a0),n - l - 1,2 l + 1) *
          exp(-r / (n a0))
 
-L(x,n,m) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
+-- associated Laguerre polynomial (k is a local var)
+
+L(x,n,m,k) = (n + m)! sum(k,0,n, (-x)^k / ((n - k)! (m + k)! k!))
+
+-- Bohr radius
 
 a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
 
@@ -20,7 +24,7 @@ a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
 Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
          P(l,m) exp(i m phi)
 
--- associated legendre of cos theta
+-- associated Legendre of cos theta
 
 P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
          1 / (2^l l!) sin(theta)^m *
