@@ -19,7 +19,6 @@ The following diagram shows the geometry of a Moller scattering experiment.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 Here is the same diagram with momentum labels $p$ and Dirac spinor labels $u$.
 
 \begin{center}
@@ -33,7 +32,6 @@ Here is the same diagram with momentum labels $p$ and Dirac spinor labels $u$.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 In center of mass coordinates the momentum vectors are
 \begin{align*}
 p_1&=
@@ -153,7 +151,6 @@ a_1=(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b}),
 a_2=(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \end{equation*}
 
-\noindent
 Then
 \begin{align*}
 |\mathcal{M}_{abcd}|^2
@@ -171,7 +168,6 @@ Then
 \right)
 \end{align*}
 
-\noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed by
 summing $|\mathcal{M}_{abcd}|^2$ over all spin states and dividing by the number
 of inbound states.
@@ -188,7 +184,6 @@ There are four inbound states.
 \right)
 \end{align*}
 
-\noindent
 The Casimir trick uses matrix products to compute sums over spins.
 \begin{align*}
 f_{11}&=\frac{1}{N}\sum_{abcd}a_1a_1^*=
@@ -214,7 +209,6 @@ f_{22}&=\frac{1}{N}\sum_{abcd}a_2a_2^*=
 \right)
 \end{align*}
 
-\noindent
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -389,8 +383,8 @@ The probability of observing scattering events in the interval $\theta_1$ to $\t
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
-\subsection*{Note 1}
-A.~Zee page 134 has the cross section
+\subsection*{Notes}
+1. A.~Zee page 134 has the cross section
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\bigg(\frac{e^2}{4\pi}\bigg)^2\frac{1}{8E^2}f(\theta)
 \end{equation*}
@@ -421,8 +415,7 @@ Hence
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-\subsection*{Note 2}
-In component notation, the trace operators of the Casimir trick become sums over
+2. In component notation, the trace operators of the Casimir trick become sums over
 a repeated index, in this case $\alpha$.
 \begin{align*}
 f_{11}&=
@@ -464,7 +457,6 @@ f_{22}&=
 \right)
 \end{align*}
 
-\noindent
 To convert the above formulas to Eigenmath code,
 the $\gamma$ tensors need to be transposed
 so that repeated indices are adjacent to each other.
@@ -476,7 +468,6 @@ Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
 \text{\tt gammaL = transpose(dot(gmunu,gamma))}
 \end{align*}
 
-\noindent
 Define the following $4\times4$ matrices.
 \begin{align*}
 (\slashed{p}_1+m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 + m I}\\
@@ -485,7 +476,6 @@ Define the following $4\times4$ matrices.
 (\slashed{p}_4+m)\quad&\rightarrow\quad\text{\tt X4 = pslash4 + m I}
 \end{align*}
 
-\noindent
 Then for $f_{11}$ we have the following Eigenmath code.
 The contract function sums over $\alpha$.
 \begin{align*}
@@ -504,7 +494,6 @@ The contract function sums over $\alpha$.
 \text{\tt T2 = contract(dot(X4,gammaL,X2,gammaL),1,4)}
 \end{align*}
 
-\noindent
 Next, multiply then sum over repeated indices.
 The dot function sums over $\nu$ then the contract function
 sums over $\mu$. The transpose makes the $\nu$ indices adjacent
@@ -517,7 +506,6 @@ f_{11}=
 \text{\tt contract(dot(T1,transpose(T2)))}
 $$
 
-\noindent
 Follow suit for $f_{22}$.
 \begin{align*}
 (\slashed{p}_4+m)^\alpha{}_\beta
@@ -535,7 +523,6 @@ Follow suit for $f_{22}$.
 \text{\tt T2 = contract(dot(X3,gammaL,X2,gammaL),1,4)}
 \end{align*}
 
-\noindent
 Then
 $$
 f_{22}=
@@ -545,7 +532,6 @@ f_{22}=
 \text{\tt contract(dot(T1,transpose(T2)))}
 $$
 
-\noindent
 The calculation of $f_{12}$ begins with
 \begin{multline*}
 (\slashed{p}_3+m)^\alpha{}_\beta
@@ -561,7 +547,6 @@ The calculation of $f_{12}$ begins with
 \text{\tt T = contract(dot(X3,gammaT,X1,gammaT,X4,gammaL,X2,gammaL),1,6)}
 \end{multline*}
 
-\noindent
 Then sum over repeated indices $\mu$ and $\nu$.
 $$
 f_{12}=\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu\cdots\gamma_\mu\cdots\gamma_\nu)
