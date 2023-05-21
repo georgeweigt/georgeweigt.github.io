@@ -50,14 +50,12 @@ p\cos\theta
 }
 \end{align*}
 
-\noindent
 Symbol $p$ is incident momentum.
 Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
 
 \bigskip
-\noindent
 The spinors are
 \begin{align*}
 u_{11}&=
@@ -104,45 +102,47 @@ $\langle\vert\mathcal{M}\vert^2\rangle$
 is computed by summing $|\mathcal{M}_{ab}|^2$
 over all four spin states and then dividing by the number of inbound states.
 There are two inbound states.
-\begin{align*}
+\begin{equation*}
 \langle\vert\mathcal{M}\vert^2\rangle
-&=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
-\\
-&=\frac{Z^2e^4}{2q^4}\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
-\\
-&=\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
-\\
-&=\frac{2Z^2e^4}{q^4}\left(E^2+m^2+p^2\cos\theta\right)
-\end{align*}
+=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
+%=\frac{Z^2e^4}{2q^4}\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
+\end{equation*}
 
-\subsection*{Low energy approximation}
+The Casimir trick uses matrix products to compute the sum over spin states.
+\begin{equation*}
+\langle\vert\mathcal{M}\vert^2\rangle
+%=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
+=\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
+\end{equation*}
+
+The result is
+\begin{equation*}
+\langle\vert\mathcal{M}\vert^2\rangle
+=\frac{2Z^2e^4}{q^4}\left(E^2+m^2+p^2\cos\theta\right)
+\end{equation*}
+
+\subsection*{Cross section}
 For low energy electrons such that $p\ll m$ we can use the following approximation.
 \begin{equation*}
 E^2+m^2+p^2\cos\theta\approx2m^2
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{4m^2Z^2e^4}{q^4}
 \end{equation*}
 
-\noindent
 Substituting $e^4=16\pi^2\alpha^2$ and $q^4=4p^4(\cos\theta-1)^2$ we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{16\pi^2m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
-\subsection*{Cross section}
-The differential cross section is
+The cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{16\pi^2}
-=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2},
-\quad
-p\ll m
+=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
-\noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Recall that
 \begin{equation*}
@@ -153,7 +153,6 @@ Hence
 d\sigma=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-\noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{equation*}
 I(\theta)
