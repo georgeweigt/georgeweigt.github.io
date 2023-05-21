@@ -46,7 +46,7 @@ for(a,1,2, for(b,1,2,
 
 "Sum over spin states"
 
-S = sum(conj(M) M)
+S = 1/2 sum(conj(M) M)
 S
 
 "Verify Casimir trick"
@@ -54,7 +54,7 @@ S
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 
-f = contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
+f = 1/2 contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
 
 check(f == S/N)
 
@@ -62,14 +62,12 @@ check(f == S/N)
 
 "Verify probability density"
 
-check(1/4 f == E^2 + m^2 + p^2 cos(theta))
+check(f == 2 (E^2 + m^2 + p^2 cos(theta)))
 
 q = p1 - p2
 q4 = dot(q,gmunu,q)^2
 check(q4 == 16 p^4 sin(theta/2)^4)
 check(q4 == 4 p^4 (cos(theta) - 1)^2)
-
-check(f/q4 == (E^2 + m^2 + p^2 cos(theta)) / (p^4 (cos(theta) - 1)^2))
 
 -- verify integral
 
