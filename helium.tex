@@ -1,15 +1,13 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
-
+\parindent=0pt
 \begin{document}
 
-\noindent
 Consider the following time-independent Schroedinger equation.
 \begin{equation*}
 \hat{H}\psi=E\psi
 \end{equation*}
 
-\noindent
 For an eigenfunction $\psi$ that is an exact solution, energy $E$ is a number.
 However, when $\psi$ is an approximate solution, $E$ varies over the coordinates of $\psi$.
 For example, a two-electron atom does not have an exact solution $\psi$,
@@ -18,7 +16,6 @@ hence for an approximate $\psi$ we have
 \hat{H}\psi=E(\vec{r}_1,\vec{r}_2)\psi
 \end{equation*}
 
-\noindent
 where $E(\vec{r}_1,\vec{r}_2)$ is a function of the electron coordinates.
 We still want a single number for energy $E$, so we use the expected energy $\langle E\rangle$.
 The expected energy is basically the average value of $E(\vec{r}_1,\vec{r}_2)$.
@@ -26,33 +23,28 @@ If the eigenfunction $\psi$ is a good approximation
 then $\langle E\rangle$ should be close to the actual energy $E$ determined by experiment.
 
 \bigskip
-\noindent
 For a helium atom, find the expected energy $\langle E\rangle$ given the following approximate eigenfunction.
 \begin{equation*}
 \psi=\frac{\alpha^3}{\pi}\exp\left(-\alpha (r_1+r_2)\right)
 \end{equation*}
 
-\noindent
 Recall that $|\psi|^2=\psi^*\psi$ is a probability density function.
 Hence the expected energy is
 \begin{equation*}
 \langle E\rangle=\int E\,|\psi|^2\,dV_1\,dV_2
 \end{equation*}
 
-\noindent
 Reorder factors in the integrand.
 For the eigenfunction given above, $\psi^*=\psi$.
 \begin{equation*}
 \langle E\rangle=\int\psi E\psi\,dV_1\,dV_2
 \end{equation*}
 
-\noindent
 Replace $E\psi$ with $\hat{H}\psi$.
 \begin{equation*}
 \langle E\rangle=\int\psi\hat{H}\psi\,dV_1\,dV_2
 \end{equation*}
 
-\noindent
 This is a simplified Hamiltonian for helium, in atomic units of $\hbar=m_e=e=4\pi\epsilon_0=1$.
 \begin{equation*}
 \hat{H}=
@@ -63,7 +55,6 @@ This is a simplified Hamiltonian for helium, in atomic units of $\hbar=m_e=e=4\p
 +\underset{\substack{\\[1ex]\text{potential energy}\\\text{inter-electron}}}{\frac{1}{r_{12}}}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 \langle E\rangle=
@@ -76,14 +67,12 @@ Hence
 \right)\psi\,dV_1\,dV_2
 \end{equation*}
 
-\noindent
 The measure $dV_1\,dV_2$ is the product of two volume elements.
 \begin{equation*}
 dV_1\,dV_2=r_1^2 r_2^2 \sin\theta_1 \sin\theta_2
 \,dr_1\,dr_2\,d\theta_1\,d\theta_2\,d\phi_1\,d\phi_2
 \end{equation*}
 
-\noindent
 Since $\psi$ has no angular dependence, we can use the identity
 \begin{equation*}
 \int_0^{2\pi}\int_0^{2\pi}\int_0^\pi\int_0^\pi\sin\theta_1\sin\theta_2
@@ -104,7 +93,6 @@ to obtain
 \,dr_1\,dr_2
 \end{equation*}
 
-\noindent
 We now proceed to integrate each term separately.
 The Laplacian in spherical coordinates is
 \begin{equation*}
@@ -117,7 +105,6 @@ The Laplacian in spherical coordinates is
 \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
 \end{equation*}
 
-\noindent
 Since $\psi$ has no angular dependence we have
 \begin{equation*}
 \nabla^2_1\psi=\frac{1}{r_1^2}\frac{\partial}{\partial r_1}
@@ -125,7 +112,6 @@ Since $\psi$ has no angular dependence we have
 =\left(\alpha^2-\frac{2\alpha}{r_1}\right)\psi
 \end{equation*}
 
-\noindent
 Hence for kinetic energy we have
 \begin{align*}
 \langle K\rangle
@@ -142,7 +128,6 @@ Hence for kinetic energy we have
 &=\tfrac{1}{2}\alpha^2\tag{2}
 \end{align*}
 
-\noindent
 For potential energy we have
 \begin{equation*}
 \langle V\rangle
@@ -153,7 +138,6 @@ For potential energy we have
 =-Z\alpha\tag{3}
 \end{equation*}
 
-\noindent
 Finally, for inter-electron potential energy we have (derivation is below)
 \begin{equation*}
 \langle U\rangle
@@ -165,44 +149,37 @@ Finally, for inter-electron potential energy we have (derivation is below)
 \tag{4}
 \end{equation*}
 
-\noindent
 Summing over kinetic and potential energies we have
 \begin{equation*}
 \langle E\rangle=2\langle K\rangle+2\langle V\rangle+\langle U\rangle=\alpha^2-2Z\alpha+\tfrac{5}{8}\alpha
 \end{equation*}
 
-\noindent
 Next, find $\alpha$ that minimizes $\langle E\rangle$.
 \begin{equation*}
 \frac{d}{d\alpha}\langle E\rangle=2\alpha-2Z+\tfrac{5}{8}=0
 \end{equation*}
 
-\noindent
 Solve for $\alpha$ with $Z=2$ for helium.
 \begin{equation*}
 \alpha=Z-\tfrac{5}{16}=\tfrac{27}{16}
 \end{equation*}
 
-\noindent
 Then for $\alpha=27/16$ and $Z=2$ we have
 \begin{equation*}
 \langle E\rangle=-2.84766\,\text{hartree}
 \end{equation*}
 
-\noindent
 Hartree is the atomic unit of energy.
 Convert hartrees to electron volts.
 \begin{equation*}
 \langle E\rangle=-2.84766\,\text{hartree}\times27.2114\,\frac{\text{eV}}{\text{hartree}}=-77.4888\,\text{eV}
 \end{equation*}
 
-\noindent
 It turns out that $\langle E\rangle$ differs from the observed value by about 2\%.
 \begin{equation*}
 \frac{77.4888}{79.0052}=0.98
 \end{equation*}
 
-\noindent
 To verify equation (4) we will now show that
 \begin{equation*}
 \int\frac{\psi_1^2\psi_2^2}{r_{12}}\,dV_1\,dV_2=\tfrac{5}{8}\alpha
@@ -216,7 +193,6 @@ Symbol $r_{12}$ is the following distance function where $\theta_{12}$ is angula
 r_{12}=\sqrt{r_1^2+r_2^2-r_1r_2\cos\theta_{12}}
 \end{equation*}
 
-\noindent
 Let $I(r_1)$ be the following integral over $V_2$.
 \begin{equation*}
 I(r_1)=\int\frac{\psi_2^2}{r_{12}}\,dV_2
@@ -226,7 +202,6 @@ The measure $dV_2$ is a volume element in spherical coordinates.
 dV_2=r_2^2\sin\theta_2\,dr_2\,d\theta_2\,d\phi_2
 \end{equation*}
 
-\noindent
 Write out the full integral and make $\theta_2=\theta_{12}$ by independence of the coordinate system.
 \begin{equation*}
 I(r_1)=\frac{\alpha^3}{\pi}
@@ -235,7 +210,6 @@ I(r_1)=\frac{\alpha^3}{\pi}
 \,r_2^2\sin\theta_2\,dr_2\,d\theta_2\,d\phi_2
 \end{equation*}
 
-\noindent
 Integrate over $\phi_2$.
 \begin{equation*}
 I(r_1)=
@@ -244,7 +218,6 @@ I(r_1)=
 \,r_2^2\sin\theta_2\,dr_2\,d\theta_2
 \end{equation*}
 
-\noindent
 Expand $1/r_{12}$ in Legendre polynomials.
 The first integral is over $r_2<r_1$ and the second integral is over $r_2>r_1$.
 \begin{multline*}
@@ -260,7 +233,6 @@ r_2^2\sin\theta_2\,dr_2\,d\theta_2
 r_2^2\sin\theta_2\,dr_2\,d\theta_2
 \end{multline*}
 
-\noindent
 It turns out that, after integrating over $\theta_2$, all summands vanish except for $k=0$.
 \begin{equation*}
 \int\limits_0^\pi P_k(\cos\theta_2)\sin\theta_2\,d\theta_2=
@@ -273,7 +245,6 @@ It turns out that, after integrating over $\theta_2$, all summands vanish except
 \tag{5}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 I(r_1)=
@@ -281,7 +252,6 @@ I(r_1)=
 +4\alpha^3\int\limits_{r_1}^\infty\exp(-2\alpha r_2)\,r_2\,dr_2
 \end{equation*}
 
-\noindent
 Solve the integrals.
 \begin{multline*}
 I(r_1)=
@@ -293,28 +263,24 @@ I(r_1)=
 {}+4\alpha^3\left.\exp(-2\alpha r_2)\left(-\frac{r_2}{2\alpha}-\frac{1}{4\alpha^2}\right)\right|_{r_1}^\infty
 \end{multline*}
 
-\noindent
 Evaluate per limits.
 \begin{equation*}
 I(r_1)=\frac{1}{r_1}-\frac{1}{r_1}\exp(-2\alpha r_1)-\alpha\exp(-2\alpha r_1)
 \tag{6}
 \end{equation*}
 
-\noindent
 Having obtained $I(r_1)$ we can now evaluate the integral over $V_1$.
 \begin{equation*}
 I=\frac{\alpha^3}{\pi}\int\limits_0^{2\pi}\int\limits_0^\pi\int\limits_0^\infty
 \exp(-2\alpha r_1)I(r_1)\,r_1^2\sin\theta_1\,dr_1\,d\theta_1\,d\phi_1
 \end{equation*}
 
-\noindent
 Integrate over $\theta_1$ and $\phi_1$.
 \begin{equation*}
 I=4\alpha^3\int\limits_0^\infty
 \exp(-2\alpha r_1)I(r_1)\,r_1^2\,dr_1
 \end{equation*}
 
-\noindent
 Expand the integrand.
 \begin{multline*}
 I=4\alpha^3\int\limits_0^\infty\exp(-2\alpha r_1)\,r_1\,dr_1
@@ -323,7 +289,6 @@ I=4\alpha^3\int\limits_0^\infty\exp(-2\alpha r_1)\,r_1\,dr_1
 -4\alpha^4\int\limits_0^\infty\exp(-4\alpha r_1)\,r_1^2\,dr_1
 \end{multline*}
 
-\noindent
 Solve the integrals.
 \begin{multline*}
 I=\exp(-2\alpha r_1)\left(-2\alpha^2r_1-\alpha\right)\bigg|_0^\infty
@@ -332,7 +297,6 @@ I=\exp(-2\alpha r_1)\left(-2\alpha^2r_1-\alpha\right)\bigg|_0^\infty
 {}-\exp(-4\alpha r_1)\left(-\alpha^3r_1^2-\tfrac{1}{2}\alpha^2r_1-\tfrac{1}{8}\alpha\right)\bigg|_0^\infty
 \end{multline*}
 
-\noindent
 The result vanishes for $r_1=\infty$ hence
 \begin{equation*}
 I=0-\left(-\alpha+\tfrac{1}{4}\alpha+\tfrac{1}{8}\alpha\right)=\tfrac{5}{8}\alpha

@@ -2,17 +2,15 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
-
+\parindent=0pt
 \begin{document}
 
-\noindent
 The following hydrogen data table is from ``Atomic Transition Probabilities,'' 1966.
 
 \begin{center}
 \includegraphics[scale=0.5]{h-alpha-line.png}
 \end{center}
 
-\noindent
 The $2-3$ transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -30,19 +28,15 @@ $2p-3d$ & 6562.81 & $6.465\times10^7$
 \end{tabular}
 \end{center}
 
-\noindent
 $A_{ki}$ is the spontaneous emission rate for $k\rightarrow i$.
 
 \bigskip
-\noindent
 For H-$\alpha$ we have $k=3$ and $i=2$.
 
 \bigskip
-\noindent
 Let us compute $A_{ki}$ for H-$\alpha$ and see if the results match the table.
 
 \bigskip
-\noindent
 Orbital names correspond to the following azimuthal quantum numbers.
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -60,13 +54,11 @@ $d$ & $2$
 \end{tabular}
 \end{center}
 
-\noindent
 Because of the magnetic quantum number $m_\ell$
 there are multiple ways for each orbital transition to occur.
 ($m_\ell=0,\pm1,\ldots,\pm\ell$)
 
 \bigskip
-\noindent
 There are three transitions for $3s\rightarrow2p$.
 \begin{align*}
 \psi_{3,0,0}&\rightarrow\psi_{2,1,1}
@@ -76,7 +68,6 @@ There are three transitions for $3s\rightarrow2p$.
 \psi_{3,0,0}&\rightarrow\psi_{2,1,-1}
 \end{align*}
 
-\noindent
 There are three transitions for $3p\rightarrow2s$.
 \begin{align*}
 \psi_{3,1,1}&\rightarrow\psi_{2,0,0}
@@ -86,7 +77,6 @@ There are three transitions for $3p\rightarrow2s$.
 \psi_{3,1,-1}&\rightarrow\psi_{2,0,0}
 \end{align*}
 
-\noindent
 Finally, there are fifteen transitions for $3d\rightarrow2p$.
 \begin{align*}
 \psi_{3,2,2}&\rightarrow\psi_{2,1,1} &
@@ -110,28 +100,23 @@ Finally, there are fifteen transitions for $3d\rightarrow2p$.
 \psi_{3,2,-2}&\rightarrow\psi_{2,1,-1}
 \end{align*}
 
-\noindent
 For each H-$\alpha$ line, an average $A_{ki}$ is computed by summing over $A_{ki}$ for individual transitions
 and dividing by the number of distinct initial states.
 
 \bigskip
-\noindent
 For example, $3d\rightarrow2p$ has five distinct initial states, so the divisor is five.
 
 \bigskip
-\noindent
 $A_{ki}$ is computed from the following formula.
 \begin{equation*}
 A_{ki}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{ki}^3\,|r_{ki}|^2
 \end{equation*}
 
-\noindent
 The transition frequency $\omega_{ki}$ is given by Bohr's frequency condition.
 \begin{equation*}
 \omega_{ki}=\frac{1}{\hbar}(E_k-E_i)
 \end{equation*}
 
-\noindent
 The transition probability (multiplied by a physical constant) is
 \begin{equation*}
 |r_{ki}|^2
@@ -148,7 +133,6 @@ y_{ki}&=\int\psi_k^*\,(r\sin\theta\sin\phi)\,\psi_i\,dV
 z_{ki}&=\int\psi_k^*\,(r\cos\theta)\,\psi_i\,dV
 \end{align*}
 
-\noindent
 Using Eigenmath we obtain the following values for average $A_{ki}$.
 \begin{align*}
 A_{3s2p}&=6.31358\times10^6\,\text{second}^{-1}
@@ -160,11 +144,9 @@ A_{3d2p}&=6.4651\times10^7\,\text{second}^{-1}
 These values are essentially identical to the values shown in the table.
 
 \bigskip
-\noindent
 Some of the $|r_{ki}|^2$ are zero, indicating forbidden transitions.
 
 \bigskip
-\noindent
 The following table shows $|r_{ki}|^2$ for each transition
 (multiply given values by $a_0^2=2.8\times10^{-21}\;\text{meter}^2$).
 

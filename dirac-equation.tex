@@ -1,9 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
-
+\parindent=0pt
 \begin{document}
 
-\noindent
 This is Dirac's equation.
 \begin{equation*}
 i\hbar\left(
@@ -15,7 +14,6 @@ i\hbar\left(
 =mc\psi
 \end{equation*}
 
-\noindent
 Gamma matrices for the ``Dirac representation'' are
 \begin{align*}
 \gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
@@ -26,7 +24,6 @@ Gamma matrices for the ``Dirac representation'' are
 & \gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
 \end{align*}
 
-\noindent
 Let $\phi$ be the field
 \begin{equation*}
 \phi=p_xx+p_yy+p_zz-Et
@@ -36,7 +33,6 @@ where
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-\noindent
 The four positive wave solutions to the Dirac equation are
 \begin{align*}
 \psi_1&=\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
@@ -51,7 +47,6 @@ The four positive wave solutions to the Dirac equation are
 \exp\left(\frac{i\phi}{\hbar}\right)
 \end{align*}
 
-\noindent
 The four negative wave solutions are
 \begin{align*}
 \psi_5&=\begin{pmatrix}E/c-mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
@@ -66,11 +61,9 @@ The four negative wave solutions are
 \exp\left(-\frac{i\phi}{\hbar}\right)
 \end{align*}
 
-\noindent
 Negative wave solutions flip the sign of the $mc$ term.
 
 \bigskip
-\noindent
 The following solutions are used for fermion fields.
 \begin{center}
 \begin{tabular}{ll}
@@ -82,40 +75,34 @@ $\psi_8$ & anti-fermion, spin down
 \end{tabular}
 \end{center}
 
-\noindent
 Here is a check of physical units.
 The momenta $p_x$, $p_y$, and $p_z$ have units of
 \begin{equation*}
 \frac{\text{kilogram}\,\text{meter}}{\text{second}}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 p_xx\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \end{equation*}
 
-\noindent
 For the time-dependent term
 \begin{equation*}
 Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
 =\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \end{equation*}
 
-\noindent
 We have for the reduced Planck constant
 \begin{equation*}
 \hbar\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \end{equation*}
 
-\noindent
 Hence $\phi/\hbar$ is dimensionless as required by the exponential function.
 \begin{equation*}
 \frac{p_xx-Et}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
 \end{equation*}
 
-\noindent
 The derivatives introduce inverse units.
 \begin{equation*}
 \frac{\partial\psi}{\partial t}\propto\frac{1}{\text{second}}
@@ -123,20 +110,17 @@ The derivatives introduce inverse units.
 \frac{\partial\psi}{\partial x}\propto\frac{1}{\text{meter}}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 \frac{\hbar}{c}\frac{\partial\psi}{\partial t}
 \propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
 \end{equation*}
 
-\noindent
 and
 \begin{equation*}
 \hbar\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
 \end{equation*}
 
-\noindent
 The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
 mc\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}

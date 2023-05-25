@@ -27,11 +27,9 @@ By the Maxwell-Boltzmann distribution we have
 \tag{1}
 \end{equation*}
 
-\noindent
 Coefficient $p_n$ is a statistical weighting factor that does not depend on $T$.
 
 \bigskip
-\noindent
 Let us now consider the processes by which an atom or molecule transitions between energy levels.
 The processes are absorption, induced emission, and spontaneous emission.
 Let $E_m$ and $E_n$ be energy levels such that $E_m>E_n$.
@@ -47,18 +45,15 @@ Finally, let $\BNM$, $\BMN$, and $\AMN$ be coefficients such that
 \underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
-\noindent
 Absorption and induced emission are proportional to radiant energy density $\rho$.
 The $A$ and $B$ coefficients do not depend on $T$.
 
 \bigskip
-\noindent
 At equilibrium, the transition rates are equal.
 \begin{equation*}
 \frac{N_{n\rightarrow m}}{\Delta t}=\frac{N_{m\rightarrow n}}{\Delta t}
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 \underset{\ABSORPTION}{\RHO\BNM N_n}
@@ -66,7 +61,6 @@ Hence
 +\underset{\SPONTANEOUS}{\AMN N_m}
 \end{equation*}
 
-\noindent
 Divide through by $N$.
 \begin{equation*}
 \underset{\ABSORPTION}{\RHO\BNM \frac{N_n}{N}}
@@ -74,7 +68,6 @@ Divide through by $N$.
 +\underset{\SPONTANEOUS}{\AMN \frac{N_m}{N}}
 \end{equation*}
 
-\noindent
 Then by the Maxwell-Boltzmann distribution (1) we have
 \begin{equation*}
 \underset{\ABSORPTION}{\RHO\BNM p_n\exp\left(-\frac{E_n}{kT}\right)}
@@ -83,7 +76,6 @@ Then by the Maxwell-Boltzmann distribution (1) we have
 \tag{2}
 \end{equation*}
 
-\noindent
 Multiply both sides by $\exp(E_m/kT)$.
 \begin{equation*}
 \underset{\ABSORPTION}{\RHO\BNM p_n\exp\left(\frac{E_m-E_n}{kT}\right)}
@@ -91,13 +83,11 @@ Multiply both sides by $\exp(E_m/kT)$.
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
-\noindent
 Note that for increasing $T$ we have
 \begin{equation*}
 \lim_{T\rightarrow\infty}\exp\left(\frac{E_m-E_n}{kT}\right)=1
 \end{equation*}
 
-\noindent
 It follows that for $T\rightarrow\infty$ the equilibrium formula is
 \begin{equation*}
 \RHO\BNM p_n
@@ -105,13 +95,11 @@ It follows that for $T\rightarrow\infty$ the equilibrium formula is
 +\AMN p_m
 \end{equation*}
 
-\noindent
 Divide through by $\RHO$.
 \begin{equation*}
 \BNM p_n=\BMN p_m+\frac{\AMN p_m}{\RHO}
 \end{equation*}
 
-\noindent
 Energy density $\RHO$ increases with temperature $T$
 hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \begin{equation*}
@@ -119,7 +107,6 @@ hence $\AMN p_m/\RHO$ vanishes for $T\rightarrow\infty$ leaving
 \tag{3}
 \end{equation*}
 
-\noindent
 Einstein reasoned that equation (3) is true in general based on the assumption that
 the factors involved do not depend on $T$.
 Hence we can substitute $B_{mn}p_m$ into the absorption term and write
@@ -129,7 +116,6 @@ Hence we can substitute $B_{mn}p_m$ into the absorption term and write
 +\underset{\SPONTANEOUS}{\AMN p_m}
 \end{equation*}
 
-\noindent
 Divide both sides by $\BMN p_m$.
 \begin{equation*}
 %\underset{\ABSORPTION}{\RHO\exp\left(\frac{E_m-E_n}{kT}\right)}
@@ -138,7 +124,6 @@ Divide both sides by $\BMN p_m$.
 =\RHO+\frac{\AMN}{\BMN}
 \end{equation*}
 
-\noindent
 Rearrange terms.
 \begin{equation*}
 %\underset{\ABSORPTION}{\RHO\exp\left(\frac{E_m-E_n}{kT}\right)}
@@ -147,21 +132,18 @@ Rearrange terms.
 -\RHO=\frac{\AMN}{\BMN}
 \end{equation*}
 
-\noindent
 Factor out $\RHO$.
 \begin{equation*}
 \RHO\left(\exp\left(\frac{E_m-E_n}{kT}\right)-1\right)
 =\frac{\AMN}{\BMN}
 \end{equation*}
 
-\noindent
 Solve for $\RHO$.
 \begin{equation*}
 \RHO
 =\frac{\AMN}{\BMN}\,\frac{1}{\exp\left(\frac{E_m-E_n}{kT}\right)-1}
 \end{equation*}
 
-\noindent
 We now consider the case of large exponentials such that
 \begin{equation*}
 \exp\left(\frac{E_m-E_n}{kT}\right)\approx\exp\left(\frac{E_m-E_n}{kT}\right)-1
@@ -173,7 +155,6 @@ Hence for large exponentials
 \frac{\AMN}{\BMN}\exp\left(-\frac{E_m-E_n}{kT}\right)
 \end{equation*}
 
-\noindent
 By equivalence with Wien's law (which is accurate for large $\nu$) we have
 \begin{equation*}
 \RHO=\frac{2h\nu^3}{c^2}\exp\left(-\frac{h\nu}{kT}\right)
@@ -189,7 +170,6 @@ and
 E_m-E_n=h\nu
 \end{equation*}
 
-\noindent
 Then by substitution we obtain Planck's law.
 \begin{align*}
 \RHO
@@ -200,7 +180,6 @@ Then by substitution we obtain Planck's law.
 
 %Note that Wien's law is an empirical formula.
 
-\noindent
 Let us now consider the values of the $A$ and $B$ coefficients.
 The coefficient for spontaneous emission can be computed from quantum mechanics.
 For example, for hydrogen transition $2p\rightarrow1s$ we have
@@ -209,26 +188,22 @@ A_{21}=\frac{16e^8}{6561\varepsilon_0^4h^4c^3a_0}
 =6.26\times10^8\,\text{second}^{-1}
 \end{equation*}
 
-\noindent
 The coefficient for induced emission can be obtained from equation (4).
 \begin{equation*}
 \BMN=\frac{c^2}{2h\nu^3}\,\AMN
 \end{equation*}
 
-\noindent
 The coefficient for absorption can be computed from equation (3).
 \begin{equation*}
 \BNM=\frac{p_m}{p_n}\,\BMN
 \end{equation*}
 
-\noindent
 The ratio $p_m/p_n$ is equal to $g_m/g_n$ where $g$ is the multiplicity
 for quantum numbers $\ell$ and $m_s$.
 \begin{equation*}
 g=(2\ell+1)(2m_s+1)
 \end{equation*}
 
-\noindent
 Hence for hydrogen $2p\rightarrow1s$ we have
 \begin{align*}
 g_1&=2\qquad(\ell=0,\,m_s=1/2)
@@ -236,7 +211,6 @@ g_1&=2\qquad(\ell=0,\,m_s=1/2)
 g_2&=6\qquad(\ell=1,\,m_s=1/2)
 \end{align*}
 
-\noindent
 (Recall that $\ell=0$ for orbital $s$ and $\ell=1$ for orbital $p$.)
 
 \end{document}

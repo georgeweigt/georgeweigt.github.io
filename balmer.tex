@@ -5,7 +5,6 @@
 \parindent=0pt
 \begin{document}
 
-\noindent
 The following table is from
 ``Note on the spectral lines of hydrogen''
 by J.~J.~Balmer dated 1885.
@@ -40,13 +39,11 @@ Vogel & -- & -- & -- & -- & 3969 & 3887 & 3834 & 3795 & 3769${}^\dag$
 {\footnotesize(${}^\dag$The value given in the paper is 6769 which is an obvious typo.)}
 \end{center}
 
-\noindent
 Balmer discovered the following formula for fitting the data.
 \begin{equation*}
 \lambda=\frac{m^2}{m^2-2^2}\times3645.6\times10^{-10}\,\text{meter}
 \end{equation*}
 
-\noindent
 Symbol $\lambda$ is spectral line wavelength and parameter $m$ is from the following table.
 \begin{center}
 \begin{tabular}{cccccccccccc}
@@ -57,14 +54,12 @@ $m=$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11
 \end{tabular}
 \end{center}
 
-\noindent
 Let $\beta$ be the model coefficient for $\lambda$.
 Using linear regression and the above data we obtain
 \begin{equation*}
 \beta=3645.3\times10^{-10}\,\text{meter}
 \end{equation*}
 
-%\noindent
 %Use linear regression in R to compute the model coefficient.
 %{\footnotesize\color{blue}
 %\begin{verbatim}
@@ -84,7 +79,6 @@ Using linear regression and the above data we obtain
 %}
 %
 %\medskip
-%\noindent
 %The result is
 %{\footnotesize
 %\begin{verbatim}
@@ -92,12 +86,10 @@ Using linear regression and the above data we obtain
 %\end{verbatim}
 %}
 %
-%\noindent
 %which is a little bit smaller than Balmer's value.
 %It should be noted that Balmer did not use the entire data set as we have done here.
 %His value 3645.6 was computed using a subset of the data.
 
-\noindent
 The currently accepted value is
 \begin{equation*}
 \beta=\frac{4}{R_H}=3647.1\times10^{-10}\,\text{meter}
@@ -107,7 +99,6 @@ where $R_H$ is the Rydberg constant for hydrogen
 R_H=1.09677576\times10^7\,\text{meter}^{-1}
 \end{equation*}
 
-\noindent
 Balmer's coefficient is within 0.04\% of the modern value.
 \begin{equation*}
 100\times\frac{4/R_H-3.6456}{4/R_H}=0.04
