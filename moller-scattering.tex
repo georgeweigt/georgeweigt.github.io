@@ -335,13 +335,19 @@ The following equivalent formula can also be used.
 \end{multline*}
 
 \subsection*{Cross section}
-The differential cross section is
+The differential cross section for Moller scattering is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{256\pi^2E^2}
-=\frac{e^4}{64\pi^2E^2}
-\frac{(\cos^2\theta+3)^2}{\sin^4\theta},
-\quad E\gg m
+\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{256\pi^2E^2}
+\end{equation*}
+
+For the high energy approximation we have
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=4e^4\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{e^4}{64\pi^2E^2}\frac{(\cos^2\theta+3)^2}{\sin^4\theta},\quad E\gg m
 \end{equation*}
 
 Substituting $e^4=16\pi^2\alpha^2$ yields
@@ -401,7 +407,7 @@ f(\theta)=
 +\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
 \end{equation*}
 
-The density function is equivalent to
+The probability density function is equivalent to
 \begin{equation*}
 f(\theta)=\frac{2(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
