@@ -172,7 +172,6 @@ The following formula is equivalent to the Casimir trick.
 \bigg)
 \end{multline*}
 
-\noindent
 For the momentum vectors given above the result is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -187,7 +186,6 @@ $$
 \langle|\mathcal{M}|^2\rangle=e^4\big(1+\cos^2\theta\big)
 $$
 
-\noindent
 The differential cross section is
 $$
 \frac{d\sigma}{d\Omega}
@@ -266,7 +264,6 @@ $\phantom{+}0.925$ & 55.70\\
 \end{tabular}
 \end{center}
 
-\noindent
 Data $x$ and $y$ have the following relationship with cross section parameters.
 \begin{equation*}
 x=\cos\theta,
@@ -274,13 +271,11 @@ x=\cos\theta,
 y=(2E)^2\frac{d\sigma}{d\cos\theta}
 \end{equation*}
 
-\noindent
 The differential cross section for muon production is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
 \end{equation*}
 
-\noindent
 Let us compute predicted values $\hat{y}$ from the cross section formula.
 Start by finding the relationship between $d\Omega$ and $d\cos\theta$.
 Since $1+\cos^2\theta$ has no dependence on $\phi$ we have
@@ -290,19 +285,16 @@ Since $1+\cos^2\theta$ has no dependence on $\phi$ we have
 =2\pi\int_0^\pi\big(1+\cos^2\theta\big)\sin\theta\,d\theta
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 d\Omega=2\pi\sin\theta\,d\theta=-2\pi\,d\cos\theta
 \end{equation*}
 
-\noindent
 We want positive cross sections so drop the minus sign and set
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
 \end{equation*}
 
-\noindent
 We can now write
 \begin{align*}
 y&=(2E)^2\frac{d\sigma}{d\cos\theta}\\
@@ -311,20 +303,17 @@ y&=(2E)^2\frac{d\sigma}{d\cos\theta}\\
 &=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)
 \end{align*}
 
-\noindent
 Multiply by $(\hbar c)^2$ to convert to SI
 and multiply by $10^{37}$ to convert square meters to nanobarns.
 \begin{equation*}
 y=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
-\noindent
 Replace $\cos\theta$ with explanatory variable $x$ to obtain $\hat{y}$.
 \begin{equation*}
 \hat{y}=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
-\noindent
 Here are the predicted values $\hat{y}$ based on the above formula.
 
 \begin{center}
@@ -356,13 +345,11 @@ $\phantom{+}0.925$ & 55.70 & 60.44\\
 \end{tabular}
 \end{center}
 
-\noindent
 The coefficient of determination $R^2$ measures how well predicted values fit the real data.
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.87
 \end{equation*}
 
-\noindent
 The result indicates that the model $d\sigma$ explains 87\% of the variance in the data.
 
 \subsection*{Electroweak model}
@@ -374,7 +361,6 @@ data.\footnote{F. Mandl and G. Shaw, {\it Quantum Field Theory Revised Edition,}
 \frac{d\sigma}{d\Omega}=F(s)\big(1+\cos^2\theta\big)+G(s)\cos\theta
 \end{equation*}
 
-\noindent
 where
 \begin{align*}
 F(s)&=\frac{\alpha^2}{4s}
@@ -390,7 +376,6 @@ G(s)&=\frac{\alpha^2}{4s}
 \right)
 \end{align*}
 
-\noindent
 and
 \begin{align*}
 g_A&=-0.5
@@ -402,13 +387,11 @@ m_Z&=91.17\,\text{GeV}
 G&=1.166\times10^{-5}\,\text{GeV}^{-2}
 \end{align*}
 
-\noindent
 The corresponding formula for $\hat{y}$ is
 \begin{equation*}
 \hat{y}=2\pi\left[F(s)(1+x^2)+G(s)x\right]\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
-\noindent
 where $\sqrt{s}=29\,\text{GeV}$ is the center of mass collision energy.
 Here are the predicted values $\hat{y}$ based on the above formula.
 
@@ -441,20 +424,17 @@ $\phantom{+}0.925$ & 55.70 & 55.45\\
 \end{tabular}
 \end{center}
 
-\noindent
 The coefficient of determination $R^2$ is
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 \end{equation*}
 
-\noindent
 The result indicates that electroweak theory explains 98\% of the variance in the data.
 
 \subsection*{Notes}
 Here are a few notes about how the scripts work.
 
 \bigskip
-\noindent
 In component notation the traces become sums over the repeated index $\alpha$.
 \begin{align*}
 \mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
@@ -472,7 +452,6 @@ In component notation the traces become sums over the repeated index $\alpha$.
 \gamma_\nu{}^\sigma{}_\alpha
 \end{align*}
 
-\noindent
 To convert the above formulas to Eigenmath code,
 the $\gamma$ tensors need to be transposed
 so that repeated indices are adjacent to each other.
@@ -484,7 +463,6 @@ Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
 \text{\tt gammaL = transpose(dot(gmunu,gamma))}
 \end{align*}
 
-\noindent
 Define the following $4\times4$ matrices.
 \begin{align*}
 (\slashed{p}_1+m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 + m I}\\
@@ -493,7 +471,6 @@ Define the following $4\times4$ matrices.
 (\slashed{p}_4-M)\quad&\rightarrow\quad\text{\tt X4 = pslash4 - M I}
 \end{align*}
 
-\noindent
 Then
 \begin{align*}
 (\slashed{p}_3+M)^\alpha{}_\beta
@@ -511,7 +488,6 @@ Then
 \text{\tt T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)}
 \end{align*}
 
-\noindent
 Next, multiply matrices and sum over repeated indices.
 The dot function sums over $\nu$ then the contract function
 sums over $\mu$. The transpose makes the $\nu$ indices adjacent
