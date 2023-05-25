@@ -19,7 +19,6 @@ The following diagram shows the geometry of a Bhabha scattering experiment.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 Here is the same diagram with momentum and spinor labels.
 \begin{center}
 \begin{tikzpicture}
@@ -32,7 +31,6 @@ Here is the same diagram with momentum and spinor labels.
 \end{tikzpicture}
 \end{center}
 
-\noindent
 In a typical collider experiment the momentum vectors are
 \begin{align*}
 p_1&=
@@ -142,7 +140,6 @@ The formula is derived from Feynman diagrams for Bhabha scattering.
 \right|^2
 \end{equation*}
 
-\noindent
 Symbol $e$ is electron charge.
 Symbols $s$ and $t$ are Mandelstam variables
 \begin{align*}
@@ -151,7 +148,6 @@ s&=(p_1+p_2)^2
 t&=(p_1-p_3)^2
 \end{align*}
 
-\noindent
 Let
 \begin{equation*}
 a_1=(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b}),
@@ -159,7 +155,6 @@ a_1=(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b}),
 a_2=(\bar{v}_{1a}\gamma^\nu u_{2b})(\bar{u}_{4d}\gamma_\nu v_{3c})
 \end{equation*}
 
-\noindent
 Then
 \begin{align*}
 |\mathcal{M}_{abcd}|^2
@@ -347,7 +342,6 @@ Hence
 \frac{d\sigma}{d\Omega}=\frac{e^4}{256\pi^2E^2}\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
-\noindent
 Substituting $e^4=16\pi^2\alpha^2$ yields
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
@@ -357,14 +351,12 @@ Substituting $e^4=16\pi^2\alpha^2$ yields
 \right)^2
 \end{equation*}
 
-\noindent
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Recall that
 \begin{equation*}
 d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-\noindent
 Hence
 \begin{equation*}
 d\sigma=\frac{\alpha^2}{16E^2}
@@ -374,8 +366,6 @@ d\sigma=\frac{\alpha^2}{16E^2}
 \sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-\bigskip
-\noindent
 Let $I(\theta)$ be the following integral of $d\sigma$.
 \begin{equation*}
 I(\theta)=\int
@@ -392,7 +382,6 @@ The result is
 I(\theta)=\frac{16}{\cos\theta-1}-\frac{\cos^3\theta}{3}-\cos^2\theta-9\cos\theta-16\log(1-\cos\theta)
 \end{equation*}
 
-\noindent
 The cumulative distribution function is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},
@@ -403,14 +392,12 @@ a\le\theta\le\pi
 Angular support is limited to an arbitrary $a>0$ because $I(0)$ is undefined.
 
 \bigskip
-\noindent
 The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \subsection*{Data from SLAC SPEAR experiment}
-\noindent
 The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 
 \begin{center}
@@ -434,12 +421,10 @@ The following Bhabha scattering data is adapted from SLAC-PUB-1501.
 \end{tabular}
 \end{center}
 
-\noindent
 Data column $x$ is $\cos\theta$ of scattering angle $\theta$,
 data column $y$ is number of scattering events.
 
 \bigskip
-\noindent
 To compute predicted values $\hat{y}$, start by integrating
 the probability density function over each bin.
 \begin{equation*}
@@ -449,13 +434,11 @@ I_k=\int_{\arccos(x_k)}^{\arccos(x_{k+1})}
 \right)^2\sin\theta\,d\theta
 \end{equation*}
 
-\noindent
 Normalize $I_k$ to obtain scattering probability $P_k$.
 \begin{equation*}
 P_k=\frac{I_k}{N},\quad N=\sum_{j=1}^{12}I_j
 \end{equation*}
 
-\noindent
 Multiply $P_k$ by total counts to obtain $\hat{y}_k$.
 \begin{equation*}
 \hat{y}_k=P_k T,\quad T=\sum_{j=1}^{12}y_j=15773
@@ -482,13 +465,11 @@ Bin & $x_k$, $x_{k+1}$ & $y$ & $\hat{y}$ \\
 \end{tabular}
 \end{center}
 
-\noindent
 The coefficient of determination $R^2$ measures how well predicted values fit the real data.
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.997
 \end{equation*}
 
-\noindent
 The result indicates that the model $d\sigma$ explains
 99.7\% of the variance in the data.
 
@@ -520,7 +501,6 @@ $\phantom{+}0.7323$ & 4.30279\\
 \end{tabular}
 \end{center}
 
-\noindent
 Data $x$ and $y$ have the following relationship
 with the cross section model.
 \begin{equation*}
@@ -529,7 +509,6 @@ x=\cos\theta
 y=\frac{d\sigma}{d\Omega}
 \end{equation*}
 
-\noindent
 The cross section formula for Bhabha scattering is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
@@ -537,7 +516,6 @@ The cross section formula for Bhabha scattering is
 \left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
-\noindent
 To compute predicted values $\hat{y}$,
 substitute $x$ for $\cos\theta$,
 multiply by $(\hbar c)^2$ to convert to SI,
@@ -550,7 +528,6 @@ and multiply by $10^{37}$ to convert square meters to nanobarns.
 \times10^{37}
 \end{equation*}
 
-\noindent
 The following table shows $\hat{y}$ for $s=(14.0\,\text{GeV})^2$.
 
 \begin{center}
@@ -578,13 +555,11 @@ $\phantom{+}0.7323$ & 4.30279 & 4.61509\phantom{0}\\
 \end{tabular}
 \end{center}
 
-\noindent
 The coefficient of determination $R^2$ measures how well predicted values fit the real data.
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.995
 \end{equation*}
 
-\noindent
 The result indicates that the model $d\sigma$ explains 99.5\% of the variance in the data.
 
 \subsection*{Notes}
@@ -630,7 +605,6 @@ f_{22}&=
 \right)
 \end{align*}
 
-\noindent
 To convert the above formulas to Eigenmath code,
 the $\gamma$ tensors need to be transposed
 so that repeated indices are adjacent to each other.
@@ -642,7 +616,6 @@ Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
 \text{\tt gammaL = transpose(dot(gmunu,gamma))}
 \end{align*}
 
-\noindent
 Define the following $4\times4$ matrices.
 \begin{align*}
 (\slashed{p}_1-m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 - m I}\\
@@ -651,7 +624,6 @@ Define the following $4\times4$ matrices.
 (\slashed{p}_4+m)\quad&\rightarrow\quad\text{\tt X4 = pslash4 + m I}
 \end{align*}
 
-\noindent
 Then for $f_{11}$ we have the following Eigenmath code.
 The contract function sums over $\alpha$.
 \begin{align*}
@@ -669,7 +641,6 @@ The contract function sums over $\alpha$.
 \text{\tt T2 = contract(dot(X4,gammaL,X2,gammaL),1,4)}
 \end{align*}
 
-\noindent
 Next, multiply then sum over repeated indices.
 The dot function sums over $\nu$ then the contract function
 sums over $\mu$. The transpose makes the $\nu$ indices adjacent
@@ -682,7 +653,6 @@ f_{11}=
 \text{\tt f11 = contract(dot(T1,transpose(T2)))}
 $$
 
-\noindent
 Follow suit for $f_{22}$.
 \begin{align*}
 (\slashed{p}_1-m)^\alpha{}_\beta
@@ -700,7 +670,6 @@ Follow suit for $f_{22}$.
 \text{\tt T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)}
 \end{align*}
 
-\noindent
 Hence
 $$
 f_{22}=
@@ -710,7 +679,6 @@ f_{22}=
 \text{\tt f22 = contract(dot(T1,transpose(T2)))}
 $$
 
-\noindent
 The calculation of $f_{12}$ begins with
 \begin{multline*}
 (\slashed{p}_1-m)^\alpha{}_\beta
@@ -726,7 +694,6 @@ The calculation of $f_{12}$ begins with
 \text{\tt T = contract(dot(X1,gammaT,X2,gammaT,X4,gammaL,X3,gammaL),1,6)}
 \end{multline*}
 
-\noindent
 Then sum over repeated indices $\mu$ and $\nu$.
 $$
 f_{12}=\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu\cdots\gamma_\mu\cdots\gamma_\nu)
