@@ -175,7 +175,6 @@ Then
 \right)
 \end{align*}
 
-\noindent
 The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed
 by summing $|\mathcal{M}_{abcd}|^2$ over all spin states and then dividing by the number of inbound states.
 There are four inbound states.
@@ -192,7 +191,6 @@ There are four inbound states.
 \right)
 \end{align*}
 
-\noindent
 The Casimir trick uses matrix arithmetic to compute sums.
 \begin{align*}
 f_{11}&=\frac{1}{N}\sum_{abcd}a_1a_1^*=
@@ -218,7 +216,6 @@ f_{22}&=\frac{1}{N}\sum_{abcd}a_2a_2^*=
 \right)
 \end{align*}
 
-\noindent
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -252,7 +249,6 @@ f_{22}&=
 +64 m^4
 \end{align*}
 
-\noindent
 Using Mandelstam variables
 \begin{align*}
 s&=(p_1+p_2)^2
@@ -271,14 +267,13 @@ f_{22} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
 \end{align*}
 
 \subsection*{High energy approximation}
-When $E\gg m$ a useful approximation is to set $m=0$ and obtain
+For high energy experiments $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&= 8 s^2 + 8 u^2\\
 f_{12}&= -8 u^2\\
 f_{22}&= 8 t^2 + 8 u^2
 \end{align*}
 
-\noindent
 Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
@@ -299,7 +294,6 @@ Hence
 \right)
 \end{align*}
 
-\noindent
 Combine terms so $\langle|\mathcal{M}|^2\rangle$ has a common denominator.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -307,7 +301,6 @@ Combine terms so $\langle|\mathcal{M}|^2\rangle$ has a common denominator.
 \left(\frac{s^2\left(s^2+u^2\right)+2stu^2+t^2\left(t^2+u^2\right)}{s^2t^2}\right)
 \end{equation*}
 
-\noindent
 For $m=0$ the Mandelstam variables are
 \begin{align*}
 s&=4E^2
@@ -317,7 +310,6 @@ t&=2E^2(\cos\theta-1)
 u&=-2E^2(\cos\theta+1)
 \end{align*}
 
-\noindent
 Hence
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
@@ -338,14 +330,21 @@ Hence
 \end{align*}
 
 \subsection*{Cross section}
-The differential cross section is
+The differential cross section for Bhabha scattering is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\langle|\mathcal{M}|^2\rangle}{256\pi^2E^2}
-=\frac{e^4}{256\pi^2E^2}
-\left(
-\frac{\cos^2\theta+3}{\cos\theta-1}
-\right)^2,\quad E\gg m
+%=\frac{e^4}{256\pi^2E^2}\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2,\quad E\gg m
+\end{equation*}
+
+For high energy experiments $E\gg m$ we have
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=e^4\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{e^4}{256\pi^2E^2}\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
 \noindent
