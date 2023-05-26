@@ -1,3 +1,4 @@
+<html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 -- psi returns a hydrogen atom eigenfunction
 
 psi(n,l,m) = R(n,l) Y(l,m)
@@ -38,7 +39,7 @@ Lap(f) = 1/r^2 d(r^2 d(f,r),r) +
          1/(r^2 sin(theta)) d(sin(theta) d(f,theta),theta) +
          1/(r sin(theta))^2 d(f,phi,2)
 
--- E returns the energy eigenvalue
+-- E(n) returns the nth energy eigenvalue
 
 E(n) = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
 
@@ -62,3 +63,4 @@ check(H(psi(3,2,2)) == E(3) psi(3,2,2))
 check(H(psi(3,2,-2)) == E(3) psi(3,2,-2))
 
 "ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
