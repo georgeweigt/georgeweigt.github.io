@@ -6,7 +6,7 @@ N = 10
 
 -- incident energy
 
-E = 10^5 eV
+E = 0.1 10^6 eV
 omega = E / hbar
 
 joule = kilogram meter^2 / second^2
