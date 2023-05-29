@@ -426,7 +426,7 @@ Substitute $e^4=16\pi^2\alpha^2$ to obtain
 
 The scattered photon frequency $\omega'$ is computed from the Compton equation.
 \begin{equation*}
-\omega'=\frac{m\omega}{m+\omega\,(1-\cos\theta)}
+\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
 \end{equation*}
 
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
@@ -453,19 +453,19 @@ I(\theta)=
 \sin\theta\,d\theta
 \end{equation*}
 
-Here is a computer solution for $I(\theta)$ with $\text{\tt w}\equiv\omega$.
+Here is a computer solution for $I(\theta)$ where $\text{\tt R}\equiv\hbar\omega/mc^2$.
 \begin{verbatim}
-I = m^4 / (-m w^3 - w^4 + w^4 cos(theta)) +
-    2 m^3 w / (-m w^3 - w^4 + w^4 cos(theta)) -
-    m^3 / (2 w (m + w (-cos(theta) + 1))^2) -
-    2 m^3 log(m + w - w cos(theta)) / w^3 -
-    m^2 w / (-m w^2 - w^3 + w^3 cos(theta)) +
-    m^2 / (w (-m + w (cos(theta) - 1))) -
-    m^2 cos(theta) / w^2 -
-    2 m^2 log(m + w - w cos(theta)) / w^2 -
-    m w^2 / (-m w^2 - w^3 + w^3 cos(theta)) +
-    m log(m + w - w cos(theta)) / w -
-    m / (m + w (-cos(theta) + 1))
+I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
+    R / (-R^3 + R^3 cos(theta) - R^2) +
+    2 R / (-R^4 + R^4 cos(theta) - R^3) -
+    1 / (R (R (-cos(theta) + 1) + 1)) -
+    1 / (2 R (R (-cos(theta) + 1) + 1)^2) +
+    log(R - R cos(theta) + 1) / R -
+    cos(theta) / R^2 -
+    2 log(R - R cos(theta) + 1) / R^2 -
+    2 log(R - R cos(theta) + 1) / R^3 +
+    1 / (-R^4 + R^4 cos(theta) - R^3) -
+    1 / (R (-cos(theta) + 1) + 1)
 \end{verbatim}
 
 The cumulative distribution function is

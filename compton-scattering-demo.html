@@ -146,19 +146,20 @@ m = quote(m) -- undo m = 0
 
 -- verify integral
 
-wp = m w / (m + w (1 - cos(theta)))
-f = (wp / w)^2 (w/wp + wp / w - sin(theta)^2) sin(theta)
-I = m^4 / (-m w^3 - w^4 + w^4 cos(theta)) +
-    2 m^3 w / (-m w^3 - w^4 + w^4 cos(theta)) -
-    m^3 / (2 w (m + w (-cos(theta) + 1))^2) -
-    2 m^3 log(m + w - w cos(theta)) / w^3 -
-    m^2 w / (-m w^2 - w^3 + w^3 cos(theta)) +
-    m^2 / (w (-m + w (cos(theta) - 1))) -
-    m^2 cos(theta) / w^2 -
-    2 m^2 log(m + w - w cos(theta)) / w^2 -
-    m w^2 / (-m w^2 - w^3 + w^3 cos(theta)) +
-    m log(m + w - w cos(theta)) / w -
-    m / (m + w (-cos(theta) + 1))
+R = hbar omega / (m c^2)
+omegaprime = omega / (1 + R (1 - cos(theta)))
+f = (omegaprime / omega)^2 (omega / omegaprime + omegaprime / omega - sin(theta)^2) sin(theta)
+I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
+    R / (-R^3 + R^3 cos(theta) - R^2) +
+    2 R / (-R^4 + R^4 cos(theta) - R^3) -
+    1 / (R (R (-cos(theta) + 1) + 1)) -
+    1 / (2 R (R (-cos(theta) + 1) + 1)^2) +
+    log(R - R cos(theta) + 1) / R -
+    cos(theta) / R^2 -
+    2 log(R - R cos(theta) + 1) / R^2 -
+    2 log(R - R cos(theta) + 1) / R^3 +
+    1 / (-R^4 + R^4 cos(theta) - R^3) -
+    1 / (R (-cos(theta) + 1) + 1)
 check(f == d(I,theta))
 
 "ok"
