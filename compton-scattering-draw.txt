@@ -1,17 +1,21 @@
 -- Draw cdf for Compton scattering
 
-N = 10 -- number of bins
+-- number of bins
 
-E = 10^5 eV -- incident energy
+N = 10
+
+-- incident energy
+
+E = 10^5 eV
+omega = E / hbar
+
+joule = kilogram meter^2 / second^2
 
 c = 299792458.0 meter / second
 eV = 1.602176634 10^(-19) joule
 h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
 me = 9.1093837015 10^(-31) kilogram
-joule = kilogram meter^2 / second^2
-
-omega = E / hbar
 
 R = hbar omega / (me c^2)
 
