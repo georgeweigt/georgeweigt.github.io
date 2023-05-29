@@ -33,10 +33,14 @@ farad = ampere^2 kilogram^(-1) meter^(-2) second^4
 joule = kilogram meter^2 second^(-2)
 volt = ampere^(-1) kilogram meter^2 second^(-3)
 
+-- physical constants
+
+c = 299792458.0 meter / second                 -- speed of light (exact)
 h = 6.62607015 10^(-34) joule second           -- Planck constant (exact)
-hbar = h / float(2 pi)
+hbar = h / float(2 pi)                         -- reduced Planck constant
 e = 1.602176634 10^(-19) coulomb               -- elementary charge (exact)
 eV = 1.602176634 10^(-19) joule / "eV"         -- electron volt (exact)
+k = 1.380649 10^(-23) joule / kelvin           -- Boltzmann constant (exact)
 me = 9.1093837015 10^(-31) kilogram            -- electron mass
 epsilon0 = 8.8541878128 10^(-12) farad / meter -- vacuum electric permittivity
 
