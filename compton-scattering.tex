@@ -269,41 +269,6 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \tag{2}
 \end{equation*}
 
-\subsection*{High energy approximation}
-For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
-\begin{align*}
-f_{11}&=-8su
-\\
-f_{12}&=0
-\\
-f_{22}&=-8su
-\end{align*}
-
-Hence
-\begin{align*}
-\langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
-\left(\frac{-8su}{s^2}+\frac{-8su}{u^2}\right)
-\\
-&=2e^4
-\left(-\frac{u}{s}-\frac{s}{u}\right)
-\end{align*}
-
-Also for $m=0$ the Mandelstam variables $s$ and $u$ are
-\begin{align*}
-s&=4\omega^2
-\\
-u&=-2\omega^2(\cos\theta+1)
-\end{align*}
-
-Hence
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=2e^4\left(
-\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right)
-\end{equation*}
-
 \subsection*{Lab frame}
 Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
 The following Lorentz boost $\Lambda$ transforms momentum vectors from
@@ -481,9 +446,9 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \subsection*{Thomson scattering}
-For $\omega\ll m$ we have
+For $\hbar\omega\ll mc^2$ we have
 \begin{equation*}
-\frac{m}{m+\omega\,(1-\cos\theta)}\approx1
+\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}\,(1-\cos\theta)}\approx\omega
 \end{equation*}
 
 Hence we can use the approximation
@@ -495,6 +460,41 @@ to obtain
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2m^2}\big(1+\cos^2\theta\big)
 \end{equation*}
 which is the formula for Thomson scattering.
+
+\subsection*{High energy approximation}
+For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
+\begin{align*}
+f_{11}&=-8su
+\\
+f_{12}&=0
+\\
+f_{22}&=-8su
+\end{align*}
+
+Hence
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=\frac{e^4}{4}
+\left(\frac{-8su}{s^2}+\frac{-8su}{u^2}\right)
+\\
+&=2e^4
+\left(-\frac{u}{s}-\frac{s}{u}\right)
+\end{align*}
+
+Also for $m=0$ the Mandelstam variables $s$ and $u$ are
+\begin{align*}
+s&=4\omega^2
+\\
+u&=-2\omega^2(\cos\theta+1)
+\end{align*}
+
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4\left(
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
+\right)
+\end{equation*}
 
 \subsection*{Data from a CERN LEP experiment}
 See ``Compton Scattering of Quasi-Real Virtual Photons at LEP,''
