@@ -268,7 +268,7 @@ Data $x$ and $y$ have the following relationship with cross section parameters.
 \begin{equation*}
 x=\cos\theta,
 \quad
-y=(2E)^2\frac{d\sigma}{d\cos\theta}
+y=(2E)^2\frac{d\sigma}{d\cos\theta}=2\pi(2E)^2\frac{d\sigma}{d\Omega}
 \end{equation*}
 
 The differential cross section for muon production is
@@ -277,29 +277,12 @@ The differential cross section for muon production is
 \end{equation*}
 
 Let us compute predicted values $\hat{y}$ from the cross section formula.
-Start by finding the relationship between $d\Omega$ and $d\cos\theta$.
-Since $1+\cos^2\theta$ has no dependence on $\phi$ we have
-\begin{equation*}
-\int_\Omega\big(1+\cos^2\theta\big)\,d\Omega
-=\int_0^{2\pi}\int_0^{\pi}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
-=2\pi\int_0^\pi\big(1+\cos^2\theta\big)\sin\theta\,d\theta
-\end{equation*}
-
-Hence
-\begin{equation*}
-d\Omega=2\pi\sin\theta\,d\theta=-2\pi\,d\cos\theta
-\end{equation*}
-
-We want positive cross sections so drop the minus sign and set
-\begin{equation*}
-\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
-\end{equation*}
-
-We can now write
+We have
 \begin{align*}
-y&=(2E)^2\frac{d\sigma}{d\cos\theta}\\
-&=(2E)^2(2\pi)\frac{d\sigma}{d\Omega}\\
-&=(2E)^2(2\pi)\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\\
+y&=2\pi(2E)^2\frac{d\sigma}{d\Omega}
+\\
+&=2\pi(2E)^2\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
+\\
 &=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)
 \end{align*}
 
@@ -432,10 +415,10 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 The result indicates that electroweak theory explains 98\% of the variance in the data.
 
 \subsection*{Notes}
-Here are a few notes about how the scripts work.
+Here are a few notes about how the demo script works.
 
 \bigskip
-In component notation the traces become sums over the repeated index $\alpha$.
+In component notation, traces are sums over a repeated index, in this case $\alpha$.
 \begin{align*}
 \mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
 &=
