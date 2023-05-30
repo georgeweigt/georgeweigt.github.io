@@ -68,9 +68,9 @@ for(k,1,N,
 
 "Predicted counts"
 
-T = sum(k,1,N,y[k]) -- total counts
+check(sum(y) == 15773)
 
-yhat = P T
+yhat = 15773 P
 yhat
 
 "Coefficient of determination (R squared)"
