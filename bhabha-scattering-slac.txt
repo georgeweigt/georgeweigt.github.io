@@ -67,9 +67,7 @@ for(k,1,N,
 
 "Predicted counts"
 
-check(sum(y) == 15773)
-
-yhat = 15773 P
+yhat = sum(y) P
 yhat
 
 "Coefficient of determination (R squared)"
