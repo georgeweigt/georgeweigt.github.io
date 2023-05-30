@@ -1,17 +1,12 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
-\usepackage{graphicx}
 \parindent=0pt
 \begin{document}
 
-The following hydrogen data table is from ``Atomic Transition Probabilities,'' 1966.
+From ``Atomic Transition Probabilities,'' 1966,
+the following transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
 
-\begin{center}
-\includegraphics[scale=0.5]{hydrogen-alpha-line.png}
-\end{center}
-
-The $2-3$ transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
@@ -29,19 +24,12 @@ $2p-3d$ & 6562.81 & $6.465\times10^7$
 \end{center}
 
 $A_{ki}$ is the spontaneous emission rate for $k\rightarrow i$.
-
-\bigskip
-For H-$\alpha$ we have $k=3$ and $i=2$.
-
-\bigskip
-Let us compute $A_{ki}$ for H-$\alpha$ and see if the results match the table.
-
-\bigskip
-Orbital names correspond to the following azimuthal quantum numbers.
+For H-$\alpha$, $k=3$ and $i=2$.
+Orbital names correspond to the following azimuthal quantum numbers $\ell$.
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
-Name & Azimuthal quantum number $\ell$
+Name & $\ell$
 \\
 \hline
 $s$ & $0$
@@ -102,8 +90,6 @@ Finally, there are fifteen transitions for $3d\rightarrow2p$.
 
 For each H-$\alpha$ line, an average $A_{ki}$ is computed by summing over $A_{ki}$ for individual transitions
 and dividing by the number of distinct initial states.
-
-\bigskip
 For example, $3d\rightarrow2p$ has five distinct initial states, so the divisor is five.
 
 \bigskip
