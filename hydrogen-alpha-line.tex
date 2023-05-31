@@ -109,16 +109,23 @@ The transition probability (multiplied by a physical constant) is
 +|y_{ki}|^2
 +|z_{ki}|^2
 \end{equation*}
-For wave functions $\psi$ in spherical coordinates we have the following transition amplitudes.
+These are the transition amplitudes.
 \begin{align*}
-x_{ki}&=\int\psi_i^*\,r\sin\theta\cos\phi\,\psi_k\,dV
+x_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
+\psi_i^*\,r\sin\theta\cos\phi\,\psi_k
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
 \\
-y_{ki}&=\int\psi_i^*\,r\sin\theta\sin\phi\,\psi_k\,dV
+y_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
+\psi_i^*\,r\sin\theta\sin\phi\,\psi_k
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
 \\
-z_{ki}&=\int\psi_i^*\,r\cos\theta\,\psi_k\,dV
+z_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
+\psi_i^*\,r\cos\theta\,\psi_k
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{align*}
 
 Using Eigenmath we obtain the following values for average $A_{ki}$.
+The results are essentially identical to the values found in ``Atomic Transition Probabilities.''
 \begin{align*}
 A_{3s2p}&=6.31358\times10^6\,\text{second}^{-1}
 \\
@@ -126,14 +133,10 @@ A_{3p2s}&=2.24483\times10^7\,\text{second}^{-1}
 \\
 A_{3d2p}&=6.4651\times10^7\,\text{second}^{-1}
 \end{align*}
-These values are essentially identical to the values shown in the table.
 
-\bigskip
-Some of the $|r_{ki}|^2$ are zero, indicating forbidden transitions.
-
-\bigskip
-The following table shows $|r_{ki}|^2$ for each transition
-(multiply given values by $a_0^2=2.8\times10^{-21}\;\text{meter}^2$).
+The following table shows $|r_{ki}|^2/a_0^2$ for each transition process
+where $a_0$ is Bohr radius and $a_0^2=2.8\times10^{-21}\;\text{meter}^2$.
+Some of the $|r_{ki}|^2$ are zero indicating forbidden transitions.
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
