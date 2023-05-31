@@ -75,20 +75,11 @@ X3d2p = 1/5 X(psi(2,1,1),psi(3,2,2)) +
 
 -- physical constants (c, e, h, k are exact values)
 
--- https://physics.nist.gov/cgi-bin/cuu/Value?c|search_for=speed+of+light
--- https://physics.nist.gov/cgi-bin/cuu/Value?e|search_for=elementary+charge
--- https://physics.nist.gov/cgi-bin/cuu/Value?h|search_for=planck+constant
--- https://physics.nist.gov/cgi-bin/cuu/Value?k|search_for=boltzmann
-
 c = 299792458.0 meter / second
 e = 1.602176634 10^(-19) coulomb
 h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
 k = 1.380649 10^(-23) joule / kelvin
-
--- https://physics.nist.gov/cgi-bin/cuu/Value?ep0|search_for=vacuum+permittivity
--- https://physics.nist.gov/cgi-bin/cuu/Value?me|search_for=electron+mass
--- https://physics.nist.gov/cgi-bin/cuu/Value?mp|search_for=proton+mass
 
 epsilon0 = 8.8541878128 10^(-12) farad / meter
 me = 9.1093837015 10^(-31) kilogram
