@@ -4,8 +4,8 @@
 \parindent=0pt
 \begin{document}
 
-From ``Atomic Transition Probabilities,''
-the following transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
+The following transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
+See ``Atomic Transition Probabilities Volume I," issued May 20, 1966, page 2.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -23,8 +23,7 @@ $2p-3d$ & 6562.81 & $6.465\times10^7$
 \end{tabular}
 \end{center}
 
-$A_{ki}$ is the spontaneous emission rate for $k\rightarrow i$.
-For H-$\alpha$, $k=3$ and $i=2$.
+$A_{ki}$ is the spontaneous emission rate where $i$ is the lower state and $k$ is the upper state.
 Orbital names correspond to the following azimuthal quantum numbers $\ell$.
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -42,12 +41,11 @@ $d$ & $2$
 \end{tabular}
 \end{center}
 
-Because of the magnetic quantum number $m_\ell$
-there are multiple ways for each orbital transition to occur.
-($m_\ell=0,\pm1,\ldots,\pm\ell$)
+Each transition in the table has multiple processes due to the magnetic quantum number $m_\ell$.
+(Recall that $m_\ell=0,\pm1,\ldots,\pm\ell$.)
 
 \bigskip
-There are three transitions for $3s\rightarrow2p$.
+There are three ways to transition from $3s$ to $2p$.
 \begin{align*}
 \psi_{3,0,0}&\rightarrow\psi_{2,1,1}
 \\
@@ -56,7 +54,7 @@ There are three transitions for $3s\rightarrow2p$.
 \psi_{3,0,0}&\rightarrow\psi_{2,1,-1}
 \end{align*}
 
-There are three transitions for $3p\rightarrow2s$.
+There are three ways to transition from $3p$ to $2s$.
 \begin{align*}
 \psi_{3,1,1}&\rightarrow\psi_{2,0,0}
 \\
@@ -65,7 +63,8 @@ There are three transitions for $3p\rightarrow2s$.
 \psi_{3,1,-1}&\rightarrow\psi_{2,0,0}
 \end{align*}
 
-Finally, there are fifteen transitions for $3d\rightarrow2p$.
+Finally, there are fifteen ways to transition from $3d$ to $2p$.
+(Some of these transitions have zero amplitude.)
 \begin{align*}
 \psi_{3,2,2}&\rightarrow\psi_{2,1,1} &
 \psi_{3,2,2}&\rightarrow\psi_{2,1,0} &
@@ -88,7 +87,7 @@ Finally, there are fifteen transitions for $3d\rightarrow2p$.
 \psi_{3,2,-2}&\rightarrow\psi_{2,1,-1}
 \end{align*}
 
-For each H-$\alpha$ line, an average $A_{ki}$ is computed by summing over $A_{ki}$ for individual transitions
+For each H-$\alpha$ line, an average $A_{ki}$ is computed by summing over $A_{ki}$ for individual processes
 and dividing by the number of distinct initial states.
 For example, $3d\rightarrow2p$ has five distinct initial states, so the divisor is five.
 
@@ -112,11 +111,11 @@ The transition probability (multiplied by a physical constant) is
 \end{equation*}
 For wave functions $\psi$ in spherical coordinates we have the following transition amplitudes.
 \begin{align*}
-x_{ki}&=\int\psi_k^*\,(r\sin\theta\cos\phi)\,\psi_i\,dV
+x_{ki}&=\int\psi_i^*\,r\sin\theta\cos\phi\,\psi_k\,dV
 \\
-y_{ki}&=\int\psi_k^*\,(r\sin\theta\sin\phi)\,\psi_i\,dV
+y_{ki}&=\int\psi_i^*\,r\sin\theta\sin\phi\,\psi_k\,dV
 \\
-z_{ki}&=\int\psi_k^*\,(r\cos\theta)\,\psi_i\,dV
+z_{ki}&=\int\psi_i^*\,r\cos\theta\,\psi_k\,dV
 \end{align*}
 
 Using Eigenmath we obtain the following values for average $A_{ki}$.
