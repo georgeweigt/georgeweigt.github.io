@@ -52,27 +52,27 @@ X3s2p = X(psi(2,1,1),psi(3,0,0)) +
         X(psi(2,1,0),psi(3,0,0)) +
         X(psi(2,1,-1),psi(3,0,0))
 
-X3p2s = 1/3 X(psi(2,0,0),psi(3,1,1)) +
-        1/3 X(psi(2,0,0),psi(3,1,0)) +
-        1/3 X(psi(2,0,0),psi(3,1,-1))
+X3p2s = X(psi(2,0,0),psi(3,1,1)) +
+        X(psi(2,0,0),psi(3,1,0)) +
+        X(psi(2,0,0),psi(3,1,-1))
 
-X3d2p = 1/5 X(psi(2,1,1),psi(3,2,2)) +
-        1/5 X(psi(2,1,1),psi(3,2,1)) +
-        1/5 X(psi(2,1,1),psi(3,2,0)) +
-        1/5 X(psi(2,1,1),psi(3,2,-1)) +
-        1/5 X(psi(2,1,1),psi(3,2,-1)) +
+X3d2p = X(psi(2,1,1),psi(3,2,2)) +
+        X(psi(2,1,1),psi(3,2,1)) +
+        X(psi(2,1,1),psi(3,2,0)) +
+        X(psi(2,1,1),psi(3,2,-1)) +
+        X(psi(2,1,1),psi(3,2,-1)) +
 
-        1/5 X(psi(2,1,0),psi(3,2,2)) +
-        1/5 X(psi(2,1,0),psi(3,2,1)) +
-        1/5 X(psi(2,1,0),psi(3,2,0)) +
-        1/5 X(psi(2,1,0),psi(3,2,-1)) +
-        1/5 X(psi(2,1,0),psi(3,2,-1)) +
+        X(psi(2,1,0),psi(3,2,2)) +
+        X(psi(2,1,0),psi(3,2,1)) +
+        X(psi(2,1,0),psi(3,2,0)) +
+        X(psi(2,1,0),psi(3,2,-1)) +
+        X(psi(2,1,0),psi(3,2,-1)) +
 
-        1/5 X(psi(2,1,-1),psi(3,2,2)) +
-        1/5 X(psi(2,1,-1),psi(3,2,1)) +
-        1/5 X(psi(2,1,-1),psi(3,2,0)) +
-        1/5 X(psi(2,1,-1),psi(3,2,-1)) +
-        1/5 X(psi(2,1,-1),psi(3,2,-1))
+        X(psi(2,1,-1),psi(3,2,2)) +
+        X(psi(2,1,-1),psi(3,2,1)) +
+        X(psi(2,1,-1),psi(3,2,0)) +
+        X(psi(2,1,-1),psi(3,2,-1)) +
+        X(psi(2,1,-1),psi(3,2,-1))
 
 -- physical constants (c, e, h, k are exact values)
 
@@ -111,12 +111,9 @@ omega32 = 1/hbar (E(3) - E(2))
 A3s2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3s2p
 A3s2p
 
-A3p2s = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3p2s
+A3p2s = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3p2s / 3
 A3p2s
 
-A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p
+A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p / 5
 A3d2p
-
--- "Wavelength"
--- h c / (E(3) - E(2)) 10^10 "Angstrom" / meter
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
