@@ -46,12 +46,16 @@ y = y "picobarn"
 y
 
 pi = float(pi) -- use numerical value of pi
-alpha = 0.0072973525693
-hbar = 6.582119569 10^(-25) "GeV" "second"
-c = 299792458 "meter" / "second"
-s = 40 "GeV"^2
 
-C = pi/s alpha^2 (hbar c)^2 10^40 "picobarn" / "meter"^2
+alpha = 0.0072973525693
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+eV = 1.602176634 10^(-19) joule
+
+s = (40.0 10^9 eV)^2
+
+C = pi alpha^2 / s (h c)^2 10^40 "picobarn" / meter^2
 
 yhat = zero(N)
 

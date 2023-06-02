@@ -52,11 +52,14 @@ y = y "nanobarn"
 y
 
 alpha = 0.0072973525693
-hbar = 6.582119569 10^(-25) "GeV" "second"
-c = 299792458 "meter" / "second"
-s = (14.0 "GeV")^2
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+eV = 1.602176634 10^(-19) joule
 
-C = alpha^2 / (4 s) (hbar c)^2 10^37 "nanobarn" / "meter"^2
+s = (14.0 10^9 eV)^2
+
+C = alpha^2 / (4 s) (hbar c)^2 10^37 "nanobarn" / meter^2
 
 yhat = zero(N)
 
