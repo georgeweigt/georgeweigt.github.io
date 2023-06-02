@@ -241,7 +241,7 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
 \subsection*{Data from SLAC PEP experiment}
-See www.hepdata.net/record/ins216031, Table 1, 29.0 GeV.
+See www.hepdata.net/record/ins216031, Table 1, $s=(29.0\,\text{GeV})^2$.
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -272,39 +272,25 @@ $\phantom{+}0.925$ & 55.70\\
 \end{tabular}
 \end{center}
 
-Data $x$ and $y$ have the following relationship with cross section parameters.
+Data $x$ and $y$ have the following relationship with the differential cross section formula.
 \begin{equation*}
 x=\cos\theta,
 \quad
-y=(2E)^2\frac{d\sigma}{d\cos\theta}=2\pi(2E)^2\frac{d\sigma}{d\Omega}
+y=s\frac{d\sigma}{d\cos\theta}=2\pi s\frac{d\sigma}{d\Omega}
 \end{equation*}
 
-The differential cross section for muon production is
+The cross section formula is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4s}\left(1+\cos^2\theta\right)\times(\hbar c)^2
 \end{equation*}
 
-Let us compute predicted values $\hat{y}$ from the cross section formula.
-We have
-\begin{align*}
-y&=2\pi(2E)^2\frac{d\sigma}{d\Omega}
-\\
-&=2\pi(2E)^2\frac{\alpha^2}{16E^2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
-\\
-&=\frac{\pi\alpha^2}{2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
-\end{align*}
-
-Multiply by $10^{37}$ to convert square meters to nanobarns.
+To compute predicted values $\hat{y}$, multiply by $10^{37}$ to convert square meters to nanobarns.
 \begin{equation*}
-y=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)\times(\hbar c)^2\times10^{37}
+\hat y=2\pi s\frac{d\sigma}{d\Omega}
+=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2
 \end{equation*}
 
-Replace $\cos\theta$ with explanatory variable $x$ to obtain predicted value $\hat{y}$.
-\begin{equation*}
-\hat{y}=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2\times10^{37}
-\end{equation*}
-
-Here are the predicted values $\hat{y}$ based on the above formula.
+The following table shows predicted values $\hat{y}$.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -335,7 +321,7 @@ $\phantom{+}0.925$ & 55.70 & 60.44\\
 \end{tabular}
 \end{center}
 
-The coefficient of determination $R^2$ measures how well predicted values fit the real data.
+The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.87
 \end{equation*}

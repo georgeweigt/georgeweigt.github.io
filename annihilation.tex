@@ -276,7 +276,7 @@ Hence
 \end{equation*}
 
 \subsection*{Cross section}
-The differential cross section for annihilation is
+The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
 \end{equation*}
@@ -389,10 +389,19 @@ x=\cos\theta,
 y=\frac{d\sigma}{d\Omega}
 \end{equation*}
 
-To compute predicted values $\hat{y}$ from the cross section formula,
-use $s=(14.0\,\text{GeV})^2$.
-Multiply by $(\hbar c)^2$ to convert to SI
-and multiply by $10^{37}$ to convert square meters to nanobarns.
+The cross section formula is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=
+\frac{\alpha^2}{2s}
+\left(
+\frac{1+\cos\theta}{1-\cos\theta}+
+\frac{1-\cos\theta}{1+\cos\theta}
+\right)\times(\hbar c)^2
+\end{equation*}
+
+To compute predicted values $\hat{y}$,
+multiply by $10^{37}$ to convert square meters to nanobarns.
 \begin{equation*}
 \hat{y}
 =
@@ -405,7 +414,7 @@ and multiply by $10^{37}$ to convert square meters to nanobarns.
 \times10^{37}
 \end{equation*}
 
-The following table shows predicted values $\hat{y}$.
+The following table shows predicted values $\hat{y}$ for $s=(14.0\,\text{GeV})^2$.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -424,7 +433,7 @@ $0.7312$ & 0.33204 & 0.348884\\
 \end{tabular}
 \end{center}
 
-The coefficient of determination $R^2$ measures how well predicted values fit the real data.
+The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 \end{equation*}
