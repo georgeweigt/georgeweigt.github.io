@@ -27,15 +27,13 @@ y = (
 0.17681,
 0.1957,
 0.279,
-0.33204)
-
-y = y "nanobarn"
+0.33204) "nanobarn"
 
 "Observed cross section per bin"
 
 y
 
-alpha = 0.0072973525693
+alpha = 7.2973525693 10^(-3)
 c = 299792458.0 meter / second
 h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
@@ -43,12 +41,16 @@ eV = 1.602176634 10^(-19) joule
 
 s = (14.0 10^9 eV)^2
 
+C1 = alpha^2 / (2 s)
+C2 = (hbar c)^2
+C3 = 10^37 "nanobarn" / meter^2
+
+C = C1 C2 C3
+
 yhat = zero(N)
 
 for(k,1,N,
-  t = 1 - x[k],
-  u = 1 + x[k],
-  yhat[k] = 1/2 alpha^2 / s (u/t + t/u) (hbar c)^2 10^37 "nanobarn" / meter^2
+ yhat[k] = C ((1 + x[k]) / (1 - x[k]) + (1 - x[k]) / (1 + x[k]))
 )
 
 "Predicted cross section"
@@ -57,7 +59,7 @@ yhat
 
 "Coefficient of determination (R squared)"
 
-ybar = sum(y) / dim(y)
+ybar = sum(y) / N
 
 RSS = sum((y - yhat)^2) -- residual sum of squares
 TSS = sum((y - ybar)^2) -- total sum of squares
