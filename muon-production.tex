@@ -179,23 +179,31 @@ For the momentum vectors given above the result is
 \end{equation*}
 
 \subsection*{Cross section}
-The Stanford Linear Collider
-had a collision energy of $2E=91$~GeV.
-For beam energies such as SLC where $E\gg M$ the above equation can be approximated as
-$$
-\langle|\mathcal{M}|^2\rangle=e^4\big(1+\cos^2\theta\big)
-$$
-
 The differential cross section is
-$$
-\frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{e^4}{256\pi^2E^2}\big(1+\cos^2\theta\big)
-$$
-
-Recall that $e^2=4\pi\alpha$ hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
+\frac{d\sigma}{d\Omega}
+=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
+\end{equation*}
+
+For high energy experiments $E\gg M$ a useful approximation is
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
+\quad\text{and}\quad
+s=4E^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{e^4}{4(4\pi\varepsilon_0)^2s}\left(1+\cos^2\theta\right)
+\end{equation*}
+
+Noting that
+\begin{equation*}
+e^2=4\pi\varepsilon_0\alpha\hbar c
+\end{equation*}
+we can also write
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
 \end{equation*}
 
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
@@ -206,7 +214,7 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 
 Hence
 \begin{equation*}
-d\sigma=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
+d\sigma=\frac{\alpha^2(\hbar c)^2}{4s}\big(1+\cos^2\theta\big)\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 Let $I(\theta)$ be the following integral of $d\sigma$.
@@ -273,7 +281,7 @@ y=(2E)^2\frac{d\sigma}{d\cos\theta}=2\pi(2E)^2\frac{d\sigma}{d\Omega}
 
 The differential cross section for muon production is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{16E^2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
 \end{equation*}
 
 Let us compute predicted values $\hat{y}$ from the cross section formula.
@@ -281,18 +289,17 @@ We have
 \begin{align*}
 y&=2\pi(2E)^2\frac{d\sigma}{d\Omega}
 \\
-&=2\pi(2E)^2\frac{\alpha^2}{16E^2}\big(1+\cos^2\theta\big)
+&=2\pi(2E)^2\frac{\alpha^2}{16E^2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
 \\
-&=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)
+&=\frac{\pi\alpha^2}{2}\left(1+\cos^2\theta\right)\times(\hbar c)^2
 \end{align*}
 
-Multiply by $(\hbar c)^2$ to convert to SI
-and multiply by $10^{37}$ to convert square meters to nanobarns.
+Multiply by $10^{37}$ to convert square meters to nanobarns.
 \begin{equation*}
 y=\frac{\pi\alpha^2}{2}\big(1+\cos^2\theta\big)\times(\hbar c)^2\times10^{37}
 \end{equation*}
 
-Replace $\cos\theta$ with explanatory variable $x$ to obtain $\hat{y}$.
+Replace $\cos\theta$ with explanatory variable $x$ to obtain predicted value $\hat{y}$.
 \begin{equation*}
 \hat{y}=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2\times10^{37}
 \end{equation*}

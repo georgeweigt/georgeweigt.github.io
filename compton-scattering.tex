@@ -357,8 +357,12 @@ From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame vari
 \bigskip
 The differential cross section for Compton scattering is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{64\pi^2\epsilon_0^2m^2c^4}
+\frac{d\sigma}{d\Omega}=\frac{1}{4(4\pi\varepsilon_0)^2s}
 \left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
+\end{equation*}
+where
+\begin{equation*}
+s=(p_1+p_2)^2=m^2c^4+2mc^2\omega\hbar\approx m^2c^4
 \end{equation*}
 
 For the lab frame we have
@@ -372,7 +376,7 @@ For the lab frame we have
 Hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{e^4}{32\pi^2\epsilon_0^2m^2c^4}
+=\frac{e^4}{2(4\pi\varepsilon_0)^2m^2c^4}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
@@ -380,17 +384,17 @@ Hence
 \end{equation*}
 where
 \begin{equation*}
-\frac{e^4}{32\pi^2\epsilon_0^2m^2c^4}=3.97\times10^{-30}\,\text{meter}^2
+\frac{e^4}{2(4\pi\varepsilon_0)^2m^2c^4}=3.97\times10^{-30}\,\text{meter}^2
 \end{equation*}
 
 Noting that
 \begin{equation*}
-e^2=4\pi\epsilon_0\hbar c\alpha
+e^2=4\pi\varepsilon_0\alpha\hbar c
 \end{equation*}
 we can also write
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\hbar^2\alpha^2}{2m^2c^2}
+=\frac{\alpha^2\hbar^2}{2m^2c^2}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
@@ -411,7 +415,7 @@ d\Omega=\sin\theta\,d\theta\,d\phi
 Hence
 \begin{equation*}
 d\sigma
-=\frac{\hbar^2\alpha^2}{2m^2c^2}
+=\frac{\alpha^2\hbar^2}{2m^2c^2}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
 \sin\theta\,d\theta\,d\phi
@@ -465,7 +469,7 @@ Hence we can use the approximation
 \end{equation*}
 to obtain
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\hbar^2\alpha^2}{2m^2c^2}\left(1+\cos^2\theta\right)
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2\hbar^2}{2m^2c^2}\left(1+\cos^2\theta\right)
 \end{equation*}
 which is the formula for Thomson scattering.
 
