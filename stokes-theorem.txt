@@ -16,5 +16,4 @@ P = y
 Q = z
 R = x
 f = P d(x,t) + Q d(y,t) + R d(z,t)
-f = circexp(f)
 defint(f,t,0,2pi)

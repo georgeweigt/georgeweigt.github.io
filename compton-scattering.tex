@@ -410,6 +410,20 @@ I(\theta)=
 \sin\theta\,d\theta
 \end{equation*}
 
+The solution is
+\begin{multline*}
+I(\theta)=-\frac{\cos\theta}{R^2}
++\log\big(1+R(1-\cos\theta)\big)\left(\frac{1}{R}-\frac{2}{R^2}-\frac{2}{R^3}\right)
+\\
+{}-\frac{1}{2R\big(1+R(1-\cos\theta)\big)^2}
++\frac{1}{1+R(1-\cos\theta)}\left(-\frac{2}{R^2}-\frac{1}{R^3}\right)
+\end{multline*}
+where
+\begin{equation*}
+R=\frac{\hbar\omega}{mc^2}
+\end{equation*}
+
+\iffalse
 Here is a computer solution for $I(\theta)$ where $\text{\tt R}\equiv\hbar\omega/mc^2$.
 \begin{verbatim}
 I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
@@ -424,6 +438,7 @@ I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
     1 / (-R^4 + R^4 cos(theta) - R^3) -
     1 / (R (-cos(theta) + 1) + 1)
 \end{verbatim}
+\fi
 
 The cumulative distribution function is
 \begin{equation*}

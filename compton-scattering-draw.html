@@ -20,17 +20,10 @@ me = 9.1093837015 10^(-31) kilogram
 
 R = hbar omega / (me c^2)
 
-I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
-    R / (-R^3 + R^3 cos(theta) - R^2) +
-    2 R / (-R^4 + R^4 cos(theta) - R^3) -
-    1 / (R (R (-cos(theta) + 1) + 1)) -
-    1 / (2 R (R (-cos(theta) + 1) + 1)^2) +
-    log(R - R cos(theta) + 1) / R -
-    cos(theta) / R^2 -
-    2 log(R - R cos(theta) + 1) / R^2 -
-    2 log(R - R cos(theta) + 1) / R^3 +
-    1 / (-R^4 + R^4 cos(theta) - R^3) -
-    1 / (R (-cos(theta) + 1) + 1)
+I = -cos(theta) / R^2 +
+    log(1 + R (1 - cos(theta))) (1/R - 2/R^2 - 2/R^3) -
+    1 / (2 R (1 + R (1 - cos(theta)))^2) +
+    1 / (1 + R (1 - cos(theta))) (-2/R^2 - 1/R^3)
 
 pi = float(pi) -- use numerical value of pi
 
