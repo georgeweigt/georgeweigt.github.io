@@ -180,5 +180,17 @@ check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
 check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
 check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
 
+-- verify s, t, and u in the lab frame
+
+omegaL = dot(p1, (1,0,0,0))
+omegaLp = dot(p3, (1,0,0,0))
+
+check(omegaL == omega^2 / m + omega E / m)
+check(omegaLp == omega^2 cos(theta) / m + omega E / m)
+
+check(s == m^2 + 2 m omegaL)
+check(t == 2 m (omegaLp - omegaL))
+check(u == m^2 - 2 m omegaLp)
+
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
