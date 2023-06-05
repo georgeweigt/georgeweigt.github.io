@@ -309,11 +309,11 @@ and let $\omega_L'$ be the angular frequency of the scattered photon.
 It follows that
 \begin{equation*}
 \begin{aligned}
-s&=(p_1+p_2)^2=2m\omega_L+m^2
+s&=(p_1+p_2)^2=m^2+2m\omega_L
 \\
 t&=(p_1-p_3)^2=2m(\omega_L' - \omega_L)
 \\
-u&=(p_1-p_4)^2=-2 m \omega_L' + m^2
+u&=(p_1-p_4)^2=m^2-2 m \omega_L'
 \end{aligned}
 \end{equation*}
 
@@ -368,13 +368,13 @@ For the lab frame we have
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
 \right)
 \quad\text{and}\quad
-s=m^2c^4+2mc^2\omega\hbar\approx m^2c^4
+s=(mc^2)^2+2(mc^2)(\hbar\omega)
 \end{equation*}
 
-Hence
+Substitute for $\langle|\mathcal{M}|^2\rangle$.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{e^4}{2(4\pi\varepsilon_0)^2m^2c^4}
+=\frac{e^4}{2(4\pi\varepsilon_0)^2s}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
@@ -388,7 +388,7 @@ e^2=4\pi\varepsilon_0\alpha\hbar c
 we can also write
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\alpha^2\hbar^2}{2m^2c^2}
+=\frac{\alpha^2(\hbar c)^2}{2s}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
@@ -458,9 +458,9 @@ For $\hbar\omega\ll mc^2$ we have
 \omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}\,(1-\cos\theta)}\approx\omega
 \end{equation*}
 
-Hence we can use the approximation
+Hence we can use the approximations
 \begin{equation*}
-\omega=\omega'
+\omega=\omega'\quad\text{and}\quad s=(mc^2)^2
 \end{equation*}
 to obtain
 \begin{equation*}
