@@ -129,30 +129,15 @@ check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
 check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
 check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
 
-w1 = omega^2 / m + omega E / m
-w2 = omega^2 cos(theta) / m + omega E / m
-
-check(f == 2 (w2/w1 + w1/w2 + (m/w1 - m/w2 + 1)^2 - 1))
-
--- verify for m = 0
+-- verify high energy approximation m = 0
 
 m = 0
+
 check(s == 4 omega^2)
 check(u == -2 omega^2 (cos(theta) + 1))
-a = cos(theta) + 1
-check(f == 2 (a/2 + 2/a))
+check(f == 2 ((cos(theta) + 1) / 2 + 2 / (cos(theta) + 1)))
+
 m = quote(m) -- undo m = 0
-
--- verify integral
-
-R = hbar w / (m c^2)
-wprime = w / (1 + R (1 - cos(theta)))
-f = (wprime / w)^2 (w / wprime + wprime / w - sin(theta)^2)
-I = -cos(theta) / R^2 +
-    log(1 + R (1 - cos(theta))) (1/R - 2/R^2 - 2/R^3) -
-    1 / (2 R (1 + R (1 - cos(theta)))^2) +
-    1 / (1 + R (1 - cos(theta))) (-2/R^2 - 1/R^3)
-check(f sin(theta) == d(I,theta))
 
 "ok"
 
@@ -190,5 +175,22 @@ check(omegaLp == omega^2 cos(theta) / m + omega E / m)
 check(s == m^2 + 2 m omegaL)
 check(t == 2 m (omegaLp - omegaL))
 check(u == m^2 - 2 m omegaLp)
+
+check(f == 2 (omegaL/omegaLp + omegaLp/omegaL + (m/omegaL - m/omegaLp + 1)^2 - 1))
+
+-- verify integral
+
+R = hbar omega / (m c^2)
+
+omegap = omega / (1 + R (1 - cos(theta)))
+
+f = (omegap / omega)^2 (omega / omegap + omegap / omega - sin(theta)^2)
+
+I = -cos(theta) / R^2 +
+    log(1 + R (1 - cos(theta))) (1/R - 2/R^2 - 2/R^3) -
+    1 / (2 R (1 + R (1 - cos(theta)))^2) +
+    1 / (1 + R (1 - cos(theta))) (-2/R^2 - 1/R^3)
+
+check(f sin(theta) == d(I,theta))
 
 "ok"
