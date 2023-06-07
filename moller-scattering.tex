@@ -364,6 +364,7 @@ we can also write
 
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Let $I(\theta)$ be the following integral of $d\sigma$.
+(The $\sin\theta$ is from $d\Omega=\sin\theta\,d\theta\,d\phi$.)
 \begin{equation*}
 I(\theta)=\int\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta\,d\theta
 \end{equation*}
@@ -380,13 +381,30 @@ F(\theta)=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
 a\le\theta\le\pi-a
 \end{equation*}
 
-Angular support is limited to an arbitrary $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
+Angular support is reduced by an arbitrary angle $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
 
 \bigskip
 The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
+
+Let $N$ be the number of scattering events from an experiment.
+Then the number of scattering events in the interval $\theta_1$
+to $\theta_2$ is predicted to be
+$$
+N\,\big(F(\theta_2)-F(\theta_1)\big)
+$$
+
+The probability density function is
+$$
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{1}{I(\pi-a)-I(a)}
+\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
+$$
+
+Note that if we had carried through the $\alpha^2(\hbar c)^2/s$ in $I(\theta)$,
+it would have cancelled out in $F(\theta)$.
 
 \subsection*{Notes}
 1. A.~Zee page 134 has the cross section

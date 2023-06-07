@@ -134,7 +134,7 @@ Hence
 
 Substituting $e^4=16\pi^2\alpha^2$ and $q^4=4p^4(\cos\theta-1)^2$ we have
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
+\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2\alpha^2m^2Z^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
 \subsection*{Cross section}
@@ -145,16 +145,17 @@ The differential cross section for Rutherford scattering is
 
 For the low energy approximation we have
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
+\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2\alpha^2m^2Z^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{m^2Z^2\alpha^2}{p^4(\cos\theta-1)^2}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2m^2Z^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
 
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Let $I(\theta)$ be the following integral of $d\sigma$.
+(The $\sin\theta$ is from $d\Omega=\sin\theta\,d\theta\,d\phi$.)
 \begin{equation*}
 I(\theta)
 =\int\frac{1}{(\cos\theta-1)^2}\sin\theta\,d\theta
@@ -173,7 +174,7 @@ F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)}
 a\le\theta\le\pi
 \end{equation*}
 
-Angular support is limited to an arbitrary $a>0$ because $I(0)$ is undefined.
+Angular support is reduced by an arbitrary angle $a>0$ because $I(0)$ is undefined.
 
 \bigskip
 The probability of observing scattering events
@@ -181,6 +182,20 @@ in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
+
+Let $N$ be the number of scattering events from an experiment.
+Then the number of scattering events in the interval $\theta_1$ to $\theta_2$ is predicted to be
+$$
+N\,\big(F(\theta_2)-F(\theta_1)\big)
+$$
+
+The probability density function is
+$$
+f(\theta)=\frac{dF(\theta)}{d\theta}=\frac{1}{I(\pi)-I(a)}\frac{1}{(\cos\theta-1)^2}\sin\theta
+$$
+
+Note that if we had carried through the $\alpha^2m^2Z^2/p^4$ in $I(\theta)$,
+it would have cancelled out in $F(\theta)$.
 
 \subsection*{Notes}
 1. The original Rutherford scattering experiment in 1911 used alpha particles, not electrons.

@@ -397,6 +397,7 @@ The scattered photon frequency $\omega'$ is computed from the Compton equation.
 
 We can integrate $d\sigma$ to obtain a cumulative distribution function.
 Let $I(\theta)$ be the following integral of $d\sigma$.
+(The $\sin\theta$ is due to $d\Omega=\sin\theta\,d\theta\,d\phi$.)
 \begin{equation*}
 I(\theta)=
 \int
@@ -405,7 +406,7 @@ I(\theta)=
 \sin\theta\,d\theta
 \end{equation*}
 
-The solution is
+The result is
 \begin{multline*}
 I(\theta)=-\frac{\cos\theta}{R^2}
 +\log\big(1+R(1-\cos\theta)\big)\left(\frac{1}{R}-\frac{2}{R^2}-\frac{2}{R^3}\right)
@@ -418,23 +419,6 @@ where
 R=\frac{\hbar\omega}{mc^2}
 \end{equation*}
 
-\iffalse
-Here is a computer solution for $I(\theta)$ where $\text{\tt R}\equiv\hbar\omega/mc^2$.
-\begin{verbatim}
-I = -R^2 / (-R^3 + R^3 cos(theta) - R^2) -
-    R / (-R^3 + R^3 cos(theta) - R^2) +
-    2 R / (-R^4 + R^4 cos(theta) - R^3) -
-    1 / (R (R (-cos(theta) + 1) + 1)) -
-    1 / (2 R (R (-cos(theta) + 1) + 1)^2) +
-    log(R - R cos(theta) + 1) / R -
-    cos(theta) / R^2 -
-    2 log(R - R cos(theta) + 1) / R^2 -
-    2 log(R - R cos(theta) + 1) / R^3 +
-    1 / (-R^4 + R^4 cos(theta) - R^3) -
-    1 / (R (-cos(theta) + 1) + 1)
-\end{verbatim}
-\fi
-
 The cumulative distribution function is
 \begin{equation*}
 F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
@@ -442,10 +426,29 @@ F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
 0\le\theta\le\pi
 \end{equation*}
 
-The probability of observing scattered photons in the interval $\theta_1$ to $\theta_2$ is
+The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
 \begin{equation*}
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
+
+Let $N$ be the number of scattering events from an experiment.
+Then the number of scattering events in the interval $\theta_1$
+to $\theta_2$ is predicted to be
+$$
+N\,\big(F(\theta_2)-F(\theta_1)\big)
+$$
+
+The probability density function is
+$$
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{1}{I(\pi)-I(0)}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
+\sin\theta
+$$
+
+Note that if we had carried through the $\alpha^2(\hbar c)^2/2s$ in $I(\theta)$,
+it would have cancelled out in $F(\theta)$.
 
 \subsection*{Thomson scattering}
 For $\hbar\omega\ll mc^2$ we have
