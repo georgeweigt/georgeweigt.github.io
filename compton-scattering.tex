@@ -38,10 +38,10 @@ Here is the same diagram with momentum and spinor labels.
 
 In center of mass coordinates the momentum vectors are
 \begin{align*}
-p_1&
+p_1&=
 \underset{\text{inbound photon}}
 {
-=\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
+\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
 }
 &
 p_2&=
@@ -73,7 +73,7 @@ E\\
 }
 \end{align*}
 
-Symbol $\omega$ is incident momentum.
+Symbol $\omega$ is incident energy.
 Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
@@ -126,7 +126,6 @@ p_{4x}-ip_{4y}\\
 }
 \end{align*}
 
-Spinor subscripts have 1 for spin up and 2 for spin down.
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
@@ -142,19 +141,15 @@ The formula is derived from Feynman diagrams for Compton scattering.
 -\frac{\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}}{u-m^2}
 \right|^2
 \end{equation*}
-Symbol $e$ is electron charge.
-Symbols $q_1$ and $q_2$ are
+Symbol $e$ is electron charge and the other symbols are
 \begin{align*}
-q_1&=p_1+p_2
+\not{\!q_1}&=(p_1+p_2)^\mu g_{\mu\nu}\gamma^\nu
 \\
-q_2&=p_4-p_1=p_2-p_3
-\end{align*}
-
-Symbols $s$ and $u$ are Mandelstam variables
-\begin{align*}
-s&=(p_1+p_2)^2
+\not{\!q}_2&=(p_4-p_1)^\mu g_{\mu\nu}\gamma^\nu
 \\
-u&=(p_1-p_4)^2
+s&=(p_1+p_2)^2=(p_1+p_2)^\mu g_{\mu\nu} (p_1+p_2)^\nu
+\\
+u&=(p_1-p_4)^2=(p_1-p_4)^\mu g_{\mu\nu} (p_1-p_4)^\nu
 \end{align*}
 
 Let
