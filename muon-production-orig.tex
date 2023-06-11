@@ -7,8 +7,7 @@
 \begin{document}
 
 \section*{Muon pair production}
-Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
-
+A high energy electron and positron collision can create two muons.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -20,25 +19,34 @@ Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $E$ is beam energy.
-Symbol $p$ is electron momentum $p=\sqrt{E^2-m^2}$ where $m$ is electron mass $0.51\,\text{MeV}$.
-Symbol $\rho$ is muon mementum $\rho=\sqrt{E^2-M^2}$ where $M$ is muon mass $106\,\text{MeV}$.
+Here is the same diagram with momentum and spinor labels.
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, v_2$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, u_1$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3, u_3$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, v_4$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+In a typical collider experiment the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
+\underset{\text{inbound electron}}
 {
 \begin{pmatrix}E\\0\\0\\p\end{pmatrix}
 }
 &
 p_2&=
-\underset{\substack{\text{inbound}\\\text{positron}}}
+\underset{\text{inbound positron}}
 {
 \begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
 }
 &
 p_3&=
-\underset{\substack{\text{outbound}\\\text{muon}}}
+\underset{\text{outbound muon}}
 {
 \begin{pmatrix}
 E\\
@@ -49,7 +57,7 @@ E\\
 }
 &
 p_4&=
-\underset{\substack{\text{outbound}\\\text{anti-muon}}}
+\underset{\text{outbound anti-muon}}
 {
 \begin{pmatrix}
 E\\
@@ -59,6 +67,13 @@ E\\
 \end{pmatrix}
 }
 \end{align*}
+
+Symbol $E$ is beam energy, $p=\sqrt{E^2-m^2}$, $\rho=\sqrt{E^2-M^2}$,
+$m$ is electron mass $0.51\,\text{MeV}$,
+and $M$ is muon mass $106\,\text{MeV}$.
+
+\bigskip
+The spinors are
 \begin{align*}
 u_{11}&=
 \underset{\substack{\text{inbound electron}\\\text{spin up}}}
@@ -109,20 +124,17 @@ v_{42}&=
 }
 \end{align*}
 
+Spinor subscripts have 1 for spin up and 2 for spin down.
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2(E+M)^2$ will be used.
 
 \bigskip
 This is the probability density for spin state $abcd$.
+Symbol $e$ is electron charge and $s=(p_1+p_2)^2=4E^2$.
 The formula is derived from Feynman diagrams for muon pair production.
 \begin{equation*}
 \big|\mathcal{M}_{abcd}\big|^2
 =\frac{e^4}{Ns^2}\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
-\end{equation*}
-
-Symbol $e$ is electron charge and
-\begin{equation*}
-s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
 The expected probability density $\langle|\mathcal{M}|^2\rangle$
@@ -166,22 +178,18 @@ For the momentum vectors given above the result is
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
 \end{equation*}
 
-For high energy experiments $E\gg M$ a useful approximation is
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
-\end{equation*}
-
 \subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},
-\quad s=(p_1+p_2)^2=4E^2
+=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},\quad s=(p_1+p_2)^2
 \end{equation*}
 
-For high energy experiments we have
+For high energy experiments a useful approximation is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
+\quad\text{and}\quad
+s=4E^2
 \end{equation*}
 
 Substitute for $\langle|\mathcal{M}|^2\rangle$.

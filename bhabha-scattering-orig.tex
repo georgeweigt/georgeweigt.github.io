@@ -7,8 +7,7 @@
 \begin{document}
 
 \section*{Bhabha scattering}
-Bhabha scattering is the interaction $e^-+e^+\rightarrow e^-+e^+$.
-
+The following diagram shows the geometry of a Bhabha scattering experiment.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -20,26 +19,34 @@ Bhabha scattering is the interaction $e^-+e^+\rightarrow e^-+e^+$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $p$ is incident momentum.
-Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
+Here is the same diagram with momentum and spinor labels.
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_{2b}$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, v_{1a}$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3, v_{3c}$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_{4d}$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+In a typical collider experiment the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\text{inbound}\\\text{positron}}}
+\underset{\text{inbound positron}}
 {
 \begin{pmatrix}E\\0\\0\\p\end{pmatrix}
 }
 &
 p_2&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
+\underset{\text{inbound electron}}
 {
 \begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
 }
 &
 p_3&=
-\underset{\substack{\text{outbound}\\\text{positron}}}
+\underset{\text{outbound positron}}
 {
 \begin{pmatrix}
 E\\
@@ -50,7 +57,7 @@ p\cos\theta
 }
 &
 p_4&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
+\underset{\text{outbound electron}}
 {
 \begin{pmatrix}
 E\\
@@ -60,6 +67,14 @@ E\\
 \end{pmatrix}
 }
 \end{align*}
+
+Symbol $p$ is incident momentum.
+Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
+Polar angle $\theta$ is the observed scattering angle.
+Azimuth angle $\phi$ cancels out in scattering calculations.
+
+\bigskip
+The spinors are
 \begin{align*}
 v_{11}&=
 \underset{\substack{\text{inbound positron}\\\text{spin up}}}
@@ -110,6 +125,7 @@ u_{42}&=
 }
 \end{align*}
 
+Spinor subscripts have 1 for spin up and 2 for spin down.
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^4$ will be used.
 
@@ -127,7 +143,7 @@ The formula is derived from Feynman diagrams for Bhabha scattering.
 Symbol $e$ is electron charge.
 Symbols $s$ and $t$ are Mandelstam variables
 \begin{align*}
-s&=(p_1+p_2)^2=4E^2
+s&=(p_1+p_2)^2
 \\
 t&=(p_1-p_3)^2
 \end{align*}
@@ -228,7 +244,7 @@ f_{22}&=
 +64 m^4
 \end{align*}
 
-For Mandelstam variables
+Using Mandelstam variables
 \begin{align*}
 s&=(p_1+p_2)^2
 \\
@@ -312,12 +328,14 @@ Hence
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},\quad s=(p_1+p_2)^2=4E^2
+=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},\quad s=(p_1+p_2)^2
 \end{equation*}
 
-For the high energy experiments we have
+For the high energy approximation $m=0$ we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
+\quad\text{and}\quad
+s=4E^2
 \end{equation*}
 
 Substitute for $\langle|\mathcal{M}|^2\rangle$.
