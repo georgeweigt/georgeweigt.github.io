@@ -13,13 +13,8 @@ Rutherford scattering is the interaction $e^-+Z\rightarrow e^-+Z$ where $Z$ is a
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
 \draw (0,0) node {$Z$};
-%\draw[dashed] (1.4,0) -- (0.6,0);
 \draw[thick,->] (-2,0) node[anchor=east] {$e^-$} -- (-0.6,0);
 \draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^-$};
-%\draw[thick,->] (2,0) node[anchor=west] {$Z$} -- (0.6,0);
-%\draw[thick,->] (-2,0) node[anchor=east] {$e^-$} -- (-0.6,0);
-%\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^-$};
-%\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$Z$};
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
@@ -78,12 +73,15 @@ Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
 
 \bigskip
 This is the probability density for spin state $ab$.
-Symbol $Z$ is the atomic number of the nucleon,
-$e$ is electron charge,
-and $q=p_1-p_2$ is momentum transfer.
 The formula is derived from Feynman diagrams for Rutherford scattering.
 \begin{equation*}
 |\mathcal{M}_{ab}|^2=\frac{Z^2e^4}{q^4}\frac{1}{N}\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
+\end{equation*}
+
+Symbol $Z$ is the atomic number of the nucleon, $e$ is electron charge,
+$q$ is momentum transfer, and
+\begin{equation*}
+q^4=\big((p_1-p_2)^\mu g_{\mu\nu}(p_1-p_2)^\nu\big)^2=4p^4(\cos\theta-1)^2
 \end{equation*}
 
 The expected probability density
@@ -94,13 +92,11 @@ There are two inbound states.
 \begin{equation*}
 \langle\vert\mathcal{M}\vert^2\rangle
 =\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
-%=\frac{Z^2e^4}{2q^4}\frac{1}{N}\sum_{a=1}^2\sum_{b=1}^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
 \end{equation*}
 
 The Casimir trick uses matrix arithmetic to compute the sum.
 \begin{equation*}
 \langle\vert\mathcal{M}\vert^2\rangle
-%=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
 =\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
 \end{equation*}
 
