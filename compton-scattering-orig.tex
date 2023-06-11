@@ -7,8 +7,12 @@
 \begin{document}
 
 \section*{Compton scattering}
-Compton scattering is the interaction $e^-+\gamma\rightarrow e^-+\gamma$.
-
+Compton scattering is the result of photons interacting with electrons.
+In a typical Compton scattering experiment the electron is at rest.
+However, it is easier to develop a theory using the center of mass frame in which
+the photon and the electron have equal and opposite momentum.
+The following diagram shows a photon and an electron scattered through angle $\theta$
+in the center of mass frame.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -20,26 +24,34 @@ Compton scattering is the interaction $e^-+\gamma\rightarrow e^-+\gamma$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $\omega$ is incident energy.
-Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
+Here is the same diagram with momentum and spinor labels.
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_{2a}$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_{4b}$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+In center of mass coordinates the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\text{inbound}\\\text{photon}}}
+\underset{\text{inbound photon}}
 {
 \begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
 }
 &
 p_2&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
+\underset{\text{inbound electron}}
 {
 \begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
 }
 &
 p_3&=
-\underset{\substack{\text{outbound}\\\text{photon}}}
+\underset{\text{outbound photon}}
 {
 \begin{pmatrix}
 \omega\\
@@ -50,7 +62,7 @@ p_3&=
 }
 &
 p_4&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
+\underset{\text{outbound electron}}
 {
 \begin{pmatrix}
 E\\
@@ -60,6 +72,14 @@ E\\
 \end{pmatrix}
 }
 \end{align*}
+
+Symbol $\omega$ is incident energy.
+Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
+Polar angle $\theta$ is the observed scattering angle.
+Azimuth angle $\phi$ cancels out in scattering calculations.
+
+\bigskip
+The spinors are
 \begin{align*}
 u_{21}&=
 \underset{\substack{\text{inbound electron}\\\text{spin up}}}
@@ -244,8 +264,10 @@ f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \tag{2}
 \end{equation*}
 
-Compton scattering experiments are typically done in the lab frame where the electron is at rest.
-Lorentz boost $\Lambda$ transforms momentum vectors to the lab frame.
+\subsection*{Lab frame}
+Compton scattering experiments are typically done in the ``lab'' frame where the electron is at rest.
+The following Lorentz boost $\Lambda$ transforms momentum vectors from
+the center of mass frame to the lab frame.
 \begin{equation*}
 \Lambda=
 \begin{pmatrix}
