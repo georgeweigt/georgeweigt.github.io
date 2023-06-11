@@ -60,6 +60,7 @@ E\\
 \end{pmatrix}
 }
 \end{align*}
+%
 \begin{align*}
 u_{21}&=
 \underset{\substack{\text{inbound electron}\\\text{spin up}}}
@@ -131,7 +132,7 @@ Symbol $e$ is electron charge and
 
 Symbols $s$ and $u$ are Mandelstam variables
 \begin{align*}
-s&=(p_1+p_2)^2=(p_1+p_2)^\mu g_{\mu\nu} (p_1+p_2)^\nu
+s&=(p_1+p_2)^2=(E+\omega)^2
 \\
 u&=(p_1-p_4)^2=(p_1-p_4)^\mu g_{\mu\nu} (p_1-p_4)^\nu
 \end{align*}
@@ -330,7 +331,12 @@ From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame vari
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{1}{4(4\pi\varepsilon_0)^2s}
-\left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle,\quad s=(p_1+p_2)^2
+\left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
+\end{equation*}
+
+where
+\begin{equation*}
+s=m^2+2m\omega=(mc^2)^2+2(mc^2)(\hbar\omega)
 \end{equation*}
 
 For the lab frame we have
@@ -389,6 +395,7 @@ I(\theta)=-\frac{\cos\theta}{R^2}
 {}-\frac{1}{2R\big(1+R(1-\cos\theta)\big)^2}
 +\frac{1}{1+R(1-\cos\theta)}\left(-\frac{2}{R^2}-\frac{1}{R^3}\right)
 \end{multline*}
+
 where
 \begin{equation*}
 R=\frac{\hbar\omega}{mc^2}
@@ -435,10 +442,12 @@ Hence we can use the approximations
 \begin{equation*}
 \omega=\omega'\quad\text{and}\quad s=(mc^2)^2
 \end{equation*}
+
 to obtain
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2\hbar^2}{2m^2c^2}\left(1+\cos^2\theta\right)
 \end{equation*}
+
 which is the formula for Thomson scattering.
 
 \subsection*{High energy approximation}
