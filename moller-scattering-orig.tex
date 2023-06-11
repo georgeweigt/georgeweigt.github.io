@@ -7,8 +7,7 @@
 \begin{document}
 
 \section*{Moller scattering}
-Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
-
+The following diagram shows the geometry of a Moller scattering experiment.
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -20,26 +19,35 @@ Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $p$ is incident momentum.
-Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
+Here is the same diagram with momentum labels $p$ and Dirac spinor labels $u$.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$p_2, u_{2b}$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$p_1, u_{1a}$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$p_3, u_{3c}$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$p_4, u_{4d}$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+In center of mass coordinates the momentum vectors are
 \begin{align*}
 p_1&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
+\underset{\text{electron 1}}
 {
 \begin{pmatrix}E\\0\\0\\p\end{pmatrix}
 }
 &
 p_2&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
+\underset{\text{electron 2}}
 {
 \begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
 }
 &
 p_3&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
+\underset{\text{electron 3}}
 {
 \begin{pmatrix}
 E\\
@@ -50,7 +58,7 @@ p\cos\theta
 }
 &
 p_4&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
+\underset{\text{electron 4}}
 {
 \begin{pmatrix}
 E\\
@@ -60,48 +68,57 @@ E\\
 \end{pmatrix}
 }
 \end{align*}
+
+Symbol $p$ is incident momentum.
+Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
+Polar angle $\theta$ is the observed scattering angle.
+Azimuth angle $\phi$ cancels out in scattering calculations.
+
+\bigskip
+The spinors are
 \begin{align*}
 u_{11}&=
-\underset{\substack{\text{inbound electron}\\\text{spin up}}}
+\underset{\substack{\text{electron 1}\\\text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 &
 u_{21}&=
-\underset{\substack{\text{inbound electron}\\\text{spin up}}}
+\underset{\substack{\text{electron 2}\\\text{spin up}}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 &
 u_{31}&=
-\underset{\substack{\text{outbound electron}\\\text{spin up}}}
+\underset{\substack{\text{electron 3}\\\text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 &
 u_{41}&=
-\underset{\substack{\text{outbound electron}\\\text{spin up}}}
+\underset{\substack{\text{electron 4}\\\text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 \\[1ex]
 u_{12}&=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+\underset{\substack{\text{electron 1}\\\text{spin down}}}
 {
 \begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
 }
 &
 u_{22}&=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+\underset{\substack{\text{electron 2}\\\text{spin down}}}
 {
 \begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}
 }
 &
 u_{32}&=
-\underset{\substack{\text{outbound electron}\\\text{spin down}}}
+\underset{\substack{\text{electron 3}\\\text{spin down}}}
 {
 \begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}
 }
 &
 u_{42}&=
-\underset{\substack{\text{outbound electron}\\\text{spin down}}}
+\underset{\substack{\text{electron 4}\\\text{spin down}}}
 {
 \begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}
 }
 \end{align*}
 
+Spinor subscripts have 1 for spin up and 2 for spin down.
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^4$ will be used.
 
