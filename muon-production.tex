@@ -26,19 +26,19 @@ Symbol $p$ is electron momentum $p=\sqrt{E^2-m^2}$ where $m$ is electron mass $0
 Symbol $\rho$ is muon mementum $\rho=\sqrt{E^2-M^2}$ where $M$ is muon mass $106\,\text{MeV}$.
 \begin{align*}
 p_1&=
-\underset{\text{inbound electron}}
+\underset{\substack{\text{inbound}\\\text{electron}}}
 {
 \begin{pmatrix}E\\0\\0\\p\end{pmatrix}
 }
 &
 p_2&=
-\underset{\text{inbound positron}}
+\underset{\substack{\text{inbound}\\\text{positron}}}
 {
 \begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
 }
 &
 p_3&=
-\underset{\text{outbound muon}}
+\underset{\substack{\text{outbound}\\\text{muon}}}
 {
 \begin{pmatrix}
 E\\
@@ -49,7 +49,7 @@ E\\
 }
 &
 p_4&=
-\underset{\text{outbound anti-muon}}
+\underset{\substack{\text{outbound}\\\text{anti-muon}}}
 {
 \begin{pmatrix}
 E\\
@@ -60,49 +60,49 @@ E\\
 }
 \\[1ex]
 u_{11}&=
-\underset{\substack{\text{inbound electron}\\\text{spin up}}}
+\underset{\text{spin up}}
 {
 \begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
 }
 &
 v_{21}&=
-\underset{\substack{\text{inbound positron}\\\text{spin up}}}
+\underset{\text{spin up}}
 {
 \begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
 }
 &
 u_{31}&=
-\underset{\substack{\text{outbound muon}\\\text{spin up}}}
+\underset{\text{spin up}}
 {
 \begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}
 }
 &
 v_{41}&=
-\underset{\substack{\text{outbound anti-muon}\\\text{spin up}}}
+\underset{\text{spin up}}
 {
 \begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}
 }
 \\[1ex]
 u_{12}&=
-\underset{\substack{\text{inbound electron}\\\text{spin down}}}
+\underset{\text{spin down}}
 {
 \begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
 }
 &
 v_{22}&=
-\underset{\substack{\text{inbound positron}\\\text{spin down}}}
+\underset{\text{spin down}}
 {
 \begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
 }
 &
 u_{32}&=
-\underset{\substack{\text{outbound muon}\\\text{spin down}}}
+\underset{\text{spin down}}
 {
 \begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}
 }
 &
 v_{42}&=
-\underset{\substack{\text{outbound anti-muon}\\\text{spin down}}}
+\underset{\text{spin down}}
 {
 \begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}
 }
