@@ -24,7 +24,7 @@ then $\langle E\rangle$ should be close to the actual energy $E$ determined by e
 \bigskip
 For a helium atom, find the expected energy $\langle E\rangle$ given the following wavefunction.
 \begin{equation*}
-\psi=\frac{\alpha^3}{\pi}\exp\left(-\alpha (r_1+r_2)\right)
+\psi=\frac{\alpha^3}{\pi}\exp\big({-}\alpha (r_1+r_2)\big)
 \end{equation*}
 
 Recall that $|\psi|^2=\psi^*\psi$ is a probability density function.
@@ -126,27 +126,29 @@ Hence the kinetic energy of the first electron is
 \,r_1^2\,r_2^2
 \,dr_1\,dr_2
 \\
-&=\tfrac{1}{2}\alpha^2\tag{2}
+&=\tfrac{1}{2}\alpha^2
+\tag{2}
 \end{align*}
 
-By symmetry $\langle K_1\rangle=\langle K_2\rangle$ so let us drop the subscript and write
+By symmetry $\langle K_1\rangle=\langle K_2\rangle$ so we can write
 \begin{equation*}
-\langle K\rangle=\langle K_1\rangle=\langle K_2\rangle
+\langle K\rangle=\langle K_1\rangle+\langle K_2\rangle=\alpha^2
 \end{equation*}
 
-For potential energy we have
+For the potential energy of the first electron we have
 \begin{equation*}
-\langle V\rangle
+\langle V_1\rangle
 =
 16\pi^2\int_0^\infty\int_0^\infty\psi\left(-\frac{Z}{r_1}\right)\psi
 \,r_1^2r_2^2
 \,dr_1\,dr_2
-=-Z\alpha\tag{3}
+=-Z\alpha
+\tag{3}
 \end{equation*}
 
 Again by symmetry we can write
 \begin{equation*}
-\langle V\rangle=\langle V_1\rangle=\langle V_2\rangle
+\langle V\rangle=\langle V_1\rangle+\langle V_2\rangle=-2Z\alpha
 \end{equation*}
 
 Finally, for inter-electron potential energy we have (derivation is below)
@@ -162,7 +164,7 @@ Finally, for inter-electron potential energy we have (derivation is below)
 
 Summing over kinetic and potential energies we have
 \begin{equation*}
-\langle E\rangle=2\langle K\rangle+2\langle V\rangle+\langle U\rangle=\alpha^2-2Z\alpha+\tfrac{5}{8}\alpha
+\langle E\rangle=\langle K\rangle+\langle V\rangle+\langle U\rangle=\alpha^2-2Z\alpha+\tfrac{5}{8}\alpha
 \end{equation*}
 
 Next, find $\alpha$ that minimizes $\langle E\rangle$.
