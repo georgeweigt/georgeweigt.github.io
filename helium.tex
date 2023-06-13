@@ -3,27 +3,25 @@
 \parindent=0pt
 \begin{document}
 
-Consider the following time-independent Schroedinger equation.
+Consider the time-independent Schroedinger equation.
 \begin{equation*}
 \hat{H}\psi=E\psi
 \end{equation*}
 
-For an eigenfunction $\psi$ that is an exact solution, energy $E$ is a number.
-However, when $\psi$ is an approximate solution, $E$ varies over the coordinates of $\psi$.
-For example, a two-electron atom does not have an exact solution $\psi$,
-hence for an approximate $\psi$ we have
+For a wavefunction $\psi$ that is an exact solution, $E$ is a number.
+However, when $\psi$ is an approximate solution, $E$ varies over configuration space.
+For example, the two electrons of a helium atom have six dimensions in configuration space so we have
 \begin{equation*}
-\hat{H}\psi=E(\vec{r}_1,\vec{r}_2)\psi
+\hat{H}\psi=E(r_1,r_2,\theta_1,\theta_2,\phi_1,\phi_2)\psi
 \end{equation*}
 
-where $E(\vec{r}_1,\vec{r}_2)$ is a function of the electron coordinates.
-We still want a single number for energy $E$, so we use the expected energy $\langle E\rangle$.
-The expected energy is basically the average value of $E(\vec{r}_1,\vec{r}_2)$.
-If the eigenfunction $\psi$ is a good approximation
+We still want a single number for $E$ so we use the expected energy $\langle E\rangle$.
+The expected energy is the average value of $E(r_1,\theta_1,\phi_1,r_2,\theta_2,\phi_2)$.
+If the wavefunction $\psi$ is a good approximation
 then $\langle E\rangle$ should be close to the actual energy $E$ determined by experiment.
 
 \bigskip
-For a helium atom, find the expected energy $\langle E\rangle$ given the following approximate eigenfunction.
+For a helium atom, find the expected energy $\langle E\rangle$ given the following wavefunction.
 \begin{equation*}
 \psi=\frac{\alpha^3}{\pi}\exp\left(-\alpha (r_1+r_2)\right)
 \end{equation*}
@@ -35,7 +33,7 @@ Hence the expected energy is
 \end{equation*}
 
 Reorder factors in the integrand.
-For the eigenfunction given above, $\psi^*=\psi$.
+For the wavefunction given above, $\psi^*=\psi$.
 \begin{equation*}
 \langle E\rangle=\int\psi E\psi\,dV_1\,dV_2
 \end{equation*}
