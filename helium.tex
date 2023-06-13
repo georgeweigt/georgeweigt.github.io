@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \parindent=0pt
 \begin{document}
@@ -8,7 +9,7 @@ Consider the simplest Schroedinger equation.
 \hat{H}\psi=E\psi
 \end{equation*}
 
-For a wavefunction $\psi$ that is an exact solution, $E$ is a number.
+For a wavefunction $\psi$ that is an exact solution, energy $E$ is a number.
 However, when $\psi$ is an approximate solution, $E$ varies over configuration space.
 For example, two electrons have six dimensions in configuration space so we have
 \begin{equation*}
@@ -16,7 +17,7 @@ For example, two electrons have six dimensions in configuration space so we have
 \end{equation*}
 
 We still want a single number for $E$ so we use the expected energy $\langle E\rangle$.
-The expected energy is the average value of $E(r_1,r_2,\theta_1,\theta_2,\phi_1,\phi_2)$.
+The expected energy is the average value of $E(r_1,r_2,\ldots)$.
 If the wavefunction $\psi$ is a good approximation
 then $\langle E\rangle$ should be close to the actual energy $E$ determined by experiment.
 
@@ -92,6 +93,8 @@ to obtain
 \end{equation*}
 
 We now proceed to integrate each term separately.
+
+\bigskip
 The Laplacian in spherical coordinates is
 \begin{equation*}
 \nabla^2=\frac{1}{r^2}\frac{\partial}{\partial r}
@@ -110,9 +113,9 @@ Since $\psi$ has no angular dependence we have
 =\left(\alpha^2-\frac{2\alpha}{r_1}\right)\psi
 \end{equation*}
 
-Hence for kinetic energy we have
+Hence the kinetic energy of the first electron is
 \begin{align*}
-\langle K\rangle
+\langle K_1\rangle
 &=
 16\pi^2\int_0^\infty\int_0^\infty\psi\left(-\frac{1}{2}\nabla_1^2\right)\psi
 \,r_1^2r_2^2
@@ -126,6 +129,11 @@ Hence for kinetic energy we have
 &=\tfrac{1}{2}\alpha^2\tag{2}
 \end{align*}
 
+By symmetry $\langle K_1\rangle=\langle K_2\rangle$ so let us drop the subscript and write
+\begin{equation*}
+\langle K\rangle=\langle K_1\rangle=\langle K_2\rangle
+\end{equation*}
+
 For potential energy we have
 \begin{equation*}
 \langle V\rangle
@@ -134,6 +142,11 @@ For potential energy we have
 \,r_1^2r_2^2
 \,dr_1\,dr_2
 =-Z\alpha\tag{3}
+\end{equation*}
+
+Again by symmetry we can write
+\begin{equation*}
+\langle V\rangle=\langle V_1\rangle=\langle V_2\rangle
 \end{equation*}
 
 Finally, for inter-electron potential energy we have (derivation is below)
@@ -253,15 +266,14 @@ I(r_1)=
 \end{equation*}
 
 Solve the integrals.
-\begin{multline*}
+\begin{equation*}
 I(r_1)=
 \frac{4\alpha^3}{r_1}
 \left.
 \exp(-2\alpha r_2)\left(-\frac{r_2^2}{2\alpha}-\frac{r_2}{2\alpha^2}-\frac{1}{4\alpha^3}
 \right)\right|_0^{r_1}
-\\
-{}+4\alpha^3\left.\exp(-2\alpha r_2)\left(-\frac{r_2}{2\alpha}-\frac{1}{4\alpha^2}\right)\right|_{r_1}^\infty
-\end{multline*}
++4\alpha^3\left.\exp(-2\alpha r_2)\left(-\frac{r_2}{2\alpha}-\frac{1}{4\alpha^2}\right)\right|_{r_1}^\infty
+\end{equation*}
 
 Evaluate per limits.
 \begin{equation*}
@@ -282,12 +294,11 @@ I=4\alpha^3\int\limits_0^\infty
 \end{equation*}
 
 Expand the integrand.
-\begin{multline*}
+\begin{equation*}
 I=4\alpha^3\int\limits_0^\infty\exp(-2\alpha r_1)\,r_1\,dr_1
 -4\alpha^3\int\limits_0^\infty\exp(-4\alpha r_1)\,r_1\,dr_1
-\\
 -4\alpha^4\int\limits_0^\infty\exp(-4\alpha r_1)\,r_1^2\,dr_1
-\end{multline*}
+\end{equation*}
 
 Solve the integrals.
 \begin{multline*}
