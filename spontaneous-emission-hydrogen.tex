@@ -11,21 +11,22 @@ Let us begin by writing down the wave function $\psi$ for hydrogen.
 \begin{equation*}
 \psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_{lm}(\theta,\phi)
 \end{equation*}
+
 where
 \begin{gather*}
 R_{nl}(r)=
 \frac{2}{n^2}
-\bigg(\frac{(n-l-1)!}{(n+l)!}\bigg)^{1/2}
-\bigg(\frac{2r}{na_0}\bigg)^l
-L_{n-l-1}^{2l+1}\bigg(\frac{2r}{na_0}\bigg)
-\exp\bigg({-}\frac{r}{na_0}\bigg)
+\biggl(\frac{(n-l-1)!}{(n+l)!}\biggr)^{1/2}
+\biggl(\frac{2r}{na_0}\biggr)^l
+L_{n-l-1}^{2l+1}\biggl(\frac{2r}{na_0}\biggr)
+\exp\biggl(-\frac{r}{na_0}\biggr)
 a_0^{-3/2}
 \\
 L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
 \\
 Y_{lm}(\theta,\phi)=(-1)^m
-\bigg(\frac{2l+1}{4\pi}\bigg)^{1/2}
-\bigg(\frac{(l-m)!}{(l+m)!}\bigg)^{1/2}
+\biggl(\frac{2l+1}{4\pi}\biggr)^{1/2}
+\biggl(\frac{(l-m)!}{(l+m)!}\biggr)^{1/2}
 P_l^m(\cos\theta)\exp(im\phi)
 \\
 P_l^m(x)=\frac{1}{2^l l!}(1-x^2)^{m/2}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
@@ -70,7 +71,7 @@ y=r\sin\theta\sin\phi,
 \quad
 z=r\cos\theta
 \\
-f_{21}=\psi_{100}^*\psi_{210}=\frac{r\cos\theta}{4\sqrt2\pi a_0^4}\exp\bigg({-}\frac{3r}{2a_0}\bigg)
+f_{21}=\psi_{100}^*\psi_{210}=\frac{r\cos\theta}{4\sqrt2\pi a_0^4}\exp\biggl(-\frac{3r}{2a_0}\biggr)
 \\
 dV=r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{gather*}
