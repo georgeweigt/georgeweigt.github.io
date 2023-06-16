@@ -146,20 +146,20 @@ The Casimir trick uses matrix arithmetic to compute sums.
 \mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
 \end{equation*}
 
-The following formula is equivalent to the Casimir trick.
-(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
-\begin{multline*}
+Another way to compute $\langle|\mathcal{M}|^2\rangle$ is
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4s^2}
-\biggl(
-32 (p_1\cdot p_3) (p_2\cdot p_4) +
-32 (p_1\cdot p_4) (p_2\cdot p_3)
+\left(-8 s^2 + 16 t^2 - 16 s u + (64 s + 32 u) \left(m^2 + M^2\right) - 48 \left(m^2 + M^2\right)^2\right)
+\end{equation*}
+where
+\begin{align*}
+s&=(p_1+p_2)^2
 \\
-{}+32 m^2 (p_3\cdot p_4) +
-32 M^2 (p_1\cdot p_2) +
-64 m^2 M^2
-\biggr)
-\end{multline*}
+t&=(p_1-p_3)^2
+\\
+u&=(p_1-p_4)^2
+\end{align*}
 
 For the momentum vectors given above the result is
 \begin{equation*}
