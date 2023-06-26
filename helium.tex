@@ -93,10 +93,15 @@ to obtain
 \,dr_1\,dr_2
 \end{equation*}
 
-We now proceed to integrate each term separately.
+Solve for each term separately, starting with the kinetic energy of the first electron.
+\begin{equation*}
+\langle K_1\rangle
+=16\pi^2\int_0^\infty\int_0^\infty\psi\left(-\frac{1}{2}\nabla_1^2\right)\psi
+\,r_1^2r_2^2
+\,dr_1\,dr_2
+\end{equation*}
 
-\bigskip
-The Laplacian in spherical coordinates is
+The Laplacian is
 \begin{equation*}
 \nabla^2=\frac{1}{r^2}\frac{\partial}{\partial r}
 \left(r^2\frac{\partial}{\partial r}\right)
@@ -107,29 +112,30 @@ The Laplacian in spherical coordinates is
 \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
 \end{equation*}
 
-Since $\psi$ has no angular dependence we have
+Since $\psi=\alpha^3/\pi\exp(-\alpha(r_1+r_2))$ has no angular dependence we have for the first electron
 \begin{equation*}
-\nabla^2_1\psi=\frac{1}{r_1^2}\frac{\partial}{\partial r_1}
-\left(r_1^2\frac{\partial}{\partial r_1}\right)\psi
-=\left(\alpha^2-\frac{2\alpha}{r_1}\right)\psi
+\nabla^2_1\psi
+=\frac{1}{r_1^2}\frac{\partial}{\partial r_1}\left(r_1^2\frac{\partial}{\partial r_1}\right)\psi
 \end{equation*}
 
-Hence the kinetic energy of the first electron is
-\begin{align*}
-\langle K_1\rangle
-&=
-16\pi^2\int_0^\infty\int_0^\infty\psi\left(-\frac{1}{2}\nabla_1^2\right)\psi
-\,r_1^2r_2^2
-\,dr_1\,dr_2
-\\
-&=-8\alpha^6\int_0^\infty\int_0^\infty
+It follows that
+\begin{equation*}
+\nabla^2_1\psi=\left(\alpha^2-\frac{2\alpha}{r_1}\right)\psi
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle K_1\rangle=-8\alpha^6\int_0^\infty\int_0^\infty
 \left(\alpha^2-\frac{2\alpha}{r_1}\right)\exp\bigl(-2\alpha(r_1+r_2)\bigr)
 \,r_1^2\,r_2^2
 \,dr_1\,dr_2
-\\
-&=\tfrac{1}{2}\alpha^2
+\end{equation*}
+
+The result is
+\begin{equation*}
+\langle K_1\rangle=\tfrac{1}{2}\alpha^2
 \tag{2}
-\end{align*}
+\end{equation*}
 
 By symmetry $\langle K_1\rangle=\langle K_2\rangle$ so we can write
 \begin{equation*}
