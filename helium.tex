@@ -48,11 +48,11 @@ Replace $E\psi$ with $\hat{H}\psi$.
 This is a simplified Hamiltonian for helium, in atomic units of $\hbar=m_e=e=4\pi\epsilon_0=1$.
 \begin{equation*}
 \hat{H}=
--\underset{\substack{\\[1ex]\text{kinetic energy}\\\text{electron 1}}}{\frac{1}{2}\nabla^2_1}
--\underset{\substack{\\[1ex]\text{kinetic energy}\\\text{electron 2}}}{\frac{1}{2}\nabla^2_2}
--\underset{\substack{\\[1ex]\text{potential energy}\\\text{electron 1}}}{\frac{Z}{r_1}}
--\underset{\substack{\\[1ex]\text{potential energy}\\\text{electron 2}}}{\frac{Z}{r_2}}
-+\underset{\substack{\\[1ex]\text{potential energy}\\\text{inter-electron}}}{\frac{1}{r_{12}}}
+\underset{\substack{\\[1ex]\text{kinetic}\\\text{energy}\\\text{electron 1}}}{\left(-\frac{1}{2}\nabla^2_1\right)}
++\underset{\substack{\\[1ex]\text{kinetic}\\\text{energy}\\\text{electron 2}}}{\left(-\frac{1}{2}\nabla^2_2\right)}
++\underset{\substack{\\[1ex]\text{potential}\\\text{energy}\\\text{electron 1}}}{\left(-\frac{Z}{r_1}\right)}
++\underset{\substack{\\[1ex]\text{potential}\\\text{energy}\\\text{electron 2}}}{\left(-\frac{Z}{r_2}\right)}
++\underset{\substack{\\[1ex]\text{potential}\\\text{energy}\\\text{inter-electron}}}{\frac{1}{r_{12}}}
 \end{equation*}
 
 Hence
@@ -162,7 +162,7 @@ Finally, for inter-electron potential energy we have (derivation is below)
 \begin{equation*}
 \langle U\rangle
 =
-16\pi^2\int_0^\infty\int_0^\infty\psi\left(\frac{1}{r_{12}}\right)\psi
+16\pi^2\int_0^\infty\int_0^\infty\frac{\psi^2}{r_{12}}
 \,r_1^2r_2^2
 \,dr_1\,dr_2
 =\tfrac{5}{8}\alpha
