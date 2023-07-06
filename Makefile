@@ -6,7 +6,7 @@
 	pdflatex $<
 
 %.html: %.txt
-	cat html-intro $< html-outro > $@
+	cat html-ante $< html-post > $@
 
 # $$ sends a single $ to the shell
 
