@@ -1,0 +1,85 @@
+<html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Verify that equation (1) is a solution"
+
+-- psi returns a hydrogen atom eigenfunction
+
+psi(n,l,m) = R(n,l) Y(l,m)
+
+-- R returns a radial eigenfunction
+ 
+R(n,l) = 2 / n^2 *
+         a0^(-3/2) *
+         sqrt((n - l - 1)! / (n + l)!) *
+         (2 r / (n a0))^l *
+         L(2 r / (n a0),n - l - 1,2 l + 1) *
+         exp(-r / (n a0))
+
+-- associated Laguerre polynomial (k is a local var)
+
+L(x,n,m,k) = (n + m)! sum(k,0,n, (-x)^k / ((n - k)! (m + k)! k!))
+
+-- Bohr radius
+
+a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
+
+-- Y returns a spherical harmonic eigenfunction
+
+Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta
+
+P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+         1 / (2^l l!) sin(theta)^m *
+         eval(d((x^2 - 1)^l,x,l + m),x,cos(theta)))
+
+-- E(n) returns the nth energy eigenvalue
+
+E(n) = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
+
+-- H is the Hamiltonian
+
+H1(psi) = -hbar^2 Lap1(psi) / (2 mu) - e^2 / (4 pi epsilon0 r1) psi
+
+Lap1(f) = 1/r1^2 d(r1^2 d(f,r1),r1) +
+         1/(r1^2 sin(theta1)) d(sin(theta1) d(f,theta1),theta1) +
+         1/(r1 sin(theta1))^2 d(f,phi1,2)
+
+H2(psi) = -hbar^2 Lap2(psi) / (2 mu) - e^2 / (4 pi epsilon0 r2) psi
+
+Lap2(f) = 1/r2^2 d(r2^2 d(f,r2),r2) +
+         1/(r2^2 sin(theta2)) d(sin(theta2) d(f,theta2),theta2) +
+         1/(r2 sin(theta2))^2 d(f,phi2,2)
+
+n1 = 1
+n2 = 1
+
+psi1 = eval(psi(n1,0,0),r,r1,theta,theta1,phi,phi1)
+psi2 = eval(psi(n2,0,0),r,r2,theta,theta2,phi,phi2)
+
+E1 = E(n1)
+E2 = E(n2)
+
+check(H1(psi1) == E1 psi1)
+check(H2(psi2) == E2 psi2)
+
+H0(psi) = -hbar^2 / (2 M) Lap0(psi)
+
+Lap0(f) = d(r0^2 d(f,r0), r0) / r0^2 +
+          d(sin(theta0) d(f,theta0), theta0) / (r0^2 sin(theta0)) +
+          d(f,phi0,2) / (r0 sin(theta0))^2
+
+k = sqrt(2 M (E - E1 - E2)) / hbar
+
+f = exp(i k r0) / r0
+
+F = f psi1 psi2
+
+check(H0(F) == (E - E1 - E2) F)
+check(H1(F) == E1 F)
+check(H2(F) == E2 F)
+
+check(H0(F) + H1(F) + H2(F) == E F)
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

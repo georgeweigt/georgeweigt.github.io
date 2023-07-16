@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+\section*{Mott problem}
+
+For a system of two hydrogen atoms and an $\alpha$ particle the hamiltonian is
+\begin{equation*}
+\hat H=\hat K_\alpha+\hat K_1+\hat K_2+V_1+V_2+U_1+U_2
+\end{equation*}
+where
+\begin{align*}
+\hat K_\alpha&=-\frac{\hbar^2}{2M}\nabla_\alpha^2 & & \text{kinetic energy of $\alpha$ particle}
+\\[1ex]
+\hat K_1&=-\frac{\hbar^2}{2m}\nabla_1^2 & & \text{kinetic energy of 1st electron}
+\\[1ex]
+\hat K_2&=-\frac{\hbar^2}{2m}\nabla_2^2 & & \text{kinetic energy of 2nd electron}
+\\[1ex]
+V_1&=-\frac{e^2}{|\mathbf r_1-\mathbf a_1|} & & \text{potential energy of 1st electron}
+\\[1ex]
+V_2&=-\frac{e^2}{|\mathbf r_2-\mathbf a_2|} & & \text{potential energy of 2nd electron}
+\\[1ex]
+U_1&=-\frac{2e^2}{|\mathbf R-\mathbf r_1|} & & \text{potential energy of $\alpha$ and 1st electron}
+\\[1ex]
+U_2&=-\frac{2e^2}{|\mathbf R-\mathbf r_2|} & & \text{potential energy of $\alpha$ and 2nd electron}
+\end{align*}
+and
+\begin{align*}
+& \mathbf R & & \text{coordinate of $\alpha$ particle}
+\\
+& \mathbf r_1,\mathbf r_2 & & \text{coordinates of electrons}
+\\
+& \mathbf a_1,\mathbf a_2 & & \text{coordinates of hydrogen atoms}
+\end{align*}
+
+Let $\psi_1$ and $\psi_2$ be hydrogen atom wavefunctions such that
+\begin{equation*}
+\hat H\psi_1=E_1\psi_1,
+\quad
+\hat H\psi_2=E_2\psi_2
+\end{equation*}
+
+We want to find a wavefunction $F(\mathbf R,\mathbf r_1,\mathbf r_2)$ such that
+\begin{equation*}
+\hat HF=EF
+\end{equation*}
+
+Let
+\begin{equation*}
+F=F_0+F_1+F_2+\cdots
+\end{equation*}
+and let
+\begin{equation*}
+\hat H_0=\hat K_\alpha+E_1+E_2
+\end{equation*}
+
+Start by finding an $F_0$ such that
+\begin{equation*}
+\hat H_0F_0=EF_0
+\end{equation*}
+
+The solution is
+\begin{equation*}
+F_0(\mathbf R,\mathbf r_1,\mathbf r_2)=f_0(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
+\tag{1}
+\end{equation*}
+where
+\begin{equation*}
+f_0(\mathbf R)=\frac{1}{|\mathbf R|}\exp\left(\frac{ik|\mathbf R|}{\hbar}\right),\quad k=\sqrt{2M(E-E_1-E_2)}
+\end{equation*}
+
+It follows that for the full hamiltonian
+\begin{equation*}
+\hat HF_0=EF_0+(U_1+U_2)F_0
+\end{equation*}
+
+To cancel $(U_1+U_2)F_0$ from the full hamiltonian, find an $F_1$ such that
+\begin{equation*}
+\hat H_0F_1=EF_1-(U_1+U_2)F_0
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\left(\hat H_0-E\right)F_1=-(U_1+U_2)F_0
+\end{equation*}
+
+Expand $F_1$ and $F_0$.
+\begin{equation*}
+\left(\hat H_0-E\right)f_1(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
+=-(U_1+U_2)f_0(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
+\end{equation*}
+
+To solve for $f_1(\mathbf R)$ multiply both sides by
+\begin{equation*}
+\psi_1^*(\mathbf r_1-\mathbf a_1)\psi_2^*(\mathbf r_2-\mathbf a_2)
+\end{equation*}
+and integrate over $\mathbf r_1$ and $\mathbf r_2$ to obtain
+\begin{equation*}
+\left(\hat H_0-E\right)f_1(\mathbf R)
+=V(\mathbf R)f_0(\mathbf R)
+\tag{2}
+\end{equation*}
+where
+\begin{multline*}
+V(\mathbf R)
+=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2\,|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_1|}
+\,d\mathbf r_1\,d\mathbf r_2
+\\
+{}+2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2\,|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}
+\,d\mathbf r_1\,d\mathbf r_2
+\end{multline*}
+
+Because $|\psi|^2$ is a probability density function we have
+\begin{equation*}
+V(\mathbf R)
+=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2}{|\mathbf R-\mathbf r_1|}
+\,d\mathbf r_1
++2e^2\int\frac{|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}
+\,d\mathbf r_2
+\end{equation*}
+
+Per Mott the solution to (2) is
+\begin{equation*}
+f_1(\mathbf R)=
+\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
+\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r,
+\quad
+k=\sqrt{2M(E-E_1-E_2)}
+\end{equation*}
+
+Substitute for $f_0(\mathbf r)$ to obtain
+\begin{equation*}
+f_1(\mathbf R)=
+\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf r)}{|\mathbf R-\mathbf r||\mathbf r|}
+\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}+\frac{ik|\mathbf r|}{\hbar}\right)\,d\mathbf r
+\end{equation*}
+
+Change of variable $\mathbf r\rightarrow\mathbf y+\mathbf a_1$.
+\begin{equation*}
+f_1(\mathbf R)=
+\frac{M}{2\pi\hbar^2}\int
+\frac{V(\mathbf y+\mathbf a_1)}{|\mathbf R-\mathbf y-\mathbf a_1||\mathbf y+\mathbf a_1|}
+\exp\left(\frac{ik|\mathbf R-\mathbf y-\mathbf a_1|}{\hbar}
++\frac{ik|\mathbf y+\mathbf a_1|}{\hbar}\right)\,d\mathbf y
+\end{equation*}
+
+Per Mott (see also Figari and Teta)
+\begin{equation*}
+f_1(\mathbf R)\approx
+\frac{\exp(ik|\mathbf R-\mathbf a_1|)}{|\mathbf R-\mathbf a_1|}
+\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf y+\mathbf a_1)}{|\mathbf y+\mathbf a_1|}
+\exp\left(-\frac{ik\mathbf u\cdot\mathbf y}{\hbar}+\frac{ik|\mathbf y|}{\hbar}\right)\,d\mathbf y
+\tag{3}
+\end{equation*}
+where
+\begin{equation*}
+\mathbf u=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
+\end{equation*}
+
+By the method of stationary phase the integral vanishes except for
+\begin{equation*}
+\frac{d}{d\mathbf y}\left(-\mathbf u\cdot\mathbf y+|\mathbf y+\mathbf a_1|\right)
+=-\mathbf u+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
+\end{equation*}
+
+The $V(\mathbf y+\mathbf a_1)$ in (3) shrinks as $\mathbf y$ grows
+hence for $\mathbf y\ll\mathbf a_1$ we have the approximation
+\begin{equation*}
+\mathbf u\approx\frac{\mathbf a_1}{|\mathbf a_1|}
+\end{equation*}
+
+Hence the $\alpha$ particle trajectory is along the line $\mathbf a_1$.
+
+\end{document}
