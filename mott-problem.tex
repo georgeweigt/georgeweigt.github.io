@@ -6,7 +6,8 @@
 
 \section*{Mott problem}
 
-For a system of two hydrogen atoms and an $\alpha$ particle the hamiltonian is
+Consider a system of two hydrogen atoms ionized by an $\alpha$ particle.
+The Hamiltonian is
 \begin{equation*}
 \hat H=\hat K_\alpha+\hat K_1+\hat K_2+V_1+V_2+U_1+U_2
 \end{equation*}
@@ -71,12 +72,12 @@ where
 f_0(\mathbf R)=\frac{1}{|\mathbf R|}\exp\left(\frac{ik|\mathbf R|}{\hbar}\right),\quad k=\sqrt{2M(E-E_1-E_2)}
 \end{equation*}
 
-It follows that for the full hamiltonian
+It follows that for the full Hamiltonian
 \begin{equation*}
 \hat HF_0=EF_0+(U_1+U_2)F_0
 \end{equation*}
 
-To cancel $(U_1+U_2)F_0$ from the full hamiltonian, find an $F_1$ such that
+To cancel $(U_1+U_2)F_0$ from the full Hamiltonian, find an $F_1$ such that
 \begin{equation*}
 \hat H_0F_1=EF_1-(U_1+U_2)F_0
 \end{equation*}
@@ -165,12 +166,14 @@ By the method of stationary phase the integral vanishes except for
 =-\mathbf u+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
 \end{equation*}
 
-The $V(\mathbf y+\mathbf a_1)$ in (3) shrinks as $\mathbf y$ grows
-hence for $\mathbf y\ll\mathbf a_1$ we have the approximation
+Potential energy $V(\mathbf y+\mathbf a_1)\rightarrow0$ as $|\mathbf y|$ increases
+hence a useful approximation is
 \begin{equation*}
-\mathbf u\approx\frac{\mathbf a_1}{|\mathbf a_1|}
+\mathbf u\approx\frac{\mathbf a_1}{|\mathbf a_1|},
+\quad
+\mathbf y\ll\mathbf a_1
 \end{equation*}
 
-Hence the $\alpha$ particle trajectory is along the line $\mathbf a_1$.
+It follows that the $\alpha$ particle trajectory is along the line $\mathbf a_1$.
 
 \end{document}
