@@ -10,14 +10,13 @@ Consider the emission of an $\alpha$ particle in a cloud chamber.
 The quantum mechanical model of the particle is a spherical wave emanating from the origin.
 A spherical wave should ionize atoms throughout the cloud chamber.
 However, only straight tracks are observed.
-Neville Mott used the Schrodinger equation to explain why straight tracks are observed.
+Nevill Mott used the Schrodinger equation to explain why straight tracks are observed.
 
 \bigskip
 
 Let $\mathbf R$ be the position of the $\alpha$ particle,
-let $\mathbf r_1$ and $\mathbf r_2$ be the positions of the free electrons,
-and let $\mathbf a_1$ and $\mathbf a_2$ be the positions of the first two atoms
-ionized by the $\alpha$ particle.
+let $\mathbf a_1$ and $\mathbf a_2$ be the positions of two atoms ionized by the $\alpha$ particle,
+and let $\mathbf r_1$ and $\mathbf r_2$ be the positions of the free electrons.
 The Hamiltonian for the system is
 \begin{equation*}
 \hat H=\hat K_\alpha+\hat K_1+\hat K_2+V_1+V_2+U_1+U_2
@@ -163,16 +162,17 @@ where
 \mathbf u=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
 \end{equation*}
 
-By the method of stationary phase the integral vanishes except for
+The method of stationary phase requires that
 \begin{equation*}
 \frac{d}{d\mathbf y}\left(-\mathbf u\cdot\mathbf y+|\mathbf y+\mathbf a_1|\right)
 =-\mathbf u+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
+\tag{4}
 \end{equation*}
 
 Note that $V(\mathbf y+\mathbf a_1)$ is small
 except for $\mathbf y\approx0$ and $\mathbf y\approx\mathbf a_2-\mathbf a_1$ so we only need to consider
 $\mathbf y$ near those values.
-For stationarity at both $\mathbf y=0$ and $\mathbf y=\mathbf a_2-\mathbf a_1$ we have
+To satisfy (4) for both $\mathbf y=0$ and $\mathbf y=\mathbf a_2-\mathbf a_1$ we have
 \begin{equation*}
 \mathbf u=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
 \end{equation*}
