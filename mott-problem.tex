@@ -6,8 +6,19 @@
 
 \section*{Mott problem}
 
-Consider a system of two hydrogen atoms ionized by an $\alpha$ particle.
-The Hamiltonian is
+Consider the emission of an $\alpha$ particle in a cloud chamber.
+The quantum mechanical model of the particle is a spherical wave emanating from the origin.
+A spherical wave should ionize atoms throughout the cloud chamber.
+However, only straight tracks are observed.
+Neville Mott used the Schrodinger equation to explain why straight tracks are observed.
+
+\bigskip
+
+Let $\mathbf R$ be the position of the $\alpha$ particle,
+let $\mathbf r_1$ and $\mathbf r_2$ be the positions of the free electrons,
+and let $\mathbf a_1$ and $\mathbf a_2$ be the positions of the first two atoms
+ionized by the $\alpha$ particle.
+The Hamiltonian for the system is
 \begin{equation*}
 \hat H=\hat K_\alpha+\hat K_1+\hat K_2+V_1+V_2+U_1+U_2
 \end{equation*}
@@ -27,16 +38,8 @@ U_1&=-\frac{2e^2}{|\mathbf R-\mathbf r_1|} & & \text{potential energy of $\alpha
 \\[1ex]
 U_2&=-\frac{2e^2}{|\mathbf R-\mathbf r_2|} & & \text{potential energy of $\alpha$ and 2nd electron}
 \end{align*}
-and
-\begin{align*}
-& \mathbf R & & \text{coordinate of $\alpha$ particle}
-\\
-& \mathbf r_1,\mathbf r_2 & & \text{coordinates of electrons}
-\\
-& \mathbf a_1,\mathbf a_2 & & \text{coordinates of hydrogen atoms}
-\end{align*}
 
-Let $\psi_1$ and $\psi_2$ be hydrogen atom wavefunctions such that
+Let $\psi_1$ and $\psi_2$ be atomic wavefunctions such that
 \begin{equation*}
 \hat H\psi_1=E_1\psi_1,
 \quad
@@ -166,14 +169,21 @@ By the method of stationary phase the integral vanishes except for
 =-\mathbf u+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
 \end{equation*}
 
-Because $V(\mathbf y+\mathbf a_1)\rightarrow0$ as $|\mathbf y|$ increases
-we only require stationarity for small $|\mathbf y|$ hence
+Note that $V(\mathbf y+\mathbf a_1)$ is small
+except for $\mathbf y\approx0$ and $\mathbf y\approx\mathbf a_2-\mathbf a_1$ so we only require stationarity
+near those values of $\mathbf y$.
+Hence
 \begin{equation*}
-\mathbf u\approx\frac{\mathbf a_1}{|\mathbf a_1|},
-\quad
-|\mathbf y|\ll|\mathbf a_1|
+\mathbf u=\frac{\mathbf a_1}{|\mathbf a_1|}
+\quad\text{or}\quad
+\mathbf u=\frac{\mathbf a_2}{|\mathbf a_2|}
 \end{equation*}
 
-It follows that the $\alpha$ particle trajectory is along the line $\mathbf a_1$.
+Since $\mathbf u$ is the direction of an ionized atom and both atoms are ionized we have
+\begin{equation*}
+\mathbf u=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+
+Hence $\mathbf a_1$ and $\mathbf a_2$ form a line through the origin.
 
 \end{document}
