@@ -10,7 +10,7 @@ Consider the emission of an $\alpha$ particle in a cloud chamber.
 The quantum mechanical model for the $\alpha$ particle is a spherical wave emanating from the origin.
 A spherical wave should ionize atoms throughout the cloud chamber.
 However, only straight tracks are observed.
-Nevill Mott showed that the Schrodinger equation is consistent with the phenomenon of straight tracks.
+Nevill Mott showed that straight tracks are consistent with the Schrodinger equation.
 
 \bigskip
 
@@ -19,7 +19,7 @@ let $\mathbf a_1$ and $\mathbf a_2$ be the positions of two atoms ionized by the
 and let $\mathbf r_1$ and $\mathbf r_2$ be the positions of the free electrons.
 The Hamiltonian for the system is
 \begin{equation*}
-\hat H=\hat K_\alpha+\hat K_1+\hat K_2+V_1+V_2+U_1+U_2
+\hat H=\hat K_\alpha+\hat K_1+\hat K_2+U_1+U_2+V_1+V_2
 \end{equation*}
 where
 \begin{align*}
@@ -29,13 +29,13 @@ where
 \\[1ex]
 \hat K_2&=-\frac{\hbar^2}{2m}\nabla_2^2 & & \text{kinetic energy of 2nd electron}
 \\[1ex]
-V_1&=-\frac{e^2}{|\mathbf r_1-\mathbf a_1|} & & \text{potential energy of 1st electron}
+U_1&=-\frac{e^2}{|\mathbf r_1-\mathbf a_1|} & & \text{potential energy of 1st electron}
 \\[1ex]
-V_2&=-\frac{e^2}{|\mathbf r_2-\mathbf a_2|} & & \text{potential energy of 2nd electron}
+U_2&=-\frac{e^2}{|\mathbf r_2-\mathbf a_2|} & & \text{potential energy of 2nd electron}
 \\[1ex]
-U_1&=-\frac{2e^2}{|\mathbf R-\mathbf r_1|} & & \text{potential energy of $\alpha$ and 1st electron}
+V_1&=-\frac{2e^2}{|\mathbf R-\mathbf r_1|} & & \text{potential energy of $\alpha$ and 1st electron}
 \\[1ex]
-U_2&=-\frac{2e^2}{|\mathbf R-\mathbf r_2|} & & \text{potential energy of $\alpha$ and 2nd electron}
+V_2&=-\frac{2e^2}{|\mathbf R-\mathbf r_2|} & & \text{potential energy of $\alpha$ and 2nd electron}
 \end{align*}
 
 Let $\psi_1$ and $\psi_2$ be atomic wavefunctions such that
@@ -76,23 +76,23 @@ f_0(\mathbf R)=\frac{1}{|\mathbf R|}\exp\left(\frac{ik|\mathbf R|}{\hbar}\right)
 
 It follows that for the full Hamiltonian
 \begin{equation*}
-\hat HF_0=EF_0+(U_1+U_2)F_0
+\hat HF_0=EF_0+(V_1+V_2)F_0
 \end{equation*}
 
-To cancel $(U_1+U_2)F_0$ from the full Hamiltonian, find an $F_1$ such that
+To cancel $(V_1+V_2)F_0$ from the full Hamiltonian, find an $F_1$ such that
 \begin{equation*}
-\hat H_0F_1=EF_1-(U_1+U_2)F_0
+\hat H_0F_1=EF_1-(V_1+V_2)F_0
 \end{equation*}
 
 Rewrite as
 \begin{equation*}
-\left(\hat H_0-E\right)F_1=-(U_1+U_2)F_0
+\left(\hat H_0-E\right)F_1=-(V_1+V_2)F_0
 \end{equation*}
 
 Expand $F_1$ and $F_0$.
 \begin{equation*}
 \left(\hat H_0-E\right)f_1(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
-=-(U_1+U_2)f_0(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
+=-(V_1+V_2)f_0(\mathbf R)\psi_1(\mathbf r_1-\mathbf a_1)\psi_2(\mathbf r_2-\mathbf a_2)
 \end{equation*}
 
 To solve for $f_1(\mathbf R)$ multiply both sides by
@@ -107,11 +107,11 @@ and integrate over $\mathbf r_1$ and $\mathbf r_2$ to obtain
 \end{equation*}
 where
 \begin{equation*}
-V_1(\mathbf R)
-=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2}{|\mathbf R-\mathbf r_1|}\,d\mathbf r_1,
+V_1(\mathbf R)=
+2e^2\int\frac{|\psi_1(\mathbf r)|^2}{|\mathbf R-\mathbf a_1-\mathbf r|}\,d\mathbf r,
 \quad
 V_2(\mathbf R)=
-2e^2\int\frac{|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}\,d\mathbf r_2
+2e^2\int\frac{|\psi_2(\mathbf r)|^2}{|\mathbf R-\mathbf a_2-\mathbf r|}\,d\mathbf r
 \end{equation*}
 
 Per Mott the solution to (2) is
@@ -124,39 +124,44 @@ f_1(\mathbf R)=
 \exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r
 \end{multline*}
 
-Let $f_{11}(\mathbf R)$ be the first integral.
+Let $I_1$ be the first integral.
 \begin{equation*}
-f_{11}(\mathbf R)=
+I_1(\mathbf R)=
 \frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
 \exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r
 \end{equation*}
 
 Substitute for $f_0(\mathbf r)$ to obtain
 \begin{equation*}
-f_{11}(\mathbf R)=
+I_1(\mathbf R)=
 \frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf r)}{|\mathbf R-\mathbf r||\mathbf r|}
 \exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}+\frac{ik|\mathbf r|}{\hbar}\right)\,d\mathbf r
 \end{equation*}
 
-Change of variable $\mathbf r\rightarrow\mathbf y+\mathbf a_1$.
+Change of variable $\mathbf r\rightarrow\mathbf r+\mathbf a_1$
 \begin{equation*}
-f_{11}(\mathbf R)=
-\frac{M}{2\pi\hbar^2}\int
-\frac{V_1(\mathbf y+\mathbf a_1)}{|\mathbf R-\mathbf y-\mathbf a_1||\mathbf y+\mathbf a_1|}
-\exp\left(\frac{ik|\mathbf R-\mathbf y-\mathbf a_1|}{\hbar}
-+\frac{ik|\mathbf y+\mathbf a_1|}{\hbar}\right)\,d\mathbf y
+I_1(\mathbf R)=
+\frac{M}{2\pi\hbar^2}
+\int
+\frac{V_1(\mathbf r+\mathbf a_1)}{|\mathbf R-\mathbf r-\mathbf a_1||\mathbf r+\mathbf a_1|}
+\exp\left(
+\frac{ik|\mathbf R-\mathbf r-\mathbf a_1|}{\hbar}+\frac{ik|\mathbf r+\mathbf a_1|}{\hbar}
+\right)\,d\mathbf r
 \end{equation*}
 
 Per Mott (see also Figari and Teta)
-\begin{equation*}
-f_{11}(\mathbf R)\approx
-\frac{\exp(ik|\mathbf R-\mathbf a_1|)}{|\mathbf R-\mathbf a_1|}
-\frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf y+\mathbf a_1)}{|\mathbf y+\mathbf a_1|}
-\exp\left(-\frac{ik\mathbf u_1(\mathbf R)\cdot\mathbf y}{\hbar}
-+\frac{ik|\mathbf y|}{\hbar}\right)
-\,d\mathbf y
-\tag{3}
-\end{equation*}
+\begin{multline*}
+I_1(\mathbf R)\approx\frac{1}{|\mathbf R-\mathbf a_1|}
+\exp\left(\frac{ik|\mathbf R-\mathbf a_1|}{\hbar}\right)
+\\
+{}\times
+\frac{M}{2\pi\hbar^2}
+\int
+\frac{V_1(\mathbf r+\mathbf a_1)}{|\mathbf r+\mathbf a_1|}
+\exp\left(-\frac{ik\mathbf u_1(\mathbf R)\cdot\mathbf r}{\hbar}
++\frac{ik|\mathbf r+\mathbf a_1|}{\hbar}\right)
+\,d\mathbf r
+\end{multline*}
 where
 \begin{equation*}
 \mathbf u_1(\mathbf R)=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
@@ -164,29 +169,93 @@ where
 
 The condition for stationary phase is
 \begin{equation*}
-\frac{d}{d\mathbf y}\left(-\mathbf u_1(\mathbf R)\cdot\mathbf y+|\mathbf y+\mathbf a_1|\right)
-=-\mathbf u_1(\mathbf R)+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
-\tag{4}
+g'=\frac{d}{d\mathbf r}\left(-\mathbf u_1(\mathbf R)\cdot\mathbf r+|\mathbf r+\mathbf a_1|\right)
+=-\mathbf u_1(\mathbf R)+\frac{\mathbf r+\mathbf a_1}{|\mathbf r+\mathbf a_1|}=0
 \end{equation*}
 
-Note that $V_1(\mathbf y+\mathbf a_1)$ in equation (3) is insignificant
-except for $\mathbf y\approx0$.
-Hence by (4) the integral is stationary for
+Note that $V_1(\mathbf r+\mathbf a_1)$ is small except for $\mathbf r\approx0$ so
+we only require stationarity at the origin.
+Hence for $\mathbf r=0$ the integral is stationary ($g'=0$)
+when $\mathbf R$ satisfies the condition
 \begin{equation*}
-\mathbf u_1(\mathbf R)\approx\frac{\mathbf a_1}{|\mathbf a_1|}
+\mathbf u_1(\mathbf R)
+=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
+=\frac{\mathbf a_1}{|\mathbf a_1|}
+\end{equation*}
+
+By symmetry of the integrals, $I_2$ is stationary when $\mathbf R$ satisfies the condition
+\begin{equation*}
+\mathbf u_2(\mathbf R)
+=\frac{\mathbf R-\mathbf a_2}{|\mathbf R-\mathbf a_2|}
+=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+
+Gentle reminder that
+\begin{equation*}
+f_1(\mathbf R)=I_1(\mathbf R)+I_2(\mathbf R)
+\end{equation*}
+
+Since both atoms are ionized, it follows that both $V_1$ and $V_2$ should contribute to $f_1$.
+Hence both integrals should be stationary for the same values of $\mathbf R$.
+Simultaneous stationarity implies $\mathbf u_1(\mathbf R)=\mathbf u_2(\mathbf R)$ hence
+\begin{equation*}
+\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+
+This condition means that both $\mathbf a_1$ and $\mathbf a_2$
+are on the same ray emanating from the origin.
+If we keep $\mathbf a_1$ and choose a different $\mathbf a_2$ we get the same result.
+It follows that all of the ionized atoms are on the same ray.
+Hence straight tracks are consistent with the Schrodinger equation.
+
+\end{document}
+
+By the method of stationary phase
+\begin{align*}
+I_1(\mathbf R)&=\frac{1}{|\mathbf R-\mathbf a_1|}
+\exp\left(\frac{ik|\mathbf R-\mathbf a_1|}{\hbar}\right)
+\frac{M}{2\pi\hbar^2}
+\left(\frac{2\pi i\hbar|\mathbf a_1|}{k}\right)^{\frac{1}{2}}
+\frac{V_1(\mathbf a_1)}{|\mathbf a_1|}
+\exp\left(\frac{ik|\mathbf a_1|}{\hbar}\right)
+%\frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}
+\\
+I_2(\mathbf R)&=\frac{1}{|\mathbf R-\mathbf a_2|}
+\exp\left(\frac{ik|\mathbf R-\mathbf a_2|}{\hbar}\right)
+\frac{M}{2\pi\hbar^2}
+\left(\frac{2\pi i\hbar|\mathbf a_2|}{k}\right)^{\frac{1}{2}}
+\frac{V_2(\mathbf a_2)}{|\mathbf a_2|}
+\exp\left(\frac{ik|\mathbf a_2|}{\hbar}\right)
+%\frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{align*}
+
+\subsection*{Note}
+
+To integrate using the method of stationary phase, let
+\begin{align*}
+f&=\frac{V_1(\mathbf r+\mathbf a_1)}{|\mathbf r+\mathbf a_1|}
+\\
+g&=-k\mathbf u(\mathbf R)\cdot\mathbf r+k|\mathbf r+\mathbf a_1|
+\\
+h&=\frac{1}{\hbar}
+\end{align*}
+
+The integral is
+\begin{equation*}
+I\approx\pm\left(\frac{2\pi i}{\lambda g''}\right)^{1/2}f\exp(i\lambda g)
+\end{equation*}
+evaluated at $\mathbf r=\mathbf r_c$ where $g'(\mathbf r_c)=0$.
+For the $g$ given above, $\mathbf r_c=0$ and
+\begin{equation*}
+g''=\frac{k\mathbf a_1}{(\mathbf r_c+\mathbf a_1)|\mathbf r_c+\mathbf a_1|}
+=\frac{k}{|\mathbf a_1|}
 \end{equation*}
 
 Hence
 \begin{equation*}
-f_1(\mathbf R)=\left\{
-\begin{aligned}
-& f_{11}(\mathbf R), & \frac{\mathbf R}{|\mathbf R|}\approx\frac{\mathbf a_1}{|\mathbf a_2|}
-\\
-& f_{12}(\mathbf R), & \frac{\mathbf R}{|\mathbf R|}\approx\frac{\mathbf a_2}{|\mathbf a_2|}
-\\
-& 0, & \text{otherwise}
-\end{aligned}
-\right.
+I\approx\pm\left(\frac{2\pi i|\mathbf a_1|}{k}\right)^{1/2}
+\frac{V_1(\mathbf a_1)}{|\mathbf a_1|}
+\exp(\left(\frac{ik|\mathbf a_1|}{\hbar}\right)
 \end{equation*}
 
 \end{document}
