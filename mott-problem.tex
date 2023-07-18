@@ -102,83 +102,91 @@ To solve for $f_1(\mathbf R)$ multiply both sides by
 and integrate over $\mathbf r_1$ and $\mathbf r_2$ to obtain
 \begin{equation*}
 \left(\hat H_0-E\right)f_1(\mathbf R)
-=V(\mathbf R)f_0(\mathbf R)
+=V_1(\mathbf R)f_0(\mathbf R)+V_2(\mathbf R)f_0(\mathbf R)
 \tag{2}
 \end{equation*}
 where
-\begin{multline*}
-V(\mathbf R)
-=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2\,|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_1|}
-\,d\mathbf r_1\,d\mathbf r_2
-\\
-{}+2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2\,|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}
-\,d\mathbf r_1\,d\mathbf r_2
-\end{multline*}
-
-Because $|\psi|^2$ is a normalized probability density function we have
 \begin{equation*}
-V(\mathbf R)
-=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2}{|\mathbf R-\mathbf r_1|}
-\,d\mathbf r_1
-+2e^2\int\frac{|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}
-\,d\mathbf r_2
+V_1(\mathbf R)
+=2e^2\int\frac{|\psi_1(\mathbf r_1-\mathbf a_1)|^2}{|\mathbf R-\mathbf r_1|}\,d\mathbf r_1,
+\quad
+V_2(\mathbf R)=
+2e^2\int\frac{|\psi_2(\mathbf r_2-\mathbf a_2)|^2}{|\mathbf R-\mathbf r_2|}\,d\mathbf r_2
 \end{equation*}
 
 Per Mott the solution to (2) is
-\begin{equation*}
+\begin{multline*}
 f_1(\mathbf R)=
-\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
-\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r,
-\quad
-k=\sqrt{2M(E-E_1-E_2)}
+\frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
+\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r
+\\
+{}+\frac{M}{2\pi\hbar^2}\int\frac{V_2(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
+\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r
+\end{multline*}
+
+Let $f_{11}(\mathbf R)$ be the first integral.
+\begin{equation*}
+f_{11}(\mathbf R)=
+\frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf r)f_0(\mathbf r)}{|\mathbf R-\mathbf r|}
+\exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}\right)\,d\mathbf r
 \end{equation*}
 
 Substitute for $f_0(\mathbf r)$ to obtain
 \begin{equation*}
-f_1(\mathbf R)=
-\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf r)}{|\mathbf R-\mathbf r||\mathbf r|}
+f_{11}(\mathbf R)=
+\frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf r)}{|\mathbf R-\mathbf r||\mathbf r|}
 \exp\left(\frac{ik|\mathbf R-\mathbf r|}{\hbar}+\frac{ik|\mathbf r|}{\hbar}\right)\,d\mathbf r
 \end{equation*}
 
 Change of variable $\mathbf r\rightarrow\mathbf y+\mathbf a_1$.
 \begin{equation*}
-f_1(\mathbf R)=
+f_{11}(\mathbf R)=
 \frac{M}{2\pi\hbar^2}\int
-\frac{V(\mathbf y+\mathbf a_1)}{|\mathbf R-\mathbf y-\mathbf a_1||\mathbf y+\mathbf a_1|}
+\frac{V_1(\mathbf y+\mathbf a_1)}{|\mathbf R-\mathbf y-\mathbf a_1||\mathbf y+\mathbf a_1|}
 \exp\left(\frac{ik|\mathbf R-\mathbf y-\mathbf a_1|}{\hbar}
 +\frac{ik|\mathbf y+\mathbf a_1|}{\hbar}\right)\,d\mathbf y
 \end{equation*}
 
 Per Mott (see also Figari and Teta)
 \begin{equation*}
-f_1(\mathbf R)\approx
+f_{11}(\mathbf R)\approx
 \frac{\exp(ik|\mathbf R-\mathbf a_1|)}{|\mathbf R-\mathbf a_1|}
-\frac{M}{2\pi\hbar^2}\int\frac{V(\mathbf y+\mathbf a_1)}{|\mathbf y+\mathbf a_1|}
-\exp\left(-\frac{ik\mathbf u\cdot\mathbf y}{\hbar}+\frac{ik|\mathbf y|}{\hbar}\right)\,d\mathbf y
+\frac{M}{2\pi\hbar^2}\int\frac{V_1(\mathbf y+\mathbf a_1)}{|\mathbf y+\mathbf a_1|}
+\exp\left(-\frac{ik\mathbf u_1(\mathbf R)\cdot\mathbf y}{\hbar}
++\frac{ik|\mathbf y|}{\hbar}\right)
+\,d\mathbf y
 \tag{3}
 \end{equation*}
 where
 \begin{equation*}
-\mathbf u=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
+\mathbf u_1(\mathbf R)=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
 \end{equation*}
 
-The method of stationary phase requires that
+The condition for stationary phase is
 \begin{equation*}
-\frac{d}{d\mathbf y}\left(-\mathbf u\cdot\mathbf y+|\mathbf y+\mathbf a_1|\right)
-=-\mathbf u+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
+\frac{d}{d\mathbf y}\left(-\mathbf u_1(\mathbf R)\cdot\mathbf y+|\mathbf y+\mathbf a_1|\right)
+=-\mathbf u_1(\mathbf R)+\frac{\mathbf y+\mathbf a_1}{|\mathbf y+\mathbf a_1|}=0
 \tag{4}
 \end{equation*}
 
-Note that $V(\mathbf y+\mathbf a_1)$ in equation (3) is insignificant
-except for $\mathbf y\approx0$ and $\mathbf y\approx\mathbf a_2-\mathbf a_1$ so we only need to consider
-$\mathbf y$ near those values.
-To satisfy (4) for both $\mathbf y=0$ and $\mathbf y=\mathbf a_2-\mathbf a_1$ we have
+Note that $V_1(\mathbf y+\mathbf a_1)$ in equation (3) is insignificant
+except for $\mathbf y\approx0$.
+Hence by (4) the integral is stationary for
 \begin{equation*}
-\mathbf u=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\mathbf u_1(\mathbf R)\approx\frac{\mathbf a_1}{|\mathbf a_1|}
 \end{equation*}
 
-Hence $\mathbf a_1$ and $\mathbf a_2$ form a line through the origin.
-If we keep $\mathbf a_1$ and choose a different $\mathbf a_2$ we get the same result.
-Hence the ionized atoms form a straight track.
+Hence
+\begin{equation*}
+f_1(\mathbf R)=\left\{
+\begin{aligned}
+& f_{11}(\mathbf R), & \frac{\mathbf R}{|\mathbf R|}\approx\frac{\mathbf a_1}{|\mathbf a_2|}
+\\
+& f_{12}(\mathbf R), & \frac{\mathbf R}{|\mathbf R|}\approx\frac{\mathbf a_2}{|\mathbf a_2|}
+\\
+& 0, & \text{otherwise}
+\end{aligned}
+\right.
+\end{equation*}
 
 \end{document}
