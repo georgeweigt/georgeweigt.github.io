@@ -197,65 +197,25 @@ f_1(\mathbf R)=I_1(\mathbf R)+I_2(\mathbf R)
 
 Since both atoms are ionized, it follows that both $V_1$ and $V_2$ should contribute to $f_1$.
 Hence both integrals should be stationary for the same values of $\mathbf R$.
-Simultaneous stationarity implies $\mathbf u_1(\mathbf R)=\mathbf u_2(\mathbf R)$ hence
+Simultaneous stationarity requires that
 \begin{equation*}
-\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
-\end{equation*}
-
-This condition means that both $\mathbf a_1$ and $\mathbf a_2$
-are on the same ray emanating from the origin.
-If we keep $\mathbf a_1$ and choose a different $\mathbf a_2$ we get the same result.
-It follows that all of the ionized atoms are on the same ray.
-Hence straight tracks are consistent with the Schrodinger equation.
-
-\end{document}
-
-By the method of stationary phase
-\begin{align*}
-I_1(\mathbf R)&=\frac{1}{|\mathbf R-\mathbf a_1|}
-\exp\left(\frac{ik|\mathbf R-\mathbf a_1|}{\hbar}\right)
-\frac{M}{2\pi\hbar^2}
-\left(\frac{2\pi i\hbar|\mathbf a_1|}{k}\right)^{\frac{1}{2}}
-\frac{V_1(\mathbf a_1)}{|\mathbf a_1|}
-\exp\left(\frac{ik|\mathbf a_1|}{\hbar}\right)
-%\frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}
-\\
-I_2(\mathbf R)&=\frac{1}{|\mathbf R-\mathbf a_2|}
-\exp\left(\frac{ik|\mathbf R-\mathbf a_2|}{\hbar}\right)
-\frac{M}{2\pi\hbar^2}
-\left(\frac{2\pi i\hbar|\mathbf a_2|}{k}\right)^{\frac{1}{2}}
-\frac{V_2(\mathbf a_2)}{|\mathbf a_2|}
-\exp\left(\frac{ik|\mathbf a_2|}{\hbar}\right)
-%\frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_2}{|\mathbf a_2|}
-\end{align*}
-
-\subsection*{Note}
-
-To integrate using the method of stationary phase, let
-\begin{align*}
-f&=\frac{V_1(\mathbf r+\mathbf a_1)}{|\mathbf r+\mathbf a_1|}
-\\
-g&=-k\mathbf u(\mathbf R)\cdot\mathbf r+k|\mathbf r+\mathbf a_1|
-\\
-h&=\frac{1}{\hbar}
-\end{align*}
-
-The integral is
-\begin{equation*}
-I\approx\pm\left(\frac{2\pi i}{\lambda g''}\right)^{1/2}f\exp(i\lambda g)
-\end{equation*}
-evaluated at $\mathbf r=\mathbf r_c$ where $g'(\mathbf r_c)=0$.
-For the $g$ given above, $\mathbf r_c=0$ and
-\begin{equation*}
-g''=\frac{k\mathbf a_1}{(\mathbf r_c+\mathbf a_1)|\mathbf r_c+\mathbf a_1|}
-=\frac{k}{|\mathbf a_1|}
+\mathbf u_1=\mathbf u_2
 \end{equation*}
 
 Hence
 \begin{equation*}
-I\approx\pm\left(\frac{2\pi i|\mathbf a_1|}{k}\right)^{1/2}
-\frac{V_1(\mathbf a_1)}{|\mathbf a_1|}
-\exp(\left(\frac{ik|\mathbf a_1|}{\hbar}\right)
+\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}=
+\frac{\mathbf R-\mathbf a_2}{|\mathbf R-\mathbf a_2|}
 \end{equation*}
+and finally
+\begin{equation*}
+\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+
+This condition means that $\mathbf a_1$ and $\mathbf a_2$
+are on the same ray emanating from the origin.
+If we keep $\mathbf a_1$ and choose a different $\mathbf a_2$ we get the same ray.
+It follows that all of the ionized atoms are on the same ray.
+Hence straight tracks are consistent with the Schrodinger equation.
 
 \end{document}
