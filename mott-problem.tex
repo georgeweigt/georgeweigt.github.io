@@ -191,33 +191,39 @@ By symmetry of the integrals, $I_2$ is stationary when $\mathbf R$ satisfies the
 =\frac{\mathbf a_2}{|\mathbf a_2|}
 \end{equation*}
 
-Gentle reminder that
+Because nonstationary integrals vanish we have
 \begin{equation*}
-f_1(\mathbf R)=I_1(\mathbf R)+I_2(\mathbf R)
+f_1(\mathbf R)=\left\{
+\begin{aligned}
+& I_1(\mathbf R),
+& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}\ne\frac{\mathbf a_2}{|\mathbf a_2|}
+\\
+& I_2(\mathbf R),
+& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_2}{|\mathbf a_2|}\ne\frac{\mathbf a_1}{|\mathbf a_1|}
+\\
+& I_1(\mathbf R)+I_2(\mathbf R),
+& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\\
+& 0, & \text{otherwise}
+\end{aligned}
+\right.
 \end{equation*}
 
 Since both atoms are ionized, it follows that both $V_1$ and $V_2$ should contribute to $f_1$.
-Hence both integrals should be stationary for the same values of $\mathbf R$.
-(If not stationary then the integral vanishes.)
-Simultaneous stationarity requires that
+Hence we reject the first two cases as unphysical and write
 \begin{equation*}
-\mathbf u_1=\mathbf u_2
+f_1(\mathbf R)=\left\{
+\begin{aligned}
+& I_1(\mathbf R)+I_2(\mathbf R),
+& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\\
+& 0, & \text{otherwise}
+\end{aligned}
+\right.
 \end{equation*}
 
-Hence
-\begin{equation*}
-\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}=
-\frac{\mathbf R-\mathbf a_2}{|\mathbf R-\mathbf a_2|}
-\end{equation*}
-and finally
-\begin{equation*}
-\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
-\end{equation*}
-
-This condition means that $\mathbf a_1$ and $\mathbf a_2$
-are on the same ray emanating from the origin.
-If we keep $\mathbf a_1$ and choose a different $\mathbf a_2$ we get the same ray.
-It follows that all of the ionized atoms are on the same ray.
+To satisfy the condition, $\mathbf a_1$ and $\mathbf a_2$
+must be on the same ray emanating from the origin.
 Hence straight tracks are consistent with the Schrodinger equation.
 
 \end{document}
