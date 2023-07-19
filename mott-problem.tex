@@ -194,13 +194,19 @@ Because nonstationary integrals vanish we have
 f_1(\mathbf R)=\left\{
 \begin{aligned}
 & I_1(\mathbf R),
-& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}\ne\frac{\mathbf a_2}{|\mathbf a_2|}
+& \mathbf u_1(\mathbf R)=\frac{\mathbf a_1}{|\mathbf a_1|}
+\quad\text{and}\quad
+\mathbf u_2(\mathbf R)\ne\frac{\mathbf a_2}{|\mathbf a_2|}
 \\
 & I_2(\mathbf R),
-& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_2}{|\mathbf a_2|}\ne\frac{\mathbf a_1}{|\mathbf a_1|}
+& \mathbf u_1(\mathbf R)\ne\frac{\mathbf a_1}{|\mathbf a_1|}
+\quad\text{and}\quad
+\mathbf u_2(\mathbf R)=\frac{\mathbf a_2}{|\mathbf a_2|}
 \\
 & I_1(\mathbf R)+I_2(\mathbf R),
-& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+& \mathbf u_1(\mathbf R)=\frac{\mathbf a_1}{|\mathbf a_1|}
+\quad\text{and}\quad
+\mathbf u_2(\mathbf R)=\frac{\mathbf a_2}{|\mathbf a_2|}
 \\
 & 0, & \text{otherwise}
 \end{aligned}
@@ -213,7 +219,7 @@ Hence we reject the first two cases as unphysical and write
 f_1(\mathbf R)=\left\{
 \begin{aligned}
 & I_1(\mathbf R)+I_2(\mathbf R),
-& \frac{\mathbf R}{|\mathbf R|}=\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+& \frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
 \\
 & 0, & \text{otherwise}
 \end{aligned}
@@ -223,5 +229,36 @@ f_1(\mathbf R)=\left\{
 To satisfy the condition, $\mathbf a_1$ and $\mathbf a_2$
 must be on the same ray emanating from the origin.
 Hence straight tracks are consistent with the Schrodinger equation.
+
+\subsection*{Note}
+The condition for stationarity
+\begin{equation*}
+\mathbf u_1(\mathbf R)
+=\frac{\mathbf R-\mathbf a_1}{|\mathbf R-\mathbf a_1|}
+=\frac{\mathbf a_1}{|\mathbf a_1|}
+\end{equation*}
+is satisfied by all $\mathbf R$ and constant $c>1$ such that
+\begin{equation*}
+\mathbf R=c\mathbf a_1
+\end{equation*}
+
+Condition $c>1$ implies that $|\mathbf R|>|\mathbf a_1|$.
+So technically the condition
+\begin{equation*}
+\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+is less stringent than
+\begin{equation*}
+\mathbf u_1(\mathbf R)=\frac{\mathbf a_1}{|\mathbf a_1|}
+\quad\text{and}\quad
+\mathbf u_2(\mathbf R)=\frac{\mathbf a_2}{|\mathbf a_2|}
+\end{equation*}
+
+The exact condition for stationarity of both $I_1$ and $I_2$ is
+\begin{equation*}
+\frac{\mathbf a_1}{|\mathbf a_1|}=\frac{\mathbf a_2}{|\mathbf a_2|}
+\quad\text{and}\quad
+|\mathbf R|>\max(|\mathbf a_1|,|\mathbf a_2|)
+\end{equation*}
 
 \end{document}
