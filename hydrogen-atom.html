@@ -25,11 +25,11 @@ a0 = 4 pi epsilon0 hbar^2 / (e^2 mu)
 Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
          P(l,m) exp(i m phi)
 
--- associated Legendre of cos theta
+-- associated Legendre of cos theta (x is a local var)
 
-P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
-         1 / (2^l l!) sin(theta)^m *
-         eval(d((x^2 - 1)^l,x,l + m),x,cos(theta)))
+P(l,m,x) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           1 / (2^l l!) sin(theta)^m *
+           eval(d((x^2 - 1)^l,x,l + m),x,cos(theta)))
 
 -- H is the Hamiltonian
 
