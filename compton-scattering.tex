@@ -287,7 +287,7 @@ E/m & 0 & 0 & \omega/m\\
 
 The electron is at rest in the lab frame.
 \begin{equation*}
-\Lambda p_2=\begin{pmatrix}m \\ 0 \\ 0 \\ 0\end{pmatrix}
+\Lambda p_2=\begin{pmatrix}m\\0\\0\\0\end{pmatrix}
 \end{equation*}
 
 Mandelstam variables are invariant under a boost.
@@ -305,13 +305,17 @@ In the lab frame, let $\omega_L$ be the angular frequency of the incident photon
 and let $\omega_L'$ be the angular frequency of the scattered photon.
 \begin{equation*}
 \begin{aligned}
-\omega_L&=\Lambda p_1\cdot(1,0,0,0)=\frac{\omega^2}{m}+\frac{\omega E}{m}
-\\
-\omega_L'&=\Lambda p_3\cdot(1,0,0,0)=\frac{\omega^2\cos\theta}{m}+\frac{\omega E}{m}
+\omega_L&=\Lambda p_1\cdot
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{\omega^2}{m}+\frac{\omega E}{m}
+\\[1ex]
+\omega_L'&=\Lambda p_3\cdot
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{\omega^2\cos\theta}{m}+\frac{\omega E}{m}
 \end{aligned}
 \end{equation*}
 
-It follows that
+It can be shown that
 \begin{equation*}
 \begin{aligned}
 s&=(p_1+p_2)^2=m^2+2m\omega_L
@@ -322,7 +326,7 @@ u&=(p_1-p_4)^2=m^2-2 m \omega_L'
 \end{aligned}
 \end{equation*}
 
-Then from equations (1) and (2)
+Then by (1) and (2) we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=
 2e^4\left(
