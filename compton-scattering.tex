@@ -25,6 +25,8 @@ Symbol $\omega$ is incident energy.
 Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
+\iffalse
+% old
 \begin{align*}
 p_1&=
 \underset{\substack{\text{inbound}\\\text{photon}}}
@@ -104,6 +106,30 @@ p_{4x}-ip_{4y}\\
 \end{pmatrix}
 }
 \end{align*}
+\else
+% new
+\begin{align*}
+p_1&=\underset{\text{inbound $\gamma$}}
+{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
+\\[1ex]
+p_2&=\underset{\text{inbound $e^-$}}
+{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}}
+& u_{21}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\-\omega\\0\end{pmatrix}}
+& u_{22}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\\omega\end{pmatrix}}
+\\[1ex]
+p_3&=\underset{\text{outbound $\gamma$}}
+{\begin{pmatrix}\omega\\\omega\sin\theta\cos\phi\\\omega\sin\theta\sin\phi\\\omega\cos\theta\end{pmatrix}}
+\\[1ex]
+p_4&=\underset{\text{outbound $e^-$}}
+{\begin{pmatrix}E\\-\omega\sin\theta\cos\phi\\-\omega\sin\theta\sin\phi\\-\omega\cos\theta\end{pmatrix}}
+& u_{41}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
+& u_{42}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
+\end{align*}
+\fi
 
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
