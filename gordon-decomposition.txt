@@ -20,10 +20,10 @@ u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 T = transpose(dot(gamma,transpose(gamma)),2,3)
 sigmamunu = i/2 (T - transpose(T))
 S = transpose(sigmamunu,2,3,3,4)
-V = (outer(p2 + p1,I) + i dot(S,gmunu,p2 - p1)) / (2 m)
+J = (outer(p2 + p1,I) + i dot(S,gmunu,p2 - p1)) / (2 m)
 for(s1,1,2, -- for each spin state
 for(s2,1,2,
 for(mu,1,4, -- for each gamma
- check( dot(u2bar[s2],gamma[mu],u1[s1]) == dot(u2bar[s2],V[mu],u1[s1]) )
+ check( dot(u2bar[s2],gamma[mu],u1[s1]) == dot(u2bar[s2],J[mu],u1[s1]) )
 )))
 "ok"
