@@ -26,6 +26,8 @@ Symbol $p$ is electron momentum $p=\sqrt{E^2-m^2}$ where $m$ is electron mass $0
 Symbol $\rho$ is muon mementum $\rho=\sqrt{E^2-M^2}$ where $M$ is muon mass $106\,\text{MeV}$.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
+\iffalse
+% old
 \begin{align*}
 p_1&=
 \underset{\substack{\text{inbound}\\\text{electron}}}
@@ -109,6 +111,48 @@ v_{42}&=
 \begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}
 }
 \end{align*}
+\else
+% new
+\begin{align*}
+p_1&=\underset{\text{inbound $e^-$}}
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+& u_{11}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+& u_{12}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
+\\[1ex]
+p_2&=\underset{\text{inbound $e^+$}}
+{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+& v_{21}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin up}}}
+{\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
+& v_{22}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin down}}}
+{\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
+\\[1ex]
+p_3&=\underset{\text{outbound $\mu^-$}}
+{\begin{pmatrix}
+E\\
+\rho\sin\theta\cos\phi\\
+\rho\sin\theta\sin\phi\\
+\rho\cos\theta
+\end{pmatrix}}
+& u_{31}&=\underset{\substack{\text{outbound $\mu^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}}
+& u_{32}&=\underset{\substack{\text{outbound $\mu^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}}
+\\[1ex]
+p_4&=\underset{\text{outbound $\mu^+$}}
+{\begin{pmatrix}
+E\\
+-\rho\sin\theta\cos\phi\\
+-\rho\sin\theta\sin\phi\\
+-\rho\cos\theta
+\end{pmatrix}}
+& v_{41}&=\underset{\substack{\text{outbound $\mu^+$}\\\text{spin up}}}
+{\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}}
+& v_{42}&=\underset{\substack{\text{outbound $\mu^+$}\\\text{spin down}}}
+{\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}}
+\end{align*}
+\fi
 
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^2(E+M)^2$ will be used.
