@@ -54,6 +54,10 @@ V = (x - L / 4)^2
 
 M21 = defint(conj(psi2) V psi1, x, 0, L)
 
+"Verify matrix element (4)"
+check(M21 == -8 L^2 / (9 pi^2))
+"ok"
+
 "Transition rate"
 
 d(P,t)
