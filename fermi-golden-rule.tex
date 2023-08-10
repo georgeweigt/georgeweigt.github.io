@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{parskip}
+\parindent=0pt
+\begin{document}
+
+\section*{Fermi's golden rule}
+
+Let $\Psi(x,t)$ be the following linear combination of the first two eigenstates
+of an infinite square well potential.
+\begin{equation*}
+\Psi(x,t)=c_1(t)\psi_1(x)\exp(-i\omega_1t)+c_2(t)\psi_2(x)\exp(-i\omega_2t)
+\end{equation*}
+
+Given the perturbing potential
+\begin{equation*}
+V(x,t)=\left(x-\frac{L}{4}\right)^2\sin(\omega t)
+\end{equation*}
+we want to solve for $c_2(t)$ and find the transition rate
+\begin{equation*}
+\frac{d}{dt}|c_2(t)|^2
+\end{equation*}
+
+From the time-dependent Schrodinger equation we have
+\begin{equation*}
+i\hbar\frac{\partial\Psi(x,t)}{\partial t}=\hat H(x)\Psi(x,t)+V(x,t)\Psi(x,t)
+\end{equation*}
+
+The left-hand side works out to be
+\begin{multline*}
+LHS=\left(i\hbar\frac{\partial c_1(t)}{\partial t}+\hbar\omega_1c_1(t)\right)
+\psi_1(x)\exp(-i\omega_1t)
+\\
+{}+\left(i\hbar\frac{\partial c_2(t)}{\partial t}+\hbar\omega_2c_2(t)\right)
+\psi_2(x)\exp(-i\omega_2t)
+\end{multline*}
+
+Using the time-independent Schrodinger equation the right-hand side is
+\begin{equation*}
+RHS=c_1(t)E_1\psi_1(x)\exp(-i\omega_1t)
++c_2(t)E_2\psi_2(x)\exp(-i\omega_2t)
++V(x,t)\Psi(x,t)
+\end{equation*}
+
+The energy terms cancel by the substitutions
+$E_1=\hbar\omega_1$ and $E_2=\hbar\omega_2$ leaving
+\begin{align*}
+LHS&=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
++i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
+\\
+RHS&=V(x,t)\Psi(x,t)
+\end{align*}
+
+Hence
+\begin{equation*}
+i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
++i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
+=V(x,t)\Psi(x,t)
+\end{equation*}
+
+Take the inner product of $\psi_2^*(x)$ with the above equation to obtain
+\begin{equation*}
+i\hbar\frac{\partial c_2(t)}{\partial t}\exp(-i\omega_2t)
+=c_1(t)M_{21}\sin(\omega t)\exp(-i\omega_1t)+c_2(t)M_{22}\sin(\omega t)\exp(-i\omega_2t)
+\end{equation*}
+where $M_{21}$ and $M_{22}$ are the matrix elements
+\begin{align*}
+M_{21}&=\int\psi_2^*(x)\left(x-\frac{L}{4}\right)^2\psi_1(x)\,dx
+\\
+M_{22}&=\int\psi_2^*(x)\left(x-\frac{L}{4}\right)^2\psi_2(x)\,dx
+\end{align*}
+
+Cancel exponentials.
+\begin{equation*}
+i\hbar\frac{\partial c_2(t)}{\partial t}
+=c_1(t)M_{21}\sin(\omega t)\exp\bigl(i(\omega_2-\omega_1)t\bigr)+c_2(t)M_{22}\sin(\omega t)
+\end{equation*}
+
+The initial state is $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
+\begin{equation*}
+c_1(0)=1,\quad c_2(0)=0
+\end{equation*}
+
+Then for time $t$ near the origin we can use the approximation
+\begin{equation*}
+i\hbar\frac{\partial c_2(t)}{\partial t}
+=M_{21}\sin(\omega t)\exp\bigl(i(\omega_2-\omega_1)t\bigr)
+\end{equation*}
+
+Solve for $c_2(t)$ by integrating.
+\begin{equation*}
+c_2(t)=\frac{M_{21}}{i\hbar}\int_0^t\sin(\omega t')\exp\bigl(i(\omega_2-\omega_1)t'\bigr)\,dt'
+\end{equation*}
+
+The solution is
+\begin{equation*}
+c_2(t)
+=\frac{M_{21}}{2i\hbar}
+\left(
+\frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
+-
+\frac{\exp\bigl(i(\omega_2-\omega_1+\omega) t\bigr)-1}{\omega_2-\omega_1+\omega}
+\right)\tag{1}
+\end{equation*}
+
+For perturbations such that $\omega\approx\omega_2-\omega_1$ the first term
+dominates so discard the second term and write
+\begin{equation*}
+c_2(t)=\frac{M_{21}}{2i\hbar}
+\left(
+\frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
+\right)
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+c_2(t)=\frac{M_{21}}{2\hbar}\,t
+\exp\left(i\,\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\operatorname{sinc}\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\tag{2}
+\end{equation*}
+
+The probability density is
+\begin{equation*}
+|c_2(t)|^2=\frac{|M_{21}|^2}{4\hbar^2}\,t^2
+\operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\end{equation*}
+
+Use the following approximation for $\operatorname{sinc}^2$
+\begin{equation*}
+\operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\approx\frac{2\pi}{t}\delta(\omega_2-\omega_1-\omega),
+\quad
+t>0
+\end{equation*}
+to obtain
+\begin{equation*}
+|c_2(t)|^2=\frac{\pi}{2\hbar^2}|M_{21}|^2t\delta(\omega_2-\omega_1-\omega)
+\tag{3}
+\end{equation*}
+
+Differentiate $|c_2(t)|^2$ with respect to $t$ to obtain the transition rate.
+\begin{equation*}
+\frac{d}{dt}|c_2(t)|^2=\frac{\pi}{2\hbar^2}|M_{21}|^2\delta(\omega_2-\omega_1-\omega)
+\end{equation*}
+
+For the infinite square well it can be shown that
+\begin{equation*}
+M_{21}=\int_0^L\psi_2^*(x)\left(x-\frac{L}{4}\right)^2\psi_1(x)\,dx
+=-\frac{8L^2}{9\pi^2}
+\tag{4}
+\end{equation*}
+
+Hence the transition rate is
+\begin{equation*}
+\frac{d}{dt}|c_2(t)|^2=\frac{32L^4}{81\pi^3\hbar^2}
+\,\delta(\omega_2-\omega_1-\omega)
+\end{equation*}
+
+\end{document}
