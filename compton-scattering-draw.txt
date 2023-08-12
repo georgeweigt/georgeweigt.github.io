@@ -1,4 +1,4 @@
--- Draw cdf for Compton scattering
+-- Draw pdf and cdf for Compton scattering
 
 -- number of bins
 
