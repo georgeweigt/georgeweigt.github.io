@@ -1,8 +1,6 @@
--- Compute R-squared for Bhabha scattering data from DESY PETRA
+-- Compute R-squared for DESY Bhabha scattering data
 
--- Data from www.hepdata.net/record/ins191231 (Table 3, 14.0 GeV)
-
-N = 16 -- number of observations
+-- www.hepdata.net/record/ins191231 (Table 3, 14.0 GeV)
 
 -- x is cos(theta)
 
@@ -62,11 +60,7 @@ C3 = 10^37 "nanobarn" / meter^2
 
 C = C1 C2 C3
 
-yhat = zero(N)
-
-for(k,1,N,
- yhat[k] = C ((x[k]^2 + 3) / (x[k] - 1))^2
-)
+yhat = C ((x^2 + 3) / (x - 1))^2
 
 "Predicted cross section"
 
@@ -74,7 +68,7 @@ yhat
 
 "Coefficient of determination (R squared)"
 
-ybar = sum(y) / N
+ybar = sum(y) / dim(y)
 
 RSS = sum((y - yhat)^2) -- residual sum of squares
 TSS = sum((y - ybar)^2) -- total sum of squares

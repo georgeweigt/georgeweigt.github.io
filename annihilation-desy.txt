@@ -1,8 +1,6 @@
--- Compute R-squared for electron positron annihilation data
+-- Compute R-squared for annihilation data
 
--- Data from www.hepdata.net/record/ins191231 (Table 2, 14.0 GeV)
-
-N = 8 -- number of observations
+-- www.hepdata.net/record/ins191231 (Table 2, 14.0 GeV)
 
 -- x is cos(theta)
 
@@ -46,11 +44,7 @@ C3 = 10^37 "nanobarn" / meter^2
 
 C = C1 C2 C3
 
-yhat = zero(N)
-
-for(k,1,N,
- yhat[k] = C ((1 + x[k]) / (1 - x[k]) + (1 - x[k]) / (1 + x[k]))
-)
+yhat = C ((1 + x) / (1 - x) + (1 - x) / (1 + x))
 
 "Predicted cross section"
 
@@ -58,7 +52,7 @@ yhat
 
 "Coefficient of determination (R squared)"
 
-ybar = sum(y) / N
+ybar = sum(y) / dim(y)
 
 RSS = sum((y - yhat)^2) -- residual sum of squares
 TSS = sum((y - ybar)^2) -- total sum of squares
