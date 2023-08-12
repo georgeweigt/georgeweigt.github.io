@@ -29,6 +29,14 @@ pi = float(pi) -- use numerical value of pi
 
 F = (I - eval(I,theta,0)) / (eval(I,theta,pi) - eval(I,theta,0))
 
+f = d(F,theta)
+
+"Probability density function"
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(f,theta)
+
 "Cumulative distribution function"
 
 xrange = (0,pi)
