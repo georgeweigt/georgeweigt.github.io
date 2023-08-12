@@ -1,4 +1,4 @@
--- Compute R-squared for DESY Bhabha scattering data
+-- Compute R-squared for Bhabha scattering data from DESY
 
 -- www.hepdata.net/record/ins191231 (Table 3, 14.0 GeV)
 

@@ -1,4 +1,4 @@
--- Compute R-squared for annihilation data
+-- Compute R-squared for annihilation data from DESY
 
 -- www.hepdata.net/record/ins191231 (Table 2, 14.0 GeV)
 
