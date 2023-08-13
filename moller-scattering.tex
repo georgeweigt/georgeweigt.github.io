@@ -25,6 +25,8 @@ Symbol $p$ is incident momentum.
 Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
+\iffalse
+% old
 \begin{align*}
 p_1&=
 \underset{\substack{\text{inbound}\\\text{electron}}}
@@ -100,6 +102,49 @@ u_{42}&=
 \begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}
 }
 \end{align*}
+\else
+\begin{align*}
+p_1&=\underset{\text{inbound $e^-$}}
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+& u_{11}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+& u_{12}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
+\\[1ex]
+p_2&=
+\underset{\text{inbound $e^-$}}
+{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+& u_{21}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
+& u_{22}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
+\\[1ex]
+p_3&=
+\underset{\text{outbound $e^-$}}
+{\begin{pmatrix}
+E\\
+p\sin\theta\cos\phi\\
+p\sin\theta\sin\phi\\
+p\cos\theta
+\end{pmatrix}}
+& u_{31}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
+& u_{32}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
+\\[1ex]
+p_4&=\underset{\text{outbound $e^-$}}
+{\begin{pmatrix}
+E\\
+-p\sin\theta\cos\phi\\
+-p\sin\theta\sin\phi\\
+-p\cos\theta
+\end{pmatrix}}
+& u_{41}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
+& u_{42}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
+\end{align*}
+\fi
 
 The spinors are not individually normalized.
 Instead, a combined spinor normalization constant $N=(E+m)^4$ will be used.
@@ -236,7 +281,6 @@ f_{12} &= -8 s^2 + 64 s m^2 - 96 m^4
 f_{22} &= 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
 \end{align*}
 
-\subsection*{High energy approximation}
 For high energy experiments $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&=8s^2+8u^2\\
