@@ -1,4 +1,4 @@
-"Verify formulas for Fermi's golden rule"
+-- Verify formulas for Fermi's golden rule
 
 Delta = omega2 - omega1
 

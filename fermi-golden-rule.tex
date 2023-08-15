@@ -6,7 +6,7 @@
 
 \section*{Fermi's golden rule}
 
-Calculate the transition rate $\Gamma_{1\rightarrow2}$
+Find the transition rate $\Gamma_{1\rightarrow2}$
 by deriving Fermi's golden rule.
 
 \bigskip
@@ -21,10 +21,9 @@ Let $\Psi(x,t)$ be the following linear combination of the two eigenstates.
 \Psi(x,t)=c_1(t)\psi_1(x)\exp(-i\omega_1t)+c_2(t)\psi_2(x)\exp(-i\omega_2t)
 \end{equation*}
 
-We want to solve for $c_2(t)$ and find the transition rate
-\begin{equation*}
-\Gamma_{1\rightarrow2}=\frac{d}{dt}|c_2(t)|^2
-\end{equation*}
+We need to solve for $c_2(t)$ to find the transition rate.
+
+\bigskip
 
 From the time-dependent Schrodinger equation we have
 \begin{equation*}
@@ -58,7 +57,7 @@ and
 RHS=H_1(x,t)\Psi(x,t)
 \end{equation*}
 
-Hence
+Hence by $LHS=RHS$ we have
 \begin{equation*}
 i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
 +i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
