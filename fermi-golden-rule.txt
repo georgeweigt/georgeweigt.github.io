@@ -2,21 +2,29 @@
 
 Delta = omega2 - omega1
 
-f = expcos(omega tp) exp(i Delta tp)
-c2 = 2 M21 / (i hbar) defint(f, tp, 0, t)
-c21 = (exp(i (Delta - omega) t) - 1) / (Delta - omega)
-c22 = (exp(i (Delta + omega) t) - 1) / (Delta + omega)
+f = expcos(omega tprime + phi) exp(i Delta tprime)
+
+c2 = 2 M21 / (i hbar) defint(f,tprime,0,t)
+
+c21 = -M21 / hbar *
+      (exp(i (Delta - omega) t) - 1) / (Delta - omega) *
+      exp(-i phi)
+
+c22 = -M21 / hbar *
+      (exp(i (Delta + omega) t) - 1) / (Delta + omega) *
+      exp(+i phi)
 
 "Verify integral (1)"
-check(c2 == -M21 / hbar (c21 + c22))
+check(c2 == c21 + c22)
+check(eval(f,tprime,t) == d(c2, t) i hbar / (2 M21))
 "ok"
 
-c2 = -M21 / hbar c21
+c2 = c21
 
 sinc(x) = expsin(x) / x
 
 c2prime = -i t / hbar M21 *
-          exp(i (Delta - omega) / 2 t) *
+          exp(i (Delta - omega) / 2 t - i phi) *
           sinc((Delta - omega) / 2 t)
 
 "Verify sinc form (2)"
@@ -26,7 +34,7 @@ check(c2 == c2prime)
 sinc = quote(sinc) -- clear sinc def
 
 c2 = -i t / hbar M21 *
-     exp(i (Delta - omega) / 2 t) *
+     exp(i (Delta - omega) / 2 t - i phi) *
      sinc((Delta - omega) / 2 t)
 
 P = conj(c2) c2

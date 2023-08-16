@@ -13,7 +13,7 @@ by deriving Fermi's golden rule.
 
 Let the perturbing Hamiltonian be
 \begin{equation*}
-H_1(x,t)=2V(x)\cos(\omega t)
+H_1(x,t)=2V(x)\cos(\omega t+\phi)
 \end{equation*}
 
 Let $\Psi(x,t)$ be the following linear combination of the two eigenstates.
@@ -67,7 +67,11 @@ i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
 Take the inner product of $\psi_2^*(x)$ with the above equation to obtain
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}\exp(-i\omega_2t)
-=2c_1(t)M_{21}\cos(\omega t)\exp(-i\omega_1t)+2c_2(t)M_{22}\cos(\omega t)\exp(-i\omega_2t)
+=2\cos(\omega t+\phi)
+\bigl(
+c_1(t)M_{21}\exp(-i\omega_1t)+
+c_2(t)M_{22}\exp(-i\omega_2t)
+\bigr)
 \end{equation*}
 %
 where $M_{21}$ and $M_{22}$ are the matrix elements
@@ -80,7 +84,10 @@ M_{22}&=\int\psi_2^*(x)V(x)\psi_2(x)\,dx
 Cancel exponentials.
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}
-=2c_1(t)M_{21}\cos(\omega t)\exp\bigl(i(\omega_2-\omega_1)t\bigr)+2c_2(t)M_{22}\cos(\omega t)
+=2\cos(\omega t+\phi)
+\Bigl(
+c_1(t)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)+2c_2(t)M_{22}
+\Bigr)
 \end{equation*}
 
 The initial state is $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
@@ -91,26 +98,28 @@ c_1(0)=1,\quad c_2(0)=0
 Then for time $t$ near the origin we can use the approximation
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}
-=2M_{21}\cos(\omega t)\exp\bigl(i(\omega_2-\omega_1)t\bigr)
+=2\cos(\omega t+\phi)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)
 \end{equation*}
 
 Solve for $c_2(t)$ by integrating.
 \begin{equation*}
 c_2(t)=\frac{2M_{21}}{i\hbar}
-\int_0^t\cos(\omega t')\exp\bigl(i(\omega_2-\omega_1)t'\bigr)\,dt'
+\int_0^t\cos(\omega t'+\phi)\exp\bigl(i(\omega_2-\omega_1)t'\bigr)\,dt'
 \end{equation*}
 
 The solution is
-\begin{equation*}
+\begin{multline*}
 c_2(t)
 =-\frac{M_{21}}{\hbar}
 \left(
 \frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
--
+\right)\exp(-i\phi)
+\\{}-\frac{M_{21}}{\hbar}
+\left(
 \frac{\exp\bigl(i(\omega_2-\omega_1+\omega) t\bigr)-1}{\omega_2-\omega_1+\omega}
-\right)
+\right)\exp(+i\phi)
 \tag{1}
-\end{equation*}
+\end{multline*}
 
 For $\omega$ such that $\omega\approx\omega_2-\omega_1$ the first term
 dominates so discard the second term and write
@@ -118,13 +127,13 @@ dominates so discard the second term and write
 c_2(t)=-\frac{M_{21}}{\hbar}
 \left(
 \frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
-\right)
+\right)\exp(-i\phi)
 \end{equation*}
 
 Rewrite as
 \begin{equation*}
 c_2(t)=-\frac{it}{\hbar}\,M_{21}
-\exp\left(i\,\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\exp\left(i\,\frac{\omega_2-\omega_1-\omega}{2}\,t-i\phi\right)
 \operatorname{sinc}\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
 \tag{2}
 \end{equation*}
@@ -207,45 +216,8 @@ P_{tot}=\frac{2\pi t}{\hbar}|M_{21}|^2g(\hbar\omega)
 
 The transition rate is
 \begin{equation*}
-\Gamma=\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2g(\hbar\omega)
+\Gamma_{1\rightarrow2}
+=\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2g(\hbar\omega)
 \end{equation*}
-
-
-\end{document}
-
-The probability density is
-\begin{equation*}
-|c_2(t)|^2=\frac{|M_{21}|^2}{4\hbar^2}\,t^2
-\operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
-\end{equation*}
-
-Use the following approximation for $\operatorname{sinc}^2$
-\begin{equation*}
-\operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
-\approx\frac{2\pi}{t}\delta(\omega_2-\omega_1-\omega),
-\quad
-t>0
-\end{equation*}
-to obtain
-\begin{equation*}
-|c_2(t)|^2=\frac{\pi}{2\hbar^2}|M_{21}|^2t\delta(\omega_2-\omega_1-\omega)
-\tag{3}
-\end{equation*}
-
-Differentiate $|c_2(t)|^2$ with respect to $t$ to obtain the transition rate.
-\begin{equation*}
-\frac{d}{dt}|c_2(t)|^2=\frac{\pi}{2\hbar^2}|M_{21}|^2\delta(\omega_2-\omega_1-\omega)
-\end{equation*}
-
-
-
-
-Here is a summary of the approximations used.
-
-1. Solved $c_2(t)$ for $t$ near the origin.
-
-2. Simplified $c_2(t)$ for $\omega\approx\omega_2-\omega_1$.
-
-3. Used an approximation for the $\operatorname{sinc}^2$ function.
 
 \end{document}
