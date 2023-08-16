@@ -149,7 +149,7 @@ Integrate $P(1\rightarrow2)$ to obtain the total transition probability
 $P_{tot}(1\rightarrow2)$.
 \begin{equation*}
 P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2
-\int_{E-\hbar\omega/2}^{E+\hbar\omega/2}
+\int_{E-\epsilon}^{E+\epsilon}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)
 g(E')\,dE'
 \end{equation*}
@@ -166,7 +166,7 @@ and $g(E')$ is the density of photon states for energy $E'$.
 Use the approximation $g(E')\approx g(\hbar\omega)$ to obtain
 \begin{equation*}
 P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2g(\hbar\omega)
-\int_{E-\hbar\omega/2}^{E+\hbar\omega/2}
+\int_{E-\epsilon}^{E+\epsilon}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)\,dE'
 \end{equation*}
 
@@ -187,25 +187,25 @@ dE'=\frac{2\hbar}{t}\,dy
 
 The integration limits transform as
 \begin{equation*}
-E\pm\hbar\omega/2
+E\pm\epsilon
 \rightarrow
-\frac{(E\pm\hbar\omega/2)/\hbar-\omega}{2}\,t
+\frac{(E\pm\epsilon)/\hbar-\omega}{2}\,t
 =\frac{Et}{2\hbar}-\frac{\omega t}{2}
-\pm\frac{\omega t}{4}
+\pm\frac{\epsilon t}{2\hbar}
 \approx
-\pm\frac{\omega t}{4}
+\pm\frac{\epsilon t}{2\hbar}
 \end{equation*}
 
 Hence
 \begin{equation*}
 P_{tot}(1\rightarrow2)=\frac{2t}{\hbar}|M_{21}|^2g(\hbar\omega)
-\int_{-\omega t/4}^{+\omega t/4}
+\int_{-\epsilon t/2\hbar}^{\epsilon t/2\hbar}
 \operatorname{sinc}^2y\,dy
 \end{equation*}
 
 Use the approximation
 \begin{equation*}
-\int_{-\omega t/4}^{+\omega t/4}\operatorname{sinc}^2 y\,dy
+\int_{-\epsilon t/2\hbar}^{\epsilon t/2\hbar}\operatorname{sinc}^2 y\,dy
 \approx
 \int_{-\infty}^\infty\operatorname{sinc}^2 y\,dy=\pi
 \end{equation*}
