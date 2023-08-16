@@ -3,9 +3,9 @@
 
 Delta = omega2 - omega1
 
-f = expcos(omega tprime + phi) exp(i Delta tprime)
-
-c2 = 2 M21 / (i hbar) defint(f,tprime,0,t)
+f = expcos(omega t + phi) exp(i Delta t)
+I = defint(f,t,0,t)
+c2 = 2 M21 / (i hbar) I
 
 c21 = -M21 / hbar *
       (exp(i (Delta - omega) t) - 1) / (Delta - omega) *
@@ -13,11 +13,11 @@ c21 = -M21 / hbar *
 
 c22 = -M21 / hbar *
       (exp(i (Delta + omega) t) - 1) / (Delta + omega) *
-      exp(+i phi)
+      exp(i phi)
 
 "Verify integral (1)"
 check(c2 == c21 + c22)
-check(eval(f,tprime,t) == d(c2, t) i hbar / (2 M21))
+check(f == d(I,t))
 "ok"
 
 c2 = c21
