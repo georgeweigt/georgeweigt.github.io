@@ -130,7 +130,7 @@ c_2(t)=-\frac{M_{21}}{\hbar}
 \right)\exp(-i\phi)
 \end{equation*}
 
-Rewrite as
+Rewrite using a sinc function.
 \begin{equation*}
 c_2(t)=-\frac{it}{\hbar}\,M_{21}
 \exp\left(i\,\frac{\omega_2-\omega_1-\omega}{2}\,t-i\phi\right)
@@ -138,33 +138,34 @@ c_2(t)=-\frac{it}{\hbar}\,M_{21}
 \tag{2}
 \end{equation*}
 
-Hence
+Hence the transition probability is
 \begin{equation*}
-|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
+P(1\rightarrow2)=|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
 \operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
 \tag{3}
 \end{equation*}
 
-Let
+Integrate $P(1\rightarrow2)$ to obtain the total transition probability
+$P_{tot}(1\rightarrow2)$.
 \begin{equation*}
-E=\hbar(\omega_2-\omega_1)
-\end{equation*}
-
-The total probability is
-\begin{equation*}
-P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2
+P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2
 \int_{E-\hbar\omega/2}^{E+\hbar\omega/2}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)
 g(E')\,dE'
 \end{equation*}
 %
-where $g(E')$ is the density of photon states for energy $E'$.
+where
+\begin{equation*}
+E=\hbar(\omega_2-\omega_1)
+\end{equation*}
+%
+and $g(E')$ is the density of photon states for energy $E'$.
 
 \bigskip
 
 Use the approximation $g(E')\approx g(\hbar\omega)$ to obtain
 \begin{equation*}
-P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2g(\hbar\omega)
+P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2g(\hbar\omega)
 \int_{E-\hbar\omega/2}^{E+\hbar\omega/2}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)\,dE'
 \end{equation*}
@@ -197,7 +198,7 @@ E\pm\hbar\omega/2
 
 Hence
 \begin{equation*}
-P_{tot}=\frac{2t}{\hbar}|M_{21}|^2g(\hbar\omega)
+P_{tot}(1\rightarrow2)=\frac{2t}{\hbar}|M_{21}|^2g(\hbar\omega)
 \int_{-\omega t/4}^{+\omega t/4}
 \operatorname{sinc}^2y\,dy
 \end{equation*}
@@ -211,13 +212,13 @@ Use the approximation
 %
 to obtain
 \begin{equation*}
-P_{tot}=\frac{2\pi t}{\hbar}|M_{21}|^2g(\hbar\omega)
+P_{tot}(1\rightarrow2)=\frac{2\pi t}{\hbar}|M_{21}|^2g(\hbar\omega)
 \end{equation*}
 
-The transition rate is
+The transition rate is the derivative of $P_{tot}(1\rightarrow2)$.
 \begin{equation*}
 \Gamma_{1\rightarrow2}
-=\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2g(\hbar\omega)
+=\frac{d}{dt}P_{tot}(1\rightarrow2)=\frac{2\pi}{\hbar}|M_{21}|^2g(\hbar\omega)
 \end{equation*}
 
 \end{document}
