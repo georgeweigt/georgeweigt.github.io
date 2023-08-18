@@ -32,20 +32,31 @@ i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
 
 The left-hand side works out to be
 \begin{multline*}
-LHS=\left(i\hbar\frac{\partial c_1(t)}{\partial t}+\hbar\omega_1c_1(t)\right)
+LHS=\left(i\hbar\frac{\partial c_1(t)}{\partial t}+
+\underset{\text{cancels}}
+{\hbar\omega_1c_1(t)}
+\right)
 \psi_1(x)\exp(-i\omega_1t)
 \\
-{}+\left(i\hbar\frac{\partial c_2(t)}{\partial t}+\hbar\omega_2c_2(t)\right)
+{}+\left(i\hbar\frac{\partial c_2(t)}{\partial t}+
+\underset{\text{cancels}}
+{\hbar\omega_2c_2(t)}
+\right)
 \psi_2(x)\exp(-i\omega_2t)
 \end{multline*}
 
 Using the time-independent Schrodinger equation the right-hand side is
 \begin{equation*}
-RHS=c_1(t)E_1\psi_1(x)\exp(-i\omega_1t)
-+c_2(t)E_2\psi_2(x)\exp(-i\omega_2t)+H_1(x,t)\Psi(x,t)
+RHS=
+\underset{\text{cancels}}
+{c_1(t)E_1\psi_1(x)\exp(-i\omega_1t)}
++
+\underset{\text{cancels}}
+{c_2(t)E_2\psi_2(x)\exp(-i\omega_2t)}
++H_1(x,t)\Psi(x,t)
 \end{equation*}
 
-The energy terms cancel by the substitutions
+The indicated terms cancel by the substitutions
 $E_1=\hbar\omega_1$ and $E_2=\hbar\omega_2$ leaving
 \begin{equation*}
 LHS=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
@@ -90,7 +101,7 @@ c_1(t)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)+2c_2(t)M_{22}
 \Bigr)
 \end{equation*}
 
-The initial state is $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
+Let the initial state be $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
 \begin{equation*}
 c_1(0)=1,\quad c_2(0)=0
 \end{equation*}
