@@ -1,0 +1,78 @@
+<html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+-- Compute R-squared for Bhabha scattering data from DESY
+
+-- www.hepdata.net/record/ins191231 (Table 3, 14.0 GeV)
+
+-- x is cos(theta)
+
+x = (
+-0.73,
+-0.6495,
+-0.5495,
+-0.4494,
+-0.3493,
+-0.2491,
+-0.149,
+-0.0488,
+0.0514,
+0.1516,
+0.252,
+0.3524,
+0.4529,
+0.5537,
+0.6548,
+0.7323)
+
+-- y is differential cross section
+
+y = (
+0.10115,
+0.12235,
+0.11258,
+0.09968,
+0.14749,
+0.14017,
+0.1819,
+0.22964,
+0.25312,
+0.30998,
+0.40898,
+0.62695,
+0.91803,
+1.51743,
+2.56714,
+4.30279) "nanobarn"
+
+"Observed cross section per bin"
+
+y
+
+alpha = 7.2973525693 10^(-3)
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+eV = 1.602176634 10^(-19) joule
+
+s = (14.0 10^9 eV)^2
+
+C1 = alpha^2 / (4 s)
+C2 = (hbar c)^2
+C3 = 10^37 "nanobarn" / meter^2
+
+C = C1 C2 C3
+
+yhat = C ((x^2 + 3) / (x - 1))^2
+
+"Predicted cross section"
+
+yhat
+
+"Coefficient of determination (R squared)"
+
+ybar = sum(y) / dim(y)
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
