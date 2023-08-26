@@ -1,16 +1,12 @@
-body {
-font-size:16pt;
+body
+{
+	font-size:16pt;
 }
 
-/*
-button {
-font-size:16pt;
-}
-*/
-
-textarea {
-width:800px;
-height:400px;
-font-family:courier;
-font-size:12pt;
+textarea
+{
+	width:800px;
+	height:400px;
+	font-family:courier;
+	font-size:12pt;
 }

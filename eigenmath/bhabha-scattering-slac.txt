@@ -1,0 +1,80 @@
+-- Compute R-squared for Bhabha scattering data from SLAC-PUB-1501
+
+N = 12 -- number of observations
+
+-- x is cos(theta)
+
+x = (
+0.6,
+0.5,
+0.4,
+0.3,
+0.2,
+0.1,
+0.0,
+-0.1,
+-0.2,
+-0.3,
+-0.4,
+-0.5,
+-0.6)
+
+-- y is count data
+
+y = (
+4432,
+2841,
+2045,
+1420,
+1136,
+852,
+656,
+625,
+511,
+455,
+402,
+398)
+
+"Observed counts per bin"
+
+y
+
+-- I is integral of probability density function
+
+I = 16 / (cos(theta) - 1) -
+    1/3 cos(theta)^3 -
+    cos(theta)^2 -
+    9 cos(theta) -
+    16 log(1 - cos(theta))
+
+theta1 = arccos(x[1])
+theta2 = arccos(x[13])
+
+-- F is cumulative distribution function
+
+F = (I - eval(I,theta,theta1)) /
+    (eval(I,theta,theta2) - eval(I,theta,theta1))
+
+-- probability per bin
+
+P = zero(N)
+
+for(k,1,N,
+  theta1 = arccos(x[k]),
+  theta2 = arccos(x[k + 1]),
+  P[k] = eval(F,theta,theta2) - eval(F,theta,theta1)
+)
+
+"Predicted counts"
+
+yhat = sum(y) P
+yhat
+
+"Coefficient of determination (R squared)"
+
+ybar = sum(y) / N
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS

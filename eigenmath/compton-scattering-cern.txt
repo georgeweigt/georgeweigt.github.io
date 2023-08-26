@@ -1,0 +1,74 @@
+-- Compton Scattering of Quasi-Real Virtual Photons at LEP
+
+-- arxiv.org/abs/hep-ex/0504012
+
+-- Data from Table 4, page 11.
+
+N = 12 -- number of observations
+
+-- x is cos(theta)
+
+x = (
+-0.74,
+-0.60,
+-0.47,
+-0.34,
+-0.20,
+-0.07,
+0.06,
+0.20,
+0.33,
+0.46,
+0.60,
+0.73)
+
+-- y is cross section
+
+y = (
+13380,
+7720,
+6360,
+4600,
+4310,
+3700,
+3640,
+3340,
+3500,
+3010,
+3310,
+3330)
+
+y = y "picobarn"
+
+"Observed cross section per bin"
+
+y
+
+pi = float(pi) -- use numerical value of pi
+
+alpha = 7.2973525693 10^(-3)
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+eV = 1.602176634 10^(-19) joule
+
+s = (40.0 10^9 eV)^2
+
+C = pi alpha^2 / s (h c)^2 10^40 "picobarn" / meter^2
+
+yhat = zero(N)
+
+for(k,1,N, yhat[k] = C ((x[k]+1)/2 + 2/(x[k]+1)))
+
+"Predicted cross section"
+
+yhat
+
+"Coefficient of determination (R squared)"
+
+ybar = sum(y) / N
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS

@@ -1,0 +1,34 @@
+-- Draw pdf and cdf for Bhabha scattering
+
+N = 12 -- number of bins
+
+pi = float(pi) -- use numerical value of pi
+a = pi / N
+I = 16 / (cos(theta) - 1) -
+    1/3 cos(theta)^3 -
+    cos(theta)^2 -
+    9 cos(theta) -
+    16 log(1 - cos(theta))
+F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
+f = d(F,theta)
+
+"Probability density function"
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(f,theta)
+
+"Cumulative distribution function"
+
+xrange = (0,pi)
+yrange = (0,1)
+draw(F,theta)
+
+"Bin probability (first bin not observed)"
+
+P = zero(N)
+for(k,2,N, P[k] = eval(F,theta,k pi/N) - eval(F,theta,(k-1) pi/N))
+h(x) = test(x <= 0, 0, x > N, 0, P[ceiling(x)])
+xrange = (0,N)
+yrange = (0,1)
+draw(h,x)
