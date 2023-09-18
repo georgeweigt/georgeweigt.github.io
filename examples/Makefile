@@ -4,6 +4,7 @@
 
 %.pdf: %.tex
 	pdflatex $<
+	if [ -e $*.toc ] ; then pdflatex $< ; fi
 
 %.html: %.txt
 	cat html-ante $< html-post > $@
