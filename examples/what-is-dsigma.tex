@@ -6,26 +6,32 @@
 
 \section*{What is $d\sigma$?}
 
-The product $d\sigma\sin\theta$ is an
-{\it unnormalized} probability density function.
-Integrate $d\sigma\sin\theta$ to obtain a
+$d\sigma$ is an {\it unnormalized} probability density function.
+Integrate $d\sigma$ to obtain a
 cumulative distribution function $F(\theta)$.
 Differentiate $F(\theta)$ to obtain a
 {\it normalized} probability density function $f(\theta)$.
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
-\propto d\sigma\sin\theta
+\propto d\sigma
 \end{equation*}
 
-For example, the well-known cross section for Bhabha scattering is
+For example, the well known cross section for Bhabha scattering is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\alpha^2(\hbar c)^2}{4s}
 \left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
+Recalling that $d\Omega=\sin\theta\,d\theta\,d\phi$ we can write
+\begin{equation*}
+d\sigma
+=\frac{\alpha^2(\hbar c)^2}{4s}
+\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
+\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
 Let $I(\theta)$ be the following integral of $d\sigma$.
-(The $\sin\theta$ is from $d\Omega=\sin\theta\,d\theta\,d\phi$.)
 \begin{equation*}
 I(\theta)=\int
 \left(
@@ -73,7 +79,7 @@ f(\theta)=\frac{dF(\theta)}{d\theta}
 \sin\theta
 $$
 
-Note that if we had carried through the $\alpha^2(\hbar c)^2/4s$ in $I(\theta)$,
+Note that if we had carried through the $\alpha^2(\hbar c)^2/4s\,d\phi$ in $I(\theta)$,
 it would have canceled out in $F(\theta)$.
 
 \bigskip
