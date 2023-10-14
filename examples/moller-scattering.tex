@@ -362,8 +362,12 @@ The following equivalent formula can also be used.
 \subsection*{Cross section}
 The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},
-\quad s=(p_1+p_2)^2=4E^2
+\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
+\end{equation*}
+
+where
+\begin{equation*}
+s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
 For high energy experiments we have
@@ -371,7 +375,7 @@ For high energy experiments we have
 \langle|\mathcal{M}|^2\rangle=4e^4\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-Substitute for $\langle|\mathcal{M}|^2\rangle$.
+Hence for high energy experiments
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{e^4}{(4\pi\varepsilon_0)^2s}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
@@ -380,27 +384,45 @@ Noting that
 \begin{equation*}
 e^2=4\pi\varepsilon_0\alpha\hbar c
 \end{equation*}
-we can also write
+
+we have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{s}
 \frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-We can integrate $d\sigma$ to obtain a cumulative distribution function.
-Let $I(\theta)$ be the following integral of $d\sigma$.
-(The $\sin\theta$ is from $d\Omega=\sin\theta\,d\theta\,d\phi$.)
+Noting that
 \begin{equation*}
-I(\theta)=\int\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta\,d\theta
+d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-The result is
+we also have
+\begin{equation*}
+d\sigma=\frac{\alpha^2(\hbar c)^2}{s}
+\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
+Let $S(\theta_1,\theta_2)$ be the following surface integral of $d\sigma$.
+\begin{equation*}
+S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
+\end{equation*}
+
+The solution is
+\begin{equation*}
+S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{s}\bigl(I(\theta_2)-I(\theta_1)\bigr)
+\end{equation*}
+
+where
 \begin{equation*}
 I(\theta)=-\frac{8\cos\theta}{\sin^2\theta}-\cos\theta
 \end{equation*}
 
 The cumulative distribution function is
 \begin{equation*}
-F(\theta)=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
+F(\theta)
+=\frac{S(a,\theta)}{S(a,\pi-a)}
+=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
 \quad
 a\le\theta\le\pi-a
 \end{equation*}
@@ -416,19 +438,16 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 Let $N$ be the total number of scattering events from an experiment.
 Then the number of scattering events in the interval $\theta_1$
 to $\theta_2$ is predicted to be
-$$
+\begin{equation*}
 NP(\theta_1\le\theta\le\theta_2)
-$$
+\end{equation*}
 
 The probability density function is
-$$
+\begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
 =\frac{1}{I(\pi-a)-I(a)}
 \frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
-$$
-
-Note that if we had carried through the $\alpha^2(\hbar c)^2/s$ in $I(\theta)$,
-it would have canceled out in $F(\theta)$.
+\end{equation*}
 
 \subsection*{Notes}
 1. A.~Zee page 134 has the cross section

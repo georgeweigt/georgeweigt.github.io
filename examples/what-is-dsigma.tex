@@ -31,23 +31,27 @@ d\sigma
 \sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-Let $I(\theta)$ be the following integral of $d\sigma$.
+Let $S(\theta_1,\theta_2)$ be the following surface integral of $d\sigma$.
 \begin{equation*}
-I(\theta)=\int
-\left(
-\frac{\cos^2\theta+3}{\cos\theta-1}
-\right)^2
-\sin\theta\,d\theta
+S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
 \end{equation*}
 
-The integral is
+The solution is
 \begin{equation*}
-I(\theta)=\frac{16}{\cos\theta-1}-\frac{\cos^3\theta}{3}-\cos^2\theta-9\cos\theta-16\log(1-\cos\theta)
+S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{4s}\bigl(I(\theta_2)-I(\theta_1)\bigr)
+\end{equation*}
+
+where
+\begin{equation*}
+I(\theta)=
+\frac{16}{\cos\theta-1}-\frac{\cos^3\theta}{3}-\cos^2\theta-9\cos\theta-16\log(1-\cos\theta)
 \end{equation*}
 
 The cumulative distribution function is
 \begin{equation*}
-F(\theta)=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},
+F(\theta)
+=\frac{S(a,\theta)}{S(a,\pi)}
+=\frac{I(\theta)-I(a)}{I(\pi)-I(a)},
 \quad
 a\le\theta\le\pi
 \end{equation*}
@@ -78,9 +82,6 @@ f(\theta)=\frac{dF(\theta)}{d\theta}
 \left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \sin\theta
 $$
-
-Note that if we had carried through the $\alpha^2(\hbar c)^2/4s\,d\phi$ in $I(\theta)$,
-it would have canceled out in $F(\theta)$.
 
 \bigskip
 

@@ -379,7 +379,12 @@ For the lab frame we have
 \right)
 \end{equation*}
 
-Substitute for $\langle|\mathcal{M}|^2\rangle$.
+where the scattered photon frequency $\omega'$ is computed from the Compton equation as
+\begin{equation*}
+\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
+\end{equation*}
+
+Hence in the lab frame
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{e^4}{2(4\pi\varepsilon_0)^2s}
@@ -393,7 +398,8 @@ Noting that
 \begin{equation*}
 e^2=4\pi\varepsilon_0\alpha\hbar c
 \end{equation*}
-we can also write
+
+we have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\alpha^2(\hbar c)^2}{2s}
@@ -403,23 +409,33 @@ we can also write
 \right)
 \end{equation*}
 
-The scattered photon frequency $\omega'$ is computed from the Compton equation.
+Noting that
 \begin{equation*}
-\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
+d\Omega=\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-We can integrate $d\sigma$ to obtain a cumulative distribution function.
-Let $I(\theta)$ be the following integral of $d\sigma$.
-(The $\sin\theta$ is due to $d\Omega=\sin\theta\,d\theta\,d\phi$.)
+we also have
 \begin{equation*}
-I(\theta)=
-\int
+d\sigma
+=\frac{\alpha^2(\hbar c)^2}{2s}
 \left(\frac{\omega'}{\omega}\right)^2
-\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
-\sin\theta\,d\theta
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-The result is
+Let $S(\theta_1,\theta_2)$ be the following surface integral of $d\sigma$.
+\begin{equation*}
+S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
+\end{equation*}
+
+The solution is
+\begin{equation*}
+S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{2s}\bigl(I(\theta_2)-I(\theta_1)\bigr)
+\end{equation*}
+
+where
 \begin{multline*}
 I(\theta)=-\frac{\cos\theta}{R^2}
 +\log\bigl(1+R(1-\cos\theta)\bigr)\left(\frac{1}{R}-\frac{2}{R^2}-\frac{2}{R^3}\right)
@@ -428,14 +444,16 @@ I(\theta)=-\frac{\cos\theta}{R^2}
 +\frac{1}{1+R(1-\cos\theta)}\left(-\frac{2}{R^2}-\frac{1}{R^3}\right)
 \end{multline*}
 
-where
+and
 \begin{equation*}
 R=\frac{\hbar\omega}{mc^2}
 \end{equation*}
 
 The cumulative distribution function is
 \begin{equation*}
-F(\theta)=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
+F(\theta)
+=\frac{S(0,\theta)}{S(0,\pi)}
+=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
 \quad
 0\le\theta\le\pi
 \end{equation*}
@@ -448,21 +466,18 @@ P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 Let $N$ be the total number of scattering events from an experiment.
 Then the number of scattering events in the interval $\theta_1$
 to $\theta_2$ is predicted to be
-$$
+\begin{equation*}
 NP(\theta_1\le\theta\le\theta_2)
-$$
+\end{equation*}
 
 The probability density function is
-$$
+\begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
 =\frac{1}{I(\pi)-I(0)}
 \left(\frac{\omega'}{\omega}\right)^2
 \left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
 \sin\theta
-$$
-
-Note that if we had carried through the $\alpha^2(\hbar c)^2/2s$ in $I(\theta)$,
-it would have canceled out in $F(\theta)$.
+\end{equation*}
 
 \subsection*{Thomson scattering}
 For $\hbar\omega\ll mc^2$ we have
