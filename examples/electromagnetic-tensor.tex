@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+\section*{Electromagnetic tensor}
+\begin{equation*}
+\mathbf A=\begin{pmatrix}A_x\\A_y\\A_z\end{pmatrix},\quad
+A^\mu=\begin{pmatrix}\phi\\A_x\\A_y\\A_z\end{pmatrix},\quad
+A_\mu=g_{\mu\nu}A^\nu=\begin{pmatrix}\phi\\-A_x\\-A_y\\-A_z\end{pmatrix}
+\end{equation*}
+{\footnotesize
+\begin{verbatim}
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+A = (Ax(),Ay(),Az())
+Au = (phi(),Ax(),Ay(),Az())
+Ad = dot(gmunu,Au)
+\end{verbatim}
+}
+
+\begin{equation*}
+\mathbf B=\nabla\times\mathbf A,\quad
+\mathbf E=-\nabla\phi-\frac{\partial\mathbf A}{\partial t}
+\end{equation*}
+{\footnotesize
+\begin{verbatim}
+B = curl(A)
+E = -d(phi(),(x,y,z)) - d(A,t)
+\end{verbatim}
+}
+
+\begin{equation*}
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+=\begin{pmatrix}
+0 & E_x & E_y & E_z
+\\
+-E_x & 0 & -B_z & B_y
+\\
+-E_y & B_z & 0 & -B_x
+\\
+-E_z & -B_y & B_x & 0
+\end{pmatrix}
+\end{equation*}
+{\footnotesize
+\begin{verbatim}
+X = (t,x,y,z)
+Fdd = d(Ad,X)
+Fdd = transpose(Fdd) - Fdd
+
+T = ((0, E[1], E[2], E[3]),
+     (-E[1], 0, -B[3], B[2]),
+     (-E[2], B[3], 0, -B[1]),
+     (-E[3], -B[2], B[1], 0))
+
+check(Fdd == T)
+\end{verbatim}
+
+\begin{equation*}
+F_{\mu\nu}F^{\mu\nu}=2\mathbf B^2-2\mathbf E^2
+\end{equation*}
+{\footnotesize
+\begin{verbatim}
+Fuu = dot(gmunu,Fdd,gmunu)
+T = contract(dot(transpose(Fdd),Fuu))
+check(T == 2 dot(B,B) - 2 dot(E,E))
+\end{verbatim}
+}
+
+\begin{equation*}
+\det(F_{\mu\nu})=\det(F^{\mu\nu})=(\mathbf B\cdot\mathbf E)^2
+\end{equation*}
+{\footnotesize
+\begin{verbatim}
+check(det(Fdd) == dot(B,E)^2)
+check(det(Fuu) == dot(B,E)^2)
+\end{verbatim}
+}
+
+\end{document}
