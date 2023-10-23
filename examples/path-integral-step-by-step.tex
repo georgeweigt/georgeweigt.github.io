@@ -1,0 +1,187 @@
+\documentclass[12pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath}
+\parindent=0pt
+\begin{document}
+
+\section*{Path integral step by step}
+\textcircled{\scriptsize1}
+Let $H$ be the following Hamiltonian where $V\equiv V(x,t)$.
+\begin{equation*}
+H=\frac{\hat p^2}{2m}+V
+\end{equation*}
+
+\textcircled{\scriptsize2}
+Let $K_j$ be the amplitude to go from $x_j$ to $x_{j+1}$
+in time $\delta t$ where $\delta t=T/N$.
+\begin{equation*}
+K_j=\langle x_{j+1}|\exp\left(-\frac{i}{\hbar}H\delta t\right)|x_j\rangle
+\end{equation*}
+
+\textcircled{\scriptsize3}
+By the identity
+\begin{equation*}
+\int|p\rangle\langle p|\,dp=1
+\end{equation*}
+
+we can write
+\begin{equation*}
+K_j=\int\langle x_{j+1}|\exp\left(-\frac{i}{\hbar}H\delta t\right)
+|p\rangle\langle p|x_j\rangle\,dp
+\end{equation*}
+
+\textcircled{\scriptsize4}
+Replace operator $\hat p$ with its eigenvalue $p$.
+\begin{equation*}
+K_j=\int
+\exp\left(-\frac{i}{\hbar}\left(\frac{p^2}{2m}+V\right)\delta t\right)
+\langle x_{j+1}|p\rangle\langle p|x_j\rangle\,dp
+\end{equation*}
+
+\textcircled{\scriptsize5}
+By the identity
+\begin{equation*}
+\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}\exp\left(\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+we can write
+\begin{equation*}
+K_j=\frac{1}{2\pi\hbar}
+\int
+\left(-\frac{i}{\hbar}\left(\frac{p^2}{2m}+V\right)\delta t\right)
+\exp\left(\frac{i}{\hbar}px_{j+1}\right)
+\exp\left(-\frac{i}{\hbar}px_j\right)
+\,dp
+\end{equation*}
+
+\textcircled{\scriptsize6}
+Combine exponentials.
+\begin{equation*}
+K_j=\frac{1}{2\pi\hbar}
+\int
+\exp\left(-\frac{i}{\hbar}
+\left(\frac{p^2}{2m}+V\right)
+\delta t
++\frac{i}{\hbar}p(x_{j+1}-x_j)\right)
+\,dp
+\end{equation*}
+
+\textcircled{\scriptsize7}
+The $V$ term does not depend on $p$ so factor it out of the integrand.
+\begin{equation*}
+K_j=\frac{1}{2\pi\hbar}
+\exp\left(-\frac{i}{\hbar}V\delta t\right)
+\int\exp\left(-\frac{i}{\hbar}
+\frac{p^2}{2m}
+\delta t
++\frac{i}{\hbar}p(x_{j+1}-x_j)\right)
+\,dp
+\end{equation*}
+
+\textcircled{\scriptsize8}
+To solve the integral, use the identity
+\begin{equation*}
+\int_{-\infty}^\infty\exp(-ay^2+by)\,dy=\biggl(\frac{\pi}{a}\biggr)^{1/2}
+\exp\left(\frac{b^2}{4a}\right)
+\end{equation*}
+
+with
+\begin{equation*}
+a=\frac{i}{\hbar}\frac{\delta t}{2m},\quad b=\frac{i}{\hbar}(x_{j+1}-x_j)
+\end{equation*}
+
+to obtain
+\begin{equation*}
+K_j=\frac{1}{2\pi\hbar}
+\exp\left(-\frac{i}{\hbar}V\delta t\right)
+\biggl(\frac{2\pi m\hbar}{i\delta t}\biggr)^{1/2}
+\exp\left(\frac{i}{\hbar}\frac{m}{2}\,\frac{(x_{j+1}-x_j)^2}{\delta t}\right)
+\end{equation*}
+
+\textcircled{\scriptsize9}
+Combine coefficients and exponentials.
+\begin{equation*}
+K_j=\biggl(\frac{m}{2\pi i\hbar\delta t}\biggr)^{1/2}
+\exp\left(\frac{i}{\hbar}\frac{m}{2}\,\frac{(x_{j+1}-x_j)^2}{\delta t}-\frac{i}{\hbar}V\delta t\right)
+\end{equation*}
+
+\textcircled{\scriptsize10}
+Factor out $i/\hbar$ and $\delta t$.
+\begin{equation*}
+K_j=\biggl(\frac{m}{2\pi i\hbar\delta t}\biggr)^{1/2}
+\exp\left[\frac{i}{\hbar}
+\left(\frac{m}{2}\left(\frac{x_{j+1}-x_j}{\delta t}\right)^2-V\right)\delta t
+\right]
+\end{equation*}
+
+\textcircled{\scriptsize11}
+Let $K(b,a)$ be the amplitude to go from $x_a$ at time zero to
+$x_b$ at time $T$ where $x_0\equiv x_a$ and $x_N\equiv x_b$.
+\begin{equation*}
+K(b,a)=\int dx_{N-1}\cdots\int dx_2\int dx_1\,
+K_{N-1}\cdots K_2K_1K_0
+\end{equation*}
+
+\textcircled{\scriptsize12}
+Substitute for the $K_j$.
+\begin{equation*}
+K(b,a)=\int dx_{N-1}\cdots\int dx_2\int dx_1\,
+\biggl(\frac{m}{2\pi i\hbar\delta t}\biggr)^{N/2}
+\exp\left[
+\frac{i}{\hbar}\sum_{j=0}^{N-1}\left(
+\frac{m}{2}\left(\frac{x_{j+1}-x_j}{\delta t}\right)^2
+-V\right)\delta t
+\right]
+\end{equation*}
+
+\textcircled{\scriptsize13}
+In the limit we have
+\begin{equation*}
+\lim_{N\rightarrow\infty}
+\sum_{j=0}^{N-1}
+\left(
+\frac{m}{2}\left(\frac{x_{j+1}-x_j}{\delta t}\right)^2-V
+\right)\delta t
+=
+\int_0^T
+\left(
+\frac{m}{2}\left(\frac{d}{dt}x(t)\right)^2-V
+\right)\,dt
+\end{equation*}
+
+Hence
+\begin{equation*}
+K(b,a)=\int dx_{N-1}\cdots\int dx_2\int dx_1\,
+\biggl(\frac{m}{2\pi i\hbar\delta t}\biggr)^{N/2}
+\exp\left[
+\frac{i}{\hbar}
+\int_0^T
+\left(
+\frac{m}{2}\left(\frac{d}{dt}x(t)\right)^2-V
+\right)
+\,dt
+\right]
+\end{equation*}
+
+\textcircled{\scriptsize14}
+Define
+\begin{equation*}
+\int Dx(t)=\lim_{N\rightarrow\infty}
+\int dx_{N-1}\cdots\int dx_2\int dx_1\,
+\biggl(\frac{m}{2\pi i\hbar\delta t}\biggr)^{N/2}
+\end{equation*}
+
+and write
+\begin{equation*}
+K(b,a)=\int Dx(t)\,
+\exp\left[
+\frac{i}{\hbar}
+\int_0^T
+\left(
+\frac{m}{2}\left(\frac{d}{dt}x(t)\right)^2-V
+\right)
+\,dt
+\right]
+\end{equation*}
+
+\end{document}
