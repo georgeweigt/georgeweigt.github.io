@@ -10,14 +10,22 @@ Ad = dot(gmunu,Au)
 B = curl(A)
 E = -d(phi(),(x,y,z)) - d(A,t)
 
+Bx = B[1]
+By = B[2]
+Bz = B[3]
+
+Ex = E[1]
+Ey = E[2]
+Ez = E[3]
+
 X = (t,x,y,z)
 Fdd = d(Ad,X)
 Fdd = transpose(Fdd) - Fdd
 
-T = ((0, E[1], E[2], E[3]),
-     (-E[1], 0, -B[3], B[2]),
-     (-E[2], B[3], 0, -B[1]),
-     (-E[3], -B[2], B[1], 0))
+T = ((0, Ex, Ey, Ez),
+     (-Ex, 0, -Bz, By),
+     (-Ey, Bz, 0, -Bx),
+     (-Ez, -By, Bx, 0))
 
 check(Fdd == T)
 

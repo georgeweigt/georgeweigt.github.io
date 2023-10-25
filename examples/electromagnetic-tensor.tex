@@ -29,8 +29,17 @@ Ad = dot(gmunu,Au)
 \begin{verbatim}
 B = curl(A)
 E = -d(phi(),(x,y,z)) - d(A,t)
+
+Bx = B[1]
+By = B[2]
+Bz = B[3]
+
+Ex = E[1]
+Ey = E[2]
+Ez = E[3]
 \end{verbatim}}
 
+This is the electromagnetic tensor.
 \begin{equation*}
 F_{\mu\nu}
 =\partial_\mu A_\nu-\partial_\nu A_\mu
@@ -51,40 +60,37 @@ X = (t,x,y,z)
 Fdd = d(Ad,X)
 Fdd = transpose(Fdd) - Fdd
 
-T = ((0, E[1], E[2], E[3]),
-     (-E[1], 0, -B[3], B[2]),
-     (-E[2], B[3], 0, -B[1]),
-     (-E[3], -B[2], B[1], 0))
+T = ((0, Ex, Ey, Ez),
+     (-Ex, 0, -Bz, By),
+     (-Ey, Bz, 0, -Bx),
+     (-Ez, -By, Bx, 0))
 
 check(Fdd == T)
 \end{verbatim}}
 
+Check the following relations.
 \begin{equation*}
-F_{\mu\nu}F^{\mu\nu}=2\mathbf B^2-2\mathbf E^2
+F_{\mu\nu}F^{\mu\nu}=2\bigl(\mathbf B^2-\mathbf E^2\bigl),\quad
+\det(F_{\mu\nu})=\det(F^{\mu\nu})=(\mathbf B\cdot\mathbf E)^2
 \end{equation*}
 {\footnotesize
 \begin{verbatim}
 Fuu = dot(gmunu,Fdd,gmunu)
 T = contract(dot(transpose(Fdd),Fuu))
 check(T == 2 dot(B,B) - 2 dot(E,E))
-\end{verbatim}}
 
-\begin{equation*}
-\det(F_{\mu\nu})=\det(F^{\mu\nu})=(\mathbf B\cdot\mathbf E)^2
-\end{equation*}
-{\footnotesize
-\begin{verbatim}
 check(det(Fdd) == dot(B,E)^2)
 check(det(Fuu) == dot(B,E)^2)
 \end{verbatim}}
 
+This is the vector current.
 \begin{equation*}
 J^\nu
 =\partial_\mu F^{\mu\nu}
 =F^{\mu\nu}{}_{,\mu}
 \end{equation*}
 
-Gradient increases the rank of a tensor by one.
+Gradient increases rank by one.
 The new index is the rightmost index,
 hence the contraction is over the first and third indices.
 {\footnotesize
