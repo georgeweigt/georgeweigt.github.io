@@ -19,8 +19,7 @@ gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 A = (Ax(),Ay(),Az())
 Au = (phi(),Ax(),Ay(),Az())
 Ad = dot(gmunu,Au)
-\end{verbatim}
-}
+\end{verbatim}}
 
 \begin{equation*}
 \mathbf B=\nabla\times\mathbf A,\quad
@@ -30,8 +29,7 @@ Ad = dot(gmunu,Au)
 \begin{verbatim}
 B = curl(A)
 E = -d(phi(),(x,y,z)) - d(A,t)
-\end{verbatim}
-}
+\end{verbatim}}
 
 \begin{equation*}
 F_{\mu\nu}
@@ -59,7 +57,7 @@ T = ((0, E[1], E[2], E[3]),
      (-E[3], -B[2], B[1], 0))
 
 check(Fdd == T)
-\end{verbatim}
+\end{verbatim}}
 
 \begin{equation*}
 F_{\mu\nu}F^{\mu\nu}=2\mathbf B^2-2\mathbf E^2
@@ -69,8 +67,7 @@ F_{\mu\nu}F^{\mu\nu}=2\mathbf B^2-2\mathbf E^2
 Fuu = dot(gmunu,Fdd,gmunu)
 T = contract(dot(transpose(Fdd),Fuu))
 check(T == 2 dot(B,B) - 2 dot(E,E))
-\end{verbatim}
-}
+\end{verbatim}}
 
 \begin{equation*}
 \det(F_{\mu\nu})=\det(F^{\mu\nu})=(\mathbf B\cdot\mathbf E)^2
@@ -79,20 +76,23 @@ check(T == 2 dot(B,B) - 2 dot(E,E))
 \begin{verbatim}
 check(det(Fdd) == dot(B,E)^2)
 check(det(Fuu) == dot(B,E)^2)
-\end{verbatim}
-}
+\end{verbatim}}
 
 \begin{equation*}
 J^\nu
 =\partial_\mu F^{\mu\nu}
 =F^{\mu\nu}{}_{,\mu}
 \end{equation*}
+
+Gradient increases the rank of a tensor by one.
+The new index is the rightmost index,
+hence the contraction is over the first and third indices.
 {\footnotesize
 \begin{verbatim}
 Ju = contract(d(Fuu,X),1,3)
-\end{verbatim}
-}
+\end{verbatim}}
 
+Check the following relations.
 \begin{equation*}
 \partial_\mu J^\mu=J^\mu{}_{,\mu}=0,
 \quad\mathbf J=\nabla\times\mathbf B-\frac{\partial\mathbf E}{\partial t}
@@ -106,7 +106,6 @@ Jy = Ju[3]
 Jz = Ju[4]
 J = (Jx,Jy,Jz)
 check(J == curl(B) - d(E,t))
-\end{verbatim}
-}
+\end{verbatim}}
 
 \end{document}
