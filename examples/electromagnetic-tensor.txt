@@ -18,8 +18,8 @@ Ey = E[2]
 Ez = E[3]
 
 X = (t,x,y,z)
-Fdd = d(Ad,X)
-Fdd = transpose(Fdd) - Fdd
+Add = d(Ad,X)
+Fdd = transpose(Add) - Add
 
 T = ((0, Ex, Ey, Ez),
      (-Ex, 0, -Bz, By),
