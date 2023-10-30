@@ -14,11 +14,12 @@ A_\mu=g_{\mu\nu}A^\nu=\begin{pmatrix}\phi\\-A_x\\-A_y\\-A_z\end{pmatrix}
 \end{equation*}
 {\footnotesize
 \begin{verbatim}
-gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+guu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+gdd = inv(guu)
 
 A = (Ax(),Ay(),Az())
 Au = (phi(),Ax(),Ay(),Az())
-Ad = dot(gmunu,Au)
+Ad = dot(gdd,Au)
 \end{verbatim}}
 
 \begin{equation*}
@@ -75,7 +76,7 @@ F_{\mu\nu}F^{\mu\nu}=2\bigl(\mathbf B^2-\mathbf E^2\bigl),\quad
 \end{equation*}
 {\footnotesize
 \begin{verbatim}
-Fuu = dot(gmunu,Fdd,gmunu)
+Fuu = dot(guu,Fdd,guu)
 T = contract(dot(transpose(Fdd),Fuu))
 check(T == 2 dot(B,B) - 2 dot(E,E))
 

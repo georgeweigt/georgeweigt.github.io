@@ -1,11 +1,12 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 -- electromagnetic tensor demo
 
-gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+guu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+gdd = inv(guu)
 
 A = (Ax(),Ay(),Az())
 Au = (phi(),Ax(),Ay(),Az())
-Ad = dot(gmunu,Au)
+Ad = dot(gdd,Au)
 
 B = curl(A)
 E = -d(phi(),(x,y,z)) - d(A,t)
@@ -29,7 +30,7 @@ T = ((0, Ex, Ey, Ez),
 
 check(Fdd == T)
 
-Fuu = dot(gmunu,Fdd,gmunu)
+Fuu = dot(guu,Fdd,guu)
 T = contract(dot(transpose(Fdd),Fuu))
 check(T == 2 dot(B,B) - 2 dot(E,E))
 
