@@ -14,8 +14,8 @@ A_\mu=g_{\mu\nu}A^\nu=\begin{pmatrix}\phi\\-A_x\\-A_y\\-A_z\end{pmatrix}
 \end{equation*}
 {\footnotesize
 \begin{verbatim}
-guu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
-gdd = inv(guu)
+gdd = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+guu = inv(gdd)
 
 A = (Ax(),Ay(),Az())
 Au = (phi(),Ax(),Ay(),Az())

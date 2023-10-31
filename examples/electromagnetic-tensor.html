@@ -1,8 +1,8 @@
 <html><head><link rel='stylesheet' href='style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 -- electromagnetic tensor demo
 
-guu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
-gdd = inv(guu)
+gdd = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+guu = inv(gdd)
 
 A = (Ax(),Ay(),Az())
 Au = (phi(),Ax(),Ay(),Az())
