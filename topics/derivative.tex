@@ -48,4 +48,43 @@ d(sin(x),x,2)
 
 $-\sin(x)$
 
+\bigskip
+The gradient of $f$ is returned for vector $x$ in \verb$d(f,x)$.
+
+{\color{blue}
+\begin{verbatim}
+r = sqrt(x^2 + y^2)
+d(r,(x,y))
+\end{verbatim}
+}
+
+$\displaystyle
+\begin{bmatrix}
+{\displaystyle \frac{x}{(x^2+y^2)^{1/2}}}
+\\
+\\
+{\displaystyle \frac{y}{(x^2+y^2)^{1/2}}}
+\end{bmatrix}
+$
+
+\bigskip
+The $f$ in \verb$d(f,x)$ can be a vector or higher rank function.
+Gradient increases rank by one.
+
+{\color{blue}
+\begin{verbatim}
+F = (x^2,y^2)
+X = (x,y)
+d(F,X)
+\end{verbatim}
+}
+
+$\displaystyle
+\begin{bmatrix}
+2x & 0
+\\[1ex]
+0 & 2y
+\end{bmatrix}
+$
+
 \end{document}

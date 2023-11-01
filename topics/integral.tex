@@ -10,17 +10,17 @@
 \section*{Integral}
 
 \verb$integral(f,x)$ returns the integral of $f$ with respect to $x$.
-The $x$ can be omitted for expressions in $x$.
-The argument list can be extended for multiple integrals.
 
 {\color{blue}
 \begin{verbatim}
-integral(x^2)
+integral(x^2,x)
 \end{verbatim}
 }
 
-\noindent
 $\displaystyle \tfrac{1}{3}x^3$
+
+\bigskip
+Extend the argument list for multiple integrals.
 
 {\color{blue}
 \begin{verbatim}
@@ -29,11 +29,9 @@ integral(f,x,y)
 \end{verbatim}
 }
 
-\noindent
 $\displaystyle \tfrac{1}{4}x^2y^2$
 
 \bigskip
-\noindent
 \verb$defint(f,x,a,b)$
 computes the definite integral of $f$ with respect to $x$ evaluated from
 $a$ to $b$.
@@ -48,11 +46,9 @@ defint(x^2, y, 0, sqrt(1 - x^2), x, -1, 1)
 \end{verbatim}
 }
 
-\noindent
 $\displaystyle \tfrac{1}{8}\pi$
 
 \bigskip
-\noindent
 Alternatively, \verb$eval$ can be used to compute a definite integral step by step.
 
 {\color{blue}
@@ -64,7 +60,27 @@ eval(I,x,1) - eval(I,x,-1)
 \end{verbatim}
 }
 
-\noindent
 $\displaystyle \tfrac{1}{8}\pi$
+
+\bigskip
+Here is a useful trick.
+Integrals involving sine and cosine
+can often be solved using exponentials.
+For example, the definite integral
+\begin{equation*}
+\int_0^{2\pi}\left(\sin^4t-2\cos^3(t/2)\sin t\right)dt
+\end{equation*}
+
+can be solved as follows.
+
+{\color{blue}
+\begin{verbatim}
+f = sin(t)^4 - 2 cos(t/2)^3 sin(t)
+f = circexp(f)
+defint(f, t, 0, 2 pi)
+\end{verbatim}
+}
+
+$\displaystyle \tfrac{3}{4}\pi-\tfrac{16}{5}$
 
 \end{document}
