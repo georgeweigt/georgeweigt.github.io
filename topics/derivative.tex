@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb} % mathbb
+\usepackage{graphicx}
+\usepackage{xcolor}
+\parindent=0pt
+\begin{document}
+
+\section*{Derivative}
+
+\verb$d(f,x)$ returns the derivative of $f$ with respect to $x$.
+
+{\color{blue}
+\begin{verbatim}
+d(x^2,x)
+\end{verbatim}}
+
+$2x$
+
+\bigskip
+Extend the argument list for multiderivatives.
+
+{\color{blue}
+\begin{verbatim}
+f = 1 / (x + y)
+d(f,x,y)
+\end{verbatim}}
+
+$\displaystyle
+\frac{2}{(x+y)^3}
+$
+
+{\color{blue}
+\begin{verbatim}
+d(sin(x),x,x)
+\end{verbatim}}
+
+$-\sin(x)$
+
+\bigskip
+Another syntax for $n$th derivative.
+
+{\color{blue}
+\begin{verbatim}
+d(sin(x),x,2)
+\end{verbatim}}
+
+$-\sin(x)$
+
+\end{document}
