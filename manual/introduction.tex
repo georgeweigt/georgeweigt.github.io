@@ -5,6 +5,7 @@
 \usepackage{tikz}
 \usepackage{menukeys}
 \parindent=0pt
+\pagestyle{empty}
 \begin{document}
 
 \section*{Introduction}
@@ -45,7 +46,7 @@ See the following link for correcting font problems.
 \newpage
 
 In the following examples, user input is shown in blue.
-The result is shown in black.
+Results are shown in black.
 
 \bigskip
 Example 1. Compute $212^{17}$.
@@ -58,8 +59,8 @@ Example 1. Compute $212^{17}$.
 $3529471145760275132301897342055866171392$
 
 \bigskip
-Example 2. Compute $212^{17}$ and save as $N$.
-Then display the value of $N$.
+Example 2. Compute $212^{17}$ and save as $N$,
+then show the value of $N$.
 
 {\color{blue}
 \begin{verbatim}
@@ -78,5 +79,20 @@ N^(1/17)
 \end{verbatim}}
 
 $212$
+
+\iffalse
+\bigskip
+Note: The above examples were inspired by the following passage from
+Vladimir Nabokov's autobiography ``Speak, Memory.''
+
+\begin{quote}
+A foolish tutor had explained logarithms to me much too early, and I had
+read (in a British publication, the {\it Boy's Own Paper}, I believe)
+about a certain Hindu calculator who in exactly two seconds could find the
+seventeenth root of, say,
+3529471145760275132301897342055866171392
+(I am not sure I have got this right; anyway the root was 212).
+\end{quote}
+\fi
 
 \end{document}
