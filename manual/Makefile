@@ -19,6 +19,7 @@ src = introduction.tex syntax.tex symbols.tex function-definitions.tex \
 # $$ sends a single $ to the shell
 
 default:
+	make eigenmath.tex # in case eigenmath.tex does not exist yet
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 
 clean:

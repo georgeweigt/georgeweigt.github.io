@@ -22,6 +22,8 @@ emit(char *filename)
 {
 	FILE *f;
 
+	fputs("\\newpage\n", stdout);
+
 	f = fopen(filename, "r");
 
 	if (f == NULL) {
