@@ -6,7 +6,7 @@ src = introduction.tex syntax.tex symbols.tex function-definitions.tex \
       derivative.tex template-functions.tex laplacian.tex \
       integral.tex arc-length.tex line-integral.tex surface-area.tex \
       surface-integral.tex greens-theorem.tex stokes-theorem.tex \
-      feature-reference.tex
+      feature-index.tex
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
@@ -19,7 +19,6 @@ src = introduction.tex syntax.tex symbols.tex function-definitions.tex \
 # $$ sends a single $ to the shell
 
 default:
-	make eigenmath.tex
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 
 clean:
