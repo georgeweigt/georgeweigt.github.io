@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 void emit(char *);
-char buf[1000];
 
 int
 main(int argc, char *argv[])
@@ -23,6 +23,7 @@ void
 emit(char *filename)
 {
 	FILE *f;
+	static char buf[1000];
 
 	fputs("\\newpage\n", stdout);
 
