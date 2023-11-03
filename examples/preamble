@@ -1,0 +1,11 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{slashed}
+\usepackage{tikz}
+\parindent=0pt
+\begin{document}
+\tableofcontents
+\newpage

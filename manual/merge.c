@@ -1,15 +1,17 @@
+// merge latex files
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 void emit(char *);
-
 char buf[1000];
 
 int
 main(int argc, char *argv[])
 {
 	int i;
+
+	system("cat preamble");
 
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);

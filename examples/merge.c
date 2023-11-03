@@ -1,29 +1,17 @@
-// concatenate latex files
+// merge latex files
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 void emit(char *);
 char buf[1000];
-char *ante =
-"\\documentclass[12pt]{article}\n"
-"\\usepackage[margin=1in]{geometry}\n"
-"\\usepackage{amsmath}\n"
-"\\usepackage{amssymb}\n" // mathbb
-"\\usepackage{mathrsfs}\n" // mathscr
-"\\usepackage{slashed}\n"
-"\\usepackage{tikz}\n"
-"\\parindent=0pt\n"
-"\\begin{document}\n"
-"\\tableofcontents\n"
-"\\newpage\n";
 
 int
 main(int argc, char *argv[])
 {
 	int i;
 
-	fputs(ante, stdout);
+	system("cat preamble");
 
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);
