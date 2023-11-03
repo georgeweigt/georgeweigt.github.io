@@ -21,6 +21,7 @@ Ez = E[3]
 X = (t,x,y,z)
 Add = d(Ad,X)
 Fdd = transpose(Add) - Add
+Fdd
 
 T = ((0, Ex, Ey, Ez),
      (-Ex, 0, -Bz, By),
