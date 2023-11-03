@@ -1,7 +1,10 @@
+.DS_Store
+*.swp
+*.tmp
 *.aux
 *.log
 *.synctex.gz
 *.toc
-*.swp
 a.out
-.DS_Store
+diffs
+combined.*

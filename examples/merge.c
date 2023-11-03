@@ -24,8 +24,6 @@ emit(char *filename)
 {
 	FILE *f;
 
-	printf("\\bigskip\n");
-
 	f = fopen(filename, "r");
 
 	if (f == NULL) {

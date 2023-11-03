@@ -11,7 +11,7 @@ FILES := $(shell ls *.tex | sed "s/combined\.tex//")
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
 
 %.html: %.txt
-	cat html-ante $< html-post > $@
+	cat htmlante $< htmlpost > $@
 
 # $$ sends a single $ to the shell
 
