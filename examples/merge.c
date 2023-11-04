@@ -11,7 +11,7 @@ main(int argc, char *argv[])
 {
 	int i;
 
-	system("cat preamble");
+	fputs("\\input{preamble}\n\\tableofcontents\n\\newpage\n", stdout);
 
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);
@@ -32,9 +32,7 @@ emit(char *filename)
 		exit(1);
 	}
 
-	while (fgets(buf, sizeof buf, f))
-		if (strcmp(buf, "\\begin{document}\n") == 0)
-			break;
+	fgets(buf, sizeof buf, f); // skip first line
 
 	while (fgets(buf, sizeof buf, f)) {
 		if (strncmp(buf, "\\section*", 9) == 0) {

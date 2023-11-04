@@ -6,7 +6,7 @@ FILES := $(shell ls *.tex | sed "s/combined\.tex//")
 
 # Sometimes, must do pdflatex three times to get correct toc
 
-%.pdf: %.tex
+%.pdf: %.tex preamble
 	pdflatex $<
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
 
