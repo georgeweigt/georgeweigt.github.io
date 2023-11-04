@@ -22,11 +22,11 @@ default:
 	make eigenmath.tex # in case eigenmath.tex does not exist
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 
-clean:
-	rm -f *.aux *.log *.synctex.gz *.toc
-
 eigenmath.tex : a.out preamble $(FILES)
 	./a.out $(FILES) > eigenmath.tex
 
-a.out : merge.c
+a.out: merge.c
 	$(CC) merge.c
+
+clean:
+	rm -f *.aux *.log *.synctex.gz *.toc

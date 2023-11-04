@@ -20,11 +20,11 @@ default:
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
 
-clean:
-	rm -f *.aux *.log *.synctex.gz *.toc
-
 combined.tex: a.out preamble $(FILES)
 	./a.out $(FILES) > combined.tex
 
 a.out: merge.c
 	$(CC) merge.c
+
+clean:
+	rm -f *.aux *.log *.synctex.gz *.toc
