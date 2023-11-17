@@ -1,6 +1,6 @@
 .PHONY: default clean
 
-FILES := $(shell ls *.tex | sed "s/combined\.tex//")
+TEXFILES := $(shell ls *.tex | sed "s/combined\.tex//")
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
@@ -20,8 +20,8 @@ default:
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
 
-combined.tex: a.out preamble $(FILES)
-	./a.out $(FILES) > combined.tex
+combined.tex: a.out preamble $(TEXFILES)
+	./a.out $(TEXFILES) > combined.tex
 
 a.out: merge.c
 	$(CC) merge.c
