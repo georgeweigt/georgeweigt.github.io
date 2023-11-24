@@ -1,5 +1,7 @@
 -- electromagnetic tensor demo
 
+-- u for up index, d for down index
+
 gdd = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 guu = inv(gdd)
 
