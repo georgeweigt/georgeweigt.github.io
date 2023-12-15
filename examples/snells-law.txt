@@ -1,0 +1,13 @@
+t = d1 / v1 + d2 / v2
+t
+
+"Verify dt/dy"
+
+d1 = sqrt((x - x1)^2 + (y - y1)^2)
+d2 = sqrt((x - x2)^2 + (y - y2)^2)
+
+dt = (y - y1) / (v1 d1) + (y - y2) / (v2 d2)
+
+check(d(t,y) == dt)
+
+"ok"
