@@ -1,6 +1,6 @@
 .PHONY: default clean
 
-TEXFILES := $(shell ls *.tex | sed "s/combined\.tex//")
+TEXFILES := $(shell ls *.tex | sed "s/unified\.tex//")
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
@@ -16,15 +16,15 @@ TEXFILES := $(shell ls *.tex | sed "s/combined\.tex//")
 # $$ sends a single $ to the shell
 
 default:
-	make combined.tex # in case combined.tex does not exist
+	make unified.tex # in case unified.tex does not exist
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
 
-combined.tex: a.out preamble $(TEXFILES)
-	./a.out $(TEXFILES) > combined.tex
+unified.tex: a.out preamble $(TEXFILES)
+	./a.out $(TEXFILES) > unified.tex
 
-a.out: merge.c
-	$(CC) merge.c
+a.out: unify.c
+	$(CC) unify.c
 
 clean:
 	rm -f *.aux *.log *.synctex.gz *.toc
