@@ -8,9 +8,12 @@ at the boundary.
 \begin{center}
 \begin{tikzpicture}
 \draw (0,2) -- (0,-2);
+\draw (0,-2) -- (5,-2);
+\draw (5,-2) -- (5,2);
+\draw (0,2) -- (5,2);
 \draw[dashed] (-2,0) -- (2,0);
-\draw (-1.5,1.8) node {air};
-\draw (1.5,1.8) node {glass};
+\draw (-1,1.6) node {air};
+\draw (1,1.6) node {glass};
 \draw[thick] (-2,-1.5) node[anchor=east] {$A=(x_1,y_1)$} -- (0,0) node[anchor=north west] {$C=(x,y)$};
 \draw[thick] (0,0) -- (2,0.8) node[anchor=west] {$B=(x_2,y_2)$};
 \draw (-1.5,-0.5) node {$\theta_1$};
