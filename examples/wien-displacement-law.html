@@ -5,6 +5,11 @@ W0(x) = sum(n,1,20, (-n)^(n - 1) x^n / n!)
 x = W0(-5.0 exp(-5.0)) + 5.0
 x
 
+"Verify x"
+epsilon = 1.0 10^(-10)
+check(abs(x exp(x) - 5 exp(x) + 5) < epsilon)
+"ok"
+
 c = 299792458.0 meter / second
 h = 6.62607015 10^(-34) joule second
 k = 1.380649 10^(-23) joule / kelvin
