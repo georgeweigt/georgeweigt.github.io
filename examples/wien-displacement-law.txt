@@ -1,6 +1,6 @@
 -- Wien's displacement law
 
-W0(x) = sum(n,1,20, (-n)^(n - 1) x^n / n!)
+W0(z,n) = sum(n,1,20, (-n)^(n - 1) z^n / n!)
 x = W0(-5.0 exp(-5.0)) + 5.0
 x
 
