@@ -1,0 +1,16 @@
+-- Wien's displacement law
+
+W0(x) = sum(n,1,20, (-n)^(n - 1) x^n / n!)
+x = W0(-5.0 exp(-5.0)) + 5.0
+x
+
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+k = 1.380649 10^(-23) joule / kelvin
+
+joule = kilogram meter^2 / second^2
+kelvin = "kelvin"
+meter = "meter"
+
+b = h c / (k x)
+b
