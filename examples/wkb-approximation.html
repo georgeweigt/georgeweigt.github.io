@@ -1,0 +1,14 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Verify equation (3)"
+
+psi = A(x) exp(i phi(x))
+
+T1 = d(A(x),x,x)
+T2 = 2 i d(A(x),x) d(phi(x),x)
+T3 = i A(x) d(phi(x),x,x)
+T4 = -A(x) d(phi(x),x)^2
+
+check(d(psi,x,x) == (T1 + T2 + T3 + T4) exp(i phi(x)))
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
