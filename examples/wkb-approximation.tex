@@ -16,7 +16,10 @@ Rewrite as
 \tag{1}
 \end{equation*}
 
-Let wavefunction $\psi$ be composed of amplitude $A$ and phase $\phi$.
+First consider the case $E>V(x)$.
+
+\bigskip
+Let $\psi$ be the wavefunction
 \begin{equation*}
 \psi(x)=A(x)e^{i\phi(x)}
 \tag{2}
@@ -137,6 +140,85 @@ Substitute (8) and (11) into (2) to obtain
 \begin{equation*}
 \psi(x)\approx\frac{C}{{\sqrt[4]{2m(E-V(x))}}}
 \exp\left(\pm\frac{i}{\hbar}\int\sqrt{2m(E-V(x))}\,dx\right)
+\end{equation*}
+
+\end{document}
+
+Now consider the case $E<V(x)$.
+
+\bigskip
+Let $\psi$ be the wavefunction
+\begin{equation*}
+\psi(x)=iA(x)e^{i\phi(x)}
+\tag{12}
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\frac{d^2\psi}{dx^2}=\left(
+i\frac{d^2A}{dx^2}-2\frac{dA}{dx}\frac{d\phi}{dx}
+-A\frac{d^2\phi}{dx^2}-iA\left(\frac{d\phi}{dx}\right)^2
+\right)e^{i\phi}
+\tag{13}
+\end{equation*}
+
+Substitute (13) into (1) to obtain
+\begin{equation*}
+\left(
+i\frac{d^2A}{dx^2}-2\frac{dA}{dx}\frac{d\phi}{dx}
+-A\frac{d^2\phi}{dx^2}+iA\left(\frac{d\phi}{dx}\right)^2
+\right)e^{i\phi}
+=-\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)Ae^{i\phi}
+\tag{14}
+\end{equation*}
+
+Partition (14) as an imaginary equivalence
+\begin{equation*}
+i\frac{d^2A}{dx^2}-iA\left(\frac{d\phi}{dx}\right)^2
+=-\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)A
+\tag{15}
+\end{equation*}
+
+and a real equivalence
+\begin{equation*}
+2\frac{dA}{dx}\frac{d\phi}{dx}+A\frac{d^2\phi}{dx^2}=0
+\tag{16}
+\end{equation*}
+
+Multiply equation (15) by $-i$.
+\begin{equation*}
+\frac{d^2A}{dx^2}-A\left(\frac{d\phi}{dx}\right)^2
+=i\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)A
+\end{equation*}
+
+Divide by $A$ to obtain
+\begin{equation*}
+\frac{1}{A}\frac{d^2A}{dx^2}-\left(\frac{d\phi}{dx}\right)^2
+=i\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\left(\frac{d\phi}{dx}\right)^2
+=-i\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)+\frac{1}{A}\frac{d^2A}{dx^2}
+\end{equation*}
+
+For the circumstance of
+\begin{equation*}
+\left|-i\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)\right|
+\gg
+\left|\frac{1}{A}\frac{d^2A}{dx^2}\right|
+\end{equation*}
+
+we can use the approximation
+\begin{equation*}
+\left(\frac{d\phi}{dx}\right)^2\approx-i\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\phi}{dx}\approx\pm\frac{\sqrt{-i2m(E-V(x))}}{\hbar}
+\tag{7}
 \end{equation*}
 
 \end{document}
