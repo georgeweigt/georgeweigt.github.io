@@ -85,13 +85,13 @@ we can use the approximation
 
 Hence
 \begin{equation*}
-\frac{d\phi}{dx}\approx\pm\frac{\sqrt{2m(E-V(x))}}{\hbar}
+\frac{d\phi}{dx}\approx\pm\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}
 \tag{7}
 \end{equation*}
 
 and
 \begin{equation*}
-\phi(x)\approx\pm\frac{1}{\hbar}\int\sqrt{2m(E-V(x))}\,dx
+\phi(x)\approx\pm\int\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,dx
 \tag{8}
 \end{equation*}
 
@@ -126,7 +126,8 @@ A(x)\propto\left(\frac{d\phi}{dx}\right)^{-\frac{1}{2}}
 
 Substitute (7) into (10) to obtain
 \begin{equation*}
-A(x)\approx\frac{C}{\sqrt[4]{2m(E-V(x))}}
+A(x)\approx C
+\left(\pm\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,\right)^{-\frac{1}{2}}
 \tag{11}
 \end{equation*}
 
@@ -135,8 +136,16 @@ where $C$ is an arbitrary constant.
 \bigskip
 Substitute (8) and (11) into (2) to obtain
 \begin{equation*}
-\psi(x)\approx\frac{C}{{\sqrt[4]{2m(E-V(x))}}}
-\exp\left(\pm\frac{i}{\hbar}\int\sqrt{2m(E-V(x))}\,dx\right)
+\psi(x)\approx C
+\left(\pm\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,\right)^{-\frac{1}{2}}
+\exp\left(\pm i\int\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,dx\right)
+\end{equation*}
+
+The sign phase of the middle term cancels in the Schrodinger equation hence
+\begin{equation*}
+\psi(x)\approx C
+\left(\frac{2m}{\hbar^2}\bigl|E-V(x)\bigr|\right)^{-\frac{1}{4}}
+\exp\left(\pm i\int\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,dx\right)
 \end{equation*}
 
 \end{document}
