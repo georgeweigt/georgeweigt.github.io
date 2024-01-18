@@ -11,4 +11,20 @@ T4 = -A(x) d(phi(x),x)^2
 check(d(psi,x,x) == (T1 + T2 + T3 + T4) exp(i phi(x)))
 
 "ok"
+
+"Verify equation (12)"
+
+T = 2 m / hbar^2 abs(E - V)
+
+T1 = (+sqrt(+T))^(-1/2)
+T2 = (+sqrt(-T))^(-1/2)
+T3 = (-sqrt(+T))^(-1/2)
+T4 = (-sqrt(-T))^(-1/2)
+
+check(polar(T1) == T^(-1/4))
+check(polar(T2) == exp(-1/4 i pi) T^(-1/4))
+check(polar(T3) == exp(-1/2 i pi) T^(-1/4))
+check(polar(T4) == exp(-3/4 i pi) T^(-1/4))
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
