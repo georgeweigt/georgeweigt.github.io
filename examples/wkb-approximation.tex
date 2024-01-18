@@ -138,7 +138,33 @@ Substitute (8) and (11) into (2) to obtain
 \exp\left(\pm i\int\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,dx\right)
 \end{equation*}
 
-The phase of the amplitude cancels in (1) hence
+Rewrite as
+\begin{equation*}
+\psi(x)\approx Ce^{i\theta}
+\left(\frac{2m}{\hbar^2}\bigl|E-V(x)\bigr|\right)^{-\frac{1}{4}}
+\exp\left(\pm i\int\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}\,dx\right)
+\end{equation*}
+
+where
+\begin{equation*}
+\theta=\left\{
+\begin{aligned}
+0& &
+&\text{for $+\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}$ and $E>V(x)$}
+\\[1ex]
+\frac{\pi}{4}& &
+&\text{for $+\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}$ and $E<V(x)$}
+\\[1ex]
+\frac{\pi}{2}& &
+&\text{for $-\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}$ and $E>V(x)$}
+\\[1ex]
+\frac{3\pi}{4}& &
+&\text{for $-\sqrt{\frac{2m}{\hbar^2}\bigl(E-V(x)\bigr)}$ and $E<V(x)$}
+\end{aligned}
+\right.
+\end{equation*}
+
+The constant $e^{i\theta}$ can be discarded because it cancels in (1) hence
 \begin{equation*}
 \psi(x)\approx C
 \left(\frac{2m}{\hbar^2}\bigl|E-V(x)\bigr|\right)^{-\frac{1}{4}}
