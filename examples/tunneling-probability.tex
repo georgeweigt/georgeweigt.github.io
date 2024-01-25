@@ -1,0 +1,175 @@
+\input{preamble}
+
+\section*{Tunneling probability}
+
+Consider the following potential energy function.
+\begin{equation*}
+V(x)=\begin{cases}
+0, & x<0
+\\
+V_0, & 0\le x\le L
+\\
+0, & x>L
+\end{cases}
+\end{equation*}
+
+Let a particle with mass $m$ and energy $E<V_0$ travel from left to right
+resulting in the following three Schrodinger equations.
+\begin{align*}
+\frac{\hbar^2}{2m}\frac{d^2}{dx}&\psi_1=E\psi_1, & &x<0
+\\[1ex]
+\frac{\hbar^2}{2m}\frac{d^2}{dx}&\psi_2+V_0\psi_2=E\psi_2, & &0\le x\le L
+\\[1ex]
+\frac{\hbar^2}{2m}\frac{d^2}{dx}&\psi_3=E\psi_3, & &x>L
+\end{align*}
+
+Let $\psi_1$ and $\psi_3$ have the most general
+free-particle solutions.
+\begin{align*}
+\psi_1(x)=A\exp\left(i\sqrt{\frac{2mE}{\hbar^2}}x\right)
++B\exp\left(-i\sqrt{\frac{2mE}{\hbar^2}}x\right)
+\\
+\psi_3(x)=F\exp\left(i\sqrt{\frac{2mE}{\hbar^2}}x\right)
++G\exp\left(-i\sqrt{\frac{2mE}{\hbar^2}}x\right)
+\end{align*}
+
+Use the WKB approximation to solve for $\psi_2$.
+\begin{equation*}
+\psi_2(x)\approx
+C\exp\left(i\int\sqrt{\frac{2m(E-V_0)}{\hbar^2}}\,dx\right)
++D\exp\left(-i\int\sqrt{\frac{2m(E-V_0)}{\hbar^2}}\,dx\right)
+\end{equation*}
+
+Cancel $i$ by swapping $E$ and $V_0$.
+\begin{equation*}
+\psi_2(x)\approx
+C\exp\left(\int\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,dx\right)
++D\exp\left(-\int\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,dx\right)
+\end{equation*}
+
+Substitute $x$ for $\int dx$.
+\begin{equation*}
+\psi_2(x)\approx
+C\exp\left(\sqrt{\frac{2m(V_0-E)}{\hbar^2}}x\right)
++D\exp\left(-\sqrt{\frac{2m(V_0-E)}{\hbar^2}}x\right)
+\end{equation*}
+
+To simplify the formulas let
+\begin{equation*}
+k=\sqrt{\frac{2mE}{\hbar^2}},\quad\beta=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}
+\end{equation*}
+
+and write
+\begin{align*}
+\psi_1(x)&=A\exp(ikx)+B\exp(-ikx)
+\\
+\psi_2(x)&=C\exp(\beta x)+D\exp(-\beta x)
+\\
+\psi_3(x)&=F\exp(ikx)+G\exp(-ikx)
+\end{align*}
+
+Exponentials of $-i$ represent particles moving from right to left.
+The $B$ exponential represents a particle reflected from the
+boundary at $x=0$.
+There is no particle moving right to left at $x>L$ hence $G=0$.
+
+\bigskip
+Let us now solve for the coefficients using boundary conditions.
+Four boundary conditions are needed to ensure continuity
+at $x=0$ and $x=L$.
+\begin{align*}
+\psi_1(0)&=\psi_2(0)
+\\
+\psi_1'(0)&=\psi_2'(0)
+\\
+\psi_2(L)&=\psi_3(L)
+\\
+\psi_2'(L)&=\psi_3'(L)
+\end{align*}
+
+From the boundary condition $\psi_2(L)=\psi_3(L)$ we have
+\begin{equation*}
+C\exp(\beta L)+D\exp(-\beta L)=F\exp(ikL)
+\tag{1}
+\end{equation*}
+
+From the boundary condition $\psi_2'(L)=\psi_3'(L)$ we have
+\begin{equation*}
+\beta C\exp(\beta L)-\beta D\exp(-\beta L)
+=ikF\exp(ikL)
+\tag{2}
+\end{equation*}
+
+Add $\beta$ times (1) to (2) to obtain
+\begin{equation*}
+2\beta C\exp(\beta L)=(\beta+ik)F\exp(ikL)
+\end{equation*}
+
+Hence
+\begin{equation*}
+C=\frac{(\beta+ik)F\exp(ikL-\beta L)}{2\beta}
+\tag{3}
+\end{equation*}
+
+Add minus $\beta$ times (1) to (2) to obtain
+\begin{equation*}
+-2\beta D\exp(-\beta L)=(-\beta+ik)F\exp(ikL)
+\end{equation*}
+
+Hence
+\begin{equation*}
+D=\frac{(\beta-ik)F\exp(ikL+\beta L)}{2\beta}
+\tag{4}
+\end{equation*}
+
+From the boundary condition $\psi_1(0)=\psi_2(0)$ we have
+\begin{equation*}
+A+B=C+D
+\tag{5}
+\end{equation*}
+
+From the boundary condition $\psi_1'(0)=\psi_2'(0)$ we have
+\begin{equation*}
+ik(A-B)=\beta(C-D)
+\tag{6}
+\end{equation*}
+
+Add $ik$ times (5) to (6) to obtain
+\begin{equation*}
+2ikA=\beta(C-D)+ik(C-D)
+\end{equation*}
+
+Hence
+\begin{equation*}
+A=\frac{\beta(C-D)}{2ik}+\frac{C+D}{2}
+\end{equation*}
+
+Substitute (3) and (4) for $C$ and $D$ to obtain
+the simplified form
+\begin{equation*}
+A = F\exp(ikL)\bigl(\cosh(\beta L+i(\gamma/2)\sinh(\beta L)\bigr)
+\tag{7}
+\end{equation*}
+
+where
+\begin{equation*}
+\gamma=\frac{\beta}{k}-\frac{k}{\beta}
+\end{equation*}
+
+The tunneling probability $T$ is the magnitude of the transmitted
+wave divided by the magnitude of the inbound wave.
+\begin{equation*}
+T=\frac{|F|^2}{|A|^2}
+=\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L+i(\gamma/2)\sinh(\beta L)\bigr)}\right|^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+T=\frac{1}{\cosh^2(\beta L)+(\gamma/2)^2\sinh^2(\beta L)}
+\tag{8}
+\end{equation*}
+
+(See ``Quantum Tunneling of Particles through Potential Barriers''
+at phys.libretexts.org)
+
+\end{document}

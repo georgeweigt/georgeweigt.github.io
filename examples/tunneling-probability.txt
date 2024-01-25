@@ -1,0 +1,24 @@
+-- Tunneling probability
+
+C = (beta + i k) F exp(i k L - beta L) / (2 beta)
+D = (beta - i k) F exp(i k L + beta L) / (2 beta)
+
+"Verify equation (3)"
+check(C exp(beta L) + D exp(-beta L) == F exp(i k L))
+"ok"
+
+"Verify equation (4)"
+check(beta C exp(beta L) - beta D exp(-beta L) == i k F exp(i k L))
+"ok"
+
+"Verify equation (7)"
+A = beta (C - D) / (2 i k) + (C + D) / 2
+gamma = beta / k - k / beta
+check(A == F exp(i k L) (expcosh(beta L) + i (gamma/2) expsinh(beta L)))
+"ok"
+
+"Verify equation (8)"
+M = 1 / (exp(i k L) (expcosh(beta L) + i (gamma/2) expsinh(beta L)))
+T = 1 / (cosh(beta L)^2 + (gamma/2)^2 sinh(beta L)^2)
+check(conj(M) M == T)
+"ok"
