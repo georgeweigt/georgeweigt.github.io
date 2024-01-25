@@ -146,28 +146,33 @@ A=\frac{\beta(C-D)}{2ik}+\frac{C+D}{2}
 \end{equation*}
 
 Substitute (3) and (4) for $C$ and $D$ to obtain
-the simplified form
 \begin{equation*}
-A = F\exp(ikL)\bigl(\cosh(\beta L)+i(\gamma/2)\sinh(\beta L)\bigr)
+A = F\exp(ikL)\bigl(\cosh(\beta L)+i\gamma\sinh(\beta L)\bigr)
 \tag{7}
 \end{equation*}
 
 where
 \begin{equation*}
-\gamma=\frac{\beta}{k}-\frac{k}{\beta}
+\gamma=\frac{1}{2}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)
 \end{equation*}
 
 The tunneling probability $T$ is the magnitude of the transmitted
 wave divided by the magnitude of the inbound wave.
 \begin{equation*}
 T=\frac{|F|^2}{|A|^2}
-=\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L)+i(\gamma/2)\sinh(\beta L)\bigr)}\right|^2
+=\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L)+i\gamma\sinh(\beta L)\bigr)}\right|^2
 \end{equation*}
 
 Hence
 \begin{equation*}
-T=\frac{1}{\cosh^2(\beta L)+(\gamma/2)^2\sinh^2(\beta L)}
+T=\frac{1}{\cosh^2(\beta L)+\gamma^2\sinh^2(\beta L)}
 \tag{8}
+\end{equation*}
+
+The result can also be written as
+\begin{equation*}
+T=\left(1+\frac{\sinh^2(\beta L)}{4(E/V_0)(1-E/V_0)}\right)^{-1}
+\tag{9}
 \end{equation*}
 
 (Ref. ``Quantum Tunneling of Particles through Potential Barriers''
