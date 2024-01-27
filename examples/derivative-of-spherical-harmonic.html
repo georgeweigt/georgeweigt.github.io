@@ -1,0 +1,30 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Verify Mathematica formula for derivative of spherical harmonic"
+
+DY(l,m) = m cos(theta) / sin(theta) Y(l,m) +
+         sqrt((l - m) (l + m + 1)) exp(-i phi) Y(l,m + 1)
+
+Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (M. Weitzman, J.K. Freericks)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           2^(-m) sin(theta)^m sum(k,0,l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+check(DY(0,0) == d(Y(0,0),theta))
+
+check(DY(1,0) == d(Y(1,0),theta))
+check(DY(1,1) == d(Y(1,1),theta))
+check(DY(1,-1) == d(Y(1,-1),theta))
+
+check(DY(2,0) == d(Y(2,0),theta))
+check(DY(2,1) == d(Y(2,1),theta))
+check(DY(2,2) == d(Y(2,2),theta))
+check(DY(2,-1) == d(Y(2,-1),theta))
+check(DY(2,-2) == d(Y(2,-2),theta))
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
