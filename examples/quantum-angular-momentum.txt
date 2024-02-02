@@ -1,0 +1,108 @@
+-- Quantum angular momentum
+
+Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           2^(-m) sin(theta)^m sum(k,0,l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+Lx(f) = i hbar sin(phi) d(f,theta) +
+        i hbar cos(phi) cos(theta) / sin(theta) d(f,phi)
+
+cp(l,m) = sqrt(l (l + 1) - m (m + 1))
+cm(l,m) = sqrt(l (l + 1) - m (m - 1))
+
+cp(l,m) = sqrt((l - m) (l + m + 1))
+cm(l,m) = sqrt((l + m) (l - m + 1))
+
+"Verify eigenfunctions and eigenvalues for ell=1"
+
+Ym = (Y(1,1),Y(1,0),Y(1,-1))
+
+Mx = zero(3,3)
+for(k,1,2, Mx[k,k+1] = 1/2 cp(1,1 - k))
+for(k,1,2, Mx[k+1,k] = 1/2 cm(1,2 - k))
+
+check((Lx(Y(1,1)),Lx(Y(1,0)),Lx(Y(1,-1))) == hbar dot(Mx,Ym))
+
+-- m = 1
+
+x = (1/2, sqrt(1/2), 1/2)
+check(dot(Mx,x) == x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == hbar psi)
+
+-- m = 0
+
+x = (-sqrt(1/2), 0, sqrt(1/2))
+check(dot(Mx,x) == 0)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == 0)
+
+-- m = -1
+
+x = (-1/2, sqrt(1/2), -1/2)
+check(dot(Mx,x) == -x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == -hbar psi)
+
+"ok"
+
+"Verify eigenfunctions and eigenvalues for ell=2"
+
+Ym = (Y(2,2),Y(2,1),Y(2,0),Y(2,-1),Y(2,-2))
+
+Mx = zero(5,5)
+for(k,1,4, Mx[k,k+1] = 1/2 cp(2,2 - k))
+for(k,1,4, Mx[k+1,k] = 1/2 cm(2,3 - k))
+
+check((Lx(Y(2,2)),Lx(Y(2,1)),Lx(Y(2,0)),Lx(Y(2,-1)),Lx(Y(2,-2))) == hbar dot(Mx,Ym))
+
+-- m = 2
+
+x = (1/4, 1/2, 1/2 sqrt(3/2), 1/2, 1/4)
+check(dot(Mx,x) == 2 x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == 2 hbar psi)
+
+-- m = -2
+
+x = (-1/4, 1/2, -1/2 sqrt(3/2), 1/2, -1/4)
+check(dot(Mx,x) == -2 x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == -2 hbar psi)
+
+-- m = 1
+
+x = (-1/2, -1/2, 0, 1/2, 1/2)
+check(dot(Mx,x) == x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == hbar psi)
+
+-- m = -1
+
+x = (-1/2, 1/2, 0, -1/2, 1/2)
+check(dot(Mx,x) == -x)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == -hbar psi)
+
+-- m = 0
+
+x = (1/2 sqrt(3/2), 0, -1/2, 0, 1/2 sqrt(3/2))
+check(dot(Mx,x) == 0)
+psi = dot(x,Ym)
+check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(Lx(psi) == 0)
+
+"ok"
