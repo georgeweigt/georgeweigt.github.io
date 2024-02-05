@@ -19,7 +19,6 @@ default:
 	make unified.tex # in case unified.tex does not exist
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
-	make clean
 
 unified.tex: a.out preamble $(TEXFILES)
 	./a.out $(TEXFILES) > unified.tex

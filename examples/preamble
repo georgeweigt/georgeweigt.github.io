@@ -6,4 +6,6 @@
 \usepackage{slashed}
 \usepackage{tikz}
 \parindent=0pt
+\pdfinfoomitdate=1
+\pdftrailerid{}
 \begin{document}
