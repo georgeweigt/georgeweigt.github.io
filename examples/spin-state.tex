@@ -52,7 +52,14 @@ Let $\theta$ and $\phi$ be polar and azimuth angles such that
 Then
 \begin{equation*}
 |s\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
-=\cos\tfrac{\theta}{2}|u\rangle+\sin\tfrac{\theta}{2}\exp(i\phi)|d\rangle
+=\begin{pmatrix}c_+\\c_-\end{pmatrix}
+\end{equation*}
+
+where
+\begin{equation*}
+c_+=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
+c_-=\sqrt{\frac{1-\langle z\rangle}{2}}
+\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
 \end{equation*}
 
 In component notation $\boldsymbol\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
