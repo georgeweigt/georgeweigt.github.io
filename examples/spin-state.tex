@@ -2,104 +2,53 @@
 
 \section*{Spin state}
 
-Fermion spin state $|s\rangle$ is a unit vector in $\mathbb{C}^2$.
+Let
 \begin{equation*}
-|s\rangle=\begin{pmatrix}c_1\\c_2\end{pmatrix},
-\quad
-c_1^*c_1+c_2^*c_2=1
+\chi=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\[1ex]\frac{2}{3}\end{pmatrix}
 \end{equation*}
 
-Here is spin state $|s\rangle$ as a linear combination of basis states ``up'' and ``down.''
-\begin{equation*}
-|s\rangle=c_1|u\rangle+c_2|d\rangle,
-\quad
-|u\rangle=\begin{pmatrix}1\\0\end{pmatrix},
-\quad
-|d\rangle=\begin{pmatrix}0\\1\end{pmatrix}
-\end{equation*}
-
-These are the spin operators.
-\begin{equation*}
-\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
-\quad
-\sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},
-\quad
-\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
-\end{equation*}
-
-Expectation of spin operators is a projection of $|s\rangle$ onto Euclidean space.
-\begin{equation*}
-\langle x\rangle=\langle s|\sigma_x|s\rangle,
-\quad
-\langle y\rangle=\langle s|\sigma_y|s\rangle,
-\quad
-\langle z\rangle=\langle s|\sigma_z|s\rangle
-\end{equation*}
-
-Let $\mathbf u$ be the following spin direction vector determined by $|s\rangle$.
-\begin{equation*}
-\mathbf u=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
-=\langle s|\boldsymbol\sigma|s\rangle,
-\quad
-\boldsymbol\sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
-\end{equation*}
-
-Let $\theta$ and $\phi$ be polar and azimuth angles such that
-\begin{equation*}
-\mathbf u=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
-\end{equation*}
-
-Then
-\begin{equation*}
-|s\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
-=\begin{pmatrix}c_1\\c_2\end{pmatrix}
-\end{equation*}
-
-where
-\begin{equation*}
-c_1=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
-c_2=\sqrt{\frac{1-\langle z\rangle}{2}}
-\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
-\end{equation*}
-
-Example. Let
-\begin{equation*}
-|s\rangle=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\\frac{2}{3}\end{pmatrix}
-\end{equation*}
-
-It follows that
-\begin{equation*}
-\mathbf u
-=\begin{pmatrix}\langle x\rangle\\[1ex]\langle y\rangle\\[1ex]\langle z\rangle\end{pmatrix}
-=\begin{pmatrix}\frac{4}{9}\\[1ex]\frac{8}{9}\\[1ex]\frac{1}{9}\end{pmatrix}
-\end{equation*}
-
-and
-\begin{equation*}
-c_1=\sqrt{\frac{\langle z\rangle+1}{2}}=\frac{\sqrt5}{3},\quad
-c_2=\sqrt{\frac{1-\langle z\rangle}{2}}
-\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
-=\frac{2+4i}{3\sqrt5}
-\end{equation*}
-
-These values differ from the original $|s\rangle$ but they do represent the same state.
+Find the measurement results for spin state $\chi$.
 
 \bigskip
-Note on Eigenmath code.
-In component notation $\boldsymbol\sigma=\sigma^{\alpha\beta}{}_\gamma$ hence
+These are the basis states for spin.
+\begin{align*}
+|x_+\rangle&=\tfrac{1}{\sqrt2}(1,1) &
+|y_+\rangle&=\tfrac{1}{\sqrt2}(1,i) &
+|z_+\rangle&=(1,0)
+\\
+|x_-\rangle&=\tfrac{1}{\sqrt2}(1,-1) &
+|y_-\rangle&=\tfrac{1}{\sqrt2}(1,-i) &
+|z_-\rangle&=(0,1)
+\end{align*}
+
+For the $x$ direction we have
 \begin{equation*}
-u^\alpha=s_\beta^*\sigma^{\alpha\beta}{}_\gamma s^\gamma
+\Pr\left(+\tfrac{\hbar}{2}\right)=|\langle x_+|\chi\rangle|^2=\tfrac{13}{18},\quad
+\Pr\left(-\tfrac{\hbar}{2}\right)=|\langle x_-|\chi\rangle|^2=\tfrac{5}{18}
 \end{equation*}
 
-A transpose swaps $\alpha$ and $\beta$ so that summed-over indices are adjacent.
+For the $y$ direction we have
 \begin{equation*}
-u^\alpha=s_\beta^*\sigma^{\beta\alpha}{}_\gamma s^\gamma
+\Pr\left(+\tfrac{\hbar}{2}\right)=|\langle y_+|\chi\rangle|^2=\tfrac{17}{18},\quad
+\Pr\left(-\tfrac{\hbar}{2}\right)=|\langle y_-|\chi\rangle|^2=\tfrac{1}{18}
 \end{equation*}
 
-Hence the Eigenmath code is
-{\footnotesize\begin{verbatim}
-sigma = (sigmax,sigmay,sigmaz)
-u = dot(conj(s),transpose(sigma),s)
-\end{verbatim}}
+For the $z$ direction we have
+\begin{equation*}
+\Pr\left(+\tfrac{\hbar}{2}\right)=|\langle z_+|\chi\rangle|^2=\tfrac{5}{9},\quad
+\Pr\left(-\tfrac{\hbar}{2}\right)=|\langle z_-|\chi\rangle|^2=\tfrac{4}{9}
+\end{equation*}
+
+Find $\langle S_x\rangle$, $\langle S_y\rangle$, and $\langle S_z\rangle$.
+\begin{align*}
+\langle x\rangle&=\langle\chi|\sigma_x|\chi\rangle=\tfrac{4}{9}, &
+\langle S_x\rangle&=\tfrac{\hbar}{2}\langle x\rangle=\tfrac{2}{9}\hbar
+\\[1ex]
+\langle y\rangle&=\langle\chi|\sigma_y|\chi\rangle=\tfrac{8}{9}, &
+\langle S_y\rangle&=\tfrac{\hbar}{2}\langle y\rangle=\tfrac{4}{9}\hbar
+\\[1ex]
+\langle z\rangle&=\langle\chi|\sigma_z|\chi\rangle=\tfrac{1}{9}, &
+\langle S_z\rangle&=\tfrac{\hbar}{2}\langle z\rangle=\tfrac{1}{18}\hbar
+\end{align*}
 
 \end{document}
