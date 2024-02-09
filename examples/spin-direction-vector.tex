@@ -59,4 +59,44 @@ c_-=\sqrt{\frac{1-\langle z\rangle}{2}}
 
 The results $c_+$ and $c_-$ differ from the original $|s\rangle$ but they do represent the same state.
 
+\bigskip
+The spin eigenstates are
+\begin{align*}
+|x_+\rangle&=\tfrac{1}{\sqrt2}(1,1) &
+|y_+\rangle&=\tfrac{1}{\sqrt2}(1,i) &
+|z_+\rangle&=(1,0)
+\\
+|x_-\rangle&=\tfrac{1}{\sqrt2}(1,-1) &
+|y_-\rangle&=\tfrac{1}{\sqrt2}(1,-i) &
+|z_-\rangle&=(0,1)
+\end{align*}
+
+Hence for
+\begin{equation*}
+|\chi\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\[1ex]\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+we have
+\begin{align*}
+\Pr\left(S_x=+\tfrac{\hbar}{2}\right)
+&=|\langle x_+|\chi|\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
+\\
+\Pr\left(S_x=-\tfrac{\hbar}{2}\right)
+&=|\langle x_-|\chi|\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
+\\
+\\
+\Pr\left(S_y=+\tfrac{\hbar}{2}\right)
+&=|\langle y_+|\chi|\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
+\\
+\Pr\left(S_y=-\tfrac{\hbar}{2}\right)
+&=|\langle y_-|\chi|\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
+\\
+\\
+\Pr\left(S_z=+\tfrac{\hbar}{2}\right)
+&=|\langle z_+|\chi|\rangle|^2=\cos^2\tfrac{\theta}{2}
+\\
+\Pr\left(S_z=-\tfrac{\hbar}{2}\right)
+&=|\langle z_-|\chi|\rangle|^2=\sin^2\tfrac{\theta}{2}
+\end{align*}
+
 \end{document}

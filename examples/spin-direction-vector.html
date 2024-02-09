@@ -28,4 +28,30 @@ check(dot(conj(s),sigmay,s) == 8/9)
 check(dot(conj(s),sigmaz,s) == 1/9)
 
 "ok"
+
+"Verify probabilities"
+
+chi = (cos(theta/2), sin(theta/2) exp(i phi))
+
+xp = sqrt(1/2) (1,1)
+xm = sqrt(1/2) (1,-1)
+
+yp = sqrt(1/2) (1,i)
+ym = sqrt(1/2) (1,-i)
+
+zp = (1,0)
+zm = (0,1)
+
+Pr(a,b) = mag(dot(conj(a),b))^2
+
+check(Pr(xp,chi) == 1/2 + 1/2 sin(theta) cos(phi))
+check(Pr(xm,chi) == 1/2 - 1/2 sin(theta) cos(phi))
+
+check(Pr(yp,chi) == 1/2 + 1/2 sin(theta) sin(phi))
+check(Pr(ym,chi) == 1/2 - 1/2 sin(theta) sin(phi))
+
+check(Pr(zp,chi) == cos(1/2 theta)^2)
+check(Pr(zm,chi) == sin(1/2 theta)^2)
+
+"ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
