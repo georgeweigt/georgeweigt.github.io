@@ -1,0 +1,5 @@
+-- dirac delta function approximations
+
+delta = n / sqrt(pi) exp(-n^2 x^2)
+
+for(n,1,10,draw(delta))
