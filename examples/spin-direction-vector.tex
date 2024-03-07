@@ -13,27 +13,28 @@ Expectation of spin operators is a projection of spin state $|s\rangle$ onto Euc
 
 Hence the spin direction vector is
 \begin{equation*}
-\mathbf u=\begin{pmatrix}\langle x\rangle\\[1ex]\langle y\rangle\\[1ex]\langle z\rangle\end{pmatrix}
+\mathbf u=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
 =\langle s|\boldsymbol\sigma|s\rangle,
 \quad
 \boldsymbol\sigma=\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
 \end{equation*}
 
-Let $\theta$ and $\phi$ be polar and azimuth angles such that
+Let
 \begin{equation*}
-\mathbf u=\begin{pmatrix}\sin\theta\cos\phi\\\sin\theta\sin\phi\\\cos\theta\end{pmatrix}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
 \end{equation*}
 
 Then
 \begin{equation*}
-|s\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\[1ex]\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
-=\begin{pmatrix}c_+\\c_-\end{pmatrix}
+\langle x\rangle=\sin\theta\cos\phi,\quad
+\langle y\rangle=\sin\theta\sin\phi,\quad
+\langle z\rangle=\cos\theta
 \end{equation*}
 
-where
+and
 \begin{equation*}
-c_+=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
-c_-=\sqrt{\frac{1-\langle z\rangle}{2}}
+\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
+\sin(\theta/2)\exp(i\phi)=\sqrt{\frac{1-\langle z\rangle}{2}}
 \frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
 \end{equation*}
 
@@ -45,19 +46,19 @@ Example. Let
 Then
 \begin{equation*}
 \mathbf u
-=\begin{pmatrix}\langle x\rangle\\[1ex]\langle y\rangle\\[1ex]\langle z\rangle\end{pmatrix}
+=\begin{pmatrix}\langle x\rangle\\\langle y\rangle\\\langle z\rangle\end{pmatrix}
 =\begin{pmatrix}\frac{4}{9}\\[1ex]\frac{8}{9}\\[1ex]\frac{1}{9}\end{pmatrix}
 \end{equation*}
 
 and
 \begin{equation*}
-c_+=\sqrt{\frac{\langle z\rangle+1}{2}}=\frac{\sqrt5}{3},\quad
-c_-=\sqrt{\frac{1-\langle z\rangle}{2}}
+\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}}=\frac{\sqrt5}{3},\quad
+\sin(\theta/2)\exp(i\phi)=\sqrt{\frac{1-\langle z\rangle}{2}}
 \frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
 =\frac{2+4i}{3\sqrt5}
 \end{equation*}
 
-The results $c_+$ and $c_-$ differ from the original $|s\rangle$ but they do represent the same state.
+The last result differs from $|s\rangle$ but does represent the same state as $|s\rangle$.
 
 \bigskip
 The spin eigenstates are
@@ -73,30 +74,30 @@ The spin eigenstates are
 
 Hence for
 \begin{equation*}
-|\chi\rangle=\begin{pmatrix}\cos\frac{\theta}{2}\\[1ex]\sin\frac{\theta}{2}\exp(i\phi)\end{pmatrix}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
 \end{equation*}
 
 we have
 \begin{align*}
 \Pr\left(S_x=+\tfrac{\hbar}{2}\right)
-&=|\langle x_+|\chi\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
+&=|\langle x_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
 \\
 \Pr\left(S_x=-\tfrac{\hbar}{2}\right)
-&=|\langle x_-|\chi\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
+&=|\langle x_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
 \\
 \\
 \Pr\left(S_y=+\tfrac{\hbar}{2}\right)
-&=|\langle y_+|\chi\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
+&=|\langle y_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
 \\
 \Pr\left(S_y=-\tfrac{\hbar}{2}\right)
-&=|\langle y_-|\chi\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
+&=|\langle y_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
 \\
 \\
 \Pr\left(S_z=+\tfrac{\hbar}{2}\right)
-&=|\langle z_+|\chi\rangle|^2=\cos^2\tfrac{\theta}{2}
+&=|\langle z_+|s\rangle|^2=\cos^2(\theta/2)
 \\
 \Pr\left(S_z=-\tfrac{\hbar}{2}\right)
-&=|\langle z_-|\chi\rangle|^2=\sin^2\tfrac{\theta}{2}
+&=|\langle z_-|s\rangle|^2=\sin^2(\theta/2)
 \end{align*}
 
 \end{document}
