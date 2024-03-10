@@ -1,4 +1,4 @@
-"Exercise 1"
+"Exercise 1. Verify spin operators"
 
 xp = sqrt(1/2) (1,1)
 xm = sqrt(1/2) (1,-1)

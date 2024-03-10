@@ -1,4 +1,4 @@
-"Exercise 2"
+"Exercise 2. Verify spin direction vector"
 
 s = (1/3 - 2/3 i, 2/3)
 
