@@ -1,0 +1,282 @@
+\input{preamble}
+
+% see Fitzpatrick problem 10-2
+
+\section*{Fermion spin}
+
+Fermion spin state $|s\rangle$ is a normalized vector in $\mathbb C^2$.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}c_+\\c_-\end{pmatrix},\quad|c_+|^2+|c_-|^2=1
+\end{equation*}
+
+The probabilities for measuring spin are the transition probabilities from $|s\rangle$ to an eigenstate.
+For the $z$ direction we have
+\begin{align*}
+\Pr\left(S_z=+\tfrac{\hbar}{2}\right)&=|\langle z_+|s\rangle|^2
+\\
+\Pr\left(S_z=-\tfrac{\hbar}{2}\right)&=|\langle z_-|s\rangle|^2
+\end{align*}
+
+Define the $z$ eigenstates as
+\begin{equation*}
+|z_+\rangle=\begin{pmatrix}1\\0\end{pmatrix},\quad
+|z_-\rangle=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+By definition of expectation value we have
+\begin{equation*}
+\langle S_z\rangle
+=\tfrac{\hbar}{2}\Pr\left(S_z=+\tfrac{\hbar}{2}\right)
+-\tfrac{\hbar}{2}\Pr\left(S_z=-\tfrac{\hbar}{2}\right)
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\langle S_z\rangle=\tfrac{\hbar}{2}|\langle z_+|s\rangle|^2-\tfrac{\hbar}{2}|\langle z_-|s\rangle|^2
+\end{equation*}
+
+Rewrite again as
+\begin{equation*}
+\langle S_z\rangle
+=\tfrac{\hbar}{2}\langle s|z_+\rangle\langle z_+|s\rangle
+-\tfrac{\hbar}{2}\langle s|z_-\rangle\langle z_-|s\rangle
+\end{equation*}
+
+Then by
+\begin{equation*}
+\langle S_z\rangle=\langle s|S_z|s\rangle
+\end{equation*}
+
+we have
+\begin{equation*}
+S_z=\tfrac{\hbar}{2}|z_+\rangle\langle z_+|-\tfrac{\hbar}{2}|z_-\rangle\langle z_-|
+=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\end{equation*}
+
+From spin commutation relations we obtain the eigenstates
+\begin{align*}
+|x_+\rangle&=\frac{|z_+\rangle+|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}
+\\
+|x_-\rangle&=\frac{|z_+\rangle-|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+\end{align*}
+
+and
+\begin{align*}
+|y_+\rangle&=\frac{|z_+\rangle+i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}
+\\
+|y_-\rangle&=\frac{|z_+\rangle-i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
+\end{align*}
+
+By analogy with the derivation of $S_z$ we have
+\begin{equation*}
+S_x=\tfrac{\hbar}{2}|x_+\rangle\langle x_+|-\tfrac{\hbar}{2}|x_-\rangle\langle x_-|
+=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+S_y=\tfrac{\hbar}{2}|y_+\rangle\langle y_+|-\tfrac{\hbar}{2}|y_-\rangle\langle y_-|
+=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+1. Verify that
+\begin{align*}
+S_x&=\tfrac{\hbar}{2}(|x_+\rangle\langle x_+|-|x_-\rangle\langle x_-|)
+\\
+S_y&=\tfrac{\hbar}{2}(|y_+\rangle\langle y_+|-|y_-\rangle\langle y_-|)
+\\
+S_z&=\tfrac{\hbar}{2}(|z_+\rangle\langle z_+|-|z_-\rangle\langle z_-|)
+\end{align*}
+}}
+
+{\footnotesize\begin{verbatim}
+xp = sqrt(1/2) (1,1)
+xm = sqrt(1/2) (1,-1)
+
+yp = sqrt(1/2) (1,i)
+ym = sqrt(1/2) (1,-i)
+
+zp = (1,0)
+zm = (0,1)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+check(Sx == hbar / 2 (outer(xp,conj(xp)) - outer(xm,conj(xm))))
+check(Sy == hbar / 2 (outer(yp,conj(yp)) - outer(ym,conj(ym))))
+check(Sz == hbar / 2 (outer(zp,conj(zp)) - outer(zm,conj(zm))))
+\end{verbatim}}
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+2. Let $|s\rangle$ be the following spin state.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\[1ex]\frac{2}{3}\end{pmatrix}
+\end{equation*}
+
+Verify that $|s\rangle$ is normalized and that
+\begin{equation*}
+\langle\mathbf S\rangle
+=\langle s|\mathbf S|s\rangle
+=\frac{\hbar}{2}\begin{pmatrix}\frac{4}{9}\\[1ex]\frac{8}{9}\\[1ex]\frac{1}{9}\end{pmatrix}
+\end{equation*}
+
+Note: In component form we have
+\begin{equation*}
+\langle s|\mathbf S|s\rangle
+=s_\beta^*{S^{\alpha\beta}}_\gamma s^\gamma
+\end{equation*}
+
+Eigenmath requires a transpose so that the $\beta$ indices are adjacent.
+\begin{equation*}
+\langle s|\mathbf S|s\rangle
+=s_\beta^*{S^{\beta\alpha}}_\gamma s^\gamma
+\end{equation*}
+}}
+
+{\footnotesize\begin{verbatim}
+s = (1/3 - 2/3 i, 2/3)
+
+check(dot(conj(s),s) == 1)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+S = (Sx,Sy,Sz)
+
+check(dot(conj(s),transpose(S),s) == hbar / 2 (4/9, 8/9, 1/9))
+\end{verbatim}}
+
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+3. Let $|s\rangle$ be the following spin state.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\[1ex]\frac{2}{3}\end{pmatrix}
+\end{equation*}
+
+Verify that the probabilities for measuring $\pm\hbar/2$ are
+\begin{align*}
+\Pr\left(S_x=+\tfrac{\hbar}{2}\right)&=|\langle x_+|s\rangle|^2=\tfrac{13}{18}
+\\
+\Pr\left(S_x=-\tfrac{\hbar}{2}\right)&=|\langle x_-|s\rangle|^2=\tfrac{5}{18}
+\\
+\\
+\Pr\left(S_y=+\tfrac{\hbar}{2}\right)&=|\langle y_+|s\rangle|^2=\tfrac{17}{18}
+\\
+\Pr\left(S_y=-\tfrac{\hbar}{2}\right)&=|\langle y_-|s\rangle|^2=\tfrac{1}{18}
+\\
+\\
+\Pr\left(S_z=+\tfrac{\hbar}{2}\right)&=|\langle z_+|s\rangle|^2=\tfrac{5}{9}
+\\
+\Pr\left(S_z=-\tfrac{\hbar}{2}\right)&=|\langle z_-|s\rangle|^2=\tfrac{4}{9}
+\end{align*}
+}}
+
+{\footnotesize\begin{verbatim}
+s = (1/3 - 2/3 i, 2/3)
+
+xp = sqrt(1/2) (1,1)
+xm = sqrt(1/2) (1,-1)
+
+yp = sqrt(1/2) (1,i)
+ym = sqrt(1/2) (1,-i)
+
+zp = (1,0)
+zm = (0,1)
+
+Pr(a,b) = dot(conj(a),b) dot(conj(b),a)
+
+check(Pr(xp,s) == 13/18)
+check(Pr(xm,s) == 5/18)
+
+check(Pr(yp,s) == 17/18)
+check(Pr(ym,s) == 1/18)
+
+check(Pr(zp,s) == 5/9)
+check(Pr(zm,s) == 4/9)
+\end{verbatim}}
+
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+4. Let $|s\rangle$ be the following spin state.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+Verify that
+\begin{align*}
+\langle s|S_x|s\rangle&=\tfrac{\hbar}{2}\sin\theta\cos\phi
+\\
+\langle s|S_y|s\rangle&=\tfrac{\hbar}{2}\sin\theta\sin\phi
+\\
+\langle s|S_z|s\rangle&=\tfrac{\hbar}{2}\cos\theta
+\end{align*}
+}}
+
+{\footnotesize\begin{verbatim}
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+check(dot(conj(s),Sx,s) == hbar / 2 sin(theta) cos(phi))
+check(dot(conj(s),Sy,s) == hbar / 2 sin(theta) sin(phi))
+check(dot(conj(s),Sz,s) == hbar / 2 cos(theta))
+\end{verbatim}}
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+5. Verify the following spin commutation relations using
+$\mathbf S\psi=(\mathbf r\times\mathbf p)\psi$.
+\begin{align*}
+[S_x,S_y]&=i\hbar S_z
+\\
+[S_y,S_z]&=i\hbar S_x
+\\
+[S_z,S_x]&=i\hbar S_y
+\\[1ex]
+[S^2,S_x]&=0
+\\
+[S^2,S_y]&=0
+\\
+[S^2,S_z]&=0
+\\[1ex]
+[S_+,S_-]&=2\hbar S_z
+\end{align*}
+}}
+
+{\footnotesize\begin{verbatim}
+Sx(psi) = -i hbar (y d(psi,z) - z d(psi,y))
+Sy(psi) = -i hbar (z d(psi,x) - x d(psi,z))
+Sz(psi) = -i hbar (x d(psi,y) - y d(psi,x))
+
+psi = Psi()
+
+check(Sx(Sy(psi)) - Sy(Sx(psi)) == i hbar Sz(psi))
+check(Sy(Sz(psi)) - Sz(Sy(psi)) == i hbar Sx(psi))
+check(Sz(Sx(psi)) - Sx(Sz(psi)) == i hbar Sy(psi))
+
+S2(psi) = Sx(Sx(psi)) + Sy(Sy(psi)) + Sz(Sz(psi))
+
+check(S2(Sx(psi)) - Sx(S2(psi)) == 0)
+check(S2(Sy(psi)) - Sy(S2(psi)) == 0)
+check(S2(Sz(psi)) - Sz(S2(psi)) == 0)
+
+Sp(psi) = Sx(psi) + i Sy(psi)
+Sm(psi) = Sx(psi) - i Sy(psi)
+
+check(Sp(Sm(psi)) - Sm(Sp(psi)) == 2 hbar Sz(psi))
+\end{verbatim}}
+
+\end{document}

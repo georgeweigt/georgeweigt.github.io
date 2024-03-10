@@ -1,0 +1,22 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Exercise 1"
+
+xp = sqrt(1/2) (1,1)
+xm = sqrt(1/2) (1,-1)
+
+yp = sqrt(1/2) (1,i)
+ym = sqrt(1/2) (1,-i)
+
+zp = (1,0)
+zm = (0,1)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+check(Sx == hbar / 2 (outer(xp,conj(xp)) - outer(xm,conj(xm))))
+check(Sy == hbar / 2 (outer(yp,conj(yp)) - outer(ym,conj(ym))))
+check(Sz == hbar / 2 (outer(zp,conj(zp)) - outer(zm,conj(zm))))
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

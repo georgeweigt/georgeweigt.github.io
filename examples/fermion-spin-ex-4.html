@@ -1,0 +1,15 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Exercise 4"
+
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+check(dot(conj(s),Sx,s) == hbar / 2 sin(theta) cos(phi))
+check(dot(conj(s),Sy,s) == hbar / 2 sin(theta) sin(phi))
+check(dot(conj(s),Sz,s) == hbar / 2 cos(theta))
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>

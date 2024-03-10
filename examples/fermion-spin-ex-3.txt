@@ -1,0 +1,25 @@
+"Exercise 3"
+
+s = (1/3 - 2/3 i, 2/3)
+
+xp = sqrt(1/2) (1,1)
+xm = sqrt(1/2) (1,-1)
+
+yp = sqrt(1/2) (1,i)
+ym = sqrt(1/2) (1,-i)
+
+zp = (1,0)
+zm = (0,1)
+
+Pr(a,b) = dot(conj(a),b) dot(conj(b),a)
+
+check(Pr(xp,s) == 13/18)
+check(Pr(xm,s) == 5/18)
+
+check(Pr(yp,s) == 17/18)
+check(Pr(ym,s) == 1/18)
+
+check(Pr(zp,s) == 5/9)
+check(Pr(zm,s) == 4/9)
+
+"ok"
