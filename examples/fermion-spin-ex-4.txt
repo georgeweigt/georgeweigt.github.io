@@ -1,4 +1,4 @@
-"Exercise 4. Verify spin direction vector for polar and azimuth angles"
+"Exercise 4. Verify expected spin vector"
 
 s = (cos(theta/2), sin(theta/2) exp(i phi))
 
