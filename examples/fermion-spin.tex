@@ -10,7 +10,9 @@ Fermion spin state $|s\rangle$ is a normalized vector in $\mathbb C^2$.
 \end{equation*}
 
 Spin measurement probabilities are the transition probabilities from $|s\rangle$ to an eigenstate.
-For the $z$ direction we have
+
+\bigskip
+For spin measurements in the $z$ direction we have
 \begin{align*}
 \Pr\left(S_z=+\tfrac{\hbar}{2}\right)&=|\langle z_+|s\rangle|^2
 \\
@@ -53,7 +55,53 @@ S_z=\tfrac{\hbar}{2}|z_+\rangle\langle z_+|-\tfrac{\hbar}{2}|z_-\rangle\langle z
 =\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
 \end{equation*}
 
-From spin commutation relations we obtain the eigenstates
+From the commutator
+\begin{equation*}
+S_+S_--S_-S_+=2\hbar S_z
+\end{equation*}
+
+we have
+\begin{equation*}
+S_+S_--S_-S_+
+=\hbar^2|z_+\rangle\langle z_+|-\hbar^2|z_-\rangle\langle z_-|
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+S_+S_--S_-S_+
+=\hbar^2|z_+\rangle\langle z_-|z_-\rangle\langle z_+|
+-\hbar^2|z_-\rangle\langle z_+|z_+\rangle\langle z_-|
+\end{equation*}
+
+Hence
+\begin{align*}
+S_+&=\hbar|z_+\rangle\langle z_-|=\hbar\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\\
+S_-&=\hbar|z_-\rangle\langle z_+|=\hbar\begin{pmatrix}0&0\\1&0\end{pmatrix}
+\end{align*}
+
+Then by
+\begin{align*}
+S_+&=S_x+iS_y
+\\
+S_-&=S_x-iS_y
+\end{align*}
+
+we obtain
+\begin{align*}
+S_x&=\frac{S_++S_-}{2}=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\\
+S_y&=\frac{S_+-S_-}{2i}=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\end{align*}
+
+By solving for the eigenstates in
+\begin{align*}
+S_x|x_\pm\rangle&=\pm\tfrac{\hbar}{2}|x_\pm\rangle
+\\
+S_y|y_\pm\rangle&=\pm\tfrac{\hbar}{2}|y_\pm\rangle
+\end{align*}
+
+we obtain
 \begin{align*}
 |x_+\rangle&=\frac{|z_+\rangle+|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}
 \\
@@ -66,18 +114,6 @@ and
 \\
 |y_-\rangle&=\frac{|z_+\rangle-i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
 \end{align*}
-
-By analogy with the derivation of $S_z$ we have
-\begin{equation*}
-S_x=\tfrac{\hbar}{2}|x_+\rangle\langle x_+|-\tfrac{\hbar}{2}|x_-\rangle\langle x_-|
-=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
-\end{equation*}
-
-and
-\begin{equation*}
-S_y=\tfrac{\hbar}{2}|y_+\rangle\langle y_+|-\tfrac{\hbar}{2}|y_-\rangle\langle y_-|
-=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}
-\end{equation*}
 
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
@@ -275,6 +311,18 @@ $\mathbf S\psi=(\mathbf r\times\mathbf p)\psi$.
 [S^2,S_z]&=0
 \\[1ex]
 [S_+,S_-]&=2\hbar S_z
+\end{align*}
+
+where
+\begin{equation*}
+S^2=S_x^2+S_y^2+S_z^2
+\end{equation*}
+
+and
+\begin{align*}
+S_+&=S_x+iS_y
+\\
+S_-&=S_x-iS_y
 \end{align*}
 }}
 
