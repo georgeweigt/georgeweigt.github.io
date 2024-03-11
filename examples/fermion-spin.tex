@@ -218,7 +218,8 @@ where
 and
 \begin{equation*}
 \sin(\theta/2)\exp(i\phi)
-=\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
+=\sqrt{\frac{1-\langle z\rangle}{2}}
+\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
 =\frac{2+4i}{3\sqrt5}
 \end{equation*}
 
@@ -247,6 +248,9 @@ z = 2 / hbar dot(conj(s),Sz,s)
 
 cp = sqrt((z + 1) / 2)
 cm = sqrt((1 - z) / 2) (x + i y) / sqrt(x^2 + y^2)
+
+check(cp == sqrt(5) / 3)
+check(cm == (2 + 4 i) / (3 sqrt(5)))
 
 chi = (cp,cm)
 
