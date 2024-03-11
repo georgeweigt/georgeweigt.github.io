@@ -79,14 +79,6 @@ S_y=\tfrac{\hbar}{2}|y_+\rangle\langle y_+|-\tfrac{\hbar}{2}|y_-\rangle\langle y
 =\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}
 \end{equation*}
 
-
-
-
-
-
-
-
-
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
 1. Verify that
@@ -210,29 +202,55 @@ check(Pr(zm,s) == 4/9)
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
 4. Let $|s\rangle$ be the following spin state.
 \begin{equation*}
-|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+|s\rangle=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\[1ex]\frac{2}{3}\end{pmatrix}
 \end{equation*}
 
-Verify that
+Verify that the following spin state $|\chi\rangle$ is indistinguishable from $|s\rangle$.
+\begin{equation*}
+|\chi\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+where
+\begin{equation*}
+\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}}=\frac{\sqrt5}{3}
+\end{equation*}
+
+and
+\begin{equation*}
+\sin(\theta/2)\exp(i\phi)
+=\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
+=\frac{2+4i}{3\sqrt5}
+\end{equation*}
+
+with
 \begin{align*}
-\langle s|S_x|s\rangle&=\tfrac{\hbar}{2}\sin\theta\cos\phi
+\langle x\rangle&=\tfrac{2}{\hbar}\langle S_x\rangle
 \\
-\langle s|S_y|s\rangle&=\tfrac{\hbar}{2}\sin\theta\sin\phi
+\langle y\rangle&=\tfrac{2}{\hbar}\langle S_y\rangle
 \\
-\langle s|S_z|s\rangle&=\tfrac{\hbar}{2}\cos\theta
+\langle z\rangle&=\tfrac{2}{\hbar}\langle S_z\rangle
 \end{align*}
 }}
 
 {\footnotesize\begin{verbatim}
-s = (cos(theta/2), sin(theta/2) exp(i phi))
+s = (1/3 - 2/3 i, 2/3)
 
 Sx = hbar / 2 ((0,1),(1,0))
 Sy = hbar / 2 ((0,-i),(i,0))
 Sz = hbar / 2 ((1,0),(0,-1))
 
-check(dot(conj(s),Sx,s) == hbar / 2 sin(theta) cos(phi))
-check(dot(conj(s),Sy,s) == hbar / 2 sin(theta) sin(phi))
-check(dot(conj(s),Sz,s) == hbar / 2 cos(theta))
+S = (Sx,Sy,Sz)
+
+x = 2 / hbar dot(conj(s),Sx,s)
+y = 2 / hbar dot(conj(s),Sy,s)
+z = 2 / hbar dot(conj(s),Sz,s)
+
+cp = sqrt((z + 1) / 2)
+cm = sqrt((1 - z) / 2) (x + i y) / sqrt(x^2 + y^2)
+
+chi = (cp,cm)
+
+check(dot(conj(s),transpose(S),s) == dot(conj(chi),transpose(S),chi))
 \end{verbatim}}
 
 \newpage
