@@ -1,14 +1,14 @@
 <html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 "Exercise 1. Verify spin operators"
 
-xp = sqrt(1/2) (1,1)
-xm = sqrt(1/2) (1,-1)
-
-yp = sqrt(1/2) (1,i)
-ym = sqrt(1/2) (1,-i)
-
 zp = (1,0)
 zm = (0,1)
+
+xp = (zp + zm) / sqrt(2)
+xm = (zp - zm) / sqrt(2)
+
+yp = (zp + i zm) / sqrt(2)
+ym = (zp - i zm) / sqrt(2)
 
 Sx = hbar / 2 ((0,1),(1,0))
 Sy = hbar / 2 ((0,-i),(i,0))
