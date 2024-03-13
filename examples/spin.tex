@@ -115,6 +115,52 @@ and
 |y_-\rangle&=\frac{|z_+\rangle-i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
 \end{align*}
 
+The expected spin direction vector is
+\begin{equation*}
+\langle\mathbf S\rangle=\begin{pmatrix}
+\langle s|S_x|s\rangle\\
+\langle s|S_y|s\rangle\\
+\langle s|S_z|s\rangle
+\end{pmatrix},\quad
+|\langle\mathbf S\rangle|^2=\frac{\hbar}{2}
+\end{equation*}
+
+To convert from polar and azimuth angles to $|s\rangle$, let
+\begin{equation*}
+\langle\mathbf S\rangle=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta\cos\phi\\
+\sin\theta\sin\phi\\
+\cos\theta
+\end{pmatrix}
+\end{equation*}
+
+Then
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+\end{equation*}
+
+By the identities
+\begin{equation*}
+\cos^2(\theta/2)=\frac{\cos\theta+1}{2},\quad
+\sin^2(\theta/2)=\frac{1-\cos\theta}{2}
+\end{equation*}
+
+and noting that $0\le\theta\le\pi$ we have
+\begin{equation*}
+\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
+\sin(\theta/2)\exp(i\phi)=\sqrt{\frac{1-\langle z\rangle}{2}}
+\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
+\end{equation*}
+
+where
+\begin{align*}
+\langle x\rangle&=\tfrac{2}{\hbar}\langle S_x\rangle
+\\
+\langle y\rangle&=\tfrac{2}{\hbar}\langle S_y\rangle
+\\
+\langle z\rangle&=\tfrac{2}{\hbar}\langle S_z\rangle
+\end{align*}
+
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
 1. Verify that
