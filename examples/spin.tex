@@ -167,7 +167,7 @@ The following commutator was used to derive $S_x$ and $S_y$.
 S_+S_--S_-S_+=2\hbar S_z
 \end{equation*}
 
-The commutator follows from
+The commutator is a consequence of the following spin wave equation.
 \begin{equation*}
 \hat{\mathbf S}\psi=(\mathbf r\times\hat{\mathbf p})\psi,\quad
 \mathbf r=\begin{pmatrix}x\\y\\z\end{pmatrix},\quad
@@ -203,7 +203,7 @@ Let
 \hat S_-&=\hat S_x-i\hat S_y
 \end{align*}
 
-Then by computer algebra
+By computer algebra
 \begin{equation*}
 (\hat S_+\hat S_--\hat S_-\hat S_+)\psi=2\hbar\hat S_z\psi
 \end{equation*}
@@ -393,7 +393,7 @@ check(dot(conj(s),transpose(S),s) == dot(conj(chi),transpose(S),chi))
 
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-5. Verify the following spin commutation relations using
+5. Verify the following commutators for
 $\mathbf S\psi=(\mathbf r\times\mathbf p)\psi$.
 \begin{align*}
 [S_x,S_y]&=i\hbar S_z
