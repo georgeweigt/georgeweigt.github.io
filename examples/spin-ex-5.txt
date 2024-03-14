@@ -1,4 +1,4 @@
-"Exercise 5. Verify spin commutation relations"
+"Exercise 5. Verify spin commutators"
 
 Sx(psi) = -i hbar (y d(psi,z) - z d(psi,y))
 Sy(psi) = -i hbar (z d(psi,x) - x d(psi,z))
@@ -6,9 +6,9 @@ Sz(psi) = -i hbar (x d(psi,y) - y d(psi,x))
 
 psi = Psi()
 
-check(Sx(Sy(psi)) - Sy(Sx(psi)) == i hbar Sz(psi))
 check(Sy(Sz(psi)) - Sz(Sy(psi)) == i hbar Sx(psi))
 check(Sz(Sx(psi)) - Sx(Sz(psi)) == i hbar Sy(psi))
+check(Sx(Sy(psi)) - Sy(Sx(psi)) == i hbar Sz(psi))
 
 S2(psi) = Sx(Sx(psi)) + Sy(Sy(psi)) + Sz(Sz(psi))
 
