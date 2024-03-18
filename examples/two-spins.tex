@@ -1,0 +1,163 @@
+\input{preamble}
+
+\section*{Two spins}
+
+The spin state $|s\rangle$ for two spins is a unit vector in $\mathbb C^4$.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}c_{++}\\c_{+-}\\c_{-+}\\c_{--}\end{pmatrix},\quad
+|c_{++}|^2+|c_{+-}|^2+|c_{-+}|^2+|c_{--}|^2=1
+\end{equation*}
+
+Spin measurement probabilities are the transition probabilities from $|s\rangle$
+to an eigenstate.
+
+\bigskip
+For spin measurements in the $z$ direction we have
+\begin{align*}
+\Pr\left(S_{1z}=+\tfrac{\hbar}{2}\text{ and }S_{2z}=+\tfrac{\hbar}{2}\right)
+&=|\langle z_{++}|s\rangle|^2=|c_{++}|^2
+\\
+\Pr\left(S_{1z}=+\tfrac{\hbar}{2}\text{ and }S_{2z}=-\tfrac{\hbar}{2}\right)
+&=|\langle z_{+-}|s\rangle|^2=|c_{+-}|^2
+\\
+\Pr\left(S_{1z}=-\tfrac{\hbar}{2}\text{ and }S_{2z}=+\tfrac{\hbar}{2}\right)
+&=|\langle z_{-+}|s\rangle|^2=|c_{-+}|^2
+\\
+\Pr\left(S_{1z}=-\tfrac{\hbar}{2}\text{ and }S_{2z}=-\tfrac{\hbar}{2}\right)
+&=|\langle z_{--}|s\rangle|^2=|c_{--}|^2
+\end{align*}
+
+where the eigenstates are
+\begin{equation*}
+z_{++}=\begin{pmatrix}1\\0\\0\\0\end{pmatrix},\quad
+z_{+-}=\begin{pmatrix}0\\1\\0\\0\end{pmatrix},\quad
+z_{-+}=\begin{pmatrix}0\\0\\1\\0\end{pmatrix},\quad
+z_{--}=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
+\end{equation*}
+
+Spin operators and expectation values for the first spin
+($\otimes$ is kronecker product).
+\begin{align*}
+S_{1x}&=\frac{\hbar}{2}\sigma_x\otimes I=\frac{\hbar}{2}
+\begin{pmatrix}
+0&0&1&0\\
+0&0&0&1\\
+1&0&0&0\\
+0&1&0&0
+\end{pmatrix}, & \langle S_{1x}\rangle&=\langle s|S_{1x}|s\rangle
+\\
+S_{1y}&=\frac{\hbar}{2}\sigma_y\otimes I=\frac{\hbar}{2}
+\begin{pmatrix}
+0&0&-i&0\\
+0&0&0&-i\\
+i&0&0&0\\
+0&i&0&0
+\end{pmatrix}, & \langle S_{1y}\rangle&=\langle s|S_{1y}|s\rangle
+\\
+S_{1z}&=\frac{\hbar}{2}\sigma_z\otimes I=\frac{\hbar}{2}
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&-1&0\\
+0&0&0&-1
+\end{pmatrix}, & \langle S_{1z}\rangle&=\langle s|S_{1z}|s\rangle
+\end{align*}
+
+Spin operators and expectation values for the second spin.
+\begin{align*}
+S_{2x}&=\frac{\hbar}{2}I\otimes\sigma_x=\frac{\hbar}{2}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&0&1\\
+0&0&1&0
+\end{pmatrix}, & \langle S_{2x}\rangle&=\langle s|S_{2x}|s\rangle
+\\
+S_{2y}&=\frac{\hbar}{2}I\otimes\sigma_y=\frac{\hbar}{2}
+\begin{pmatrix}
+0&-i&0&0\\
+i&0&0&0\\
+0&0&0&-i\\
+0&0&i&0
+\end{pmatrix}, & \langle S_{2y}\rangle&=\langle s|S_{2y}|s\rangle
+\\
+S_{2z}&=\frac{\hbar}{2}I\otimes\sigma_z=\frac{\hbar}{2}
+\begin{pmatrix}
+1&0&0&0\\
+0&-1&0&0\\
+0&0&1&0\\
+0&0&0&-1
+\end{pmatrix}, & \langle S_{2z}\rangle&=\langle s|S_{2z}|s\rangle
+\end{align*}
+
+By definition of expectation value we have for the $z$ direction
+\begin{align*}
+\langle S_{1z}\rangle&=\tfrac{\hbar}{2}\left(|c_{++}|^2+|c_{+-}|^2-|c_{-+}|^2-|c_{--}|^2\right)
+\\
+\langle S_{2z}\rangle&=\tfrac{\hbar}{2}\left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
+\end{align*}
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+1. Verify spin operators for two spins.
+}}
+
+{\footnotesize\begin{verbatim}
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+sigmaz = ((1,0),(0,-1))
+
+I = ((1,0),(0,1))
+
+S1x = 1/2 hbar kronecker(sigmax,I)
+S1y = 1/2 hbar kronecker(sigmay,I)
+S1z = 1/2 hbar kronecker(sigmaz,I)
+
+S2x = 1/2 hbar kronecker(I,sigmax)
+S2y = 1/2 hbar kronecker(I,sigmay)
+S2z = 1/2 hbar kronecker(I,sigmaz)
+
+check(S1x == 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0)))
+check(S1y == 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0)))
+check(S1z == 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1)))
+
+check(S2x == 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0)))
+check(S2y == 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0)))
+check(S2z == 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1)))
+\end{verbatim}}
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+2. Verify expectation values for the $z$ direction.
+}}
+
+{\footnotesize\begin{verbatim}
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+sigmaz = ((1,0),(0,-1))
+
+I = ((1,0),(0,1))
+
+S1x = 1/2 hbar kronecker(sigmax,I)
+S1y = 1/2 hbar kronecker(sigmay,I)
+S1z = 1/2 hbar kronecker(sigmaz,I)
+
+S2x = 1/2 hbar kronecker(I,sigmax)
+S2y = 1/2 hbar kronecker(I,sigmay)
+S2z = 1/2 hbar kronecker(I,sigmaz)
+
+c1 = x1 + i y1
+c2 = x2 + i y2
+c3 = x3 + i y3
+c4 = x4 + i y4
+
+s = (c1,c2,c3,c4)
+
+check(dot(conj(s),S1z,s) ==
+1/2 hbar (conj(c1) c1 + conj(c2) c2 - conj(c3) c3 - conj(c4) c4))
+
+check(dot(conj(s),S2z,s) ==
+1/2 hbar (conj(c1) c1 - conj(c2) c2 + conj(c3) c3 - conj(c4) c4))
+\end{verbatim}}
+
+\end{document}

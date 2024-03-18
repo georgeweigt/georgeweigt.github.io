@@ -1,0 +1,30 @@
+"Verify expectation values for the z direction"
+
+sigmax = ((0,1),(1,0))
+sigmay = ((0,-i),(i,0))
+sigmaz = ((1,0),(0,-1))
+
+I = ((1,0),(0,1))
+
+S1x = 1/2 hbar kronecker(sigmax,I)
+S1y = 1/2 hbar kronecker(sigmay,I)
+S1z = 1/2 hbar kronecker(sigmaz,I)
+
+S2x = 1/2 hbar kronecker(I,sigmax)
+S2y = 1/2 hbar kronecker(I,sigmay)
+S2z = 1/2 hbar kronecker(I,sigmaz)
+
+c1 = x1 + i y1
+c2 = x2 + i y2
+c3 = x3 + i y3
+c4 = x4 + i y4
+
+s = (c1,c2,c3,c4)
+
+check(dot(conj(s),S1z,s) ==
+1/2 hbar (conj(c1) c1 + conj(c2) c2 - conj(c3) c3 - conj(c4) c4))
+
+check(dot(conj(s),S2z,s) ==
+1/2 hbar (conj(c1) c1 - conj(c2) c2 + conj(c3) c3 - conj(c4) c4))
+
+"ok"
