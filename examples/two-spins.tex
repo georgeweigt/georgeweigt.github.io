@@ -35,7 +35,7 @@ z_{-+}=\begin{pmatrix}0\\0\\1\\0\end{pmatrix},\quad
 z_{--}=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}
 \end{equation*}
 
-Spin operators and expectation values for the first spin
+Spin operators for the first spin
 ($\otimes$ is kronecker product).
 \begin{align*}
 S_{1x}&=\frac{\hbar}{2}\sigma_x\otimes I=\frac{\hbar}{2}
@@ -44,7 +44,7 @@ S_{1x}&=\frac{\hbar}{2}\sigma_x\otimes I=\frac{\hbar}{2}
 0&0&0&1\\
 1&0&0&0\\
 0&1&0&0
-\end{pmatrix}, & \langle S_{1x}\rangle&=\langle s|S_{1x}|s\rangle
+\end{pmatrix}
 \\
 S_{1y}&=\frac{\hbar}{2}\sigma_y\otimes I=\frac{\hbar}{2}
 \begin{pmatrix}
@@ -52,7 +52,7 @@ S_{1y}&=\frac{\hbar}{2}\sigma_y\otimes I=\frac{\hbar}{2}
 0&0&0&-i\\
 i&0&0&0\\
 0&i&0&0
-\end{pmatrix}, & \langle S_{1y}\rangle&=\langle s|S_{1y}|s\rangle
+\end{pmatrix}
 \\
 S_{1z}&=\frac{\hbar}{2}\sigma_z\otimes I=\frac{\hbar}{2}
 \begin{pmatrix}
@@ -60,10 +60,10 @@ S_{1z}&=\frac{\hbar}{2}\sigma_z\otimes I=\frac{\hbar}{2}
 0&1&0&0\\
 0&0&-1&0\\
 0&0&0&-1
-\end{pmatrix}, & \langle S_{1z}\rangle&=\langle s|S_{1z}|s\rangle
+\end{pmatrix}
 \end{align*}
 
-Spin operators and expectation values for the second spin.
+Spin operators for the second spin.
 \begin{align*}
 S_{2x}&=\frac{\hbar}{2}I\otimes\sigma_x=\frac{\hbar}{2}
 \begin{pmatrix}
@@ -71,7 +71,7 @@ S_{2x}&=\frac{\hbar}{2}I\otimes\sigma_x=\frac{\hbar}{2}
 1&0&0&0\\
 0&0&0&1\\
 0&0&1&0
-\end{pmatrix}, & \langle S_{2x}\rangle&=\langle s|S_{2x}|s\rangle
+\end{pmatrix}
 \\
 S_{2y}&=\frac{\hbar}{2}I\otimes\sigma_y=\frac{\hbar}{2}
 \begin{pmatrix}
@@ -79,7 +79,7 @@ S_{2y}&=\frac{\hbar}{2}I\otimes\sigma_y=\frac{\hbar}{2}
 i&0&0&0\\
 0&0&0&-i\\
 0&0&i&0
-\end{pmatrix}, & \langle S_{2y}\rangle&=\langle s|S_{2y}|s\rangle
+\end{pmatrix}
 \\
 S_{2z}&=\frac{\hbar}{2}I\otimes\sigma_z=\frac{\hbar}{2}
 \begin{pmatrix}
@@ -87,23 +87,59 @@ S_{2z}&=\frac{\hbar}{2}I\otimes\sigma_z=\frac{\hbar}{2}
 0&-1&0&0\\
 0&0&1&0\\
 0&0&0&-1
-\end{pmatrix}, & \langle S_{2z}\rangle&=\langle s|S_{2z}|s\rangle
+\end{pmatrix}
 \end{align*}
 
-By definition of expectation value we have for the $z$ direction
+Expectation values for the first spin.
 \begin{align*}
-\langle S_{1z}\rangle
-&=\tfrac{\hbar}{2}|c_{++}|^2+\tfrac{\hbar}{2}|c_{+-}|^2
--\tfrac{\hbar}{2}|c_{-+}|^2-\tfrac{\hbar}{2}|c_{--}|^2
+\langle S_{1x}\rangle&=\langle s|S_{1x}|s\rangle
+=\tfrac{\hbar}{2}
+\left(c_{++}c_{-+}^*+c_{++}^*c_{-+}+c_{+-}c_{--}^*+c_{+-}^*c_{--}\right)
 \\
-\langle S_{2z}\rangle
-&=\tfrac{\hbar}{2}|c_{++}|^2-\tfrac{\hbar}{2}|c_{+-}|^2
-+\tfrac{\hbar}{2}|c_{-+}|^2-\tfrac{\hbar}{2}|c_{--}|^2
+\langle S_{1y}\rangle&=\langle s|S_{1y}|s\rangle
+=\tfrac{i\hbar}{2}
+\left(c_{++}c_{-+}^*-c_{++}^*c_{-+}+c_{+-}c_{--}^*-c_{+-}^*c_{--}\right)
+\\
+\langle S_{1z}\rangle&=\langle s|S_{1z}|s\rangle
+=\tfrac{\hbar}{2}
+\left(|c_{++}|^2+|c_{+-}|^2-|c_{-+}|^2-|c_{--}|^2\right)
 \end{align*}
+
+Expectation values for the second spin.
+\begin{align*}
+\langle S_{2x}\rangle&=\langle s|S_{2x}|s\rangle
+=\tfrac{\hbar}{2}
+\left(c_{++}c_{+-}^*+c_{++}^*c_{+-}+c_{-+}c_{--}^*+c_{-+}^*c_{--}\right)
+\\
+\langle S_{2y}\rangle&=\langle s|S_{2y}|s\rangle
+=\tfrac{i\hbar}{2}
+\left(c_{++}c_{+-}^*-c_{++}^*c_{+-}+c_{-+}c_{--}^*-c_{-+}^*c_{--}\right)
+\\
+\langle S_{2z}\rangle&=\langle s|S_{2z}|s\rangle
+=\tfrac{\hbar}{2}\left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
+\end{align*}
+
+Let
+\begin{equation*}
+\mathbf S_1=\begin{pmatrix}S_{1x}\\S_{1y}\\S_{1z}\end{pmatrix},\quad
+\mathbf S_2=\begin{pmatrix}S_{2x}\\S_{2y}\\S_{2z}\end{pmatrix}
+\end{equation*}
+
+Total spin is given by
+\begin{equation*}
+(\mathbf S_1+\mathbf S_2)^2|s\rangle
+=\hbar^2\begin{pmatrix}2c_{++}\\c_{+-}+c_{-+}\\c_{+-}+c_{-+}\\2c_{--}\end{pmatrix}
+\end{equation*}
+
+Expectation value for total spin.
+\begin{equation*}
+\langle s|(\mathbf S_1+\mathbf S_2)^2|s\rangle
+=\hbar^2\left(2|c_{++}|^2+|c_{+-}+c_{-+}|^2+2|c_{--}|^2\right)
+\end{equation*}
 
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-1. Verify spin operators for two spins.
+1. Verify spin operators and expectation values for two spins.
 }}
 
 {\footnotesize\begin{verbatim}
@@ -128,29 +164,31 @@ check(S1z == 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1)))
 check(S2x == 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0)))
 check(S2y == 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0)))
 check(S2z == 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1)))
-\end{verbatim}}
 
-\newpage
-\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-2. Verify expectation values for the $z$ direction.
-}}
+cpp = xpp + i ypp
+cpm = xpm + i ypm
+cmp = xmp + i ymp
+cmm = xmm + i ymm
 
-{\footnotesize\begin{verbatim}
-S1z = 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
-S2z = 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1))
+s = (cpp,cpm,cmp,cmm)
 
-c1 = x1 + i y1
-c2 = x2 + i y2
-c3 = x3 + i y3
-c4 = x4 + i y4
+check(dot(conj(s),S1x,s) ==
+1/2 hbar (cpp conj(cmp) + conj(cpp) cmp + cpm conj(cmm) + conj(cpm) cmm))
 
-s = (c1,c2,c3,c4)
+check(dot(conj(s),S1y,s) ==
+1/2 i hbar (cpp conj(cmp) - conj(cpp) cmp + cpm conj(cmm) - conj(cpm) cmm))
 
 check(dot(conj(s),S1z,s) ==
-1/2 hbar (conj(c1) c1 + conj(c2) c2 - conj(c3) c3 - conj(c4) c4))
+1/2 hbar (cpp conj(cpp) + cpm conj(cpm) - cmp conj(cmp) - cmm conj(cmm)))
+
+check(dot(conj(s),S2x,s) ==
+1/2 hbar (cpp conj(cpm) + conj(cpp) cpm + cmp conj(cmm) + conj(cmp) cmm))
+
+check(dot(conj(s),S2y,s) ==
+1/2 i hbar (cpp conj(cpm) - conj(cpp) cpm + cmp conj(cmm) - conj(cmp) cmm))
 
 check(dot(conj(s),S2z,s) ==
-1/2 hbar (conj(c1) c1 - conj(c2) c2 + conj(c3) c3 - conj(c4) c4))
+1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
 \end{verbatim}}
 
 \end{document}
