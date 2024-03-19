@@ -33,6 +33,8 @@ check(dot(conj(s),S2y,s) ==
 check(dot(conj(s),S2z,s) ==
 1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
 
+-- total spin
+
 Sx = S1x + S2x
 Sy = S1y + S2y
 Sz = S1z + S2z

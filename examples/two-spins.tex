@@ -116,25 +116,15 @@ Expectation values for the second spin.
 \left(c_{++}c_{+-}^*-c_{++}^*c_{+-}+c_{-+}c_{--}^*-c_{-+}^*c_{--}\right)
 \\
 \langle S_{2z}\rangle&=\langle s|S_{2z}|s\rangle
-=\tfrac{\hbar}{2}\left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
+=\tfrac{\hbar}{2}
+\left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
 \end{align*}
 
-Let
-\begin{equation*}
-\mathbf S_1=\begin{pmatrix}S_{1x}\\S_{1y}\\S_{1z}\end{pmatrix},\quad
-\mathbf S_2=\begin{pmatrix}S_{2x}\\S_{2y}\\S_{2z}\end{pmatrix}
-\end{equation*}
-
-Then
+Total spin operator.
 \begin{equation*}
 (\mathbf S_1+\mathbf S_2)^2
-=(S_{1x}+S_{2x})(S_{1x}+S_{2x})+(S_{1y}+S_{2y})(S_{1y}+S_{2y})+(S_{1z}+S_{2z})(S_{1z}+S_{2z})
-\end{equation*}
-
-and in matrix form
-\begin{equation*}
-(\mathbf S_1+\mathbf S_2)^2=\hbar^2
-\begin{pmatrix}
+=(S_{1x}+S_{2x})^2+(S_{1y}+S_{2y})^2+(S_{1z}+S_{2z})^2
+=\hbar^2\begin{pmatrix}
 2&0&0&0\\
 0&1&1&0\\
 0&1&1&0\\
@@ -148,82 +138,11 @@ Expectation value for total spin.
 =\hbar^2\left(2|c_{++}|^2+|c_{+-}+c_{-+}|^2+2|c_{--}|^2\right)
 \end{equation*}
 
-\newpage
-\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+\subsubsection*{Exercises}
+
 1. Verify spin operators for two spins.
-}}
 
-{\footnotesize\begin{verbatim}
-sigmax = ((0,1),(1,0))
-sigmay = ((0,-i),(i,0))
-sigmaz = ((1,0),(0,-1))
-
-I = ((1,0),(0,1))
-
-S1x = 1/2 hbar kronecker(sigmax,I)
-S1y = 1/2 hbar kronecker(sigmay,I)
-S1z = 1/2 hbar kronecker(sigmaz,I)
-
-S2x = 1/2 hbar kronecker(I,sigmax)
-S2y = 1/2 hbar kronecker(I,sigmay)
-S2z = 1/2 hbar kronecker(I,sigmaz)
-
-check(S1x == 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0)))
-check(S1y == 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0)))
-check(S1z == 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1)))
-
-check(S2x == 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0)))
-check(S2y == 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0)))
-check(S2z == 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1)))
-\end{verbatim}}
-
-\newpage
-\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+\bigskip
 2. Verify expectation values for two spins.
-}}
-
-{\footnotesize\begin{verbatim}
-S1x = 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0))
-S1y = 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0))
-S1z = 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
-
-S2x = 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0))
-S2y = 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0))
-S2z = 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1))
-
-cpp = xpp + i ypp
-cpm = xpm + i ypm
-cmp = xmp + i ymp
-cmm = xmm + i ymm
-
-s = (cpp,cpm,cmp,cmm)
-
-check(dot(conj(s),S1x,s) ==
-1/2 hbar (cpp conj(cmp) + conj(cpp) cmp + cpm conj(cmm) + conj(cpm) cmm))
-
-check(dot(conj(s),S1y,s) ==
-1/2 i hbar (cpp conj(cmp) - conj(cpp) cmp + cpm conj(cmm) - conj(cpm) cmm))
-
-check(dot(conj(s),S1z,s) ==
-1/2 hbar (cpp conj(cpp) + cpm conj(cpm) - cmp conj(cmp) - cmm conj(cmm)))
-
-check(dot(conj(s),S2x,s) ==
-1/2 hbar (cpp conj(cpm) + conj(cpp) cpm + cmp conj(cmm) + conj(cmp) cmm))
-
-check(dot(conj(s),S2y,s) ==
-1/2 i hbar (cpp conj(cpm) - conj(cpp) cpm + cmp conj(cmm) - conj(cmp) cmm))
-
-check(dot(conj(s),S2z,s) ==
-1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
-
-Sx = S1x + S2x
-Sy = S1y + S2y
-Sz = S1z + S2z
-
-S2 = dot(Sx,Sx) + dot(Sy,Sy) + dot(Sz,Sz)
-
-check(dot(conj(s),S2,s) ==
-hbar^2 (2 cpp conj(cpp) + (cpm + cmp) conj(cpm + cmp) + 2 cmm conj(cmm)))
-\end{verbatim}}
 
 \end{document}
