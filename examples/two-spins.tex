@@ -139,7 +139,7 @@ Expectation value for total spin.
 
 \newpage
 \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
-1. Verify spin operators and expectation values for two spins.
+1. Verify spin operators for two spins.
 }}
 
 {\footnotesize\begin{verbatim}
@@ -164,6 +164,21 @@ check(S1z == 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1)))
 check(S2x == 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0)))
 check(S2y == 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0)))
 check(S2z == 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1)))
+\end{verbatim}}
+
+\newpage
+\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+2. Verify expectation values for two spins.
+}}
+
+{\footnotesize\begin{verbatim}
+S1x = 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0))
+S1y = 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0))
+S1z = 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+S2x = 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0))
+S2y = 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0))
+S2z = 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1))
 
 cpp = xpp + i ypp
 cpm = xpm + i ypm

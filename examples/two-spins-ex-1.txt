@@ -1,4 +1,4 @@
-"Verify spin operators"
+"Verify spin operators for two spins"
 
 sigmax = ((0,1),(1,0))
 sigmay = ((0,-i),(i,0))
@@ -21,38 +21,5 @@ check(S1z == 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1)))
 check(S2x == 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0)))
 check(S2y == 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0)))
 check(S2z == 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1)))
-
-"ok"
-
-cpp = xpp + i ypp
-cpm = xpm + i ypm
-cmp = xmp + i ymp
-cmm = xmm + i ymm
-
-s = (cpp,cpm,cmp,cmm)
-
-"Verify expectation values for first spin"
-
-check(dot(conj(s),S1x,s) ==
-1/2 hbar (cpp conj(cmp) + conj(cpp) cmp + cpm conj(cmm) + conj(cpm) cmm))
-
-check(dot(conj(s),S1y,s) ==
-1/2 i hbar (cpp conj(cmp) - conj(cpp) cmp + cpm conj(cmm) - conj(cpm) cmm))
-
-check(dot(conj(s),S1z,s) ==
-1/2 hbar (cpp conj(cpp) + cpm conj(cpm) - cmp conj(cmp) - cmm conj(cmm)))
-
-"ok"
-
-"Verify expectation values for second spin"
-
-check(dot(conj(s),S2x,s) ==
-1/2 hbar (cpp conj(cpm) + conj(cpp) cpm + cmp conj(cmm) + conj(cmp) cmm))
-
-check(dot(conj(s),S2y,s) ==
-1/2 i hbar (cpp conj(cpm) - conj(cpp) cpm + cmp conj(cmm) - conj(cmp) cmm))
-
-check(dot(conj(s),S2z,s) ==
-1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
 
 "ok"

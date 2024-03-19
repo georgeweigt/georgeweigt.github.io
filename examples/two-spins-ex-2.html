@@ -1,21 +1,38 @@
 <html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
-"Verify expectation values for the z direction"
+"Verify expectation values for two spins"
 
+S1x = 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0))
+S1y = 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0))
 S1z = 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+S2x = 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0))
+S2y = 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0))
 S2z = 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1))
 
-c1 = x1 + i y1
-c2 = x2 + i y2
-c3 = x3 + i y3
-c4 = x4 + i y4
+cpp = xpp + i ypp
+cpm = xpm + i ypm
+cmp = xmp + i ymp
+cmm = xmm + i ymm
 
-s = (c1,c2,c3,c4)
+s = (cpp,cpm,cmp,cmm)
+
+check(dot(conj(s),S1x,s) ==
+1/2 hbar (cpp conj(cmp) + conj(cpp) cmp + cpm conj(cmm) + conj(cpm) cmm))
+
+check(dot(conj(s),S1y,s) ==
+1/2 i hbar (cpp conj(cmp) - conj(cpp) cmp + cpm conj(cmm) - conj(cpm) cmm))
 
 check(dot(conj(s),S1z,s) ==
-1/2 hbar (conj(c1) c1 + conj(c2) c2 - conj(c3) c3 - conj(c4) c4))
+1/2 hbar (cpp conj(cpp) + cpm conj(cpm) - cmp conj(cmp) - cmm conj(cmm)))
+
+check(dot(conj(s),S2x,s) ==
+1/2 hbar (cpp conj(cpm) + conj(cpp) cpm + cmp conj(cmm) + conj(cmp) cmm))
+
+check(dot(conj(s),S2y,s) ==
+1/2 i hbar (cpp conj(cpm) - conj(cpp) cpm + cmp conj(cmm) - conj(cmp) cmm))
 
 check(dot(conj(s),S2z,s) ==
-1/2 hbar (conj(c1) c1 - conj(c2) c2 + conj(c3) c3 - conj(c4) c4))
+1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
 
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
