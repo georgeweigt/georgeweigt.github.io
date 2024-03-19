@@ -34,5 +34,14 @@ check(dot(conj(s),S2y,s) ==
 check(dot(conj(s),S2z,s) ==
 1/2 hbar (cpp conj(cpp) - cpm conj(cpm) + cmp conj(cmp) - cmm conj(cmm)))
 
+Sx = S1x + S2x
+Sy = S1y + S2y
+Sz = S1z + S2z
+
+S2 = dot(Sx,Sx) + dot(Sy,Sy) + dot(Sz,Sz)
+
+check(dot(conj(s),S2,s) ==
+hbar^2 (2 cpp conj(cpp) + (cpm + cmp) conj(cpm + cmp) + 2 cmm conj(cmm)))
+
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
