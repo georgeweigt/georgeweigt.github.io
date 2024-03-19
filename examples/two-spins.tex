@@ -120,7 +120,56 @@ Expectation values for the second spin.
 \left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
 \end{align*}
 
-Total spin operator.
+Expected euclidean spin vectors.
+\begin{equation*}
+\langle\mathbf S_1\rangle=\langle s|\mathbf S_1|s\rangle
+=\begin{pmatrix}
+\langle S_{1x}\rangle\\
+\langle S_{1y}\rangle\\
+\langle S_{1z}\rangle
+\end{pmatrix},\quad
+\langle\mathbf S_2\rangle=\langle s|\mathbf S_2|s\rangle
+=\begin{pmatrix}
+\langle S_{2x}\rangle\\
+\langle S_{2y}\rangle\\
+\langle S_{2z}\rangle
+\end{pmatrix}
+\end{equation*}
+
+To convert $\langle\mathbf S_1\rangle$ and $\langle\mathbf S_2\rangle$ to a spin state $|s\rangle$,
+let $\theta_1$ and $\theta_2$ be polar angles and let $\phi_1$ and $\phi_2$ be azimuth angles
+such that
+\begin{equation*}
+\langle\mathbf S_1\rangle=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta_1\cos\phi_1\\
+\sin\theta_1\sin\phi_1\\
+\cos\theta_1
+\end{pmatrix},\quad
+\langle\mathbf S_2\rangle=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta_2\cos\phi_2\\
+\sin\theta_2\sin\phi_2\\
+\cos\theta_2
+\end{pmatrix}
+\end{equation*}
+
+Then
+\begin{equation*}
+|s_1\rangle=\begin{pmatrix}\cos(\theta_1/2)\\\sin(\theta_1/2)\exp(i\phi_1)\end{pmatrix},\quad
+|s_2\rangle=\begin{pmatrix}\cos(\theta_2/2)\\\sin(\theta_2/2)\exp(i\phi_2)\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+|s\rangle=|s_1\rangle\otimes|s_2\rangle
+=\begin{pmatrix}
+\cos(\theta_1/2)\cos(\theta_2/2)\\
+\cos(\theta_1/2)\sin(\theta_2/2)\exp(i\phi_2)\\
+\sin(\theta_1/2)\cos(\theta_2/2)\exp(i\phi_1)\\
+\sin(\theta_1/2)\sin(\theta_2/2)\exp(i\phi_1)\exp(i\phi_2)
+\end{pmatrix}
+\end{equation*}
+
+Spin angular momentum magnitude squared operator.
 \begin{equation*}
 (\mathbf S_1+\mathbf S_2)^2
 =(S_{1x}+S_{2x})^2+(S_{1y}+S_{2y})^2+(S_{1z}+S_{2z})^2
@@ -132,7 +181,7 @@ Total spin operator.
 \end{pmatrix}
 \end{equation*}
 
-Expectation value for total spin.
+Expectation value for spin angular momentum magnitude squared.
 \begin{equation*}
 \langle s|(\mathbf S_1+\mathbf S_2)^2|s\rangle
 =\hbar^2\left(2|c_{++}|^2+|c_{+-}+c_{-+}|^2+2|c_{--}|^2\right)
@@ -145,10 +194,38 @@ Expectation value for total spin.
 \bigskip
 2. Verify expectation values for two spins.
 
+\bigskip
+3. Let
+\begin{equation*}
+|s_1\rangle=\begin{pmatrix}\cos(\theta_1/2)\\\sin(\theta_1/2)\exp(i\phi_1)\end{pmatrix},\quad
+|s_2\rangle=\begin{pmatrix}\cos(\theta_2/2)\\\sin(\theta_2/2)\exp(i\phi_2)\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+|s\rangle=|s_1\rangle\otimes|s_2\rangle
+\end{equation*}
+
+Verify that
+\begin{equation*}
+\langle s|\mathbf S_1|s\rangle
+=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta_1\cos\phi_1\\
+\sin\theta_1\sin\phi_1\\
+\cos\theta_1
+\end{pmatrix},\quad
+\langle s|\mathbf S_2|s\rangle
+=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta_2\cos\phi_2\\
+\sin\theta_2\sin\phi_2\\
+\cos\theta_2
+\end{pmatrix}
+\end{equation*}
+
 \end{document}
 
 \bigskip
-3. Verify that
+Verify that
 \begin{align*}
 (S_{1x}+S_{2x})|z_{++}\rangle&=\tfrac{\hbar}{2}|z_{-+}\rangle+\tfrac{\hbar}{2}|z_{+-}\rangle
 \\

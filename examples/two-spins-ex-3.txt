@@ -1,0 +1,24 @@
+"Verify angle formula for two spins"
+
+s1 = (cos(theta1/2), sin(theta1/2) exp(i phi1))
+s2 = (cos(theta2/2), sin(theta2/2) exp(i phi2))
+
+s = kronecker(s1,s2)
+
+S1x = 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0))
+S1y = 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0))
+S1z = 1/2 hbar ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+S2x = 1/2 hbar ((0,1,0,0),(1,0,0,0),(0,0,0,1),(0,0,1,0))
+S2y = 1/2 hbar ((0,-i,0,0),(i,0,0,0),(0,0,0,-i),(0,0,i,0))
+S2z = 1/2 hbar ((1,0,0,0),(0,-1,0,0),(0,0,1,0),(0,0,0,-1))
+
+check(dot(conj(s),S1x,s) == 1/2 hbar sin(theta1) cos(phi1))
+check(dot(conj(s),S1y,s) == 1/2 hbar sin(theta1) sin(phi1))
+check(dot(conj(s),S1z,s) == 1/2 hbar cos(theta1))
+
+check(dot(conj(s),S2x,s) == 1/2 hbar sin(theta2) cos(phi2))
+check(dot(conj(s),S2y,s) == 1/2 hbar sin(theta2) sin(phi2))
+check(dot(conj(s),S2z,s) == 1/2 hbar cos(theta2))
+
+"ok"
