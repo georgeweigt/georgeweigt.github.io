@@ -210,11 +210,11 @@ By computer algebra
 
 1. Verify that
 \begin{align*}
-S_x&=\tfrac{\hbar}{2}(|x_+\rangle\langle x_+|-|x_-\rangle\langle x_-|)
+S_x&=\frac{\hbar}{2}\left(|x_+\rangle\langle x_+|-|x_-\rangle\langle x_-|\right)
 \\
-S_y&=\tfrac{\hbar}{2}(|y_+\rangle\langle y_+|-|y_-\rangle\langle y_-|)
+S_y&=\frac{\hbar}{2}\left(|y_+\rangle\langle y_+|-|y_-\rangle\langle y_-|\right)
 \\
-S_z&=\tfrac{\hbar}{2}(|z_+\rangle\langle z_+|-|z_-\rangle\langle z_-|)
+S_z&=\frac{\hbar}{2}\left(|z_+\rangle\langle z_+|-|z_-\rangle\langle z_-|\right)
 \end{align*}
 
 2. Let $|s\rangle$ be the following spin state.
@@ -273,30 +273,10 @@ Verify the following measurement probabilities for $|s\rangle$.
 
 Verify that the following spin state $|\chi\rangle$ is indistinguishable from $|s\rangle$.
 \begin{equation*}
-|\chi\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+|\chi\rangle
+=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
+=\begin{pmatrix}\frac{\sqrt5}{3}\\[1ex]\frac{2+4i}{3\sqrt5}\end{pmatrix}
 \end{equation*}
-
-where
-\begin{equation*}
-\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}}=\frac{\sqrt5}{3}
-\end{equation*}
-
-and
-\begin{equation*}
-\sin(\theta/2)\exp(i\phi)
-=\sqrt{\frac{1-\langle z\rangle}{2}}
-\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
-=\frac{2+4i}{3\sqrt5}
-\end{equation*}
-
-with
-\begin{align*}
-\langle x\rangle&=\tfrac{2}{\hbar}\langle S_x\rangle
-\\
-\langle y\rangle&=\tfrac{2}{\hbar}\langle S_y\rangle
-\\
-\langle z\rangle&=\tfrac{2}{\hbar}\langle S_z\rangle
-\end{align*}
 
 5. Verify the following commutators for
 $\mathbf S\psi=(\mathbf r\times\mathbf p)\psi$.
@@ -307,25 +287,7 @@ $\mathbf S\psi=(\mathbf r\times\mathbf p)\psi$.
 \\
 [S_x,S_y]&=i\hbar S_z
 \\[1ex]
-[S^2,S_x]&=0
-\\
-[S^2,S_y]&=0
-\\
-[S^2,S_z]&=0
-\\[1ex]
 [S_+,S_-]&=2\hbar S_z
-\end{align*}
-
-where
-\begin{equation*}
-S^2=S_x^2+S_y^2+S_z^2
-\end{equation*}
-
-and
-\begin{align*}
-S_+&=S_x+iS_y
-\\
-S_-&=S_x-iS_y
 \end{align*}
 
 \end{document}
