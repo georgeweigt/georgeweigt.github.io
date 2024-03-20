@@ -120,7 +120,7 @@ Expectation values for the second spin.
 \left(|c_{++}|^2-|c_{+-}|^2+|c_{-+}|^2-|c_{--}|^2\right)
 \end{align*}
 
-Expected euclidean spin vectors.
+Expected spin vectors.
 \begin{equation*}
 \langle\mathbf S_1\rangle=\langle s|\mathbf S_1|s\rangle
 =\begin{pmatrix}
@@ -136,37 +136,39 @@ Expected euclidean spin vectors.
 \end{pmatrix}
 \end{equation*}
 
-To convert $\langle\mathbf S_1\rangle$ and $\langle\mathbf S_2\rangle$ to a spin state $|s\rangle$,
-let $\theta_1$ and $\theta_2$ be polar angles and let $\phi_1$ and $\phi_2$ be azimuth angles
-such that
-\begin{equation*}
-\langle\mathbf S_1\rangle=\frac{\hbar}{2}\begin{pmatrix}
-\sin\theta_1\cos\phi_1\\
-\sin\theta_1\sin\phi_1\\
-\cos\theta_1
-\end{pmatrix},\quad
-\langle\mathbf S_2\rangle=\frac{\hbar}{2}\begin{pmatrix}
-\sin\theta_2\cos\phi_2\\
-\sin\theta_2\sin\phi_2\\
-\cos\theta_2
-\end{pmatrix}
-\end{equation*}
+Consider the case of having determined $\langle\mathbf S_1\rangle$ and
+$\langle\mathbf S_2\rangle$ by experiment.
+To convert $\langle\mathbf S_1\rangle$ and $\langle\mathbf S_2\rangle$
+to a spin state $|s\rangle$, let
+\begin{align*}
+x_i&=\frac{2}{\hbar}\langle S_{ix}\rangle=\sin\theta_i\cos\phi_i
+\\
+y_i&=\frac{2}{\hbar}\langle S_{iy}\rangle=\sin\theta_i\sin\phi_i
+\\
+z_i&=\frac{2}{\hbar}\langle S_{iz}\rangle=\cos\theta_i
+\end{align*}
 
 Then
 \begin{equation*}
-|s_1\rangle=\begin{pmatrix}\cos(\theta_1/2)\\\sin(\theta_1/2)\exp(i\phi_1)\end{pmatrix},\quad
-|s_2\rangle=\begin{pmatrix}\cos(\theta_2/2)\\\sin(\theta_2/2)\exp(i\phi_2)\end{pmatrix}
+|s_i\rangle=\begin{pmatrix}\cos(\theta_i/2)\\\sin(\theta_i/2)\exp(i\phi_i)\end{pmatrix}
 \end{equation*}
+
+where
+\begin{align*}
+\cos(\theta_i/2)=\sqrt{\frac{\cos\theta_i+1}{2}}=\sqrt{\frac{z_i+1}{2}}
+\\
+\sin(\theta_i/2)=\sqrt{\frac{1-\cos\theta_i}{2}}=\sqrt{\frac{1-z_i}{2}}
+\end{align*}
 
 and
 \begin{equation*}
+\exp(i\phi_i)=\cos\phi_i+i\sin\phi_i
+=\frac{x_i+iy_i}{\sqrt{x_i^2+y_i^2}}
+\end{equation*}
+
+Spin state $|s\rangle$ is the kronecker product of $|s_1\rangle$ and $|s_2\rangle$.
+\begin{equation*}
 |s\rangle=|s_1\rangle\otimes|s_2\rangle
-=\begin{pmatrix}
-\cos(\theta_1/2)\cos(\theta_2/2)\\
-\cos(\theta_1/2)\sin(\theta_2/2)\exp(i\phi_2)\\
-\sin(\theta_1/2)\cos(\theta_2/2)\exp(i\phi_1)\\
-\sin(\theta_1/2)\sin(\theta_2/2)\exp(i\phi_1)\exp(i\phi_2)
-\end{pmatrix}
 \end{equation*}
 
 Spin angular momentum magnitude squared operator.

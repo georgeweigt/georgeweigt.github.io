@@ -113,52 +113,50 @@ and
 |y_-\rangle&=\frac{|z_+\rangle-i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
 \end{align*}
 
-The expected spin direction vector is
+Expectation values for spin operators.
+\begin{align*}
+\langle S_x\rangle&=\langle s|S_x|s\rangle=\frac{\hbar}{2}\left(c_+c_-^*+c_+^*c_-\right)
+\\
+\langle S_y\rangle&=\langle s|S_y|s\rangle=\frac{i\hbar}{2}\left(c_+c_-^*-c_+^*c_-\right)
+\\
+\langle S_z\rangle&=\langle s|S_z|s\rangle=\frac{\hbar}{2}\left(c_+c_+^*-c_-c_-^*\right)
+\end{align*}
+
+Expected spin vector.
 \begin{equation*}
 \langle\mathbf S\rangle=\begin{pmatrix}
-\langle s|S_x|s\rangle\\
-\langle s|S_y|s\rangle\\
-\langle s|S_z|s\rangle
-\end{pmatrix},\quad
-|\langle\mathbf S\rangle|=\frac{\hbar}{2}
-\end{equation*}
-
-To convert a direction vector to a spin state, let $\theta$ and $\phi$
-be the polar and azimuth angles such that
-\begin{equation*}
-\langle\mathbf S\rangle=\frac{\hbar}{2}\begin{pmatrix}
-\sin\theta\cos\phi\\
-\sin\theta\sin\phi\\
-\cos\theta
+\langle S_x\rangle\\
+\langle S_y\rangle\\
+\langle S_z\rangle
 \end{pmatrix}
 \end{equation*}
+
+Consider the case of having determined $\langle\mathbf S\rangle$ by experiment.
+To convert $\langle\mathbf S\rangle$ to a spin state $|s\rangle$, let
+\begin{align*}
+x&=\frac{2}{\hbar}\langle S_x\rangle=\sin\theta\cos\phi
+\\
+y&=\frac{2}{\hbar}\langle S_y\rangle=\sin\theta\sin\phi
+\\
+z&=\frac{2}{\hbar}\langle S_z\rangle=\cos\theta
+\end{align*}
 
 Then
 \begin{equation*}
 |s\rangle=\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\exp(i\phi)\end{pmatrix}
 \end{equation*}
 
-By the identities
-\begin{equation*}
-\cos^2(\theta/2)=\frac{\cos\theta+1}{2},\quad
-\sin^2(\theta/2)=\frac{1-\cos\theta}{2}
-\end{equation*}
-
-and noting that $0\le\theta\le\pi$ we have
-\begin{equation*}
-\cos(\theta/2)=\sqrt{\frac{\langle z\rangle+1}{2}},\quad
-\sin(\theta/2)\exp(i\phi)=\sqrt{\frac{1-\langle z\rangle}{2}}
-\frac{\langle x\rangle+i\langle y\rangle}{\sqrt{\langle x\rangle^2+\langle y\rangle^2}}
-\end{equation*}
-
 where
 \begin{align*}
-\langle x\rangle&=\tfrac{2}{\hbar}\langle S_x\rangle=\sin\theta\cos\phi
+\cos(\theta/2)&=\sqrt{\frac{\cos\theta+1}{2}}=\sqrt{\frac{z+1}{2}}
 \\
-\langle y\rangle&=\tfrac{2}{\hbar}\langle S_y\rangle=\sin\theta\sin\phi
-\\
-\langle z\rangle&=\tfrac{2}{\hbar}\langle S_z\rangle=\cos\theta
+\sin(\theta/2)&=\sqrt{\frac{1-\cos\theta}{2}}=\sqrt{\frac{1-z}{2}}
 \end{align*}
+
+and
+\begin{equation*}
+\exp(i\phi)=\cos\phi+i\sin\phi=\frac{x+iy}{\sqrt{x^2+y^2}}
+\end{equation*}
 
 The following commutator was used to derive $S_x$ and $S_y$.
 \begin{equation*}
@@ -170,8 +168,10 @@ The commutator is a consequence of the following wave equation for spin.
 \hat{\mathbf S}\psi=(\mathbf r\times\hat{\mathbf p})\psi,\quad
 \mathbf r=\begin{pmatrix}x\\y\\z\end{pmatrix},\quad
 \hat{\mathbf p}=-i\hbar\begin{pmatrix}
-\frac{\partial}{\partial x}\\[1ex]
-\frac{\partial}{\partial y}\\[1ex]
+\frac{\partial}{\partial x}
+\\
+\frac{\partial}{\partial y}
+\\
 \frac{\partial}{\partial z}
 \end{pmatrix}
 \end{equation*}
@@ -179,9 +179,9 @@ The commutator is a consequence of the following wave equation for spin.
 Rewrite in component form.
 \begin{align*}
 \hat S_x\psi&=-i\hbar\left(y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y}\right)\psi
-\\[1ex]
+\\
 \hat S_y\psi&=-i\hbar\left(z\frac{\partial}{\partial x}-x\frac{\partial}{\partial z}\right)\psi
-\\[1ex]
+\\
 \hat S_z\psi&=-i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right)\psi
 \end{align*}
 
@@ -256,13 +256,11 @@ Verify the following measurement probabilities for $|s\rangle$.
 \Pr\left(S_x=+\tfrac{\hbar}{2}\right)&=|\langle x_+|s\rangle|^2=\tfrac{13}{18}
 \\
 \Pr\left(S_x=-\tfrac{\hbar}{2}\right)&=|\langle x_-|s\rangle|^2=\tfrac{5}{18}
-\\
-\\
+\\[1ex]
 \Pr\left(S_y=+\tfrac{\hbar}{2}\right)&=|\langle y_+|s\rangle|^2=\tfrac{17}{18}
 \\
 \Pr\left(S_y=-\tfrac{\hbar}{2}\right)&=|\langle y_-|s\rangle|^2=\tfrac{1}{18}
-\\
-\\
+\\[1ex]
 \Pr\left(S_z=+\tfrac{\hbar}{2}\right)&=|\langle z_+|s\rangle|^2=\tfrac{5}{9}
 \\
 \Pr\left(S_z=-\tfrac{\hbar}{2}\right)&=|\langle z_-|s\rangle|^2=\tfrac{4}{9}
