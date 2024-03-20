@@ -1,4 +1,4 @@
-"Exercise 5. Verify spin commutators"
+"Exercise 5. Verify spin commutators."
 
 Sx(psi) = -i hbar (y d(psi,z) - z d(psi,y))
 Sy(psi) = -i hbar (z d(psi,x) - x d(psi,z))

@@ -1,4 +1,4 @@
-"Verify expectation values for two spins"
+"Exercise 2. Verify expectation values for two spins."
 
 S1x = 1/2 hbar ((0,0,1,0),(0,0,0,1),(1,0,0,0),(0,1,0,0))
 S1y = 1/2 hbar ((0,0,-i,0),(0,0,0,-i),(i,0,0,0),(0,i,0,0))

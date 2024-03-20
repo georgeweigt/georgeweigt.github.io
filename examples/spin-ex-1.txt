@@ -1,4 +1,4 @@
-"Exercise 1. Verify spin operators"
+"Exercise 1. Verify spin operators and expectation values."
 
 zp = (1,0)
 zm = (0,1)
@@ -16,5 +16,14 @@ Sz = hbar / 2 ((1,0),(0,-1))
 check(Sx == hbar / 2 (outer(xp,conj(xp)) - outer(xm,conj(xm))))
 check(Sy == hbar / 2 (outer(yp,conj(yp)) - outer(ym,conj(ym))))
 check(Sz == hbar / 2 (outer(zp,conj(zp)) - outer(zm,conj(zm))))
+
+cp = Xp + i Yp
+cm = Xm + i Ym
+
+s = (cp,cm)
+
+check(dot(conj(s),Sx,s) == 1/2 hbar (cp conj(cm) + conj(cp) cm))
+check(dot(conj(s),Sy,s) == 1/2 i hbar (cp conj(cm) - conj(cp) cm))
+check(dot(conj(s),Sz,s) == 1/2 hbar (cp conj(cp) - cm conj(cm)))
 
 "ok"

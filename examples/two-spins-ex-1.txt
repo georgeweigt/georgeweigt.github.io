@@ -1,4 +1,4 @@
-"Verify spin operators for two spins"
+"Exercise 1. Verify spin operators for two spins."
 
 sigmax = ((0,1),(1,0))
 sigmay = ((0,-i),(i,0))
