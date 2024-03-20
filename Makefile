@@ -1,6 +1,6 @@
 .PHONY: default
 
 default:
-	rsync -t ../eigenmath/doc/help.html .
-	rsync -t ../eigenmath/doc/*.pdf manual
+	rsync -c ../eigenmath/doc/help.html .
+	rsync -c ../eigenmath/doc/*.pdf manual
 	make -C examples
