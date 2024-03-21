@@ -119,7 +119,7 @@ Expectation values for spin operators.
 \\
 \langle S_y\rangle&=\langle s|S_y|s\rangle=\frac{i\hbar}{2}\left(c_+c_-^*-c_+^*c_-\right)
 \\
-\langle S_z\rangle&=\langle s|S_z|s\rangle=\frac{\hbar}{2}\left(c_+c_+^*-c_-c_-^*\right)
+\langle S_z\rangle&=\langle s|S_z|s\rangle=\frac{\hbar}{2}\left(|c_+|^2-|c_-|^2\right)
 \end{align*}
 
 Expected spin vector.
@@ -156,6 +156,17 @@ where
 and
 \begin{equation*}
 \exp(i\phi)=\cos\phi+i\sin\phi=\frac{x+iy}{\sqrt{x^2+y^2}}
+\end{equation*}
+
+Spin angular momentum magnitude squared operator $S^2$.
+\begin{equation*}
+S^2=S_x^2+S_y^2+S_z^2=\frac{3\hbar^2}{4}
+\begin{pmatrix}1&0\\0&1\end{pmatrix}
+\end{equation*}
+
+Expectation value for $S^2$.
+\begin{equation*}
+\langle s|S^2|s\rangle=\frac{3\hbar^2}{4}\left(|c_+|^2+|c_-|^2\right)
 \end{equation*}
 
 The following commutator was used to derive $S_x$ and $S_y$.
@@ -208,7 +219,9 @@ By computer algebra
 
 \subsubsection*{Exercises}
 
-1. Verify that
+1. Verify spin operators and expectation values.
+
+\iffalse
 \begin{align*}
 S_x&=\frac{\hbar}{2}\left(|x_+\rangle\langle x_+|-|x_-\rangle\langle x_-|\right)
 \\
@@ -216,16 +229,9 @@ S_y&=\frac{\hbar}{2}\left(|y_+\rangle\langle y_+|-|y_-\rangle\langle y_-|\right)
 \\
 S_z&=\frac{\hbar}{2}\left(|z_+\rangle\langle z_+|-|z_-\rangle\langle z_-|\right)
 \end{align*}
+\fi
 
-and
-\begin{align*}
-\langle s|S_x|s\rangle&=\frac{\hbar}{2}\left(c_+c_-^*+c_+^*c_-\right)
-\\
-\langle s|S_y|s\rangle&=\frac{i\hbar}{2}\left(c_+c_-^*-c_+^*c_-\right)
-\\
-\langle s|S_z|s\rangle&=\frac{\hbar}{2}\left(c_+c_+^*-c_-c_-^*\right)
-\end{align*}
-
+\bigskip
 2. Let $|s\rangle$ be the following spin state.
 \begin{equation*}
 |s\rangle=\begin{pmatrix}\frac{1}{3}-\frac{2}{3}i\\[1ex]\frac{2}{3}\end{pmatrix}
