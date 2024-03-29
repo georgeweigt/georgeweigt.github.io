@@ -6,27 +6,27 @@ sigmaz = ((1,0),(0,-1))
 
 I = ((1,0),(0,1))
 
-sigma1x = kronecker(sigmax,I)
-sigma1y = kronecker(sigmay,I)
-sigma1z = kronecker(sigmaz,I)
+S1x = 1/2 hbar kronecker(sigmax,I)
+S1y = 1/2 hbar kronecker(sigmay,I)
+S1z = 1/2 hbar kronecker(sigmaz,I)
 
-sigma2x = kronecker(I,sigmax)
-sigma2y = kronecker(I,sigmay)
-sigma2z = kronecker(I,sigmaz)
+S2x = 1/2 hbar kronecker(I,sigmax)
+S2y = 1/2 hbar kronecker(I,sigmay)
+S2z = 1/2 hbar kronecker(I,sigmaz)
 
 s1 = (cos(1/2 theta1), expsin(1/2 theta1) exp(i phi1))
 s2 = (cos(1/2 theta2), expsin(1/2 theta2) exp(i phi2))
 
 s = kronecker(s1,s2)
 
-S1x = 1/2 hbar sin(theta1) cos(phi1)
-S1y = 1/2 hbar sin(theta1) sin(phi1)
-S1z = 1/2 hbar cos(theta1)
+ES1x = 1/2 hbar sin(theta1) cos(phi1)
+ES1y = 1/2 hbar sin(theta1) sin(phi1)
+ES1z = 1/2 hbar cos(theta1)
 
-S2x = 1/2 hbar sin(theta2) cos(phi2)
-S2y = 1/2 hbar sin(theta2) sin(phi2)
-S2z = 1/2 hbar cos(theta2)
+ES2x = 1/2 hbar sin(theta2) cos(phi2)
+ES2y = 1/2 hbar sin(theta2) sin(phi2)
+ES2z = 1/2 hbar cos(theta2)
 
-check(1/4 hbar^2 dot(conj(s),sigma1x,sigma2z,s) == S1x S2z)
+check(dot(conj(s),S1x,S2z,s) == ES1x ES2z)
 
 "ok"
