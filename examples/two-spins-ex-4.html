@@ -1,5 +1,5 @@
 <html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
-"Exercise 4. Verify expectation of product S1x S2z."
+"Exercise 4. Verify expectation of S1x S2z for a product state."
 
 sigmax = ((0,1),(1,0))
 sigmay = ((0,-i),(i,0))
@@ -15,18 +15,18 @@ S2x = 1/2 hbar kronecker(I,sigmax)
 S2y = 1/2 hbar kronecker(I,sigmay)
 S2z = 1/2 hbar kronecker(I,sigmaz)
 
-s1 = (cos(1/2 theta1), expsin(1/2 theta1) exp(i phi1))
-s2 = (cos(1/2 theta2), expsin(1/2 theta2) exp(i phi2))
+s1 = (cos(1/2 theta1), sin(1/2 theta1) exp(i phi1))
+s2 = (cos(1/2 theta2), sin(1/2 theta2) exp(i phi2))
 
 s = kronecker(s1,s2)
 
-ES1x = 1/2 hbar sin(theta1) cos(phi1)
-ES1y = 1/2 hbar sin(theta1) sin(phi1)
-ES1z = 1/2 hbar cos(theta1)
+ES1x = dot(conj(s),S1x,s)
+ES1y = dot(conj(s),S1y,s)
+ES1z = dot(conj(s),S1z,s)
 
-ES2x = 1/2 hbar sin(theta2) cos(phi2)
-ES2y = 1/2 hbar sin(theta2) sin(phi2)
-ES2z = 1/2 hbar cos(theta2)
+ES2x = dot(conj(s),S2x,s)
+ES2y = dot(conj(s),S2y,s)
+ES2z = dot(conj(s),S2z,s)
 
 check(dot(conj(s),S1x,S2z,s) == ES1x ES2z)
 
