@@ -29,18 +29,4 @@ S2z = 1/2 hbar cos(theta2)
 
 check(1/4 hbar^2 dot(conj(s),sigma1x,sigma2z,s) == S1x S2z)
 
--- show for all
-
-check(1/4 hbar^2 dot(conj(s),sigma1x,sigma2x,s) == S1x S2x)
-check(1/4 hbar^2 dot(conj(s),sigma1x,sigma2y,s) == S1x S2y)
-check(1/4 hbar^2 dot(conj(s),sigma1x,sigma2z,s) == S1x S2z)
-
-check(1/4 hbar^2 dot(conj(s),sigma1y,sigma2x,s) == S1y S2x)
-check(1/4 hbar^2 dot(conj(s),sigma1y,sigma2y,s) == S1y S2y)
-check(1/4 hbar^2 dot(conj(s),sigma1y,sigma2z,s) == S1y S2z)
-
-check(1/4 hbar^2 dot(conj(s),sigma1z,sigma2x,s) == S1z S2x)
-check(1/4 hbar^2 dot(conj(s),sigma1z,sigma2y,s) == S1z S2y)
-check(1/4 hbar^2 dot(conj(s),sigma1z,sigma2z,s) == S1z S2z)
-
 "ok"
