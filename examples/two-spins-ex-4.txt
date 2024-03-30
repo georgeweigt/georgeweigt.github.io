@@ -1,4 +1,4 @@
-"Exercise 4. Verify expectation of S1x S2z for a product state."
+"Exercise 4. Verify E(S1j S2k) = E(S1j) E(S2k) for a product state."
 
 sigmax = ((0,1),(1,0))
 sigmay = ((0,-i),(i,0))
