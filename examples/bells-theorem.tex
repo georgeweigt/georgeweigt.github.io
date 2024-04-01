@@ -2,15 +2,17 @@
 
 \section*{Bell's theorem}
 
-Consider two observers $A$ and $B$.
-Each observer has an apparatus for measuring spin.
-Each apparatus can be set in one of two orientations labeled 0 and 1.
-For independent random variables $A$ and $B$ we have
+The following theorem of independent random variables
+is the key to understanding Bell's theorem.
+If two random variables $A$ and $B$ are independent (uncorrelated) then
 \begin{equation*}
 \langle A\rangle\langle B\rangle=\langle AB\rangle
 \end{equation*}
 
-Now consider all minimum and maximum expectation values along with a special formula.
+Imagine two machines $A$ and $B$ that measure spin.
+Each machine can be set in one of two orientations labeled 0 and 1.
+Assuming the measurements are uncorrelated we have the following table
+of expectation values and a clever formula.
 \begin{equation*}
 \begin{matrix}
 \phantom{-}\langle A_0\rangle & \phantom{-}\langle A_1\rangle
@@ -57,7 +59,7 @@ Since the table is for all minimum and maximum values we have by inspection the 
 \tag{1}
 \end{equation*}
 
-Now suppose a third apparatus generates two spins in the following singlet state.
+Now suppose a third machine generates two spins in the following singlet state.
 \begin{equation*}
 |s\rangle=\frac{1}{\sqrt2}\begin{pmatrix}0\\1\\-1\\0\end{pmatrix}
 \end{equation*}
@@ -91,8 +93,9 @@ Hence
 \end{equation*}
 
 The result in (2) conflicts with (1) because for the singlet state
-the random variables $A$ and $B$ are not independent.
-Any theory that asserts independence of $A$ and $B$ (for example, a hidden variable theory)
+the random variables are not independent.
+Any theory that attempts to make $A$ and $B$ uncorrelated for the singlet state
+(for example, a hidden variable theory)
 is constrained by (1) and falsified by (2).
 
 \subsubsection*{Exercises}
