@@ -14,7 +14,16 @@ B1 = (sigmax - sigmaz) / sqrt(2)
 
 s = (0,1,-1,0) / sqrt(2)
 
-dot(conj(s),kronecker(A0,B0),s) +
-dot(conj(s),kronecker(A0,B1),s) +
-dot(conj(s),kronecker(A1,B0),s) -
-dot(conj(s),kronecker(A1,B1),s)
+S1 = dot(conj(s),kronecker(A0,B0),s)
+S2 = dot(conj(s),kronecker(A0,B1),s)
+S3 = dot(conj(s),kronecker(A1,B0),s)
+S4 = dot(conj(s),kronecker(A1,B1),s)
+
+check(S1 == sqrt(1/2))
+check(S2 == sqrt(1/2))
+check(S3 == sqrt(1/2))
+check(S4 == -sqrt(1/2))
+
+check(S1 + S2 + S3 - S4 == 2 sqrt(2))
+
+"ok"

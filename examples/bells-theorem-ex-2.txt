@@ -1,4 +1,4 @@
-"Exercise 2. Verify expectation values."
+"Exercise 2. Verify spin expectation values."
 
 sigmax = ((0,1),(1,0))
 sigmay = ((0,-i),(i,0))

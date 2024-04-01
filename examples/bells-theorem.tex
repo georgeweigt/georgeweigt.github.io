@@ -9,7 +9,7 @@ If two random variables $A$ and $B$ are independent (uncorrelated) then
 \langle A\rangle\langle B\rangle=\langle AB\rangle
 \end{equation*}
 
-Imagine two machines $A$ and $B$ that measure spin.
+Consider two machines $A$ and $B$ that measure spin.
 Each machine can be set in one of two orientations labeled 0 and 1.
 Assuming the measurements are uncorrelated we have the following table
 of expectation values and a clever formula.
@@ -59,7 +59,7 @@ Since the table is for all minimum and maximum values we have by inspection the 
 \tag{1}
 \end{equation*}
 
-Now suppose a third machine generates two spins in the following singlet state.
+Now suppose a third machine generates two spins in the following entangled state.
 \begin{equation*}
 |s\rangle=\frac{1}{\sqrt2}\begin{pmatrix}0\\1\\-1\\0\end{pmatrix}
 \end{equation*}
@@ -75,7 +75,7 @@ B_0=-\frac{\sigma_x+\sigma_z}{\sqrt2},\quad
 B_1=\frac{\sigma_x-\sigma_z}{\sqrt2}
 \end{equation*}
 
-Then for the singlet state we have
+Then for the entangled state $|s\rangle$ we have
 \begin{equation*}
 \langle A_0B_0\rangle=\frac{1}{\sqrt2},\quad
 \langle A_0B_1\rangle=\frac{1}{\sqrt2},\quad
@@ -92,10 +92,10 @@ Hence
 \tag{2}
 \end{equation*}
 
-The result in (2) conflicts with (1) because for the singlet state
+The result in (2) conflicts with (1) because for an entangled state
 the random variables are not independent.
-Any theory that attempts to make $A$ and $B$ uncorrelated for the singlet state
-(for example, a hidden variable theory)
+Any theory that asserts $A$ and $B$ are independent for all states
+(such as a hidden variable theory)
 is constrained by (1) and falsified by (2).
 
 \subsubsection*{Exercises}
@@ -103,9 +103,20 @@ is constrained by (1) and falsified by (2).
 1. Verify equation (2).
 
 \bigskip
-2. Verify that for the singlet state
+2. Verify that for the singlet state $|s\rangle$ given above we have
 \begin{equation*}
-\langle A_0\rangle=0,\quad\langle A_1\rangle=0,\quad\langle B_0\rangle=0,\quad\langle B_1\rangle=0
+\langle A_0\rangle=0,\quad\langle A_1\rangle=0,\quad\langle B_0\rangle=0,\quad\langle B_1\rangle=0.
 \end{equation*}
 Hence $\langle A\rangle\langle B\rangle\ne\langle AB\rangle$ for the singlet state.
+
+\bigskip
+3. There are three additional entangled states.
+\begin{equation*}
+|s_1\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\0\\0\\1\end{pmatrix},\quad
+|s_2\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\0\\0\\-1\end{pmatrix},\quad
+|s_3\rangle=\frac{1}{\sqrt2}\begin{pmatrix}0\\1\\1\\0\end{pmatrix}
+\end{equation*}
+
+Verify that $A$ and $B$ are correlated for all entangled states.
+
 \end{document}
