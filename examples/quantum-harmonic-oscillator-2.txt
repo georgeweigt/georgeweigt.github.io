@@ -1,0 +1,18 @@
+"Exercise 2. Verify ladder operators."
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(x sqrt(m omega / hbar),n)
+C(n) = 1 / sqrt(2^n n!)
+H(x,n,y) = (-1)^n exp(x^2) eval(d(exp(-y^2),y,n),y,x)
+
+ahat(f) = sqrt(m omega / (2 hbar)) (x f + i phat(f) / (m omega))
+ahat1(f) = sqrt(m omega / (2 hbar)) (x f - i phat(f) / (m omega))
+phat(f) = -i hbar d(f,x)
+
+check(psi(0) == exp(-m omega x^2 / (2 hbar)))
+check(psi(1) == sqrt(2 m omega / hbar) x exp(-m omega x^2 / (2 hbar)))
+
+for(n,0,6, check(ahat(psi(n)) == sqrt(n) psi(n - 1)))
+
+for(n,0,6, check(ahat1(psi(n)) == sqrt(n + 1) psi(n + 1)))
+
+"ok"

@@ -1,0 +1,78 @@
+\input{preamble}
+
+\section*{Quantum harmonic oscillator}
+
+{\it Anything quadratic is called harmonic.} ---A. Zee
+
+\bigskip
+A harmonic oscillator is anything with potential energy proportional to $x^2$.
+\begin{equation*}
+V(x)\propto x^2
+\end{equation*}
+
+For a quantum harmonic oscillator
+\begin{equation*}
+V(x)=\frac{m\omega^2 x^2}{2}
+\end{equation*}
+
+Hence the hamiltonian
+\begin{equation*}
+\hat H=\frac{\hat p^2}{2m}+\frac{m\omega^2 x^2}{2}
+\end{equation*}
+
+We seek to solve the eigenvalue equation
+\begin{equation*}
+\hat H\psi_n=E_n\psi_n
+\end{equation*}
+
+The solution is
+\begin{equation*}
+\psi_n(x)=C_n\exp\left(-\frac{m\omega x^2}{2\hbar}\right)
+H_n\left(x\sqrt{m\omega/\hbar}\right),\quad n=0,1,2,\ldots
+\end{equation*}
+
+$C_n$ is the normalization constant
+\begin{equation*}
+C_n=\frac{1}{\sqrt{2^nn!}}\biggl(\frac{m\omega}{\pi\hbar}\biggr)^{\frac{1}{4}}
+\end{equation*}
+
+$H_n$ is the $n$th hermite polynomial
+\begin{equation*}
+H_n(y)=(-1)^2\exp\left(y^2\right)\frac{d^n}{dy^n}\exp\left(-y^2\right)
+\end{equation*}
+
+The eigenvalues are
+\begin{equation*}
+E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
+\end{equation*}
+
+The ladder operators are
+\begin{align*}
+\hat a&=\sqrt{\frac{m\omega}{2\hbar}}\left(x+\frac{i\hat p}{m\omega}\right)
+\\[1ex]
+\hat a^\dag&=\sqrt{\frac{m\omega}{2\hbar}}\left(x-\frac{i\hat p}{m\omega}\right)
+\end{align*}
+
+Operator $\hat a$ lowers $\psi_n$.
+\begin{equation*}
+\hat a\psi_n=\sqrt n\psi_{n-1}
+\end{equation*}
+
+Operator $\hat a^\dag$ raises $\psi_n$.
+\begin{equation*}
+\hat a^\dag\psi_n=\sqrt{n+1}\psi_{n+1}
+\end{equation*}
+
+This is how $\psi_n$ can be obtained from $\psi_0$.
+\begin{equation*}
+\psi_n=\frac{(\hat a^\dag)^n}{\sqrt{n!}}\psi_0
+\end{equation*}
+
+\subsubsection*{Exercises}
+
+1. Verify $\psi_n$ and $E_n$.
+
+\bigskip
+2. Verify ladder operators.
+
+\end{document}
