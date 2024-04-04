@@ -27,5 +27,15 @@ check(ahat1(psi(2)) == sqrt(3) psi(3))
 check(ahat1(psi(3)) == 2 psi(4))
 check(ahat1(psi(4)) == sqrt(5) psi(5))
 
+-- number operator
+
+Nhat(f) = ahat1(ahat(f))
+
+check(Nhat(psi(0)) == 0)
+check(Nhat(psi(1)) == psi(1))
+check(Nhat(psi(2)) == 2 psi(2))
+check(Nhat(psi(3)) == 3 psi(3))
+check(Nhat(psi(4)) == 4 psi(4))
+
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
