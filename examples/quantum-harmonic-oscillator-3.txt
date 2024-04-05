@@ -1,0 +1,17 @@
+"Exercise 3. Verify a probability."
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,w) = (-1)^n exp(y^2) eval(d(exp(-w^2),w,n),w,y)
+
+-- dummy values ok because of normalization constant
+
+m = 1
+omega = 1
+hbar = 1
+
+Psi = (psi(2) + psi(3)) / sqrt(2)
+
+f = conj(Psi) Psi
+
+float(defint(f, x, 0, 100.0))

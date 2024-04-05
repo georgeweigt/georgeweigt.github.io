@@ -10,12 +10,6 @@ H(n,y,w) = (-1)^n exp(y^2) eval(d(exp(-w^2),w,n),w,y)
 
 E(n) = hbar omega (n + 1/2)
 
-C0 = m^(1/4) omega^(1/4) hbar^(-1/4) pi^(-1/4)
-C1 = sqrt(2) m^(3/4) omega^(3/4) hbar^(-3/4) pi^(-1/4)
-
-check(psi(0) == C0 exp(-m omega x^2 / (2 hbar)))
-check(psi(1) == C1 x exp(-m omega x^2 / (2 hbar)))
-
 check(Hhat(psi(0)) == E(0) psi(0))
 check(Hhat(psi(1)) == E(1) psi(1))
 check(Hhat(psi(2)) == E(2) psi(2))
