@@ -4,14 +4,15 @@ e = 1.602176634 10^(-19) coulomb     -- elementary charge
 h = 6.62607015 10^(-34) joule second -- Planck constant
 hbar = h / float(2 pi)               -- reduced Planck constant
 
-eV = e joule / coulomb
+electronvolt = e joule / coulomb
 joule = kilogram meter^2 / second^2
+kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
 m = 6.64 10^(-27) kilogram
-V = 1 eV
-L = 10^(-3) meter
+V = 1 electronvolt
+L = 10^(-6) meter
 
 omega = sqrt(2 V / m) / L
 omega
@@ -25,3 +26,11 @@ infty = 100.0 meter
 
 xbar = float(defint(x conj(Psi) Psi, x, -infty, infty))
 xbar
+
+Hhat(f) = phat(phat(f)) / (2 m) + V f
+phat(f) = -i hbar d(f,x)
+V = m omega^2 x^2 / 2
+
+Ebar = float(defint(conj(Psi) Hhat(Psi), x, -infty, infty))
+Ebar = Ebar / electronvolt "electronvolt" -- convert joule to electronvolt
+Ebar
