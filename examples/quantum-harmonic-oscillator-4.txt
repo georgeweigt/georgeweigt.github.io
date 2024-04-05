@@ -34,3 +34,9 @@ V = m omega^2 x^2 / 2
 Ebar = float(defint(conj(Psi) Hhat(Psi), x, -infty, infty))
 Ebar = Ebar / electronvolt "electronvolt" -- convert joule to electronvolt
 Ebar
+
+E(n) = hbar omega (n + 1/2)
+
+"Expected eigenvalue"
+
+1/2 (E(2) + E(3)) / electronvolt "electronvolt"
