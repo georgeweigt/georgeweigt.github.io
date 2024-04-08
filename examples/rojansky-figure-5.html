@@ -1,0 +1,18 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+-- V. Rojansky fig. 5 from "Introductory Quantum Mechanics"
+
+u(n) = A(n) H(n,x) exp(-x^2 / 2)
+
+A(n) = 1 / sqrt(2^n n! sqrt(pi))
+
+H(n,y,w) = (-1)^n exp(y^2) eval(d(exp(-w^2),w,n),w,y)
+
+yrange = (-1,1)
+
+draw(u(0))
+draw(u(1))
+draw(u(2))
+draw(u(3))
+draw(u(4))
+draw(u(5))
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
