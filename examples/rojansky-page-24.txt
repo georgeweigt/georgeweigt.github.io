@@ -1,16 +1,11 @@
 -- V. Rojansky, "Introductory Quantum Mechanics", p. 24
 
-u(n) = A(n) H(n,x) exp(-x^2 / 2)
+u(n) = A(n) H(n) exp(-x^2 / 2)
 
 A(n) = 1 / sqrt(2^n n! sqrt(pi))
 
-H(n,y,w) = (-1)^n exp(y^2) eval(d(exp(-w^2),w,n),w,y)
+H(n) = (-1)^n exp(x^2) d(exp(-x^2),x,n)
 
 yrange = (-1,1)
 
-draw(u(0))
-draw(u(1))
-draw(u(2))
-draw(u(3))
-draw(u(4))
-draw(u(5))
+for(n,0,5, y = u(n), draw(y))
