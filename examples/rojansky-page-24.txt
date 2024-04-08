@@ -1,4 +1,4 @@
--- V. Rojansky fig. 5 from "Introductory Quantum Mechanics"
+-- V. Rojansky, "Introductory Quantum Mechanics", p. 24
 
 u(n) = A(n) H(n,x) exp(-x^2 / 2)
 
