@@ -9,5 +9,5 @@ H(n) = (-1)^n exp(x^2) d(exp(-x^2),x,n)
 
 yrange = (-1,1)
 
-for(n,0,5, y = u(n), draw(y))
+for(n,0,5, y = u(n), y = float(y), draw(y))
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
