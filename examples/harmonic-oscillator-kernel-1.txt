@@ -1,4 +1,3 @@
-<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 "Exercise 1."
 
 psi(n) = c(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
@@ -26,11 +25,11 @@ check(K Psi == D xa exp(-A xa^2 + B xa + C))
 
 -- gaussian integral
 
-phi = D sqrt(pi / A) B / (2 A) exp(B^2 / (4 A) + C)
+I = D sqrt(pi / A) B / (2 A) exp(B^2 / (4 A) + C)
 
 -- probability density f
 
-f = conj(phi) phi
+f = conj(I) I
 
 A = -m^2 omega^2 xb^2 / (4 hbar^2 (m omega / (2 hbar) -
      i m omega / (2 hbar) cos(omega T) / sin(omega T)) sin(omega T)^2)
@@ -57,4 +56,3 @@ check(f == eval(conj(Psi) Psi, xa, xb))
 "ok"
 
 f
-</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
