@@ -1,0 +1,54 @@
+"Exercise 1."
+
+psi(n) = c(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+c(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+Psi = psi(1)
+Psi = eval(Psi,x,xa)
+
+K = sqrt(m omega / (2 pi i hbar sin(omega T))) *
+exp(i m omega / (2 hbar sin(omega T)) ((xb^2 + xa^2) cos(omega T) -
+2 xb xa))
+
+A = m omega / (2 hbar) -
+    i m omega cos(omega T) / (2 hbar sin(omega T))
+
+B = -i m omega xb / (hbar sin(omega T))
+
+C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
+
+D = -m^(5/4) omega^(5/4) / ((-1)^(1/4) hbar^(5/4) pi^(3/4) *
+     sin(omega T)^(1/2))
+
+check(K Psi == D xa exp(-A xa^2 + B xa + C))
+
+-- gaussian integral
+
+phi = D sqrt(pi / A) B / (2 A) exp(B^2 / (4 A) + C)
+
+-- probability density
+
+f = conj(phi) phi
+
+A = -m^2 omega^2 xb^2 / (4 hbar^2 (m omega / (2 hbar) -
+     i m omega / (2 hbar) cos(omega T) / sin(omega T)) sin(omega T)^2)
+
+B = -m^2 omega^2 xb^2 / (4 hbar^2 (m omega / (2 hbar) +
+     i m omega / (2 hbar) cos(omega T) / sin(omega T)) sin(omega T)^2)
+
+D = denominator(f)
+
+check(f == m^(9/2) omega^(9/2) xb^2 exp(A + B) / D)
+
+-- simplify probability density
+
+f = m^(9/2) omega^(9/2) xb^2 *
+    exp(numerator(A + B) / simplify(denominator(A + B))) /
+    sqrt(simplify(D^2))
+
+check(f == eval(conj(Psi) Psi, xa, xb))
+
+"ok"
+
+f

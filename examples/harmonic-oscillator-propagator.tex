@@ -2,6 +2,27 @@
 
 \section*{Harmonic oscillator propagator}
 
+For a quantum harmonic oscillator, this is the propagator (kernel) to go from $x_a$ at time $t_a$
+to $x_b$ at time $t_b$ where $T=t_b-t_a$.
+\begin{equation*}
+K=\biggl(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\biggr)^\frac{1}{2}
+\exp\left[\frac{im\omega}{2\hbar\sin(\omega T)}
+\left(
+x_a^2\cos(\omega T)-2x_ax_b+x_b^2\cos(\omega T)
+\right)
+\right]
+\end{equation*}
+
+\subsubsection*{Exercises}
+
+1. Verify that $\phi^*\phi=\psi_1^*(x_b)\psi_1(x_b)$ where
+\begin{equation*}
+\phi=\int_{-\infty}^\infty K\psi_1(x_a)\,dx_a
+\end{equation*}
+
+
+\end{document}
+
 Show that
 \begin{equation*}
 \left[x^2,p^2\right]=2i\hbar(xp+px)
