@@ -51,7 +51,7 @@ f = m^(9/2) omega^(9/2) xb^2 exp(X) / D
 
 -- verify f
 
-check(f == eval(conj(psi1) psi1, xa, xb))
+check(eval(conj(psi1) psi1, xa, xb) == f)
 
 "ok"
 
