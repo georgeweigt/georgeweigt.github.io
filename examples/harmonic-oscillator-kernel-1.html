@@ -5,8 +5,7 @@ psi(n) = c(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
 c(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
 H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
 
-Psi = psi(1)
-Psi = eval(Psi,x,xa)
+psi1 = eval(psi(1), x, xa)
 
 K = sqrt(m omega / (2 pi i hbar sin(omega T))) *
     exp(i m omega / (2 hbar sin(omega T)) *
@@ -22,7 +21,7 @@ C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
 D = -m^(5/4) omega^(5/4) / ((-1)^(1/4) hbar^(5/4) pi^(3/4) *
      sin(omega T)^(1/2))
 
-check(K Psi == D xa exp(-A xa^2 + B xa + C))
+check(K psi1 == D xa exp(-A xa^2 + B xa + C))
 
 -- gaussian integral
 
@@ -52,7 +51,7 @@ f = m^(9/2) omega^(9/2) xb^2 exp(X) / D
 
 -- verify f
 
-check(f == eval(conj(Psi) Psi, xa, xb))
+check(f == eval(conj(psi1) psi1, xa, xb))
 
 "ok"
 
