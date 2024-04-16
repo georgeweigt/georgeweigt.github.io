@@ -1,0 +1,81 @@
+<html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
+"Exercise 3. Verify uncertainty."
+
+psi(n) = 1 / sqrt(2^n n!) *
+         (m omega / (pi hbar))^(1/4) *
+         H(n, sqrt(m omega / hbar) (x - xbar)) *
+         exp(-m omega / (2 hbar) (x - xbar)^2) *
+         exp(i / hbar pbar (x - xbar / 2)) *
+         exp(-i (n + 1/2) omega t)
+
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+xbar = sqrt(2 hbar / m / omega) r cos(omega t - theta)
+pbar = -sqrt(2 m hbar omega) r sin(omega t - theta)
+
+psi0 = psi(0)
+
+A = m omega / hbar
+B = 2 sqrt(2 m omega / hbar) r cos(omega t - theta)
+C = -2 r^2 cos(omega t - theta)^2
+
+G2 = sqrt(pi / A) / (2 A) (1 + B^2 / (2 A)) exp(B^2 / (4 A) + C)
+G1 = sqrt(pi / A) (B / (2 A)) exp(B^2 / (4 A) + C)
+G0 = sqrt(pi / A) exp(B^2 / (4 A) + C)
+
+-- expectation of x
+
+f = conj(psi0) x psi0
+U1 = sqrt(m omega / (hbar pi))
+check(f == U1 x exp(-A x^2 + B x + C))
+X = U1 G1 -- gaussian integral
+
+-- expectation of x squared
+
+f = conj(psi0) x^2 psi0
+U2 = sqrt(m omega / (hbar pi))
+check(f == U2 x^2 exp(-A x^2 + B x + C))
+X2 = U2 G2 -- gaussian integral
+
+-- expectation of p
+
+phat(y) = -i hbar d(y,x)
+
+f = conj(psi0) phat(psi0)
+
+U1 = i (m omega)^(3/2) / sqrt(pi hbar)
+
+U0 = -sqrt(2 / pi) m omega r *
+    (sin(omega t - theta) + i cos(omega t - theta))
+
+check(f == (U1 x + U0) exp(-A x^2 + B x + C))
+
+P = U1 G1 + U0 G0 -- gaussian integral
+
+-- expectation of p^2
+
+f = conj(psi0) phat(phat(psi0))
+
+U2 = -sqrt(m^5 omega^5 / (pi hbar))
+
+U1 = 2 sqrt(2 / pi) m^2 omega^2 r cos(omega t - theta) -
+     2 sqrt(2 / pi) i m^2 omega^2 r sin(omega t - theta)
+
+U0 = sqrt(hbar m^3 omega^3 / pi) *
+     (1 - 2 r^2 cos(omega t - theta)^2 + 2 r^2 sin(omega t - theta)^2 +
+     4 i r^2 cos(omega t - theta) sin(omega t - theta))
+
+check(f == (U2 x^2 + U1 x + U0) exp(-A x^2 + B x + C))
+
+P2 = U2 G2 + U1 G1 + U0 G0 -- gaussian integral
+
+-- verify
+
+check(X2 - X^2 == hbar / (2 m omega))
+
+check(P2 - P^2 == m hbar omega / 2)
+
+check(sqrt((X2 - X^2) (P2 - P^2)) == hbar / 2)
+
+"ok"
+</textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
