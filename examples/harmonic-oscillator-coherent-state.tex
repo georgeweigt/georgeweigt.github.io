@@ -1,0 +1,57 @@
+\input{preamble}
+
+\section*{Harmonic oscillator coherent state}
+
+The coherent state minimizes $\Delta x\Delta p$.
+
+\bigskip
+This is the coherent state for a quantum harmonic oscillator.
+\begin{multline*}
+\psi_{n,r,\theta}(x)
+=\frac{1}{\sqrt{2^nn!}}
+\biggl(\frac{m\omega}{\pi\hbar}\biggr)^\frac{1}{4}
+H_n\left(\sqrt{\frac{m\omega}{\hbar}}\left(x-\langle x\rangle\right)\right)
+\\{}\times
+\exp\left[
+-\frac{m\omega}{2\hbar}\left(x-\langle x\rangle\right)^2
++\frac{i}{\hbar}\langle p\rangle\left(x-\frac{\langle x\rangle}{2}\right)
+-i\left(n+\frac{1}{2}\right)\omega t
+\right]
+\end{multline*}
+
+Parameters $r$ and $\theta$ are polar coordinates in phase space and
+\begin{equation*}
+\langle x\rangle=\sqrt{\frac{2\hbar}{m\omega}}\,r\cos(\omega t-\theta),\quad
+\langle p\rangle=-\sqrt{2m\hbar\omega}\,r\sin(\omega t-\theta)
+\end{equation*}
+
+\subsubsection*{Exercises}
+
+1. Verify
+\begin{equation*}
+i\hbar\frac{d}{dt}\psi_1=\hat H\psi_1
+\end{equation*}
+
+2. Verify
+\begin{equation*}
+\int_{-\infty}^\infty\psi_1^*\psi_1\,dx=1
+\end{equation*}
+
+3. Verify for $\psi_0$
+\begin{equation*}
+\Delta x=\sqrt{\langle x^2\rangle-\langle x\rangle^2}
+=\sqrt{\frac{\hbar}{2m\omega}}
+\end{equation*}
+
+and
+\begin{equation*}
+\Delta p=\sqrt{\langle p^2\rangle-\langle p\rangle^2}
+=\sqrt{\frac{m\hbar\omega}{2}}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\Delta x\Delta p=\frac{\hbar}{2}
+\end{equation*}
+
+\end{document}

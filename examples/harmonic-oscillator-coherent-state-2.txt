@@ -1,0 +1,38 @@
+"Exercise 2. Verify normalization."
+
+psi(n) = 1 / sqrt(2^n n!) *
+         (m omega / (pi hbar))^(1/4) *
+         H(n, sqrt(m omega / hbar) (x - xbar)) *
+         exp(-m omega / (2 hbar) (x - xbar)^2) *
+         exp(i / hbar pbar (x - xbar / 2)) *
+         exp(-i (n + 1/2) omega t)
+
+xbar = sqrt(2 hbar / m / omega) r cos(omega t - theta)
+pbar = -sqrt(2 m hbar omega) r sin(omega t - theta)
+
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+psi1 = psi(1)
+f = conj(psi1) psi1
+
+A = m omega / hbar
+B = 2 sqrt(2 m omega / hbar) r cos(omega t - theta)
+C = -2 r^2 cos(omega t - theta)^2
+
+U = 2 m^(3/2) omega^(3/2) hbar^(-3/2) pi^(-1/2)
+V = (-4) sqrt(2 / pi) m omega r / hbar cos(omega t - theta)
+W = 4 sqrt(m omega / (pi hbar)) r^2 cos(omega t - theta)^2
+
+check(f == (U x^2 + V x + W) exp(-A x^2 + B x + C))
+
+-- gaussian integral
+
+X2 = sqrt(pi / A) / (2 A) (1 + B^2 / (2 A)) exp(B^2 / (4 A) + C)
+X1 = sqrt(pi / A) (B / (2 A)) exp(B^2 / (4 A) + C)
+X0 = sqrt(pi / A) exp(B^2 / (4 A) + C)
+
+I = U X2 + V X1 + W X0
+
+check(I == 1)
+
+"ok"
