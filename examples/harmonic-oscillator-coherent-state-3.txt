@@ -29,7 +29,7 @@ U1 = sqrt(m omega / (hbar pi))
 check(f == U1 x exp(-A x^2 + B x + C))
 X = U1 G1 -- gaussian integral
 
--- expectation of x squared
+-- expectation of x^2
 
 f = conj(psi0) x^2 psi0
 U2 = sqrt(m omega / (hbar pi))
@@ -38,7 +38,7 @@ X2 = U2 G2 -- gaussian integral
 
 -- expectation of p
 
-phat(y) = -i hbar d(y,x)
+phat(f) = -i hbar d(f,x)
 
 f = conj(psi0) phat(psi0)
 
