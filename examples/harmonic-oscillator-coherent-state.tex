@@ -20,13 +20,13 @@ H_n\left(\sqrt{\frac{m\omega}{\hbar}}\left(x-\langle x\rangle\right)\right)
 \right]
 \end{multline*}
 
-Parameters $r$ and $\theta$ are polar coordinates in phase space and
+Parameters $r$ and $\theta$ are polar coordinates in phase space such that
 \begin{equation*}
 \langle x\rangle=\sqrt{\frac{2\hbar}{m\omega}}\,r\cos(\omega t+\theta),\quad
 \langle p\rangle=-\sqrt{2m\hbar\omega}\,r\sin(\omega t+\theta)
 \end{equation*}
 
-Note that $n,r,t=0$ is identical to the ordinary ground state.
+Note that $\psi_{0,0,\theta}(x,0)$ is equivalent to the ordinary ground state.
 \begin{equation*}
 \psi_{0,0,\theta}(x,0)=\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
 \exp\left(-\frac{m\omega x^2}{2\hbar}\right)
@@ -36,15 +36,15 @@ Note that $n,r,t=0$ is identical to the ordinary ground state.
 
 1. Verify
 \begin{equation*}
-i\hbar\frac{d}{dt}\psi_1=\hat H\psi_1
+i\hbar\frac{d}{dt}\psi_{1,r,\theta}(x,t)=\hat H\psi_{1,r,\theta}(x,t)
 \end{equation*}
 
 2. Verify
 \begin{equation*}
-\int_{-\infty}^\infty\psi_1^*\psi_1\,dx=1
+\int_{-\infty}^\infty\psi_{1,r,\theta}^*(x,t)\psi_{1,r,\theta}(x,t)\,dx=1
 \end{equation*}
 
-3. Verify for $\psi_0$
+3. Verify for $\psi_{0,r,\theta}(x,t)$
 \begin{equation*}
 \Delta x=\sqrt{\langle x^2\rangle-\langle x\rangle^2}
 =\sqrt{\frac{\hbar}{2m\omega}}
