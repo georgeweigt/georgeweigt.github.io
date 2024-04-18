@@ -24,13 +24,13 @@ G2 = sqrt(pi / A) / (2 A) (1 + B^2 / (2 A)) exp(B^2 / (4 A) + C)
 G1 = sqrt(pi / A) (B / (2 A)) exp(B^2 / (4 A) + C)
 G0 = sqrt(pi / A) exp(B^2 / (4 A) + C)
 
-U2 = 2 m^(3/2) omega^(3/2) hbar^(-3/2) pi^(-1/2)
-U1 = (-4) sqrt(2 / pi) m omega r / hbar cos(omega t + theta)
-U0 = 4 sqrt(m omega / (pi hbar)) r^2 cos(omega t + theta)^2
+C2 = 2 m^(3/2) omega^(3/2) hbar^(-3/2) pi^(-1/2)
+C1 = (-4) sqrt(2 / pi) m omega r / hbar cos(omega t + theta)
+C0 = 4 sqrt(m omega / (pi hbar)) r^2 cos(omega t + theta)^2
 
-check(f == (U2 x^2 + U1 x + U0) exp(-A x^2 + B x + C))
+check(f == (C2 x^2 + C1 x + C0) exp(-A x^2 + B x + C))
 
-I = U2 G2 + U1 G1 + U0 G0 -- gaussian integral
+I = C2 G2 + C1 G1 + C0 G0 -- gaussian integral
 
 check(I == 1)
 
