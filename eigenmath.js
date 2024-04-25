@@ -17053,7 +17053,7 @@ static_reciprocate()
 		return;
 	}
 
-	if (car(p2) == symbol(POWER)) {
+	if (car(p2) == symbol(POWER) && isnum(caddr(p2))) {
 		push_symbol(POWER);
 		push(cadr(p2));
 		push(caddr(p2));
