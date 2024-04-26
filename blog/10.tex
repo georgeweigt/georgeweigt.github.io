@@ -24,13 +24,13 @@ where $T=t_b-t_a$.
 \bigskip
 We should have
 \begin{equation*}
-\psi_n(x_b,t_b)=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_n(x_a,t_a)\,dx_a
+\psi_n(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_n(x_a,0)\,dx_a
 \end{equation*}
 
 Try for $n=1$.
 \begin{equation*}
-\psi_1(x_a,t_a)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}-\tfrac{3}{2}i\omega t_a\right)
+\psi_1(x_a,0)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
 \end{equation*}
 
 By the identity
@@ -40,23 +40,15 @@ By the identity
 \end{equation*}
 
 the path integral is
-\begin{multline*}
-I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a,t_a)\,dx_a
-=\frac{1}{2}\left(-\frac{m^9\omega^9}{\pi\hbar^9}\right)^\frac{1}{4}
-\left(\frac{m\omega}{2\hbar}\sin(\omega T)
--\frac{im\omega}{2\hbar}\cos(\omega T)\right)^{-\frac{3}{2}}
-\\{}\times
-x_b\exp\left(
--\frac{m\omega x_b^2}
-{2\hbar\left(\sin(\omega T)^2-i\sin(\omega T)\cos(\omega T)\right)}
-+\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}-\tfrac{3}{2}i\omega t_a
-\right)
-\end{multline*}
-
-Substitute $t_b-T$ for $t_a$ and substitute $-\pi/(2\omega)$ for $T$.
-The result is
 \begin{equation*}
-I=\psi_1(x_b,t_b)
+I=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
+=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+x_b\exp\left(-\frac{m\omega x_b^2}{2\hbar}-\tfrac{3}{2}i\omega T\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+I=\psi_1(x_b,T)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/blog/10.html}{demo}

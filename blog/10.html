@@ -1,7 +1,7 @@
 <html><head><link rel='stylesheet' href='../style.css'></head><body><script src='https://georgeweigt.github.io/eigenmath.js'></script><textarea id='stdin'>
 psi(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4) *
          H(n, x sqrt(m omega / hbar)) *
-         exp(-m omega x^2 / (2 hbar) - i (n + 1/2) omega ta)
+         exp(-m omega x^2 / (2 hbar) - i (n + 1/2) omega t)
 
 -- Hermite polynomial (z is a local variable)
 
@@ -9,7 +9,7 @@ H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
 
 "Wave function"
 
-psi1 = eval(psi(1), x, xa)
+psi1 = eval(psi(1), x, xa, t, 0)
 psi1
 
 -- propagator
@@ -20,15 +20,14 @@ K = sqrt(m omega / (2 pi i hbar sin(omega T))) *
 
 -- decomposition of K psi1
 
-A = m omega / (2 hbar) -
-    i m omega cos(omega T) / (2 hbar sin(omega T))
+A = -i m omega exp(i omega T) / (2 hbar sin(omega T))
 
 B = -i m omega xb / (hbar sin(omega T))
 
 C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
 
 D = -m^(5/4) omega^(5/4) / ((-1)^(1/4) hbar^(5/4) pi^(3/4) *
-     sin(omega T)^(1/2)) exp(-3/2 i omega ta)
+     sin(omega T)^(1/2))
 
 -- check decomposition
 
@@ -36,22 +35,12 @@ check(K psi1 == D xa exp(-A xa^2 + B xa + C))
 
 "Path integral"
 
-I = 1/2 sqrt(pi) D B A^(-3/2) exp(B^2 / (4 A) + C)
-I
-
-"Substitute for ta and T"
-
-I = eval(I, ta, tb - T, T, -pi / (2 omega))
-I
-
-"Simplify"
-
-I = polar(I)
+I = 1/2 sqrt(pi) D B A^(-3/2) exp(simplify(B^2 / (4 A) + C))
 I
 
 "Verify result"
 
-check(I == eval(psi1, xa, xb, ta, tb))
+check(I == eval(psi(1), x, xb, t, T))
 
 "ok"
 </textarea> <button onclick='run()'>Run</button><br><div id='stdout'></div></body></html>
