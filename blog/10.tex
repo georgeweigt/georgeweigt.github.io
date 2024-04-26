@@ -1,5 +1,7 @@
 \input{preamble}
 
+\section*{Harmonic oscillator propagator}
+
 Consider the harmonic oscillator wave function
 \begin{equation*}
 \psi_n(x)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
@@ -39,8 +41,8 @@ I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
 -\frac{im\omega}{2\hbar}\cos(\omega T)\right)^{-\frac{3}{2}}
 \\{}\times
 x_b\exp\left(
--\frac{m^2\omega^2x_b^2}
-{2m\hbar\omega\left(\sin(\omega T)^2-i\sin(\omega T)\cos(\omega T)\right)}
+-\frac{m\omega x_b^2}
+{2\hbar\left(\sin(\omega T)^2-i\sin(\omega T)\cos(\omega T)\right)}
 +\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
 \right)
 \end{multline*}
