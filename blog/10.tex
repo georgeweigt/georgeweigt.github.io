@@ -31,14 +31,14 @@ Try for $n=1$.
 x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
 \end{equation*}
 
-The integral is
+The path integral is
 \begin{multline*}
-\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
+I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
 =\frac{1}{2}\left(-\frac{m^9\omega^9}{\pi\hbar^9}\right)^\frac{1}{4}
 \left(\frac{m\omega}{2\hbar}\sin(\omega T)
 -\frac{im\omega}{2\hbar}\cos(\omega T)\right)^{-\frac{3}{2}}
 \\{}\times
-\exp\left(
+x_b\exp\left(
 -\frac{m^2\omega^2x_b^2}
 {4\hbar^2\left(\frac{m\omega}{2\hbar}\sin^2(\omega T)
 -\frac{im\omega}{2\hbar}\sin(\omega T)\cos(\omega T)\right)}
@@ -46,12 +46,14 @@ The integral is
 \right)
 \end{multline*}
 
-Substitute $\pi/(2\omega)$ for $T$ to obtain
+Let $T=\pi/(2\omega)$ to cancel time dependency.
 \begin{equation*}
-\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
-=\psi_1(x_b)\exp\left(\frac{i\pi}{4}\right)
+I=\psi_1(x_b)\exp\left(\frac{i\pi}{4}\right)
 \end{equation*}
 
+The phase shift is inconsequential and can be discarded.
+
+\bigskip
 \href{https://georgeweigt.github.io/blog/10.html}{demo}
 
 \iffalse
