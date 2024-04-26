@@ -1,6 +1,6 @@
 psi(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4) *
          H(n, x sqrt(m omega / hbar)) *
-         exp(-m omega x^2 / (2 hbar))
+         exp(-m omega x^2 / (2 hbar) - i (n + 1/2) omega ta)
 
 -- Hermite polynomial (z is a local variable)
 
@@ -27,7 +27,7 @@ B = -i m omega xb / (hbar sin(omega T))
 C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
 
 D = -m^(5/4) omega^(5/4) / ((-1)^(1/4) hbar^(5/4) pi^(3/4) *
-     sin(omega T)^(1/2))
+     sin(omega T)^(1/2)) exp(-3/2 i omega ta)
 
 -- check decomposition
 
@@ -38,13 +38,14 @@ check(K psi1 == D xa exp(-A xa^2 + B xa + C))
 I = 1/2 sqrt(pi) D B A^(-3/2) exp(B^2 / (4 A) + C)
 I
 
-"Substitute for T"
+"Substitute for ta and T"
 
-I = eval(I, T, pi / (2 omega))
+I = eval(I, ta, tb - T, T, -pi / (2 omega))
+I = polar(I)
 I
 
 "Verify result"
 
-check(I == eval(psi1, xa, xb) exp(i pi / 4))
+check(I == eval(psi1, xa, xb, ta, tb))
 
 "ok"

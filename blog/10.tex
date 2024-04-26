@@ -2,14 +2,14 @@
 
 \section*{Harmonic oscillator propagator}
 
-Consider the harmonic oscillator wave function
+Consider the harmonic oscillator eigenstate
 \begin{equation*}
-\psi_n(x)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
+\psi_n(x,t)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
 H_n\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right)
-\exp\left(-\frac{m\omega x^2}{2\hbar}\right)
+\exp\left(-\frac{m\omega x^2}{2\hbar}-i\left(n+\tfrac{1}{2}\right)\omega t\right)
 \end{equation*}
 
-and its propagator
+and the harmonic oscillator propagator
 \begin{equation*}
 K(x_b,t_b,x_a,t_a)
 =\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
@@ -24,13 +24,13 @@ where $T=t_b-t_a$.
 \bigskip
 We should have
 \begin{equation*}
-\psi_n(x_b)=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_n(x_a)\,dx_a
+\psi_n(x_b,t_b)=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_n(x_a,t_a)\,dx_a
 \end{equation*}
 
 Try for $n=1$.
 \begin{equation*}
-\psi_1(x_a)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
+\psi_1(x_a,t_a)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}-\frac{3i\omega t_a}{2}\right)
 \end{equation*}
 
 By the identity
@@ -41,7 +41,7 @@ By the identity
 
 the path integral is
 \begin{multline*}
-I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
+I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a,t_a)\,dx_a
 =\frac{1}{2}\left(-\frac{m^9\omega^9}{\pi\hbar^9}\right)^\frac{1}{4}
 \left(\frac{m\omega}{2\hbar}\sin(\omega T)
 -\frac{im\omega}{2\hbar}\cos(\omega T)\right)^{-\frac{3}{2}}
@@ -49,19 +49,16 @@ I=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
 x_b\exp\left(
 -\frac{m\omega x_b^2}
 {2\hbar\left(\sin(\omega T)^2-i\sin(\omega T)\cos(\omega T)\right)}
-+\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
++\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}-\frac{3i\omega t_a}{2}
 \right)
 \end{multline*}
 
-Let $T=\pi/(2\omega)$ to cancel time dependency.
+Substitute $t_b-T$ for $t_a$ and substitute $-\pi/(2\omega)$ for $T$.
 The result is
 \begin{equation*}
-I=\psi_1(x_b)\exp\left(\frac{i\pi}{4}\right)
+I=\psi_1(x_b,t_b)
 \end{equation*}
 
-The phase shift is inconsequential and can be discarded.
-
-\bigskip
 \href{https://georgeweigt.github.io/blog/10.html}{demo}
 
 \iffalse
