@@ -1,0 +1,79 @@
+\input{preamble}
+
+Consider the harmonic oscillator
+\begin{equation*}
+\psi_n(x)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
+H_n\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right)
+\exp\left(-\frac{m\omega x^2}{2\hbar}\right)
+\end{equation*}
+
+and its propagator
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)
+=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\exp\left[
+\frac{im\omega}{2\hbar\sin(\omega T)}
+\left(x_a^2\cos(\omega T)-2x_ax_b+x_b^2\cos(\omega T)\right)
+\right]
+\end{equation*}
+
+where $T=t_b-t_a$.
+
+\bigskip
+We should have
+\begin{equation*}
+\psi_n(x_b)=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_n(x_a)\,dx_a
+\end{equation*}
+
+Try for $n=1$.
+\begin{equation*}
+\psi_1(x_a)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
+\end{equation*}
+
+The integral is
+\begin{multline*}
+\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
+=\frac{1}{2}\left(-\frac{m^9\omega^9}{\pi\hbar^9}\right)^\frac{1}{4}
+\left(\frac{m\omega}{2\hbar}\sin(\omega T)
+-\frac{im\omega}{2\hbar}\cos(\omega T)\right)^{-\frac{3}{2}}
+\\{}\times
+\exp\left(
+-\frac{m^2\omega^2x_b^2}
+{4\hbar^2\left(\frac{m\omega}{2\hbar}\sin^2(\omega T)
+-\frac{im\omega}{2\hbar}\sin(\omega T)\cos(\omega T)\right)}
++\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
+\right)
+\end{multline*}
+
+Substitute $\pi/(2\omega)$ for $T$ to obtain
+\begin{equation*}
+\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
+=\psi_1(x_b)\exp\left(\frac{i\pi}{4}\right)
+\end{equation*}
+
+\href{https://georgeweigt.github.io/blog/10.html}{demo}
+
+\iffalse
+                         ┌                                                                  ┐ 
+                         │                                                                  │ 
+                         │                                                                  │ 
+                         │                   2  2  2                             2          │ 
+                         │                  m  ω  x                       i m ω x  cos(T ω) │ 
+     1/4  9/4  9/4       │                         b                             b          │ 
+ (−1)    m    ω    x  exp│−╶─────────────────────────────────────────╴ + ╶─────────────────╴│ 
+                    b    │       ┌                        ┐                 2 ħ sin(T ω)    │ 
+                         │     2 │ m ω     i m ω cos(T ω) │         2                       │ 
+                         │  4 ħ  │╶───╴ − ╶──────────────╴│ sin(T ω)                        │ 
+                         │       │ 2 ħ      2 ħ sin(T ω)  │                                 │ 
+                         │       └                        ┘                                 │ 
+                         └                                                                  ┘ 
+╶────────────────────────────────────────────────────────────────────────────────────────────╴
+                                ┌                        ┐3/2                                 
+                       9/4  1/4 │ m ω     i m ω cos(T ω) │            3/2                     
+                    2 ħ    π    │╶───╴ − ╶──────────────╴│    sin(T ω)                        
+                                │ 2 ħ      2 ħ sin(T ω)  │                                    
+                                └                        ┘                                                                       
+\fi
+
+\end{document}

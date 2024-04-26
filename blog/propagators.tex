@@ -1,0 +1,35 @@
+\input{preamble}
+
+Lancaster and Blundell
+\begin{equation*}
+\phi(x,t_x)=\int G^+(x,t_x,y,t_y)\phi(y,t_y)\,dy
+\end{equation*}
+
+Feynman and Hibbs
+\begin{equation*}
+\psi(x_b,t_b)=\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi(x_a,t_a)\,dx_a
+\end{equation*}
+
+Harmonic oscillator
+\begin{equation*}
+\psi_n(x)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
+H_n\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right)
+\exp\left(-\frac{m\omega x^2}{2\hbar}\right)
+\end{equation*}
+
+Harmonic oscillator propagator ($T=t_b-t_a$)
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)
+=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\exp\left[
+\frac{im\omega}{2\hbar\sin(\omega T)}
+\left(x_a^2\cos(\omega T)-2x_ax_b+x_b^2\cos(\omega T)\right)
+\right]
+\end{equation*}
+
+Compute
+\begin{equation*}
+\int_{-\infty}^\infty K(x_b,t_b,x_a,t_a)\psi_1(x_a)\,dx_a
+\end{equation*}
+
+\end{document}

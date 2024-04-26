@@ -3,6 +3,7 @@
 *.tmp
 *.aux
 *.log
+*.out
 *.synctex.gz
 *.toc
 a.out
