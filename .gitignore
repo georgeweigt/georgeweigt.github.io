@@ -8,4 +8,5 @@
 *.toc
 a.out
 diffs
+unify
 unified.*

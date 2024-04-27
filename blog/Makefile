@@ -20,11 +20,11 @@ default:
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
 
-unified.tex: a.out preamble $(TEXFILES)
-	./a.out $(TEXFILES) > unified.tex
+unified.tex: unify preamble $(TEXFILES)
+	./unify $(TEXFILES) > unified.tex
 
-a.out: unify.c
-	$(CC) unify.c
+unify: unify.c
+	$(CC) -o unify unify.c
 
 clean:
 	rm -f *.aux *.log *.out *.synctex.gz *.toc
