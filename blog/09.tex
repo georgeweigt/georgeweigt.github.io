@@ -1,0 +1,63 @@
+\input{preamble}
+
+\section*{Schrodinger from free-particle propagator}
+
+Consider the free-particle propagator
+\begin{equation*}
+K_0(x,t,x_a,t_a)=\left(\frac{m}{2\pi i\hbar(t-t_a)}\right)^\frac{1}{2}
+\exp\left(\frac{im(x-x_a)^2}{2\hbar(t-t_a)}\right)
+\end{equation*}
+
+Let $\psi(x,t)$ be a free-particle wave function.
+Then
+\begin{equation*}
+\psi(x,t)=\int_{-\infty}^\infty K_0(x,t,x_a,t_a)\psi(x_a,t_a)\,dx_a
+\tag{1}
+\end{equation*}
+
+By (1) and noting that $\psi(x_a,t_a)$ does not depend on $t$ we have
+\begin{equation*}
+\frac{\partial}{\partial t}\psi(x,t)
+=\int_{-\infty}^\infty\frac{\partial K_0}{\partial t}
+\psi(x_a,t_a)\,dx_a
+\tag{2}
+\end{equation*}
+
+By (1) and noting that $\psi(x_a,t_a)$ does not depend on $x$ we have
+\begin{equation*}
+\frac{\partial^2}{\partial x^2}\psi(x,t)
+=\int_{-\infty}^\infty\frac{\partial^2 K_0}{\partial x^2}
+\psi(x_a,t_a)\,dx_a
+\tag{3}
+\end{equation*}
+
+By computer algebra (see \href{https://georgeweigt.github.io/blog/09.html}{demo})
+\begin{equation*}
+\frac{\partial K_0}{\partial t}
+=\frac{i\hbar}{2m}\frac{\partial^2K_0}{\partial x^2}
+\tag{4}
+\end{equation*}
+
+Multiply both sides of (4) by $\psi(x_a,t_a)$ and integrate over $x_a$.
+\begin{equation*}
+\underset{(2)}{\int_{-\infty}^\infty\frac{\partial K_0}{\partial t}\psi(x_a,t_a)\,dx_a}
+=\frac{i\hbar}{2m}\underset{(3)}
+{\int_{-\infty}^\infty\frac{\partial^2K_0}{\partial x^2}
+\psi(x_a,t_a)\,dx_a}
+\tag{5}
+\end{equation*}
+
+Substitute (2) and (3) into (5) to obtain
+\begin{equation*}
+\frac{\partial}{\partial t}\psi(x,t)
+=\frac{i\hbar}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)
+\end{equation*}
+
+Multiply both sides by $i\hbar$ to obtain the free-particle Schrodinger equation
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x,t)
+=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)
+\end{equation*}
+
+Ref.~Feynman and Hibbs problem 3-5.
+\end{document}
