@@ -1,0 +1,89 @@
+\input{preamble}
+
+\section*{Free-particle propagator}
+
+The propagator $K(x_b,t_b,x_a,t_a)$ is the amplitude for a particle to go from $x_a$
+at time $t_a$ to $x_b$ at time $t_b$.
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\langle x_b|\exp\left(-\frac{i\hat H(t_b-t_a)}{\hbar}\right)|x_a\rangle
+\end{equation*}
+
+Let $\hat H$ be the free-particle Hamiltonian
+\begin{equation*}
+\hat H=\frac{\hat p^2}{2m}
+\end{equation*}
+
+Then
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\langle x_b|\exp\left(-\frac{i\hat p^2(t_b-t_a)}{2m\hbar}\right)|x_a\rangle
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\int_{-\infty}^\infty|p\rangle\langle p|\,dp=1
+\end{equation*}
+
+we can write
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int_{-\infty}^\infty
+\langle x_b|\exp\left(-\frac{i\hat p^2(t_b-t_a)}{2m\hbar}\right)|p\rangle\langle p|x_a\rangle\,dp
+\end{equation*}
+
+By the identity $\hat p|p\rangle=p|p\rangle$ replace operator $\hat p$ with its eigenvalue $p$.
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int\langle x_b|\exp\left(-\frac{ip^2(t_b-t_a)}{2m\hbar}\right)|p\rangle\langle p|x_a\rangle\,dp
+\end{equation*}
+
+Rearrange as
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int_{-\infty}^\infty
+\exp\left(-\frac{ip^2(t_b-t_a)}{2m\hbar}\right)\langle x_b|p\rangle\langle p|x_a\rangle\,dp
+\end{equation*}
+
+For a free particle
+\begin{equation*}
+\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}\exp\left(\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\int_{-\infty}^\infty
+\exp\left(-\frac{ip^2(t_b-t_a)}{2m\hbar}\right)
+\frac{1}{\sqrt{2\pi\hbar}}\exp\left(\frac{ipx_b}{\hbar}\right)
+\frac{1}{\sqrt{2\pi\hbar}}\exp\left(-\frac{ipx_a}{\hbar}\right)\,dp
+\end{equation*}
+
+Simplify as
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\frac{1}{2m\hbar}\int_{-\infty}^\infty
+\exp\left(-\frac{ip^2(t_b-t_a)}{2m\hbar}+\frac{ip(x_b-x_a)}{\hbar}\right)\,dp
+\end{equation*}
+
+Let
+\begin{equation*}
+a=\frac{i(t_b-t_a)}{2m\hbar},\quad b=\frac{i(x_b-x_a)}{\hbar}
+\end{equation*}
+
+Then by the integral
+\begin{equation*}
+\int_{-\infty}^\infty
+\exp\left(-ay^2+by\right)\,dy=\left(\frac{\pi}{a}\right)^{1/2}\exp\left(\frac{b^2}{4a}\right)
+\end{equation*}
+
+we have
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\frac{1}{2\pi\hbar}
+\left(\frac{2\pi m\hbar}{i(t_b-t_a)}\right)^{1/2}
+\exp\left(-\frac{m(x_b-x_a)^2}{2i\hbar(t_b-t_a)}\right)
+\end{equation*}
+
+Rearrange as
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=
+\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^{1/2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\end{equation*}
+
+Click \href{https://georgeweigt.github.io/blog/08.html}{here} to verify.
+
+\end{document}
