@@ -3301,8 +3301,13 @@ combine_terms(h)
 {
 	var i;
 	sort_terms(h);
-	for (i = h; i < stack.length - 1; i++) {
-		if (combine_terms_nib(i, i + 1)) {
+	for (i = h; i < stack.length; i++) {
+		if (iszero(stack[i])) {
+			stack.splice(i, 1); // remove
+			i--; // use same index again
+			continue;
+		}
+		if (i + 1 < stack.length && combine_terms_nib(i)) {
 			if (iszero(stack[i]))
 				stack.splice(i, 2); // remove 2 terms
 			else
@@ -3310,25 +3315,18 @@ combine_terms(h)
 			i--; // use same index again
 		}
 	}
-	if (h < stack.length && iszero(stack[stack.length - 1]))
-		stack.pop();
 }
 
 function
-combine_terms_nib(i, j)
+combine_terms_nib(i)
 {
 	var coeff1, coeff2, denorm, p1, p2;
 
 	p1 = stack[i];
-	p2 = stack[j];
+	p2 = stack[i + 1];
 
 	if (iszero(p2))
 		return 1;
-
-	if (iszero(p1)) {
-		stack[i] = p2;
-		return 1;
-	}
 
 	if (isnum(p1) && isnum(p2)) {
 		add_numbers(p1, p2);
@@ -3626,30 +3624,35 @@ add_rationals(p1, p2)
 function
 add_integers(p1, p2)
 {
-	var a, b, sign;
-
+	var c, sign;
 	if (p1.sign == p2.sign) {
-		a = bignum_add(p1.a, p2.a);
+		c = bignum_add(p1.a, p2.a);
 		sign = p1.sign;
 	} else {
 		switch (bignum_cmp(p1.a, p2.a)) {
 		case 1:
-			a = bignum_sub(p1.a, p2.a);
+			c = bignum_sub(p1.a, p2.a);
 			sign = p1.sign;
 			break;
 		case 0:
 			push_integer(0);
 			return;
 		case -1:
-			a = bignum_sub(p2.a, p1.a);
+			c = bignum_sub(p2.a, p1.a);
 			sign = p2.sign;
 			break;
+		default:
+			stopf("error");
 		}
 	}
+	push_bignum(sign, c, bignum_int(1));
+}
 
-	b = bignum_int(1);
-
-	push_bignum(sign, a, b);
+function
+subtract()
+{
+	negate();
+	add();
 }
 function
 eval_adj(p1)
@@ -17237,12 +17240,6 @@ function
 stopf(errmsg)
 {
 	throw errmsg;
-}
-function
-subtract()
-{
-	negate();
-	add();
 }
 function
 swap()
