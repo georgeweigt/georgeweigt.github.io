@@ -651,87 +651,6 @@ bignum_sub(u, v)
 	return w;
 }
 function
-caaddr(p)
-{
-	return car(car(cdr(cdr(p))));
-}
-function
-caadr(p)
-{
-	return car(car(cdr(p)));
-}
-function
-cadaddr(p)
-{
-	return car(cdr(car(cdr(cdr(p)))));
-}
-function
-cadadr(p)
-{
-	return car(cdr(car(cdr(p))));
-}
-function
-caddddr(p)
-{
-	return car(cdr(cdr(cdr(cdr(p)))));
-}
-function
-cadddr(p)
-{
-	return car(cdr(cdr(cdr(p))));
-}
-function
-caddr(p)
-{
-	return car(cdr(cdr(p)));
-}
-function
-cadr(p)
-{
-	return car(cdr(p));
-}
-function
-car(p)
-{
-	if ("car" in p)
-		return p.car;
-	else
-		return symbol(NIL);
-}
-function
-cdadr(p)
-{
-	return cdr(car(cdr(p)));
-}
-function
-cddadr(p)
-{
-	return cdr(cdr(car(cdr(p))));
-}
-function
-cddddr(p)
-{
-	return cdr(cdr(cdr(cdr(p))));
-}
-function
-cdddr(p)
-{
-	return cdr(cdr(cdr(p)));
-}
-function
-cddr(p)
-{
-	return cdr(cdr(p));
-}
-function
-cdr(p)
-{
-	if ("cdr" in p)
-		return p.cdr;
-	else
-		return symbol(NIL);
-}
-function
 cmp(p1, p2)
 {
 	var t;
@@ -1271,6 +1190,101 @@ decomp_product(F, X)
 		swap();
 		cons(); // makes MULTIPLY head of list
 	}
+}
+function
+car(p)
+{
+	if ("car" in p)
+		return p.car;
+	else
+		return symbol(NIL);
+}
+
+function
+cdr(p)
+{
+	if ("cdr" in p)
+		return p.cdr;
+	else
+		return symbol(NIL);
+}
+
+function
+cadr(p)
+{
+	return car(cdr(p));
+}
+
+function
+cddr(p)
+{
+	return cdr(cdr(p));
+}
+
+function
+caadr(p)
+{
+	return car(car(cdr(p)));
+}
+
+function
+caddr(p)
+{
+	return car(cdr(cdr(p)));
+}
+
+function
+cdadr(p)
+{
+	return cdr(car(cdr(p)));
+}
+
+function
+cdddr(p)
+{
+	return cdr(cdr(cdr(p)));
+}
+
+function
+caaddr(p)
+{
+	return car(car(cdr(cdr(p))));
+}
+
+function
+cadadr(p)
+{
+	return car(cdr(car(cdr(p))));
+}
+
+function
+cadddr(p)
+{
+	return car(cdr(cdr(cdr(p))));
+}
+
+function
+cddadr(p)
+{
+	return cdr(cdr(car(cdr(p))));
+}
+
+function
+cddddr(p)
+{
+	return cdr(cdr(cdr(cdr(p))));
+}
+
+function
+cadaddr(p)
+{
+	return car(cdr(car(cdr(cdr(p)))));
+}
+
+function
+caddddr(p)
+{
+	return car(cdr(cdr(cdr(cdr(p)))));
 }
 const HPAD = 10;
 const VPAD = 10;
@@ -3305,9 +3319,7 @@ combine_terms(h)
 		if (iszero(stack[i])) {
 			stack.splice(i, 1); // remove
 			i--; // use same index again
-			continue;
-		}
-		if (i + 1 < stack.length && combine_terms_nib(i)) {
+		} else if (i + 1 < stack.length && combine_terms_nib(i)) {
 			stack.splice(i + 1, 1); // remove
 			i--; // use same index again
 		}
@@ -3321,9 +3333,6 @@ combine_terms_nib(i)
 
 	p1 = stack[i];
 	p2 = stack[i + 1];
-
-	if (iszero(p2))
-		return 1;
 
 	if (isnum(p1) && isnum(p2)) {
 		add_numbers(p1, p2);
@@ -3499,6 +3508,8 @@ cmp_terms(p1, p2)
 
 	return 0;
 }
+
+// for example, sqrt(1/2) + sqrt(1/2) -> 2 sqrt(1/2) -> sqrt(2)
 
 function
 simplify_terms(h)
