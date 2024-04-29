@@ -3193,7 +3193,7 @@ add()
 function
 add_terms(n)
 {
-	var h, i, p1, T;
+	var h, i, p, T;
 
 	if (n < 2)
 		return;
@@ -3228,19 +3228,17 @@ add_terms(n)
 	if (!istensor(T))
 		return;
 
-	p1 = pop();
+	// add scalar p to every element of T, as is done in R
 
+	p = pop();
 	T = copy_tensor(T);
-
 	n = T.elem.length;
-
 	for (i = 0; i < n; i++) {
 		push(T.elem[i]);
-		push(p1);
+		push(p);
 		add();
 		T.elem[i] = pop();
 	}
-
 	push(T);
 }
 
@@ -3522,34 +3520,6 @@ normalize_terms(h)
 			stack[i] = pop();
 		}
 	}
-}
-
-function
-isradicalterm(p)
-{
-	return car(p) == symbol(MULTIPLY) && isnum(cadr(p)) && isradical(caddr(p));
-}
-
-function
-isimaginaryterm(p)
-{
-	if (isimaginaryfactor(p))
-		return 1;
-	if (car(p) == symbol(MULTIPLY)) {
-		p = cdr(p);
-		while (iscons(p)) {
-			if (isimaginaryfactor(car(p)))
-				return 1;
-			p = cdr(p);
-		}
-	}
-	return 0;
-}
-
-function
-isimaginaryfactor(p)
-{
-	return car(p) == symbol(POWER) && isminusone(cadr(p));
 }
 
 function
@@ -16052,6 +16022,12 @@ isposint(p)
 }
 
 function
+isradicalterm(p)
+{
+	return car(p) == symbol(MULTIPLY) && isnum(cadr(p)) && isradical(caddr(p));
+}
+
+function
 isradical(p)
 {
 	return car(p) == symbol(POWER) && isposint(cadr(p)) && isfraction(caddr(p));
@@ -16072,6 +16048,28 @@ isnegativenumber(p)
 		return p.d < 0.0;
 	else
 		return 0;
+}
+
+function
+isimaginaryterm(p)
+{
+	if (isimaginaryfactor(p))
+		return 1;
+	if (car(p) == symbol(MULTIPLY)) {
+		p = cdr(p);
+		while (iscons(p)) {
+			if (isimaginaryfactor(car(p)))
+				return 1;
+			p = cdr(p);
+		}
+	}
+	return 0;
+}
+
+function
+isimaginaryfactor(p)
+{
+	return car(p) == symbol(POWER) && isminusone(cadr(p));
 }
 
 function
