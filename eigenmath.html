@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script src="https://georgeweigt.github.io/eigenmath.js"></script>
+
+<textarea id="stdin" autofocus placeholder=""></textarea>
+<button onclick="run()">Run</button>
+<input type="file" id="choosefile"><br>
+
+<div id="stdout"></div><br>
+
+<script>
+
+document.getElementById("choosefile").addEventListener("change", choosefile);
+
+function
+choosefile()
+{
+	var f = new FileReader();
+	f.onload = function()
+	{
+		document.getElementById("stdin").value = f.result;
+		document.getElementById("stdout").innerHTML = "";
+	}
+	f.readAsText(this.files[0]);
+}
+
+function
+readfile(s)
+{
+	foo = new XMLHttpRequest();
+	foo.open('GET', s);
+	foo.addEventListener("load", readfile_complete);
+	foo.send();
+}
+
+function
+readfile_complete(event)
+{
+	document.getElementById("stdin").value = foo.responseText;
+	document.getElementById("stdout").innerHTML = "";
+}
+
+</script>
+</body>
+</html>
