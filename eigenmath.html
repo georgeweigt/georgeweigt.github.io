@@ -1,9 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eigenmath Demo Page</title>
+</head>
 <body>
 <script src="https://georgeweigt.github.io/eigenmath.js"></script>
 
-<textarea id="stdin" autofocus style="width:800px;height:400px;font-family:courier;font-size:12pt"></textarea>
+<textarea id="stdin" autofocus placeholder="Enter a script then click Run (or click Demo for a demo script)" style="width:800px;height:400px;font-family:courier;font-size:12pt"></textarea>
+&nbsp;
 <button onclick="run()">Run</button>
+&nbsp;
+<input type="submit" value="Demo" onclick="readfile('examples/spontaneous-emission-rate.txt')">
+&nbsp;
 <input type="file" id="choosefile"><br>
 
 <div id="stdout"></div><br>
@@ -24,6 +33,21 @@ choosefile()
 	f.readAsText(this.files[0]);
 }
 
+function
+readfile(s)
+{
+	foo = new XMLHttpRequest();
+	foo.open('GET', s);
+	foo.addEventListener("load", readfile_complete);
+	foo.send();
+}
+
+function
+readfile_complete(event)
+{
+	document.getElementById("stdin").value = foo.responseText;
+	document.getElementById("stdout").innerHTML = "";
+}
 </script>
 </body>
 </html>
