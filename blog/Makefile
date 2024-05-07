@@ -10,7 +10,7 @@ TEXFILES := $(shell ls *.tex | sed "s/unified\.tex//")
 	pdflatex $<
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
 
-%.html: %.txt
+%.html: %.txt htmlante htmlpost
 	cat htmlante $< htmlpost > $@
 
 # $$ sends a single $ to the shell
