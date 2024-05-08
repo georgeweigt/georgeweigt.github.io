@@ -4,9 +4,26 @@
 <meta charset="utf-8">
 <title>Eigenmath Home Page</title>
 </head>
-<body style="font-size:14pt">
+<body style="font-size:16pt">
 
-<table><tr><td>
+<table>
+<tr>
+<td>
+<div id="stdout"></div>
+</td>
+<td>
+&nbsp;
+<a href="manual/index.html">Documentation</a>
+&nbsp;
+<a href="help.html">Help</a>
+&nbsp;
+<a href="https://apps.apple.com/us/app/eigenmath/id6470483466?mt=12">Get</a>
+&nbsp;
+<a href="eigenmath.html">Try</a>
+</td>
+</tr>
+</table><br>
+
 Eigenmath is a computer algebra system that provides a unified environment for symbolic manipulation, numerical computation, and visualization of mathematical objects. Here's a summary of its key features:<br><br>
 
 * Supports a wide range of mathematical operations, including symbolic algebra, multivariable calculus, and matrix operations.<br><br>
@@ -20,14 +37,6 @@ Eigenmath is a computer algebra system that provides a unified environment for s
 * Extensive documentation and examples for getting started and exploring the system's capabilities.<br><br>
 
 Eigenmath is designed to facilitate research in mathematics, physics, engineering, and other fields where symbolic manipulation, numerical computation, and visualization are essential. It aims to provide a powerful toolset for mathematicians, scientists, and engineers to explore complex mathematical concepts and solve problems efficiently.<br><br>
-
-<a href="manual/index.html">Documentation</a>
-&nbsp;
-<a href="help.html">Help</a>
-&nbsp;
-<a href="https://apps.apple.com/us/app/eigenmath/id6470483466?mt=12">Get</a>
-&nbsp;
-<a href="eigenmath.html">Try</a><br><br>
 
 Examples (demo scripts can be pasted into the Eigenmath app)<br><br>
 
@@ -271,17 +280,11 @@ second = "second"
 
 electronvolt = e joule / coulomb -- convert electronvolt to joule
 </pre>
-</td>
-<td valign="top">
-<div id="stdout"></div>
-</td>
-</tr>
-</table>
 
 <script>
 var n, s;
 n = Math.floor(5 * Math.random()) + 1;
-s = "<img src='eigenmath" + n + ".jpg' width='512' height='512'>";
+s = "<img src='eigenmath" + n + ".jpg' width='300' height='300' alt='?'>";
 document.getElementById("stdout").innerHTML = s;
 </script>
 
