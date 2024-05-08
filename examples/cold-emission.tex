@@ -55,14 +55,14 @@ C\exp\left(-\frac{1}{\hbar}\int\sqrt{2m(W-Qx)}\,dx\right)
 
 To simplify the formulas let
 \begin{equation*}
-k=\frac{\sqrt{2mE}}{\hbar},\quad\beta=\frac{(2m(W-Qx))^\frac{3}{2}}{3Qm\hbar}
+k=\frac{\sqrt{2mE}}{\hbar},\quad\beta(x)=\frac{(2m(W-Qx))^\frac{3}{2}}{3Qm\hbar}
 \end{equation*}
 
 and write
 \begin{align*}
 \psi_1(x)&=A\exp(ikx)+B\exp(-ikx)
 \\
-\psi_2(x)&=C\exp(\beta x)+D\exp(-\beta x)
+\psi_2(x)&=C\exp(\beta(x))+D\exp(-\beta(x))
 \\
 \psi_3(x)&=F\exp(ikx)+G\exp(-ikx)
 \end{align*}
@@ -89,27 +89,29 @@ at $x=0$ and $x=L$.
 
 From the boundary condition $\psi_2(L)=\psi_3(L)$ we have
 \begin{equation*}
-C\exp(\beta L)+D\exp(-\beta L)=F\exp(ikL)
+C\exp(\beta(L))+D\exp(-\beta(L))=F\exp(ikL)
 \tag{1}
 \end{equation*}
 
 From the boundary condition $\psi_2'(L)=\psi_3'(L)$ we have
 \begin{equation*}
-\beta C\exp(\beta L)-\beta D\exp(-\beta L)
+\beta'(L) C\exp(\beta(L))-\beta'(L) D\exp(-\beta(L))
 =ikF\exp(ikL)
 \tag{2}
 \end{equation*}
 
-Add $\beta$ times (1) to (2) to obtain
+Add $\beta'(L)$ times (1) to (2) to obtain
 \begin{equation*}
-2\beta C\exp(\beta L)=(\beta+ik)F\exp(ikL)
+2\beta'(L)C\exp(\beta(L))=(\beta'(L)+ik)F\exp(ikL)
 \end{equation*}
 
 Hence
 \begin{equation*}
-C=\frac{(\beta+ik)F\exp(ikL-\beta L)}{2\beta}
+C=\frac{(\beta'(L)+ik)F\exp(ikL-\beta(L))}{2\beta'(L)}
 \tag{3}
 \end{equation*}
+
+\end{document}
 
 Add minus $\beta$ times (1) to (2) to obtain
 \begin{equation*}
@@ -142,6 +144,40 @@ Add $ik$ times (5) to (6) to obtain
 Hence
 \begin{equation*}
 A=\frac{\beta(C-D)}{2ik}+\frac{C+D}{2}
+\end{equation*}
+
+Substitute for $C$ and $D$ to obtain
+\begin{equation*}
+A=F\exp(ikL)\left(\cosh(\beta L)+\frac{i}{2}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)\sinh(\beta L)\right)
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\frac{|A|^2}{|F|^2}=\cosh^2(\beta L)+\frac{1}{4}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)^2\sinh^2(\beta L)
+\end{equation*}
+
+Hence the transmission probability $|T|^2$ is
+\begin{equation*}
+|T|^2=\frac{|F|^2}{|A|^2}=\frac{1}{\cosh^2(\beta L)+\frac{1}{4}\left(\frac{\beta}{k}
+-\frac{k}{\beta}\right)^2\sinh^2(\beta L)}
+\end{equation*}
+
+If the transmission probability is small then a useful approximation is
+\begin{equation*}
+\frac{1}{4}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)^2
+\approx-\frac{1}{2}
+\end{equation*}
+
+It follows that
+\begin{equation*}
+|T|^2\approx\frac{1}{\cosh^2(\beta L)-\frac{1}{2}\sinh^2(\beta L)}
+=\frac{1}{\frac{1}{8}\exp\left(\frac{4\sqrt{2m}LW^\frac{3}{2}}{3Q\hbar}\right)
++\frac{1}{8}\exp\left(-\frac{4\sqrt{2m}LW^\frac{3}{2}}{3Q\hbar}\right)+\frac{3}{4}}
+\end{equation*}
+
+The first exponential term dominates hence
+\begin{equation*}
+|T|^2\approx 8\exp\left(\frac{4\sqrt{2m}LW^\frac{3}{2}}{3Q\hbar}\right)
 \end{equation*}
 
 \end{document}
