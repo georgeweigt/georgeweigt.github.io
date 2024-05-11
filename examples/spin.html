@@ -1,0 +1,138 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="20" cols="80" style="font-family:courier;font-size:12pt">
+"Exercise 1. Verify spin operators and expectation values."
+
+zp = (1,0)
+zm = (0,1)
+
+xp = (zp + zm) / sqrt(2)
+xm = (zp - zm) / sqrt(2)
+
+yp = (zp + i zm) / sqrt(2)
+ym = (zp - i zm) / sqrt(2)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+check(Sx == hbar / 2 (outer(xp,conj(xp)) - outer(xm,conj(xm))))
+check(Sy == hbar / 2 (outer(yp,conj(yp)) - outer(ym,conj(ym))))
+check(Sz == hbar / 2 (outer(zp,conj(zp)) - outer(zm,conj(zm))))
+
+S2 = dot(Sx,Sx) + dot(Sy,Sy) + dot(Sz,Sz)
+
+check(S2 == 3/4 hbar^2 ((1,0),(0,1)))
+
+cp = Xp + i Yp
+cm = Xm + i Ym
+
+s = (cp,cm)
+
+check(dot(conj(s),Sx,s) == 1/2 hbar (cp conj(cm) + conj(cp) cm))
+check(dot(conj(s),Sy,s) == 1/2 i hbar (cp conj(cm) - conj(cp) cm))
+check(dot(conj(s),Sz,s) == 1/2 hbar (cp conj(cp) - cm conj(cm)))
+
+check(dot(conj(s),S2,s) == 3/4 hbar^2 (cp conj(cp) + cm conj(cm)))
+
+"ok"
+
+"Exercise 2. Verify expected spin vector."
+
+clear
+
+s = (1/3 - 2/3 i, 2/3)
+
+check(dot(conj(s),s) == 1)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+S = (Sx,Sy,Sz)
+
+check(dot(conj(s),transpose(S),s) == hbar / 2 (4/9, 8/9, 1/9))
+
+"ok"
+
+"Exercise 3. Verify spin measurement probabilities."
+
+clear
+
+s = (1/3 - 2/3 i, 2/3)
+
+zp = (1,0)
+zm = (0,1)
+
+xp = (zp + zm) / sqrt(2)
+xm = (zp - zm) / sqrt(2)
+
+yp = (zp + i zm) / sqrt(2)
+ym = (zp - i zm) / sqrt(2)
+
+Pr(a,b) = dot(conj(a),b) dot(conj(b),a)
+
+check(Pr(xp,s) == 13/18)
+check(Pr(xm,s) == 5/18)
+
+check(Pr(yp,s) == 17/18)
+check(Pr(ym,s) == 1/18)
+
+check(Pr(zp,s) == 5/9)
+check(Pr(zm,s) == 4/9)
+
+"ok"
+
+"Exercise 4. Verify indistinguishable spin states."
+
+clear
+
+s = (1/3 - 2/3 i, 2/3)
+
+Sx = hbar / 2 ((0,1),(1,0))
+Sy = hbar / 2 ((0,-i),(i,0))
+Sz = hbar / 2 ((1,0),(0,-1))
+
+S = (Sx,Sy,Sz)
+
+x = 2 / hbar dot(conj(s),Sx,s)
+y = 2 / hbar dot(conj(s),Sy,s)
+z = 2 / hbar dot(conj(s),Sz,s)
+
+cp = sqrt((z + 1) / 2)
+cm = sqrt((1 - z) / 2) (x + i y) / sqrt(x^2 + y^2)
+
+check(cp == sqrt(5) / 3)
+check(cm == (2 + 4 i) / (3 sqrt(5)))
+
+chi = (cp,cm)
+
+check(dot(conj(s),transpose(S),s) == dot(conj(chi),transpose(S),chi))
+
+"ok"
+
+"Exercise 5. Verify spin commutators."
+
+clear
+
+Sx(psi) = -i hbar (y d(psi,z) - z d(psi,y))
+Sy(psi) = -i hbar (z d(psi,x) - x d(psi,z))
+Sz(psi) = -i hbar (x d(psi,y) - y d(psi,x))
+
+psi = Psi()
+
+check(Sy(Sz(psi)) - Sz(Sy(psi)) == i hbar Sx(psi))
+check(Sz(Sx(psi)) - Sx(Sz(psi)) == i hbar Sy(psi))
+check(Sx(Sy(psi)) - Sy(Sx(psi)) == i hbar Sz(psi))
+
+S2(psi) = Sx(Sx(psi)) + Sy(Sy(psi)) + Sz(Sz(psi))
+
+check(S2(Sx(psi)) - Sx(S2(psi)) == 0)
+check(S2(Sy(psi)) - Sy(S2(psi)) == 0)
+check(S2(Sz(psi)) - Sz(S2(psi)) == 0)
+
+Sp(psi) = Sx(psi) + i Sy(psi)
+Sm(psi) = Sx(psi) - i Sy(psi)
+
+check(Sp(Sm(psi)) - Sm(Sp(psi)) == 2 hbar Sz(psi))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

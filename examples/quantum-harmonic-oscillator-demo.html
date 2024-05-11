@@ -1,0 +1,126 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="20" cols="80" style="font-family:courier;font-size:12pt">
+"Exercise 1. Verify eigenstates and eigenvalues."
+
+Hhat(f) = phat(phat(f)) / (2 m) + V f
+phat(f) = -i hbar d(f,x)
+V = m omega^2 x^2 / 2
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+E(n) = hbar omega (n + 1/2)
+
+check(Hhat(psi(0)) == E(0) psi(0))
+check(Hhat(psi(1)) == E(1) psi(1))
+check(Hhat(psi(2)) == E(2) psi(2))
+check(Hhat(psi(3)) == E(3) psi(3))
+check(Hhat(psi(4)) == E(4) psi(4))
+
+"ok"
+
+"Exercise 2. Verify ladder operators."
+
+clear
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+ahat(f) = sqrt(m omega / (2 hbar)) (x f + i phat(f) / (m omega))
+ahat1(f) = sqrt(m omega / (2 hbar)) (x f - i phat(f) / (m omega))
+phat(f) = -i hbar d(f,x)
+
+check(ahat(psi(0)) == 0)
+check(ahat(psi(1)) == psi(0))
+check(ahat(psi(2)) == sqrt(2) psi(1))
+check(ahat(psi(3)) == sqrt(3) psi(2))
+check(ahat(psi(4)) == 2 psi(3))
+
+check(ahat1(psi(0)) == psi(1))
+check(ahat1(psi(1)) == sqrt(2) psi(2))
+check(ahat1(psi(2)) == sqrt(3) psi(3))
+check(ahat1(psi(3)) == 2 psi(4))
+check(ahat1(psi(4)) == sqrt(5) psi(5))
+
+-- number operator
+
+Nhat(f) = ahat1(ahat(f))
+
+check(Nhat(psi(0)) == 0)
+check(Nhat(psi(1)) == psi(1))
+check(Nhat(psi(2)) == 2 psi(2))
+check(Nhat(psi(3)) == 3 psi(3))
+check(Nhat(psi(4)) == 4 psi(4))
+
+"ok"
+
+"Exercise 3. Verify probability."
+
+clear
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+-- dummy values ok because of normalization constant
+
+m = 1
+omega = 1
+hbar = 1
+
+Psi = (psi(2) + psi(3)) / sqrt(2)
+
+f = conj(Psi) Psi
+
+Pr = float(defint(f, x, 0, 100.0))
+
+check(infixform(Pr) == "0.845494")
+
+"ok"
+
+"Exercise 4."
+
+clear
+
+e = 1.602176634 10^(-19) coulomb     -- elementary charge
+h = 6.62607015 10^(-34) joule second -- Planck constant
+hbar = h / float(2 pi)               -- reduced Planck constant
+
+electronvolt = e joule / coulomb
+joule = kilogram meter^2 / second^2
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+m = 6.64 10^(-27) kilogram
+V = 1 electronvolt
+L = 10^(-6) meter
+
+omega = sqrt(2 V / m) / L
+omega
+
+psi(n) = C(n) exp(-m omega x^2 / (2 hbar)) H(n, x sqrt(m omega / hbar))
+C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
+H(n,y,z) = (-1)^n exp(y^2) eval(d(exp(-z^2),z,n),z,y)
+
+Psi = (psi(2) + psi(3)) / sqrt(2)
+infty = 100.0 meter
+
+xbar = float(defint(x conj(Psi) Psi, x, -infty, infty))
+xbar
+
+Hhat(f) = phat(phat(f)) / (2 m) + V f
+phat(f) = -i hbar d(f,x)
+V = m omega^2 x^2 / 2
+
+Ebar = float(defint(conj(Psi) Hhat(Psi), x, -infty, infty))
+Ebar = Ebar / electronvolt "electronvolt" -- convert joule to electronvolt
+Ebar
+
+E(n) = hbar omega (n + 1/2)
+
+"Expected eigenvalue"
+
+1/2 (E(2) + E(3)) / electronvolt "electronvolt"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
