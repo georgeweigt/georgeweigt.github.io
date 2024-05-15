@@ -1,0 +1,87 @@
+\input{preamble}
+
+% Feynman and Hibbs problem 9-5
+
+\section*{QED field momentum}
+
+For a free field show that
+\begin{equation*}
+\frac{1}{4\pi c}\int\mathbf E\times\mathbf B\,d^3\mathbf r
+=i\int\mathbf k\left(\mathbf a_{\mathbf k}^*\cdot\dot{\mathbf a}_{\mathbf k}\right)\,
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+This is the electric field vector.
+\begin{equation*}
+\mathbf E(\mathbf r,t)
+=\int\left(-i\mathbf k\phi_{\mathbf k}-\sqrt{4\pi}\,\dot{\mathbf a}_{\mathbf k}\right)
+\exp(i\mathbf k\cdot\mathbf r)\,
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+Set $\phi_{\mathbf k}=0$ for no charges.
+\begin{equation*}
+\mathbf E(\mathbf r,t)
+=-\sqrt{4\pi}\int\dot{\mathbf a}_{\mathbf k}
+\exp(i\mathbf k\cdot\mathbf r)\,
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+This is the magnetic field vector.
+\begin{equation*}
+\mathbf B(\mathbf r,t)
+=\sqrt{4\pi}ic\int(\mathbf k\times\mathbf a_{\mathbf k})
+\exp(i\mathbf k\cdot\mathbf r)\,
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+Take the complex conjugate of $\mathbf B$.
+\begin{equation*}
+\mathbf B(\mathbf r,t)
+=-\sqrt{4\pi}ic\int(\mathbf k\times\mathbf a_{\mathbf k}^*)
+\exp(-i\mathbf k\cdot\mathbf r)\,
+\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\mathbf E\times\mathbf B
+=4\pi ic\iint\dot{\mathbf a}_{\mathbf k}\times(\mathbf k'\times\mathbf a_{\mathbf k'}^*)
+\exp\bigl(i(\mathbf k-\mathbf k')\cdot\mathbf r\bigr)
+\,\frac{d^3\mathbf k}{(2\pi)^3}\,\frac{d^3\mathbf k'}{(2\pi)^3}
+\end{equation*}
+
+Integrate over $\mathbf r$ to change the exponential to a delta function.
+\begin{equation*}
+\int\mathbf E\times\mathbf B\,d^3\mathbf r
+=4\pi ic\iint\dot{\mathbf a}_{\mathbf k}\times(\mathbf k'\times\mathbf a_{\mathbf k'}^*)
+(2\pi)^3\delta(\mathbf k-\mathbf k')
+\,\frac{d^3\mathbf k}{(2\pi)^3}\,\frac{d^3\mathbf k'}{(2\pi)^3}
+\end{equation*}
+
+The delta function vanishes except for $\mathbf k=\mathbf k'$.
+\begin{equation*}
+\int\mathbf E\times\mathbf B\,d^3\mathbf r
+=4\pi ic\int\dot{\mathbf a}_{\mathbf k}\times(\mathbf k\times\mathbf a_{\mathbf k})
+\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+By the triple cross product formula
+\begin{equation*}
+\int\mathbf E\times\mathbf B\,d\mathbf r
+=4\pi ic\int
+\bigl((\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k}^*)\mathbf k
+-(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k)\mathbf a_{\mathbf k}^*\bigr)
+\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+By orthogonality of $\mathbf E$ and $\mathbf k$ the $\dot{\mathbf a}_{\mathbf k}\cdot\mathbf k$
+term vanishes hence
+\begin{equation*}
+\int\mathbf E\times\mathbf B\,d\mathbf r
+=4\pi ic\int
+(\dot{\mathbf a}_{\mathbf k}\cdot\mathbf a_{\mathbf k}^*)\mathbf k
+\,\frac{d^3\mathbf k}{(2\pi)^3}
+\end{equation*}
+
+\end{document}

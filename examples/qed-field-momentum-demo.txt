@@ -1,0 +1,19 @@
+omega = c k
+
+A = -i A0 (exp(i k z - i omega t), 0, 0) / omega
+
+E = -1/c d(A,t)
+B = curl(A)
+
+E
+B
+
+"Verify Maxwell equations"
+
+check(div(E) == 0)
+check(div(B) == 0)
+
+check(curl(E) == -1/c d(B,t))
+check(curl(B) == 1/c d(E,t))
+
+"ok"
