@@ -16,7 +16,6 @@ TEXFILES := $(shell ls *.tex | sed "s/unified\.tex//")
 # $$ sends a single $ to the shell
 
 default:
-#	make unified.tex
 	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
 	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
 
