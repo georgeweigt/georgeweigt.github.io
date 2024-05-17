@@ -26,61 +26,45 @@ From the time-dependent Schrodinger equation we have
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
 \end{equation*}
 
-The left-hand side works out to be
+Expand the left-hand side.
 \begin{multline*}
-LHS=\left(i\hbar\frac{\partial c_1(t)}{\partial t}+
-\underset{\text{cancels}}
-{\hbar\omega_1c_1(t)}
-\right)
-\psi_1(x)\exp(-i\omega_1t)
+i\hbar\frac{\partial}{\partial t}\Psi(x,t)
+=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
++\boxed{\hbar\omega_1c_1(t)\psi_1(x)\exp(-i\omega_1t)}
 \\
-{}+\left(i\hbar\frac{\partial c_2(t)}{\partial t}+
-\underset{\text{cancels}}
-{\hbar\omega_2c_2(t)}
-\right)
-\psi_2(x)\exp(-i\omega_2t)
+{}+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
++\boxed{\hbar\omega_2c_2(t)\psi_2(x)\exp(-i\omega_2t)}
 \end{multline*}
 
-Using the time-independent Schrodinger equation the right-hand side is
-\begin{equation*}
-RHS=
-\underset{\text{cancels}}
-{c_1(t)E_1\psi_1(x)\exp(-i\omega_1t)}
-+
-\underset{\text{cancels}}
-{c_2(t)E_2\psi_2(x)\exp(-i\omega_2t)}
-+H_1(x,t)\Psi(x,t)
-\end{equation*}
-
-The indicated terms cancel by the substitutions
-$E_1=\hbar\omega_1$ and $E_2=\hbar\omega_2$ leaving
-\begin{equation*}
-LHS=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
-+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
-\end{equation*}
-%
-and
-\begin{equation*}
-RHS=H_1(x,t)\Psi(x,t)
-\end{equation*}
-
-Hence by $LHS=RHS$ we have
+Noting that $\hbar\omega_1=E_1$ and $\hbar\omega_2=E_2$,
+the boxed terms cancel with $H_0(x)\Psi(x,t)$ leaving
 \begin{equation*}
 i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
 +i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
 =H_1(x,t)\Psi(x,t)
 \end{equation*}
 
+Substitute for $H_1(x)\Psi(x,t)$.
+\begin{multline*}
+i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
++i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
+\\
+{}=2\cos(\omega t+\phi)
+\biggl[
+c_1(t)V(x)\psi_1(x)\exp(-i\omega_1t)+c_2(t)V(x)\psi_2(x)\exp(-i\omega_2t)
+\biggr]
+\end{multline*}
+
 Take the inner product of $\psi_2^*(x)$ with the above equation to obtain
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}\exp(-i\omega_2t)
 =2\cos(\omega t+\phi)
-\bigl(
+\biggl[
 c_1(t)M_{21}\exp(-i\omega_1t)+
 c_2(t)M_{22}\exp(-i\omega_2t)
-\bigr)
+\biggr]
 \end{equation*}
-%
+
 where $M_{21}$ and $M_{22}$ are the matrix elements
 \begin{align*}
 M_{21}&=\int\psi_2^*(x)V(x)\psi_1(x)\,dx
@@ -88,13 +72,13 @@ M_{21}&=\int\psi_2^*(x)V(x)\psi_1(x)\,dx
 M_{22}&=\int\psi_2^*(x)V(x)\psi_2(x)\,dx
 \end{align*}
 
-Cancel exponentials.
+Multiply both sides by $\exp(i\omega_2t)$.
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}
 =2\cos(\omega t+\phi)
-\Bigl(
+\biggl[
 c_1(t)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)+2c_2(t)M_{22}
-\Bigr)
+\biggr]
 \end{equation*}
 
 Let the initial state be $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
