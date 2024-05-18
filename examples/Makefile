@@ -1,6 +1,11 @@
+# make
+# make unified.pdf
+
 .PHONY: default clean
 
 TEXFILES := $(shell ls *.tex | sed "s/unified\.tex//")
+PDFFILES := $(shell sed "s/\.tex/\.pdf/g" <<< "$(TEXFILES)") # here-string
+HTMFILES := $(shell ls *.txt | sed "s/\.txt/\.html/")
 
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
@@ -16,8 +21,8 @@ TEXFILES := $(shell ls *.tex | sed "s/unified\.tex//")
 # $$ sends a single $ to the shell
 
 default:
-	for file in $$(ls *.tex | sed "s/\.tex/\.pdf/") ; do make $$file ; done
-	for file in $$(ls *.txt | sed "s/\.txt/\.html/") ; do make $$file ; done
+	for file in $(PDFFILES) ; do make $$file ; done
+	for file in $(HTMFILES) ; do make $$file ; done
 
 unified.tex: unify preamble $(TEXFILES)
 	./unify $(TEXFILES) > unified.tex

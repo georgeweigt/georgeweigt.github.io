@@ -1,0 +1,13 @@
+"Verify equation (6)"
+
+A = -i m omega / (2 hbar) (xb^2 + xa^2) tan(omega t / 2) +
+    i m omega (xb - xa)^2 / (2 hbar sin(omega t))
+
+B = i m omega (xb^2 + xa^2) cot(omega t) / (2 hbar) -
+    i m omega xb xa / (hbar sin(omega t))
+
+cot(alpha) = -tan(alpha / 2) + 1 / sin(alpha)
+
+check(A == B)
+
+"ok"

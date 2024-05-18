@@ -1,0 +1,108 @@
+\input{preamble}
+
+\section*{Harmonic oscillator propagator}
+
+Given
+\begin{equation*}
+K(b,a)=\langle x_b|\exp\left(-\frac{iHt}{\hbar}\right)
+|x_a\rangle
+\tag{1}
+\end{equation*}
+
+where
+\begin{equation*}
+H=\frac{\hat p^2}{2m}+\frac{m\omega^2\hat x^2}{2}
+\end{equation*}
+
+show that
+\begin{equation*}
+K(b,a)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
+\exp\left(\frac{im\omega(x_b^2+x_a^2)\cot(\omega t)}{2\hbar}
+-\frac{im\omega x_bx_a}{\hbar\sin(\omega t)}\right)
+\end{equation*}
+
+This is van Kortryk's identity.
+\begin{equation*}
+\exp\left(-\frac{iHt}{\hbar}\right)=
+\exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
+\exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\tag{2}
+\end{equation*}
+
+Substitute (2) into (1) to obtain
+\begin{equation*}
+K(b,a)=\langle x_b|\exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
+\exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+|x_a\rangle
+\end{equation*}
+
+Replace operators $\hat x^2$ with eigenvalues $x_b^2$ and $x_a^2$.
+\begin{equation*}
+K(b,a)=
+\langle x_b|
+\exp\left(-\frac{im\omega x_b^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
+\exp\left(-\frac{im\omega x_a^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+|x_a\rangle
+\end{equation*}
+
+With the $\hat x^2$ operators eliminated, states $\langle x_b|$ and $|x_a\rangle$ can be moved inwards.
+\begin{equation*}
+K(b,a)=
+\exp\left(-\frac{im\omega x_b^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\langle x_b|
+\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
+|x_a\rangle
+\exp\left(-\frac{im\omega x_a^2}{2\hbar}\tan\frac{\omega t}{2}\right)
+\end{equation*}
+
+Combine exponentials.
+\begin{equation*}
+K(b,a)=\exp\left(-\frac{im\omega(x_b^2+x_a^2)}{2\hbar}\tan\frac{\omega t}{2}\right)
+\langle x_b|
+\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
+|x_a\rangle
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+K(b,a)=\exp\left(-\frac{im\omega(x_b^2+x_a^2)}{2\hbar}\tan\frac{\omega t}{2}\right)K_0(b,a)
+\tag{3}
+\end{equation*}
+
+where
+\begin{equation*}
+K_0(b,a)=\langle x_b|\exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)|x_a\rangle
+\end{equation*}
+
+Noting that $K_0$ is a free particle propagator with $t_b-t_a=\sin(\omega t)/\omega$ we have
+\begin{equation*}
+K_0(b,a)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
+\exp\left(\frac{im\omega(x_b-x_a)^2}{2\hbar\sin(\omega t)}\right)
+\tag{4}
+\end{equation*}
+
+Substitute (4) into (3) to obtain
+\begin{equation*}
+K(b,a)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
+\exp\left(-\frac{im\omega(x_b^2+x_a^2)}{2\hbar}\tan\frac{\omega t}{2}
++\frac{im\omega(x_b-x_a)^2}{2\hbar\sin(\omega t)}\right)
+\tag{5}
+\end{equation*}
+
+Using the identity
+\begin{equation*}
+\cot\alpha=-\tan\frac{\alpha}{2}+\frac{1}{\sin\alpha}
+\end{equation*}
+
+rewrite (5) as
+\begin{equation*}
+K(b,a)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
+\exp\left(\frac{im\omega(x_b^2+x_a^2)\cot(\omega t)}{2\hbar}
+-\frac{im\omega x_bx_a}{\hbar\sin(\omega t)}\right)
+\tag{6}
+\end{equation*}
+
+\end{document}
