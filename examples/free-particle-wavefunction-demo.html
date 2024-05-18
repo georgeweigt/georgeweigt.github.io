@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="25" cols="80" style="font-family:courier;font-size:12pt">
+"Verify equation (1)"
+
+f = i m (xb - xa)^2 / (2 hbar tb) + i p xa / hbar
+
+a = -i m / (2 hbar tb)
+b = -i m xb / (hbar tb) + i p / hbar
+c = i m xb^2 / (2 hbar tb)
+
+check(f == -a xa^2 + b xa + c)
+
+"ok"
+
+"Verify equation (2)"
+
+check(m / (2 pi i hbar tb) == a / pi)
+
+check(b^2 / (4 a) + c == i p xb / hbar - i p^2 tb / (2 m hbar))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

@@ -1,0 +1,61 @@
+\input{preamble}
+
+% Feynman and Hibbs problem 3-4
+
+\section*{Free particle wavefunction}
+
+Given that at time $t=0$
+\begin{equation*}
+\psi(x)=C\exp\left(\frac{ipx}{\hbar}\right)
+\end{equation*}
+
+show that
+\begin{equation*}
+\psi(x,t)=C\exp\left(\frac{ipx}{\hbar}-\frac{ip^2t}{2m\hbar}\right)
+\end{equation*}
+
+This is the free particle propagator.
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^\frac{1}{2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\end{equation*}
+
+By definition of a propagator
+\begin{align*}
+\psi(x_b,t_b)&=\int_{-\infty}^\infty K(x_b,t_b,x_a,0)\psi(x_a)\,dx_a
+\\
+&=C\left(\frac{m}{2\pi i\hbar t_b}\right)^\frac{1}{2}
+\int_{-\infty}^\infty
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar t_b}+\frac{ipx_a}{\hbar}\right)\,dx_a
+\end{align*}
+
+Let
+\begin{equation*}
+a=-\frac{im}{2\hbar t_b},\quad
+b=-\frac{imx_b}{\hbar t_b}+\frac{ip}{\hbar},\quad
+c=\frac{imx_b^2}{2\hbar t_b}
+\end{equation*}
+
+Then
+\begin{equation*}
+\psi(x_b,t_b)
+=C\left(\frac{m}{2\pi i\hbar t_b}\right)^\frac{1}{2}
+\int_{-\infty}^\infty
+\exp(-ax_a^2+bx_a+c)\,dx_a
+\tag{1}
+\end{equation*}
+
+Solve the integral.
+\begin{align*}
+\psi(x_b,t_b)&=C\left(\frac{m}{2\pi i\hbar t_b}\right)^\frac{1}{2}
+\biggl(\frac{\pi}{a}\biggr)^\frac{1}{2}\exp\left(\frac{b^2}{4a}+c\right)
+\\
+&=C\exp\left(\frac{ipx_b}{\hbar}-\frac{ip^2t_b}{2m\hbar}\right)\tag{2}
+\end{align*}
+
+Substitute $x$ for $x_b$ and $t$ for $t_b$.
+\begin{equation*}
+\psi(x,t)=C\exp\left(\frac{ipx}{\hbar}-\frac{ip^2t}{2m\hbar}\right)
+\end{equation*}
+
+\end{document}
