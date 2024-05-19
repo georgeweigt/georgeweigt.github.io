@@ -13,65 +13,62 @@ H_n\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right)
 
 and the harmonic oscillator propagator
 \begin{equation*}
-K(x_b,t_b,x_a,t_a)
-=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
-\exp\left[
-\frac{im\omega}{2\hbar\sin(\omega T)}
-\left((x_b^2+x_a^2)\cos(\omega T)-2x_bx_a\right)
-\right]
+K(x_b,t,x_a,0)
+=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
+\exp\left(
+\frac{im\omega}{2\hbar\sin(\omega t)}
+\left((x_b^2+x_a^2)\cos(\omega t)-2x_bx_a\right)
+\right)
 \end{equation*}
 
-where $T=t_b-t_a$.
-
-\bigskip
-We should have
+By definition of a propagator
 \begin{equation*}
-\psi_n(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_n(x_a,0)\,dx_a
+\psi_n(x_b,t)=\int_{-\infty}^\infty K(x_b,t,x_a,0)\psi_n(x_a,0)\,dx_a
 \end{equation*}
 
-Try for $n=1$. Let
+Prove for $n=1$. Let
 \begin{equation*}
-I=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
+I=\int_{-\infty}^\infty K(x_b,t,x_a,0)\psi_1(x_a,0)\,dx_a
 \end{equation*}
 
 Substitute for $K$ and $\psi_1$.
 \begin{multline*}
 I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
 \\
 {}\times
 \int_{-\infty}^\infty
-\exp\left[
-\frac{im\omega}{2\hbar\sin(\omega T)}
-\left((x_b^2+x_a^2)\cos(\omega T)-2x_bx_a\right)
-\right]
+\exp\left(
+\frac{im\omega}{2\hbar\sin(\omega t)}
+\left((x_b^2+x_a^2)\cos(\omega t)-2x_bx_a\right)
+\right)
 x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)\,dx_a
 \end{multline*}
 
 Simplify the integrand.
 \begin{multline*}
 I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
 \\
 {}\times
 \int_{-\infty}^\infty x_a\exp\left(
-\frac{im\omega x_a^2\exp(i\omega T)}{2\hbar\sin(\omega T)}
--\frac{im\omega x_a}{\hbar\sin(\omega T)}
-+\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
+\frac{im\omega x_a^2\exp(i\omega t)}{2\hbar\sin(\omega t)}
+-\frac{im\omega x_a}{\hbar\sin(\omega t)}
++\frac{im\omega x_b^2\cos(\omega t)}{2\hbar\sin(\omega t)}
 \right)\,dx_a
 \end{multline*}
 
 Let
 \begin{equation*}
-a=-\frac{im\omega\exp(i\omega T)}{2\hbar\sin(\omega T)},\quad
-b=-\frac{im\omega}{\hbar\sin(\omega T)},\quad
-c=\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
+a=-\frac{im\omega\exp(i\omega t)}{2\hbar\sin(\omega t)},\quad
+b=-\frac{im\omega}{\hbar\sin(\omega t)},\quad
+c=\frac{im\omega x_b^2\cos(\omega t)}{2\hbar\sin(\omega t)}
 \end{equation*}
 
 so that
 \begin{equation*}
 I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
 \int_{-\infty}^\infty
 x_a\exp(-ax_a^2+bx_a+c)\,dx_a
 \end{equation*}
@@ -79,18 +76,18 @@ x_a\exp(-ax_a^2+bx_a+c)\,dx_a
 Solve the integral.
 \begin{align*}
 I&=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
 \frac{\sqrt\pi}{2}\frac{b}{a^{3/2}}\exp\left(\frac{b^2}{4a}+c\right)
 \\
 &=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-x_b\exp\left(-\frac{m\omega x_b^2}{2\hbar}-\tfrac{3}{2}i\omega T\right)
+x_b\exp\left(-\frac{m\omega x_b^2}{2\hbar}-\tfrac{3}{2}i\omega t\right)
 \\
-&=\psi_1(x_b,T)
+&=\psi_1(x_b,t)
 \end{align*}
 
-Hence solving the integral shows that
+Hence by solving the integral we have proven that
 \begin{equation*}
-\psi_1(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
+\psi_1(x_b,t)=\int_{-\infty}^\infty K(x_b,t,x_a,0)\psi_1(x_a,0)\,dx_a
 \end{equation*}
 
 \end{document}
