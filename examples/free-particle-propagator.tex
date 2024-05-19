@@ -4,16 +4,28 @@
 
 The propagator $K(x_b,t_b,x_a,t_a)$ is the amplitude for a particle to go from $x_a$
 at time $t_a$ to $x_b$ at time $t_b$.
+
+\bigskip
+Show that for a free particle
+\begin{equation*}
+K(x_b,t_b,x_a,t_a)=
+\left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^\frac{1}{2}
+\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\end{equation*}
+
+Start with the amplitude
 \begin{equation*}
 K(x_b,t_b,x_a,t_a)=\langle x_b|\exp\left(-\frac{i\hat H(t_b-t_a)}{\hbar}\right)|x_a\rangle
+\tag{1}
 \end{equation*}
 
-Let $\hat H$ be the free-particle Hamiltonian
+where $\hat H$ is the free particle Hamiltonian
 \begin{equation*}
 \hat H=\frac{\hat p^2}{2m}
+\tag{2}
 \end{equation*}
 
-Then
+Substitute (2) into (1) to obtain
 \begin{equation*}
 K(x_b,t_b,x_a,t_a)=\langle x_b|\exp\left(-\frac{i\hat p^2(t_b-t_a)}{2m\hbar}\right)|x_a\rangle
 \end{equation*}
@@ -64,24 +76,28 @@ Let
 a=\frac{i(t_b-t_a)}{2m\hbar},\quad b=\frac{i(x_b-x_a)}{\hbar}
 \end{equation*}
 
-Then by the integral
+so that
 \begin{equation*}
-\int_{-\infty}^\infty
-\exp\left(-ay^2+by\right)\,dy=\left(\frac{\pi}{a}\right)^\frac{1}{2}\exp\left(\frac{b^2}{4a}\right)
+K(x_b,t_b,x_a,t_a)=\frac{1}{2m\hbar}\int_{-\infty}^\infty
+\exp\left(-ap^2+bp\right)\,dp
 \end{equation*}
 
-we have
-\begin{equation*}
-K(x_b,t_b,x_a,t_a)=\frac{1}{2\pi\hbar}
+Solve the integral.
+\begin{align*}
+K(x_b,t_b,x_a,t_a)
+&=\frac{1}{2m\hbar}\left(\frac{\pi}{a}\right)^\frac{1}{2}\exp\left(\frac{b^2}{4a}\right)
+\\
+&=\frac{1}{2\pi\hbar}
 \left(\frac{2\pi m\hbar}{i(t_b-t_a)}\right)^\frac{1}{2}
 \exp\left(-\frac{m(x_b-x_a)^2}{2i\hbar(t_b-t_a)}\right)
-\end{equation*}
+\end{align*}
 
 Rewrite as
 \begin{equation*}
 K(x_b,t_b,x_a,t_a)=
 \left(\frac{m}{2\pi i\hbar(t_b-t_a)}\right)^\frac{1}{2}
 \exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_a)}\right)
+\tag{3}
 \end{equation*}
 
 \end{document}

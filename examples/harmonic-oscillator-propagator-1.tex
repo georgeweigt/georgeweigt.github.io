@@ -1,29 +1,29 @@
 \input{preamble}
 
-\section*{Harmonic oscillator propagator}
+\section*{Harmonic oscillator propagator 1}
 
-Given
-\begin{equation*}
-K(b,a)=\langle x_b|\exp\left(-\frac{iHt}{\hbar}\right)
-|x_a\rangle
-\tag{1}
-\end{equation*}
-
-where
-\begin{equation*}
-H=\frac{\hat p^2}{2m}+\frac{m\omega^2\hat x^2}{2}
-\end{equation*}
-
-show that
+Show that for a harmonic oscillator
 \begin{equation*}
 K(b,a)=\left(\frac{m\omega}{2\pi i\hbar\sin(\omega t)}\right)^\frac{1}{2}
 \exp\left(\frac{im\omega(x_b^2+x_a^2)\cot(\omega t)}{2\hbar}
 -\frac{im\omega x_bx_a}{\hbar\sin(\omega t)}\right)
 \end{equation*}
 
+Start with the amplitude
+\begin{equation*}
+K(b,a)=\langle x_b|\exp\left(-\frac{i\hat Ht}{\hbar}\right)
+|x_a\rangle
+\tag{1}
+\end{equation*}
+
+where $\hat H$ is the harmonic oscillator Hamiltonian
+\begin{equation*}
+\hat H=\frac{\hat p^2}{2m}+\frac{m\omega^2\hat x^2}{2}
+\end{equation*}
+
 This is van Kortryk's identity.
 \begin{equation*}
-\exp\left(-\frac{iHt}{\hbar}\right)=
+\exp\left(-\frac{i\hat Ht}{\hbar}\right)=
 \exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)
 \exp\left(-\frac{i\hat p^2\sin(\omega t)}{2m\hbar\omega}\right)
 \exp\left(-\frac{im\omega\hat x^2}{2\hbar}\tan\frac{\omega t}{2}\right)

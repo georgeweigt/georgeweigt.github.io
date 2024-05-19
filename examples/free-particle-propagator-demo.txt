@@ -1,7 +1,6 @@
-"Verify free-particle propagator"
+"Verify equation (3)"
 
 a = i (tb - ta) / (2 m hbar)
-
 b = i (xb - xa) / hbar
 
 check(1 / (2 pi hbar)^2 pi / a == m / (2 pi i hbar (tb - ta)))
