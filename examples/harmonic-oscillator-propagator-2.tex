@@ -17,7 +17,7 @@ K(x_b,t_b,x_a,t_a)
 =\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
 \exp\left[
 \frac{im\omega}{2\hbar\sin(\omega T)}
-\left((x_a^2+x_b^2)\cos(\omega T)-2x_ax_b\right)
+\left((x_b^2+x_a^2)\cos(\omega T)-2x_bx_a\right)
 \right]
 \end{equation*}
 
@@ -43,7 +43,7 @@ I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
 \int_{-\infty}^\infty
 \exp\left[
 \frac{im\omega}{2\hbar\sin(\omega T)}
-\left((x_a^2+x_b^2)\cos(\omega T)-2x_ax_b\right)
+\left((x_b^2+x_a^2)\cos(\omega T)-2x_bx_a\right)
 \right]
 x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)\,dx_a
 \end{multline*}
@@ -88,7 +88,7 @@ x_b\exp\left(-\frac{m\omega x_b^2}{2\hbar}-\tfrac{3}{2}i\omega T\right)
 &=\psi_1(x_b,T)
 \end{align*}
 
-Hence
+Hence solving the integral shows that
 \begin{equation*}
 \psi_1(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
 \end{equation*}
