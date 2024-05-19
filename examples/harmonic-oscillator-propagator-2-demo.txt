@@ -13,20 +13,20 @@ psi1
 
 -- propagator
 
-K = sqrt(m omega / (2 pi i hbar sin(omega T))) *
-    exp(i m omega / (2 hbar sin(omega T)) *
-    ((xb^2 + xa^2) cos(omega T) - 2 xb xa))
+K = sqrt(m omega / (2 pi i hbar sin(omega t))) *
+    exp(i m omega / (2 hbar sin(omega t)) *
+    ((xb^2 + xa^2) cos(omega t) - 2 xb xa))
 
 -- decomposition of K psi1
 
-A = -i m omega exp(i omega T) / (2 hbar sin(omega T))
+A = -i m omega exp(i omega t) / (2 hbar sin(omega t))
 
-B = -i m omega xb / (hbar sin(omega T))
+B = -i m omega xb / (hbar sin(omega t))
 
-C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
+C = i m omega xb^2 cos(omega t) / (2 hbar sin(omega t))
 
 D = sqrt(2) (m^3 omega^3 / (pi hbar^3))^(1/4) *
-    sqrt(m omega / (2 pi i hbar sin(omega T)))
+    sqrt(m omega / (2 pi i hbar sin(omega t)))
 
 -- check decomposition
 
@@ -39,6 +39,6 @@ I
 
 "Verify result"
 
-check(I == eval(psi(1), x, xb, t, T))
+check(I == eval(psi(1), x, xb))
 
 "ok"
