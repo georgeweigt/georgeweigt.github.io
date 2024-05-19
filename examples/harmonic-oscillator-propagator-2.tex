@@ -4,7 +4,7 @@
 
 \section*{Harmonic oscillator propagator 2}
 
-Consider the harmonic oscillator eigenstate
+Consider the harmonic oscillator wave function
 \begin{equation*}
 \psi_n(x,t)=\frac{1}{\sqrt{2^nn!}}\left(\frac{m\omega}{\pi\hbar}\right)^\frac{1}{4}
 H_n\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right)
@@ -17,7 +17,7 @@ K(x_b,t_b,x_a,t_a)
 =\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
 \exp\left[
 \frac{im\omega}{2\hbar\sin(\omega T)}
-\left(x_a^2\cos(\omega T)-2x_ax_b+x_b^2\cos(\omega T)\right)
+\left((x_a^2+x_b^2)\cos(\omega T)-2x_ax_b\right)
 \right]
 \end{equation*}
 
@@ -29,30 +29,33 @@ We should have
 \psi_n(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_n(x_a,0)\,dx_a
 \end{equation*}
 
-Try for $n=1$.
+Try for $n=1$. Let
 \begin{equation*}
-\psi_1(x_a,0)=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
+I=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
 \end{equation*}
 
-Hence
-\begin{equation*}
-\psi_1(x_b,T)
-=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
-\int_{-\infty}^\infty
-K(x_b,T,x_a,0)\,
-x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)
-\end{equation*}
-
-Substitute for $K$.
+Substitute for $K$ and $\psi_1$.
 \begin{multline*}
-\psi_1(x_b,T)
-=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
 \left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
 \\
 {}\times
-\int_{-\infty}^\infty\exp\left(
-\frac{im\omega x_a^2}{2\hbar\sin(\omega T)}
+\int_{-\infty}^\infty
+\exp\left[
+\frac{im\omega}{2\hbar\sin(\omega T)}
+\left((x_a^2+x_b^2)\cos(\omega T)-2x_ax_b\right)
+\right]
+x_a\exp\left(-\frac{m\omega x_a^2}{2\hbar}\right)\,dx_a
+\end{multline*}
+
+Simplify the integrand.
+\begin{multline*}
+I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+\left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
+\\
+{}\times
+\int_{-\infty}^\infty x_a\exp\left(
+\frac{im\omega x_a^2\exp(i\omega T)}{2\hbar\sin(\omega T)}
 -\frac{im\omega x_a}{\hbar\sin(\omega T)}
 +\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
 \right)\,dx_a
@@ -60,24 +63,22 @@ Substitute for $K$.
 
 Let
 \begin{equation*}
-a=-\frac{im\omega}{2\hbar\sin(\omega T)},\quad
+a=-\frac{im\omega\exp(i\omega T)}{2\hbar\sin(\omega T)},\quad
 b=-\frac{im\omega}{\hbar\sin(\omega T)},\quad
 c=\frac{im\omega x_b^2\cos(\omega T)}{2\hbar\sin(\omega T)}
 \end{equation*}
 
 so that
 \begin{equation*}
-\psi_1(x_b,T)
-=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+I=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
 \left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
 \int_{-\infty}^\infty
-\exp(-ax_a^2+bx_a+c)\,dx_a
+x_a\exp(-ax_a^2+bx_a+c)\,dx_a
 \end{equation*}
 
 Solve the integral.
 \begin{align*}
-\psi_1(x_b,T)
-&=\sqrt2\left(\frac{m^2\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
+I&=\sqrt2\left(\frac{m^3\omega^3}{\pi\hbar^3}\right)^\frac{1}{4}
 \left(\frac{m\omega}{2\pi i\hbar\sin(\omega T)}\right)^\frac{1}{2}
 \frac{\sqrt\pi}{2}\frac{b}{a^{3/2}}\exp\left(\frac{b^2}{4a}+c\right)
 \\
@@ -86,5 +87,10 @@ x_b\exp\left(-\frac{m\omega x_b^2}{2\hbar}-\tfrac{3}{2}i\omega T\right)
 \\
 &=\psi_1(x_b,T)
 \end{align*}
+
+Hence
+\begin{equation*}
+\psi_1(x_b,T)=\int_{-\infty}^\infty K(x_b,T,x_a,0)\psi_1(x_a,0)\,dx_a
+\end{equation*}
 
 \end{document}

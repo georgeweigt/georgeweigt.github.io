@@ -15,7 +15,7 @@ psi1
 
 K = sqrt(m omega / (2 pi i hbar sin(omega T))) *
     exp(i m omega / (2 hbar sin(omega T)) *
-    (xa^2 cos(omega T) - 2 xa xb + xb^2 cos(omega T)))
+    ((xa^2 + xb^2) cos(omega T) - 2 xa xb))
 
 -- decomposition of K psi1
 
@@ -25,8 +25,8 @@ B = -i m omega xb / (hbar sin(omega T))
 
 C = i m omega xb^2 cos(omega T) / (2 hbar sin(omega T))
 
-D = -m^(5/4) omega^(5/4) / ((-1)^(1/4) hbar^(5/4) pi^(3/4) *
-     sin(omega T)^(1/2))
+D = sqrt(2) (m^3 omega^3 / (pi hbar^3))^(1/4) *
+    sqrt(m omega / (2 pi i hbar sin(omega T)))
 
 -- check decomposition
 
@@ -34,7 +34,7 @@ check(K psi1 == D xa exp(-A xa^2 + B xa + C))
 
 "Path integral"
 
-I = 1/2 sqrt(pi) D B A^(-3/2) exp(simplify(B^2 / (4 A) + C))
+I = D sqrt(pi) / 2 B A^(-3/2) exp(simplify(B^2 / (4 A) + C))
 I
 
 "Verify result"
