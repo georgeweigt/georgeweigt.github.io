@@ -258,6 +258,7 @@ Misc. scripts<br>
 <a href="examples/dirac-delta-function-approximations.html">Dirac delta function approximations</a><br>
 <a href="examples/rojansky-page-24.html">V. Rojansky page 24</a><br>
 <a href="examples/draw-pdfs.html">Draw scattering pdfs and cdfs</a><br>
+<a href="examples/physical-constants.html">Physical constants</a><br>
 
 <br>
 
@@ -265,45 +266,5 @@ Additional resources<br>
 
 <a href="https://lindnerdrwg.github.io">LindnerDrWG.github.io</a><br>
 
-<br>
-
-<pre style="font-family:courier;font-size:12pt">
--- physical constants (c, e, h, and k are exact values)
-
-c = 299792458.0 meter / second                 -- speed of light in vacuum
-e = 1.602176634 10^(-19) coulomb               -- elementary charge
-epsilon0 = 8.8541878128 10^(-12) farad / meter -- vacuum electric permittivity
-h = 6.62607015 10^(-34) joule second           -- Planck constant
-hbar = h / float(2 pi)                         -- reduced Planck constant
-k = 1.380649 10^(-23) joule / kelvin           -- Boltzmann constant
-me = 9.1093837015 10^(-31) kilogram            -- electron mass
-mp = 1.67262192369 10^(-27) kilogram           -- proton mass
-mu = me mp / (me + mp)                         -- reduced electron mass
-
--- derived units
-
-coulomb = ampere second
-farad = coulomb / volt
-joule = kilogram meter^2 / second^2
-volt = joule / coulomb
-
--- base units (for printing)
-
-ampere = "ampere"
-kelvin = "kelvin"
-kilogram = "kilogram"
-meter = "meter"
-second = "second"
-
-electronvolt = e joule / coulomb -- convert electronvolt to joule
-</pre>
-
-<!--
-<script>
-n = Math.floor(4 * Math.random());
-s = "<img src='eigenmath" + n + ".jpg' width='300' height='300' alt='?'>";
-document.getElementById("stdout").innerHTML = s;
-</script>
--->
 </body>
 </html>
