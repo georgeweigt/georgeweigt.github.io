@@ -23,11 +23,11 @@ check(S == 1/2 m (vT xT - v0 x0))
 "ok"
 
 "Verify equation (6)"
-check(v0 == (-omega xa cos(omega T) + omega xb) / sin(omega T))
+check(v0 == omega (xb - xa cos(omega T)) / sin(omega T))
 "ok"
 
 "Verify equation (7)"
-check(vT == (omega xb cos(omega T) - omega xa) / sin(omega T))
+check(vT == omega (xb cos(omega T) - xa) / sin(omega T))
 "ok"
 
 "Verify equation (8)"

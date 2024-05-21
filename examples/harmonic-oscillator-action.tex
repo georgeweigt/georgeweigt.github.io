@@ -80,8 +80,10 @@ Differentiate $x(t)$ to obtain velocity $\dot x(t)$.
 
 The action is
 \begin{align*}
-S&=\frac{m}{2}\int_0^T (\dot{x}^2-\omega^2 x^2)\,dt
-\\[1ex]
+S&=\int_0^TL\,dt
+\\
+&=\frac{m}{2}\int_0^T (\dot{x}^2-\omega^2 x^2)\,dt
+\\
 &=\frac{m}{2}\left(
 \int_0^T\dot{x}^2\,dt
 -\int_0^T\omega^2x^2\,dt
@@ -99,10 +101,10 @@ The integral transforms as
 \begin{align*}
 \int_0^T \dot x^2\,dt
 &=\int_0^T uv\,dt
-\\[1ex]
+\\
 &=\left(u\int v\,dt\right)\bigg|_0^T
 -\int_0^T\dot u\left(\int v\,dt\right)\,dt
-\\[1ex]
+\\
 &=\dot x(T)x(T)-\dot x(0)x(0)-\int_0^T \ddot xx\,dt
 \end{align*}
 
@@ -123,26 +125,31 @@ S=\frac{m}{2}\bigl(\dot x(T)x(T)-\dot x(0)x(0)\bigr)
 
 From the boundary conditions (2)
 \begin{equation*}
-S=\frac{m}{2}\bigl(x_b\dot x(T)-x_a\dot x(0)\bigr)
+S=\frac{m}{2}\bigl(\dot x(T)x_b-\dot x(0)x_a\bigr)
 \end{equation*}
 
 From equation (3)
 \begin{equation*}
-\dot x(0)=-\frac{\omega x_a\cos(\omega T)}{\sin(\omega T)}+\frac{\omega x_b}{\sin(\omega T)}
+\dot x(0)=\frac{\omega\bigl(x_b-x_a\cos(\omega T)\bigr)}{\sin(\omega T)}
 \tag{6}
 \end{equation*}
 
 and
 \begin{equation*}
-\dot x(T)=\frac{\omega x_b\cos(\omega T)}{\sin(\omega T)}-\frac{\omega x_a}{\sin(\omega T)}
+\dot x(T)=\frac{\omega\bigl(x_b\cos(\omega T)-x_a\bigr)}{\sin(\omega T)}
 \tag{7}
 \end{equation*}
 
 Hence
-\begin{equation*}
-S=\frac{m\omega}{2\sin(\omega T)}
-\left(\left(x_b^2+x_a^2\right)\cos(\omega T)-2x_b x_a\right)
+\begin{align*}
+S&=\frac{m\omega}{2\sin(\omega T)}\Bigl[
+\bigl(x_b\cos(\omega T)-x_a\bigr)x_b
+-\bigl(x_b-x_a\cos(\omega T)\bigr)x_a
+\Bigr]
+\\
+&=\frac{m\omega}{2\sin(\omega T)}
+\left((x_b^2+x_a^2)\cos(\omega T)-2x_b x_a\right)
 \tag{8}
-\end{equation*}
+\end{align*}
 
 \end{document}
