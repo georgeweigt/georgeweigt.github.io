@@ -12,7 +12,7 @@ Show that
 S=\int_0^TL\,dt=\frac{m(x_b-x_a)^2}{2T},\quad T=t_b-t_a
 \end{equation*}
 
-The first step is to derive $x(t)$ and $\dot x(t)$ from $L$ and the Euler-Lagrange equation
+The first step is to derive $\dot x(t)$ from $L$ and the Euler-Lagrange equation
 \begin{equation*}
 \frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
 \end{equation*}
@@ -28,7 +28,8 @@ and by Euler-Lagrange
 m\ddot x=0
 \end{equation*}
 
-Acceleration is zero hence velocity is constant and equals distance divided by time.
+Acceleration is zero hence velocity is constant.
+Velocity equals distance divided by time.
 \begin{equation*}
 \dot x=\frac{x_b-x_a}{T}
 \end{equation*}
@@ -41,7 +42,7 @@ S&=\int_0^TL\,dt
 \\
 &=\frac{m}{2}\int_0^T\frac{(x_b-x_a)^2}{T^2}\,dt
 \\
-&=\frac{m(x_b-x_a)^2}{2T^2}[t]_0^T
+&=\left[\frac{m(x_b-x_a)^2}{2T^2}t\right]_{t=0}^{t=T}
 \\
 &=\frac{m(x_b-x_a)^2}{2T}
 \tag{1}
