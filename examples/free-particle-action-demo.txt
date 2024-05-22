@@ -1,0 +1,9 @@
+"Verify equation (1)"
+
+T = tb - ta
+v = (xb - xa) / T
+L = m v^2 / 2
+
+check(defint(L, t, 0, T) == m (xb - xa)^2 / (2 T))
+
+"ok"

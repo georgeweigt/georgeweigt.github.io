@@ -1,0 +1,50 @@
+\input{preamble}
+
+\section*{Free particle action}
+
+This is the Lagrangian for a free particle.
+\begin{equation*}
+L=\frac{m\dot x^2}{2}
+\end{equation*}
+
+Show that
+\begin{equation*}
+S=\int_0^TL\,dt=\frac{m(x_b-x_a)^2}{2T},\quad T=t_b-t_a
+\end{equation*}
+
+The first step is to derive $x(t)$ and $\dot x(t)$ from $L$ and the Euler-Lagrange equation
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
+\end{equation*}
+
+From $L$ we have
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=m\ddot x,\quad
+\frac{\partial L}{\partial x}=0
+\end{equation*}
+
+and by Euler-Lagrange
+\begin{equation*}
+m\ddot x=0
+\end{equation*}
+
+Acceleration is zero hence velocity is constant and equals distance divided by time.
+\begin{equation*}
+\dot x=\frac{x_b-x_a}{T}
+\end{equation*}
+
+The action is
+\begin{align*}
+S&=\int_0^TL\,dt
+\\
+&=\frac{m}{2}\int_0^T\dot x^2\,dt
+\\
+&=\frac{m}{2}\int_0^T\frac{(x_b-x_a)^2}{T^2}\,dt
+\\
+&=\frac{m(x_b-x_a)^2}{2T^2}[t]_0^T
+\\
+&=\frac{m(x_b-x_a)^2}{2T}
+\tag{1}
+\end{align*}
+
+\end{document}
