@@ -1,0 +1,83 @@
+\input{preamble}
+
+\section*{Constant force action}
+
+This is the Lagrangian for a particle in a region of constant force $F$.
+\begin{equation*}
+L=\frac{m\dot x^2}{2}+Fx
+\end{equation*}
+
+Show that
+\begin{equation*}
+S=\int_0^TL\,dt=\frac{m(x_b-x_a)^2}{2T}+\frac{FT(x_b+x_a)}{2}-\frac{F^2T^3}{24m},\quad T=t_b-t_a
+\end{equation*}
+
+The first step is to derive $x(t)$ and $\dot x(t)$ from $L$ and the Euler-Lagrange equation
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
+\end{equation*}
+
+From $L$ we have
+\begin{equation*}
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}=m\ddot x,\quad
+\frac{\partial L}{\partial x}=F
+\end{equation*}
+
+and by Euler-Lagrange
+\begin{equation*}
+\ddot x=\frac{F}{m}
+\end{equation*}
+
+Note that
+\begin{equation*}
+\frac{d^2}{dt^2}\left(\frac{Ft^2}{2m}+At+B\right)=\frac{F}{m}
+\end{equation*}
+
+Hence $x(t)$ is quadratic.
+\begin{equation*}
+x(t)=\frac{Ft^2}{2m}+At+B
+\end{equation*}
+
+These are the boundary conditions.
+\begin{equation*}
+x(0)=x_a,\quad x(T)=x_b
+\end{equation*}
+
+Solve for $B$.
+\begin{equation*}
+x(0)=B=x_a
+\end{equation*}
+
+Solve for $A$.
+\begin{equation*}
+x(T)-x(0)=\frac{FT^2}{2m}+AT=x_b-x_a
+\end{equation*}
+
+Hence
+\begin{equation*}
+A=\frac{x_b-x_a}{T}-\frac{FT}{2m}
+\end{equation*}
+
+Substitute $A$ and $B$ into $x(t)$.
+\begin{equation*}
+x(t)=\frac{Ft^2}{2m}+\frac{(x_b-x_a)t}{T}-\frac{FTt}{2m}+x_a
+\tag{1}
+\end{equation*}
+
+Take the time derivative of $x(t)$ to obtain velocity $\dot x(t)$.
+\begin{equation*}
+\dot x(t)=\frac{d}{dt}x(t)=\frac{Ft}{m}+\frac{x_b-x_a}{T}-\frac{FT}{2m}
+\tag{2}
+\end{equation*}
+
+The action is
+\begin{align*}
+S&=\int_0^TL\,dt
+\\
+&=\frac{m}{2}\int_0^T\dot x^2\,dt+F\int_0^Tx\,dt
+\\
+&=\frac{m(x_b-x_a)^2}{2T}+\frac{FT(x_b+x_a)}{2}-\frac{F^2T^3}{24m}
+\tag{3}
+\end{align*}
+
+\end{document}
