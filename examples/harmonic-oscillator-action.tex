@@ -10,12 +10,10 @@ L=\frac{m}{2}(\dot x^2-\omega^2x^2)
 Show that
 \begin{equation*}
 S=\int_0^TL\,dt=\frac{m\omega}{2\sin\omega T}
-\left((x_b^2+x_a^2)\cos\omega T-2x_bx_a\right)
+\left((x_b^2+x_a^2)\cos\omega T-2x_bx_a\right),\quad
+T=t_b-t_a
 \end{equation*}
 
-where $T=t_b-t_a$.
-
-\bigskip
 The first step is to derive $x(t)$ and $\dot x(t)$ from $L$ and the Euler-Lagrange equation
 \begin{equation*}
 \frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
@@ -91,21 +89,25 @@ S&=\int_0^TL\,dt
 \end{align*}
 
 Use integration by parts to solve the first integral.
-Let $u=v=\dot x$ so that
+Let
 \begin{equation*}
-\dot u=\ddot x,\quad
-\int v\,dt=x
+u=\dot x,\quad v'=\dot x
+\end{equation*}
+
+so that
+\begin{equation*}
+u'=\ddot x,\quad v=x
 \end{equation*}
 
 The integral transforms as
 \begin{align*}
 \int_0^T \dot x^2\,dt
-&=\int_0^T uv\,dt
+&=\int_0^T uv'\,dt
 \\
-&=\left(u\int v\,dt\right)\bigg|_0^T
--\int_0^T\dot u\left(\int v\,dt\right)\,dt
+&=[uv]_0^T
+-\int_0^Tu'v\,dt
 \\
-&=\dot x(T)x(T)-\dot x(0)x(0)-\int_0^T \ddot xx\,dt
+&=\dot x(T)x(T)-\dot x(0)x(0)-\int_0^T\ddot xx\,dt
 \end{align*}
 
 Hence
