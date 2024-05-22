@@ -3,7 +3,7 @@ A = (xb - xa cos(omega T)) / sin(omega T)
 B = xa
 x = A sin(omega t) + B cos(omega t)
 v = d(x,t)
-f = 1/2 m (v^2 - omega^2 x^2)
+f = m / 2 (v^2 - omega^2 x^2)
 S = defint(f, t, 0, T)
 
 "Verify equation (3)"
@@ -19,7 +19,7 @@ x0 = eval(x,t,0)
 v0 = eval(v,t,0)
 xT = eval(x,t,T)
 vT = eval(v,t,T)
-check(S == 1/2 m (vT xT - v0 x0))
+check(S == m / 2 (vT xT - v0 x0))
 "ok"
 
 "Verify equation (6)"
@@ -31,6 +31,6 @@ check(vT == omega (xb cos(omega T) - xa) / sin(omega T))
 "ok"
 
 "Verify equation (8)"
-check(S == 1/2 m omega ((xb^2 + xa^2) cos(omega T) - 2 xb xa) / sin(omega T))
+check(S == m / 2 omega ((xb^2 + xa^2) cos(omega T) - 2 xb xa) / sin(omega T))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

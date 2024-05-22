@@ -16,7 +16,7 @@ S=\int_0^TL\,dt=\frac{m\omega}{2\sin\omega T}
 where $T=t_b-t_a$.
 
 \bigskip
-This is the Euler-Lagrange equation.
+The first step is to derive $x(t)$ and $\dot x(t)$ from $L$ and the Euler-Lagrange equation
 \begin{equation*}
 \frac{d}{dt}\frac{\partial L}{\partial\dot x}=\frac{\partial L}{\partial x}
 \end{equation*}
@@ -62,12 +62,12 @@ A=\frac{x(T)-B\cos(\omega T)}{\sin(\omega T)}=
 \end{equation*}
 
 Hence the equation of motion is
-\begin{equation*}
-x(t)
-=A\sin(\omega t)+B\cos(\omega t)
-=\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\sin(\omega t)+x_a\cos(\omega t)
+\begin{align*}
+x(t)&=A\sin(\omega t)+B\cos(\omega t)
+\\
+&=\frac{x_b-x_a\cos(\omega T)}{\sin(\omega T)}\sin(\omega t)+x_a\cos(\omega t)
 \tag{3}
-\end{equation*}
+\end{align*}
 
 Differentiate $x(t)$ to obtain velocity $\dot x(t)$.
 \begin{equation*}
