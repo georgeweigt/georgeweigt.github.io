@@ -1,5 +1,7 @@
 \input{preamble}
 
+% Feynman and Hibbs problem 2-3
+
 \section*{Constant force action}
 
 This is the Lagrangian for a particle in a region of constant force $F$.
@@ -64,7 +66,7 @@ x(t)=\frac{Ft^2}{2m}+\frac{(x_b-x_a)t}{T}-\frac{FTt}{2m}+x_a
 \tag{1}
 \end{equation*}
 
-Take the time derivative of $x(t)$ to obtain velocity $\dot x(t)$.
+Take the time derivative of $x(t)$ to obtain $\dot x(t)$.
 \begin{equation*}
 \dot x(t)=\frac{d}{dt}x(t)=\frac{Ft}{m}+\frac{x_b-x_a}{T}-\frac{FT}{2m}
 \tag{2}
@@ -74,7 +76,7 @@ The action is
 \begin{align*}
 S&=\int_0^TL\,dt
 \\
-&=\frac{m}{2}\int_0^T\dot x^2\,dt+F\int_0^Tx\,dt
+&=\int_0^T\left(\frac{m\dot x^2}{2}+Fx\right)\,dt
 \\
 &=\frac{m(x_b-x_a)^2}{2T}+\frac{FT(x_b+x_a)}{2}-\frac{F^2T^3}{24m}
 \tag{3}

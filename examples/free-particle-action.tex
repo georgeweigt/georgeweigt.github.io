@@ -25,7 +25,7 @@ From $L$ we have
 
 and by Euler-Lagrange
 \begin{equation*}
-m\ddot x=0
+\ddot x=0
 \end{equation*}
 
 Acceleration is zero hence velocity is constant.
@@ -38,11 +38,9 @@ The action is
 \begin{align*}
 S&=\int_0^TL\,dt
 \\
-&=\frac{m}{2}\int_0^T\dot x^2\,dt
+&=\int_0^T\frac{m\dot x^2}{2}\,dt
 \\
-&=\frac{m}{2}\int_0^T\frac{(x_b-x_a)^2}{T^2}\,dt
-\\
-&=\left[\frac{m(x_b-x_a)^2}{2T^2}t\right]_{t=0}^{t=T}
+&=\frac{m(x_b-x_a)^2}{2T^2}\int_0^Tdt
 \\
 &=\frac{m(x_b-x_a)^2}{2T}
 \tag{1}
