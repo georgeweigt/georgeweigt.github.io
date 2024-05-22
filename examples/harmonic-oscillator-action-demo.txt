@@ -6,11 +6,11 @@ f = m / 2 (v^2 - omega^2 x^2)
 S = defint(f, t, 0, T)
 
 "Verify equation (3)"
-check(x == (xb - xa cos(omega T)) sin(omega t) / sin(omega T) + xa cos(omega t))
+check(x == (xb - xa cos(omega T)) / sin(omega T) sin(omega t) + xa cos(omega t))
 "ok"
 
 "Verify equation (4)"
-check(v == omega ((xb - xa cos(omega T)) cos(omega t) / sin(omega T) - xa sin(omega t)))
+check(v == (xb - xa cos(omega T)) / sin(omega T) omega cos(omega t) - xa omega sin(omega t))
 "ok"
 
 "Verify equation (5)"
