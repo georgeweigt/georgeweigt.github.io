@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="25" cols="80" style="font-family:courier;font-size:12pt">
+a = i m / (2 hbar epsilon)
+C = sqrt(2 pi i hbar epsilon / m)
+
+"Verify integral (1)"
+check(sqrt(-pi / a) == C)
+"ok"
+
+"Verify integral (3)"
+check(1/2 sqrt(-pi / a) (-1 / (2 a)) == C i hbar epsilon / (2 m))
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

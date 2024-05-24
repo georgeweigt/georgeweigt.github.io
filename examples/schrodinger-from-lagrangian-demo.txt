@@ -1,0 +1,10 @@
+a = i m / (2 hbar epsilon)
+C = sqrt(2 pi i hbar epsilon / m)
+
+"Verify integral (1)"
+check(sqrt(-pi / a) == C)
+"ok"
+
+"Verify integral (3)"
+check(1/2 sqrt(-pi / a) (-1 / (2 a)) == C i hbar epsilon / (2 m))
+"ok"

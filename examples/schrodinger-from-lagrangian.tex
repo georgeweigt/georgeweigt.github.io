@@ -1,0 +1,174 @@
+\input{preamble}
+
+\section*{Schrodinger from Lagrangian}
+
+Derive the Schrodinger equation
+\begin{equation*}
+i\hbar\frac{\partial\psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V\psi
+\end{equation*}
+
+from the Lagrangian
+\begin{equation*}
+L(\dot x,x,t)=\frac{m\dot x^2}{2}-V(x,t)
+\end{equation*}
+
+By the path integral for an action $S$ we have
+\begin{equation*}
+\psi(x_b,t_b)=C\int_{-\infty}^\infty\exp\left(\frac{i}{\hbar}S(b,a)\right)\psi(x_a,t_a)\,dx_a
+\end{equation*}
+
+For a small time interval $\epsilon=t_b-t_a$ we can use the approximation
+\begin{equation*}
+S=\epsilon L
+\end{equation*}
+
+to write
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left[\frac{i}{\hbar}\epsilon L\left(\frac{x_b-x_a}{\epsilon},\frac{x_b+x_a}{2},t\right)\right]
+\psi(x_a,t)\,dx_a
+\end{equation*}
+
+Substitute for $L$.
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left[\frac{im(x_b-x_a)^2}{2\hbar\epsilon}
+-\frac{i}{\hbar}\epsilon V\left(\frac{x_b+x_a}{2},t\right)\right]\psi(x_a,t)\,dx_a
+\end{equation*}
+
+Let
+\begin{equation*}
+x_a=x_b+\eta,\quad dx_a=d\eta
+\end{equation*}
+
+and write
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left[\frac{im\eta^2}{2\hbar\epsilon}
+-\frac{i}{\hbar}\epsilon V\left(x_b+\frac{\eta}{2},t\right)\right]\psi(x_b+\eta,t)\,d\eta
+\end{equation*}
+
+Because the exponential is highly oscillatory for large $\eta$,
+most of the contribution to the integral is from small $\eta$.
+Hence use the approximation $x_b+\tfrac{1}{2}\eta\approx x_b$ for small $\eta$.
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}
+-\frac{i}{\hbar}\epsilon V(x_b,t)\right)\psi(x_b+\eta,t)\,d\eta
+\end{equation*}
+
+Use the approximation $\exp(y)\approx1+y$ for the exponential of $V$.
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\left(1-\frac{i}{\hbar}\epsilon V(x_b,t)\right)
+\psi(x_b+\eta,t)\,d\eta
+\end{equation*}
+
+Expand $\psi$ as the power series
+\begin{equation*}
+\psi(x_b+\eta,t)\approx\psi(x_b,t)+\eta\frac{\partial\psi}{\partial x}
++\frac{\eta^2}{2}\frac{\partial^2\psi}{\partial x^2}
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\left(1-\frac{i}{\hbar}\epsilon V(x_b,t)\right)
+\left(\psi(x_b,t)+\eta\frac{\partial\psi}{\partial x}
++\frac{\eta^2}{2}\frac{\partial^2\psi}{\partial x^2}\right)
+\,d\eta
+\end{equation*}
+
+Expand products of sums as
+\begin{equation*}
+\psi(x_b,t+\epsilon)=C(I_1+I_2+I_3+I_4+I_5+I_6)
+\end{equation*}
+
+where
+\begin{align*}
+I_1&=\int_{-\infty}^\infty\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)\psi
+\,d\eta
+& &=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{1}{2}\psi
+\\
+I_2&=\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\eta\frac{\partial\psi}{\partial x}
+\,d\eta
+& &=0
+\\
+I_3&=\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\frac{\eta^2}{2}\frac{\partial^2\psi}{\partial x^2}
+\,d\eta
+& &=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{1}{2}
+\frac{i\hbar\epsilon}{2m}\frac{\partial^2\psi}{\partial x^2}
+\\
+I_4&=\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\left(-\frac{i}{\hbar}\epsilon V\right)\psi
+\,d\eta
+& &=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{1}{2}
+\left(-\frac{i}{\hbar}\epsilon V\right)\psi
+\\
+I_5&=\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\left(-\frac{i}{\hbar}\epsilon V\right)
+\eta\frac{\partial\psi}{\partial x}
+\,d\eta
+& &=0
+\\
+I_6&=\int_{-\infty}^\infty
+\exp\left(\frac{im\eta^2}{2\hbar\epsilon}\right)
+\left(-\frac{i}{\hbar}\epsilon V\right)
+\frac{\eta^2}{2}\frac{\partial^2\psi}{\partial x^2}
+\,d\eta
+& &=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{1}{2}
+\frac{i\hbar\epsilon}{2m}\left(-\frac{i}{\hbar}\epsilon V\right)
+\frac{\partial^2\psi}{\partial x^2}
+\end{align*}
+
+Integrals $I_1$ and $I_4$ are solved by the identity
+\begin{equation*}
+\int_{-\infty}^\infty\exp(ay^2)\,dy=\left(-\frac{\pi}{a}\right)^\frac{1}{2}
+\end{equation*}
+
+Integrals $I_2$ and $I_5$ vanish by the identity
+\begin{equation*}
+\int_{-\infty}^\infty y\exp(ay^2)\,dy=0
+\end{equation*}
+
+Integrals $I_3$ and $I_6$ are solved by the identity
+\begin{equation*}
+\int_{-\infty}^\infty y^2\exp(ay^2)\,dy=\left(-\frac{\pi}{a}\right)^\frac{1}{2}\left(-\frac{1}{2a}\right)
+\end{equation*}
+
+Let
+\begin{equation*}
+C=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{-\frac{1}{2}}
+\end{equation*}
+
+and discard $I_6$ as proportional to $\epsilon^2$ to obtain
+\begin{equation*}
+\psi(x_b,t+\epsilon)=\psi(x_b,t)
++\frac{i\hbar\epsilon}{2m}\frac{\partial^2}{\partial x^2}\psi(x_b,t)
+-\frac{i}{\hbar}\epsilon V\psi(x_b,t)
+\end{equation*}
+
+Expand $\psi$ on the left as a power series.
+\begin{equation*}
+\psi(x_b,t)+\epsilon\frac{\partial}{\partial t}\psi(x_b,t)=\psi(x_b,t)
++\frac{i\hbar\epsilon}{2m}\frac{\partial^2}{\partial x^2}\psi(x_b,t)
+-\frac{i}{\hbar}\epsilon V\psi(x_b,t)
+\end{equation*}
+
+Cancel $\psi$ and multiply both sides by $i\hbar/\epsilon$.
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x_b,t)
+=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x_b,t)+V\psi(x_b,t)
+\end{equation*}
+
+
+
+\end{document}
