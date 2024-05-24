@@ -72,7 +72,7 @@ Use the approximation $\exp(y)\approx1+y$ for the exponential of $V$.
 \psi(x+\eta,t)\,d\eta
 \end{equation*}
 
-Expand $\psi$ as the power series
+Expand $\psi(x+\eta,t)$ as the power series
 \begin{equation*}
 \psi(x+\eta,t)\approx\psi(x,t)+\eta\frac{\partial\psi}{\partial x}
 +\frac{\eta^2}{2}\frac{\partial^2\psi}{\partial x^2}
@@ -147,7 +147,12 @@ Expand the product.
 +\frac{\epsilon^2}{2m}V\frac{\partial^2\psi}{\partial x^2}
 \end{equation*}
 
-Expand $\psi$ on the left as a power series.
+Expand $\psi(x,t+\epsilon)$ as the power series
+\begin{equation*}
+\psi(x,t+\epsilon)\approx\psi+\epsilon\frac{\partial\psi}{\partial t}
+\end{equation*}
+
+to obtain
 \begin{equation*}
 \psi+\epsilon\frac{\partial\psi}{\partial t}
 =\psi
