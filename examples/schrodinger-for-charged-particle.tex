@@ -1,0 +1,208 @@
+\input{preamble}
+
+\section*{Schrodinger for charged particle}
+
+Derive the Schrodinger equation for a charged particle
+\begin{equation*}
+i\hbar\frac{\partial\psi}{\partial t}
+=\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{q}{c}\mathbf A\right)^2\psi+q\phi\psi
+\end{equation*}
+
+from the Lagrangian
+\begin{equation*}
+L(\mathbf x,\dot{\mathbf x},t)=\frac{m\dot{\mathbf x}^2}{2}
++\frac{q}{c}\dot{\mathbf x}\cdot\mathbf A(\mathbf x,t)-q\phi(\mathbf x,t)
+\end{equation*}
+
+Start with the path integral for an action $S$.
+\begin{equation*}
+\psi(\mathbf x_b,t_b)
+=C\int_{\mathbb R^3}\exp\left(\frac{i}{\hbar}S(b,a)\right)
+\psi(\mathbf x_a,t_a)\,d\mathbf x_a,\quad
+\int_{\mathbb R^3}\equiv\int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty\int\limits_{-\infty}^\infty
+\end{equation*}
+
+For a small time interval $\epsilon=t_b-t_a$ we can use the approximation
+\begin{equation*}
+S=\epsilon L
+\end{equation*}
+
+and write the path integral as
+\begin{equation*}
+\psi(\mathbf x_b,t+\epsilon)=C\int_{\mathbb R^3}
+\exp\left[\frac{i}{\hbar}
+\epsilon L\left(\frac{\mathbf x_b-\mathbf x_a}{\epsilon},\frac{\mathbf x_b+\mathbf x_a}{2},t\right)
+\right]
+\psi(\mathbf x_a,t)\,d\mathbf x_a
+\end{equation*}
+
+Substitute for $L$.
+\begin{multline*}
+\psi(\mathbf x_b,t+\epsilon)=C\int_{\mathbb R^3}
+\exp\biggl[\frac{im(\mathbf x_b-\mathbf x_a)^2}{2\hbar\epsilon}
++\frac{iq}{\hbar c}(\mathbf x_b-\mathbf x_a)
+\cdot\mathbf A\left(\frac{\mathbf x_b+\mathbf x_a}{2},t\right)
+\\
+{}-\frac{iq\epsilon}{\hbar}\phi\left(\frac{\mathbf x_b+\mathbf x_a}{2},t\right)
+\biggr]
+\psi(\mathbf x_a,t)
+\,d\mathbf x_a
+\end{multline*}
+
+Let
+\begin{equation*}
+\mathbf x_a=\mathbf x_b+\boldsymbol\eta,\quad
+d\mathbf x_a=d\boldsymbol\eta
+\end{equation*}
+
+and write
+\begin{equation*}
+\psi(\mathbf x_b,t+\epsilon)
+=C\int_{\mathbb R^3}
+\exp\left[\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}
+\boldsymbol\eta\cdot\mathbf A\left(\mathbf x_b+\frac{\boldsymbol\eta}{2},t\right)
+-\frac{iq\epsilon}{\hbar}\phi\left(\mathbf x_b+\frac{\boldsymbol\eta}{2},t\right)
+\right]
+\psi(\mathbf x_b+\boldsymbol\eta,t)
+\,d\boldsymbol\eta
+\end{equation*}
+
+Substitute $\mathbf x$ for $\mathbf x_b$.
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=C\int_{\mathbb R^3}
+\exp\left[\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}
+\boldsymbol\eta\cdot\mathbf A\left(\mathbf x+\frac{\boldsymbol\eta}{2},t\right)
+-\frac{iq\epsilon}{\hbar}\phi\left(\mathbf x+\frac{\boldsymbol\eta}{2},t\right)
+\right]
+\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\boldsymbol\eta
+\end{equation*}
+
+Because the exponential is highly oscillatory for large $|\boldsymbol\eta|$,
+most of the contribution to the integral is from small $|\boldsymbol\eta|$.
+Hence use the approximation $\mathbf x+\tfrac{1}{2}\boldsymbol\eta\approx\mathbf x$
+for small $|\boldsymbol\eta|$.
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=C\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}
+\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)
+-\frac{iq\epsilon}{\hbar}\phi\left(\mathbf x,t\right)
+\right)
+\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\boldsymbol\eta
+\end{equation*}
+
+Use the approximation $\exp(y)\approx1+y$ for the exponential of $\phi$.
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}
+\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)
+\right)
+\psi(\mathbf x+\boldsymbol\eta,t)
+\,d\boldsymbol\eta
+\end{equation*}
+
+Expand $\psi(\mathbf x+\boldsymbol\eta,t)$ as the power series
+\begin{equation*}
+\psi(\mathbf x+\boldsymbol\eta,t)\approx
+\psi(\mathbf x,t)
++\boldsymbol\eta\cdot\nabla\psi
++\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\end{equation*}
+
+to obtain
+\begin{multline*}
+\psi(\mathbf x,t+\epsilon)
+=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\\
+{}\times
+\left(
+\psi(\mathbf x,t)
++\boldsymbol\eta\cdot\nabla\psi
++\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\right)
+\,d\boldsymbol\eta
+\end{multline*}
+
+Rewrite as
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\sum_kI_k
+\end{equation*}
+
+where
+\begin{align*}
+I_1&=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\psi\,d\boldsymbol\eta
+\\
+I_2&=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\boldsymbol\eta
+\\
+I_3&=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\,d\boldsymbol\eta
+\end{align*}
+
+The solutions are
+\begin{align*}
+I_1&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\exp\left(-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)\psi
+\\
+I_2&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\exp\left(-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)
+\frac{q\epsilon}{mc}
+\mathbf A\cdot\nabla\psi
+\\
+I_3&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\exp\left(-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)
+\left(
+\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{2mc}\mathbf A\cdot\nabla\psi+O(\epsilon^2)
+\right)
+\end{align*}
+
+Use the approximation $\exp(y)\approx1+y$ to write the integrals this way.
+\begin{align*}
+I_1&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(1-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)\psi
+\\
+I_2&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(1-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)
+\frac{q\epsilon}{mc}
+\mathbf A\cdot\nabla\psi
+\\
+I_3&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(1-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)
+\left(
+\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{2mc}\mathbf A\cdot\nabla\psi+O(\epsilon^2)
+\right)
+\end{align*}
+
+Discarding terms of order $\epsilon^2$ we have
+\begin{equation*}
+\sum_kI_k=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(\psi-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{2mc}\mathbf A\cdot\nabla\psi
+\right)
+\end{equation*}
+
+\end{document}
