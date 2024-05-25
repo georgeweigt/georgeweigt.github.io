@@ -341,19 +341,19 @@ I_2&=\int_{\mathbb R^3}
 &=\int_{\mathbb R^3}
 \exp\left(a\eta_x^2+b\eta_xA_x\right)
 \exp\left(a\eta_y^2+b\eta_yA_y\right)
-\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_xA_x\frac{\partial\psi}{\partial x}
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_x\frac{\partial\psi}{\partial x}
 \,d\eta_x\,d\eta_y\,d\eta_z
 \\
 &\quad{}+\int_{\mathbb R^3}
 \exp\left(a\eta_x^2+b\eta_xA_x\right)
 \exp\left(a\eta_y^2+b\eta_yA_y\right)
-\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_yA_y\frac{\partial\psi}{\partial y}
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_y\frac{\partial\psi}{\partial y}
 \,d\eta_x\,d\eta_y\,d\eta_z
 \\
 &\quad\quad{}+\int_{\mathbb R^3}
 \exp\left(a\eta_x^2+b\eta_xA_x\right)
 \exp\left(a\eta_y^2+b\eta_yA_y\right)
-\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_zA_z\frac{\partial\psi}{\partial z}
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_z\frac{\partial\psi}{\partial z}
 \,d\eta_x\,d\eta_y\,d\eta_z
 \end{align*}
 
@@ -363,18 +363,39 @@ I2 = G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
      G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z)
 \end{verbatim}}
 
-\begin{equation*}
-I_3=\int_{\mathbb R^3}
+\begin{align*}
+I_3&=\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
 -\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
 \tfrac{1}{2}\boldsymbol\eta^2\nabla^2\psi
 \,d\boldsymbol\eta
-\end{equation*}
+\\
+&=\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)
+\tfrac{1}{2}\eta_x^2\frac{\partial^2\psi}{\partial x^2}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\\
+&\quad{}+\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)
+\tfrac{1}{2}\eta_y^2\frac{\partial^2\psi}{\partial y^2}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\\
+&\quad\quad{}+\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)
+\tfrac{1}{2}\eta_z^2\frac{\partial^2\psi}{\partial z^2}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\end{align*}
 
 {\footnotesize\begin{verbatim}
-I3 = 1/2 G2(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x,x) +
-     1/2 G0(a, b Ax) G2(a, b Ay) G0(a, b Az) d(psi(),y,y) +
-     1/2 G0(a, b Ax) G0(a, b Ay) G2(a, b Az) d(psi(),z,z)
+I3 = G2(a, b Ax) G0(a, b Ay) G0(a, b Az) 1/2 d(psi(),x,x) +
+     G0(a, b Ax) G2(a, b Ay) G0(a, b Az) 1/2 d(psi(),y,y) +
+     G0(a, b Ax) G0(a, b Ay) G2(a, b Az) 1/2 d(psi(),z,z)
 
 -- discard terms of order epsilon^(7/2)
 
