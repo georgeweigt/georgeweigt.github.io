@@ -1,0 +1,53 @@
+C = (2 pi i hbar epsilon / m)^(3/2)
+A = (Ax,Ay,Az)
+Y = exp(-i q^2 epsilon / (2 hbar m c^2) dot(A,A))
+
+-- gaussian integrals
+
+G0(a,b) = sqrt(-pi / a) exp(-b^2 / (4 a))
+G1(a,b) = sqrt(-pi / a) (-b / (2 a)) exp(-b^2 / (4 a))
+G2(a,b) = sqrt(-pi / a) (-1 / (2 a)) (1 - b^2 / (2 a)) exp(-b^2 / (4 a))
+
+"Verify integral (1)"
+
+a = i m / (2 hbar epsilon)
+b = -i q / (hbar c)
+I1 = G0(a, b Ax) G0(a, b Ay) G0(a, b Az)
+
+check(I1 == C Y)
+
+"ok"
+
+"Verify integral (2)"
+
+I2 = G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
+     G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
+     G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z)
+
+check(I2 == C Y q epsilon / (m c) dot(A,grad(psi())))
+
+"ok"
+
+"Verify integral (3)"
+
+I3 = 1/2 G2(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x,x) +
+     1/2 G0(a, b Ax) G2(a, b Ay) G0(a, b Az) d(psi(),y,y) +
+     1/2 G0(a, b Ax) G0(a, b Ay) G2(a, b Az) d(psi(),z,z) +
+
+     1/2 G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
+     1/2 G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
+     1/2 G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z) +
+
+     G1(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),x,y) +
+     G1(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),x,z) +
+     G0(a, b Ax) G1(a, b Ay) G1(a, b Az) d(psi(),y,z)
+
+T1 = C Y i hbar epsilon / (2 m) div(grad(psi()))
+T2 = C Y q epsilon / (2 m c) dot(A,grad(psi()))
+
+-- check that remaining terms are order epsilon^(7/2)
+
+T3 = I3 - T1 - T2
+check(eval(T3,epsilon^(7/2),0) == 0)
+
+"ok"

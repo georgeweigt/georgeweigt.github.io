@@ -3,10 +3,16 @@
 \section*{Schrodinger for charged particle}
 
 Derive the Schrodinger equation for a charged particle
-\begin{equation*}
+\begin{align*}
 i\hbar\frac{\partial\psi}{\partial t}
-=\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{q}{c}\mathbf A\right)^2\psi+q\phi\psi
-\end{equation*}
+&=\frac{1}{2m}\left(\frac{\hbar}{i}\nabla-\frac{q}{c}\mathbf A\right)^2\psi+q\phi\psi
+\\
+&=-\frac{\hbar^2}{2m}\nabla^2\psi
++\frac{i\hbar q}{2mc}\nabla\cdot\mathbf A\psi
++\frac{i\hbar q}{2mc}\mathbf A\cdot\nabla\psi
++\frac{q^2}{2mc^2}\mathbf A^2\psi
++q\phi\psi
+\end{align*}
 
 from the Lagrangian
 \begin{equation*}
@@ -100,19 +106,20 @@ for small $|\boldsymbol\eta|$.
 Use the approximation $\exp(y)\approx1+y$ for the exponential of $\phi$.
 \begin{equation*}
 \psi(\mathbf x,t+\epsilon)
-=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\int_{\mathbb R^3}
+=C\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
 -\frac{iq}{\hbar c}
-\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)
+\boldsymbol\eta\cdot\mathbf A
 \right)
 \psi(\mathbf x+\boldsymbol\eta,t)
 \,d\boldsymbol\eta
+\times\left(1-\frac{iq\epsilon}{\hbar}\phi\right)
 \end{equation*}
 
 Expand $\psi(\mathbf x+\boldsymbol\eta,t)$ as the power series
 \begin{equation*}
 \psi(\mathbf x+\boldsymbol\eta,t)\approx
-\psi(\mathbf x,t)
+\psi
 +\boldsymbol\eta\cdot\nabla\psi
 +\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \end{equation*}
@@ -120,41 +127,42 @@ Expand $\psi(\mathbf x+\boldsymbol\eta,t)$ as the power series
 to obtain
 \begin{multline*}
 \psi(\mathbf x,t+\epsilon)
-=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\int_{\mathbb R^3}
+=C\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
--\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
-\\
-{}\times
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)
 \left(
-\psi(\mathbf x,t)
+\psi
 +\boldsymbol\eta\cdot\nabla\psi
 +\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \right)
 \,d\boldsymbol\eta
+\\
+{}\times\left(1-\frac{iq\epsilon}{\hbar}\phi\right)
 \end{multline*}
 
 Rewrite as
 \begin{equation*}
 \psi(\mathbf x,t+\epsilon)
-=C\left(1-\frac{iq\epsilon}{\hbar}\phi(\mathbf x,t)\right)\sum_kI_k
+=C(I_1+I_2+I_3)\left(1-\frac{iq\epsilon}{\hbar}\phi\right)
+\tag{1}
 \end{equation*}
 
 where
 \begin{align*}
 I_1&=\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
--\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)
 \psi\,d\boldsymbol\eta
 \\
 I_2&=\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
--\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)
 \boldsymbol\eta\cdot\nabla\psi
 \,d\boldsymbol\eta
 \\
 I_3&=\int_{\mathbb R^3}
 \exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
--\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A\right)
 \frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
 \,d\boldsymbol\eta
 \end{align*}
@@ -197,12 +205,227 @@ I_3&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 
 Discarding terms of order $\epsilon^2$ we have
 \begin{equation*}
-\sum_kI_k=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+I_1+I_2+I_3=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 \left(\psi-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
 +\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
 +\frac{i\hbar\epsilon}{2m}\nabla^2\psi
 +\frac{q\epsilon}{2mc}\mathbf A\cdot\nabla\psi
 \right)
 \end{equation*}
+
+Rearrange terms.
+\begin{equation*}
+I_1+I_2+I_3=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(
+\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\mathbf A\cdot\nabla\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+\right)
+\end{equation*}
+
+Note that
+\begin{equation*}
+\nabla\cdot\mathbf A\psi=(\nabla\cdot\mathbf A)\psi+\mathbf A\cdot\nabla\psi
+\end{equation*}
+
+Hence taking $\nabla\cdot\mathbf A=0$ we can write
+\begin{equation*}
+I_1+I_2+I_3=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
+\left(
+\psi+
+\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+\right)
+\end{equation*}
+
+Substitute
+\begin{equation*}
+C=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^{-\frac{3}{2}}
+\end{equation*}
+
+and the solved integrals into equation (1) to obtain
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=\left(\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+\right)
+\left(1-\frac{iq\epsilon}{\hbar}\phi\right)
+\end{equation*}
+
+Discard terms of order $\epsilon^2$.
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)
+=\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+-\frac{iq\epsilon}{\hbar}\phi\psi
+\end{equation*}
+
+Expand $\psi(\mathbf x,t+\epsilon)$ as the power series
+\begin{equation*}
+\psi(\mathbf x,t+\epsilon)\approx\psi+\epsilon\frac{\partial\psi}{\partial t}
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\psi+\epsilon\frac{\partial\psi}{\partial t}
+=\psi
++\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+-\frac{iq\epsilon}{\hbar}\phi\psi
+\end{equation*}
+
+Cancel leading $\psi$.
+\begin{equation*}
+\epsilon\frac{\partial\psi}{\partial t}
+=\frac{i\hbar\epsilon}{2m}\nabla^2\psi
++\frac{q\epsilon}{mc}\mathbf A\cdot\nabla\psi
++\frac{q\epsilon}{2mc}\nabla\cdot\mathbf A\psi
+-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\psi
+-\frac{iq\epsilon}{\hbar}\phi\psi
+\end{equation*}
+
+Multiply both sides by $i\hbar/\epsilon$.
+\begin{equation*}
+i\hbar\frac{\partial\psi}{\partial t}
+=-\frac{\hbar^2}{2m}\nabla^2\psi
++\frac{i\hbar q}{mc}\mathbf A\cdot\nabla\psi
++\frac{i\hbar q}{2mc}\nabla\cdot\mathbf A\psi
++\frac{q^2}{2mc^2}\mathbf A^2\psi
++q\phi\psi
+\end{equation*}
+
+\subsubsection*{Eigenmath code}
+
+Gaussian integrals where $ay^2$ is either negative or imaginary.
+\begin{align*}
+&\int_{-\infty}^\infty\exp(ay^2+by)\,dy
+=\left(-\frac{\pi}{a}\right)^\frac{1}{2}
+\exp\left(-\frac{b^2}{4a}\right)
+\\
+&\int_{-\infty}^\infty y\exp(ay^2+by)\,dy
+=\left(-\frac{\pi}{a}\right)^\frac{1}{2}
+\left(-\frac{b}{2a}\right)
+\exp\left(-\frac{b^2}{4a}\right)
+\\
+&\int_{-\infty}^\infty y^2\exp(ay^2+by)\,dy
+=\left(-\frac{\pi}{a}\right)^\frac{1}{2}
+\left(-\frac{1}{2a}\right)
+\left(1-\frac{b^2}{2a}\right)
+\exp\left(-\frac{b^2}{4a}\right)
+\end{align*}
+
+{\footnotesize\begin{verbatim}
+G0(a,b) = sqrt(-pi / a) exp(-b^2 / (4 a))
+G1(a,b) = sqrt(-pi / a) (-b / (2 a)) exp(-b^2 / (4 a))
+G2(a,b) = sqrt(-pi / a) (-1 / (2 a)) (1 - b^2 / (2 a)) exp(-b^2 / (4 a))
+\end{verbatim}}
+
+\begin{equation*}
+a=\frac{im}{2\hbar\epsilon},\quad
+b=-\frac{iq}{\hbar c}
+\end{equation*}
+
+\begin{align*}
+I_1&=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\psi\,d\boldsymbol\eta
+\\
+&=\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)
+\psi\,d\eta_x\,d\eta_y\,d\eta_z
+\end{align*}
+
+{\footnotesize\begin{verbatim}
+a = i m / (2 hbar epsilon)
+b = i q / (hbar c)
+I1 = G0(a, b Ax) G0(a, b Ay) G0(a, b Az) psi
+\end{verbatim}}
+
+\begin{align*}
+I_2&=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\boldsymbol\eta\cdot\nabla\psi
+\,d\boldsymbol\eta
+\\
+&=\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_xA_x\frac{\partial\psi}{\partial x}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\\
+&\quad{}+\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_yA_y\frac{\partial\psi}{\partial y}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\\
+&\quad\quad{}+\int_{\mathbb R^3}
+\exp\left(a\eta_x^2+b\eta_xA_x\right)
+\exp\left(a\eta_y^2+b\eta_yA_y\right)
+\exp\left(a\eta_z^2+b\eta_zA_z\right)\eta_zA_z\frac{\partial\psi}{\partial z}
+\,d\eta_x\,d\eta_y\,d\eta_z
+\end{align*}
+
+{\footnotesize\begin{verbatim}
+I2 = G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
+     G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
+     G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z)
+\end{verbatim}}
+
+\begin{equation*}
+I_3=\int_{\mathbb R^3}
+\exp\left(\frac{im\boldsymbol\eta^2}{2\hbar\epsilon}
+-\frac{iq}{\hbar c}\boldsymbol\eta\cdot\mathbf A(\mathbf x,t)\right)
+\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+\,d\boldsymbol\eta
+\end{equation*}
+
+\begin{multline*}
+\frac{1}{2}\boldsymbol\eta\cdot\nabla(\boldsymbol\eta\cdot\nabla\psi)
+=\frac{1}{2}\left(
+\eta_x^2\frac{\partial^2\psi}{\partial x^2}
++\eta_y^2\frac{\partial^2\psi}{\partial y^2}
++\eta_z^2\frac{\partial^2\psi}{\partial z^2}
+\right)
++\frac{1}{2}\left(
+\eta_x\frac{\partial\psi}{\partial x}
++\eta_y\frac{\partial\psi}{\partial y}
++\eta_z\frac{\partial\psi}{\partial z}
+\right)
+\\
++\eta_x\eta_y\frac{\partial^2\psi}{\partial x\partial y}
++\eta_x\eta_z\frac{\partial^2\psi}{\partial x\partial z}
++\eta_y\eta_z\frac{\partial^2\psi}{\partial y\partial z}
+\end{multline*}
+
+{\footnotesize\begin{verbatim}
+I3 = 1/2 G2(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x,x) +
+     1/2 G0(a, b Ax) G2(a, b Ay) G0(a, b Az) d(psi(),y,y) +
+     1/2 G0(a, b Ax) G0(a, b Ay) G2(a, b Az) d(psi(),z,z) +
+
+     1/2 G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
+     1/2 G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
+     1/2 G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z) +
+
+     G1(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),x,y) +
+     G1(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),x,z) +
+     G0(a, b Ax) G1(a, b Ay) G1(a, b Az) d(psi(),y,z)
+\end{verbatim}
 
 \end{document}
