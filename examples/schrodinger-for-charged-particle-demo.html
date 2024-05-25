@@ -33,23 +33,13 @@ check(I2 == C Y q epsilon / (m c) dot(A,grad(psi())))
 
 I3 = 1/2 G2(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x,x) +
      1/2 G0(a, b Ax) G2(a, b Ay) G0(a, b Az) d(psi(),y,y) +
-     1/2 G0(a, b Ax) G0(a, b Ay) G2(a, b Az) d(psi(),z,z) +
+     1/2 G0(a, b Ax) G0(a, b Ay) G2(a, b Az) d(psi(),z,z)
 
-     1/2 G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
-     1/2 G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
-     1/2 G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z) +
+I3 = eval(I3,epsilon^(7/2),0)
 
-     G1(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),x,y) +
-     G1(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),x,z) +
-     G0(a, b Ax) G1(a, b Ay) G1(a, b Az) d(psi(),y,z)
+-- discard terms of order epsilon^(7/2)
 
-T1 = C Y i hbar epsilon / (2 m) div(grad(psi()))
-T2 = C Y q epsilon / (2 m c) dot(A,grad(psi()))
-
--- check that remaining terms are order epsilon^(7/2)
-
-T3 = I3 - T1 - T2
-check(eval(T3,epsilon^(7/2),0) == 0)
+check(I3 == C Y i hbar epsilon / (2 m) div(grad(psi())))
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
