@@ -34,9 +34,9 @@ I3 = G2(a, b Ax) G0(a, b Ay) G0(a, b Az) 1/2 d(psi(),x,x) +
      G0(a, b Ax) G2(a, b Ay) G0(a, b Az) 1/2 d(psi(),y,y) +
      G0(a, b Ax) G0(a, b Ay) G2(a, b Az) 1/2 d(psi(),z,z)
 
-I3 = eval(I3,epsilon^(7/2),0)
+-- discard terms of order C epsilon^2
 
--- discard terms of order epsilon^(7/2)
+I3 = eval(I3,epsilon^(7/2),0)
 
 check(I3 == C Y i hbar epsilon / (2 m) div(grad(psi())))
 
