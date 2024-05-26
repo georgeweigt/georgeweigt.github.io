@@ -1,5 +1,7 @@
 \input{preamble}
 
+% Feynman and Hibbs problem 4-2
+
 \section*{Schrodinger for charged particle}
 
 This is the Schrodinger equation for a charged particle.
@@ -196,7 +198,7 @@ I_3&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 \frac{i\hbar\epsilon}{2m}\nabla^2\psi
 \end{align*}
 
-Use the approximation $\exp(y)\approx1+y$ to write the integrals this way.
+Use the approximation $\exp(y)\approx1+y$ to write the solutions this way.
 \begin{align*}
 I_1&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 \left(1-\frac{iq^2\epsilon}{2\hbar mc^2}\mathbf A^2\right)\psi
@@ -211,7 +213,7 @@ I_3&=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 \frac{i\hbar\epsilon}{2m}\nabla^2\psi
 \end{align*}
 
-Discarding terms of order $\epsilon^2$ we have
+Discard terms of order $\epsilon^2$.
 \begin{equation*}
 I_1+I_2+I_3=\left(\frac{2\pi i\hbar\epsilon}{m}\right)^\frac{3}{2}
 \left(
@@ -283,7 +285,7 @@ i\hbar\frac{\partial\psi}{\partial t}
 
 \subsubsection*{Eigenmath code}
 
-Gaussian integrals for $ay^2$ either negative or imaginary.
+Integrals for $ay^2$ either negative or imaginary.
 \begin{align*}
 &\int_{-\infty}^\infty\exp(ay^2+by)\,dy
 =\left(-\frac{\pi}{a}\right)^\frac{1}{2}
