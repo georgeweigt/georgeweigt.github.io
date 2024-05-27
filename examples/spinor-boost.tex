@@ -1,0 +1,40 @@
+\input{preamble}
+
+% http://kirkmcd.princeton.edu/examples/dirac.pdf
+
+% Lancaster and Blundell p. 333 "In fact, the Dirac equation is correctly interpreted as providing the equation of motion for fermionic quantum fields."
+
+\section*{Spinor boost}
+
+This spinor is for an electron at rest with spin up along the $z$ axis.
+\begin{equation*}
+u=\sqrt{2m}\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+\end{equation*}
+
+This matrix boosts a spinor in the $z$ direction where $E^2=p^2+m^2$.
+\begin{equation*}
+\Lambda=\frac{1}{\sqrt{2m(E+m)}}
+\begin{pmatrix}
+E+m & 0 & p & 0\\
+0 & E+m & 0 & p\\
+p & 0 & E+m & 0\\
+0 & p & 0 & E+m\\
+\end{pmatrix}
+\end{equation*}
+
+Hence
+\begin{equation*}
+u'=\Lambda u=\frac{1}{\sqrt{E+m}}
+\begin{pmatrix}
+E+m & 0 & p & 0\\
+0 & E+m & 0 & p\\
+p & 0 & E+m & 0\\
+0 & p & 0 & E+m\\
+\end{pmatrix}
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{1}{\sqrt{E+m}}\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+\end{equation*}
+
+
+
+\end{document}
