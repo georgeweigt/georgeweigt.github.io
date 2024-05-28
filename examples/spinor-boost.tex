@@ -8,7 +8,7 @@
 
 This vector represents an electron at rest with spin up along the $z$ axis.
 \begin{equation*}
-u^0=\sqrt{2m}\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+u_0=\sqrt{2m}\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
 \end{equation*}
 
 This matrix boosts a spinor in the $z$ direction where $E^2=p^2+m^2$.
@@ -24,7 +24,7 @@ p & 0 & E+m & 0\\
 
 Hence
 \begin{equation*}
-u=\Lambda u^0=\frac{1}{\sqrt{E+m}}
+u=\Lambda u_0=\frac{1}{\sqrt{E+m}}
 \begin{pmatrix}
 E+m & 0 & p & 0\\
 0 & E+m & 0 & p\\
@@ -35,22 +35,22 @@ p & 0 & E+m & 0\\
 =\frac{1}{\sqrt{E+m}}\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
 \end{equation*}
 
-Consider the Dirac equation
+This is the Dirac equation in spinor form.
 \begin{equation*}
 \slashed pu=mu
 \end{equation*}
 
 Rewrite $u$ as boost.
 \begin{equation*}
-\slashed p\Lambda u^0=m\Lambda u^0
+\slashed p\Lambda u_0=m\Lambda u_0
 \end{equation*}
 
-Noting that $\gamma^0u^0=u^0$ we can write
+Noting that $\gamma^0u_0=u_0$ we can rewrite the right hand side as
 \begin{equation*}
-\slashed p\Lambda u^0=m\Lambda\gamma^0u^0
+\slashed p\Lambda u_0=m\Lambda\gamma^0u_0
 \end{equation*}
 
-Rewrite $u^0$ as boost.
+Rewrite $u_0$ as boost.
 \begin{equation*}
 \slashed p\Lambda\Lambda^{-1}u=m\Lambda\gamma^0\Lambda^{-1}u
 \end{equation*}
@@ -66,14 +66,13 @@ and
 \tag{1}
 \end{equation*}
 
-Consider
-\begin{equation*}
-\gamma^0u^0-u^0=0
-\end{equation*}
-
-Apply boost to recover the Dirac equation.
+Boost $\gamma^0u_0=u_0$ to recover the Dirac equation.
 \begin{align*}
-\Lambda(\gamma^0u^0-u^0)&=m^{-1}\slashed p\Lambda u^0-\Lambda u^0=m^{-1}\slashed pu-u=0
+\Lambda\gamma^0u_0&=\Lambda u_0
+\\
+m^{-1}\slashed pu&=u
+\\
+\slashed pu&=mu
 \tag{2}
 \end{align*}
 
