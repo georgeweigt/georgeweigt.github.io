@@ -1,8 +1,19 @@
-u = (1, 0, 0, 0)
+u0 = (1, 0, 0, 0)
 
 Lambda = ((E + m, 0, p, 0),
           (0, E + m, 0, p),
           (p, 0, E + m, 0),
           (0, p, 0, E + m))
 
-dot(Lambda, u) / sqrt(E + m)
+u = dot(Lambda, u0) / sqrt(E + m)
+u
+
+"Verify equation (1)"
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+pslash = m dot(Lambda,gamma0,inv(Lambda))
+check(dot(Lambda,gamma0) == 1/m dot(pslash,Lambda))
+"ok"
+
+"Verify equation (2)"
+check(dot(pslash,u) == m u)
+"ok"
