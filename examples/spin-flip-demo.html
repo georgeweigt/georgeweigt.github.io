@@ -10,6 +10,7 @@ c1 = C exp(-i g e / (4 m omega) B0 sin(omega t))
 c2 = C exp(i g e / (4 m omega) B0 sin(omega t))
 s = (c1,c2)
 check(i hbar d(s,t) == dot(H,s))
+check(dot(conj(s),s) == 1)
 "ok"
 
 "Verify equation (2)"

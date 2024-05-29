@@ -1,5 +1,7 @@
 \input{preamble}
 
+% Richard Fitzpatrick exercise 10-6
+
 \section*{Spin flip}
 
 An electron is at rest in the following magnetic field.
@@ -17,12 +19,12 @@ S_y=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
 S_z=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
 \end{equation*}
 
-Let $\mathbf S$ be the spin angular momentum operator
+This is the spin angular momentum operator.
 \begin{equation*}
 \mathbf S=\begin{pmatrix}S_x\\S_y\\S_z\end{pmatrix}
 \end{equation*}
 
-Let $H$ be the Hamiltonian
+This is the Hamiltonian.
 \begin{equation*}
 H=\frac{ge}{2m}\mathbf S\cdot\mathbf B
 =\frac{ge}{2m}S_zB_0\cos(\omega t)
@@ -50,7 +52,7 @@ Hence
 \begin{aligned}
 c_1(t)&=C\exp\left(-\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
 \\
-c_2(t)&=-C\exp\left(-\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
+c_2(t)&=C\exp\left(\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
 \end{aligned}
 \tag{1}
 \end{equation*}
@@ -67,14 +69,14 @@ This is the expectation value for $S_x$.
 \tag{2}
 \end{equation*}
 
-Note that the cosine is positive for all time $t$ when
+Note that the cosine is always positive for
 \begin{equation*}
 \frac{ge}{2m\omega}B_0\le\frac{\pi}{2}
 \end{equation*}
 
-Hence the minimum $B_0$ to make $\langle S_x\rangle$ negative for some time $t$ is
+Hence the minimum $B_0$ is
 \begin{equation*}
-B_0>\frac{\pi m\omega}{ge}
+B_0=\frac{\pi m\omega}{ge}
 \end{equation*}
 
 
