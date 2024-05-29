@@ -1,0 +1,81 @@
+\input{preamble}
+
+\section*{Spin flip}
+
+An electron is at rest in the following magnetic field.
+\begin{equation*}
+\mathbf B=B_0\cos(\omega t)\begin{pmatrix}0\\0\\1\end{pmatrix}
+\end{equation*}
+
+What is the minimum $B_0$ that flips electron spin in the $x$ direction?
+
+\bigskip
+These are the spin operators.
+\begin{equation*}
+S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+S_y=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+S_z=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\end{equation*}
+
+Let $\mathbf S$ be the spin angular momentum operator
+\begin{equation*}
+\mathbf S=\begin{pmatrix}S_x\\S_y\\S_z\end{pmatrix}
+\end{equation*}
+
+Let $H$ be the Hamiltonian
+\begin{equation*}
+H=\frac{ge}{2m}\mathbf S\cdot\mathbf B
+=\frac{ge}{2m}S_zB_0\cos(\omega t)
+\end{equation*}
+
+Let $s(t)$ be the spin state
+\begin{equation*}
+s(t)=\begin{pmatrix}c_1(t)\\c_2(t)\end{pmatrix}
+\end{equation*}
+
+By the Schrodinger equation
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}s(t)=Hs(t)
+\end{equation*}
+
+we have
+\begin{align*}
+i\hbar\frac{\partial}{\partial t}c_1(t)&=\frac{ge\hbar}{4m}B_0\cos(\omega t)c_1(t)
+\\
+i\hbar\frac{\partial}{\partial t}c_2(t)&=-\frac{ge\hbar}{4m}B_0\cos(\omega t)c_2(t)
+\end{align*}
+
+Hence
+\begin{equation*}
+\begin{aligned}
+c_1(t)&=C\exp\left(-\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
+\\
+c_2(t)&=-C\exp\left(-\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
+\end{aligned}
+\tag{1}
+\end{equation*}
+
+By the normalization requirement $|s(t)|=1$ we have
+\begin{equation*}
+C=\frac{1}{\sqrt2}
+\end{equation*}
+
+This is the expectation value for $S_x$.
+\begin{equation*}
+\langle S_x\rangle=\langle s|S_x|s\rangle
+=\frac{\hbar}{2}\cos\left(\frac{ge}{2m\omega}B_0\sin(\omega t)\right)
+\tag{2}
+\end{equation*}
+
+Note that the cosine is positive for all time $t$ when
+\begin{equation*}
+\frac{ge}{2m\omega}B_0\le\frac{\pi}{2}
+\end{equation*}
+
+Hence the minimum $B_0$ to make $\langle S_x\rangle$ negative for some time $t$ is
+\begin{equation*}
+B_0>\frac{\pi m\omega}{ge}
+\end{equation*}
+
+
+\end{document}

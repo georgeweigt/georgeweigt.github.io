@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="25" cols="80" style="font-family:courier;font-size:12pt">
+Sx = hbar/2 ((0,1),(1,0))
+Sy = hbar/2 ((0,-i),(i,0))
+Sz = hbar/2 ((1,0),(0,-1))
+
+"Verify equation (1)"
+H = g e / (2 m) B0 cos(omega t) Sz
+C = sqrt(1/2)
+c1 = C exp(-i g e / (4 m omega) B0 sin(omega t))
+c2 = C exp(i g e / (4 m omega) B0 sin(omega t))
+s = (c1,c2)
+check(i hbar d(s,t) == dot(H,s))
+"ok"
+
+"Verify equation (2)"
+check(dot(conj(s),Sx,s) == hbar/2 cos(g e / (2 m omega) B0 sin(omega t)))
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
