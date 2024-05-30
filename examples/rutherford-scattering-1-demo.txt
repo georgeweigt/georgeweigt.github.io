@@ -1,11 +1,24 @@
-"Verify integral (1)"
+"Verify equation (1)"
 f = sin(p r / hbar) exp(-epsilon r)
 f = circexp(f)
-F = integral(f,r)
-F = eval(F,r,0)
+I = integral(f,r)
+I = eval(I,r,0)
 a = -i p / hbar - epsilon
 b = i p / hbar - epsilon
-check(F == i/2 (1/a - 1/b))
-epsilon = 0
-check(F == -hbar / p)
+check(I == i/2 (1/a - 1/b))
+I = eval(I,epsilon,0)
+check(I == -hbar / p)
+"ok"
+
+"Verify equation (2)"
+Q = -4 pi Z e^2 / p (-hbar / p)
+d = (m Q / (4 pi hbar))^2
+check(d == m^2 Z^2 e^4 / p^4)
+"ok"
+
+"Verify equation (3)"
+d = d / (16 pi^2)
+d = eval(d, e^4, 16 pi^2 alpha^2)
+d = eval(d, p^(-4), (2 m E (cos(theta) - 1))^(-2))
+check(d == Z^2 alpha^2 / (4 E^2 (cos(theta) - 1)^2))
 "ok"

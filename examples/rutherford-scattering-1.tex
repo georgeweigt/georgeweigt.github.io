@@ -1,16 +1,15 @@
 \input{preamble}
 
+% Feynman and Hibbs problem 6-6
+
 \section*{Rutherford scattering 1}
 
-Use the formula
+Use the following formula to compute the cross section for Rutherford scattering.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{mQ}{2\pi\hbar}\right)^2,\quad
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar}\right)^2,\quad
 Q=\frac{1}{\hbar}\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
 \end{equation*}
 
-to compute the cross section for Rutherford scattering.
-
-\bigskip
 For Rutherford scattering $V(\mathbf r)$ is the Coulomb potential
 \begin{equation*}
 V(\mathbf r)=V(r)=-\frac{Ze^2}{r}
@@ -109,13 +108,25 @@ Q=\frac{4\pi Ze^2\hbar}{p^2}
 
 Compute the differential cross section.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{mQ}{2\pi\hbar}\right)^2
-=\frac{4m^2Z^2e^4}{p^4}
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar}\right)^2
+=\frac{1}{16\pi^2}\frac{m^2Z^2e^4}{p^4}
+\tag{2}
+\end{equation*}
+
+Substitute $16\pi^2\alpha^2$ for $e^4$.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{m^2Z^2\alpha^2}{p^4}
 \end{equation*}
 
 Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
 \begin{equation*}
 p^2=2mE(\cos\theta-1)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2}{4E^2(\cos\theta-1)^2}
+\tag{3}
 \end{equation*}
 
 \end{document}
