@@ -1,0 +1,121 @@
+\input{preamble}
+
+\section*{Rutherford scattering 1}
+
+Use the formula
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left(\frac{mQ}{2\pi\hbar}\right)^2,\quad
+Q=\frac{1}{\hbar}\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
+\end{equation*}
+
+to compute the cross section for Rutherford scattering.
+
+\bigskip
+For Rutherford scattering $V(\mathbf r)$ is the Coulomb potential
+\begin{equation*}
+V(\mathbf r)=V(r)=-\frac{Ze^2}{r}
+\end{equation*}
+
+Convert $Q$ to polar coordinates.
+\begin{equation*}
+Q=\frac{1}{\hbar}
+\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Substitute $V(r)$ for $V(r,\theta,\phi)$.
+\begin{equation*}
+Q=\frac{1}{\hbar}
+\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$.
+\begin{equation*}
+Q=\frac{2\pi}{\hbar}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
+\,r^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Change the complex exponential to rectangular form.
+\begin{equation*}
+Q=\frac{2\pi}{\hbar}
+\int_0^\pi
+\int_0^\infty
+\left[
+\cos\left(\frac{pr\cos\theta}{\hbar}\right)
++i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
+\right]
+V(r)\,r^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+By the integrals
+\begin{equation*}
+\int_0^\pi\cos\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
+\int_0^\pi\sin\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=0
+\end{equation*}
+
+we have
+\begin{equation*}
+Q=\frac{4\pi}{p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
+\end{equation*}
+
+Substitute the Coulomb potential for $V(r)$.
+\begin{equation*}
+Q=-\frac{4\pi Ze^2}{p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
+\end{equation*}
+
+To solve the integral, multiply the integrand by $\exp(-\epsilon r)$.
+\begin{equation*}
+Q=-\frac{4\pi Ze^2}{p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\exp(-\epsilon r)\,dr
+\end{equation*}
+
+Convert the integrand to exponential form.
+\begin{equation*}
+Q=-\frac{4\pi Ze^2}{p}
+\int_0^\infty\frac{i}{2}\left[
+\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
+-\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
+\right]\,dr
+\end{equation*}
+
+Solve the integral.
+\begin{equation*}
+Q=-\frac{4\pi Ze^2}{p}\frac{i}{2}
+\left(\frac{1}{-ip/\hbar-\epsilon}-\frac{1}{ip/\hbar-\epsilon}\right)
+\tag{1}
+\end{equation*}
+
+Set $\epsilon=0$.
+\begin{equation*}
+Q=-\frac{4\pi Ze^2}{p}\left(-\frac{\hbar}{p}\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+Q=\frac{4\pi Ze^2\hbar}{p^2}
+\end{equation*}
+
+Compute the differential cross section.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left(\frac{mQ}{2\pi\hbar}\right)^2
+=\frac{4m^2Z^2e^4}{p^4}
+\end{equation*}
+
+Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
+\begin{equation*}
+p^2=2mE(\cos\theta-1)
+\end{equation*}
+
+\end{document}
