@@ -11,8 +11,8 @@ check(I == -hbar / p)
 "ok"
 
 "Verify equation (2)"
-Q = -4 pi Z e^2 / p (-hbar / p)
-d = (m Q / (4 pi hbar))^2
+Q = -4 pi hbar Z e^2 / p (-hbar / p)
+d = (m Q / (4 pi hbar^2))^2
 check(d == m^2 Z^2 e^4 / p^4)
 "ok"
 

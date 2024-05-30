@@ -6,8 +6,8 @@
 
 Use the following formula to compute the cross section for Rutherford scattering.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar}\right)^2,\quad
-Q=\frac{1}{\hbar}\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2,\quad
+Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
 \end{equation*}
 
 For Rutherford scattering $V(\mathbf r)$ is the Coulomb potential
@@ -17,8 +17,7 @@ V(\mathbf r)=V(r)=-\frac{Ze^2}{r}
 
 Convert $Q$ to polar coordinates.
 \begin{equation*}
-Q=\frac{1}{\hbar}
-\int_0^{2\pi}
+Q=\int_0^{2\pi}
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
@@ -27,8 +26,7 @@ Q=\frac{1}{\hbar}
 
 Substitute $V(r)$ for $V(r,\theta,\phi)$.
 \begin{equation*}
-Q=\frac{1}{\hbar}
-\int_0^{2\pi}
+Q=\int_0^{2\pi}
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
@@ -37,7 +35,7 @@ Q=\frac{1}{\hbar}
 
 Integrate over $\phi$.
 \begin{equation*}
-Q=\frac{2\pi}{\hbar}
+Q=2\pi
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
@@ -46,7 +44,7 @@ Q=\frac{2\pi}{\hbar}
 
 Change the complex exponential to rectangular form.
 \begin{equation*}
-Q=\frac{2\pi}{\hbar}
+Q=2\pi
 \int_0^\pi
 \int_0^\infty
 \left[
@@ -64,25 +62,25 @@ By the integrals
 
 we obtain (note $r^2$ in the integrand becomes $r$)
 \begin{equation*}
-Q=\frac{4\pi}{p}
+Q=\frac{4\pi\hbar}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
 \end{equation*}
 
 Substitute the Coulomb potential for $V(r)$ which cancels $r$ in the integrand.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2}{p}
+Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
 \end{equation*}
 
 To solve the integral, multiply the integrand by $\exp(-\epsilon r)$.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2}{p}
+Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\exp(-\epsilon r)\,dr
 \end{equation*}
 
 Convert the integrand to exponential form.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2}{p}
+Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\frac{i}{2}\left[
 \exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
 -\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
@@ -91,24 +89,24 @@ Q=-\frac{4\pi Ze^2}{p}
 
 Solve the integral.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2}{p}\frac{i}{2}
+Q=-\frac{4\pi\hbar Ze^2}{p}\frac{i}{2}
 \left(\frac{1}{-ip/\hbar-\epsilon}-\frac{1}{ip/\hbar-\epsilon}\right)
 \tag{1}
 \end{equation*}
 
 Set $\epsilon=0$.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2}{p}\left(-\frac{\hbar}{p}\right)
+Q=-\frac{4\pi\hbar Ze^2}{p}\left(-\frac{\hbar}{p}\right)
 \end{equation*}
 
 Hence
 \begin{equation*}
-Q=\frac{4\pi Ze^2\hbar}{p^2}
+Q=\frac{4\pi\hbar^2Ze^2}{p^2}
 \end{equation*}
 
 Compute the differential cross section.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar}\right)^2
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2
 =\frac{1}{16\pi^2}\frac{m^2Z^2e^4}{p^4}
 \tag{2}
 \end{equation*}
