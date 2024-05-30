@@ -10,11 +10,6 @@ Use the following formula to compute the cross section for Rutherford scattering
 Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
 \end{equation*}
 
-For Rutherford scattering $V(\mathbf r)$ is the Coulomb potential
-\begin{equation*}
-V(\mathbf r)=V(r)=-\frac{Ze^2}{r}
-\end{equation*}
-
 Convert $Q$ to polar coordinates.
 \begin{equation*}
 Q=\int_0^{2\pi}
@@ -24,34 +19,40 @@ Q=\int_0^{2\pi}
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Substitute $V(r)$ for $V(r,\theta,\phi)$.
+For Rutherford scattering $V(\mathbf r)$ is the Coulomb potential
 \begin{equation*}
-Q=\int_0^{2\pi}
+V(\mathbf r)=V(r)=-\frac{Ze^2}{r}
+\end{equation*}
+
+Substitute the Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
+\begin{equation*}
+Q=-Ze^2
+\int_0^{2\pi}
 \int_0^\pi
 \int_0^\infty
-\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
-\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\,r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
 Integrate over $\phi$.
 \begin{equation*}
-Q=2\pi
+Q=-2\pi Ze^2
 \int_0^\pi
 \int_0^\infty
-\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
-\,r^2\sin\theta\,dr\,d\theta
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
 Change the complex exponential to rectangular form.
 \begin{equation*}
-Q=2\pi
+Q=-2\pi Ze^2
 \int_0^\pi
 \int_0^\infty
 \left[
 \cos\left(\frac{pr\cos\theta}{\hbar}\right)
 +i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
 \right]
-V(r)\,r^2\sin\theta\,dr\,d\theta
+V(r)\,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
 By the integrals
@@ -60,13 +61,7 @@ By the integrals
 \int_0^\pi\sin\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=0
 \end{equation*}
 
-we obtain (note $r^2$ in the integrand becomes $r$)
-\begin{equation*}
-Q=\frac{4\pi\hbar}{p}
-\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
-\end{equation*}
-
-Substitute the Coulomb potential for $V(r)$ which cancels $r$ in the integrand.
+we obtain (note $r$ in the integrand is canceled)
 \begin{equation*}
 Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
