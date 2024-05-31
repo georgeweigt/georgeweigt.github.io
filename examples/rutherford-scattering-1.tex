@@ -135,56 +135,66 @@ we also have
 \subsubsection*{Experimental data}
 The following data is from Geiger and Marsden's 1913 paper
 ($y$ is the number of scattering events).
-\begin{center}
-\begin{tabular}{cc}
-$\displaystyle\frac{1}{\sin^4(\theta/2)}$ & $y$\\[3ex]
-1.15 & 22.2\\
-1.38 & 27.4\\
-1.79 & 33.0\\
-2.53 & 47.3\\
-7.25 & 136\\
-16.0 & 320\\
-46.6 & 989\\
-93.7 & 1760\\
-223 & 5260\\
-690 & 20300\\
-3445 & 105400
-\end{tabular}
-\end{center}
+\begin{equation*}
+\begin{matrix}
+\theta & y\\
+150 & 22.2\\
+135 & 27.4\\
+120 & 33.0\\
+105 & 47.3\\
+75 & 136\\
+60 & 320\\
+45 & 989\\
+37.5 & 1760\\
+30 & 5260\\
+22.5 & 20300\\
+15 & 105400
+\end{matrix}
+\end{equation*}
 
-Predicted values are bin probability times total number of events.
+Let
+\begin{equation*}
+x_i=\frac{1}{\sin^4(\theta_i/2)}
+\end{equation*}
+
+The $x_i$ are relative probabilities that are normalized by dividing by $\sum_ix_i$.
+Predicted values $\hat y$ are computed by multiplying the total number of scattering events
+times the probability per angle.
 \begin{gather*}
-\sum_i\frac{1}{\sin^4(\theta_i/2)}=4528,\quad
+\sum_ix_i=4529,\quad
 \sum_iy_i=134295
 \\
-\hat y_i=\underset{\text{bin probability}}{\frac{1}{4528\sin^4(\theta_i/2)}}\times
+\hat y_i=\underset{\substack{\text{normalization}\\\text{constant}}}{\frac{1}{4529}}
+\times
+\underset{\substack{\text{relative}\\\text{probability}}}{x_i}
+\times
 \underset{\text{total events}}{134295}
 \end{gather*}
 
-The following table shows the predicted values.
-\begin{center}
-\begin{tabular}{ccc}
-$\displaystyle\frac{1}{\sin^4(\theta/2)}$ & $y$ & $\hat y$\\[3ex]
-1.15 & 22.2 & 34.1\\
-1.38 & 27.4 & 40.9\\
-1.79 & 33.0 & 53.1\\
-2.53 & 47.3 & 75.0\\
-7.25 & 136 & 215\\
-16.0 & 320 & 474\\
-46.6 & 989 & 1382\\
-93.7 & 1760 & 2779\\
-223 & 5260 & 6613\\
-690 & 20300 & 20463\\
-3445 & 105400 & 102165
-\end{tabular}
-\end{center}
+The following table shows the predicted values $\hat y$.
+\begin{equation*}
+\begin{matrix}
+\theta & y & \hat y\\
+150 & 22.2 & 34.1\\
+135 & 27.4 & 40.7\\
+120 & 33.0 & 52.7\\
+105 & 47.3 & 74.9\\
+75 & 136 & 216\\
+60 & 320 & 474\\
+45 & 989 & 1383\\
+37.5 & 1760 & 2778\\
+30 & 5260 & 6608\\
+22.5 & 20300 & 20471\\
+15 & 105400 & 102162
+\end{matrix}
+\end{equation*}
 
 The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}
 R^2=1-\frac{\sum_i(y_i-\hat y_i)^2}{\sum_i(y_i-\bar y)^2}=0.999
 \end{equation*}
 
-The result indicates that $d\sigma$ explains 99.9\%
+The result indicates that $x$ explains 99.9\%
 of the variance in the data.
 
 \end{document}
