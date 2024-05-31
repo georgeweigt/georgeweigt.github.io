@@ -157,9 +157,13 @@ Let
 x_i=\frac{1}{\sin^4(\theta_i/2)}
 \end{equation*}
 
-The $x_i$ are relative probabilities that are normalized by dividing by $\sum_ix_i$.
-Predicted values $\hat y$ are computed by multiplying the total number of scattering events
-times the probability per angle.
+The scattering probability for angle $\theta_i$ is
+\begin{equation*}
+\Pr(\theta_i)=\frac{x_i}{\sum x}
+\end{equation*}
+
+Predicted values $\hat y_i$ are the product
+$\Pr(\theta_i)$ times the total number of scattering events.
 \begin{gather*}
 \sum_ix_i=4529,\quad
 \sum_iy_i=134295
