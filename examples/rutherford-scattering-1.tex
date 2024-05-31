@@ -6,7 +6,7 @@
 
 Use the following formula to compute the cross section for Rutherford scattering.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2,\quad
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2\varepsilon_0^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2,\quad
 Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
 \end{equation*}
 
@@ -101,14 +101,14 @@ Q=\frac{4\pi\hbar^2Ze^2}{p^2}
 
 Compute the differential cross section.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2
-=\frac{1}{16\pi^2}\frac{m^2Z^2e^4}{p^4}
+\frac{d\sigma}{d\Omega}=\frac{1}{16\pi^2\varepsilon_0^2}\left(\frac{mQ}{4\pi\hbar^2}\right)^2
+=\frac{1}{16\pi^2\varepsilon_0^2}\frac{m^2Z^2e^4}{p^4}
 \tag{2}
 \end{equation*}
 
-Substitute $16\pi^2\alpha^2$ for $e^4$.
+Substitute $16\pi^2\varepsilon_0^2\alpha^2(\hbar c)^2$ for $e^4$.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{m^2Z^2\alpha^2}{p^4}
+\frac{d\sigma}{d\Omega}=\frac{m^2Z^2\alpha^2(\hbar c)^2}{p^4}
 \end{equation*}
 
 Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
@@ -118,8 +118,73 @@ p^2=2mE(\cos\theta-1)
 
 Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2}{4E^2(\cos\theta-1)^2}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(\cos\theta-1)^2}
 \tag{3}
 \end{equation*}
+
+Noting that
+\begin{equation*}
+4\sin^4\frac{\theta}{2}=(\cos(\theta)-1)^2
+\end{equation*}
+
+we also have
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{16E^2\sin^4(\theta/2)}
+\end{equation*}
+
+\subsubsection*{Experimental data}
+The following data is from Geiger and Marsden's 1913 paper
+($y$ is the number of scattering events).
+\begin{center}
+\begin{tabular}{cc}
+$\displaystyle\frac{1}{\sin^4(\theta/2)}$ & $y$\\[3ex]
+1.15 & 22.2\\
+1.38 & 27.4\\
+1.79 & 33.0\\
+2.53 & 47.3\\
+7.25 & 136\\
+16.0 & 320\\
+46.6 & 989\\
+97.7 & 1760\\
+223 & 5260\\
+690 & 20300\\
+3445 & 105400
+\end{tabular}
+\end{center}
+
+Predicted values are bin probability times total number of events.
+\begin{gather*}
+\sum_i\frac{1}{\sin^4(\theta_i/2)}=4528,\quad
+\sum_iy_i=134295
+\\
+\hat y_i=\underset{\text{bin probability}}{\frac{1}{4528\sin^4(\theta_i/2)}}\times
+\underset{\text{total events}}{134295}
+\end{gather*}
+
+The following table shows the predicted values.
+\begin{center}
+\begin{tabular}{ccc}
+$\displaystyle\frac{1}{\sin^4(\theta/2)}$ & $y$ & $\hat y$\\[3ex]
+1.15 & 22.2 & 34.1\\
+1.38 & 27.4 & 40.9\\
+1.79 & 33.0 & 53.1\\
+2.53 & 47.3 & 75.0\\
+7.25 & 136 & 215\\
+16.0 & 320 & 474\\
+46.6 & 989 & 1382\\
+97.7 & 1760 & 2779\\
+223 & 5260 & 6613\\
+690 & 20300 & 20463\\
+3445 & 105400 & 102165
+\end{tabular}
+\end{center}
+
+The coefficient of determination $R^2$ measures how well predicted values fit the data.
+\begin{equation*}
+R^2=1-\frac{\sum_i(y_i-\hat y_i)^2}{\sum_i(y_i-\bar y)^2}=0.999
+\end{equation*}
+
+The result indicates that $d\sigma$ explains 99.9\%
+of the variance in the data.
 
 \end{document}

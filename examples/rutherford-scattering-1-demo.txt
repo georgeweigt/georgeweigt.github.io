@@ -22,3 +22,19 @@ d = eval(d, e^4, 16 pi^2 alpha^2)
 d = eval(d, p^(-4), (2 m E (cos(theta) - 1))^(-2))
 check(d == Z^2 alpha^2 / (4 E^2 (cos(theta) - 1)^2))
 "ok"
+
+"Geiger and Marsden data"
+
+x = (1.15,1.38,1.79,2.53,7.25,16.0,46.6,93.7,223,690,3445)
+y = (22.2,27.4,33.0,47.3,136,320,989,1760,5260,20300,105400)
+
+yhat = x / sum(x) sum(y)
+
+"Coefficient of determination (R squared)"
+
+ybar = sum(y) / 11
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS
