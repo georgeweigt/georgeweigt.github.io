@@ -3,16 +3,16 @@
 f = sin(p r / hbar) exp(-epsilon r)
 f = circexp(f)
 I = integral(f,r)
-I = eval(I,r,0)
-a = -i p / hbar - epsilon
+I = 0 - eval(I,r,0)
+a = i p / hbar + epsilon
 b = i p / hbar - epsilon
-check(I == i/2 (1/a - 1/b))
+check(I == i/2 (1/a + 1/b))
 I = eval(I,epsilon,0)
-check(I == -hbar / p)
+check(I == hbar / p)
 "ok"
 
 "Verify equation (2)"
-Q = -4 pi hbar Z e^2 / p (-hbar / p)
+Q = -4 pi hbar Z e^2 / p (hbar / p)
 d = (m Q / (4 pi hbar^2))^2
 check(d == m^2 Z^2 e^4 / p^4)
 "ok"
