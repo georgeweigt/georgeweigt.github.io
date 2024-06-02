@@ -1,4 +1,4 @@
--- Compute R-squared for annihilation data from DESY
+-- Compute R-squared for annihilation data from DESY PETRA
 
 -- www.hepdata.net/record/ins191231 (Table 2, 14.0 GeV)
 

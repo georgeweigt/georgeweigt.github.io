@@ -1,4 +1,4 @@
--- Compton Scattering of Quasi-Real Virtual Photons at LEP
+-- Compton scattering data from CERN LEP
 
 -- arxiv.org/abs/hep-ex/0504012
 
