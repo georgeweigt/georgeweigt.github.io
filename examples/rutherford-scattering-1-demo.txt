@@ -19,8 +19,8 @@ check(d == m^2 Z^2 e^4 / p^4)
 "Verify equation (3)"
 d = d / (16 pi^2)
 d = eval(d, e^4, 16 pi^2 alpha^2)
-d = eval(d, p^(-4), (2 m E (cos(theta) - 1))^(-2))
-check(d == Z^2 alpha^2 / (4 E^2 (cos(theta) - 1)^2))
+d = eval(d, p^(-4), (2 m E (1 - cos(theta)))^(-2))
+check(d == Z^2 alpha^2 / (4 E^2 (1 - cos(theta))^2))
 "ok"
 
 "Geiger and Marsden data"
