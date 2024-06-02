@@ -55,19 +55,19 @@ Q=-2\pi Ze^2
 V(r)\,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-By the integrals
+By the definite integrals
 \begin{equation*}
 \int_0^\pi\cos\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
 \int_0^\pi\sin\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=0
 \end{equation*}
 
-we obtain (note $r$ in the integrand is canceled)
+we have (note $r$ in the integrand is canceled)
 \begin{equation*}
 Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
 \end{equation*}
 
-To solve the integral, multiply the integrand by $\exp(-\epsilon r)$.
+Multiply the integrand by $\exp(-\epsilon r)$.
 \begin{equation*}
 Q=-\frac{4\pi\hbar Ze^2}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\exp(-\epsilon r)\,dr
@@ -94,7 +94,7 @@ Set $\epsilon=0$.
 Q=-\frac{4\pi\hbar^2Ze^2}{p^2}
 \end{equation*}
 
-Compute the differential cross section.
+Calculate the cross section.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{1}{64\pi^2\varepsilon_0^2}\left(\frac{mQ}{2\pi\hbar^2}\right)^2
 =\frac{1}{16\pi^2\varepsilon_0^2}\frac{m^2Z^2e^4}{p^4}
