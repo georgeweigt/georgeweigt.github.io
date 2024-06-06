@@ -1,4 +1,4 @@
--- Drawing demo
+-- Draw demo
 
 draw(floor(x))
 draw(1/x)
