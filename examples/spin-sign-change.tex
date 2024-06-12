@@ -62,6 +62,7 @@ By the normalization requirement $|s(t)|=1$ we have
 C=\frac{1}{\sqrt2}
 \end{equation*}
 
+\iffalse
 In rectangular form
 \begin{equation*}
 \begin{aligned}
@@ -72,11 +73,18 @@ c_2(t)&=\frac{1}{\sqrt2}\cos\left(\frac{ge}{4m\omega}B_0\sin(\omega t)\right)
 +\frac{i}{\sqrt2}\sin\left(\frac{ge}{4m\omega}B_0\sin(\omega t)\right)
 \end{aligned}
 \end{equation*}
+\fi
 
 This is the expectation value for $S_x$.
 \begin{equation*}
 \langle S_x\rangle=\langle s(t)|S_x|s(t)\rangle
-=\frac{\hbar}{2}\cos\left(\frac{ge}{2m\omega}B_0\sin(\omega t)\right)
+=\frac{\hbar}{4}\exp\left(\frac{ige}{2m\omega}B_0\sin(\omega t)\right)
++\frac{\hbar}{4}\exp\left(-\frac{ige}{2m\omega}B_0\sin(\omega t)\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle S_x\rangle=\frac{\hbar}{2}\cos\left(\frac{ge}{2m\omega}B_0\sin(\omega t)\right)
 \tag{2}
 \end{equation*}
 
