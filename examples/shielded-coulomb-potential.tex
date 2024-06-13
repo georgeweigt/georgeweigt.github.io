@@ -1,0 +1,87 @@
+\input{preamble}
+
+\section*{Shielded Coulomb potential}
+
+Find the cross section for Rutherford scattering with
+\begin{equation*}
+V(r)=-\frac{Ze^2}{r}\exp\left(-\frac{r}{a}\right)
+\end{equation*}
+
+Start with
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{1}{64\pi^2\epsilon_0^2}
+\left(\frac{mQ}{2\pi\hbar^2}\right)^2,\quad
+Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d^3\mathbf r
+\end{equation*}
+
+Convert $Q$ to polar coordinates.
+\begin{equation*}
+Q=\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Substitute the shielded Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
+\begin{equation*}
+Q=-Ze^2
+\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$.
+\begin{equation*}
+Q=-2\pi Ze^2
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Change the complex exponential to rectangular form.
+\begin{equation*}
+Q=-2\pi Ze^2
+\int_0^\pi
+\int_0^\infty
+\left[
+\cos\left(\frac{pr\cos\theta}{\hbar}\right)
++i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
+\right]
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta
+\end{equation*}
+
+By the definite integrals
+\begin{equation*}
+\int_0^\pi\cos(a\cos\theta)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
+\int_0^\pi\sin(a\cos\theta)\sin\theta\,d\theta=0
+\end{equation*}
+
+we have for the integral over $\theta$ (note $r$ in the integrand is canceled)
+\begin{equation*}
+Q=-\frac{4\pi Ze^2\hbar}{p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,dr
+\end{equation*}
+
+By the definite integral
+\begin{equation*}
+\int_0^\pi\frac{\sin\theta}{\left(\sin^2(\theta/2)+a\right)^2}\,d\theta=\frac{2}{a^2+a}
+\end{equation*}
+
+we have for the integral over $r$
+\begin{equation*}
+Q=-\frac{4\pi Ze^2\hbar}{p}\times
+\frac{p/\hbar}
+{(p/\hbar)^2+(1/a)^2}
+=-\frac{4\pi Ze^2}{(p/\hbar)^2+(1/a)^2}
+\end{equation*}
+
+\end{document}

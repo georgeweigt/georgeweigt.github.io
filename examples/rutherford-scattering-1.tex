@@ -52,30 +52,30 @@ Q=-2\pi Ze^2
 \cos\left(\frac{pr\cos\theta}{\hbar}\right)
 +i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
 \right]
-V(r)\,r\sin\theta\,dr\,d\theta
+\,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
 By the definite integrals
 \begin{equation*}
-\int_0^\pi\cos\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
-\int_0^\pi\sin\bigl(a\cos(\theta)\bigr)\sin\theta\,d\theta=0
+\int_0^\pi\cos(a\cos\theta)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
+\int_0^\pi\sin(a\cos\theta)\sin\theta\,d\theta=0
 \end{equation*}
 
-we have (note $r$ in the integrand is canceled)
+we have for the integral over $\theta$ (note $r$ in the integrand is canceled)
 \begin{equation*}
-Q=-\frac{4\pi\hbar Ze^2}{p}
+Q=-\frac{4\pi Ze^2\hbar}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
 \end{equation*}
 
 Multiply the integrand by $\exp(-\epsilon r)$.
 \begin{equation*}
-Q=-\frac{4\pi\hbar Ze^2}{p}
+Q=-\frac{4\pi Ze^2\hbar}{p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\exp(-\epsilon r)\,dr
 \end{equation*}
 
 Convert the integrand to exponential form.
 \begin{equation*}
-Q=-\frac{4\pi\hbar Ze^2}{p}
+Q=-\frac{4\pi Ze^2\hbar}{p}
 \int_0^\infty\frac{i}{2}\left[
 \exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
 -\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
@@ -84,14 +84,14 @@ Q=-\frac{4\pi\hbar Ze^2}{p}
 
 Solve the integral.
 \begin{equation*}
-Q=-\frac{4\pi\hbar Ze^2}{p}\frac{i}{2}
+Q=-\frac{4\pi Ze^2\hbar}{p}\frac{i}{2}
 \left(\frac{1}{ip/\hbar+\epsilon}+\frac{1}{ip/\hbar-\epsilon}\right)
 \tag{1}
 \end{equation*}
 
 Set $\epsilon=0$.
 \begin{equation*}
-Q=-\frac{4\pi\hbar^2Ze^2}{p^2}
+Q=-\frac{4\pi Ze^2\hbar^2}{p^2}
 \end{equation*}
 
 Calculate the cross section.
