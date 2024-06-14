@@ -2,245 +2,120 @@
 
 \section*{Rutherford scattering 2}
 
-Rutherford scattering is the interaction $e^-+X\rightarrow e^-+X$ where $X$ is a nucleus.
-
-\begin{center}
-\begin{tikzpicture}
-\draw[dashed] (0,0) circle (0.5cm);
-\draw (0,0) node {$X$};
-\draw[thick,->] (-2,0) node[anchor=east] {$e^-$} -- (-0.6,0);
-\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^-$};
-\draw (1,0.5) node {$\theta$};
-\end{tikzpicture}
-\end{center}
-
-Define the following momentum vectors and spinors.
-Symbol $p$ is incident momentum.
-Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
-\iffalse
-% old
-\begin{align*}
-p_1&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
-{
-\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
-}
-&
-p_2&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
-{
-\begin{pmatrix}
-E\\
-p\sin\theta\cos\phi\\
-p\sin\theta\sin\phi\\
-p\cos\theta
-\end{pmatrix}
-}
-\\[1ex]
-u_{11}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
-}
-&
-u_{21}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}
-}
-\\[1ex]
-u_{12}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
-}
-&
-u_{22}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}
-}
-\end{align*}
-\else
-% new
-\begin{align*}
-p_1&=\underset{\text{inbound $e^-$}}
-{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-& u_{11}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
-& u_{12}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
-\\[1ex]
-p_2&=
-\underset{\text{outbound $e^-$}}
-{\begin{pmatrix}
-E\\
-p\sin\theta\cos\phi\\
-p\sin\theta\sin\phi\\
-p\cos\theta
-\end{pmatrix}}
-& u_{21}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
-& u_{22}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
-\end{align*}
-\fi
-
-The spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
-
-\bigskip
-This is the probability density for spin state $ab$.
-The formula is derived from Feynman diagrams for Rutherford scattering.
+Find the cross section for Rutherford scattering with the following potential.
 \begin{equation*}
-|\mathcal{M}_{ab}|^2=\frac{Z^2e^4}{q^4}\frac{1}{N}\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
+V(r)=-\frac{Ze^2}{r}\exp\left(-\frac{r}{a}\right)
 \end{equation*}
 
-Symbol $Z$ is the atomic number of the nucleus, $e$ is electron charge,
-$q$ is momentum transfer, and
+Start with
 \begin{equation*}
-q^4=\bigl((p_1-p_2)^\mu g_{\mu\nu}(p_1-p_2)^\nu\bigr)^2=4p^4(\cos\theta-1)^2
+\frac{d\sigma}{d\Omega}=\frac{1}{64\pi^2\epsilon_0^2}
+\left(\frac{mQ}{2\pi\hbar^2}\right)^2,\quad
+Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d^3\mathbf r
 \end{equation*}
 
-The expected probability density
-$\langle\vert\mathcal{M}\vert^2\rangle$
-is computed by summing $|\mathcal{M}_{ab}|^2$
-over all spin states and then dividing by the number of inbound states.
-There are two inbound states.
+Convert $Q$ to polar coordinates.
 \begin{equation*}
-\langle\vert\mathcal{M}\vert^2\rangle
-=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
+Q=\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-The Casimir trick uses matrix arithmetic to compute the sum.
+Substitute the shielded Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
 \begin{equation*}
-\langle\vert\mathcal{M}\vert^2\rangle
-=\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left((\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right)
+Q=-Ze^2
+\int_0^{2\pi}
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-The result is
+Integrate over $\phi$.
 \begin{equation*}
-\langle\vert\mathcal{M}\vert^2\rangle
-=\frac{2Z^2e^4}{q^4}\left(E^2+m^2+p^2\cos\theta\right)
+Q=-2\pi Ze^2
+\int_0^\pi
+\int_0^\infty
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-For low energy experiments $p\ll m$ we can use the approximation
+Change the complex exponential to rectangular form.
 \begin{equation*}
-E^2+m^2+p^2\cos\theta\approx2m^2
+Q=-2\pi Ze^2
+\int_0^\pi
+\int_0^\infty
+\left[
+\cos\left(\frac{pr\cos\theta}{\hbar}\right)
++i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
+\right]
+\exp\left(-\frac{r}{a}\right)
+\,r\sin\theta\,dr\,d\theta
+\end{equation*}
+
+By the definite integrals
+\begin{equation*}
+\int_0^\pi\cos(a\cos\theta)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
+\int_0^\pi\sin(a\cos\theta)\sin\theta\,d\theta=0
+\end{equation*}
+
+we have for the integral over $\theta$ (note $r$ in the integrand is canceled)
+\begin{equation*}
+Q=-\frac{4\pi Ze^2\hbar}{p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)
+\exp\left(-\frac{r}{a}\right)
+\,dr
+\end{equation*}
+
+By the definite integral
+\begin{equation*}
+\int_0^\pi\frac{\sin\theta}{\left(\sin^2(\theta/2)+a\right)^2}\,d\theta=\frac{2}{a^2+a}
+\end{equation*}
+
+we have for the integral over $r$
+\begin{equation*}
+Q=-\frac{4\pi Ze^2\hbar}{p}\times
+\frac{p/\hbar}
+{(p/\hbar)^2+(1/a)^2}
+=-\frac{4\pi Ze^2}{(p/\hbar)^2+(1/a)^2}
+\end{equation*}
+
+The cross section is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{1}{64\pi^2\epsilon_0^2}
+\left(\frac{mQ}{2\pi\hbar^2}\right)^2
+=\frac{1}{64\pi^2\epsilon_0^2}\times\frac{4m^2Z^2e^4}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
+\end{equation*}
+
+Substitute $(4\pi\epsilon_0\alpha\hbar c)^2$ for $e^4$.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{m^2Z^2\alpha^2(\hbar c)^2}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
+\end{equation*}
+
+Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
+\begin{equation*}
+p^2=2mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{4Z^2e^4m^2}{q^4}
+\frac{d\sigma}{d\Omega}
+=\frac{m^2Z^2\alpha^2(\hbar c)^2}{\bigl[2mE(1-\cos\theta)+(\hbar/a)^2\bigr]^2}
 \end{equation*}
 
-Substituting $e^4=16\pi^2\alpha^2$ and $q^4=4p^4(\cos\theta-1)^2$ we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\end{equation*}
-
-\subsubsection*{Cross section}
-The differential cross section for Rutherford scattering is
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{16\pi^2}
-\end{equation*}
-
-For low energy experiments we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\end{equation*}
-
-Hence for low energy experiments
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\end{equation*}
-
-Noting that
-\begin{equation*}
-d\Omega=\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-we also have
-\begin{equation*}
-d\sigma=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-Let $S(\theta_1,\theta_2)$ be the following surface integral of $d\sigma$.
-\begin{equation*}
-S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
-\end{equation*}
-
-The solution is
-\begin{equation*}
-S(\theta_1,\theta_2)=\frac{2\pi Z^2\alpha^2m^2}{p^4}\bigl(I(\theta_2)-I(\theta_1)\bigr)
-\end{equation*}
-
-where
-\begin{equation*}
-I(\theta)=\frac{1}{\cos\theta-1}
-\end{equation*}
-
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)
-=\frac{S(a,\theta)}{S(a,\pi)}
-=\frac{I(\theta)-I(a)}{I(\pi)-I(a)}
-=\frac{2(\cos a-\cos\theta)}{(1+\cos a)(1-\cos\theta)},
-\quad
-a\le\theta\le\pi
-\end{equation*}
-
-Angular support is reduced by an arbitrary angle $a>0$ because $I(0)$ is undefined.
-
-\bigskip
-The probability of observing scattering events
-in the interval $\theta_1$ to $\theta_2$ is
-\begin{equation*}
-P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
-\end{equation*}
-
-Let $N$ be the total number of scattering events from an experiment.
-Then the number of scattering events in the interval $\theta_1$ to $\theta_2$ is predicted to be
-\begin{equation*}
-NP(\theta_1\le\theta\le\theta_2)
-\end{equation*}
-
-The probability density function is
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}=\frac{1}{I(\pi)-I(a)}\frac{1}{(\cos\theta-1)^2}\sin\theta
-\end{equation*}
-
-\subsubsection*{Notes}
-1. The original Rutherford scattering experiment in 1911 used alpha particles, not electrons.
-However, scattering of any charged particle by Coulomb interaction
-is now known as Rutherford scattering.
-The first Rutherford scattering experiment using electrons appears to have
-been done by F.~L.~Arnot, then a student of Rutherford, in 1929.
-
-\bigskip
-2. Lancaster and Blundell page 356 has
+Cancel $m^2$ in the numerator.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{Z^2\alpha^2}{4m^2\mathbf v^4\sin^4(\theta/2)}
+=\frac{Z^2\alpha^2(\hbar c)^2}{\left[2E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
+\tag{1}
 \end{equation*}
 
-Noting that
-\begin{equation*}
-\frac{1}{m^2\mathbf v^4}=\frac{m^2}{m^4\mathbf v^4}=\frac{m^2}{p^4}
-\end{equation*}
-
-and
-\begin{equation*}
-4\sin^4(\theta/2)=(\cos\theta-1)^2
-\end{equation*}
-
-we have
-\begin{equation*}
-\frac{Z^2\alpha^2}{4m^2\mathbf v^4\sin^4(\theta/2)}
-=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\end{equation*}
+Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section.
 
 \end{document}

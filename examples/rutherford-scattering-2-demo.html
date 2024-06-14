@@ -1,84 +1,18 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
--- Verify formulas for Rutherford scattering
+dsigma = 1 / (64 pi^2 epsilon0^2) (m Q / (2 pi hbar^2))^2
 
-E = sqrt(p^2 + m^2)
+Q = -4 pi Z e^2 hbar^2 / (p^2 + (hbar/a)^2)
 
-p1 = (E, 0, 0, p)
+e = sqrt(4 pi epsilon0 alpha hbar c)
 
-p2 = (E,
-      p sin(theta) cos(phi),
-      p sin(theta) sin(phi),
-      p cos(theta))
+p = sqrt(2 m E (1 - cos(theta)))
 
--- spinors
+T = Z^2 alpha^2 (hbar c)^2 / (2 E (1 - cos(theta)) + 1/m (hbar/a)^2)^2
 
-N = (E + m)^2
-
-u11 = (E + m, 0, p1[4], p1[2] + i p1[3])
-u12 = (0, E + m, p1[2] - i p1[3], -p1[4])
-
-u21 = (E + m, 0, p2[4], p2[2] + i p2[3])
-u22 = (0, E + m, p2[2] - i p2[3], -p2[4])
-
-u1 = (u11,u12)
-u2 = (u21,u22)
-
-I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
-
-gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
-
-gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
-gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
-gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
-gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
-
-gamma = (gamma0,gamma1,gamma2,gamma3)
-
-u2bar = dot(conj(u2),gamma0) -- adjoint of u2
-
--- matrix elements
-
-M = zero(2,2)
-
-for(a,1,2, for(b,1,2,
- M[a,b] = dot(u2bar[b], gamma0, u1[a])
-))
-
-"Sum over spin states"
-
-S = 1/2 sum(conj(M) M)
-S
-
-"Verify Casimir trick"
-
-pslash1 = dot(p1,gmunu,gamma)
-pslash2 = dot(p2,gmunu,gamma)
-
-f = 1/2 contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
-
-check(f == S/N)
-
+"Verify equation (1)"
+check(dsigma == T)
 "ok"
 
-"Verify probability density"
 
-check(f == 2 (E^2 + m^2 + p^2 cos(theta)))
 
-q = p1 - p2
-q4 = dot(q,gmunu,q)^2
-check(q4 == 16 p^4 sin(theta/2)^4)
-check(q4 == 4 p^4 (cos(theta) - 1)^2)
-
--- verify integral
-
-f = 1 / (cos(theta) - 1)^2
-I = 1 / (cos(theta) - 1)
-check(f sin(theta) == d(I,theta))
-
--- verify cdf
-
-F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
-check(F == 2 (cos(a) - cos(theta)) / ((1 + cos(a)) (1 - cos(theta))))
-
-"ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
