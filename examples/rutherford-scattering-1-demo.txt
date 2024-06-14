@@ -3,8 +3,7 @@ f = exp(i p / hbar r - epsilon r) - exp(-i p / hbar r - epsilon r)
 F = integral(f,r)
 I = 0 - eval(F,r,0)
 check(I == -1 / (i p / hbar - epsilon) - 1 / (i p / hbar + epsilon))
-epsilon = 0
-check(I hbar / (i p) == 2 hbar^2 / p^2)
+check(I hbar / (i p) == 2 / ((p / hbar)^2 + epsilon^2))
 "ok"
 
 "Verify equation (2)"
