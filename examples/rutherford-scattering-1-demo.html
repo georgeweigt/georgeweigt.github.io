@@ -1,18 +1,15 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Verify equation (1)"
-f = sin(p r / hbar) exp(-epsilon r)
-f = circexp(f)
-I = integral(f,r)
-I = 0 - eval(I,r,0)
-a = i p / hbar + epsilon
-b = i p / hbar - epsilon
-check(I == i/2 (1/a + 1/b))
-I = eval(I,epsilon,0)
-check(I == hbar / p)
+f = exp(i p / hbar r - epsilon r) - exp(-i p / hbar r - epsilon r)
+F = integral(f,r)
+I = 0 - eval(F,r,0)
+check(I == -1 / (i p / hbar - epsilon) - 1 / (i p / hbar + epsilon))
+epsilon = 0
+check(I hbar / (i p) == 2 hbar^2 / p^2)
 "ok"
 
 "Verify equation (2)"
-Q = -4 pi hbar Z e^2 / p (hbar / p)
+Q = -4 pi Z e^2 hbar^2 / p^2
 d = (m Q / (4 pi hbar^2))^2
 check(d == m^2 Z^2 e^4 / p^4)
 "ok"

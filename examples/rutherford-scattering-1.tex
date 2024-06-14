@@ -31,7 +31,7 @@ Q=-Ze^2
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
-\,r\sin\theta\,dr\,d\theta\,d\phi
+r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
 Integrate over $\phi$.
@@ -40,56 +40,69 @@ Q=-2\pi Ze^2
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
-\,r\sin\theta\,dr\,d\theta
+r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Change the complex exponential to rectangular form.
+Transform the integral over $\theta$ to an integral over $y$
+where $y=\cos\theta$, $dy=-\sin\theta\,d\theta$.
 \begin{equation*}
 Q=-2\pi Ze^2
-\int_0^\pi
+\int_{-1}^1
 \int_0^\infty
+\exp\left(\frac{ipry}{\hbar}\right)
+r\,dr\,dy
+\end{equation*}
+
+Solve the integral over $y$ (note $r$ in the integrand cancels).
+\begin{equation*}
+Q=-2\pi Ze^2
+\int_0^\infty
+\frac{\hbar}{ip}
+\left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
+dr
+\end{equation*}
+
+Solve the integral over $r$.
+\begin{equation*}
+Q=-2\pi Ze^2\frac{\hbar}{ip}
 \left[
-\cos\left(\frac{pr\cos\theta}{\hbar}\right)
-+i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
-\right]
-\,r\sin\theta\,dr\,d\theta
+\frac{\hbar}{ip}
+\exp\left(\frac{ipr}{\hbar}\right)
++\frac{\hbar}{ip}
+\exp\left(-\frac{ipr}{\hbar}\right)
+\right]_0^\infty
 \end{equation*}
 
-By the definite integrals
+The first exponential is a problem
+so go back and multiply the integrand by $\exp(-\epsilon r)$.
 \begin{equation*}
-\int_0^\pi\cos(a\cos\theta)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
-\int_0^\pi\sin(a\cos\theta)\sin\theta\,d\theta=0
+Q=-2\pi Ze^2
+\int_0^\infty
+\frac{\hbar}{ip}
+\left[\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
+-\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)\right]
+dr
 \end{equation*}
 
-we have for the integral over $\theta$ (note $r$ in the integrand is canceled)
+Solve the integral over $r$.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}
-\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\,dr
+Q=-2\pi Ze^2
+\frac{\hbar}{ip}
+\left[
+\frac{1}{ip/\hbar-\epsilon}\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
++\frac{1}{ip/\hbar+\epsilon}\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
+\right]_0^\infty
 \end{equation*}
 
-Multiply the integrand by $\exp(-\epsilon r)$.
+Evaluate the limits.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}
-\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)\exp(-\epsilon r)\,dr
-\end{equation*}
-
-Convert the integrand to exponential form.
-\begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}
-\int_0^\infty\frac{i}{2}\left[
-\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
--\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
-\right]\,dr
-\end{equation*}
-
-Solve the integral.
-\begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}\frac{i}{2}
-\left(\frac{1}{ip/\hbar+\epsilon}+\frac{1}{ip/\hbar-\epsilon}\right)
+Q=-2\pi Ze^2
+\frac{\hbar}{ip}
+\left(-\frac{1}{ip/\hbar-\epsilon}-\frac{1}{ip/\hbar+\epsilon}\right)
 \tag{1}
 \end{equation*}
 
-Set $\epsilon=0$.
+Set $\epsilon=0$ to obtain
 \begin{equation*}
 Q=-\frac{4\pi Ze^2\hbar^2}{p^2}
 \end{equation*}
