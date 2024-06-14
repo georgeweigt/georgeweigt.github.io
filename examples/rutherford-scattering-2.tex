@@ -31,7 +31,7 @@ Q=-Ze^2
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
 \exp\left(-\frac{r}{a}\right)
-\,r\sin\theta\,dr\,d\theta\,d\phi
+r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
 Integrate over $\phi$.
@@ -41,47 +41,52 @@ Q=-2\pi Ze^2
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
 \exp\left(-\frac{r}{a}\right)
-\,r\sin\theta\,dr\,d\theta
+r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Change the complex exponential to rectangular form.
+Transform the integral over $\theta$ to an integral over $y$
+where $y=\cos\theta$, $dy=-\sin\theta\,d\theta$.
 \begin{equation*}
 Q=-2\pi Ze^2
-\int_0^\pi
+\int_{-1}^1
 \int_0^\infty
-\left[
-\cos\left(\frac{pr\cos\theta}{\hbar}\right)
-+i\sin\left(\frac{pr\cos\theta}{\hbar}\right)
-\right]
+\exp\left(\frac{ipry}{\hbar}\right)
 \exp\left(-\frac{r}{a}\right)
-\,r\sin\theta\,dr\,d\theta
+r\,dr\,dy
 \end{equation*}
 
-By the definite integrals
+Solve the integral over $y$ (note $r$ in the integrand cancels).
 \begin{equation*}
-\int_0^\pi\cos(a\cos\theta)\sin\theta\,d\theta=\frac{2\sin a}{a},\quad
-\int_0^\pi\sin(a\cos\theta)\sin\theta\,d\theta=0
-\end{equation*}
-
-we have for the integral over $\theta$ (note $r$ in the integrand is canceled)
-\begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}
-\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)
+Q=-2\pi Ze^2
+\int_0^\infty
+\frac{\hbar}{ip}
+\left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
 \exp\left(-\frac{r}{a}\right)
 \,dr
 \end{equation*}
 
-By the definite integral
+Solve the integral over $r$.
 \begin{equation*}
-\int_0^\infty\sin(ay)\exp(-by)\,dy=\frac{a}{a^2+b^2}
+Q=-2\pi Ze^2
+\frac{\hbar}{ip}
+\left[
+\frac{1}{ip/\hbar-1/a}
+\exp\left(\frac{ipr}{\hbar}-\frac{r}{a}\right)
++\frac{1}{ip/\hbar+1/a}
+\exp\left(-\frac{ipr}{\hbar}-\frac{r}{a}\right)
+\right]_0^\infty
 \end{equation*}
 
-we have for the integral over $r$
+Evaluate the limits.
 \begin{equation*}
-Q=-\frac{4\pi Ze^2\hbar}{p}
-\frac{p/\hbar}
-{(p/\hbar)^2+(1/a)^2}
+Q=-2\pi Ze^2
+\frac{\hbar}{ip}
+\left[
+-\frac{1}{ip/\hbar-1/a}
+-\frac{1}{ip/\hbar+1/a}
+\right]
 =-\frac{4\pi Ze^2}{(p/\hbar)^2+(1/a)^2}
+\tag{1}
 \end{equation*}
 
 The cross section is
@@ -114,7 +119,7 @@ Cancel $m^2$ in the numerator.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{Z^2\alpha^2(\hbar c)^2}{\left[2E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
-\tag{1}
+\tag{2}
 \end{equation*}
 
 Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section.
