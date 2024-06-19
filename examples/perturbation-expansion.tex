@@ -1,0 +1,92 @@
+\input{preamble}
+
+\section*{Perturbation expansion}
+
+This is the propagator for a particle in a potential energy field $V(x,t)$.
+\begin{equation*}
+K(b,a)=\int_{x_a}^{x_b}\exp\left[
+\frac{i}{\hbar}
+\int_{t_a}^{t_b}
+\left(\frac{m\dot x^2}{2}-V\bigl(x(t),t\bigr)\right)\,dt
+\right]
+\,\mathscr Dx(t)
+\end{equation*}
+
+Factor the exponential.
+\begin{equation*}
+K(b,a)=\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+\exp\left(-\frac{i}{\hbar}\int_{t_a}^{t_b}V\bigl(x(t),t\bigr)\,dt\right)
+\,\mathscr Dx(t)
+\end{equation*}
+
+Expand the second exponential as a power series.
+\begin{equation*}
+K(b,a)=\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+\left(1-\frac{i}{\hbar}\int_{t_a}^{t_b}V\bigl(x(t),t\bigr)\,dt+\cdots\right)
+\,\mathscr Dx(t)
+\end{equation*}
+
+Hence
+\begin{equation*}
+K(b,a)=K_0(b,a)+K_1(b,a)+\cdots
+\end{equation*}
+
+where $K_0$ is a free particle propagator and
+\begin{equation*}
+K_1(b,a)=-\frac{i}{\hbar}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+\int_{t_a}^{t_b}
+V\bigl(x(t_c),t_c\bigr)
+\,dt_c\,\mathscr Dx(t)
+\end{equation*}
+
+Interchange the order of the integrals.
+\begin{equation*}
+K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+V\bigl(x(t_c),t_c\bigr)
+\,\mathscr Dx(t)\,dt_c
+\end{equation*}
+
+Factor the exponential with respect to $t_c$.
+\begin{equation*}
+K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{m\dot x^2}{2}\,dt\right)
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+V\bigl(x(t_c),t_c\bigr)
+\,\mathscr Dx(t)\,dt_c
+\end{equation*}
+
+The two exponentials are free particle propagators.
+\begin{align*}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{m\dot x^2}{2}\,dt\right)
+&=K_0\bigl(x(t_c),t_c,x_a,t_a\bigr)
+\\
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+&=K_0\bigl(x_b,t_b,x(t_c),t_c\bigr)
+\end{align*}
+
+Hence
+\begin{equation*}
+K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{x_a}^{x_b}
+K_0\bigl(x(t_c),t_c,x_a,t_a\bigr)K_0\bigl(x_b,t_b,x(t_c),t_c\bigr)
+V\bigl(x(t_c),t_c\bigr)
+\,\mathscr Dx(t)\,dt_c
+\end{equation*}
+
+The integral is over all possible paths $x(t)$ hence
+\begin{equation*}
+-\infty<x(t_c)<\infty
+\end{equation*}
+
+Let $x_c=x(t_c)$ and transform the measure to $dx_c$ instead of $\mathscr Dx(t)$.
+\begin{equation*}
+K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{-\infty}^\infty
+K_0(x_c,t_c,x_a,t_a)K_0(x_b,t_b,x_c,t_c)
+V(x_c,t_c)
+\,dx_c\,dt_c
+\end{equation*}
+
+\end{document}
