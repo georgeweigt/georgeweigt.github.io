@@ -63,9 +63,11 @@ The two exponentials are free particle propagators.
 \begin{align*}
 \exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{m\dot x^2}{2}\,dt\right)
 &=K_0\bigl(x(t_c),t_c,x_a,t_a\bigr)
+&\text{from $x_a,t_a$ to $x(t_c),t_c$}
 \\
 \exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
 &=K_0\bigl(x_b,t_b,x(t_c),t_c\bigr)
+&\text{from $x(t_c),t_c$ to $x_b,t_b$}
 \end{align*}
 
 Hence
@@ -81,7 +83,7 @@ The integral is over all possible paths $x(t)$ hence
 -\infty<x(t_c)<\infty
 \end{equation*}
 
-Let $x_c=x(t_c)$ and transform the measure to $dx_c$ instead of $\mathscr Dx(t)$.
+Let $x_c=x(t_c)$ and transform the measure from $\mathscr Dx(t)$ to $dx_c$.
 \begin{equation*}
 K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{-\infty}^\infty
 K_0(x_c,t_c,x_a,t_a)K_0(x_b,t_b,x_c,t_c)
