@@ -9,7 +9,7 @@ check(I hbar / (i p) == 2 / ((p / hbar)^2 + epsilon^2))
 
 "Verify equation (2)"
 Q = -4 pi Z e^2 hbar^2 / p^2
-d = (m Q / (4 pi hbar^2))^2
+d = (m / (4 pi hbar^2))^2 Q conj(Q)
 check(d == m^2 Z^2 e^4 / p^4)
 "ok"
 
