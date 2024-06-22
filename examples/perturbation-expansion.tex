@@ -95,13 +95,42 @@ Substitute for $K_0$.
 \begin{multline*}
 K_1(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{-\infty}^\infty
 \left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^\frac{1}{2}
-\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_c-t_a)}\right)
+\exp\left(\frac{im(x_c-x_a)^2}{2\hbar(t_c-t_a)}\right)
 \\
 {}\times
 \left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^\frac{1}{2}
-\exp\left(\frac{im(x_b-x_a)^2}{2\hbar(t_b-t_c)}\right)
+\exp\left(\frac{im(x_b-x_c)^2}{2\hbar(t_b-t_c)}\right)
 V(x_c,t_c)
 \,dx_c\,dt_c
+\end{multline*}
+
+Let $t_a=0$, $t_b=T$, and promote to three dimensions.
+\begin{multline*}
+K_1(b,a)=-\frac{i}{\hbar}\int_0^T\int
+\left(\frac{m}{2\pi i\hbar t_c}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar t_c}\right)
+\\
+{}\times
+\left(\frac{m}{2\pi i\hbar(T-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar(T-t_c)}\right)
+V(\mathbf x_c,t_c)
+\,d^3\mathbf x_c\,dt_c
+\end{multline*}
+
+\end{document}
+
+Solve the time integral for time-independent $V$.
+\begin{multline*}
+K_1(b,a)=-\frac{iT}{\hbar}\left(\frac{m}{2\pi i\hbar T}\right)^\frac{5}{2}
+\int
+\left(\frac{1}{|\mathbf x_c-\mathbf x_a|}
++\frac{1}{|\mathbf x_b-\mathbf x_c|}\right)
+\\
+{}\times
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar T}\right)
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar T}\right)
+V(\mathbf x_c)
+\,d^3\mathbf x_c
 \end{multline*}
 
 \end{document}
