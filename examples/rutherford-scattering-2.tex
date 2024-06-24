@@ -4,13 +4,13 @@
 
 Find the cross section for Rutherford scattering with a screened Coulomb potential
 \begin{equation*}
-V(r)=-\frac{Ze^2}{r}\exp\left(-\frac{r}{a}\right)
+V(r)=-\frac{Ze^2}{4\varepsilon_0r}\exp\left(-\frac{r}{a}\right)
 \end{equation*}
 
 Start with
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{64\pi^2\epsilon_0^2}
-\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2,\quad
+\frac{d\sigma}{d\Omega}=
+\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2,\quad
 Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d^3\mathbf r
 \end{equation*}
 
@@ -25,7 +25,7 @@ Q=\int_0^{2\pi}
 
 Substitute the screened Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
 \begin{equation*}
-Q=-Ze^2
+Q=-\frac{Ze^2}{4\pi\varepsilon_0}
 \int_0^{2\pi}
 \int_0^\pi
 \int_0^\infty
@@ -34,9 +34,9 @@ Q=-Ze^2
 r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Integrate over $\phi$.
+Integrate over $\phi$ (multiplies $Q$ by $2\pi$).
 \begin{equation*}
-Q=-2\pi Ze^2
+Q=-\frac{Ze^2}{2\varepsilon_0}
 \int_0^\pi
 \int_0^\infty
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
@@ -47,7 +47,7 @@ r\sin\theta\,dr\,d\theta
 Transform the integral over $\theta$ to an integral over $y$
 where $y=\cos\theta$, $dy=-\sin\theta\,d\theta$.
 \begin{equation*}
-Q=-2\pi Ze^2
+Q=-\frac{Ze^2}{2\varepsilon_0}
 \int_{-1}^1
 \int_0^\infty
 \exp\left(\frac{ipry}{\hbar}\right)
@@ -57,7 +57,7 @@ r\,dr\,dy
 
 Solve the integral over $y$ (note $r$ in the integrand cancels).
 \begin{equation*}
-Q=-2\pi Ze^2
+Q=-\frac{Ze^2}{2\varepsilon_0}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
@@ -67,7 +67,7 @@ Q=-2\pi Ze^2
 
 Solve the integral over $r$.
 \begin{equation*}
-Q=-2\pi Ze^2
+Q=-\frac{Ze^2}{2\varepsilon_0}
 \frac{\hbar}{ip}
 \left[
 \frac{1}{ip/\hbar-1/a}
@@ -79,23 +79,21 @@ Q=-2\pi Ze^2
 
 Evaluate the limits.
 \begin{equation*}
-Q=-2\pi Ze^2
+Q=-\frac{Ze^2}{2\varepsilon_0}
 \frac{\hbar}{ip}
 \left[
 -\frac{1}{ip/\hbar-1/a}
 -\frac{1}{ip/\hbar+1/a}
 \right]
-=-\frac{4\pi Ze^2}{(p/\hbar)^2+(1/a)^2}
+=-\frac{Ze^2}{2\varepsilon_0}\frac{2}{(p/\hbar)^2+(1/a)^2}
 \tag{1}
 \end{equation*}
 
 The cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{1}{64\pi^2\epsilon_0^2}
-\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2
-=\frac{1}{64\pi^2\epsilon_0^2}
-\frac{4m^2Z^2e^4}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
+=\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2
+=\frac{m^2Z^2e^4}{(4\pi\epsilon_0)^2\bigl[p^2+(\hbar/a)^2\bigr]^2}
 \end{equation*}
 
 Substitute $(4\pi\epsilon_0\alpha\hbar c)^2$ for $e^4$.
