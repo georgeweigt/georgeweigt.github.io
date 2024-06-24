@@ -11,6 +11,9 @@ Q = -Z e^2 / (epsilon0 ((p / hbar)^2 + (1 / a)^2))
 dsigma = (m / (4 pi hbar^2))^2 Q conj(Q)
 T = m^2 Z^2 e^4 / ((4 pi epsilon0)^2 (p^2 + (hbar / a)^2)^2)
 check(dsigma == T)
+"ok"
+
+"Verify equation (3)"
 e = sqrt(4 pi epsilon0 alpha hbar c)
 p = sqrt(2 m E (1 - cos(theta)))
 T = Z^2 alpha^2 (hbar c)^2 / (2 E (1 - cos(theta)) + 1/m (hbar/a)^2)^2
