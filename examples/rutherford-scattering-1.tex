@@ -6,7 +6,7 @@
 
 Use the following formula to compute the cross section for Rutherford scattering.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2,\quad
+\frac{d\sigma}{d\Omega}=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2,\quad
 Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
 \end{equation*}
 
@@ -112,24 +112,24 @@ Q=-\frac{Ze^2\hbar^2}{\varepsilon_0p^2}
 
 Calculate the cross section.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2
-=\frac{m^2Z^2e^4}{(4\pi\varepsilon_0)^2p^4}
+\frac{d\sigma}{d\Omega}=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2
+=\frac{m^2Z^2e^4}{4\pi^2\varepsilon_0^2p^4}
 \tag{2}
 \end{equation*}
 
-Substitute $(4\pi\varepsilon_0\alpha\hbar c)^2$ for $e^4$.
+Substitute $16\pi^2\varepsilon_0^2\alpha^2\hbar^2c^2$ for $e^4$.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{m^2Z^2\alpha^2(\hbar c)^2}{p^4}
+\frac{d\sigma}{d\Omega}=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{p^4}
 \end{equation*}
 
 Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
 \begin{equation*}
-p^2=2mE(1-\cos\theta)
+p^2=4mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2\hbar^2c^2}{4E^2(1-\cos\theta)^2}
 \tag{3}
 \end{equation*}
 
@@ -140,7 +140,7 @@ Noting that
 
 we have the alternative form of (3)
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{16E^2\sin^4(\theta/2)}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2\hbar^2c^2}{16E^2\sin^4(\theta/2)}
 \end{equation*}
 
 \subsubsection*{Experimental data}

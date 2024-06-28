@@ -10,7 +10,7 @@ V(r)=-\frac{Ze^2}{4\varepsilon_0r}\exp\left(-\frac{r}{a}\right)
 Start with
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=
-\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2,\quad
+\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2,\quad
 Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d^3\mathbf r
 \end{equation*}
 
@@ -94,35 +94,39 @@ Q=-\frac{Ze^2}{2\varepsilon_0}
 The cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\left(\frac{m}{4\pi\hbar^2}\right)^2|Q|^2
-=\frac{m^2Z^2e^4}{(4\pi\epsilon_0)^2\bigl[p^2+(\hbar/a)^2\bigr]^2}
+=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2
+=\frac{m^2Z^2e^4}{4\pi^2\epsilon_0^2\bigl[p^2+(\hbar/a)^2\bigr]^2}
 \tag{2}
 \end{equation*}
 
-Substitute $(4\pi\epsilon_0\alpha\hbar c)^2$ for $e^4$.
+Substitute $16\pi^2\epsilon_0^2\alpha^2\hbar^2c^2$ for $e^4$.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{m^2Z^2\alpha^2(\hbar c)^2}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
+=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
 \end{equation*}
 
 Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
 \begin{equation*}
-p^2=2mE(1-\cos\theta)
+p^2=4mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{m^2Z^2\alpha^2(\hbar c)^2}{\bigl[2mE(1-\cos\theta)+(\hbar/a)^2\bigr]^2}
+=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{\bigl[4mE(1-\cos\theta)+(\hbar/a)^2\bigr]^2}
 \end{equation*}
 
 Cancel $m^2$ in the numerator.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{Z^2\alpha^2(\hbar c)^2}{\left[2E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
+=\frac{4Z^2\alpha^2\hbar^2c^2}{\left[4E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
 \tag{3}
 \end{equation*}
 
-Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section.
+Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section formula
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{Z^2\alpha^2\hbar^2c^2}{4E^2(1-\cos\theta)^2}
+\end{equation*}
 
 \end{document}
