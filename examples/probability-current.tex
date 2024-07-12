@@ -1,0 +1,52 @@
+\input{preamble}
+
+\section*{Probability current}
+
+Given the probability current
+\begin{equation*}
+\mathbf J=\frac{i\hbar}{2m}\left(\Psi\nabla\Psi^*-\Psi^*\nabla\Psi\right)
+\end{equation*}
+
+show that
+\begin{equation*}
+\nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
+\end{equation*}
+
+Recall that
+\begin{equation*}
+\nabla\cdot\nabla=\nabla^2
+\end{equation*}
+
+By the product rule for divergence we have
+\begin{equation*}
+\nabla\cdot(\Psi\nabla\Psi^*)
+=\nabla\Psi\cdot\nabla\Psi^*+\Psi\nabla^2\Psi^*
+\end{equation*}
+
+Hence
+\begin{equation*}
+\nabla\cdot\mathbf J
+=\frac{i\hbar}{2m}\left(\Psi\nabla^2\Psi^*-\Psi^*\nabla^2\Psi\right)
+\tag{1}
+\end{equation*}
+
+By the Schr\"odinger equation
+\begin{equation*}
+\frac{\partial\Psi}{\partial t}
+=\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi
+\end{equation*}
+
+we have
+\begin{equation*}
+\frac{\partial}{\partial t}|\Psi|^2
+=\Psi^*\frac{\partial\Psi}{\partial t}+\Psi\frac{\partial\Psi^*}{\partial t}
+=\frac{i\hbar}{2m}\left(\Psi^*\nabla^2\Psi-\Psi\nabla^2\Psi^*\right)
+\tag{2}
+\end{equation*}
+
+Hence by (1) and (2)
+\begin{equation*}
+\nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
+\end{equation*}
+
+\end{document}
