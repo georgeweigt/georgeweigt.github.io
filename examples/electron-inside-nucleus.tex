@@ -1,0 +1,64 @@
+\input{preamble}
+
+\section*{Electron inside nucleus}
+
+Start with the ground state wave function for hydrogen.
+\begin{equation*}
+\psi_{100}(r,\theta,\phi)=\frac{1}{\sqrt{\pi a_0^3}}\exp\left(-\frac{r}{a_0}\right)
+\end{equation*}
+
+The cumulative distribution function $\Pr(r<a)$ is obtained by integrating
+$|\psi_{100}|^2$ over the volume element $r^2\sin\theta\,dr\,d\theta\,d\phi$.
+\begin{equation*}
+\Pr(r<a)=\frac{1}{\pi a_0^3}
+\int_0^a\int_0^\pi\int_0^{2\pi}\exp\left(-\frac{2r}{a_0}\right)
+r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$ (multiply by $2\pi$).
+\begin{equation*}
+\Pr(r<a)=\frac{2}{a_0^3}
+\int_0^a\int_0^\pi\exp\left(-\frac{2r}{a_0}\right)r^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Transform the integral over $\theta$ to an integral over $y$ where
+$y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
+The minus sign in $dy$ is canceled by interchanging integration limits
+$\cos0=1$ and $\cos\pi=-1$.
+\begin{equation*}
+\Pr(r<a)=\frac{2}{a_0^3}
+\int_0^a\int_{-1}^1\exp\left(-\frac{2r}{a_0}\right)r^2\,dr\,dy
+\end{equation*}
+
+Integrate over $y$ (multiply by 2).
+\begin{equation*}
+\Pr(r<a)=\frac{4}{a_0^3}
+\int_0^a\exp\left(-\frac{2r}{a_0}\right)r^2\,dr
+\end{equation*}
+
+Solve the integral over $r$.
+\begin{equation*}
+\Pr(r<a)=1-\left(\frac{2a^2}{a_0^2}+\frac{2a}{a_0}+1\right)
+\exp\left(-\frac{2a}{a_0}\right)
+\tag{1}
+\end{equation*}
+
+For $a=a_0$ we have
+\begin{equation*}
+\Pr(r<a_0)=0.32
+\end{equation*}
+
+Hence the probability of finding the electron inside the Bohr radius is 32\%.
+
+\bigskip
+Let $a$ be the radius of the nucleus.
+\begin{equation*}
+a=8.5\times10^{-6}\,\text{\AA}
+\end{equation*}
+
+Then for $a_0=0.53\,\text{\AA}$ we have
+\begin{equation*}
+\Pr(r<a)=5.4\times10^{-15}
+\end{equation*}
+
+\end{document}
