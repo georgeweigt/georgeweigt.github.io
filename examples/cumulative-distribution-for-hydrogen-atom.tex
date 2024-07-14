@@ -50,4 +50,24 @@ For $a=a_0$ we have
 
 Hence the probability that the electron is inside the Bohr radius is 32\%.
 
+\bigskip
+Another form of the cumulative distribution function is $F(r)$ where
+\begin{equation*}
+F(r)=\frac{4}{a_0^3}
+\int\exp\left(-\frac{2r}{a_0}\right)r^2\,dr
+=-\left(\frac{2r^2}{a_0^2}+\frac{2r}{a_0}+1\right)
+\exp\left(-\frac{2r}{a_0}\right)
+\tag{2}
+\end{equation*}
+
+Then
+\begin{equation*}
+\Pr(a<r<b)=F(b)-F(a)
+\end{equation*}
+
+and
+\begin{equation*}
+\Pr(r<a)=F(a)-F(0)
+\end{equation*}
+
 \end{document}
