@@ -70,4 +70,25 @@ and
 \Pr(r<a)=F(a)-F(0)
 \end{equation*}
 
+The probability density function $f(r)$ is the derivative of $F(r)$.
+\begin{equation*}
+f(r)=\frac{dF(r)}{dr}=\frac{4r^2}{a_0^3}\exp\left(-\frac{2r}{a_0}\right)
+\tag{3}
+\end{equation*}
+
+The expectation value for $r$.
+\begin{equation*}
+\langle r\rangle=\int_0^\infty rf(r)\,dr=\tfrac{3}{2}a_0
+\end{equation*}
+
+The expectation value for $r^2$.
+\begin{equation*}
+\langle r^2\rangle=\int_0^\infty r^2f(r)\,dr=3a_0^2
+\end{equation*}
+
+The variance for $r$.
+\begin{equation*}
+\operatorname{Var}(r)=\langle r^2\rangle-\langle r\rangle^2=\tfrac{3}{4}a_0^2
+\end{equation*}
+
 \end{document}

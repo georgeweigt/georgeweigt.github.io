@@ -12,4 +12,20 @@ F = 4 / a0^3 integral(exp(-2 r / a0) r^2, r)
 check(F == -(2 r^2 / a0^2 + 2 r / a0 + 1) exp(-2 r / a0))
 check(d(F,r) == 4 / a0^3 exp(-2 r / a0) r^2)
 "ok"
+
+"Verify equation (3)"
+f = d(F,r)
+check(f == 4 r^2 / a0^3 exp(-2 r / a0))
+"ok"
+
+"Verify expectation values"
+I = integral(r f, r)
+rbar = 0 - eval(I,r,0)
+check(rbar == 3/2 a0)
+I = integral(r^2 f, r)
+r2bar = 0 - eval(I,r,0)
+check(r2bar == 3 a0^2)
+check(r2bar - rbar^2 == 3/4 a0^2)
+"ok"
+
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
