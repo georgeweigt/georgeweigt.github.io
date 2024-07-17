@@ -1,6 +1,6 @@
 \input{preamble}
 
-\section*{Cumulative distribution for hydrogen atom}
+\section*{Statistics for hydrogen atom}
 
 Start with the ground state wave function.
 \begin{equation*}
@@ -76,17 +76,14 @@ f(r)=\frac{dF(r)}{dr}=\frac{4r^2}{a_0^3}\exp\left(-\frac{2r}{a_0}\right)
 \tag{3}
 \end{equation*}
 
-The expectation value for $r$.
-\begin{equation*}
-\langle r\rangle=\int_0^\infty rf(r)\,dr=\tfrac{3}{2}a_0
-\end{equation*}
+Use $f(r)$ to compute expectation values.
+\begin{align*}
+\langle r\rangle&=\int_0^\infty rf(r)\,dr=\tfrac{3}{2}a_0
+\\
+\langle r^2\rangle&=\int_0^\infty r^2f(r)\,dr=3a_0^2
+\end{align*}
 
-The expectation value for $r^2$.
-\begin{equation*}
-\langle r^2\rangle=\int_0^\infty r^2f(r)\,dr=3a_0^2
-\end{equation*}
-
-The variance for $r$.
+Hence
 \begin{equation*}
 \operatorname{Var}(r)=\langle r^2\rangle-\langle r\rangle^2=\tfrac{3}{4}a_0^2
 \end{equation*}
