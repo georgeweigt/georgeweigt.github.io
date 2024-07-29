@@ -12,7 +12,7 @@ u
 "Verify equation (1)"
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 pslash = m dot(Lambda,gamma0,inv(Lambda))
-check(dot(Lambda,gamma0) == 1/m dot(pslash,Lambda))
+check(1/m dot(pslash,Lambda) == dot(Lambda,gamma0))
 "ok"
 
 "Verify equation (2)"
