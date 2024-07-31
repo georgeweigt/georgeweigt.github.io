@@ -1,0 +1,31 @@
+"Verify equation (1)"
+E = (3 pi^2 / 2)^(1/3) 9 hbar^2 n^(5/3) / (20 me r^2)
+U = -3 G M^2 / (5 r)
+rmin = -r d(E,r) / d(U,r)
+check(rmin == (3 pi^2 / 2)^(1/3) 3 hbar^2 n^(5/3) / (2 me G M^2))
+"ok"
+
+ampere = "ampere"
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+coulomb = ampere second
+farad = coulomb / volt
+joule = kilogram meter^2 / second^2
+volt = joule / coulomb
+
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+me = 9.1093837015 10^(-31) kilogram
+mp = 1.67262192369 10^(-27) kilogram
+
+G = 6.67430 10^(-11) meter^3 / (kilogram second^2)
+Msun = 2 10^30 kilogram
+M = Msun
+n = M / (2 mp)
+pi = float(pi)
+rmin
