@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+-- use rectangular coordinates
+
+r = sqrt(x^2 + y^2 + z^2)
+
+F = exp(i k r) / r
+
+"Verify equation (1)"
+A = dot(grad(1/r),grad(exp(i k r)))
+B = div(grad(exp(i k r))) / r
+C = exp(i k r) div(grad(1/r))
+check(div(grad(F)) == 2 A + B + C)
+"ok"
+
+"Verify equation (2)"
+check(A == -i k exp(i k r) / r^2)
+"ok"
+
+"Verify equation (3)"
+check(B == 2 i k exp(i k r) / r^2 - k^2 exp(i k r) / r)
+"ok"
+
+-- verify for nonzero r
+
+"Verify equation (4)"
+check(div(grad(F)) == -k^2 F)
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
