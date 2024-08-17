@@ -8,8 +8,7 @@ by J.~J.~Balmer dated 1885.
 Numerical values are wavelengths in units of $10^{-10}$ meter.
 %(Data for $H_I$ in the original table is not included here because $H_I$ is not a hydrogen line.
 %The $H_I$ data is for Fraunhofer line $H$ which is ionized calcium.)
-\begin{center}
-\footnotesize
+{\footnotesize\begin{center}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 \hline
 Investigator & $H_\alpha$ & $H_\beta$ & $H_\gamma$ & $H_\delta$ & $H_\epsilon$ &
@@ -32,9 +31,9 @@ Vogel & -- & -- & -- & -- & 3969 & 3887 & 3834 & 3795 & 3769${}^\dag$
 \\
 \hline
 \end{tabular}
-\\
-{\footnotesize(${}^\dag$The value given in the paper is 6769 which is an obvious typo.)}
-\end{center}
+
+(${}^\dag$The value given in the paper is 6769 which is an obvious typo.)
+\end{center}}%footnotesize
 
 Balmer discovered the following formula for fitting the data
 ($\lambda$ is wavelength).
@@ -59,7 +58,6 @@ Using linear regression and the above data we obtain
 \end{equation*}
 
 %Use linear regression in R to compute the model coefficient.
-%{\footnotesize\color{blue}
 %\begin{verbatim}
 %m = c(3,3,3,3,3,4,4,4,4,4,5,5,5,6,6,6,7,8,8,9,9,10,10,11,11)
 %
@@ -74,15 +72,12 @@ Using linear regression and the above data we obtain
 %
 %coef(lm(y ~ 0 + x))
 %\end{verbatim}
-%}
 %
 %\medskip
 %The result is
-%{\footnotesize
 %\begin{verbatim}
 %3645.296
 %\end{verbatim}
-%}
 %
 %which is a little bit smaller than Balmer's value.
 %It should be noted that Balmer did not use the entire data set as we have done here.

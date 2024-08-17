@@ -307,7 +307,7 @@ Table of Gaussian integrals for negative or imaginary coefficient $a$.
 G0(a,b) = sqrt(-pi / a) exp(-b^2 / (4 a))
 G1(a,b) = sqrt(-pi / a) (-b / (2 a)) exp(-b^2 / (4 a))
 G2(a,b) = sqrt(-pi / a) (-1 / (2 a)) (1 - b^2 / (2 a)) exp(-b^2 / (4 a))
-\end{verbatim}}
+\end{verbatim}}%footnotesize
 
 \begin{equation*}
 a=\frac{im}{2\hbar\epsilon},\quad
@@ -331,7 +331,7 @@ I_1&=\int_{\mathbb R^3}
 a = i m / (2 hbar epsilon)
 b = -i q / (hbar c)
 I1 = G0(a, b Ax) G0(a, b Ay) G0(a, b Az) psi
-\end{verbatim}}
+\end{verbatim}}%footnotesize
 
 \begin{align*}
 I_2&=\int_{\mathbb R^3}
@@ -363,7 +363,7 @@ I_2&=\int_{\mathbb R^3}
 I2 = G1(a, b Ax) G0(a, b Ay) G0(a, b Az) d(psi(),x) +
      G0(a, b Ax) G1(a, b Ay) G0(a, b Az) d(psi(),y) +
      G0(a, b Ax) G0(a, b Ay) G1(a, b Az) d(psi(),z)
-\end{verbatim}}
+\end{verbatim}}%footnotesize
 
 \begin{align*}
 I_3&=\int_{\mathbb R^3}
@@ -402,6 +402,6 @@ I3 = G2(a, b Ax) G0(a, b Ay) G0(a, b Az) 1/2 d(psi(),x,x) +
 -- discard terms of order C epsilon^2
 
 I3 = eval(I3,epsilon^(7/2),0)
-\end{verbatim}}
+\end{verbatim}}%footnotesize
 
 \end{document}
