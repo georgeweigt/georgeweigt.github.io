@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Angular momentum 1"
+
+Q1(f) = q1 f
+Q2(f) = q2 f
+Q3(f) = q3 f
+
+P1(f) = -i hbar d(f,q1)
+P2(f) = -i hbar d(f,q2)
+P3(f) = -i hbar d(f,q3)
+
+L1(f) = Q2(P3(f)) - Q3(P2(f))
+L2(f) = Q3(P1(f)) - Q1(P3(f))
+L3(f) = Q1(P2(f)) - Q2(P1(f))
+
+psi = Psi(q1,q2,q3)
+
+check(Q1(L3(psi)) - L3(Q1(psi)) == -i hbar Q2(psi))
+check(Q2(L3(psi)) - L3(Q2(psi)) == i hbar Q1(psi))
+check(Q3(L3(psi)) - L3(Q3(psi)) == 0)
+
+check(P1(L3(psi)) - L3(P1(psi)) == -i hbar P2(psi))
+check(P2(L3(psi)) - L3(P2(psi)) == i hbar P1(psi))
+check(P3(L3(psi)) - L3(P3(psi)) == 0)
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
