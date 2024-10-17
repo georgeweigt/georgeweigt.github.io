@@ -22,17 +22,17 @@ psi = Psi(x1,x2,x3)
 
 "Verify equation (1)"
 
-T = V(P1(U(psi)))
-T = eval(T, epsilon^4, 0, epsilon^3, 0)
-check(T == P1(psi) - epsilon m psi)
+T1 = V(P1(U(psi)))
+T1 = eval(T1, epsilon^4, 0, epsilon^3, 0)
+check(T1 == P1(psi) - epsilon m psi)
 
-T = V(P2(U(psi)))
-T = eval(T, epsilon^4, 0, epsilon^3, 0)
-check(T == P2(psi))
+T2 = V(P2(U(psi)))
+T2 = eval(T2, epsilon^4, 0, epsilon^3, 0)
+check(T2 == P2(psi))
 
-T = V(P3(U(psi)))
-T = eval(T, epsilon^4, 0, epsilon^3, 0)
-check(T == P3(psi))
+T3 = V(P3(U(psi)))
+T3 = eval(T3, epsilon^4, 0, epsilon^3, 0)
+check(T3 == P3(psi))
 
 "ok"
 
