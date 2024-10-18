@@ -8,13 +8,13 @@ P1(f) = -i hbar d(f,x1)
 P2(f) = -i hbar d(f,x2)
 P3(f) = -i hbar d(f,x3)
 
-K1(f) = P1(f) / hbar
-K2(f) = P2(f) / hbar
-K3(f) = P3(f) / hbar
-
 L1(f) = X2(P3(f)) - X3(P2(f))
 L2(f) = X3(P1(f)) - X1(P3(f))
 L3(f) = X1(P2(f)) - X2(P1(f))
+
+K1(f) = P1(f) / hbar
+K2(f) = P2(f) / hbar
+K3(f) = P3(f) / hbar
 
 U(f) = f - i epsilon K3(f) - 1/2 epsilon^2 K3(K3(f))
 V(f) = f + i epsilon K3(f) - 1/2 epsilon^2 K3(K3(f)) -- inverse of U

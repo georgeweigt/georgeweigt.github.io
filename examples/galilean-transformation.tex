@@ -9,22 +9,44 @@ G_1=\frac{m}{\hbar}X_1,\quad G_2=\frac{m}{\hbar}X_2,\quad G_3=\frac{m}{\hbar}X_3
 
 Let $U$ be the unitary transformation
 \begin{equation*}
-U=1-i\epsilon G_1-\tfrac{1}{2}\epsilon^2{G_1}^2
+U=1-i\epsilon G_3-\tfrac{1}{2}\epsilon^2{G_3}^2
 \end{equation*}
 
-Show that to order $\epsilon^2$
-\begin{equation*}
-U^{-1}P_1U=P_1-\epsilon m,\quad U^{-1}P_2U=P_2,\quad U^{-1}P_3U=P_3\tag{1}
-\end{equation*}
+1. Show that to order $\epsilon^2$
+\begin{align*}
+U^{-1}X_1U&=X_1
+\\
+U^{-1}X_2U&=X_2
+\\
+U^{-1}X_3U&=X_3
+\end{align*}
 
-and
+2. Show that to order $\epsilon^2$
+\begin{align*}
+U^{-1}P_1U&=P_1
+\\
+U^{-1}P_2U&=P_2
+\\
+U^{-1}P_3U&=P_3-\epsilon m
+\end{align*}
+
+3. Show that to order $\epsilon^2$
+\begin{align*}
+U^{-1}L_1U&=L_1-\epsilon mX_1
+\\
+U^{-1}L_2U&=L_2+\epsilon mX_2
+\\
+U^{-1}L_3U&=L_3
+\end{align*}
+
+4. Show that to order $\epsilon^2$
 \begin{equation*}
-U^{-1}HU=H-\epsilon P_1+\tfrac{1}{2}\epsilon^2m\tag{2}
+U^{-1}HU=H-\epsilon P_3+\tfrac{1}{2}\epsilon^2m
 \end{equation*}
 
 where
 \begin{equation*}
-H=\frac{1}{2m}\left(P_1^2+P_2^2+P_3^2\right)
+H=\frac{1}{2m}\left({P_1}^2+{P_2}^2+{P_3}^2\right)
 \end{equation*}
 
 \end{document}
