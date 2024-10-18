@@ -1,4 +1,4 @@
-"Rotation"
+"Small rotation"
 
 X1(f) = x1 f
 X2(f) = x2 f
