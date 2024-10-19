@@ -16,12 +16,14 @@ J1(f) = L1(f) / hbar
 J2(f) = L2(f) / hbar
 J3(f) = L3(f) / hbar
 
-H(f) = (P1(P1(f)) + P2(P2(f)) + P3(P3(f))) / (2 m)
-
 U(f) = f - i epsilon J3(f) - 1/2 epsilon^2 J3(J3(f))
 V(f) = f + i epsilon J3(f) - 1/2 epsilon^2 J3(J3(f)) -- inverse of U
 
 psi = Psi(x1,x2,x3)
+
+T = V(U(psi))
+T = eval(T, epsilon^4, 0)
+check(T == psi)
 
 "Verify (1)"
 
@@ -72,6 +74,8 @@ check(T3 == L3(psi))
 "ok"
 
 "Verify (4)"
+
+H(f) = (P1(P1(f)) + P2(P2(f)) + P3(P3(f))) / (2 m)
 
 T = V(H(U(psi)))
 T = eval(T, epsilon^4, 0, epsilon^3, 0)
