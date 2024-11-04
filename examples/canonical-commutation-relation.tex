@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\parindent=0pt
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\begin{document}
+
+\iffalse
+Fedak  and Prentis write
+\begin{quote}
+The theory of Fourier and the correspondence principle of Bohr
+played a vital role in Heisenberg's development of quantum mechanics.
+\end{quote}
+
+Aitchison, MacManus, and Snyder write
+\begin{quote}
+This `difficulty’ clearly unsettled Heisenberg: but it very
+quickly became clear that the non-commutativity (in general) of kinematical
+quantities in quantum theory was the really essential new technical idea in the
+paper.
+\end{quote}
+\fi
+
+Canonical commutation relation in one dimension:
+\begin{equation*}
+XP-PX=i\hbar
+\end{equation*}
+
+Let
+\begin{equation*}
+X=x,\quad P=-i\hbar\frac{d}{dx}
+\end{equation*}
+
+Then
+\begin{align*}
+(XP-PX)\psi(x)&=XP\psi(x)-PX\psi(x)
+\\
+&=x\left(-i\hbar\frac{d}{dx}\psi(x)\right)+i\hbar\frac{d}{dx}\bigl(x\psi(x)\bigr)
+\\
+&=-i\hbar x\frac{d}{dx}\psi(x)+i\hbar\left(\frac{d}{dx}x\right)\psi(x)+i\hbar x\frac{d}{dx}\psi(x)
+\\
+&=i\hbar\psi(x)
+\end{align*}
+
+Eigenmath code:
+\begin{verbatim}
+X(f) = x f
+P(f) = -i hbar d(f,x)
+X(P(psi(x))) - P(X(psi(x)))
+\end{verbatim}
+
+Result:
+\begin{equation*}
+i\hbar\psi(x)
+\end{equation*}
+
+\iffalse
+Commutation relation in three dimensions.
+\begin{equation*}
+X_1P_1-P_1X_1=i\hbar,\quad
+X_2P_2-P_2X_2=i\hbar,\quad
+X_3P_3-P_3X_3=i\hbar
+\end{equation*}
+
+and
+\begin{equation*}
+X_jP_k-P_kX_j=0,\quad j\ne k
+\end{equation*}
+\fi
+
+\end{document}

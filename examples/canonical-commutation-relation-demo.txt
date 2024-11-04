@@ -1,0 +1,3 @@
+X(f) = x f
+P(f) = -i hbar d(f,x)
+X(P(psi(x))) - P(X(psi(x)))
