@@ -1,9 +1,4 @@
-\documentclass[12pt]{article}
-\usepackage{amsmath}
-\parindent=0pt
-\pdfinfoomitdate=1
-\pdftrailerid{}
-\begin{document}
+\input{preamble}
 
 \iffalse
 Fedak  and Prentis write
@@ -33,25 +28,25 @@ X=x,\quad P=-i\hbar\frac{d}{dx}
 
 Then
 \begin{align*}
-(XP-PX)\psi(x)&=XP\psi(x)-PX\psi(x)
+(XP-PX)\psi(x,t)&=XP\psi(x,t)-PX\psi(x,t)
 \\
-&=x\left(-i\hbar\frac{d}{dx}\psi(x)\right)+i\hbar\frac{d}{dx}\bigl(x\psi(x)\bigr)
+&=x\left(-i\hbar\frac{d}{dx}\psi(x,t)\right)+i\hbar\frac{d}{dx}\bigl(x\psi(x,t)\bigr)
 \\
-&=-i\hbar x\frac{d}{dx}\psi(x)+i\hbar\left(\frac{d}{dx}x\right)\psi(x)+i\hbar x\frac{d}{dx}\psi(x)
+&=-i\hbar x\frac{d}{dx}\psi(x,t)+i\hbar\left(\frac{d}{dx}x\right)\psi(x,t)+i\hbar x\frac{d}{dx}\psi(x,t)
 \\
-&=i\hbar\psi(x)
+&=i\hbar\psi(x,t)
 \end{align*}
 
 Eigenmath code:
 \begin{verbatim}
 X(f) = x f
 P(f) = -i hbar d(f,x)
-X(P(psi(x))) - P(X(psi(x)))
+X(P(psi(x,t))) - P(X(psi(x,t)))
 \end{verbatim}
 
 Result:
 \begin{equation*}
-i\hbar\psi(x)
+i\hbar\psi(x,t)
 \end{equation*}
 
 \iffalse
