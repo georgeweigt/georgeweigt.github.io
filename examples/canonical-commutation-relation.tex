@@ -23,16 +23,19 @@ XP-PX=i\hbar
 
 Let
 \begin{equation*}
-X=x,\quad P=-i\hbar\frac{d}{dx}
+X=x,\quad P=-i\hbar\frac{\partial}{\partial x}
 \end{equation*}
 
 Then
 \begin{align*}
 (XP-PX)\psi(x,t)&=XP\psi(x,t)-PX\psi(x,t)
 \\
-&=x\left(-i\hbar\frac{d}{dx}\psi(x,t)\right)+i\hbar\frac{d}{dx}\bigl(x\psi(x,t)\bigr)
+&=x\left(-i\hbar\frac{\partial}{\partial x}\psi(x,t)\right)
++i\hbar\frac{\partial}{\partial x}\bigl(x\psi(x,t)\bigr)
 \\
-&=-i\hbar x\frac{d}{dx}\psi(x,t)+i\hbar\left(\frac{d}{dx}x\right)\psi(x,t)+i\hbar x\frac{d}{dx}\psi(x,t)
+&=-i\hbar x\frac{\partial}{\partial x}\psi(x,t)
++i\hbar\left(\frac{\partial}{\partial x}x\right)\psi(x,t)
++i\hbar x\frac{\partial}{\partial x}\psi(x,t)
 \\
 &=i\hbar\psi(x,t)
 \end{align*}
