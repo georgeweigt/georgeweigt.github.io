@@ -3,7 +3,9 @@ X(f) = x f
 P(f) = -i hbar d(f,x)
 X(P(psi(x,t))) - P(X(psi(x,t)))
 
-A = X(X(P(P(psi(x,t))))) - P(P(X(X(psi(x,t)))))
+X2(f) = X(X(f))
+P2(f) = P(P(f))
+A = X2(P2(psi(x,t))) - P2(X2(psi(x,t)))
 B = 2 i hbar (X(P(psi(x,t))) + P(X(psi(x,t))))
 check(A == B)
 "ok"
