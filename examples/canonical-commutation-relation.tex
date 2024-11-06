@@ -52,18 +52,24 @@ Result:
 i\hbar\psi(x,t)
 \end{equation*}
 
-\iffalse
-Commutation relation in three dimensions.
+\bigskip
+Another example: Show that
 \begin{equation*}
-X_1P_1-P_1X_1=i\hbar,\quad
-X_2P_2-P_2X_2=i\hbar,\quad
-X_3P_3-P_3X_3=i\hbar
+[X^2,P^2]=2i\hbar(XP+PX)
 \end{equation*}
 
-and
-\begin{equation*}
-X_jP_k-P_kX_j=0,\quad j\ne k
-\end{equation*}
-\fi
+Eigenmath code:
+\begin{verbatim}
+A = X(X(P(P(psi(x,t))))) - P(P(X(X(psi(x,t)))))
+B = 2 i hbar (X(P(psi(x,t))) + P(X(psi(x,t))))
+check(A == B)
+"ok"
+\end{verbatim}
 
+Result:
+
+ok
+
+\bigskip
+(The statement {\tt check(A == B)} halts if $A$ not equal $B$.)
 \end{document}
