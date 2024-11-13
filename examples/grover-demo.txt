@@ -20,4 +20,10 @@ psi = rotate(psi,H,0,H,1,H,2)
 
 -- probability
 
-psi conj(psi)
+p = psi conj(psi)
+
+-- format result
+
+b = ("000","100","010","110","001","101","011","111")
+
+(b,p)
