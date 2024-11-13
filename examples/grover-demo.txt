@@ -1,0 +1,23 @@
+-- https://arxiv.org/abs/1703.10535
+
+psi = (1,0,0,0,0,0,0,0) -- 3 qubits
+
+-- init
+
+psi = rotate(psi,H,0,H,1,H,2)
+
+-- oracle
+
+psi = rotate(psi,C,0,Z,2,C,1,Z,2)
+
+-- amplification (diffuser)
+
+psi = rotate(psi,H,0,H,1,H,2)
+psi = rotate(psi,X,0,X,1,X,2)
+psi = rotate(psi,C,0,C,1,Z,2)
+psi = rotate(psi,X,0,X,1,X,2)
+psi = rotate(psi,H,0,H,1,H,2)
+
+-- probability
+
+psi conj(psi)
