@@ -113,21 +113,23 @@ P = psi conj(psi)
 for(j,1,64, for(k,1,127, P[j] = P[j] + P[j + 64 k]))
 
 "Probability of observing Y=0, X=5"
-P[5 + 1]
-float(P[5 + 1]) -- add 1 because index numbering starts at 1
+P[5 + 1] -- add 1 because index numbering starts at 1
 
 "Probability of observing Y=1, X=4"
-float(P[8 * 1 + 4 + 1])
+P[8 * 1 + 4 + 1]
 
 "Probability of observing Y=2, X=3"
-float(P[8 * 2 + 3 + 1])
+P[8 * 2 + 3 + 1]
 
 "Probability of observing Y=3, X=2"
-float(P[8 * 3 + 2 + 1])
+P[8 * 3 + 2 + 1]
 
 "Probability of observing Y=4, X=1"
-float(P[8 * 4 + 1 + 1])
+P[8 * 4 + 1 + 1]
 
 "Probability of observing Y=5, X=0"
-float(P[8 * 5 + 1])
+P[8 * 5 + 1]
+
+"Convert to floating point"
+float(P[6])
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
