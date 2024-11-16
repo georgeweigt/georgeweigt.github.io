@@ -11,7 +11,7 @@ psi = zero(2^13)
 
 psi[1] = 1
 
--- qubit names
+-- qubit names (reverse bit order for X and Y)
 
 X2 = 0
 X1 = 1
@@ -138,7 +138,4 @@ P[8 * 4 + 1 + 1]
 
 "Probability of observing Y=5, X=0"
 P[8 * 5 + 1]
-
-"Convert to floating point"
-float(P[6])
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
