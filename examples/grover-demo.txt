@@ -1,22 +1,26 @@
 -- https://arxiv.org/abs/1703.10535
 
+Q0 = 0
+Q1 = 1
+Q2 = 2
+
 psi = (1,0,0,0,0,0,0,0) -- 3 qubits
 
 -- init
 
-psi = rotate(psi,H,0,H,1,H,2)
+psi = rotate(psi, H,Q0, H,Q1, H,Q2)
 
 -- oracle
 
-psi = rotate(psi,C,0,Z,2,C,1,Z,2)
+psi = rotate(psi, C,Q0, Z,Q2, C,Q1, Z,Q2)
 
 -- amplification (diffuser)
 
-psi = rotate(psi,H,0,H,1,H,2)
-psi = rotate(psi,X,0,X,1,X,2)
-psi = rotate(psi,C,0,C,1,Z,2)
-psi = rotate(psi,X,0,X,1,X,2)
-psi = rotate(psi,H,0,H,1,H,2)
+psi = rotate(psi, H,Q0, H,Q1, H,Q2)
+psi = rotate(psi, X,Q0, X,Q1, X,Q2)
+psi = rotate(psi, C,Q0, C,Q1, Z,Q2)
+psi = rotate(psi, X,Q0, X,Q1, X,Q2)
+psi = rotate(psi, H,Q0, H,Q1, H,Q2)
 
 -- probability
 
@@ -26,4 +30,4 @@ p = psi conj(psi)
 
 b = ("000","100","010","110","001","101","011","111")
 
-(b,p)
+transpose((b,p))

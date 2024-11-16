@@ -1,5 +1,7 @@
 -- https://arxiv.org/abs/2408.11606
 
+-- Find X and Y such that X + Y = 5
+
 -- 13 qubits
 
 psi = zero(2^13)
