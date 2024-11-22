@@ -2,9 +2,6 @@
 
 .PHONY: default clean
 
-TEX := $(shell basename -a -s .tex *.tex | sed "s/unified//")
-TXT := $(shell basename -a -s .txt *.txt)
-
 %.pdf: %.tex preamble
 	pdflatex $<
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
@@ -15,8 +12,8 @@ TXT := $(shell basename -a -s .txt *.txt)
 # $$ sends a single $ to the shell
 
 default:
-	for file in $(TEX) ; do make $$file.pdf ; done
-	for file in $(TXT) ; do make $$file.html ; done
+	for file in $$(basename -a -s .tex *.tex | sed "s/unified//") ; do make $$file.pdf ; done
+	for file in $$(basename -a -s .txt *.txt) ; do make $$file.html ; done
 
 clean:
 	rm -f *.aux *.log *.synctex.gz *.toc
