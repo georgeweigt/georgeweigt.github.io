@@ -11,7 +11,9 @@ main(int argc, char *argv[])
 {
 	int i;
 
-	fputs("\\input{preamble}\n\\tableofcontents\n\\newpage\n", stdout);
+	system("cat preamble");
+
+	fputs("\\tableofcontents\n\\newpage\n", stdout);
 
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);
