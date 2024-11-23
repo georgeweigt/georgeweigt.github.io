@@ -27,11 +27,13 @@ h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
 me = 9.1093837015 10^(-31) kilogram
 mp = 1.67262192369 10^(-27) kilogram
-
-pi = float(pi)
 G = 6.67430 10^(-11) meter^3 / (kilogram second^2)
-Msun = 2 10^30 kilogram
-M = Msun
+pi = float(pi)
+
+"Verify equation (4)"
+check(infixform(R M^(1/3)) == "9.00395 10^16 kilogram^(1/3) meter")
+"ok"
 
 "For one solar mass"
+M = 2 10^30 kilogram
 R
