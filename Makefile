@@ -6,7 +6,6 @@ default:
 	rsync -c ../eigenmath/doc/*.pdf manual
 	rsync -c ../eigenmath/doc/eigenmath.pdf .
 	rsync -c ../sassafras/doc/sassafras.pdf .
-	rsync -c ../arc/storytime/*.pdf .
 	make -C examples
 
 clean:
