@@ -1,4 +1,4 @@
-.PHONY: default clean
+.PHONY: default
 
 default:
 	rsync -c ../eigenmath/js/eigenmath.js .
@@ -7,6 +7,3 @@ default:
 	rsync -c ../eigenmath/doc/eigenmath.pdf .
 	rsync -c ../sassafras/doc/sassafras.pdf .
 	make -C examples
-
-clean:
-	rm -f *.aux *.log *.synctex.gz
