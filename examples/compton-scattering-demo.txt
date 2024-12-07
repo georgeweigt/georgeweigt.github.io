@@ -51,15 +51,17 @@ qslash2 = dot(q2,gmunu,gamma)
 
 "Verify Casimir trick"
 
-M111 = dot(u41bar, gammaT, qslash1 + m I, gammaT, u21)
-M112 = dot(u41bar, gammaT, qslash1 + m I, gammaT, u22)
-M121 = dot(u42bar, gammaT, qslash1 + m I, gammaT, u21)
-M122 = dot(u42bar, gammaT, qslash1 + m I, gammaT, u22)
+-- e is electron charge
 
-M211 = dot(u41bar, gammaT, qslash2 + m I, gammaT, u21)
-M212 = dot(u41bar, gammaT, qslash2 + m I, gammaT, u22)
-M221 = dot(u42bar, gammaT, qslash2 + m I, gammaT, u21)
-M222 = dot(u42bar, gammaT, qslash2 + m I, gammaT, u22)
+M111 = dot(u41bar, -i e gammaT, qslash1 + m I, -i e gammaT, u21)
+M112 = dot(u41bar, -i e gammaT, qslash1 + m I, -i e gammaT, u22)
+M121 = dot(u42bar, -i e gammaT, qslash1 + m I, -i e gammaT, u21)
+M122 = dot(u42bar, -i e gammaT, qslash1 + m I, -i e gammaT, u22)
+
+M211 = dot(u41bar, -i e gammaT, qslash2 + m I, -i e gammaT, u21)
+M212 = dot(u41bar, -i e gammaT, qslash2 + m I, -i e gammaT, u22)
+M221 = dot(u42bar, -i e gammaT, qslash2 + m I, -i e gammaT, u21)
+M222 = dot(u42bar, -i e gammaT, qslash2 + m I, -i e gammaT, u22)
 
 M11 = contract(dot(M111, gmunu, transpose(conj(M111)), gmunu)) +
       contract(dot(M112, gmunu, transpose(conj(M112)), gmunu)) +
@@ -86,13 +88,13 @@ Q1 = qslash1 + m I
 Q2 = qslash2 + m I
 
 T = dot(P2,gammaT,Q1,gammaT,P4,gammaL,Q1,gammaL)
-f11 = contract(contract(contract(T,3,4),2,3))
+f11 = e^4 contract(contract(contract(T,3,4),2,3))
 
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q1,gammaL)
-f12 = contract(contract(contract(T,3,5),2,3))
+f12 = e^4 contract(contract(contract(T,3,5),2,3))
 
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
-f22 = contract(contract(contract(T,3,4),2,3))
+f22 = e^4 contract(contract(contract(T,3,4),2,3))
 
 check(f11 == M11)
 check(f12 == M12)
@@ -112,23 +114,23 @@ d22 = (u - m^2)^2
 
 f = (f11/d11 + 2 f12/d12 + f22/d22) / 4
 
-check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
-check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
-check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
+check(f11 == e^4 (-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4))
+check(f12 == e^4 (8 s m^2 + 8 u m^2 + 16 m^4))
+check(f22 == e^4 (-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4))
 
 p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
 
-check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
-check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
-check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
+check(f11 == e^4 (32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4))
+check(f12 == e^4 (16 m^2 p12 - 16 m^2 p14 + 32 m^4))
+check(f22 == e^4 (32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4))
 
 -- verify high energy approximation m = 0
 
 check(eval(s,m,0) == 4 omega^2)
 check(eval(u,m,0) == -2 omega^2 (cos(theta) + 1))
-check(eval(f,m,0) == 2 ((cos(theta) + 1) / 2 + 2 / (cos(theta) + 1)))
+check(eval(f,m,0) == 2 e^4 ((cos(theta) + 1) / 2 + 2 / (cos(theta) + 1)))
 
 "ok"
 
@@ -151,9 +153,9 @@ p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
 
-check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
-check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
-check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
+check(f11 == e^4 (32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4))
+check(f12 == e^4 (16 m^2 p12 - 16 m^2 p14 + 32 m^4))
+check(f22 == e^4 (32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4))
 
 -- verify s, t, and u in the lab frame
 
@@ -167,7 +169,7 @@ check(s == m^2 + 2 m omegaL)
 check(t == 2 m (omegaLp - omegaL))
 check(u == m^2 - 2 m omegaLp)
 
-check(f == 2 (omegaL/omegaLp + omegaLp/omegaL + (m/omegaL - m/omegaLp + 1)^2 - 1))
+check(f == 2 e^4 (omegaL/omegaLp + omegaLp/omegaL + (m/omegaL - m/omegaLp + 1)^2 - 1))
 
 -- verify integral
 

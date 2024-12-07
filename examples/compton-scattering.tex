@@ -14,201 +14,160 @@ Compton scattering is the interaction $e^-+\gamma\rightarrow e^-+\gamma$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $\omega$ is incident energy.
-Symbol $E$ is total energy $E=\sqrt{\omega^2+m^2}$ where $m$ is electron mass.
+In the center-of-mass frame we have the following momentum vectors
+where $\omega$ is incident energy and
+$E$ is total energy $E=\sqrt{\omega^2+m^2}$.
 Polar angle $\theta$ is the observed scattering angle.
 Azimuth angle $\phi$ cancels out in scattering calculations.
-\iffalse
-% old
-\begin{align*}
-p_1&=
-\underset{\substack{\text{inbound}\\\text{photon}}}
-{
-\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}
-}
-&
-p_2&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
-{
-\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}
-}
-&
-p_3&=
-\underset{\substack{\text{outbound}\\\text{photon}}}
-{
-\begin{pmatrix}
+\begin{equation*}
+p_1=\underset{\substack{\\ \text{inbound}\\ \text{photon}}}
+{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}},
+\quad
+p_2=\underset{\substack{\\ \text{inbound}\\ \text{electron}}}
+{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}},
+\quad
+p_3=\underset{\substack{\\ \text{outbound}\\ \text{photon}}}
+{\begin{pmatrix}
 \omega\\
 \omega\sin\theta\cos\phi\\
 \omega\sin\theta\sin\phi\\
 \omega\cos\theta
-\end{pmatrix}
-}
-&
-p_4&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
-{
-\begin{pmatrix}
+\end{pmatrix}},
+\quad
+p_4=\underset{\substack{\\ \text{outbound}\\ \text{electron}}}
+{\begin{pmatrix}
 E\\
 -\omega\sin\theta\cos\phi\\
 -\omega\sin\theta\sin\phi\\
 -\omega\cos\theta
-\end{pmatrix}
-}
-\\[1ex]
-& & u_{21}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}
+\end{pmatrix}}
+\end{equation*}
+
+Spinors for the inbound electron.
+\begin{equation*}
+u_{21}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\\ \text{inbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}
 E+m\\
 0\\
 -\omega\\
 0
-\end{pmatrix}
-}
-&
-& & u_{41}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}
-E+m\\
-0\\
-p_{4z}\\
-p_{4x}+ip_{4y}
-\end{pmatrix}
-}
-\\[1ex]
-& & u_{22}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}
+\end{pmatrix}},
+\quad
+u_{22}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\\ \text{inbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}
 0\\
 E+m\\
 0\\
 \omega
-\end{pmatrix}
-}
-&
-& & u_{42}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}
+\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound electron.
+\begin{equation*}
+u_{41}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\\ \text{outbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}
+E+m\\
+0\\
+p_{4z}\\
+p_{4x}+ip_{4y}
+\end{pmatrix}},
+\quad
+u_{42}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\\ \text{outbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}
 0\\
 E+m\\
 p_{4x}-ip_{4y}\\
 -p_{4z}
-\end{pmatrix}
-}
-\end{align*}
-\else
-% new
-\begin{align*}
-p_1&=\underset{\text{inbound $\gamma$}}
-{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
-\\[1ex]
-p_2&=\underset{\text{inbound $e^-$}}
-{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}}
-& u_{21}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\-\omega\\0\end{pmatrix}}
-& u_{22}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\0\\\omega\end{pmatrix}}
-\\[1ex]
-p_3&=\underset{\text{outbound $\gamma$}}
-{\begin{pmatrix}\omega\\\omega\sin\theta\cos\phi\\\omega\sin\theta\sin\phi\\\omega\cos\theta\end{pmatrix}}
-\\[1ex]
-p_4&=\underset{\text{outbound $e^-$}}
-{\begin{pmatrix}E\\-\omega\sin\theta\cos\phi\\-\omega\sin\theta\sin\phi\\-\omega\cos\theta\end{pmatrix}}
-& u_{41}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
-& u_{42}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
-\end{align*}
-\fi
+\end{pmatrix}}
+\end{equation*}
 
-The spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2$ will be used.
+Let $a$ be the spin state of the inbound electron and let $b$
+be the spin state of the outbound electron so that subscript $ba\in\{11,12,21,22\}$.
 
 \bigskip
-This is the probability density for spin state $ab$.
-The formula is derived from Feynman diagrams for Compton scattering.
+The probability amplitude $\mathcal M_{ba}$ for spin state $ba$ is
 \begin{equation*}
-|\mathcal{M}_{ab}|^2
-=
-\frac{e^4}{N}
-\left|
--\frac{\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a}}{s-m^2}
--\frac{\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}}{u-m^2}
-\right|^2
+\mathcal M_{ba}=\mathcal M_{1ba}+\mathcal M_{2ba}
 \end{equation*}
 
-Symbol $e$ is electron charge and
-\begin{align*}
-\not{\!q_1}&=(p_1+p_2)^\mu g_{\mu\nu}\gamma^\nu
-\\
-\not{\!q}_2&=(p_4-p_1)^\mu g_{\mu\nu}\gamma^\nu
-\end{align*}
-
-Symbols $s$ and $u$ are Mandelstam variables
-\begin{align*}
-s&=(p_1+p_2)^2=(E+\omega)^2
-\\
-u&=(p_1-p_4)^2=(p_1-p_4)^\mu g_{\mu\nu} (p_1-p_4)^\nu
-\end{align*}
-
-Let
+where
 \begin{equation*}
-a_1=\bar{u}_{4b}\gamma^\mu(\slashed{q}_1+m)\gamma^\nu u_{2a},
+\mathcal M_{1ba}=
+\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{(p_1+p_2)^2-m^2},
 \quad
-a_2=\bar{u}_{4b}\gamma^\nu(\slashed{q}_2+m)\gamma^\mu u_{2a}
+\mathcal M_{2ba}=
+\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{(p_1-p_4)^2-m^2}
 \end{equation*}
 
-Then
-\begin{align*}
-|\mathcal{M}_{ab}|^2&=\frac{e^4}{N}\left|-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right|^2\\
-&=
-\frac{e^4}{N}
-\left(-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right)
-\left(-\frac{a_1}{s-m^2}-\frac{a_2}{u-m^2}\right)^*\\
-&=
-\frac{e^4}{N}\left(
-\frac{a_1a_1^*}{(s-m^2)^2}
-+\frac{a_1a_2^*}{(s-m^2)(u-m^2)}
-+\frac{a_1^*a_2}{(s-m^2)(u-m^2)}
-+\frac{a_2a_2^*}{(u-m^2)^2}
-\right)
-\end{align*}
+and
+\begin{equation*}
+\slashed q_1=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta,
+\quad
+\slashed q_2=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
+\end{equation*}
 
-The expected probability density $\langle|\mathcal{M}|^2\rangle$ is
-computed by summing $|\mathcal{M}_{ab}|^2$ over all spin and polarization states
-and then dividing by the number of inbound states.
-There are four inbound states.
-The sum over polarizations is already accomplished by contraction of $aa^*$ over $\mu$ and $\nu$.
-\begin{align*}
+The expected probability $\langle|\mathcal M|^2\rangle$ is the average over all four spin states.
+\begin{equation*}
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{ba}\mathcal M_{ba}^*
+\end{equation*}
+
+Hence
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal{M}_{ab}|^2
-\\
-&=\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2
+=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
 \left(
-\frac{a_1a_1^*}{(s-m^2)^2}
-+\frac{a_1a_2^*}{(s-m^2)(u-m^2)}
-+\frac{a_1^*a_2}{(s-m^2)(u-m^2)}
-+\frac{a_2a_2^*}{(u-m^2)^2}
+\frac{\mathcal M_{1ba}\mathcal M_{1ba}^*}{(s-m^2)^2}
++\frac{\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*}{(s-m^2)(u-m^2)}
++\frac{\mathcal M_{2ba}\mathcal M_{2ba}^*}{(u-m^2)^2}
 \right)
-\end{align*}
+\end{equation*}
 
-The Casimir trick uses matrix arithmetic to compute sums.
+where $s$ and $u$ are the Mandelstam variables
+\begin{equation*}
+s=(p_1+p_2)^2,\quad u=(p_1-p_4)^2
+\end{equation*}
+
+To understand how $\mathcal M_{1ba}\mathcal M_{1ba}^*$ is calculated,
+write $\mathcal M_{1ba}$ in component form.
+\begin{equation*}
+(\mathcal M_{1ba})^{\mu\nu}=\frac{
+(\bar{u}_{4b})_\alpha
+(-ie\gamma^{\mu\alpha}{}_\beta)
+(\slashed{q}_1+m)^\beta{}_\rho
+(-ie\gamma^{\nu\rho}{}_\sigma)
+(u_{2a})^\sigma}{s-m^2}
+\end{equation*}
+
+To sum over $\mu$ and $\nu$ of the product, $g_{\mu\nu}$ is needed to lower indices.
+\begin{equation*}
+\mathcal M_{1ba}\mathcal M_{1ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{1ba}^*)_{\mu\nu}
+=(\mathcal M_{1ba})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ba}^*)^{\alpha\beta}g_{\beta\nu}
+\end{equation*}
+
+Similarly for $\mathcal M_{2ba}\mathcal M_{2ba}^*$.
+For $\mathcal M_{2ba}$ the index order is $\nu$ followed by $\mu$ hence
+\begin{equation*}
+\mathcal M_{1ba}\mathcal M_{2ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{2ba}^*)_{\nu\mu}
+=(\mathcal M_{1ba})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ba}^*)^{\beta\alpha}g_{\alpha\mu}
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{align*}
-f_{11}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_1^*=\mathop{\rm Tr}
+f_{11}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{1ba}\mathcal M_{1ba}^*=e^4\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
 \right)
 \\
-f_{12}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_1a_2^*=\mathop{\rm Tr}
+f_{12}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{1ba}\mathcal M_{2ba}^*=e^4\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=\frac{1}{N} \sum_{a=1}^2\sum_{b=1}^2 a_2a_2^*=\mathop{\rm Tr}
+f_{22}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{2ba}\mathcal M_{2ba}^*=e^4\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
 \right)
@@ -218,11 +177,10 @@ Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
-\frac{e^4}{4}
+\frac{1}{4}
 \left(
 \frac{f_{11}}{(s-m^2)^2}
-+\frac{f_{12}}{(s-m^2)(u-m^2)}
-+\frac{f_{12}^*}{(s-m^2)(u-m^2)}
++\frac{f_{12}+f_{12}^*}{(s-m^2)(u-m^2)}
 +\frac{f_{22}}{(u-m^2)^2}
 \right)
 \tag{1}
@@ -231,38 +189,29 @@ Hence
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
-f_{11}&=
+f_{11}&=e^4\left(
  32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
  64 m^2 (p_1 \cdot p_2) -
  32 m^2 (p_1 \cdot p_3) -
- 32 m^2 (p_1 \cdot p_4) + 32 m^4
+ 32 m^2 (p_1 \cdot p_4) + 32 m^4\right)
 \\
-f_{12}&=16 m^2 (p_1 \cdot p_2) - 16 m^2 (p_1 \cdot p_4) + 32m^4
+f_{12}&=e^4\left(16 m^2 (p_1 \cdot p_2) - 16 m^2 (p_1 \cdot p_4) + 32m^4\right)
 \\
-f_{22}&=
+f_{22}&=e^4\left(
 32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
 32 m^2 (p_1 \cdot p_2) -
 32 m^2 (p_1 \cdot p_3) -
-64 m^2 (p_1 \cdot p_4) + 32 m^4
+64 m^2 (p_1 \cdot p_4) + 32 m^4\right)
 \end{align*}
 
-For Mandelstam variables
-\begin{align*}
-s&=(p_1+p_2)^2
-\\
-t&=(p_1-p_3)^2
-\\
-u&=(p_1-p_4)^2
-\end{align*}
-
-the formulas are
+In Mandelstam variables
 \begin{equation*}
 \begin{aligned}
-f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
+f_{11}&=e^4\left(-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4\right)
 \\
-f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
+f_{12}&=e^4\left(8 s m^2 + 8 u m^2 + 16 m^4\right)
 \\
-f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+f_{22}&=e^4\left(-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4\right)
 \end{aligned}
 \tag{2}
 \end{equation*}
@@ -494,11 +443,11 @@ which is the formula for Thomson scattering.
 \subsubsection*{High energy approximation}
 For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
-f_{11}&=-8su
+f_{11}&=e^4(-8su)
 \\
 f_{12}&=0
 \\
-f_{22}&=-8su
+f_{22}&=e^4(-8su)
 \end{align*}
 
 Hence
@@ -644,6 +593,7 @@ The result indicates that the model $d\sigma$ explains 97\% of the variance in t
 
 \fi
 
+\iffalse
 \subsubsection*{Notes}
 Here are a few notes regarding the Eigenmath scripts.
 
@@ -788,5 +738,6 @@ f_{12}
 \end{equation*}
 
 The innermost contract sums over $\nu$ followed by sum over $\mu$ then sum over $\alpha$.
+\fi
 
 \end{document}
