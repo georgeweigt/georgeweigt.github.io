@@ -113,7 +113,7 @@ and
 
 The expected probability $\langle|\mathcal M|^2\rangle$ is the average over all four spin states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{ba}\mathcal M_{ba}^*
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ba}|^2
 \end{equation*}
 
 Hence
@@ -127,7 +127,7 @@ Hence
 \right)
 \end{equation*}
 
-where $s$ and $u$ are the Mandelstam variables
+where $s$ and $u$ are Mandelstam variables
 \begin{equation*}
 s=(p_1+p_2)^2,\quad u=(p_1-p_4)^2
 \end{equation*}
@@ -181,7 +181,7 @@ Hence
 \frac{1}{4}
 \left(
 \frac{f_{11}}{(s-m^2)^2}
-+\frac{f_{12}+f_{12}^*}{(s-m^2)(u-m^2)}
++\frac{2f_{12}}{(s-m^2)(u-m^2)}
 +\frac{f_{22}}{(u-m^2)^2}
 \right)
 \tag{1}
@@ -476,8 +476,6 @@ Hence
 \right)
 \end{equation*}
 
-\iffalse
-
 \subsubsection*{Data from a CERN LEP experiment}
 See ``Compton Scattering of Quasi-Real Virtual Photons at LEP,''
 arxiv.org/abs/hep-ex/0504012.
@@ -591,154 +589,5 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.97
 \end{equation*}
 
 The result indicates that the model $d\sigma$ explains 97\% of the variance in the data.
-
-\fi
-
-\iffalse
-\subsubsection*{Notes}
-Here are a few notes regarding the Eigenmath scripts.
-
-\bigskip
-Start by writing out $a_1$ and $a_2$ in full component form.
-\begin{equation*}
-a_1^{\mu\nu}
-=\bar{u}_{4\alpha}\gamma^{\mu\alpha}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\nu\rho}{}_\sigma u_2^\sigma,
-\quad
-a_2^{\nu\mu}
-=\bar{u}_{4\alpha}\gamma^{\nu\alpha}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\mu\rho}{}_\sigma u_2^\sigma
-\end{equation*}
-
-Transpose $\gamma$ tensors to form inner products over $\alpha$ and $\rho$.
-\begin{equation*}
-a_1^{\mu\nu}
-=\bar{u}_{4\alpha}\gamma^{\alpha\mu}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\rho\nu}{}_\sigma u_2^\sigma,
-\quad
-a_2^{\nu\mu}
-=\bar{u}_{4\alpha}\gamma^{\alpha\nu}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\rho\mu}{}_\sigma u_2^\sigma
-\end{equation*}
-
-Convert transposed $\gamma$ to Eigenmath code.
-\begin{equation*}
-\gamma^{\alpha\mu}{}_\beta
-\quad\rightarrow\quad
-\text{\tt gammaT = transpose(gamma)}
-\end{equation*}
-
-Then to compute $a_1$ we have
-\begin{multline*}
-a_1=\bar{u}_{4\alpha}\gamma^{\alpha\mu}{}_\beta(\slashed{q}_1+m)^\beta{}_\rho\gamma^{\rho\nu}{}_\sigma u_2^\sigma
-\\
-\rightarrow\quad
-\text{\tt a1 = dot(u4bar[s4],gammaT,qslash1 + m I,gammaT,u2[s2])}
-\end{multline*}
-
-where $s_2$ and $s_4$ are spin indices.
-Similarly for $a_2$ we have
-\begin{multline*}
-a_2=\bar{u}_{4\alpha}\gamma^{\alpha\nu}{}_\beta(\slashed{q}_2+m)^\beta{}_\rho\gamma^{\rho\mu}{}_\sigma u_2^\sigma
-\\
-\rightarrow\quad
-\text{\tt a2 = dot(u4bar[s4],gammaT,qslash2 + m I,gammaT,u2[s2])}
-\end{multline*}
-
-In component notation the product $a_1a_1^*$ is
-\begin{equation*}
-a_1a_1^*=a_1^{\mu\nu}a_1^{*\mu\nu}
-\end{equation*}
-
-To sum over $\mu$ and $\nu$ it is necessary to lower indices with the metric tensor.
-Also, transpose $a_1^*$ to form an inner product with $\nu$.
-\begin{equation*}
-a_1a_1^*=a_1^{\mu\nu}a_{1\nu\mu}^*
-\end{equation*}
-
-Convert to Eigenmath code.
-The dot function sums over $\nu$ and the contract function sums over $\mu$.
-\begin{equation*}
-a_1a_1^*
-\quad\rightarrow\quad
-\text{\tt a11 = contract(dot(a1,gmunu,transpose(conj(a1)),gmunu))}
-\end{equation*}
-
-Similarly for $a_2a_2^*$ we have
-\begin{equation*}
-a_2a_2^*
-\quad\rightarrow\quad
-\text{\tt a22 = contract(dot(a2,gmunu,transpose(conj(a2)),gmunu))}
-\end{equation*}
-
-The product $a_1a_2^*$ does not require a transpose because $a_1a_2^*=a_1^{\mu\nu}a_2^{*\nu\mu}$.
-\begin{equation*}
-a_1a_2^*
-\quad\rightarrow\quad
-\text{\tt a12 = contract(dot(a1,gmunu,conj(a2),gmunu))}
-\end{equation*}
-
-In component notation, a trace operator becomes a sum over an index, in this case $\alpha$.
-\begin{align*}
-f_{11}
-&=
-\mathop{\rm Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
-\right)\\
-&=
-(\slashed{p}_2+m)^\alpha{}_\beta
-\gamma^{\mu\beta}{}_\rho
-(\slashed{q}_1+m)^\rho{}_\sigma
-\gamma^{\nu\sigma}{}_\tau
-(\slashed{p}_4+m)^\tau{}_\delta
-\gamma_\nu{}^\delta{}_\eta
-(\slashed{q}_1+m)^\eta{}_\xi
-\gamma_\mu{}^\xi{}_\alpha
-\end{align*}
-
-As before, transpose $\gamma$ tensors to form inner products.
-\begin{equation*}
-f_{11}=
-(\slashed{p}_2+m)^\alpha{}_\beta
-\gamma^{\beta\mu}{}_\rho
-(\slashed{q}_1+m)^\rho{}_\sigma
-\gamma^{\sigma\nu}{}_\tau
-(\slashed{p}_4+m)^\tau{}_\delta
-\gamma^\delta{}_{\nu\eta}
-(\slashed{q}_1+m)^\eta{}_\xi
-\gamma^\xi{}_{\mu\alpha}
-\end{equation*}
-
-To convert to Eigenmath code, use an intermediate variable for the inner product.
-\begin{equation*}
-T^{\alpha\mu\nu}{}_{\nu\mu\alpha}
-\quad\rightarrow\quad
-\text{\tt T = dot(P2,gammaT,Q1,gammaT,P4,gammaL,Q1,gammaL)}
-\end{equation*}
-
-Now sum over the indices of $T$.
-The innermost contract sums over $\nu$ then the next contract sums over $\mu$.
-Finally the outermost contract sums over $\alpha$.
-\begin{equation*}
-f_{11}\quad\rightarrow\quad
-\text{\tt f11 = contract(contract(contract(T,3,4),2,3))}
-\end{equation*}
-
-Follow suit for $f_{22}$.
-For $f_{12}$ the order of the rightmost $\mu$ and $\nu$ is reversed.
-\begin{equation*}
-f_{12}=\mathop{\rm Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
-\right)
-\end{equation*}
-
-The resulting inner product is $T^{\alpha\mu\nu}{}_{\mu\nu\alpha}$
-so the contraction is different.
-\begin{equation*}
-f_{12}
-\quad\rightarrow\quad
-\text{\tt f12 = contract(contract(contract(T,3,5),2,3))}
-\end{equation*}
-
-The innermost contract sums over $\nu$ followed by sum over $\mu$ then sum over $\alpha$.
-\fi
 
 \end{document}
