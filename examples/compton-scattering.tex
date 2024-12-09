@@ -124,9 +124,9 @@ Hence
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
 \left(
-\frac{\mathcal M_{1ba}\mathcal M_{1ba}^*}{(s-m^2)^2}
-+\frac{\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*}{(s-m^2)(u-m^2)}
-+\frac{\mathcal M_{2ba}\mathcal M_{2ba}^*}{(u-m^2)^2}
+\mathcal M_{1ba}\mathcal M_{1ba}^*
++\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*
++\mathcal M_{2ba}\mathcal M_{2ba}^*
 \right)
 \end{equation*}
 
@@ -155,24 +155,6 @@ For $\mathcal M_{2ba}$ the index order is $\nu$ followed by $\mu$ hence
 \end{equation*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
-\begin{align*}
-f_{11}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{1ba}\mathcal M_{1ba}^*=e^4\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
-\right)
-\\
-f_{12}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{1ba}\mathcal M_{2ba}^*=e^4\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
-\right)
-\\
-f_{22}&=\sum_{a=1}^2\sum_{b=1}^2\mathcal M_{2ba}\mathcal M_{2ba}^*=e^4\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
-\right)
-\end{align*}
-
-Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
@@ -184,6 +166,24 @@ Hence
 \right)
 \tag{1}
 \end{equation*}
+
+where
+\begin{align*}
+f_{11}&=e^4\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
+\right)
+\\
+f_{12}&=e^4\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
+\right)
+\\
+f_{22}&=e^4\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
+\right)
+\end{align*}
 
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
