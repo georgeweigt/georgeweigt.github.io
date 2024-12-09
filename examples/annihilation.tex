@@ -51,19 +51,16 @@ v_{22}=\frac{1}{\sqrt{E+m}}
 {\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
 
-Let $a$ be the spin state of the inbound electron and let $b$
-be the spin state of the inbound positron
-such that subscript $ba\in\{11,12,21,22\}$.
-The probability amplitude $\mathcal M_{ba}$ for spin state $ba$ is
+The probability amplitude $\mathcal M_{ab}$ for spin state $ab$ is
 \begin{equation*}
-\mathcal M_{ba}=\mathcal M_{1ba}+\mathcal M_{2ba}
+\mathcal M_{ab}=\mathcal M_{1ab}+\mathcal M_{2ab}
 \end{equation*}
 
 where
 \begin{equation*}
-\mathcal M_{1ba}=\frac{\bar{v}_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2},
+\mathcal M_{1ab}=\frac{\bar{v}_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2},
 \quad
-\mathcal M_{2ba}=\frac{\bar{v}_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
+\mathcal M_{2ab}=\frac{\bar{v}_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
 \end{equation*}
 
 Symbol $e$ is elementary charge and
@@ -82,9 +79,9 @@ u&=(p_1-p_4)^2
 \end{gather*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
-is the average probability density for all four spin states.
+is the average for all spin states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ba}|^2
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ab}|^2
 \end{equation*}
 
 Hence
@@ -92,16 +89,16 @@ Hence
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
 \left(
-\mathcal M_{1ba}\mathcal M_{1ba}^*
-+\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*
-+\mathcal M_{2ba}\mathcal M_{2ba}^*
+\mathcal M_{1ab}\mathcal M_{1ab}^*
++\mathcal M_{1ab}\mathcal M_{2ab}^*+\mathcal M_{2ab}\mathcal M_{1ab}^*
++\mathcal M_{2ab}\mathcal M_{2ab}^*
 \right)
 \end{equation*}
 
-To understand how $\mathcal M_{1ba}\mathcal M_{1ba}^*$ is calculated,
-write $\mathcal M_{1ba}$ in component form.
+To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
+write $\mathcal M_{1ab}$ in component form.
 \begin{equation*}
-(\mathcal M_{1ba})^{\mu\nu}=\frac{
+(\mathcal M_{1ab})^{\mu\nu}=\frac{
 (\bar{v}_{2b})_\alpha
 (-ie\gamma^{\mu\alpha}{}_\beta)
 (\slashed q_1+m)^\beta{}_\rho
@@ -111,22 +108,22 @@ write $\mathcal M_{1ba}$ in component form.
 
 Metric tensor $g_{\mu\nu}$ is required to sum over indices $\mu$ and $\nu$.
 \begin{equation*}
-\mathcal M_{1ba}\mathcal M_{1ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{1ba}^*)_{\mu\nu}
-=(\mathcal M_{1ba})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ba}^*)^{\alpha\beta}g_{\beta\nu}
+\mathcal M_{1ab}\mathcal M_{1ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
 \end{equation*}
 
-Similarly for $\mathcal M_{2ba}\mathcal M_{2ba}^*$.
-For $\mathcal M_{2ba}$ the index order is $\nu$ followed by $\mu$ hence
+Similarly for $\mathcal M_{2ab}\mathcal M_{2ab}^*$.
+For $\mathcal M_{2ab}$ the index order is $\nu$ followed by $\mu$ hence
 \begin{equation*}
-\mathcal M_{1ba}\mathcal M_{2ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{2ba}^*)_{\nu\mu}
-=(\mathcal M_{1ba})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ba}^*)^{\beta\alpha}g_{\alpha\mu}
+\mathcal M_{1ab}\mathcal M_{2ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ab}^*)^{\beta\alpha}g_{\alpha\mu}
 \end{equation*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
-\frac{1}{4}
+\frac{e^4}{4}
 \left(
 \frac{f_{11}}{(t-m^2)^2}
 +\frac{2f_{12}}{(t-m^2)(u-m^2)}
@@ -136,17 +133,17 @@ The Casimir trick uses matrix arithmetic to sum over spin states.
 
 where
 \begin{align*}
-f_{11}&=e^4\operatorname{Tr}
+f_{11}&=\operatorname{Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right)
 \\
-f_{12}&=e^4\operatorname{Tr}
+f_{12}&=\operatorname{Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=e^4\operatorname{Tr}
+f_{22}&=\operatorname{Tr}
 \left(
 (\slashed{p}_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right)
@@ -155,39 +152,39 @@ f_{22}&=e^4\operatorname{Tr}
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
-f_{11}&=e^4\left(
+f_{11}&=
  32 (p_1 \cdot p_3) (p_1 \cdot p_4) -
  32 m^2 (p_1 \cdot p_2) +
  64 m^2 (p_1 \cdot p_3) +
- 32 m^2 (p_1 \cdot p_4) - 64 m^4\right)
+ 32 m^2 (p_1 \cdot p_4) - 64 m^4
 \\
-f_{12}&=e^4\left(
+f_{12}&=
  16 m^2 (p_1 \cdot p_3) +
- 16 m^2 (p_1 \cdot p_4) - 32 m^4\right)
+ 16 m^2 (p_1 \cdot p_4) - 32 m^4
 \\
-f_{22}&=e^4\left(
+f_{22}&=
  32 (p_1 \cdot p_3) (p_1 \cdot p_4) -
  32 m^2 (p_1 \cdot p_2) +
  32 m^2 (p_1 \cdot p_3) +
- 64 m^2 (p_1 \cdot p_4) - 64 m^4\right)
+ 64 m^2 (p_1 \cdot p_4) - 64 m^4
 \end{align*}
 
 In Mandelstam variables
 \begin{align*}
-f_{11}&=e^4\left(8 t u - 24 t m^2 - 8 u m^2 - 8 m^4\right)
+f_{11}&=8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
 \\
-f_{12}&=e^4\left(8 s m^2 - 32 m^4\right)
+f_{12}&=8 s m^2 - 32 m^4
 \\
-f_{22}&=e^4\left(8 t u - 8 t m^2 - 24 u m^2 - 8 m^4\right)
+f_{22}&=8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
 \end{align*}
 
-For high energy experiments such that $E\gg m$ let $m=0$ and obtain
+For high energy experiments such that $E\gg m$, let $m=0$ and obtain
 \begin{align*}
-f_{11}&=e^4\,8tu
+f_{11}&=8tu
 \\
 f_{12}&=0
 \\
-f_{22}&=e^4\,8tu
+f_{22}&=8tu
 \end{align*}
 
 Hence
