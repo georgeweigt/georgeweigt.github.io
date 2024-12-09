@@ -81,20 +81,17 @@ p_{4x}-ip_{4y}\\
 \end{pmatrix}}
 \end{equation*}
 
-Let $a$ be the spin state of the inbound electron and let $b$
-be the spin state of the outbound electron
-such that subscript $ba\in\{11,12,21,22\}$.
-The probability amplitude $\mathcal M_{ba}$ for spin state $ba$ is
+The probability amplitude $\mathcal M_{ab}$ for spin state $ab$ is
 \begin{equation*}
-\mathcal M_{ba}=\mathcal M_{1ba}+\mathcal M_{2ba}
+\mathcal M_{ba}=\mathcal M_{1ab}+\mathcal M_{2ab}
 \end{equation*}
 
 where
 \begin{equation*}
-\mathcal M_{1ba}=
+\mathcal M_{1ab}=
 \frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2},
 \quad
-\mathcal M_{2ba}=
+\mathcal M_{2ab}=
 \frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
 \end{equation*}
 
@@ -114,9 +111,9 @@ u&=(p_1-p_4)^2
 \end{gather*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
-is the average probability density for all four spin states.
+is the average for all spin states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ba}|^2
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ab}|^2
 \end{equation*}
 
 Hence
@@ -124,16 +121,16 @@ Hence
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
 \left(
-\mathcal M_{1ba}\mathcal M_{1ba}^*
-+\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*
-+\mathcal M_{2ba}\mathcal M_{2ba}^*
+\mathcal M_{1ab}\mathcal M_{1ab}^*
++\mathcal M_{1ab}\mathcal M_{2ab}^*+\mathcal M_{2ab}\mathcal M_{1ab}^*
++\mathcal M_{2ab}\mathcal M_{2ab}^*
 \right)
 \end{equation*}
 
-To understand how $\mathcal M_{1ba}\mathcal M_{1ba}^*$ is calculated,
-write $\mathcal M_{1ba}$ in component form.
+To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
+write $\mathcal M_{1ab}$ in component form.
 \begin{equation*}
-(\mathcal M_{1ba})^{\mu\nu}=\frac{
+(\mathcal M_{1ab})^{\mu\nu}=\frac{
 (\bar{u}_{4b})_\alpha
 (-ie\gamma^{\mu\alpha}{}_\beta)
 (\slashed{q}_1+m)^\beta{}_\rho
@@ -143,15 +140,15 @@ write $\mathcal M_{1ba}$ in component form.
 
 Metric tensor $g_{\mu\nu}$ is required to sum over indices $\mu$ and $\nu$.
 \begin{equation*}
-\mathcal M_{1ba}\mathcal M_{1ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{1ba}^*)_{\mu\nu}
-=(\mathcal M_{1ba})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ba}^*)^{\alpha\beta}g_{\beta\nu}
+\mathcal M_{1ab}\mathcal M_{1ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
 \end{equation*}
 
-Similarly for $\mathcal M_{2ba}\mathcal M_{2ba}^*$.
-For $\mathcal M_{2ba}$ the index order is $\nu$ followed by $\mu$ hence
+Similarly for $\mathcal M_{2ab}\mathcal M_{2ab}^*$.
+For $\mathcal M_{2ab}$ the index order is $\nu$ followed by $\mu$ hence
 \begin{equation*}
-\mathcal M_{1ba}\mathcal M_{2ba}^*=(\mathcal M_{1ba})^{\mu\nu}(\mathcal M_{2ba}^*)_{\nu\mu}
-=(\mathcal M_{1ba})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ba}^*)^{\beta\alpha}g_{\alpha\mu}
+\mathcal M_{1ab}\mathcal M_{2ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ab}^*)^{\beta\alpha}g_{\alpha\mu}
 \end{equation*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
