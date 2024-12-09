@@ -14,231 +14,142 @@ Bhabha scattering is the interaction $e^-+e^+\rightarrow e^-+e^+$.
 \end{tikzpicture}
 \end{center}
 
-Define the following momentum vectors and spinors.
-Symbol $p$ is incident momentum.
-Symbol $E$ is total energy $E=\sqrt{p^2+m^2}$ where $m$ is electron mass.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
-\iffalse
-% old
-\begin{align*}
-p_1&=
-\underset{\substack{\text{inbound}\\\text{positron}}}
-{
-\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
-}
-&
-p_2&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
-{
-\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
-}
-&
-p_3&=
-\underset{\substack{\text{outbound}\\\text{positron}}}
-{
-\begin{pmatrix}
-E\\
-p\sin\theta\cos\phi\\
-p\sin\theta\sin\phi\\
-p\cos\theta
-\end{pmatrix}
-}
-&
-p_4&=
-\underset{\substack{\text{outbound}\\\text{electron}}}
-{
-\begin{pmatrix}
-E\\
--p\sin\theta\cos\phi\\
--p\sin\theta\sin\phi\\
--p\cos\theta
-\end{pmatrix}
-}
-\\[1ex]
-v_{11}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}
-}
-&
-u_{21}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}
-}
-&
-v_{31}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}p_3^z\\p_3^x+ip_3^y\\E+m\\0\end{pmatrix}
-}
-&
-u_{41}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}
-}
-\\[1ex]
-v_{12}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}
-}
-&
-u_{22}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}
-}
-&
-v_{32}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}p_3^x-ip_3^y\\-p_3^z\\0\\E+m\end{pmatrix}
-}
-&
-u_{42}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}
-}
-\end{align*}
-\else
-% new
-\begin{align*}
-p_1&=\underset{\text{inbound $e^+$}}
+In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{p^2+m^2}$.
+\begin{equation*}
+p_1=\underset{\text{inbound $e^+$}}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-& v_{11}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin up}}}
-{\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}}
-& v_{12}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin down}}}
-{\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}}
-\\[1ex]
-p_2&=\underset{\text{inbound $e^-$}}
+\qquad
+p_2=\underset{\text{inbound $e^-$}}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-& u_{21}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
-& u_{22}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
-\\[1ex]
-p_3&=\underset{\text{outbound $e^+$}}
+\qquad
+p_3=\underset{\text{outbound $e^+$}}
 {\begin{pmatrix}E\\p\sin\theta\cos\phi\\p\sin\theta\sin\phi\\p\cos\theta\end{pmatrix}}
-& v_{31}&=\underset{\substack{\text{outbound $e^+$}\\\text{spin up}}}
-{\begin{pmatrix}p_3^z\\p_3^x+ip_3^y\\E+m\\0\end{pmatrix}}
-& v_{32}&=\underset{\substack{\text{outbound $e^+$}\\\text{spin down}}}
-{\begin{pmatrix}p_3^x-ip_3^y\\-p_3^z\\0\\E+m\end{pmatrix}}
-\\[1ex]
-p_4&=\underset{\text{outbound $e^-$}}
+\qquad
+p_4=\underset{\text{outbound $e^-$}}
 {\begin{pmatrix}E\\-p\sin\theta\cos\phi\\-p\sin\theta\sin\phi\\-p\cos\theta\end{pmatrix}}
-& u_{41}&=
+\end{equation*}
+
+Spinors for the inbound positron.
+\begin{equation*}
+v_{11}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^+$}\\\text{spin up}}}
+{\begin{pmatrix}p\\0\\E+m\\0\end{pmatrix}}
+\qquad
+v_{12}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^+$}\\\text{spin down}}}
+{\begin{pmatrix}0\\-p\\0\\E+m\end{pmatrix}}
+\end{equation*}
+
+Spinors for the inbound electron.
+\begin{equation*}
+u_{21}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
+{\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
+\qquad
+u_{22}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound positron.
+\begin{equation*}
+v_{31}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound $e^+$}\\\text{spin up}}}
+{\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E+m\\0\end{pmatrix}}
+\qquad
+v_{32}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound $e^+$}\\\text{spin down}}}
+{\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E+m\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound electron.
+\begin{equation*}
+u_{41}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\text{outbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p_4^z\\p_4^x+ip_4^y\end{pmatrix}}
-& u_{42}&=\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\p_4^x-ip_4^y\\-p_4^z\end{pmatrix}}
-\end{align*}
-\fi
-
-The spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^4$ will be used.
-
-\bigskip
-This is the probability density for spin state $abcd$.
-The formula is derived from Feynman diagrams for Bhabha scattering.
-\begin{equation*}
-|\mathcal{M}_{abcd}|^2=\frac{e^4}{N}
-\left|
--\frac{1}{t}(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b})
-+\frac{1}{s}(\bar{v}_{1a}\gamma^\nu u_{2b})(\bar{u}_{4d}\gamma_\nu v_{3c})
-\right|^2
+{\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
+\qquad
+u_{42}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound $e^-$}\\\text{spin down}}}
+{\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
-Symbol $e$ is electron charge and
-\begin{align*}
-s&=(p_1+p_2)^2=4E^2
-\\
-t&=(p_1-p_3)^2=(p_1-p_3)^\mu g_{\mu\nu}(p_1-p_3)^\nu
-\end{align*}
-
-Let
+The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 \begin{equation*}
-a_1=(\bar{v}_{1a}\gamma^\mu v_{3c})(\bar{u}_{4d}\gamma_\mu u_{2b}),
+\mathcal M_{abcd}=\mathcal M_{1abcd}+\mathcal M_{2abcd}
+\end{equation*}
+
+where
+\begin{equation*}
+\mathcal M_{1abcd}=\frac{e^4}{s}(\bar{v}_{1a}\gamma^\mu u_{2b})(\bar{u}_{4d}\gamma_\mu v_{3c})
 \quad
-a_2=(\bar{v}_{1a}\gamma^\nu u_{2b})(\bar{u}_{4d}\gamma_\nu v_{3c})
+\mathcal M_{2abcd}=-\frac{e^4}{t}(\bar{v}_{1a}\gamma^\nu v_{3c})(\bar{u}_{4d}\gamma_\nu u_{2b}),
 \end{equation*}
 
-Then
+Symbol $e$ is elementary charge and
 \begin{align*}
-|\mathcal{M}_{abcd}|^2
-&=
-\frac{e^4}{N}\left|{-\frac{a_1}{t}} + \frac{a_2}{s}\right|^2\\
-&=
-\frac{e^4}{N}\left(-\frac{a_1}{t} + \frac{a_2}{s}\right)\left(-\frac{a_1}{t} + \frac{a_2}{s}\right)^*\\
-&=
-\frac{e^4}{N}
-\left(
-\frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{st} -
-\frac{a_1^*a_2}{st} + \frac{a_2a_2^*}{s^2}
-\right)
+s&=(p_1+p_2)^2
+\\
+t&=(p_1-p_3)^2
 \end{align*}
 
-The expected probability density $\langle|\mathcal{M}|^2\rangle$ is computed
-by summing $|\mathcal{M}_{abcd}|^2$ over all spin states and then dividing by the number of inbound states.
-There are four inbound states.
-\begin{align*}
+The expected probability density $\langle|\mathcal M|^2\rangle$
+is the average for all spin states.
+\begin{equation*}
+\langle|\mathcal M|^2\rangle=\frac{1}{4}
+\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+|\mathcal M_{abcd}|^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=\frac{1}{4}
+\sum_{abcd}
+\left(
+\mathcal M_{1abcd}\mathcal M_{1abcd}^*
++\mathcal M_{1abcd}\mathcal M_{2abcd}^*
++\mathcal M_{2abcd}\mathcal M_{1abcd}^*
++\mathcal M_{2abcd}\mathcal M_{2abcd}^*
+\right)
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-&=
-\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
-|\mathcal{M}_{abcd}|^2\\
-&=
-\frac{e^4}{4N}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+=\frac{e^4}{4}
 \left(
-\frac{a_1a_1^*}{t^2} - \frac{a_1a_2^*}{st} -
-\frac{a_1^*a_2}{st} + \frac{a_2a_2^*}{s^2}
+\frac{f_{11}}{s^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{t^2}
 \right)
-\end{align*}
+\end{equation*}
 
-The Casimir trick uses matrix arithmetic to compute sums.
+where
 \begin{align*}
-f_{11}&=\frac{1}{N}\sum_{abcd}a_1a_1^*=
+f_{11}&=\operatorname{Tr}\left(
+(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
+\right)
 \mathop{\rm Tr}\left(
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
+\right)
+\\
+f_{12}&=\operatorname{Tr}\left(
+(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
+(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
+\right)
+\\
+f_{22}&=\operatorname{Tr}\left(
 (\slashed{p}_1-m)\gamma^\mu(\slashed{p}_3-m)\gamma^\nu
 \right)
 \mathop{\rm Tr}\left(
 (\slashed{p}_4+m)\gamma_\mu(\slashed{p}_2+m)\gamma_\nu
 \right)
-\\
-f_{12}&=\frac{1}{N}\sum_{abcd}a_1a_2^*=
-\mathop{\rm Tr}\left(
-(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
-(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
-\right)
-\\
-f_{22}&=\frac{1}{N}\sum_{abcd}a_2a_2^*=
-\mathop{\rm Tr}\left(
-(\slashed{p}_1-m)\gamma^\mu(\slashed{p}_2+m)\gamma^\nu
-\right)
-\mathop{\rm Tr}\left(
-(\slashed{p}_4+m)\gamma_\mu(\slashed{p}_3-m)\gamma_\nu
-\right)
 \end{align*}
-
-Hence
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{t^2} - \frac{f_{12}}{st} -
-\frac{f_{12}^*}{st} + \frac{f_{22}}{s^2}
-\right)
-\end{equation*}
 
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
-32(p_1\cdot p_2)^2
+32(p_1\cdot p_3)^2
 +32(p_1\cdot p_4)^2
--64 m^2(p_1\cdot p_3)
++64 m^2(p_1\cdot p_2)
 +64 m^4
 \\
 f_{12}&=
@@ -249,54 +160,30 @@ f_{12}&=
 -32 m^4
 \\
 f_{22}&=
-32(p_1\cdot p_3)^2
+32(p_1\cdot p_2)^2
 +32(p_1\cdot p_4)^2
-+64 m^2(p_1\cdot p_2)
+-64 m^2(p_1\cdot p_3)
 +64 m^4
 \end{align*}
 
-For Mandelstam variables
+\iffalse
+In terms of Mandelstam variables
 \begin{align*}
-s&=(p_1+p_2)^2
-\\
-t&=(p_1-p_3)^2
-\\
-u&=(p_1-p_4)^2
-\end{align*}
-the formulas are
-\begin{align*}
-f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
+f_{11} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
 \\
 f_{12} &= -8 u^2 + 64 u m^2 - 96 m^4
 \\
-f_{22} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
+f_{22} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
 \end{align*}
+\fi
 
-For high energy experiments $E\gg m$ a useful approximation is to set $m=0$ and obtain
+For high energy experiments such that $E\gg m$, let $m=0$ and obtain
 \begin{align*}
-f_{11}&= 8 s^2 + 8 u^2\\
-f_{12}&= -8 u^2\\
-f_{22}&= 8 t^2 + 8 u^2
-\end{align*}
-
-Hence
-\begin{align*}
-\langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{t^2} - \frac{f_{12}}{st} -
-\frac{f_{12}^*}{st} + \frac{f_{22}}{s^2}
-\right)
+f_{11}&=32(p_1\cdot p_3)^2+32(p_1\cdot p_4)^2 & &=64E^4(\cos^2\theta+1)
 \\
-&=\frac{e^4}{4}
-\left(
-\frac{8s^2+8u^2}{t^2} - \frac{-8u^2}{st} - \frac{-8u^2}{st} + \frac{8t^2+8u^2}{s^2}
-\right)
+f_{12}&=-32(p_1\cdot p_4)^2 & &=-32E^4(\cos\theta+1)^2
 \\
-&=2e^4
-\left(
-\frac{s^2+u^2}{t^2} + \frac{2u^2}{st} + \frac{t^2+u^2}{s^2}
-\right)
+f_{22}&=32(p_1\cdot p_2)^2+32(p_1\cdot p_4)^2 & &=32E^4(\cos\theta+1)^2+128E^4
 \end{align*}
 
 For $m=0$ the Mandelstam variables are
@@ -304,12 +191,15 @@ For $m=0$ the Mandelstam variables are
 s&=4E^2
 \\
 t&=2E^2(\cos\theta-1)
-\\
-u&=-2E^2(\cos\theta+1)
 \end{align*}
-and it can be shown that
+
+Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
+=\frac{e^4}{4}
+\left(
+\frac{f_{11}}{s^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{t^2}
+\right)
 =e^4
 \left(
 \frac{\cos^2\theta+3}{\cos\theta-1}
