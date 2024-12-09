@@ -158,7 +158,7 @@ The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
-\frac{1}{4}
+\frac{e^4}{4}
 \left(
 \frac{f_{11}}{(s-m^2)^2}
 +\frac{2f_{12}}{(s-m^2)(u-m^2)}
@@ -169,17 +169,17 @@ The Casimir trick uses matrix arithmetic to sum over spin states.
 
 where
 \begin{align*}
-f_{11}&=e^4\operatorname{Tr}
+f_{11}&=\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
 \right)
 \\
-f_{12}&=e^4\operatorname{Tr}
+f_{12}&=\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=e^4\operatorname{Tr}
+f_{22}&=\operatorname{Tr}
 \left(
 (\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
 \right)
@@ -188,29 +188,29 @@ f_{22}&=e^4\operatorname{Tr}
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
-f_{11}&=e^4\left(
+f_{11}&=
  32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
  64 m^2 (p_1 \cdot p_2) -
  32 m^2 (p_1 \cdot p_3) -
- 32 m^2 (p_1 \cdot p_4) + 32 m^4\right)
+ 32 m^2 (p_1 \cdot p_4) + 32 m^4
 \\
-f_{12}&=e^4\left(16 m^2 (p_1 \cdot p_2) - 16 m^2 (p_1 \cdot p_4) + 32m^4\right)
+f_{12}&=16 m^2 (p_1 \cdot p_2) - 16 m^2 (p_1 \cdot p_4) + 32m^4
 \\
-f_{22}&=e^4\left(
+f_{22}&=
 32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
 32 m^2 (p_1 \cdot p_2) -
 32 m^2 (p_1 \cdot p_3) -
-64 m^2 (p_1 \cdot p_4) + 32 m^4\right)
+64 m^2 (p_1 \cdot p_4) + 32 m^4
 \end{align*}
 
 In Mandelstam variables
 \begin{equation*}
 \begin{aligned}
-f_{11}&=e^4\left(-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4\right)
+f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
 \\
-f_{12}&=e^4\left(8 s m^2 + 8 u m^2 + 16 m^4\right)
+f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
 \\
-f_{22}&=e^4\left(-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4\right)
+f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
 \end{aligned}
 \tag{2}
 \end{equation*}
@@ -435,11 +435,11 @@ which is the formula for Thomson scattering.
 \subsubsection*{High energy approximation}
 For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
-f_{11}&=e^4(-8su)
+f_{11}&=-8su
 \\
 f_{12}&=0
 \\
-f_{22}&=e^4(-8su)
+f_{22}&=-8su
 \end{align*}
 
 Hence
@@ -452,7 +452,7 @@ Hence
 \left(-\frac{u}{s}-\frac{s}{u}\right)
 \end{align*}
 
-Also for $m=0$ the Mandelstam variables $s$ and $u$ are
+The Mandelstam variables for $m=0$ are
 \begin{align*}
 s&=4\omega^2
 \\
