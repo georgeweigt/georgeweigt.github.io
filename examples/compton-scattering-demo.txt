@@ -51,8 +51,6 @@ qslash2 = dot(q2,gmunu,gamma)
 
 "Verify Casimir trick"
 
--- e is electron charge
-
 M111 = dot(u41bar, -i e gammaT, qslash1 + m I, -i e gammaT, u21)
 M112 = dot(u41bar, -i e gammaT, qslash1 + m I, -i e gammaT, u22)
 M121 = dot(u42bar, -i e gammaT, qslash1 + m I, -i e gammaT, u21)
@@ -128,9 +126,13 @@ check(f22 == e^4 (32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4))
 
 -- verify high energy approximation m = 0
 
-check(eval(s,m,0) == 4 omega^2)
-check(eval(u,m,0) == -2 omega^2 (cos(theta) + 1))
-check(eval(f,m,0) == 2 e^4 ((cos(theta) + 1) / 2 + 2 / (cos(theta) + 1)))
+m = 0
+
+check(s == 4 omega^2)
+check(u == -2 omega^2 (cos(theta) + 1))
+check(f == 2 e^4 ((cos(theta) + 1) / 2 + 2 / (cos(theta) + 1)))
+
+m = quote(m)
 
 "ok"
 

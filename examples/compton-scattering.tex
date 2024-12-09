@@ -14,26 +14,22 @@ Compton scattering is the interaction $e^-+\gamma\rightarrow e^-+\gamma$.
 \end{tikzpicture}
 \end{center}
 
-In the center-of-mass frame we have the following momentum vectors
-where $\omega$ is incident energy and
-$E$ is total energy $E=\sqrt{\omega^2+m^2}$.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
+In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{\omega^2+m^2}$.
 \begin{equation*}
 p_1=\underset{\substack{\\ \text{inbound}\\ \text{photon}}}
-{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}},
-\quad
+{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
+\qquad
 p_2=\underset{\substack{\\ \text{inbound}\\ \text{electron}}}
-{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}},
-\quad
+{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}}
+\qquad
 p_3=\underset{\substack{\\ \text{outbound}\\ \text{photon}}}
 {\begin{pmatrix}
 \omega\\
 \omega\sin\theta\cos\phi\\
 \omega\sin\theta\sin\phi\\
 \omega\cos\theta
-\end{pmatrix}},
-\quad
+\end{pmatrix}}
+\qquad
 p_4=\underset{\substack{\\ \text{outbound}\\ \text{electron}}}
 {\begin{pmatrix}
 E\\
@@ -52,8 +48,8 @@ E+m\\
 0\\
 -\omega\\
 0
-\end{pmatrix}},
-\quad
+\end{pmatrix}}
+\qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\\ \text{inbound electron}\\ \text{spin down}}}
 {\begin{pmatrix}
@@ -73,8 +69,8 @@ E+m\\
 0\\
 p_{4z}\\
 p_{4x}+ip_{4y}
-\end{pmatrix}},
-\quad
+\end{pmatrix}}
+\qquad
 u_{42}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\\ \text{outbound electron}\\ \text{spin down}}}
 {\begin{pmatrix}
@@ -88,8 +84,6 @@ p_{4x}-ip_{4y}\\
 Let $a$ be the spin state of the inbound electron and let $b$
 be the spin state of the outbound electron
 such that subscript $ba\in\{11,12,21,22\}$.
-
-\bigskip
 The probability amplitude $\mathcal M_{ba}$ for spin state $ba$ is
 \begin{equation*}
 \mathcal M_{ba}=\mathcal M_{1ba}+\mathcal M_{2ba}
@@ -98,20 +92,29 @@ The probability amplitude $\mathcal M_{ba}$ for spin state $ba$ is
 where
 \begin{equation*}
 \mathcal M_{1ba}=
-\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{(p_1+p_2)^2-m^2},
+\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2},
 \quad
 \mathcal M_{2ba}=
-\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{(p_1-p_4)^2-m^2}
+\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
 \end{equation*}
 
-and
-\begin{equation*}
-\slashed q_1=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta,
-\quad
-\slashed q_2=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
-\end{equation*}
+Symbol $e$ is elementary charge and
+\begin{gather*}
+\begin{aligned}
+\slashed q_1&=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta
+\\
+\slashed q_2&=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
+\end{aligned}
+\\[1ex]
+\begin{aligned}
+s&=(p_1+p_2)^2
+\\
+u&=(p_1-p_4)^2
+\end{aligned}
+\end{gather*}
 
-The expected probability $\langle|\mathcal M|^2\rangle$ is the average probability for all four spin states.
+The expected probability density $\langle|\mathcal M|^2\rangle$
+is the average probability density for all four spin states.
 \begin{equation*}
 \langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ba}|^2
 \end{equation*}
@@ -125,11 +128,6 @@ Hence
 +\frac{\mathcal M_{1ba}\mathcal M_{2ba}^*+\mathcal M_{2ba}\mathcal M_{1ba}^*}{(s-m^2)(u-m^2)}
 +\frac{\mathcal M_{2ba}\mathcal M_{2ba}^*}{(u-m^2)^2}
 \right)
-\end{equation*}
-
-where $s$ and $u$ are Mandelstam variables
-\begin{equation*}
-s=(p_1+p_2)^2,\quad u=(p_1-p_4)^2
 \end{equation*}
 
 To understand how $\mathcal M_{1ba}\mathcal M_{1ba}^*$ is calculated,
