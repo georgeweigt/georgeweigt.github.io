@@ -16,38 +16,38 @@ Annihilation is the interaction $e^-+e^+\rightarrow\gamma+\gamma$.
 
 In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
-p_1=\underset{\substack{\\ \text{inbound}\\ \text{electron}}}
+p_1=\underset{\substack{\text{inbound}\\ \text{electron}}}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 \qquad
-p_2=\underset{\substack{\\ \text{inbound}\\ \text{positron}}}
+p_2=\underset{\substack{\text{inbound}\\ \text{positron}}}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{\substack{\\ \text{outbound}\\ \text{photon}}}
+p_3=\underset{\substack{\text{outbound}\\ \text{photon}}}
 {\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}}
 \qquad
-p_4=\underset{\substack{\\ \text{outbound}\\ \text{photon}}}
+p_4=\underset{\substack{\text{outbound}\\ \text{photon}}}
 {\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}}
 \end{equation*}
 
 Spinors for the inbound electron.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\\ \text{inbound electron}\\ \text{spin up}}}
+\underset{\substack{\text{inbound electron}\\ \text{spin up}}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\\ \text{inbound electron}\\ \text{spin down}}}
+\underset{\substack{\text{inbound electron}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \end{equation*}
 
 Spinors for the inbound positron.
 \begin{equation*}
 v_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\\ \text{inbound positron}\\ \text{spin up}}}
+\underset{\substack{\text{inbound positron}\\ \text{spin up}}}
 {\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
 \qquad
 v_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\\ \text{inbound positron}\\ \text{spin down}}}
+\underset{\substack{\text{inbound positron}\\ \text{spin down}}}
 {\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
 
@@ -58,9 +58,9 @@ The probability amplitude $\mathcal M_{ab}$ for spin state $ab$ is
 
 where
 \begin{equation*}
-\mathcal M_{1ab}=\frac{\bar{v}_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2},
+\mathcal M_{1ab}=\frac{\bar v_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2},
 \quad
-\mathcal M_{2ab}=\frac{\bar{v}_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
+\mathcal M_{2ab}=\frac{\bar v_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
 \end{equation*}
 
 Symbol $e$ is elementary charge and
@@ -99,7 +99,7 @@ To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
 write $\mathcal M_{1ab}$ in component form.
 \begin{equation*}
 (\mathcal M_{1ab})^{\mu\nu}=\frac{
-(\bar{v}_{2b})_\alpha
+(\bar v_{2b})_\alpha
 (-ie\gamma^{\mu\alpha}{}_\beta)
 (\slashed q_1+m)^\beta{}_\rho
 (-ie\gamma^{\nu\rho}{}_\sigma)
@@ -135,17 +135,17 @@ where
 \begin{align*}
 f_{11}&=\operatorname{Tr}
 \left(
-(\slashed{p}_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right)
 \\
 f_{12}&=\operatorname{Tr}
 \left(
-(\slashed{p}_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right)
 \\
 f_{22}&=\operatorname{Tr}
 \left(
-(\slashed{p}_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right)
 \end{align*}
 
@@ -384,7 +384,7 @@ x & y & \hat y\\
 
 The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}
-R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
+R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar y)^2}=0.98
 \end{equation*}
 
 The result indicates that the model $d\sigma$ explains 98\% of the variance in the data.
