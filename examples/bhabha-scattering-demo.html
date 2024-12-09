@@ -105,6 +105,15 @@ check(f11 == 32 p13^2 + 32 p14^2 + 64 m^2 p12 + 64 m^4)
 check(f12 == -32 p14^2 - 32 m^2 p12 + 32 m^2 p13 - 32 m^2 p14 - 32 m^4)
 check(f22 == 32 p12^2 + 32 p14^2 - 64 m^2 p13 + 64 m^4)
 
+s = dot(p1 + p2, gmunu, p1 + p2)
+t = dot(p1 - p3, gmunu, p1 - p3)
+
+d11 = s^2
+d12 = s t
+d22 = t^2
+
+f = e^4 (f11/d11 - 2 f12/d12 + f22/d22) / 4
+
 -- high energy approximation
 
 m = 0
@@ -113,17 +122,8 @@ check(f11 == 64 E^4 (cos(theta)^2 + 1))
 check(f12 == -32 E^4 (cos(theta) + 1)^2)
 check(f22 == 32 E^4 (cos(theta) + 1)^2 + 128 E^4)
 
-s = dot(p1 + p2, gmunu, p1 + p2)
-t = dot(p1 - p3, gmunu, p1 - p3)
-
 check(s == 4 E^2)
 check(t == 2 E^2 (cos(theta) - 1))
-
-d11 = s^2
-d12 = s t
-d22 = t^2
-
-f = e^4 (f11/d11 - 2 f12/d12 + f22/d22) / 4
 
 check(f == e^4 (cos(theta)^2 + 3)^2 / (cos(theta) - 1)^2)
 
