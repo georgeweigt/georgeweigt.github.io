@@ -82,7 +82,7 @@ T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)
 f11 = contract(dot(T1,transpose(T2)))
 
 T = contract(dot(X1,gammaT,X2,gammaT,X4,gammaL,X3,gammaL),1,6)
-f12 = contract(contract(T,1,3))
+f12 = contract(T,1,3,1,2)
 
 T1 = contract(dot(X1,gammaT,X3,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X2,gammaL),1,4)
