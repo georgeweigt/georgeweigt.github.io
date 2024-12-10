@@ -70,10 +70,17 @@ M12 = contract(dot(M111, gmunu, conj(M211), gmunu)) +
       contract(dot(M121, gmunu, conj(M221), gmunu)) +
       contract(dot(M122, gmunu, conj(M222), gmunu))
 
+M21 = contract(dot(M211, gmunu, conj(M111), gmunu)) +
+      contract(dot(M212, gmunu, conj(M112), gmunu)) +
+      contract(dot(M221, gmunu, conj(M121), gmunu)) +
+      contract(dot(M222, gmunu, conj(M122), gmunu))
+
 M22 = contract(dot(M211, gmunu, transpose(conj(M211)), gmunu)) +
       contract(dot(M212, gmunu, transpose(conj(M212)), gmunu)) +
       contract(dot(M221, gmunu, transpose(conj(M221)), gmunu)) +
       contract(dot(M222, gmunu, transpose(conj(M222)), gmunu))
+
+check(M12 == M21)
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
@@ -94,7 +101,7 @@ T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
 f22 = contract(T,3,4,2,3,1,2)
 
 check(e^4 f11 == M11)
-check(e^4 f12 == M12)
+check(2 e^4 f12 == M12 + M21)
 check(e^4 f22 == M22)
 
 "ok"
