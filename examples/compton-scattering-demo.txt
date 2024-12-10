@@ -35,8 +35,8 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 gammaL = transpose(dot(gmunu,gamma))
 
-u41bar = dot(conj(u41), gamma0) -- adjoint of u41
-u42bar = dot(conj(u42), gamma0) -- adjoint of u42
+u41bar = dot(conj(u41),gamma0) -- adjoint of u41
+u42bar = dot(conj(u42),gamma0) -- adjoint of u42
 
 q1 = p1 + p2
 q2 = p4 - p1

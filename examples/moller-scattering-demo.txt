@@ -141,6 +141,10 @@ check(f22 == 32 p12^2 + 32 p13^2 - 64 m^2 p14 + 64 m^4)
 
 m = 0
 
+f11 == 1 + cos(theta/2)^4)
+
+stop
+
 check(s == 4 E^2)
 check(t == 2 E^2 (cos(theta) - 1))
 check(u == -2 E^2 (cos(theta) + 1))
