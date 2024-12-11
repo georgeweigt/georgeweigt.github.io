@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 -- Verify muon decay formulas
 
-p1x = 0 -- muon rest frame
+p1x = 0
 p1y = 0
 p1z = 0
 
@@ -15,26 +15,17 @@ p2 = (E2, p2x, p2y, p2z) -- muon neutrino
 p3 = (E3, p3x, p3y, p3z) -- electron antineutrino
 p4 = (E4, p4x, p4y, p4z) -- electron
 
--- spinors
+u11 = (E1 + m1, 0, p1z, p1x + i p1y) / sqrt(E1 + m1)
+u12 = (0, E1 + m1, p1x - i p1y, -p1z) / sqrt(E1 + m1)
 
-N = (E1 + m1) (E2 + m2) (E3 + m3) (E4 + m4)
+u21 = (E2 + m2, 0, p2z, p2x + i p2y) / sqrt(E2 + m2)
+u22 = (0, E2 + m2, p2x - i p2y, -p2z) / sqrt(E2 + m2)
 
-u11 = (E1 + m1, 0, p1z, p1x + i p1y)
-u12 = (0, E1 + m1, p1x - i p1y, -p1z)
+v31 = (p3z, p3x + i p3y, E3 + m3, 0) / sqrt(E3 + m3)
+v32 = (p3x - i p3y, -p3z, 0, E3 + m3) / sqrt(E3 + m3)
 
-u21 = (E2 + m2, 0, p2z, p2x + i p2y)
-u22 = (0, E2 + m2, p2x - i p2y, -p2z)
-
-v31 = (p3z, p3x + i p3y, E3 + m3, 0)
-v32 = (p3x - i p3y, -p3z, 0, E3 + m3)
-
-u41 = (E4 + m4, 0, p4z, p4x + i p4y)
-u42 = (0, E4 + m4, p4x - i p4y, -p4z)
-
-u1 = (u11,u12) -- muon
-u2 = (u21,u22) -- muon neutrino
-v3 = (v31,v32) -- electron antineutrino
-u4 = (u41,u42) -- electron
+u41 = (E4 + m4, 0, p4z, p4x + i p4y) / sqrt(E4 + m4)
+u42 = (0, E4 + m4, p4x - i p4y, -p4z) / sqrt(E4 + m4)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -48,52 +39,43 @@ gamma5 = i dot(gamma0,gamma1,gamma2,gamma3)
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+"Verify Casimir trick"
+
+u1 = (u11,u12) -- muon
+u2 = (u21,u22) -- muon neutrino
+v3 = (v31,v32) -- electron antineutrino
+u4 = (u41,u42) -- electron
+
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
--- transpose to put 1st index in the middle
+M(a,b,c,d) = dot(dot(u4bar[d],gammaT,I-gamma5,v3[c]),dot(u2bar[b],gammaL,I-gamma5,u1[a]))
 
-X = transpose(dot(gamma, I - gamma5))
-
-w21 = zero(2,2,4)
-w43 = zero(2,2,4)
-
-for(a,1,2, for(b,1,2,
- w21[a,b] = dot(u2bar[a], X, u1[b]),
- w43[a,b] = dot(u4bar[a], X, v3[b])
-))
-
--- matrix elements
-
-M = zero(2,2,2,2)
-
-for(a,1,2, for(b,1,2, for(c,1,2, for(d,1,2,
- M[a,b,c,d] = dot(w43[d,c], gmunu, w21[b,a])
-))))
-
-"Sum over spin states"
-
-S = sum(conj(M) M)
-S
-
-"Verify Casimir trick"
+MM = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2, M(a,b,c,d) conj(M(a,b,c,d)) ))))
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
 pslash4 = dot(p4,gmunu,gamma)
 
-T1 = contract(dot(pslash4, X, pslash3, X), 1,4)
-T2 = contract(dot(pslash2, X, pslash1, X), 1,4)
-T = contract(dot(T1, gmunu, transpose(T2), gmunu))
+T1 = dot(pslash4,gammaT,I-gamma5,pslash3,gammaT,I-gamma5)
+T2 = dot(pslash2,gammaL,I-gamma5,pslash1,gammaL,I-gamma5)
 
-check(T == S/N)
+T1 = contract(T1,1,4) -- Tr
+T2 = contract(T2,1,4) -- Tr
+
+f = contract(dot(T1,transpose(T2)))
+
+check(f == MM)
 
 "ok"
 
 "Verify probability density"
 
-check(1/4 T == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
+check(f/4 == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 
 "ok"
 

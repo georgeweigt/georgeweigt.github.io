@@ -61,126 +61,96 @@ Electron & $e^-$ & $p_4$ & $u_{41}$ & $u_{42}$
 \end{tabular}
 \end{center}
 
-We will use the following momentum vectors.
-\begin{align*}
-p_1&=
-\underset{\substack{\\[1ex] \mu^-}}
+We have the following momentum vectors for the muon decay process.
+\begin{equation*}
+p_1=\underset{\mu^-}
 {\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}}
-&
-p_2&=
-\underset{\substack{\\[1ex] \nu_\mu}}
+\qquad
+p_2=\underset{\nu_\mu}
 {\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}}
-&
-p_3&=
-\underset{\substack{\\[1ex] \bar{\nu}_e}}
+\qquad
+p_3=\underset{\bar\nu_e}
 {\begin{pmatrix}E_3\\p_{3x}\\p_{3y}\\p_{3z}\end{pmatrix}}
-&
-p_4&=
-\underset{\substack{\\[1ex] e^-}}
+\qquad
+p_4=\underset{e^-}
 {\begin{pmatrix}E_4\\p_{4x}\\p_{4y}\\p_{4z}\end{pmatrix}}
-\end{align*}
+\end{equation*}
 
-And we will use the following unnormalized spinors.
-\begin{align*}
-u_{11}&=
+Spinors for the muon.
+\begin{equation*}
+u_{11}=\frac{1}{\sqrt{E_1+m_1}}
 \underset{\text{$\mu^-$ spin up}}
-{
-\begin{pmatrix}E_1+m_\mu\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}
-}
-&
-u_{21}&=
-\underset{\text{$\nu_\mu$ spin up}}
-{
-\begin{pmatrix}E_2+m_2\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}
-}
-&
-v_{31}&=
-\underset{\text{$\bar{\nu}_e$ spin up}}
-{
-\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E_3+m_3\\0\end{pmatrix}
-}
-&
-u_{41}&=
-\underset{\text{$e^-$ spin up}}
-{
-\begin{pmatrix}E_4+m_4\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}
-}
-\\[1ex]
-u_{12}&=
+{\begin{pmatrix}E_1+m_1\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}}
+\qquad
+u_{12}=\frac{1}{\sqrt{E_1+m_1}}
 \underset{\text{$\mu^-$ spin down}}
-{
-\begin{pmatrix}0\\E_1+m_\mu\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}
-}
-&
-u_{22}&=
+{\begin{pmatrix}0\\E_1+m_1\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}}
+\end{equation*}
+
+Spinors for the muon neutrino.
+\begin{equation*}
+u_{21}=\frac{1}{\sqrt{E_2+m_2}}
+\underset{\text{$\nu_\mu$ spin up}}
+{\begin{pmatrix}E_2+m_2\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
+\qquad
+u_{22}=\frac{1}{\sqrt{E_2+m_2}}
 \underset{\text{$\nu_\mu$ spin down}}
-{
-\begin{pmatrix}0\\E_2+m_2\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}
-}
-&
-v_{32}&=
+{\begin{pmatrix}0\\E_2+m_2\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
+\end{equation*}
+
+Spinors for the electron anti-neutrino.
+\begin{equation*}
+v_{31}=\frac{1}{\sqrt{E_3+m_3}}
+\underset{\text{$\bar{\nu}_e$ spin up}}
+{\begin{pmatrix}p_{3z}\\p_{3x}+ip_{3y}\\E_3+m_3\\0\end{pmatrix}}
+\qquad
+v_{32}=\frac{1}{\sqrt{E_3+m_3}}
 \underset{\text{$\bar{\nu}_e$ spin down}}
-{
-\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E_3+m_3\end{pmatrix}
-}
-&
-u_{42}&=
+{\begin{pmatrix}p_{3x}-ip_{3y}\\-p_{3z}\\0\\E_3+m_3\end{pmatrix}}
+\end{equation*}
+
+Spinors for the electron.
+\begin{equation*}
+u_{41}=\frac{1}{\sqrt{E_4+m_4}}
+\underset{\text{$e^-$ spin up}}
+{\begin{pmatrix}E_4+m_4\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
+\qquad
+u_{42}=\frac{1}{\sqrt{E_4+m_4}}
 \underset{\text{$e^-$ spin down}}
-{
-\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}
-}
-\end{align*}
-
-Symbol $E_n$ is total energy of particle $n$.
-\begin{align*}
-E_1&=\sqrt{(p_{1x})^2+(p_{1y})^2+(p_{1z})^2+m_\mu^2}
-\\
-E_2&=\sqrt{(p_{2x})^2+(p_{2y})^2+(p_{2z})^2+m_2^2}
-\\
-E_3&=\sqrt{(p_{3x})^2+(p_{3y})^2+(p_{3z})^2+m_3^2}
-\\
-E_4&=\sqrt{(p_{4x})^2+(p_{4y})^2+(p_{4z})^2+m_4^2}
-\end{align*}
-
-This is the probability amplitude for spin state $abcd$.
-The formula is derived from Feynman diagrams for muon decay.
-\begin{equation*}
-\mathcal{M}_{abcd}=\frac{G_F}{\sqrt{2N}}
-\bigl(
-\underset{\substack{\\[1ex]e^-}}{\bar{u}_{4d}}
-\;
-\underset{\substack{\\[1ex] }}{\gamma^\mu(1-\gamma^5)}
-\;
-\underset{\substack{\\[1ex]\bar{\nu}_e}}{v_{3c}}
-\bigr)
-\bigl(
-\underset{\substack{\\[1ex]\nu_\mu}}{\bar{u}_{2b}}
-\;
-\underset{\substack{\\[1ex] }}{\gamma_\mu(1-\gamma^5)}
-\;
-\underset{\substack{\\[1ex]\mu^-}}{u_{1a}}
-\bigr)
+{\begin{pmatrix}0\\E_4+m_4\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
-Symbol $N$ is the following spinor normalization constant.
+The probability amplitude $\mathcal{M}_{abcd}$ for spin state $abcd$ is
 \begin{equation*}
-N=(E_1+m_\mu)(E_2+m_2)(E_3+m_3)(E_4+m_4)
+\mathcal{M}_{abcd}=\frac{G_F}{\sqrt{2}}
+\left(
+\bar u_{4d}
+\gamma^\mu(1-\gamma^5)
+v_{3c}
+\right)
+\left(
+\bar u_{2b}
+\gamma_\mu(1-\gamma^5)
+u_{1a}
+\right)
 \end{equation*}
 
-Recall that the magnitude squared of an amplitude is a probability density.
-\begin{equation*}
-|\mathcal{M}_{abcd}|^2=\mathcal{M}_{abcd}^*\mathcal{M}_{abcd}
-\end{equation*}
-
-In a typical muon decay experiment the spins are not observed.
-Consequently, the experimental result is an average of spin states.
-The average is computed by summing over all spin states and dividing by the number of initial spin states.
-The muon has two spin states hence the divisor is two.
+The expected probability density $\langle|\mathcal{M}|^2\rangle$ is the average of spin states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=
 \frac{1}{2}
 \sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
 |\mathcal{M}_{abcd}|^2
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{G_F^2}{4}
+\mathop{\text{Tr}}
+\left(\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right)
+\mathop{\text{Tr}}
+\left(\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right)
 \end{equation*}
 
 The result is a simple formula.
@@ -189,7 +159,7 @@ The result is a simple formula.
 \tag{1}
 \end{equation*}
 
-In component notation we have
+In component notation
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=64G_F^2
 (p_1^\mu \, g_{\mu\nu} \, p_3^\nu)
@@ -205,9 +175,11 @@ g_{\mu\nu}=g_{\rho\sigma}=\begin{pmatrix}
 \end{pmatrix}
 \end{equation*}
 
-Muon decay rate $\Gamma$ is essentially an expectation value (weighted average)
+Muon decay rate $\Gamma$ is the expectation value
 for all possible values of particle momentum.
-In the muon rest frame we have $p_1=(m_\mu,0,0,0)$ and by Fermi's golden rule
+In the muon rest frame $p_1$ is fixed at $p_1=(m_\mu,0,0,0)$.
+The remaining momenta $p_2$, $p_3$, and $p_4$ can have any values that conserve energy and momentum.
+By Fermi's golden rule
 \begin{equation*}
 \Gamma=\frac{1}{512\pi^5m_\mu}
 \int\limits_{-\infty}^\infty \cdots \int\limits_{-\infty}^\infty
@@ -232,39 +204,7 @@ Muon lifetime $\tau$ is the inverse of decay rate.
 
 Change natural units to $h$ and $c$.
 \begin{equation*}
-\tau
-%=\frac{192\pi^3\hbar}{G_F^2\left(m_\mu c^2\right)^5}
-=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
-\end{equation*}
-
-Probability density $\langle|\mathcal{M}|^2\rangle$ can also be computed
-using the following Casimir trick.
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{G_F^2}{4}
-\mathop{\text{Tr}}
-\left(\slashed{p}_4\gamma^\mu(1-\gamma^5)\slashed{p}_3\gamma^\nu(1-\gamma^5)\right)
-\mathop{\text{Tr}}
-\left(\slashed{p}_2\gamma_\mu(1-\gamma^5)\slashed{p}_1\gamma_\nu(1-\gamma^5)\right)
-\end{equation*}
-
-The slashed symbols are $4\times4$ matrices computed as
-\begin{equation*}
-\slashed{p}=p\cdot\gamma
-=p^0\gamma^0-p^1\gamma^1-p^2\gamma^2-p^3\gamma^3
-\end{equation*}
-
-For example,
-\begin{equation*}
-\slashed{p}_1=\begin{pmatrix}
-E_1 & 0 & -p_{1z} & -p_{1x} + ip_{1y}
-\\[1ex]
-0 & E_1 & -p_{1x} - ip_{1y} & p_{1z}
-\\[1ex]
-p_{1z} & p_{1x} - i p_{1y} & -E_1 & 0
-\\[1ex]
-p_{1x} + ip_{1y} & -p_{1z} & 0 & -E_1
-\end{pmatrix}
+\tau=\frac{96\pi^2h}{G_F^2\left(m_\mu c^2\right)^5}
 \end{equation*}
 
 \end{document}
