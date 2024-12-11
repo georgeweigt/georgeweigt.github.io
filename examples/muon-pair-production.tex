@@ -1,8 +1,9 @@
 \input{preamble}
 
 \section*{Muon pair production}
-Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
 
+Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
+%
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -13,173 +14,101 @@ Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
-
-Define the following momentum vectors and spinors.
-Symbol $E$ is beam energy.
-Symbol $p$ is electron momentum $p=\sqrt{E^2-m^2}$ where $m$ is electron mass $0.51\,\text{MeV}$.
-Symbol $\rho$ is muon mementum $\rho=\sqrt{E^2-M^2}$ where $M$ is muon mass $106\,\text{MeV}$.
-Polar angle $\theta$ is the observed scattering angle.
-Azimuth angle $\phi$ cancels out in scattering calculations.
-\iffalse
-% old
-\begin{align*}
-p_1&=
-\underset{\substack{\text{inbound}\\\text{electron}}}
-{
-\begin{pmatrix}E\\0\\0\\p\end{pmatrix}
-}
-&
-p_2&=
-\underset{\substack{\text{inbound}\\\text{positron}}}
-{
-\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}
-}
-&
-p_3&=
-\underset{\substack{\text{outbound}\\\text{muon}}}
-{
-\begin{pmatrix}
-E\\
-\rho\sin\theta\cos\phi\\
-\rho\sin\theta\sin\phi\\
-\rho\cos\theta
-\end{pmatrix}
-}
-&
-p_4&=
-\underset{\substack{\text{outbound}\\\text{anti-muon}}}
-{
-\begin{pmatrix}
-E\\
--\rho\sin\theta\cos\phi\\
--\rho\sin\theta\sin\phi\\
--\rho\cos\theta
-\end{pmatrix}
-}
-\\[1ex]
-u_{11}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
-}
-&
-v_{21}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}
-}
-&
-u_{31}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}
-}
-&
-v_{41}&=
-\underset{\text{spin up}}
-{
-\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}
-}
-\\[1ex]
-u_{12}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}
-}
-&
-v_{22}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}
-}
-&
-u_{32}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}
-}
-&
-v_{42}&=
-\underset{\text{spin down}}
-{
-\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}
-}
-\end{align*}
-\else
-% new
-\begin{align*}
-p_1&=\underset{\text{inbound $e^-$}}
-{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-& u_{11}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
-& u_{12}&=\underset{\substack{\text{inbound $e^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
-\\[1ex]
-p_2&=\underset{\text{inbound $e^+$}}
-{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-& v_{21}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin up}}}
-{\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
-& v_{22}&=\underset{\substack{\text{inbound $e^+$}\\\text{spin down}}}
-{\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
-\\[1ex]
-p_3&=\underset{\text{outbound $\mu^-$}}
-{\begin{pmatrix}
-E\\
-\rho\sin\theta\cos\phi\\
-\rho\sin\theta\sin\phi\\
-\rho\cos\theta
-\end{pmatrix}}
-& u_{31}&=\underset{\substack{\text{outbound $\mu^-$}\\\text{spin up}}}
-{\begin{pmatrix}E+M\\0\\p_3^z\\p_3^x+ip_3^y\end{pmatrix}}
-& u_{32}&=\underset{\substack{\text{outbound $\mu^-$}\\\text{spin down}}}
-{\begin{pmatrix}0\\E+M\\p_3^x-ip_3^y\\-p_3^z\end{pmatrix}}
-\\[1ex]
-p_4&=\underset{\text{outbound $\mu^+$}}
-{\begin{pmatrix}
-E\\
--\rho\sin\theta\cos\phi\\
--\rho\sin\theta\sin\phi\\
--\rho\cos\theta
-\end{pmatrix}}
-& v_{41}&=\underset{\substack{\text{outbound $\mu^+$}\\\text{spin up}}}
-{\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}}
-& v_{42}&=\underset{\substack{\text{outbound $\mu^+$}\\\text{spin down}}}
-{\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}}
-\end{align*}
-\fi
-
-The spinors are not individually normalized.
-Instead, a combined spinor normalization constant $N=(E+m)^2(E+M)^2$ will be used.
-
-\bigskip
-This is the probability density for spin state $abcd$.
-The formula is derived from Feynman diagrams for muon pair production.
+%
+In the center-of-mass frame we have the following momentum vectors where
+$p=\sqrt{E^2-m^2}$ and $\rho=\sqrt{E^2-M^2}$.
 \begin{equation*}
-\big|\mathcal{M}_{abcd}\big|^2
-=\frac{e^4}{Ns^2}\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
+p_1=\underset{\text{inbound $e^-$}}
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\qquad
+p_2=\underset{\text{inbound $e^+$}}
+{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+\qquad
+p_3=\underset{\text{outbound $\mu^-$}}
+{\begin{pmatrix}
+E\\
+\rho\sin\theta\cos\phi\\
+\rho\sin\theta\sin\phi\\
+\rho\cos\theta
+\end{pmatrix}}
+\qquad
+p_4=
+\underset{\text{outbound $\mu^+$}}
+{\begin{pmatrix}
+E\\
+-\rho\sin\theta\cos\phi\\
+-\rho\sin\theta\sin\phi\\
+-\rho\cos\theta
+\end{pmatrix}}
 \end{equation*}
 
-Symbol $e$ is electron charge and
+Spinors for the inbound electron.
+\begin{equation*}
+u_{11}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^-$}\\ \text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+\qquad
+u_{12}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^-$}\\ \text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
+\end{equation*}
+
+Spinors for the inbound positron.
+\begin{equation*}
+v_{21}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^+$}\\ \text{spin up}}}
+{\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
+\qquad
+v_{22}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound $e^+$}\\ \text{spin down}}}
+{\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound muon.
+\begin{equation*}
+u_{31}=\frac{1}{\sqrt{E+M}}
+\underset{\substack{\text{outbound $\mu^-$}\\ \text{spin up}}}
+{\begin{pmatrix}E+M\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
+\qquad
+u_{32}=\frac{1}{\sqrt{E+M}}
+\underset{\substack{\text{outbound $\mu^-$}\\ \text{spin down}}}
+{\begin{pmatrix}0\\E+M\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound anti-muon.
+\begin{equation*}
+v_{41}=\frac{1}{\sqrt{E+M}}
+\underset{\substack{\text{outbound $\mu^+$}\\ \text{spin up}}}
+{\begin{pmatrix}p_4^z\\p_4^x+ip_4^y\\E+M\\0\end{pmatrix}}
+\qquad
+v_{42}=\frac{1}{\sqrt{E+M}}
+\underset{\substack{\text{outbound $\mu^+$}\\ \text{spin down}}}
+{\begin{pmatrix}p_4^x-ip_4^y\\-p_4^z\\0\\E+M\end{pmatrix}}
+\end{equation*}
+
+The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
+\begin{equation*}
+\mathcal{M}_{abcd}=\frac{e^2}{s}(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})
+\end{equation*}
+
+Symbol $e$ is elementary charge and
 \begin{equation*}
 s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
-The expected probability density $\langle|\mathcal{M}|^2\rangle$
-is computed by summing $|\mathcal{M}_{abcd}|^2$ over all spin states
-and dividing by the number of inbound states.
-There are four inbound states.
+The expected probability density $\langle|\mathcal{M}|^2\rangle$ is the average of spin states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
 &=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2\big|\mathcal{M}_{abcd}\big|^2
 \\
-&=\frac{e^4}{4Ns^2}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
-\big|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\big|^2
+&=\frac{e^4}{64E^4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
+\left|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\right|^2
 \end{align*}
 
-The Casimir trick uses matrix arithmetic to compute $\langle|\mathcal{M}|^2\rangle$.
+The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4s^2}
+=\frac{e^4}{64E^4}
 \mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
 \mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
 \end{equation*}
@@ -209,17 +138,22 @@ The result is
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
 \end{equation*}
 
-For high energy experiments $E\gg M$ a useful approximation is
+For $E\gg M$ a useful approximation is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
 \subsubsection*{Cross section}
+
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s},
-\quad s=(p_1+p_2)^2=4E^2
+=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
+\end{equation*}
+
+where
+\begin{equation*}
+s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
 For high energy experiments we have
@@ -227,7 +161,7 @@ For high energy experiments we have
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
-Hence for high energy experiments
+Hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{e^4}{4(4\pi\varepsilon_0)^2s}\left(1+\cos^2\theta\right)
 \end{equation*}
@@ -253,14 +187,14 @@ d\sigma=\frac{\alpha^2(\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
 \sin\theta\,d\theta\,d\phi
 \end{equation*}
 
-Let $S(\theta_1,\theta_2)$ be the following surface integral of $d\sigma$.
+Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
 \begin{equation*}
 S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
 \end{equation*}
 
 The solution is
 \begin{equation*}
-S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{4s}\bigl(I(\theta_2)-I(\theta_1)\bigr)
+S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{4s}[I(\theta_2)-I(\theta_1)]
 \end{equation*}
 
 where
@@ -283,13 +217,6 @@ The probability of observing scattering events in the interval $\theta_1$ to $\t
 P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
 \end{equation*}
 
-Let $N$ be the total number of scattering events from an experiment.
-Then the number of scattering events in the interval $\theta_1$
-to $\theta_2$ is predicted to be
-\begin{equation*}
-NP(\theta_1\le\theta\le\theta_2)
-\end{equation*}
-
 The probability density function is
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}
@@ -299,6 +226,7 @@ f(\theta)=\frac{dF(\theta)}{d\theta}
 \end{equation*}
 
 \subsubsection*{Data from SLAC PEP experiment}
+
 See www.hepdata.net/record/ins216031, Table 1, $s=(29.0\,\text{GeV})^2$.
 
 \begin{center}
@@ -386,6 +314,7 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.87
 The result indicates that the model $d\sigma$ explains 87\% of the variance in the data.
 
 \subsubsection*{Electroweak model}
+
 The following differential cross section formula from electroweak
 theory results in a better fit to the
 data.\footnote{F. Mandl and G. Shaw, {\it Quantum Field Theory Revised Edition,} 316.}
@@ -463,72 +392,5 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 \end{equation*}
 
 The result indicates that electroweak theory explains 98\% of the variance in the data.
-
-\subsubsection*{Notes}
-Here are a few notes about how the demo script works.
-
-\bigskip
-In component notation, traces are sums over a repeated index, in this case $\alpha$.
-\begin{align*}
-\mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
-&=
-(\slashed{p}_3+M)^\alpha{}_\beta
-\gamma^{\mu\beta}{}_\rho
-(\slashed{p}_4-M)^\rho{}_\sigma
-\gamma^{\nu\sigma}{}_\alpha
-\\
-\mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
-&=
-(\slashed{p}_2-m)^\alpha{}_\beta
-\gamma_\mu{}^\beta{}_\rho
-(\slashed{p}_1+m)^\rho{}_\sigma
-\gamma_\nu{}^\sigma{}_\alpha
-\end{align*}
-
-To convert the above formulas to Eigenmath code,
-the $\gamma$ tensors need to be transposed
-so that repeated indices are adjacent to each other.
-Also, multiply $\gamma^\mu$ by the metric tensor to lower the index.
-\begin{align*}
-\gamma^{\beta\mu}{}_\rho\quad&\rightarrow\quad
-\text{\tt gammaT = transpose(gamma)}\\
-\gamma^\beta{}_{\mu\rho}\quad&\rightarrow\quad
-\text{\tt gammaL = transpose(dot(gmunu,gamma))}
-\end{align*}
-
-Define the following $4\times4$ matrices.
-\begin{align*}
-(\slashed{p}_1+m)\quad&\rightarrow\quad\text{\tt X1 = pslash1 + m I}\\
-(\slashed{p}_2-m)\quad&\rightarrow\quad\text{\tt X2 = pslash2 - m I}\\
-(\slashed{p}_3+M)\quad&\rightarrow\quad\text{\tt X3 = pslash3 + M I}\\
-(\slashed{p}_4-M)\quad&\rightarrow\quad\text{\tt X4 = pslash4 - M I}
-\end{align*}
-
-Then
-\begin{align*}
-(\slashed{p}_3+M)^\alpha{}_\beta
-\gamma^{\mu\beta}{}_\rho
-(\slashed{p}_4-M)^\rho{}_\sigma
-\gamma^{\nu\sigma}{}_\alpha
-\quad&\rightarrow\quad
-\text{\tt T1 = contract(dot(X3,gammaT,X4,gammaT),1,4)}
-\\
-(\slashed{p}_2-m)^\alpha{}_\beta
-\gamma_\mu{}^\beta{}_\rho
-(\slashed{p}_1+m)^\rho{}_\sigma
-\gamma_\nu{}^\sigma{}_\alpha
-\quad&\rightarrow\quad
-\text{\tt T2 = contract(dot(X2,gammaL,X1,gammaL),1,4)}
-\end{align*}
-
-Next, multiply matrices and sum over repeated indices.
-The dot function sums over $\nu$ then the contract function
-sums over $\mu$. The transpose makes the $\nu$ indices adjacent
-as required by the dot function.
-$$
-\mathop{\rm Tr}(\cdots\gamma^\mu\cdots\gamma^\nu)\mathop{\rm Tr}(\cdots\gamma_\mu\cdots\gamma_\nu)
-\quad\rightarrow\quad
-\text{\tt contract(dot(T1,transpose(T2)))}
-$$
 
 \end{document}
