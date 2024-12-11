@@ -91,11 +91,13 @@ The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 
 where
 \begin{equation*}
-\mathcal M_{1abcd}=\underset{\substack{\text{no electron interchange}}}
-{\frac{e^2}{t}(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})},
+\mathcal M_{1abcd}=\frac{e^2}{t}
+\underset{\text{no electron interchange}}
+{(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})},
 \quad
-\mathcal M_{2abcd}=-\underset{\substack{\text{electron interchange}}}
-{\frac{e^2}{u}(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})}
+\mathcal M_{2abcd}=-\frac{e^2}{u}
+\underset{\text{electron interchange}}
+{(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})}
 \end{equation*}
 
 Symbol $e$ is elementary charge and
@@ -124,11 +126,6 @@ Hence
 +\mathcal M_{2abcd}\mathcal M_{2abcd}^*
 \right)
 \end{equation*}
-
-
-
-
-
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
@@ -218,13 +215,13 @@ Hence
 \right)
 \\
 &=2e^4\biggl(
-\underset{\substack{\\[1ex]\text{no electron interchange}}}
+\underset{\text{no electron interchange}}
 {\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}
 +
-\underset{\substack{\\[1ex]\text{interaction term}}}
+\underset{\text{interaction term}}
 {\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}}
 +
-\underset{\substack{\\[1ex]\text{electron interchange}}}
+\underset{\text{electron interchange}}
 {\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
 \biggr)
 \end{align*}

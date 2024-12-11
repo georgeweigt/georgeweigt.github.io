@@ -81,11 +81,13 @@ The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 
 where
 \begin{equation*}
-\mathcal M_{1abcd}=\underset{\text{annihilation}}
-{\frac{e^2}{s}(\bar v_{1a}\gamma^\mu u_{2b})(\bar u_{4d}\gamma_\mu v_{3c})},
+\mathcal M_{1abcd}=-\frac{e^2}{t}
+\underset{\text{scattering}}
+{(\bar v_{1a}\gamma^\nu v_{3c})(\bar u_{4d}\gamma_\nu u_{2b})},
 \quad
-\mathcal M_{2abcd}=-\underset{\text{scattering}}
-{\frac{e^2}{t}(\bar v_{1a}\gamma^\nu v_{3c})(\bar u_{4d}\gamma_\nu u_{2b})}
+\mathcal M_{2abcd}=\frac{e^2}{s}
+\underset{\text{annihilation}}
+{(\bar v_{1a}\gamma^\mu u_{2b})(\bar u_{4d}\gamma_\mu v_{3c})}
 \end{equation*}
 
 Symbol $e$ is elementary charge and
@@ -127,10 +129,10 @@ The Casimir trick uses matrix arithmetic to sum over spin states.
 where
 \begin{align*}
 f_{11}&=\operatorname{Tr}\left(
-(\slashed p_1-m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
+(\slashed p_1-m)\gamma^\mu(\slashed p_3-m)\gamma^\nu
 \right)
 \operatorname{Tr}\left(
-(\slashed p_4+m)\gamma_\mu(\slashed p_3-m)\gamma_\nu
+(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
 \right)
 \\
 f_{12}&=\operatorname{Tr}\left(
@@ -139,10 +141,10 @@ f_{12}&=\operatorname{Tr}\left(
 \right)
 \\
 f_{22}&=\operatorname{Tr}\left(
-(\slashed p_1-m)\gamma^\mu(\slashed p_3-m)\gamma^\nu
+(\slashed p_1-m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 \right)
 \operatorname{Tr}\left(
-(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
+(\slashed p_4+m)\gamma_\mu(\slashed p_3-m)\gamma_\nu
 \right)
 \end{align*}
 
@@ -150,9 +152,9 @@ The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
 \begin{align*}
 f_{11}&=
-32(p_1\cdot p_3)^2
+32(p_1\cdot p_2)^2
 +32(p_1\cdot p_4)^2
-+64 m^2(p_1\cdot p_2)
+-64 m^2(p_1\cdot p_3)
 +64 m^4
 \\
 f_{12}&=
@@ -163,28 +165,28 @@ f_{12}&=
 -32 m^4
 \\
 f_{22}&=
-32(p_1\cdot p_2)^2
+32(p_1\cdot p_3)^2
 +32(p_1\cdot p_4)^2
--64 m^2(p_1\cdot p_3)
++64 m^2(p_1\cdot p_2)
 +64 m^4
 \end{align*}
 
 In Mandelstam variables
 \begin{align*}
-f_{11} &= 8 u^2 + 8 t^2 - 64 u m^2 - 64 t m^2 + 192 m^4
+f_{11} &= 8 u^2 + 8 s^2 - 64 u m^2 - 64 s m^2 + 192 m^4
 \\
 f_{12} &= -8 u^2 + 64 u m^2 - 96 m^4
 \\
-f_{22} &= 8 u^2 + 8 s^2 - 64 u m^2 - 64 s m^2 + 192 m^4
+f_{22} &= 8 u^2 + 8 t^2 - 64 u m^2 - 64 t m^2 + 192 m^4
 \end{align*}
 
 For $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
-f_{11}&=8u^2+8t^2 % 64E^4(\cos^2\theta+1)
+f_{11}&=8u^2+8s^2
 \\
-f_{12}&=-8u^2 % -32E^4(\cos\theta+1)^2
+f_{12}&=-8u^2
 \\
-f_{22}&=8u^2+8s^2 % 32E^4(\cos\theta+1)^2+128E^4
+f_{22}&=8u^2+8t^2
 \end{align*}
 
 For $m=0$ the Mandelstam variables are
@@ -202,21 +204,16 @@ Hence
 &=\frac{e^4}{4}
 \left(\frac{f_{11}}{s^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{t^2}\right)
 \\
-&=2e^4\left(\frac{u^2+t^2}{s^2}+\frac{2u^2}{st}+\frac{u^2+s^2}{t^2}\right)
+&=2e^4\left(\frac{u^2+s^2}{t^2}+\frac{2u^2}{st}+\frac{u^2+t^2}{s^2}\right)
 \\
 &=e^4\biggl(
-\underset{\text{annihilation}}
-{1+\cos^2\theta}
+\underset{\text{scattering}}
+{\frac{2(1+\cos\theta)^2+8}{(1-\cos\theta)^2}}
 -\underset{\text{interaction}}
 {\frac{2(1+\cos\theta)^2}{1-\cos\theta}}
-+\underset{\text{scattering}}
-{\frac{2(1+\cos\theta)^2+8}{(1-\cos\theta)^2}}
++\underset{\text{annihilation}}
+{1+\cos^2\theta}
 \biggr)
-%\\
-%&=e^4
-%\left(
-%\frac{\cos^2\theta+3}{\cos\theta-1}
-%\right)^2
 \end{align*}
 
 The expected probability density can be written more compactly as
