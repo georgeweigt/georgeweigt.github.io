@@ -27,11 +27,6 @@ v32 = (p3[2] - i p3[3], -p3[4], 0, E + m) / sqrt(E + m)
 u41 = (E + m, 0, p4[4], p4[2] + i p4[3]) / sqrt(E + m)
 u42 = (0, E + m, p4[2] - i p4[3], -p4[4]) / sqrt(E + m)
 
-v1 = (v11,v12)
-u2 = (u21,u22)
-v3 = (v31,v32)
-u4 = (u41,u42)
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -46,10 +41,15 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 gammaL = transpose(dot(gmunu,gamma))
 
+"Verify Casimir trick"
+
+v1 = (v11,v12)
+u2 = (u21,u22)
+v3 = (v31,v32)
+u4 = (u41,u42)
+
 v1bar = dot(conj(v1),gamma0) -- adjoint of v1
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
-
-"Verify Casimir trick"
 
 M1(a,b,c,d) = -e^2 dot(dot(v1bar[a],gammaT,v3[c]),dot(u4bar[d],gammaL,u2[b]))
 
