@@ -81,9 +81,11 @@ The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 
 where
 \begin{equation*}
-\mathcal M_{1abcd}=\frac{e^2}{s}(\bar v_{1a}\gamma^\mu u_{2b})(\bar u_{4d}\gamma_\mu v_{3c}),
+\mathcal M_{1abcd}=\underset{\text{annihilation}}
+{\frac{e^2}{s}(\bar v_{1a}\gamma^\mu u_{2b})(\bar u_{4d}\gamma_\mu v_{3c})},
 \quad
-\mathcal M_{2abcd}=-\frac{e^2}{t}(\bar v_{1a}\gamma^\nu v_{3c})(\bar u_{4d}\gamma_\nu u_{2b})
+\mathcal M_{2abcd}=-\underset{\text{scattering}}
+{\frac{e^2}{t}(\bar v_{1a}\gamma^\nu v_{3c})(\bar u_{4d}\gamma_\nu u_{2b})}
 \end{equation*}
 
 Symbol $e$ is elementary charge and
@@ -167,44 +169,59 @@ f_{22}&=
 +64 m^4
 \end{align*}
 
-\iffalse
-In terms of Mandelstam variables
+In Mandelstam variables
 \begin{align*}
-f_{11} &= 8 t^2 + 8 u^2 - 64 t m^2 - 64 u m^2 + 192 m^4
+f_{11} &= 8 u^2 + 8 t^2 - 64 u m^2 - 64 t m^2 + 192 m^4
 \\
 f_{12} &= -8 u^2 + 64 u m^2 - 96 m^4
 \\
-f_{22} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
+f_{22} &= 8 u^2 + 8 s^2 - 64 u m^2 - 64 s m^2 + 192 m^4
 \end{align*}
-\fi
 
 For $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
-f_{11}&=64E^4(\cos^2\theta+1)
+f_{11}&=8u^2+8t^2 % 64E^4(\cos^2\theta+1)
 \\
-f_{12}&=-32E^4(\cos\theta+1)^2
+f_{12}&=-8u^2 % -32E^4(\cos\theta+1)^2
 \\
-f_{22}&=32E^4(\cos\theta+1)^2+128E^4
+f_{22}&=8u^2+8s^2 % 32E^4(\cos\theta+1)^2+128E^4
 \end{align*}
 
 For $m=0$ the Mandelstam variables are
 \begin{align*}
 s&=4E^2
 \\
-t&=2E^2(\cos\theta-1)
+t&=-2E^2(1-\cos\theta)
+\\
+u&=-2E^2(1+\cos\theta)
 \end{align*}
 
 Hence
-\begin{equation*}
+\begin{align*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{s^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{t^2}
-\right)
-=e^4
-\left(
-\frac{\cos^2\theta+3}{\cos\theta-1}
-\right)^2
+&=\frac{e^4}{4}
+\left(\frac{f_{11}}{s^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{t^2}\right)
+\\
+&=2e^4\left(\frac{u^2+t^2}{s^2}+\frac{2u^2}{st}+\frac{u^2+s^2}{t^2}\right)
+\\
+&=e^4\biggl(
+\underset{\text{annihilation}}
+{1+\cos^2\theta}
+-\underset{\text{interaction}}
+{\frac{2(1+\cos\theta)^2}{1-\cos\theta}}
++\underset{\text{scattering}}
+{\frac{2(1+\cos\theta)^2+8}{(1-\cos\theta)^2}}
+\biggr)
+%\\
+%&=e^4
+%\left(
+%\frac{\cos^2\theta+3}{\cos\theta-1}
+%\right)^2
+\end{align*}
+
+The expected probability density can be written more compactly as
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=e^4\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
 \subsubsection*{Cross section}

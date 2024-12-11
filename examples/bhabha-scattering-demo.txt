@@ -67,6 +67,8 @@ M2(a,b,c,d) conj(M1(a,b,c,d)) ))))
 M22 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
 M2(a,b,c,d) conj(M2(a,b,c,d)) ))))
 
+check(M12 == M21)
+
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
@@ -106,6 +108,7 @@ check(f22 == 32 p12^2 + 32 p14^2 - 64 m^2 p13 + 64 m^4)
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
+u = dot(p1 - p4, gmunu, p1 - p4)
 
 d11 = s^2
 d12 = s t
@@ -117,14 +120,24 @@ f = e^4 (f11/d11 - 2 f12/d12 + f22/d22) / 4
 
 m = 0
 
-check(f11 == 64 E^4 (cos(theta)^2 + 1))
-check(f12 == -32 E^4 (cos(theta) + 1)^2)
-check(f22 == 32 E^4 (cos(theta) + 1)^2 + 128 E^4)
+check(f11 == 8 u^2 + 8 t^2)
+check(f12 == -8 u^2)
+check(f22 == 8 u^2 + 8 s^2)
 
 check(s == 4 E^2)
-check(t == 2 E^2 (cos(theta) - 1))
+check(t == -2 E^2 (1 - cos(theta)))
+check(u == -2 E^2 (1 + cos(theta)))
 
-check(f == e^4 (cos(theta)^2 + 3)^2 / (cos(theta) - 1)^2)
+A = 1 + cos(theta)^2
+B = -2 (1 + cos(theta))^2 / (1 - cos(theta))
+C = (2 (1 + cos(theta))^2 + 8) / (1 - cos(theta))^2
+
+check(f11 / s^2 == 4 A)
+check(-2 f12 / (s t) == 4 B)
+check(f22 / t^2 == 4 C)
+
+check(f == e^4 (A + B + C))
+check(f == e^4 ((cos(theta)^2 + 3) / (cos(theta) - 1))^2)
 
 m = quote(m)
 
