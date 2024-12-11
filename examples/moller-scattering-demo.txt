@@ -67,6 +67,8 @@ M2(a,b,c,d) conj(M1(a,b,c,d)) ))))
 M22 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
 M2(a,b,c,d) conj(M2(a,b,c,d)) ))))
 
+check(M12 == M21)
+
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 pslash3 = dot(p3,gmunu,gamma)
@@ -126,14 +128,23 @@ check(f11 == 8 s^2 + 8 u^2)
 check(f12 == -8 s^2)
 check(f22 == 8 s^2 + 8 t^2)
 
-check(f11 / t^2 == 8 (1 + cos(theta/2)^4) / sin(theta/2)^4)
-check(f12 / (t u) == -8 / (sin(theta/2)^2 cos(theta/2)^2))
-check(f22 / u^2 == 8 (1 + sin(theta/2)^4) / cos(theta/2)^4)
-
 check(s == 4 E^2)
 check(t == -2 E^2 (1 - cos(theta)))
 check(u == -2 E^2 (1 + cos(theta)))
 
+A = (1 + cos(theta/2)^4) / sin(theta/2)^4
+B = 2 / (sin(theta/2)^2 cos(theta/2)^2)
+C = (1 + sin(theta/2)^4) / cos(theta/2)^4
+
+check(A == (s^2 + u^2) / t^2)
+check(B == 2 s^2 / (t u))
+check(C == (s^2 + t^2) / u^2)
+
+check(8 A == f11 / t^2)
+check(8 B == -2 f12 / (t u))
+check(8 C == f22 / u^2)
+
+check(f == 2 e^4 (A + B + C))
 check(f == 4 e^4 (cos(theta)^2 + 3)^2 / sin(theta)^4)
 
 m = quote(m)
