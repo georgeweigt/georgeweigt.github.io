@@ -81,7 +81,7 @@ check(f/4 == 64 dot(p1,gmunu,p3) dot(p2,gmunu,p4))
 -- Compute muon lifetime
 
 GF = 1.1663787 10^(-5) GeV^(-2)
-mmu = 1.883531627 10^(-28) kilogram
+mmu = 1.883531627 10^(-28) kilogram -- muon mass
 h = 6.62607015 10^(-34) joule second
 c = 299792458 meter / second
 
@@ -92,6 +92,8 @@ kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
+pi = float(pi)
+
 "Muon lifetime"
 
-float(96 pi^2 h / (GF^2 (mmu c^2)^5))
+96 pi^2 h / (GF^2 (mmu c^2)^5)
