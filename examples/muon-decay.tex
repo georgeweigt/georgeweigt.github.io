@@ -1,11 +1,13 @@
 \input{preamble}
 
 \section*{Muon decay}
-The following muon data is from Particle Data Group.
-% \footnote{\tt https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
-
+From the Particle Data Group website\footnote{https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
+%
 \begin{center}
-\includegraphics[scale=0.5]{muon-mean-life.png}
+\begin{tikzpicture}
+\node at (0,0) {\includegraphics[scale=0.5]{muon-mean-life.png}};
+\draw[red,very thick] (-6,2) rectangle (-0.6,1);
+\end{tikzpicture}
 \end{center}
 
 From ``V minus A'' theory we have the following formula for muon lifetime $\tau$.
@@ -48,20 +50,20 @@ and an electron.
 \end{center}
 
 \begin{center}
-\begin{tabular}{lllll}
-Particle & Symbol & Momentum & Spinor (up) & Spinor (down)
+\begin{tabular}{lcccc}
+Particle & Momentum & Mass & Spin up & Spin down
 \\[2ex]
-Muon & $\mu^-$ & $p_1$ & $u_{11}$ & $u_{12}$
+Muon $\mu^-$ & $p_1$ & $m_1$ & $u_{11}$ & $u_{12}$
 \\
-Muon neutrino & $\nu_\mu$ & $p_2$ & $u_{21}$ & $u_{22}$
+Muon neutrino $\nu_\mu$ & $p_2$ & $m_2$ & $u_{21}$ & $u_{22}$
 \\
-Electron anti-neutrino & $\bar{\nu}_e$ & $p_3$ & $v_{31}$ & $v_{32}$
+Electron anti-neutrino $\bar{\nu}_e$ & $p_3$ & $m_3$ & $v_{31}$ & $v_{32}$
 \\
-Electron & $e^-$ & $p_4$ & $u_{41}$ & $u_{42}$
+Electron $e^-$ & $p_4$ & $m_4$ & $u_{41}$ & $u_{42}$
 \end{tabular}
 \end{center}
 
-We have the following momentum vectors for the muon decay process.
+For $E_n=\sqrt{{\mathbf p_n}^2+{m_n}^2}$ we have
 \begin{equation*}
 p_1=\underset{\mu^-}
 {\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix}}
@@ -174,8 +176,8 @@ g_{\mu\nu}=g_{\rho\sigma}=\begin{pmatrix}
 \end{pmatrix}
 \end{equation*}
 
-In the muon rest frame $p_1$ is fixed at $p_1=(m_\mu,0,0,0)$.
-The remaining momenta $p_2$, $p_3$, and $p_4$ can have any values that conserve energy and momentum.
+In the muon rest frame $p_1$ is fixed at $p_1=(m_1,0,0,0)$.
+The remaining momentum vectors are free to have any values that conserve energy and momentum.
 Muon decay rate $\Gamma$ is the expectation value for all possible decay momenta.
 By Fermi's golden rule
 \begin{equation*}
