@@ -2,7 +2,6 @@
 
 \section*{Muon decay}
 From the Particle Data Group website\footnote{https://pdg.lbl.gov/2020/listings/rpp2020-list-muon.pdf}
-%
 \begin{center}
 \begin{tikzpicture}
 \node at (0,0) {\includegraphics[scale=0.5]{muon-mean-life.png}};
@@ -160,11 +159,12 @@ The result is a simple formula.
 \langle|\mathcal{M}|^2\rangle=64G_F^2(p_1\cdot p_3)(p_2\cdot p_4)
 \end{equation*}
 
+\iffalse
 In component notation
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=64G_F^2
-(p_1^\mu \, g_{\mu\nu} \, p_3^\nu)
-(p_2^\rho \, g_{\rho\sigma} \, p_4^\sigma)
+({p_1}^\mu \, g_{\mu\nu} \, {p_3}^\nu))
+({p_2}^\rho \, g_{\rho\sigma} \, {p_4}^\sigma)
 \end{equation*}
 where
 \begin{equation*}
@@ -175,6 +175,7 @@ g_{\mu\nu}=g_{\rho\sigma}=\begin{pmatrix}
 0 & 0 & 0 & -1
 \end{pmatrix}
 \end{equation*}
+\fi
 
 In the muon rest frame $p_1$ is fixed at $p_1=(m_1,0,0,0)$.
 The remaining momentum vectors are free to have any values that conserve energy and momentum.
