@@ -1,0 +1,7 @@
+-- science.mit.edu/sutherland-helps-solve-decades-old-sum-of-three-cubes-puzzle/
+
+x = -80538738812075974
+y = 80435758145817515
+z = 12602123297335631
+
+x^3 + y^3 + z^3
