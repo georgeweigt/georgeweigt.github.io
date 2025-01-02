@@ -2,59 +2,65 @@
 
 \section*{Angular momentum}
 
-Let
-\begin{align*}
-L_1&=X_2P_3-X_3P_2
+Definitions.
+\begin{gather*}
+\mathbf L=\mathbf X\times\mathbf P
+=\begin{pmatrix}
+X_2P_3-X_3P_2
 \\
-L_2&=X_3P_1-X_1P_3
+X_3P_1-X_1P_3
 \\
-L_3&=X_1P_2-X_2P_1
-\end{align*}
+X_1P_2-X_2P_1
+\end{pmatrix}
+\\[1ex]
+L^2=|\mathbf L|^2=L_1^2+L_2^2+L_3^2
+\\[1ex]
+\mathbf J=\frac{1}{\hbar}\mathbf L
+\end{gather*}
 
 Show that
-\begin{align*}
-X_1L_3-L_3X_1&=-i\hbar X_2
-\\
-X_2L_3-L_3X_2&=i\hbar X_1
-\\
-X_3L_3-L_3X_3&=0
-\end{align*}
 
-and
-\begin{align*}
-P_1L_3-L_3P_1&=-i\hbar P_2
-\\
-P_2L_3-L_3P_2&=i\hbar P_1
-\\
-P_3L_3-L_3P_3&=0
-\end{align*}
+\begin{enumerate}
 
-Let
+\item
 \begin{equation*}
-L^2=L_1^2+L_2^2+L_3^2
+[\mathbf X,L_3]
+=\begin{pmatrix}
+-i\hbar X_2
+\\
+i\hbar X_1
+\\
+0
+\end{pmatrix}
 \end{equation*}
 
-Show that
-\begin{align*}
-L_1L^2-L^2L_1&=0
-\\
-L_2L^2-L^2L_2&=0
-\\
-L_3L^2-L^2L_3&=0
-\end{align*}
-
-Let
+\item
 \begin{equation*}
-J_1=\frac{1}{\hbar}L_1,\quad J_2=\frac{1}{\hbar}L_2,\quad J_3=\frac{1}{\hbar}L_3
+[\mathbf P,L_3]
+=\begin{pmatrix}
+-i\hbar P_2
+\\
+i\hbar P_1
+\\
+0
+\end{pmatrix}
 \end{equation*}
 
-Show that
-\begin{align*}
-J_1J_2-J_2J_1&=iJ_3
-\\
-J_2J_3-J_3J_2&=iJ_1
-\\
-J_3J_1-J_1J_3&=iJ_2
-\end{align*}
+\item
+\begin{equation*}
+[\mathbf L,L^2]=0
+\end{equation*}
+
+\item
+\begin{equation*}
+\mathbf J\times\mathbf J=i\mathbf J
+\end{equation*}
+
+\item
+\begin{equation*}
+\mathbf P\times\mathbf L+\mathbf L\times\mathbf P=2i\hbar\mathbf P
+\end{equation*}
+
+\end{enumerate}
 
 \end{document}
