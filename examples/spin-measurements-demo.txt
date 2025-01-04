@@ -1,4 +1,4 @@
-"Spin transitions"
+"Spin measurements"
 
 zp = (1,0)
 zm = (0,1)

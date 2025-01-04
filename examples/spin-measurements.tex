@@ -1,0 +1,70 @@
+\include{preamble}
+
+\section*{Spin measurements}
+
+Let $|s\rangle$ be the following spin state given polar angle $\theta$ and azimuth $\phi$.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}
+\cos(\theta/2)
+\\
+\sin(\theta/2)\exp(i\phi)
+\end{pmatrix}
+\end{equation*}
+
+Find spin measurement probabilities for directions $x$, $y$, and $z$.
+
+\bigskip
+Eigenstates for the $z$ direction.
+\begin{equation*}
+|z_+\rangle=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+|z_-\rangle=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Eigenstates for the $x$ direction.
+\begin{equation*}
+|x_+\rangle=\frac{|z_+\rangle+|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},
+\quad
+|x_-\rangle=\frac{|z_+\rangle-|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+\end{equation*}
+
+Eigenstates for the $y$ direction.
+\begin{equation*}
+|y_+\rangle=\frac{|z_+\rangle+i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix},
+\quad
+|y_-\rangle=\frac{|z_+\rangle-i|z_-\rangle}{\sqrt2}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
+\end{equation*}
+
+\iffalse
+Hence
+\begin{equation*}
+S_z|z_\pm\rangle=\pm\tfrac{\hbar}{2}|z_\pm\rangle,
+\quad
+S_x|x_\pm\rangle=\pm\tfrac{\hbar}{2}|x_\pm\rangle,
+\quad
+S_y|y_\pm\rangle=\pm\tfrac{\hbar}{2}|y_\pm\rangle,
+\end{equation*}
+\fi
+
+For spin measurements in the $z$ direction
+\begin{align*}
+\Pr\left(+\tfrac{\hbar}{2}\right)&=|\langle z_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+\\
+\Pr\left(-\tfrac{\hbar}{2}\right)&=|\langle z_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta
+\end{align*}
+
+For the $x$ direction
+\begin{align*}
+\Pr\left(+\tfrac{\hbar}{2}\right)&=|\langle x_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
+\\
+\Pr\left(-\tfrac{\hbar}{2}\right)&=|\langle x_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
+\end{align*}
+
+For the $y$ direction
+\begin{align*}
+\Pr\left(+\tfrac{\hbar}{2}\right)&=|\langle y_+|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
+\\
+\Pr\left(-\tfrac{\hbar}{2}\right)&=|\langle y_-|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
+\end{align*}
+
+\end{document}
