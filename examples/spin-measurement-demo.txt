@@ -1,5 +1,4 @@
-<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
-"Spin measurements"
+"Spin measurement"
 
 cp = cos(theta/2)
 cm = sin(theta/2) exp(i phi)
@@ -25,4 +24,3 @@ check(dot(zp,s) conj(dot(zp,s)) == 1/2 + 1/2 cos(theta))
 check(dot(zm,s) conj(dot(zm,s)) == 1/2 - 1/2 cos(theta))
 
 "ok"
-</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
