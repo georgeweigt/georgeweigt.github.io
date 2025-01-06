@@ -14,15 +14,13 @@ ym = (1,-i) / sqrt(2)
 zp = (1,0)
 zm = (0,1)
 
-sq(a) = conj(a) a
+check(mag(dot(conj(xp),s))^2 == 1/2 + 1/2 sin(theta) cos(phi))
+check(mag(dot(conj(xm),s))^2 == 1/2 - 1/2 sin(theta) cos(phi))
 
-check(sq(dot(conj(xp),s)) == 1/2 + 1/2 sin(theta) cos(phi))
-check(sq(dot(conj(xm),s)) == 1/2 - 1/2 sin(theta) cos(phi))
+check(mag(dot(conj(yp),s))^2 == 1/2 + 1/2 sin(theta) sin(phi))
+check(mag(dot(conj(ym),s))^2 == 1/2 - 1/2 sin(theta) sin(phi))
 
-check(sq(dot(conj(yp),s)) == 1/2 + 1/2 sin(theta) sin(phi))
-check(sq(dot(conj(ym),s)) == 1/2 - 1/2 sin(theta) sin(phi))
-
-check(sq(dot(conj(zp),s)) == 1/2 + 1/2 cos(theta))
-check(sq(dot(conj(zm),s)) == 1/2 - 1/2 cos(theta))
+check(mag(dot(conj(zp),s))^2 == 1/2 + 1/2 cos(theta))
+check(mag(dot(conj(zm),s))^2 == 1/2 - 1/2 cos(theta))
 
 "ok"
