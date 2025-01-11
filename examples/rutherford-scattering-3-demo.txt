@@ -9,15 +9,11 @@ p2 = (E,
       p sin(theta) sin(phi),
       p cos(theta))
 
--- spinors
+u11 = (E + m, 0, p1[4], p1[2] + i p1[3]) / sqrt(E + m)
+u12 = (0, E + m, p1[2] - i p1[3], -p1[4]) / sqrt(E + m)
 
-N = (E + m)^2
-
-u11 = (E + m, 0, p1[4], p1[2] + i p1[3])
-u12 = (0, E + m, p1[2] - i p1[3], -p1[4])
-
-u21 = (E + m, 0, p2[4], p2[2] + i p2[3])
-u22 = (0, E + m, p2[2] - i p2[3], -p2[4])
+u21 = (E + m, 0, p2[4], p2[2] + i p2[3]) / sqrt(E + m)
+u22 = (0, E + m, p2[2] - i p2[3], -p2[4]) / sqrt(E + m)
 
 u1 = (u11,u12)
 u2 = (u21,u22)
@@ -35,27 +31,21 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 
 u2bar = dot(conj(u2),gamma0) -- adjoint of u2
 
--- matrix elements
-
-M = zero(2,2)
-
-for(a,1,2, for(b,1,2,
- M[a,b] = dot(u2bar[b], gamma0, u1[a])
-))
-
-"Sum over spin states"
-
-S = 1/2 sum(conj(M) M)
-S
-
 "Verify Casimir trick"
+
+M11 = dot(u2bar[1], gamma0, u1[1])
+M12 = dot(u2bar[1], gamma0, u1[2])
+M21 = dot(u2bar[2], gamma0, u1[1])
+M22 = dot(u2bar[2], gamma0, u1[2])
+
+M = 1/2 (conj(M11) M11 + conj(M12) M12 + conj(M21) M21 + conj(M22) M22)
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 
 f = 1/2 contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
 
-check(f == S/N)
+check(f == M)
 
 "ok"
 
