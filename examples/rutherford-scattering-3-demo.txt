@@ -15,9 +15,6 @@ u12 = (0, E + m, p1[2] - i p1[3], -p1[4]) / sqrt(E + m)
 u21 = (E + m, 0, p2[4], p2[2] + i p2[3]) / sqrt(E + m)
 u22 = (0, E + m, p2[2] - i p2[3], -p2[4]) / sqrt(E + m)
 
-u1 = (u11,u12)
-u2 = (u21,u22)
-
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -29,14 +26,15 @@ gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
-u2bar = dot(conj(u2),gamma0) -- adjoint of u2
-
 "Verify Casimir trick"
 
-M11 = dot(u2bar[1], gamma0, u1[1])
-M12 = dot(u2bar[1], gamma0, u1[2])
-M21 = dot(u2bar[2], gamma0, u1[1])
-M22 = dot(u2bar[2], gamma0, u1[2])
+u21bar = dot(conj(u22),gamma0) -- adjoint of u21
+u22bar = dot(conj(u22),gamma0) -- adjoint of u22
+
+M11 = dot(u21bar, gamma0, u11)
+M12 = dot(u21bar, gamma0, u12)
+M21 = dot(u22bar, gamma0, u11)
+M22 = dot(u22bar, gamma0, u12)
 
 M = 1/2 (conj(M11) M11 + conj(M12) M12 + conj(M21) M21 + conj(M22) M22)
 
