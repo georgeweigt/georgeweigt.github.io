@@ -75,12 +75,7 @@ C4 = 10^9 eV / "GeV"
 
 C = C1 C2 C3 / C4^2
 
-yhat = zero(N)
-
-for(k,1,N,
- yhat[k] = C (1 + x[k]^2)
-)
-
+yhat = C (1 + x^2)
 yhat
 
 "Coefficient of determination (R squared)"

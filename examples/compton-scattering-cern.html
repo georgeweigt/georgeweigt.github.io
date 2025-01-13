@@ -45,24 +45,21 @@ y = y "picobarn"
 
 y
 
+"Predicted cross section"
+
 pi = float(pi) -- use numerical value of pi
 
 alpha = 7.2973525693 10^(-3)
 c = 299792458.0 meter / second
 h = 6.62607015 10^(-34) joule second
-hbar = h / float(2 pi)
+hbar = h / (2 pi)
 eV = 1.602176634 10^(-19) joule
 
 s = (40.0 10^9 eV)^2
 
 C = pi alpha^2 / s (h c)^2 10^40 "picobarn" / meter^2
 
-yhat = zero(N)
-
-for(k,1,N, yhat[k] = C ((x[k]+1)/2 + 2/(x[k]+1)))
-
-"Predicted cross section"
-
+yhat = C ((x + 1) / 2 + 2 / (x + 1))
 yhat
 
 "Coefficient of determination (R squared)"

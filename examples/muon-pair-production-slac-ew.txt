@@ -81,12 +81,7 @@ F = alpha^2/4 (1 + gV^2/(sqrt(2) pi) mZ^2/(s - mZ^2) s G1/alpha +
 G = alpha^2/4 (sqrt(2) gA^2/pi mZ^2/(s - mZ^2) s G1/alpha +
     gA^2 gV^2/pi^2 (mZ^2/(s - mZ^2))^2 (s G1/alpha)^2)
 
-yhat = zero(N)
-
-for(k,1,N,
-  yhat[k] = C 2 pi (F (1 + x[k]^2) + G x[k]) (hbar c)^2
-)
-
+yhat = C 2 pi (F (1 + x^2) + G x) (hbar c)^2
 yhat
 
 "Coefficient of determination (R squared)"
