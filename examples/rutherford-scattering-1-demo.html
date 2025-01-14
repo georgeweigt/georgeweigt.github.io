@@ -18,26 +18,4 @@ e = sqrt(4 pi epsilon0 alpha hbar c)
 p = sqrt(4 m E (1 - cos(theta)))
 check(dsigma == Z^2 alpha^2 hbar^2 c^2 / (4 E^2 (1 - cos(theta))^2))
 "ok"
-
-"Geiger and Marsden data"
-
--- www.chemteam.info/Chem-History/GeigerMarsden-1913/GeigerMarsden-1913.html
-
-theta = (150,135,120,105,75,60,45,37.5,30,22.5,15)
-y = (22.2,27.4,33.0,47.3,136,320,989,1760,5260,20300,105400)
-
-theta = float(2 pi) theta / 360 -- convert to radians
-
-x = 1 / (1 - cos(theta))^2
-
-yhat = x / sum(x) sum(y)
-
-"Coefficient of determination (R squared)"
-
-ybar = sum(y) / 11
-
-RSS = sum((y - yhat)^2) -- residual sum of squares
-TSS = sum((y - ybar)^2) -- total sum of squares
-
-1 - RSS / TSS
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
