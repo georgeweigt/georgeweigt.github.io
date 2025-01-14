@@ -21,18 +21,25 @@ where $y$ is the number of scattering events.
 \end{matrix}
 \end{equation*}
 
-Let $x$ be the momentum transfer part of $d\sigma$.
+This is the differential cross section for Rutherford scattering.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}
+%=\frac{Z^2\alpha^2(\hbar c)^2}{16E^2\sin^2(\theta/2)}
+\end{equation*}
+
+Let $x_i$ be the momentum transfer part of $d\sigma$ for angle $\theta_i$.
 \begin{equation*}
 x_i=\frac{1}{(1-\cos\theta_i)^2}
 \end{equation*}
 
-The scattering probability for angle $\theta_i$ is $x_i$ normalized by $\sum x=1132.19$.
+The scattering probability for angle $\theta_i$ is $x_i$ normalized by $\sum x_i=1132.19$.
 \begin{equation*}
 \Pr(\theta_i)=\frac{x_i}{1132.19}
 \end{equation*}
 
 Predicted values $\hat y_i$ are $\Pr(\theta_i)$
-times total scattering events $\sum y=134295$.
+times total scattering events $\sum y_i=134295$.
 \begin{equation*}
 \hat y_i=\Pr(\theta_i)\times134295=\frac{118.616}{(1-\cos\theta_i)^2}
 \end{equation*}
