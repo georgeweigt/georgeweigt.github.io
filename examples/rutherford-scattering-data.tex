@@ -28,13 +28,13 @@ d\sigma=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}d\Omega
 
 $d\sigma$ is an {\it unnormalized} probability mass function hence
 \begin{equation*}
-\Pr(\theta_i)=C\,d\sigma\big|_{\theta=\theta_i}
+\Pr(\theta=\theta_k)=f(k)=C\,d\sigma\big|_{\theta=\theta_k}
 \end{equation*}
 
 where $C$ is a normalization constant.
 Let $C$ absorb the constants in $d\sigma$ and write
 \begin{equation*}
-\Pr(\theta_i)=\frac{C}{(1-\cos\theta_i)^2}
+f(k)=\frac{C}{(1-\cos\theta_k)^2}
 \end{equation*}
 
 To find $C$ let
@@ -44,23 +44,22 @@ x_i=\frac{1}{(1-\cos\theta_i)^2}
 
 By total probability
 \begin{equation*}
-\sum\Pr(\theta_i)=C\sum x_i=1
+C\sum_i x_i=1
 \end{equation*}
 
 It follows that
 \begin{equation*}
-C=\frac{1}{\sum x_i}=\frac{1}{1132.19}
+C=\frac{1}{\sum_i x_i}
 \end{equation*}
 
-Hence the scattering probability for angle $\theta_i$ is
+Hence the scattering probability for angle $\theta_k$ is
 \begin{equation*}
-\Pr(\theta_i)=\frac{x_i}{1132.19}
+f(k)=\frac{x_k}{\sum_i x_i}
 \end{equation*}
 
-Predicted values $\hat y_i$ are $\Pr(\theta_i)$
-times total scattering events $\sum y_i=134295$.
+Predicted values $\hat y_k$ are computed as
 \begin{equation*}
-\hat y_i=\Pr(\theta_i)\times134295=\frac{118.616}{(1-\cos\theta_i)^2}
+\hat y_k=f(k)\sum_i y_i=\frac{x_k\sum_i y_i}{\sum_i x_i}
 \end{equation*}
 
 The following table shows the predicted values $\hat y$.
