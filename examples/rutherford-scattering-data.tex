@@ -21,14 +21,20 @@ where $y$ is the number of scattering events.
 \end{matrix}
 \end{equation*}
 
-Let $d\sigma$ be the differential cross section for Rutherford scattering.
+The differential cross section for Rutherford scattering is
 \begin{equation*}
-d\sigma=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}d\Omega
+d\sigma\propto\frac{d\Omega}{4\sin^4(\theta/2)}
+=\frac{d\Omega}{(1-\cos\theta)^2}
 \end{equation*}
 
-$d\sigma$ is an {\it unnormalized} probability mass function hence
+For the Geiger and Marsden data $d\Omega$ is a constant hence
 \begin{equation*}
-\Pr(\theta=\theta_k)=f(k)=C\,d\sigma\big|_{\theta=\theta_k}
+d\sigma\propto\frac{\Delta\Omega}{(1-\cos\theta)^2}
+\end{equation*}
+
+Let $f(k)$ be the probability mass function
+\begin{equation*}
+f(k)=\Pr(\theta=\theta_k)=C\,d\sigma\big|_{\theta=\theta_k}
 \end{equation*}
 
 where $C$ is a normalization constant.

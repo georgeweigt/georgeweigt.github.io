@@ -10,7 +10,7 @@ theta = float(2 pi) theta / 360 -- convert to radians
 
 x = 1 / (1 - cos(theta))^2
 
-yhat = x / sum(x) sum(y)
+yhat = x sum(y) / sum(x)
 yhat
 
 "Coefficient of determination (R squared)"
