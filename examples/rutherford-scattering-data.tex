@@ -21,28 +21,24 @@ where $y$ is the number of scattering events.
 \end{matrix}
 \end{equation*}
 
-The differential cross section for Rutherford scattering is
+This is the differential cross section for Rutherford scattering.
 \begin{equation*}
-d\sigma\propto\frac{d\Omega}{4\sin^4(\theta/2)}
-=\frac{d\Omega}{(1-\cos\theta)^2}
+\frac{d\sigma}{d\Omega}\propto
+%\frac{1}{4\sin^4(\theta/2)}
+\frac{1}{(1-\cos\theta)^2}
 \end{equation*}
 
-The Geiger and Marsden data requires the following discrete form of $d\sigma$.
+Let $f(k)$ be the following probability mass function.
 \begin{equation*}
-\Delta\sigma\propto\frac{\Delta\Omega}{(1-\cos\theta)^2}
+f(k)=\Pr(\theta=\theta_k)\propto\left.\frac{d\sigma}{d\Omega}\right|_{\theta=\theta_k}
 \end{equation*}
 
-Let $f(k)$ be the probability mass function
-\begin{equation*}
-f(k)=\Pr(\theta=\theta_k)=C\,\Delta\sigma\big|_{\theta=\theta_k}
-\end{equation*}
-
-where $C$ is a normalization constant.
-Let $C$ absorb the constants in $\Delta\sigma$ and write
+Hence
 \begin{equation*}
 f(k)=\frac{C}{(1-\cos\theta_k)^2}
 \end{equation*}
 
+where $C$ is a normalization constant.
 To find $C$ let
 \begin{equation*}
 x_i=\frac{1}{(1-\cos\theta_i)^2}
