@@ -4,109 +4,72 @@
 
 See ``Compton Scattering of Quasi-Real Virtual Photons at LEP,''
 arxiv.org/abs/hep-ex/0504012.
+\begin{equation*}
+\begin{matrix}
+x & y\\
+-0.74 & 13380\\
+-0.60 & \phantom{0}7720\\
+-0.47 & \phantom{0}6360\\
+-0.34 & \phantom{0}4600\\
+-0.20 & \phantom{0}4310\\
+-0.07 & \phantom{0}3700\\
+\phantom{+}0.06 & \phantom{0}3640\\
+\phantom{+}0.20 & \phantom{0}3340\\
+\phantom{+}0.33 & \phantom{0}3500\\
+\phantom{+}0.46 & \phantom{0}3010\\
+\phantom{+}0.60 & \phantom{0}3310\\
+\phantom{+}0.73 & \phantom{0}3330\\
+\end{matrix}
+\end{equation*}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-$x$ & $y$\\
-\hline
-$-0.74$ & $13380$\\
-$-0.60$ & $\phantom{0}7720$\\
-$-0.47$ & $\phantom{0}6360$\\
-$-0.34$ & $\phantom{0}4600$\\
-$-0.20$ & $\phantom{0}4310$\\
-$-0.07$ & $\phantom{0}3700$\\
-$\phantom{+}0.06$ & $\phantom{0}3640$\\
-$\phantom{+}0.20$ & $\phantom{0}3340$\\
-$\phantom{+}0.33$ & $\phantom{0}3500$\\
-$\phantom{+}0.46$ & $\phantom{0}3010$\\
-$\phantom{+}0.60$ & $\phantom{0}3310$\\
-$\phantom{+}0.73$ & $\phantom{0}3330$\\
-\hline
-\end{tabular}
-\end{center}
-
-The data are for the center of mass frame and have the following relationship with the differential cross section formula.
+For columns $x$ and $y$ we have
 \begin{equation*}
 x=\cos\theta,
 \quad
-y=\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
+y=\frac{d\sigma}{d\cos\theta}
 \end{equation*}
 
-For the high energy approximation we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=
-2e^4\left(
-\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right)
-\end{equation*}
-
-The corresponding cross section formula is
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{64\pi^2s}
-=\frac{e^4}{32\pi^2s}
-\left(
-\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right),\quad s\gg m
-\end{equation*}
-
-Substituting $e^4=16\pi^2\alpha^2$ yields
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{\alpha^2}{2s}
-\left(
-\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right)
-\end{equation*}
-
-Multiply by $2\pi$ to obtain
+This is the differential cross section in the center of mass frame.
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}
+=2\pi\frac{d\sigma}{d\Omega}
 =\frac{\pi\alpha^2}{s}\left(
 \frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right)
+\right)\times(\hbar c)^2
 \end{equation*}
 
-To compute predicted values $\hat{y}$ from the above formula,
-multiply by $(hc)^2$ to convert to SI
-and multiply by $10^{40}$ to convert square meters to picobarns.
+Let $\hat y$ be predicted values.
+The factor $10^{40}$ converts square meters to picobarns.
 \begin{equation*}
-\hat{y}
+\hat y
 =
 \frac{\pi\alpha^2}{s}
 \left(
 \frac{x+1}{2}+
 \frac{2}{x+1}
 \right)
-\times(hc)^2
+\times(\hbar c)^2
 \times10^{40}
 \end{equation*}
 
-The following table shows $\hat{y}$
-for $s=(40\,\text{GeV})^2$.
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$x$ & $y$ & $\hat{y}$\\
-\hline
-$-0.74$ & $13380$ & $12573$\\
-$-0.60$ & $\phantom{0}7720$ & $\phantom{0}8358$\\
-$-0.47$ & $\phantom{0}6360$ & $\phantom{0}6491$\\
-$-0.34$ & $\phantom{0}4600$ & $\phantom{0}5401$\\
-$-0.20$ & $\phantom{0}4310$ & $\phantom{0}4661$\\
-$-0.07$ & $\phantom{0}3700$ & $\phantom{0}4204$\\
-$\phantom{+}0.06$ & $\phantom{0}3640$ & $\phantom{0}3884$\\
-$\phantom{+}0.20$ & $\phantom{0}3340$ & $\phantom{0}3643$\\
-$\phantom{+}0.33$ & $\phantom{0}3500$ & $\phantom{0}3486$\\
-$\phantom{+}0.46$ & $\phantom{0}3010$ & $\phantom{0}3375$\\
-$\phantom{+}0.60$ & $\phantom{0}3310$ & $\phantom{0}3295$\\
-$\phantom{+}0.73$ & $\phantom{0}3330$ & $\phantom{0}3248$\\
-\hline
-\end{tabular}
-\end{center}
+The following table shows $\hat y$ for $s=(40\,\text{GeV})^2$.
+\begin{equation*}
+\begin{matrix}
+x & y & \hat{y}\\
+-0.74 & 13380 & 12573\\
+-0.60 & \phantom{0}7720 & \phantom{0}8358\\
+-0.47 & \phantom{0}6360 & \phantom{0}6491\\
+-0.34 & \phantom{0}4600 & \phantom{0}5401\\
+-0.20 & \phantom{0}4310 & \phantom{0}4661\\
+-0.07 & \phantom{0}3700 & \phantom{0}4204\\
+\phantom{+}0.06 & \phantom{0}3640 & \phantom{0}3884\\
+\phantom{+}0.20 & \phantom{0}3340 & \phantom{0}3643\\
+\phantom{+}0.33 & \phantom{0}3500 & \phantom{0}3486\\
+\phantom{+}0.46 & \phantom{0}3010 & \phantom{0}3375\\
+\phantom{+}0.60 & \phantom{0}3310 & \phantom{0}3295\\
+\phantom{+}0.73 & \phantom{0}3330 & \phantom{0}3248\\
+\end{matrix}
+\end{equation*}
 
 The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}

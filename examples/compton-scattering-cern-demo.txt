@@ -38,16 +38,16 @@ y = (
 
 "Predicted values"
 
-alpha = 7.2973525693 10^(-3)
+alpha = 7.2973525643 10^(-3)
 c = 299792458.0 meter / second
 h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
 eV = 1.602176634 10^(-19) joule
 
-s = (40.0 10^9 eV)^2 -- not clear in arxiv paper what s should be
+s = (40.0 10^9 eV)^2
 
 C1 = float(pi) alpha^2 / s
-C2 = (h c)^2 -- should be hbar, error in arxiv paper?
+C2 = (h c)^2 -- should be hbar instead of h, error in arxiv paper?
 C3 = 10^40 "picobarn" / meter^2 -- convert square meters to picobarns
 
 yhat = C1 ((x + 1) / 2 + 2 / (x + 1)) C2 C3
