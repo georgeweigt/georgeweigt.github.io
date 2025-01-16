@@ -38,11 +38,9 @@ s = (14.0 10^9 eV)^2
 
 C1 = alpha^2 / (2 s)
 C2 = (hbar c)^2
-C3 = 10^37 "nanobarn" / meter^2
+C3 = 10^37 "nanobarn" / meter^2 -- convert meter^2 to nanobarn
 
-C = C1 C2 C3
-
-yhat = C ((1 + x) / (1 - x) + (1 - x) / (1 + x))
+yhat = C1 ((1 + x) / (1 - x) + (1 - x) / (1 + x)) C2 C3
 yhat
 
 "Coefficient of determination (R squared)"
