@@ -17,8 +17,7 @@ x & y\\
 \end{matrix}
 \end{equation*}
 
-Data $x$ and $y$ have the following relationship
-with the differential cross section formula.
+For columns $x$ and $y$ we have
 \begin{equation*}
 x=\cos\theta,
 \quad
@@ -36,21 +35,21 @@ The cross section formula is
 \right)\times(\hbar c)^2
 \end{equation*}
 
-To compute predicted values $\hat{y}$,
-multiply by $10^{37}$ to convert square meters to nanobarns.
+Let $\hat y$ be predicted values.
+The factor $10^{37}$ converts square meters to nanobarns.
 \begin{equation*}
-\hat{y}
-=
-\frac{\alpha^2}{2s}
+\hat y_i
+=\left.\frac{d\sigma}{d\Omega}\right|_{\cos\theta=x_i}
+=\frac{\alpha^2}{2s}
 \left(
-\frac{1+x}{1-x}+
-\frac{1-x}{1+x}
+\frac{1+x_i}{1-x_i}+
+\frac{1-x_i}{1+x_i}
 \right)
 \times(\hbar c)^2
 \times10^{37}
 \end{equation*}
 
-The following table shows predicted values $\hat y$ for $s=(14.0\,\text{GeV})^2$.
+The following table shows predicted values for $s=(14.0\,\text{GeV})^2$.
 \begin{equation*}
 \begin{matrix}
 x & y & \hat y\\
@@ -70,6 +69,6 @@ The coefficient of determination $R^2$ measures how well predicted values fit th
 R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar y)^2}=0.98
 \end{equation*}
 
-The result indicates that the model $d\sigma$ explains 98\% of the variance in the data.
+The result indicates that $d\sigma$ explains 98\% of the variance in the data.
 
 \end{document}
