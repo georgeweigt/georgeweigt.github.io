@@ -5,8 +5,6 @@
 
 -- Data from Table 4, page 11.
 
-N = 12 -- number of observations
-
 -- x is cos(theta)
 
 x = (
@@ -37,34 +35,28 @@ y = (
 3500,
 3010,
 3310,
-3330)
+3330) "picobarn"
 
-y = y "picobarn"
-
-"Observed cross section per bin"
-
-y
-
-"Predicted cross section"
-
-pi = float(pi) -- use numerical value of pi
+"Predicted values"
 
 alpha = 7.2973525693 10^(-3)
 c = 299792458.0 meter / second
 h = 6.62607015 10^(-34) joule second
-hbar = h / (2 pi)
+hbar = h / float(2 pi)
 eV = 1.602176634 10^(-19) joule
 
-s = (40.0 10^9 eV)^2
+s = (40.0 10^9 eV)^2 -- not clear in arxiv paper what s should be
 
-C = pi alpha^2 / s (h c)^2 10^40 "picobarn" / meter^2
+C1 = float(pi) alpha^2 / s
+C2 = (h c)^2 -- should be hbar, error in arxiv paper?
+C3 = 10^40 "picobarn" / meter^2 -- convert square meters to picobarns
 
-yhat = C ((x + 1) / 2 + 2 / (x + 1))
+yhat = C1 ((x + 1) / 2 + 2 / (x + 1)) C2 C3
 yhat
 
 "Coefficient of determination (R squared)"
 
-ybar = sum(y) / N
+ybar = sum(y) / dim(y)
 
 RSS = sum((y - yhat)^2) -- residual sum of squares
 TSS = sum((y - ybar)^2) -- total sum of squares
