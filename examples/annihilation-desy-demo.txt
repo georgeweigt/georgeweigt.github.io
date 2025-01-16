@@ -26,7 +26,7 @@ y = (
 0.279,
 0.33204) "nanobarn"
 
-"Predicted cross section"
+"Predicted values"
 
 alpha = 7.2973525693 10^(-3)
 c = 299792458.0 meter / second
@@ -38,7 +38,7 @@ s = (14.0 10^9 eV)^2
 
 C1 = alpha^2 / (2 s)
 C2 = (hbar c)^2
-C3 = 10^37 "nanobarn" / meter^2 -- convert meter^2 to nanobarn
+C3 = 10^37 "nanobarn" / meter^2 -- convert square meters to nanobarns
 
 yhat = C1 ((1 + x) / (1 - x) + (1 - x) / (1 + x)) C2 C3
 yhat
