@@ -61,10 +61,15 @@ f(k)=\frac{x_k}{\sum x}
 
 Let $\hat y_k$ be predicted number of scattering events such that
 \begin{equation*}
-\frac{\hat y_k}{\sum y}=f(k)
+\Pr(y=\hat y_k)=\Pr(\theta=\theta_k)
 \end{equation*}
 
 It follows that
+\begin{equation*}
+\frac{\hat y_k}{\sum y}=f(k)
+\end{equation*}
+
+Hence
 \begin{equation*}
 \hat y_k=f(k)\sum y=\frac{x_k\sum y}{\sum x}
 \end{equation*}
