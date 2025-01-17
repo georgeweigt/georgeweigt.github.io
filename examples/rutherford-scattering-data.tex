@@ -46,7 +46,7 @@ x_k=\frac{1}{(1-\cos\theta_k)^2}
 
 By total probability
 \begin{equation*}
-C\sum x=1
+\sum f=C\sum x=1
 \end{equation*}
 
 It follows that
@@ -59,7 +59,12 @@ Hence the scattering probability for angle $\theta_k$ is
 f(k)=\frac{x_k}{\sum x}
 \end{equation*}
 
-Let $\hat y$ be predicted values.
+Let $\hat y_k$ be predicted number of scattering events such that
+\begin{equation*}
+\frac{\hat y_k}{\sum y}=f(k)
+\end{equation*}
+
+It follows that
 \begin{equation*}
 \hat y_k=f(k)\sum y=\frac{x_k\sum y}{\sum x}
 \end{equation*}
