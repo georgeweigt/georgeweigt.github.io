@@ -2,131 +2,133 @@
 
 \section*{Rutherford scattering 2}
 
-Find the scattering cross section for screened Coulomb potential $V(r)$.
+Find the scattering cross section for the screened Coulomb potential
 \begin{equation*}
-V(r)=-\frac{Ze^2}{4\varepsilon_0r}\exp\left(-\frac{r}{a}\right)
+V(r)=-\frac{Ze^2}{4\pi\varepsilon_0r}\exp\left(-\frac{r}{a}\right)
 \end{equation*}
 
-Start with the Born approximation.
+Start with the Born approximation for scattering amplitude $f(\mathbf p)$ where $\mathbf p$
+is momentum transfer.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=
-\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2,\quad
-Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d^3\mathbf r
+f(\mathbf p)
+=\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r
 \end{equation*}
 
-Convert $Q$ to polar coordinates.
+Convert to polar coordinates where $p=|\mathbf p|$.
 \begin{equation*}
-Q=\int_0^{2\pi}
-\int_0^\pi
+f(\mathbf p)
+=\frac{m}{2\pi\hbar^2}
 \int_0^\infty
+\int_0^\pi
+\int_0^{2\pi}
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Substitute the screened Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
+Substitute the screened Coulomb potential
 \begin{equation*}
-Q=-\frac{Ze^2}{4\pi\varepsilon_0}
-\int_0^{2\pi}
-\int_0^\pi
+V(r,\theta,\phi)=-\frac{Ze^2}{4\pi\varepsilon_0r}\exp\left(-\frac{r}{a}\right)
+\end{equation*}
+
+to obtain
+\begin{equation*}
+f(\mathbf p)
+=-\frac{mZe^2}{8\pi^2\varepsilon_0\hbar^2}
 \int_0^\infty
-\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
-\exp\left(-\frac{r}{a}\right)
+\int_0^\pi
+\int_0^{2\pi}
+\exp\left(\frac{ipr\cos\theta}{\hbar}-\frac{r}{a}\right)
 r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Integrate over $\phi$ (multiplies $Q$ by $2\pi$).
+Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
-\int_0^\pi
+f(\mathbf p)
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
-\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
-\exp\left(-\frac{r}{a}\right)
+\int_0^\pi
+\exp\left(\frac{ipr\cos\theta}{\hbar}-\frac{r}{a}\right)
 r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Transform the integral over $\theta$ to an integral over $y$
+Transform the integral over $\theta$ into an integral over $y$
 where $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
 The minus sign in $dy$ is canceled by interchanging integration limits
 $\cos0=1$ and $\cos\pi=-1$.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
-\int_{-1}^1
+f(\mathbf p)
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
-\exp\left(\frac{ipry}{\hbar}\right)
-\exp\left(-\frac{r}{a}\right)
+\int_{-1}^1
+\exp\left(\frac{ipry}{\hbar}-\frac{r}{a}\right)
 r\,dr\,dy
 \end{equation*}
 
-Solve the integral over $y$ (note $r$ in the integrand cancels).
+Solve the integral over $y$ and note that $r$ in the integrand cancels.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
-\exp\left(-\frac{r}{a}\right)
-\,dr
+dr
 \end{equation*}
 
 Solve the integral over $r$.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \frac{\hbar}{ip}
 \left[
 \frac{1}{ip/\hbar-1/a}
 \exp\left(\frac{ipr}{\hbar}-\frac{r}{a}\right)
 +\frac{1}{ip/\hbar+1/a}
 \exp\left(-\frac{ipr}{\hbar}-\frac{r}{a}\right)
-\right]_0^\infty
+\right]_{r=0}^{r=\infty}
 \end{equation*}
 
-Evaluate the limits.
+Evaluate the limits. The exponentials vanish at the upper limit.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \frac{\hbar}{ip}
 \left[
 -\frac{1}{ip/\hbar-1/a}
 -\frac{1}{ip/\hbar+1/a}
 \right]
-=-\frac{Ze^2}{2\varepsilon_0}\frac{2}{(p/\hbar)^2+(1/a)^2}
+=-\frac{mZe^2}{2\pi\varepsilon_0\left[p^2+(\hbar/a)^2\right]}
 \tag{1}
 \end{equation*}
 
-The cross section is
+Substitute $e^2=4\pi\varepsilon_0\alpha\hbar c$.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2
-=\frac{m^2Z^2e^4}{4\pi^2\epsilon_0^2\bigl[p^2+(\hbar/a)^2\bigr]^2}
-\tag{2}
+f(\mathbf p)=-\frac{2mZ\alpha\hbar c}{p^2+(\hbar/a)^2}
 \end{equation*}
 
-Substitute $16\pi^2\epsilon_0^2\alpha^2\hbar^2c^2$ for $e^4$.
+Note that $\mathbf p$ is momentum transfer such that
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{\bigl[p^2+(\hbar/a)^2\bigr]^2}
-\end{equation*}
-
-Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
-\begin{equation*}
-p^2=4mE(1-\cos\theta)
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{\bigl[4mE(1-\cos\theta)+(\hbar/a)^2\bigr]^2}
+f(\theta)=-\frac{2mZ\alpha\hbar c}{4mE(1-\cos\theta)+(\hbar/a)^2}
+\tag{2}
 \end{equation*}
 
-Cancel $m^2$ in the numerator.
+Cancel $m$ in the numerator.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{4Z^2\alpha^2\hbar^2c^2}{\left[4E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
-\tag{3}
+f(\theta)=-\frac{2Z\alpha\hbar c}{4E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2}
 \end{equation*}
 
-Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section formula
+The cross section is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=|f(\theta)|^2
+=\frac{4Z^2\alpha^2(\hbar c)^2}{\left[4E(1-\cos\theta)+\frac{1}{m}(\hbar/a)^2\right]^2}
+\end{equation*}
+
+Let $a\rightarrow\infty$ to obtain the ordinary Rutherford cross section.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{Z^2\alpha^2\hbar^2c^2}{4E^2(1-\cos\theta)^2}
+=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}
 \end{equation*}
 
 \end{document}
