@@ -9,7 +9,7 @@ Find the scattering cross section for the Coulomb potential
 V(r)=-\frac{Ze^2}{4\pi\varepsilon_0r}
 \end{equation*}
 
-Start with the Born approximation for the scattering amplitude
+Start with the Born approximation for scattering amplitude
 $f(\mathbf p)$ where $\mathbf p$ is momentum transfer.
 \begin{equation*}
 f(\mathbf p)
@@ -33,7 +33,7 @@ Substitute the Coulomb potential
 V(r,\theta,\phi)=-\frac{Ze^2}{4\pi\epsilon_0r}
 \end{equation*}
 
-and note $r^2$ becomes $r$.
+to obtain
 \begin{equation*}
 f(\mathbf p)
 =-\frac{mZe^2}{8\pi^2\varepsilon_0\hbar^2}
@@ -54,7 +54,7 @@ f(\mathbf p)
 r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Transform the integral over $\theta$ to an integral over $y$
+Transform the integral over $\theta$ into an integral over $y$
 where $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
 The minus sign in $dy$ is canceled by interchanging integration limits
 $\cos0=1$ and $\cos\pi=-1$.
@@ -67,7 +67,7 @@ f(\mathbf p)
 r\,dr\,dy
 \end{equation*}
 
-Solve the integral over $y$ (note $r$ in the integrand cancels).
+Solve the integral over $y$ and note that $r$ in the integrand cancels.
 \begin{equation*}
 f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
@@ -89,8 +89,7 @@ f(\mathbf p)
 \end{equation*}
 
 The exponentials fail to converge at the upper limit.
-The workaround is to go back and multiply the integrand by $\exp(-\epsilon r)$
-where $\epsilon$ is a small positive number.
+The workaround is to go back and multiply the integrand by $\exp(-\epsilon r)\approx1$.
 \begin{equation*}
 f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
@@ -146,12 +145,12 @@ Calculate the cross section.
 \tag{2}
 \end{equation*}
 
-Noting that
+Note that
 \begin{equation*}
 (1-\cos\theta)^2=4\sin^4(\theta/2)
 \end{equation*}
 
-equation (2) is equivalent to
+Hence equation (2) is equivalent to
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{16E^2\sin^4(\theta/2)}
 \tag{3}

@@ -10,9 +10,10 @@ check(hbar / (i p) I == 2 / ((p / hbar)^2 + epsilon^2))
 f = -m Z e^2 / (2 pi epsilon0 p^2)
 e = sqrt(4 pi epsilon0 alpha hbar c)
 p = sqrt(4 m E (1 - cos(theta)))
-check(conj(f) f == Z^2 alpha^2 (hbar c)^2 / (4 E^2 (1 - cos(theta))^2))
+dsigma = conj(f) f
+check(dsigma == Z^2 alpha^2 (hbar c)^2 / (4 E^2 (1 - cos(theta))^2))
 "ok"
 
 "Verify equation (3)"
-check(conj(f) f == Z^2 alpha^2 (hbar c)^2 / (16 E^2 sin(theta/2)^4))
+check(dsigma == Z^2 alpha^2 (hbar c)^2 / (16 E^2 sin(theta/2)^4))
 "ok"
