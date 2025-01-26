@@ -4,29 +4,39 @@
 
 \section*{Rutherford scattering 1}
 
-Find the scattering cross section for Coulomb potential $V(r)$.
+Find the scattering cross section for the Coulomb potential
 \begin{equation*}
 V(r)=-\frac{Ze^2}{4\pi\varepsilon_0r}
 \end{equation*}
 
-Start with the Born approximation.
+Start with the Born approximation for the scattering amplitude
+$f(\mathbf p)$ where $\mathbf p$ is momentum transfer.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2,\quad
-Q=\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r^3
+f(\mathbf p)
+=\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r
 \end{equation*}
 
-Convert $Q$ to polar coordinates.
+Convert to polar coordinates where $p=|\mathbf p|$.
 \begin{equation*}
-Q=\int_0^{2\pi}
-\int_0^\pi
+f(\mathbf p)
+=\frac{m}{2\pi\hbar^2}
 \int_0^\infty
+\int_0^\pi
+\int_0^{2\pi}
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r,\theta,\phi)
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Substitute the Coulomb potential for $V(r,\theta,\phi)$ and note $r^2$ becomes $r$.
+Substitute the Coulomb potential
 \begin{equation*}
-Q=-\frac{Ze^2}{4\pi\varepsilon_0}
+V(r,\theta,\phi)=-\frac{Ze^2}{4\pi\epsilon_0r}
+\end{equation*}
+
+and note $r^2$ becomes $r$.
+\begin{equation*}
+f(\mathbf p)
+=-\frac{mZe^2}{8\pi^2\varepsilon_0\hbar^2}
 \int_0^{2\pi}
 \int_0^\pi
 \int_0^\infty
@@ -34,11 +44,12 @@ Q=-\frac{Ze^2}{4\pi\varepsilon_0}
 r\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Integrate over $\phi$ (multiplies $Q$ by $2\pi$).
+Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
-\int_0^\pi
+f(\mathbf p)
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
+\int_0^\pi
 \exp\left(\frac{ipr\cos\theta}{\hbar}\right)
 r\sin\theta\,dr\,d\theta
 \end{equation*}
@@ -48,16 +59,17 @@ where $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
 The minus sign in $dy$ is canceled by interchanging integration limits
 $\cos0=1$ and $\cos\pi=-1$.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
-\int_{-1}^1
+f(\mathbf p)
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
+\int_{-1}^1
 \exp\left(\frac{ipry}{\hbar}\right)
 r\,dr\,dy
 \end{equation*}
 
 Solve the integral over $y$ (note $r$ in the integrand cancels).
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
@@ -66,19 +78,21 @@ dr
 
 Solve the integral over $r$.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}\frac{\hbar}{ip}
+f(\mathbf p)
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}\frac{\hbar}{ip}
 \left[
 \frac{\hbar}{ip}
 \exp\left(\frac{ipr}{\hbar}\right)
 +\frac{\hbar}{ip}
 \exp\left(-\frac{ipr}{\hbar}\right)
-\right]_0^\infty
+\right]_{r=0}^{r=\infty}
 \end{equation*}
 
-The first exponential is a problem
-so go back and multiply the integrand by $\exp(-\epsilon r)$.
+The exponentials fail to converge at the upper limit.
+The workaround is to go back and multiply the integrand by $\exp(-\epsilon r)$
+where $\epsilon$ is a small positive number.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
@@ -86,51 +100,50 @@ Q=-\frac{Ze^2}{2\varepsilon_0}
 dr
 \end{equation*}
 
-Solve the integral.
+Solve the modified integral.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \frac{\hbar}{ip}
 \left[
 \frac{1}{ip/\hbar-\epsilon}\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
 +\frac{1}{ip/\hbar+\epsilon}\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
-\right]_0^\infty
+\right]_{r=0}^{r=\infty}
 \end{equation*}
 
-Evaluate the limits.
+Evaluate the limits. Now the exponentials vanish at the upper limit.
 \begin{equation*}
-Q=-\frac{Ze^2}{2\varepsilon_0}
+f(\mathbf p)=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
 \frac{\hbar}{ip}
 \left(-\frac{1}{ip/\hbar-\epsilon}-\frac{1}{ip/\hbar+\epsilon}\right)
-=-\frac{Ze^2}{2\varepsilon_0}\frac{2}{(p/\hbar)^2+\epsilon^2}
+=-\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}\frac{2}{(p/\hbar)^2+\epsilon^2}
 \tag{1}
 \end{equation*}
 
 Set $\epsilon=0$ to obtain
 \begin{equation*}
-Q=-\frac{Ze^2\hbar^2}{\varepsilon_0p^2}
+f(\mathbf p)=-\frac{mZe^2}{2\pi\varepsilon_0p^2}
 \end{equation*}
 
-Calculate the cross section.
+Note that $\mathbf p$ is momentum transfer such that
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\left(\frac{m}{2\pi\hbar^2}\right)^2|Q|^2
-=\frac{m^2Z^2e^4}{4\pi^2\varepsilon_0^2p^4}
-\tag{2}
-\end{equation*}
-
-Substitute $16\pi^2\varepsilon_0^2\alpha^2\hbar^2c^2$ for $e^4$.
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{4m^2Z^2\alpha^2\hbar^2c^2}{p^4}
-\end{equation*}
-
-Symbol $p$ is momentum transfer $|\mathbf p_i|-|\mathbf p_f|$ such that
-\begin{equation*}
-p^2=4mE(1-\cos\theta)
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2\hbar^2c^2}{4E^2(1-\cos\theta)^2}
-\tag{3}
+f(\theta)=-\frac{Ze^2}{8\pi\varepsilon_0E(1-\cos\theta)}
+\end{equation*}
+
+Substitute $e^2=4\pi\varepsilon_0\alpha\hbar c$.
+\begin{equation*}
+f(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+Calculate the cross section.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=|f(\theta)|^2
+=\frac{Z^2\alpha^2(\hbar c)^2}{4E^2(1-\cos\theta)^2}
+\tag{2}
 \end{equation*}
 
 Noting that
@@ -138,9 +151,10 @@ Noting that
 (1-\cos\theta)^2=4\sin^4(\theta/2)
 \end{equation*}
 
-we have the alternative form of (3)
+equation (2) is equivalent to
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2\hbar^2c^2}{16E^2\sin^4(\theta/2)}
+\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2(\hbar c)^2}{16E^2\sin^4(\theta/2)}
+\tag{3}
 \end{equation*}
 
 \end{document}
