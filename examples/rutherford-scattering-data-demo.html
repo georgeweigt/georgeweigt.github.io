@@ -12,13 +12,4 @@ x = 1 / (1 - cos(theta))^2
 
 yhat = x sum(y) / sum(x)
 yhat
-
-"Coefficient of determination (R squared)"
-
-ybar = sum(y) / dim(y)
-
-RSS = sum((y - yhat)^2) -- residual sum of squares
-TSS = sum((y - ybar)^2) -- total sum of squares
-
-1 - RSS / TSS
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
