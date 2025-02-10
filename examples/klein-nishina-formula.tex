@@ -1,0 +1,503 @@
+\input{preamble}
+
+\section*{Klein-Nishina formula}
+
+The Klein-Nishina formula is the differential cross section for photon-electron scattering.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw[thick,->] (2,0) node[anchor=west] {$e^-$} -- (0.6,0);
+\draw[thick,->] (-2,0) node[anchor=east] {$\gamma$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$\gamma$};
+\draw[thick,->] (-0.4,-0.4) -- (-1.3,-1.3) node[anchor=north east] {$e^-$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+It is easy to derive the Klein-Nishina formula from Dirac's equation by starting
+out in the center-of-mass frame and then boosting to the lab frame.
+In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{\omega^2+m^2}$.
+\begin{equation*}
+p_1=\underset{\substack{\text{inbound}\\ \text{photon}}}
+{\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
+\qquad
+p_2=\underset{\substack{\text{inbound}\\ \text{electron}}}
+{\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}}
+\qquad
+p_3=\underset{\substack{\text{outbound}\\ \text{photon}}}
+{\begin{pmatrix}
+\omega\\
+\omega\sin\theta\cos\phi\\
+\omega\sin\theta\sin\phi\\
+\omega\cos\theta
+\end{pmatrix}}
+\qquad
+p_4=\underset{\substack{\text{outbound}\\ \text{electron}}}
+{\begin{pmatrix}
+E\\
+-\omega\sin\theta\cos\phi\\
+-\omega\sin\theta\sin\phi\\
+-\omega\cos\theta
+\end{pmatrix}}
+\end{equation*}
+
+Spinors for the inbound electron.
+\begin{equation*}
+u_{21}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}
+E+m\\
+0\\
+-\omega\\
+0
+\end{pmatrix}}
+\qquad
+u_{22}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}
+0\\
+E+m\\
+0\\
+\omega
+\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound electron.
+\begin{equation*}
+u_{41}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}
+E+m\\
+0\\
+p_{4z}\\
+p_{4x}+ip_{4y}
+\end{pmatrix}}
+\qquad
+u_{42}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}
+0\\
+E+m\\
+p_{4x}-ip_{4y}\\
+-p_{4z}
+\end{pmatrix}}
+\end{equation*}
+
+The probability amplitude $\mathcal M_{ab}$ for spin state $ab$ is
+\begin{equation*}
+\mathcal M_{ba}=\mathcal M_{1ab}+\mathcal M_{2ab}
+\end{equation*}
+
+where
+\begin{equation*}
+\mathcal M_{1ab}=
+\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2},
+\quad
+\mathcal M_{2ab}=
+\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
+\end{equation*}
+
+Symbol $e$ is elementary charge and
+\begin{gather*}
+\begin{aligned}
+\slashed q_1&=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta
+\\
+\slashed q_2&=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
+\end{aligned}
+\\[1ex]
+\begin{aligned}
+s&=(p_1+p_2)^2
+\\
+u&=(p_1-p_4)^2
+\end{aligned}
+\end{gather*}
+
+The expected probability density $\langle|\mathcal M|^2\rangle$
+is the average of spin states.
+\begin{equation*}
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ab}|^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
+\left(
+\mathcal M_{1ab}\mathcal M_{1ab}^*
++\mathcal M_{1ab}\mathcal M_{2ab}^*+\mathcal M_{2ab}\mathcal M_{1ab}^*
++\mathcal M_{2ab}\mathcal M_{2ab}^*
+\right)
+\end{equation*}
+
+To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
+write $\mathcal M_{1ab}$ in component form.
+\begin{equation*}
+(\mathcal M_{1ab})^{\mu\nu}=\frac{
+(\bar{u}_{4b})_\alpha
+(-ie\gamma^{\mu\alpha}{}_\beta)
+(\slashed{q}_1+m)^\beta{}_\rho
+(-ie\gamma^{\nu\rho}{}_\sigma)
+(u_{2a})^\sigma}{s-m^2}
+\end{equation*}
+
+Metric tensor $g_{\mu\nu}$ is required to sum over indices $\mu$ and $\nu$.
+\begin{equation*}
+\mathcal M_{1ab}\mathcal M_{1ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
+\end{equation*}
+
+Similarly for $\mathcal M_{2ab}\mathcal M_{2ab}^*$.
+For $\mathcal M_{2ab}$ the index order is $\nu$ followed by $\mu$ hence
+\begin{equation*}
+\mathcal M_{1ab}\mathcal M_{2ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{1ab})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ab}^*)^{\beta\alpha}g_{\alpha\mu}
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=
+\frac{e^4}{4}
+\left(
+\frac{f_{11}}{(s-m^2)^2}
++\frac{2f_{12}}{(s-m^2)(u-m^2)}
++\frac{f_{22}}{(u-m^2)^2}
+\right)
+\tag{1}
+\end{equation*}
+
+where
+\begin{align*}
+f_{11}&=\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
+\right)
+\\
+f_{12}&=\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
+\right)
+\\
+f_{22}&=\operatorname{Tr}
+\left(
+(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
+\right)
+\end{align*}
+
+The following formulas are equivalent to the Casimir trick.
+(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$.)
+\begin{equation*}
+\begin{aligned}
+f_{11}&=
+ 32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
+ 64 m^2 (p_1 \cdot p_2) -
+ 32 m^2 (p_1 \cdot p_3) -
+ 32 m^2 (p_1 \cdot p_4) + 32 m^4
+\\
+f_{12}&=16 m^2 (p_1 \cdot p_2) - 16 m^2 (p_1 \cdot p_4) + 32m^4
+\\
+f_{22}&=
+32 (p_1 \cdot p_2) (p_1 \cdot p_4) +
+32 m^2 (p_1 \cdot p_2) -
+32 m^2 (p_1 \cdot p_3) -
+64 m^2 (p_1 \cdot p_4) + 32 m^4
+\end{aligned}
+\tag{2}
+\end{equation*}
+
+In Mandelstam variables
+\begin{equation*}
+\begin{aligned}
+f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
+\\
+f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
+\\
+f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
+\end{aligned}
+\tag{3}
+\end{equation*}
+
+Scattering experiments are typically done in the lab frame.
+Define Lorentz boost $\Lambda$ for transforming momentum vectors to the lab frame.
+\begin{equation*}
+\Lambda=
+\begin{pmatrix}
+E/m & 0 & 0 & \omega/m\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+\omega/m & 0 & 0 & E/m
+\end{pmatrix}
+\end{equation*}
+
+The electron is at rest in the lab frame.
+\begin{equation*}
+\Lambda p_2=\begin{pmatrix}m\\0\\0\\0\end{pmatrix}
+\end{equation*}
+
+Mandelstam variables are invariant under a boost.
+\begin{equation*}
+\begin{aligned}
+s&=(p_1+p_2)^2=(\Lambda p_1+\Lambda p_2)^2
+\\
+t&=(p_1-p_3)^2=(\Lambda p_1-\Lambda p_3)^2
+\\
+u&=(p_1-p_4)^2=(\Lambda p_1-\Lambda p_4)^2
+\end{aligned}
+\tag{4}
+\end{equation*}
+
+In the lab frame, let $\omega_L$ be the angular frequency of the incident photon
+and let $\omega_L'$ be the angular frequency of the scattered photon.
+\begin{equation*}
+\begin{aligned}
+\omega_L&=\Lambda p_1\cdot
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{\omega^2}{m}+\frac{\omega E}{m}
+\\[1ex]
+\omega_L'&=\Lambda p_3\cdot
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
+=\frac{\omega^2\cos\theta}{m}+\frac{\omega E}{m}
+\end{aligned}
+\end{equation*}
+
+It can be shown that
+\begin{equation*}
+\begin{aligned}
+s&=m^2+2m\omega_L
+\\
+t&=2m(\omega_L' - \omega_L)
+\\
+u&=m^2-2 m \omega_L'
+\end{aligned}
+\tag{5}
+\end{equation*}
+
+Then by (1), (3), and (5) we have
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=
+2e^4\left(
+\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}
++\left(\frac{m}{\omega_L}-\frac{m}{\omega_L'}+1\right)^2-1
+\right)
+\tag{6}
+\end{equation*}
+
+Lab scattering angle $\theta_L$ is given by the Compton equation
+\begin{equation*}
+\cos\theta_L=\frac{m}{\omega_L}-\frac{m}{\omega_L'}+1
+\end{equation*}
+
+Hence
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=2e^4\left(
+\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}+\cos^2\theta_L-1
+\right)
+\\
+&=2e^4\left(
+\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}-\sin^2\theta_L
+\right)
+\end{align*}
+
+Now that we have derived $\langle|\mathcal{M}|^2\rangle$
+we can investigate the angular distribution of scattered photons.
+For simplicity let us drop the $L$ subscript from lab variables.
+From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame variables.
+
+\bigskip
+The differential cross section is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{1}{4(4\pi\varepsilon_0)^2s}
+\left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
+\end{equation*}
+
+where
+\begin{equation*}
+s=m^2+2m\omega=(mc^2)^2+2(mc^2)(\hbar\omega)
+\end{equation*}
+
+and $\omega'$ is given by the Compton equation
+\begin{equation*}
+\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
+\end{equation*}
+
+For the lab frame we have
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\end{equation*}
+
+Hence in the lab frame
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{e^4}{2(4\pi\varepsilon_0)^2s}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\end{equation*}
+
+Substituting
+\begin{equation*}
+e^2=4\pi\varepsilon_0\alpha\hbar c
+\end{equation*}
+
+we have
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2(\hbar c)^2}{2s}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\end{equation*}
+
+which is the Klein-Nishina formula.
+
+\iffalse
+
+Noting that
+\begin{equation*}
+d\Omega=\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
+we also have
+\begin{equation*}
+d\sigma
+=\frac{\alpha^2(\hbar c)^2}{2s}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
+Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
+\begin{equation*}
+S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
+\end{equation*}
+
+The solution is
+\begin{equation*}
+S(\theta_1,\theta_2)=\frac{\pi\alpha^2(\hbar c)^2}{s}[I(\theta_2)-I(\theta_1)]
+\end{equation*}
+
+where
+\begin{multline*}
+I(\theta)=-\frac{\cos\theta}{R^2}
++\log\bigl(1+R(1-\cos\theta)\bigr)\left(\frac{1}{R}-\frac{2}{R^2}-\frac{2}{R^3}\right)
+\\
+{}-\frac{1}{2R\bigl(1+R(1-\cos\theta)\bigr)^2}
++\frac{1}{1+R(1-\cos\theta)}\left(-\frac{2}{R^2}-\frac{1}{R^3}\right)
+\end{multline*}
+
+and
+\begin{equation*}
+R=\frac{\hbar\omega}{mc^2}
+\end{equation*}
+
+The cumulative distribution function is
+\begin{equation*}
+F(\theta)
+=\frac{S(0,\theta)}{S(0,\pi)}
+=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
+\quad
+0\le\theta\le\pi
+\end{equation*}
+
+The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
+\begin{equation*}
+P(\theta_1<\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
+\end{equation*}
+
+The probability density function is
+\begin{equation*}
+f(\theta)=\frac{dF(\theta)}{d\theta}
+=\frac{1}{I(\pi)-I(0)}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
+\sin\theta
+\end{equation*}
+
+\subsubsection*{Thomson scattering}
+
+For $\hbar\omega\ll mc^2$ we have
+\begin{equation*}
+\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}\,(1-\cos\theta)}\approx\omega
+\end{equation*}
+
+Hence we can use the approximations
+\begin{equation*}
+\omega=\omega'\quad\text{and}\quad s=(mc^2)^2
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2\hbar^2}{2m^2c^2}\left(1+\cos^2\theta\right)
+\end{equation*}
+
+which is the formula for Thomson scattering.
+
+\subsubsection*{High energy approximation}
+
+For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
+\begin{align*}
+f_{11}&=-8su
+\\
+f_{12}&=0
+\\
+f_{22}&=-8su
+\end{align*}
+
+Hence
+\begin{align*}
+\langle|\mathcal{M}|^2\rangle
+&=\frac{e^4}{4}
+\left(\frac{-8su}{s^2}+\frac{-8su}{u^2}\right)
+\\
+&=2e^4
+\left(-\frac{u}{s}-\frac{s}{u}\right)
+\end{align*}
+
+The Mandelstam variables for $m=0$ are
+\begin{align*}
+s&=4\omega^2
+\\
+u&=-2\omega^2(\cos\theta+1)
+\end{align*}
+
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4\left(
+\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
+\right)
+\end{equation*}
+
+In the center of mass frame
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4s(4\pi\epsilon_o)^2}
+=\frac{e^4}{2s(4\pi\epsilon_o)^2}\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)
+\end{equation*}
+
+Substitute $e^4=(4\pi\varepsilon_0\alpha\hbar c)^2$ to obtain
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2s}
+\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)\times(\hbar c)^2
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
+=\frac{\pi\alpha^2}{s}
+\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)\times(\hbar c)^2
+\end{equation*}
+
+Cf.~equation (1) of arxiv.org/pdf/hep-ex/0504012.
+
+\fi
+
+\end{document}
