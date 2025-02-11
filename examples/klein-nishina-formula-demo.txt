@@ -124,12 +124,6 @@ check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
 check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
 check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
-d11 = (s - m^2)^2
-d12 = (s - m^2) (u - m^2)
-d22 = (u - m^2)^2
-
-fcom = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
-
 "ok"
 
 "Verify equation (4)"
@@ -170,6 +164,12 @@ check(u == m^2 - 2 m omegaLp)
 "ok"
 
 "Verify equation (6)"
+
+d11 = (s - m^2)^2
+d12 = (s - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
+fcom = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 flab = 2 e^4 (omegaL/omegaLp + omegaLp/omegaL + (m/omegaL - m/omegaLp + 1)^2 - 1)
 
