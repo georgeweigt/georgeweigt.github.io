@@ -139,6 +139,10 @@ check(s == dot(p1 + p2, gmunu, p1 + p2))
 check(t == dot(p1 - p3, gmunu, p1 - p3))
 check(u == dot(p1 - p4, gmunu, p1 - p4))
 
+"ok"
+
+"Verify equation (2) for transformed momentum vectors"
+
 p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
