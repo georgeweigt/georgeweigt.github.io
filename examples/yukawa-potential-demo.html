@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Yukawa potential"
+
+"Verify equation (1)"
+f = exp(i k r - mu r) - exp(-i k r - mu r)
+F = integral(f,r)
+I = 0 - eval(F,r,0)
+check(I == -1 / (i k - mu) - 1 / (i k + mu))
+a = -m V0 / (hbar^2 mu)
+b = 1 / (i k)
+f = a b I
+check(f == 2 a / (k^2 + mu^2))
+"ok"
+
+"Verify equation (2)"
+k = sqrt(4 m E (1 - cos(theta)) / hbar^2)
+check(f == -2 m V0 / mu / (4 m E (1 - cos(theta)) + mu^2 hbar^2))
+"ok"
+
+"Verify equation (3)"
+f = 1 / (4 m E y + mu^2 hbar^2)^2
+I = defint(f, y, 0, 2)
+check(I == 2 / (8 m E mu^2 hbar^2 + mu^4 hbar^4))
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
