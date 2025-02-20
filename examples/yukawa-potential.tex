@@ -77,14 +77,14 @@ Cancel $r$ and evaluate the limits.
 f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
 \frac{1}{ik}
-\left[\exp(ikr-\mu r)-\exp(-ikr-\mu r)\right]
+\bigl[\exp(ikr-\mu r)-\exp(-ikr-\mu r)\bigr]
 dr
 \end{equation*}
 
 Solve the integral over $r$.
 \begin{equation*}
 f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
-\left(\frac{1}{ik}\right)
+\frac{1}{ik}
 \left[
 \frac{1}{ik-\mu}
 \exp(ikr-\mu r)
@@ -96,23 +96,23 @@ f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
 Evaluate the limits. The exponentials vanish at the upper limit.
 \begin{equation*}
 f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
-\left(\frac{1}{ik}\right)
+\frac{1}{ik}
 \left[
 -\frac{1}{ik-\mu}
 -\frac{1}{ik+\mu}
 \right]
-=-\frac{2mV_0}{\hbar^2\mu}\left(\frac{1}{k^2+\mu^2}\right)
+=-\frac{2mV_0}{\hbar^2\mu}\frac{1}{k^2+\mu^2}
 \tag{1}
 \end{equation*}
 
 Substitute
 \begin{equation*}
-k^2=\frac{4mE(1-\cos\theta)}{\hbar^2}
+k^2=\frac{|\mathbf p_i-\mathbf p_f|^2}{\hbar^2}=\frac{4mE(1-\cos\theta)}{\hbar^2}
 \end{equation*}
 
 to obtain
 \begin{equation*}
-f(\theta)=-\frac{2mV_0}{\mu}\left(\frac{1}{4mE(1-\cos\theta)+\mu^2\hbar^2}\right)
+f(\theta)=-\frac{2mV_0}{\mu}\frac{1}{4mE(1-\cos\theta)+\mu^2\hbar^2}
 \tag{2}
 \end{equation*}
 
@@ -120,33 +120,33 @@ Hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =|f(\theta)|^2=\left(\frac{2mV_0}{\mu}\right)^2
-\frac{1}{\left[4mE(1-\cos\theta)+\mu^2\hbar^2\right]^2}
+\frac{1}{\bigl[4mE(1-\cos\theta)+\mu^2\hbar^2\bigr]^2}
 \end{equation*}
 
 For the total cross section we have
 \begin{equation*}
 \sigma_{\rm total}=\int\frac{d\sigma}{d\Omega}\,d\Omega
 =\left(\frac{2mV_0}{\mu}\right)^2\int_0^\pi\int_0^{2\pi}
-\frac{1}{\left[4mE(1-\cos\theta)+\mu^2\hbar^2\right]^2}\,\sin\theta\,d\theta\,d\phi
+\frac{1}{\bigl[4mE(1-\cos\theta)+\mu^2\hbar^2\bigr]^2}\,\sin\theta\,d\theta\,d\phi
 \end{equation*}
 
 Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
 \sigma_{\rm total}=2\pi\left(\frac{2mV_0}{\mu}\right)^2
-\int_0^\pi\frac{1}{\left[4mE(1-\cos\theta)+\mu^2\hbar^2\right]^2}\,\sin\theta\,d\theta
+\int_0^\pi\frac{1}{\bigl[4mE(1-\cos\theta)+\mu^2\hbar^2\bigr]^2}\,\sin\theta\,d\theta
 \end{equation*}
 
 Let $y=1-\cos\theta$ and $dy=\sin\theta\,d\theta$.
 The limits transform as $1-\cos0=0$ and $1-\cos\pi=2$.
 \begin{equation*}
 \sigma_{\rm total}=2\pi\left(\frac{2mV_0}{\mu}\right)^2
-\int_0^2\frac{1}{\left[4mEy+\mu^2\hbar^2\right]^2}\,dy
+\int_0^2\frac{1}{\bigl[4mEy+\mu^2\hbar^2\bigr]^2}\,dy
 \end{equation*}
 
 Solve the integral.
 \begin{equation*}
 \sigma_{\rm total}=2\pi\left(\frac{2mV_0}{\mu}\right)^2
-\left(-\frac{1}{4mE(4mEy+\mu^2\hbar^2)}\right)_{y=0}^{y=2}
+\left[-\frac{1}{4mE(4mEy+\mu^2\hbar^2)}\right]_{y=0}^{y=2}
 \end{equation*}
 
 Evaluate the limits.
