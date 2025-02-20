@@ -52,33 +52,32 @@ f(\mathbf k)
 \,r\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Let $u=\cos\theta$ and $du=-\sin\theta\,d\theta$.
+Let $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
 The minus sign in $du$ is canceled by interchanging integration limits
-$\cos0=1$ and $\cos\pi=-1$.
+$\cos(0)=1$ and $\cos(\pi)=-1$.
 \begin{equation*}
 f(\mathbf k)
 =-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
 \int_{-1}^1
-\exp(ikru-\mu r)
-\,r\,dr\,du
+\exp(ikry-\mu r)
+\,r\,dr\,dy
 \end{equation*}
 
-Solve the integral over $u$.
+Solve the integral over $y$.
 \begin{equation*}
 f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
-\left[\frac{1}{ikr}\exp(ikru-\mu r)\right]_{u=-1}^{u=1}
+\left[\frac{1}{ikr}\exp(ikry-\mu r)\right]_{y=-1}^{y=1}
 r\,dr
 \end{equation*}
 
 Cancel $r$ and evaluate the limits.
 \begin{equation*}
-f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
+f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}\frac{1}{ik}
 \int_0^\infty
-\frac{1}{ik}
 \bigl[\exp(ikr-\mu r)-\exp(-ikr-\mu r)\bigr]
-dr
+\,dr
 \end{equation*}
 
 Solve the integral over $r$.
@@ -137,7 +136,7 @@ Integrate over $\phi$ (multiply by $2\pi$).
 \end{equation*}
 
 Let $y=1-\cos\theta$ and $dy=\sin\theta\,d\theta$.
-The limits transform as $1-\cos0=0$ and $1-\cos\pi=2$.
+The limits transform as $1-\cos(0)=0$ and $1-\cos(\pi)=2$.
 \begin{equation*}
 \sigma_{\rm total}=2\pi\left(\frac{2mV_0}{\mu}\right)^2
 \int_0^2\frac{1}{\bigl[4mEy+\mu^2\hbar^2\bigr]^2}\,dy
@@ -156,7 +155,7 @@ Evaluate the limits.
 \tag{3}
 \end{equation*}
 
-Dimension check:
+For the dimensions of $\sigma_{\rm total}$ we have
 \begin{align*}
 mV_0&\propto\text{mass}\times\text{energy}=\text{momentum}^2
 \\
