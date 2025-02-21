@@ -5,10 +5,8 @@ Sy = hbar/2 ((0,-i),(i,0))
 Sz = hbar/2 ((1,0),(0,-1))
 
 "Verify equation (1)"
-C1 = a1 exp(i theta1)
-C2 = a2 exp(i theta2)
-c1 = C1 exp(-i g e / (4 m omega) B0 sin(omega t))
-c2 = C2 exp(i g e / (4 m omega) B0 sin(omega t))
+c1 = a1 exp(i theta1) exp(-i g e / (4 m omega) B0 sin(omega t))
+c2 = a2 exp(i theta2) exp(i g e / (4 m omega) B0 sin(omega t))
 s = (c1,c2)
 H = g e / (2 m) B0 cos(omega t) Sz
 check(i hbar d(s,t) == dot(H,s))
