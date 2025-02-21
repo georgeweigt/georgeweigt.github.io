@@ -1,0 +1,20 @@
+"Spin operators from scratch"
+
+xp = (1,1) / sqrt(2)
+xm = (1,-1) / sqrt(2)
+
+yp = (1,i) / sqrt(2)
+ym = (1,-i) / sqrt(2)
+
+zp = (1,0)
+zm = (0,1)
+
+Sx = 1/2 hbar ((0,1),(1,0))
+Sy = 1/2 hbar ((0,-i),(i,0))
+Sz = 1/2 hbar ((1,0),(0,-1))
+
+check(Sx == 1/2 hbar (outer(xp,conj(xp)) - outer(xm,conj(xm))))
+check(Sy == 1/2 hbar (outer(yp,conj(yp)) - outer(ym,conj(ym))))
+check(Sz == 1/2 hbar (outer(zp,conj(zp)) - outer(zm,conj(zm))))
+
+"ok"

@@ -1,0 +1,62 @@
+\input{preamble}
+
+\section*{Spin operators from scratch}
+
+By definition of expectation value we have
+\begin{equation*}
+\langle S_x\rangle=\tfrac{\hbar}{2}\Pr\left(\tfrac{\hbar}{2}\right)
++\left(-\tfrac{\hbar}{2}\right)\Pr\left(-\tfrac{\hbar}{2}\right)
+\end{equation*}
+
+Rewrite probability as amplitude squared.
+\begin{equation*}
+\langle S_x\rangle=\tfrac{\hbar}{2}\bigl|\langle x_+|s\rangle\bigr|^2
+-\tfrac{\hbar}{2}\bigl|\langle x_-|s\rangle\bigr|^2
+\end{equation*}
+
+Equivalently
+\begin{equation*}
+\langle S_x\rangle
+=\tfrac{\hbar}{2}\langle s|x_+\rangle\langle x_+|s\rangle
+-\tfrac{\hbar}{2}\langle s|x_-\rangle\langle x_-|s\rangle
+\end{equation*}
+
+Factor out spin state $|s\rangle$.
+\begin{equation*}
+\langle S_x\rangle=\langle s|\Bigl(
+\tfrac{\hbar}{2}|x_+\rangle\langle x_+|-\tfrac{\hbar}{2}|x_-\rangle\langle x_-|
+\Bigr)|s\rangle
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\langle S_x\rangle=\langle s|S_x|s\rangle
+\end{equation*}
+
+where
+\begin{equation*}
+S_x=\tfrac{\hbar}{2}|x_+\rangle\langle x_+|-\tfrac{\hbar}{2}|x_-\rangle\langle x_-|
+\end{equation*}
+
+From basis states
+\begin{equation*}
+x_+=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\quad
+x_-=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+\end{equation*}
+
+we have outer products
+\begin{equation*}
+|x_+\rangle\langle x_+|=\frac{1}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix},\quad
+|x_-\rangle\langle x_-|=\frac{1}{2}\begin{pmatrix}1&-1\\-1&1\end{pmatrix}
+\end{equation*}
+
+Hence
+\begin{equation*}
+S_x=\frac{\hbar}{4}\begin{pmatrix}1&1\\1&1\end{pmatrix}
+-\frac{\hbar}{4}\begin{pmatrix}1&-1\\-1&1\end{pmatrix}
+=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\end{equation*}
+
+Repeat for $S_y$ and $S_z$.
+
+\end{document}
