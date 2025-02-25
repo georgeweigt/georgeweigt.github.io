@@ -141,7 +141,7 @@ check(u == dot(p1 - p4, gmunu, p1 - p4))
 
 "ok"
 
-"Verify equation (2) for transformed momentum vectors"
+"Verify equation (2) for boosted momentum vectors"
 
 p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
