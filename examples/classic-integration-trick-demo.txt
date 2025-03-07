@@ -1,0 +1,7 @@
+"Classic integration trick"
+a = 1 / (2 sigma^2)
+b = i k
+f = sqrt(pi / a) exp(b^2 / (4 a))
+f
+check(f == sqrt(2 pi sigma^2) exp(-k^2 sigma^2 / 2))
+"ok"

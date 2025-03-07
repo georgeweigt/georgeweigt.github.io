@@ -1,0 +1,41 @@
+\input{preamble}
+
+\section*{Classic integration trick}
+
+Show that
+\begin{equation*}
+\int_{-\infty}^\infty
+\exp\left(-\frac{x^2}{2\sigma^2}\right)\cos(kx)\,dx
+=\sqrt{2\pi\sigma^2}\exp\left(-\frac{k^2\sigma^2}{2}\right)
+\end{equation*}
+
+Start with the following integral.
+\begin{equation*}
+f(k)=\int_{-\infty}^\infty\exp\left(-\frac{x^2}{2\sigma^2}\right)\cos(kx)\,dx
++i\int_{-\infty}^\infty\exp\left(-\frac{x^2}{2\sigma^2}\right)\sin(kx)\,dx
+\tag{1}
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+f(k)=\int_{-\infty}^\infty\exp\left(-\frac{x^2}{2\sigma^2}+ikx\right)\,dx
+\end{equation*}
+
+Consider the following well-known Gaussian integral.
+\begin{equation*}
+\int_{-\infty}^\infty\exp(-ax^2+bx)\,dx=\sqrt{\frac{\pi}{a}}\exp\left(\frac{b^2}{4a}\right)
+\end{equation*}
+
+For $a=1/(2\sigma^2)$ and $b=ik$ we have
+\begin{equation*}
+f(k)=\sqrt{2\pi\sigma^2}\exp\left(-\frac{k^2\sigma^2}{2}\right)
+\tag{2}
+\end{equation*}
+
+By equality of the real parts of (1) and (2) we have
+\begin{equation*}
+\int_{-\infty}^\infty\exp\left(-\frac{x^2}{2\sigma^2}\right)\cos(kx)\,dx
+=\sqrt{2\pi\sigma^2}\exp\left(-\frac{k^2\sigma^2}{2}\right)
+\end{equation*}
+
+\end{document}
