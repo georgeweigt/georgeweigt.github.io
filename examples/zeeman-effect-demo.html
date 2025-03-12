@@ -6,17 +6,17 @@ E(n,l,j,mj) = E0 / n^2 (1 + alpha^2 / n^2 (n / (j + 1/2) - 3/4)) +
 
 gJ(l,j) = 1 + (j (j + 1) - l (l + 1) + 3/4) / (2 j (j + 1))
 
-check(E(2,1,3/2,3/2) == E0 (1/4 + 1/64 alpha^2) + 2 muB B)
-check(E(2,1,3/2,-3/2) == E0 (1/4 + 1/64 alpha^2) - 2 muB B)
+check(E(2,1,3/2,3/2) == 1/4 E0 (1 + 1/16 alpha^2) + 2 muB B)
+check(E(2,1,3/2,-3/2) == 1/4 E0 (1 + 1/16 alpha^2) - 2 muB B)
 
-check(E(2,1,3/2,1/2) == E0 (1/4 + 1/64 alpha^2) + 2/3 muB B)
-check(E(2,1,3/2,-1/2) == E0 (1/4 + 1/64 alpha^2) - 2/3 muB B)
+check(E(2,1,3/2,1/2) == 1/4 E0 (1 + 1/16 alpha^2) + 2/3 muB B)
+check(E(2,1,3/2,-1/2) == 1/4 E0 (1 + 1/16 alpha^2) - 2/3 muB B)
 
-check(E(2,1,1/2,1/2) == E0 (1/4 + 5/64 alpha^2) + 1/3 muB B)
-check(E(2,1,1/2,-1/2) == E0 (1/4 + 5/64 alpha^2) - 1/3 muB B)
+check(E(2,1,1/2,1/2) == 1/4 E0 (1 + 5/16 alpha^2) + 1/3 muB B)
+check(E(2,1,1/2,-1/2) == 1/4 E0 (1 + 5/16 alpha^2) - 1/3 muB B)
 
-check(E(2,0,1/2,1/2) == E0 (1/4 + 5/64 alpha^2) + muB B)
-check(E(2,0,1/2,-1/2) == E0 (1/4 + 5/64 alpha^2) - muB B)
+check(E(2,0,1/2,1/2) == 1/4 E0 (1 + 5/16 alpha^2) + muB B)
+check(E(2,0,1/2,-1/2) == 1/4 E0 (1 + 5/16 alpha^2) - muB B)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
