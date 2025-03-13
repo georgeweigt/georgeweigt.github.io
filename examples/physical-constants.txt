@@ -42,7 +42,7 @@ second = "second"
 
 eV = 1/e coulomb / joule "eV"
 
--- example
+-- examples
 
 "Hydrogen atom ground state energy"
 mu = me mp / (me + mp)
@@ -51,3 +51,8 @@ V0
 
 "In electron volts"
 V0 eV
+
+"Elementary charge"
+e
+e "coulomb" / coulomb
+sqrt(4 float(pi) epsilon0 alpha hbar c) "coulomb" / coulomb
