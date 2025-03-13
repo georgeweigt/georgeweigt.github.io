@@ -1,0 +1,17 @@
+"Hydrogen ground state energy"
+
+c = 299792458
+alpha = 72973525643 10^(-13)
+e = 1602176634 10^(-28)
+me = 91093837139 10^(-41)
+mp = 167262192595 10^(-38)
+
+mu = me mp / (me + mp)
+
+V0 = mu c^2 alpha^2 / 2 / e
+V0
+float(V0)
+
+"floating point digits"
+
+floor(10^10 V0)
