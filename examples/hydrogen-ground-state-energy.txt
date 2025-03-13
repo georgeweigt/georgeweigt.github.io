@@ -1,4 +1,4 @@
-"Hydrogen ground state energy"
+"Hydrogen ground state energy in eV"
 
 -- CODATA Internationally recommended 2022 values
 -- https://physics.nist.gov/cuu/Constants/
@@ -15,6 +15,6 @@ V0 = mu c^2 alpha^2 / 2 / e
 V0
 float(V0)
 
-"leading digits"
+"Leading digits"
 
 floor(10^10 V0)
