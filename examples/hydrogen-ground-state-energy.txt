@@ -1,5 +1,8 @@
 "Hydrogen ground state energy"
 
+-- CODATA Internationally recommended 2022 values
+-- https://physics.nist.gov/cuu/Constants/
+
 c = 299792458
 alpha = 72973525643 10^(-13)
 e = 1602176634 10^(-28)
@@ -12,6 +15,6 @@ V0 = mu c^2 alpha^2 / 2 / e
 V0
 float(V0)
 
-"floating point digits"
+"leading digits"
 
 floor(10^10 V0)
