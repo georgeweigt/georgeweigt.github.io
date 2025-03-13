@@ -38,4 +38,16 @@ kilogram = "kilogram"
 meter = "meter"
 second = "second"
 
-electronvolt = e joule / coulomb -- convert electronvolt to joule
+-- eV per joule
+
+eV = 1/e coulomb / joule "eV"
+
+-- example
+
+"Hydrogen atom ground state energy"
+mu = me mp / (me + mp)
+V0 = -mu c^2 alpha^2 / 2
+V0
+
+"In electron volts"
+V0 eV
