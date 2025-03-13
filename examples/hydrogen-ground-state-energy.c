@@ -12,7 +12,7 @@ main()
 
 	double mu = me * mp / (me + mp);
 
-	double E = mu * alpha * alpha * c * c / e / 2.0;
+	double E = mu * c * c * alpha * alpha / 2.0 / e;
 
 	printf("%20.12f\n", E);
 }
