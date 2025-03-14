@@ -11,6 +11,7 @@
 -- k        Boltzmann constant           physics.nist.gov/cgi-bin/cuu/Value?k
 -- me       electron mass                physics.nist.gov/cgi-bin/cuu/Value?me
 -- mp       proton mass                  physics.nist.gov/cgi-bin/cuu/Value?mp
+-- mu0      vacuum magnetic permeability physics.nist.gov/cgi-bin/cuu/Value?mu0
 
 -- physical constants (c, e, h, and k are exact values)
 
@@ -23,12 +24,14 @@ hbar = h / float(2 pi)
 k = 1.380649 10^(-23) joule / kelvin
 me = 9.1093837139 10^(-31) kilogram
 mp = 1.67262192595 10^(-27) kilogram
+mu0 = 1.25663706127 10^(-6) newton / ampere^2
 
 -- derived units
 
 coulomb = ampere second
 farad = coulomb / volt
 joule = kilogram meter^2 / second^2
+newton = kilogram meter / second^2
 volt = joule / coulomb
 
 -- base units (for printing)
@@ -45,16 +48,19 @@ eV = 1/e coulomb / joule "eV"
 
 -- examples
 
-"Hydrogen atom ground state energy"
+"Hydrogen atom"
 mu = me mp / (me + mp)
-V0 = -mu c^2 alpha^2 / 2
-V0
+E0 = -mu c^2 alpha^2 / 2
+E0
 
 "In electron volts"
-V0 eV
+E0 eV
 
 "Elementary charge"
 e
-e "coulomb" / coulomb
-sqrt(4 float(pi) epsilon0 alpha hbar c) "coulomb" / coulomb
+sqrt(4 float(pi) epsilon0 alpha hbar c) "coulomb" / coulomb -- convert to coulombs
+
+"Speed of light"
+c
+1 / sqrt(mu0 epsilon0)
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
