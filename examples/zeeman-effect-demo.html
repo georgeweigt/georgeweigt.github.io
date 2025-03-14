@@ -1,28 +1,38 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Zeeman effect"
 
-E(n,l,j,mj) = V0 / n^2 (1 + alpha^2 / n^2 (n / (j + 1/2) - 3/4)) +
+E(n,l,j,mj) = E0 / n^2 (1 + alpha^2 / n^2 (n / (j + 1/2) - 3/4)) +
               gJ(l,j) mj muB B
 
 gJ(l,j) = 1 + (j (j + 1) - l (l + 1) + 3/4) / (2 j (j + 1))
 
-check(E(2,1,3/2,3/2) == V0/4 (1 + 1/16 alpha^2) + 2 muB B)
-check(E(2,1,3/2,-3/2) == V0/4 (1 + 1/16 alpha^2) - 2 muB B)
+check(E(2,1,3/2,3/2) == E0/4 (1 + 1/16 alpha^2) + 2 muB B)
+check(E(2,1,3/2,-3/2) == E0/4 (1 + 1/16 alpha^2) - 2 muB B)
 
-check(E(2,1,3/2,1/2) == V0/4 (1 + 1/16 alpha^2) + 2/3 muB B)
-check(E(2,1,3/2,-1/2) == V0/4 (1 + 1/16 alpha^2) - 2/3 muB B)
+check(E(2,1,3/2,1/2) == E0/4 (1 + 1/16 alpha^2) + 2/3 muB B)
+check(E(2,1,3/2,-1/2) == E0/4 (1 + 1/16 alpha^2) - 2/3 muB B)
 
-check(E(2,1,1/2,1/2) == V0/4 (1 + 5/16 alpha^2) + 1/3 muB B)
-check(E(2,1,1/2,-1/2) == V0/4 (1 + 5/16 alpha^2) - 1/3 muB B)
+check(E(2,1,1/2,1/2) == E0/4 (1 + 5/16 alpha^2) + 1/3 muB B)
+check(E(2,1,1/2,-1/2) == E0/4 (1 + 5/16 alpha^2) - 1/3 muB B)
 
-check(E(2,0,1/2,1/2) == V0/4 (1 + 5/16 alpha^2) + muB B)
-check(E(2,0,1/2,-1/2) == V0/4 (1 + 5/16 alpha^2) - muB B)
+check(E(2,0,1/2,1/2) == E0/4 (1 + 5/16 alpha^2) + muB B)
+check(E(2,0,1/2,-1/2) == E0/4 (1 + 5/16 alpha^2) - muB B)
 
 "ok"
 
-V0 = -13.59828726 "eV"
-alpha = 7.2973525643 10^(-3)
+-- CODATA Internationally recommended 2022 values
+-- https://physics.nist.gov/cuu/Constants/
 
-V0/4 (1 + 1/16 alpha^2)
-V0/4 (1 + 5/16 alpha^2)
+alpha = 7.2973525643 10^(-3)
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+me = 9.1093837139 10^(-31) kilogram
+mp = 1.67262192595 10^(-27) kilogram
+
+joule = kilogram meter^2 / second^2
+eV = 1/e coulomb / joule "eV"
+
+mu = me mp / (me + mp)
+E0 = -mu c^2 alpha^2 / 2 eV
+E0
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
