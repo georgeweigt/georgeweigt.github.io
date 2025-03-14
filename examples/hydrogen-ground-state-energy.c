@@ -14,5 +14,5 @@ main()
 
 	double E = mu * c * c * alpha * alpha / 2.0 / e;
 
-	printf("%20.10f\n", E);
+	printf("%0.15e\n", E);
 }
