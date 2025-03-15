@@ -59,7 +59,7 @@ X2(f) = X(X(f))
 P2(f) = P(P(f))
 A = X2(P2(psi(x,t))) - P2(X2(psi(x,t)))
 B = 2 i hbar (X(P(psi(x,t))) + P(X(psi(x,t))))
-check(A == B)
+check(A == B) -- continue if A equals B
 "ok"
 \end{verbatim}}
 
@@ -68,6 +68,15 @@ Result:
 \bigskip
 ok
 
+\iffalse
 \bigskip
-(The statement {\tt check(A == B)} halts if $A$ not equal $B$.)
+Notes:
+\begin{enumerate}
+\item
+Fedak  and Prentis write, ``The theory of Fourier and the correspondence principle of Bohr played a vital role in Heisenberg's development of quantum mechanics.''
+\item
+Aitchison, MacManus, and Snyder write, ``This `difficulty' clearly unsettled Heisenberg: but it very quickly became clear that the non-commutativity (in general) of kinematical quantities in quantum theory was the really essential new technical idea in the paper.''
+\end{enumerate}
+\fi
+
 \end{document}
