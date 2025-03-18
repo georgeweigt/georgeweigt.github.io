@@ -1,15 +1,22 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
--- www.chemteam.info/Chem-History/GeigerMarsden-1913/GeigerMarsden-1913.html
+-- Geiger and Marsden data
 
 theta = (150,135,120,105,75,60,45,37.5,30,22.5,15)
 y = (22.2,27.4,33.0,47.3,136,320,989,1760,5260,20300,105400)
 
-"Predicted values"
-
 theta = float(2 pi) theta / 360 -- convert to radians
 
+"Predicted values"
 x = 1 / (1 - cos(theta))^2
-
-yhat = x sum(y) / sum(x)
+yhat = x / sum(x) sum(y)
 yhat
+
+"Coefficient of determination (R squared)"
+
+ybar = sum(y) / dim(y)
+
+RSS = sum((y - yhat)^2) -- residual sum of squares
+TSS = sum((y - ybar)^2) -- total sum of squares
+
+1 - RSS / TSS
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

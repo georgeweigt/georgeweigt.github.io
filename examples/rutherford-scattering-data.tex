@@ -2,8 +2,8 @@
 
 \section*{Rutherford scattering data}
 
-The following data is from Geiger and Marsden's 1913 paper.\footnote{www.chemteam.info/Chem-History/GeigerMarsden-1913/GeigerMarsden-1913.html}
-Column $y$ is number of scattering events for silver foil.
+The following data is from Geiger and Marsden's 1913 paper where
+$y$ is the number of scattering events.
 \begin{equation*}
 \begin{matrix}
 \theta & y\\
@@ -21,60 +21,23 @@ Column $y$ is number of scattering events for silver foil.
 \end{matrix}
 \end{equation*}
 
-This is the differential cross section for Rutherford scattering.
+Let $x$ be the momentum transfer part of $d\sigma$.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}\propto
-\frac{1}{(1-\cos\theta)^2}
+x_i=\frac{1}{(1-\cos\theta_i)^2}
 \end{equation*}
 
-Let $f(k)$ be the probability of scattering into a detector at $\theta_k$.
-Then
+The scattering probability for angle $\theta_i$ is $x_i$ normalized by $\sum x=4529$.
 \begin{equation*}
-f(k)=\Pr(\theta=\theta_k)\propto\left.\frac{d\sigma}{d\Omega}\right|_{\theta=\theta_k}
+\Pr(\theta_i)=\frac{x_i}{4529}
 \end{equation*}
 
-Hence
+Predicted values $\hat y_i$ are $\Pr(\theta_i)$
+times total scattering events $\sum y=134295$.
 \begin{equation*}
-f(k)=\frac{C}{(1-\cos\theta_k)^2}
+\hat y_i=\Pr(\theta_i)\times134295
 \end{equation*}
 
-where $C$ is a normalization constant.
-To find $C$ let
-\begin{equation*}
-x_k=\frac{1}{(1-\cos\theta_k)^2}
-\end{equation*}
-
-By total probability
-\begin{equation*}
-\sum_k f(k)=C\sum_k x_k=1
-\end{equation*}
-
-It follows that
-\begin{equation*}
-C=\frac{1}{\sum_k x_k}=\frac{1}{1132}
-\end{equation*}
-
-Hence the scattering probability for angle $\theta_k$ is
-\begin{equation*}
-f(k)=\frac{x_k}{1132}=\frac{1}{1132\,(1-\cos\theta_k)^2}
-\end{equation*}
-
-Let $\hat y_k$ be predicted number of scattering events such that
-\begin{equation*}
-\Pr(y=\hat y_k)=\Pr(\theta=\theta_k)
-\end{equation*}
-
-It follows that
-\begin{equation*}
-\frac{\hat y_k}{\sum y}=f(k)
-\end{equation*}
-
-Hence
-\begin{equation*}
-\hat y_k=f(k)\sum y
-\end{equation*}
-
-The following table shows the predicted values.
+The following table shows the predicted values $\hat y$.
 \begin{equation*}
 \begin{matrix}
 \theta & y & \hat y\\
@@ -92,16 +55,12 @@ The following table shows the predicted values.
 \end{matrix}
 \end{equation*}
 
-\iffalse
-
 The coefficient of determination $R^2$ measures how well predicted values fit the data.
 \begin{equation*}
-R^2=1-\frac{\sum (y-\hat y)^2}{\sum (y-\bar y)^2}=0.998
+R^2=1-\frac{\sum_i(y_i-\hat y_i)^2}{\sum_i(y_i-\bar y)^2}=0.999
 \end{equation*}
 
-The result indicates that $d\sigma$ explains 99.8\%
+The result indicates that $d\sigma$ explains 99.9\%
 of the variance in the data.
-
-\fi
 
 \end{document}
