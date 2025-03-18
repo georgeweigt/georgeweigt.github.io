@@ -1,0 +1,46 @@
+\input{preamble}
+
+\section*{Fine structure formula}
+
+Consider the fine-structure formula for hydrogen.
+\begin{equation*}
+E=-\mu c^2\left[1-\frac{1}{\sqrt{\displaystyle1
++\left(\frac{\alpha}{n-j-\frac{1}{2}+\sqrt{\left(j+\frac{1}{2}\right)^2-\alpha^2}}\right)^2}}\right]
+\end{equation*}
+
+Show that to order $\alpha^4$
+\begin{equation*}
+E=-\frac{\mu c^2\alpha^2}{2n^2}
+\left(1+\frac{\alpha^2}{n\left(j+\frac{1}{2}\right)}-\frac{3\alpha^2}{4n^2}\right)
+\end{equation*}
+
+Let
+\begin{equation*}
+f=\frac{1}{\sqrt{\displaystyle1+\left(\frac{\alpha}{A+\sqrt{B^2-\alpha^2}}\right)^2}}
+\end{equation*}
+
+Expand $f$ as a Taylor series.
+\begin{equation*}
+f=1-\frac{\alpha^2}{2(A+B)^2}-\frac{\alpha^4}{2B(A+B)^3}+\frac{3\alpha^4}{8(A+B)^4}+\mathcal O(\alpha^6)
+\end{equation*}
+
+Substitute $A=n-j-1/2$ and $B=j+1/2$ to obtain $A+B=n$ and
+\begin{equation*}
+f=1-\frac{\alpha^2}{2n^2}-\frac{\alpha^4}{2n^3\left(j+\frac{1}{2}\right)}+\frac{3\alpha^4}{8n^4}
+\tag{1}
+\end{equation*}
+
+Hence
+\begin{equation*}
+E=-\mu c^2(1-f)=-\mu c^2\left(\frac{\alpha^2}{2n^2}
++\frac{\alpha^4}{2n^3\left(j+\frac{1}{2}\right)}-\frac{3\alpha^4}{8n^4}\right)
+\end{equation*}
+
+Factor out $\alpha^2/(2n^2)$.
+\begin{equation*}
+E=-\frac{\mu c^2\alpha^2}{2n^2}
+\left(1+\frac{\alpha^2}{n\left(j+\frac{1}{2}\right)}-\frac{3\alpha^2}{4n^2}\right)
+\tag{2}
+\end{equation*}
+
+\end{document}

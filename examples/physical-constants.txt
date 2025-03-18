@@ -6,7 +6,7 @@
 -- e        elementary charge            physics.nist.gov/cgi-bin/cuu/Value?e
 -- epsilon0 vacuum electric permittivity physics.nist.gov/cgi-bin/cuu/Value?ep0
 -- h        Planck constant              physics.nist.gov/cgi-bin/cuu/Value?h
--- hbar     reduced Planck constant
+-- hbar     reduced Planck constant      physics.nist.gov/cgi-bin/cuu/Value?hbar
 -- k        Boltzmann constant           physics.nist.gov/cgi-bin/cuu/Value?k
 -- me       electron mass                physics.nist.gov/cgi-bin/cuu/Value?me
 -- mp       proton mass                  physics.nist.gov/cgi-bin/cuu/Value?mp

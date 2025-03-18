@@ -1,0 +1,14 @@
+"Fine structure formula"
+
+"Verify equation (1)"
+T = alpha / (A + sqrt(B^2 - alpha^2))
+T = 1 / sqrt(1 + T^2)
+f = taylor(T,alpha,4)
+f = eval(f, A, n - j - 1/2, B, j + 1/2)
+check(f == 1 - alpha^2 / (2 n^2) - alpha^4 / (2 n^3 (j + 1/2)) + 3 alpha^4 / (8 n^4))
+"ok"
+
+"Verify equation (2)"
+E = -mu c^2 alpha^2 / (2 n^2) (1 + alpha^2 / (n (j + 1/2)) - 3 alpha^2 / (4 n^2))
+check(-mu c^2 (1 - f) == E)
+"ok"
