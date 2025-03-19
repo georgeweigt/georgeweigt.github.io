@@ -1,4 +1,4 @@
-"Fine structure formula"
+"Fine structure 1"
 
 "Verify equation (1)"
 x = alpha / (A + sqrt(B^2 - alpha^2))
