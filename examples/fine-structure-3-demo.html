@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Fine structure 3"
+
+-- CODATA Internationally recommended 2022 values
+-- https://physics.nist.gov/cuu/Constants/
+
+alpha = 7.2973525643 10^(-3)
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+h = 6.62607015 10^(-34) joule second
+me = 9.1093837139 10^(-31) kilogram
+mp = 1.67262192595 10^(-27) kilogram
+
+joule = kilogram meter^2 / second^2
+eV = 1/e coulomb / joule "eV" -- eV per joule
+
+mu = me mp / (me + mp) -- reduced electron mass
+
+T(n,j) = alpha / (n - j - 1/2 + sqrt((j + 1/2)^2 - alpha^2))
+
+E(n,j) = -mu c^2 (1 - 1 / sqrt(1 + T(n,j)^2))
+
+Delta(n1,j1,n2,j2) = E(n1,j1) - E(n2, j2)
+
+h c / Delta(3, 1/2, 2, 1/2) 10^9 "nm" / meter
+h c / Delta(3, 1/2, 2, 3/2) 10^9 "nm" / meter
+
+h c / Delta(3, 1/2, 2, 1/2) 10^9 "nm" / meter
+h c / Delta(3, 3/2, 2, 1/2) 10^9 "nm" / meter
+
+h c / Delta(3, 3/2, 2, 1/2) 10^9 "nm" / meter
+h c / Delta(3, 3/2, 2, 3/2) 10^9 "nm" / meter
+h c / Delta(3, 5/2, 2, 3/2) 10^9 "nm" / meter
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
