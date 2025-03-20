@@ -16,8 +16,7 @@ eV = 1/e coulomb / joule "eV" -- eV per joule
 
 mu = me mp / (me + mp) -- reduced electron mass
 
-E(n,j) = -mu c^2 (1 - 1 / sqrt(1 + T(n,j)^2))
-T(n,j) = alpha / (n - j - 1/2 + sqrt((j + 1/2)^2 - alpha^2))
+E(n,j) = -mu c^2 (1 - 1 / sqrt(1 + (alpha / (n - j - 1/2 + sqrt((j + 1/2)^2 - alpha^2)))^2))
 
 Delta(n1,j1,n2,j2) = E(n1,j1) - E(n2, j2)
 
