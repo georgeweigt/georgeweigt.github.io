@@ -37,9 +37,16 @@ Hence
 
 In spherical coordinates
 \begin{equation*}
+\nabla f=\frac{\partial f}{\partial r}\hat{\mathbf e}_r
++\frac{1}{r}\frac{\partial f}{\partial\theta}\hat{\mathbf e}_\theta
++\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}\hat{\mathbf e}_\phi
+\end{equation*}
+
+Hence
+\begin{equation*}
 \nabla\frac{1}{r}\cdot\nabla e^{ikr}
-=\begin{pmatrix}-1/r^2\\0\\0\end{pmatrix}
-\cdot\begin{pmatrix}ike^{ikr}\\0\\0\end{pmatrix}
+=\left(-\frac{1}{r^2}\hat{\mathbf e}_r+0\hat{\mathbf e}_\theta+0\hat{\mathbf e}_\phi\right)
+\cdot\left(ike^{ikr}\hat{\mathbf e}_r+0\hat{\mathbf e}_\theta+0\hat{\mathbf e}_\phi\right)
 =-\frac{ike^{ikr}}{r^2}\tag{2}
 \end{equation*}
 
