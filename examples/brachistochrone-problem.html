@@ -5,9 +5,7 @@ x = theta - sin(theta)
 y = 1 - cos(theta)
 
 a = d(x,theta)^2 + d(y,theta)^2
-a = rect(expform(a)) -- simplify
-
-f = simplify(sqrt(a / (2 g y)))
+f = simplify(a / (2 g y))
 f
 
 thetaA = -pi
@@ -21,6 +19,6 @@ B
 
 "Time to go from A to B"
 
-t = defint(f, theta, thetaA, thetaB)
+t = defint(sqrt(f), theta, thetaA, thetaB)
 t
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
