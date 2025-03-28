@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+-- https://mathworld.wolfram.com/BrachistochroneProblem.html
+
+x = theta - sin(theta)
+y = 1 - cos(theta)
+
+a = d(x,theta)^2 + d(y,theta)^2
+a = rect(expform(a)) -- simplify
+
+f = simplify(sqrt(a / (2 g y)))
+f
+
+thetaA = -pi
+thetaB = 0
+
+A = eval((x,y), theta, thetaA)
+A
+
+B = eval((x,y), theta, thetaB)
+B
+
+"Time to go from A to B"
+
+t = defint(f, theta, thetaA, thetaB)
+t
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
