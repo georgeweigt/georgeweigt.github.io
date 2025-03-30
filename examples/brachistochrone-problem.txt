@@ -3,8 +3,8 @@
 x = theta - sin(theta)
 y = 1 - cos(theta)
 
-a = d(x,theta)^2 + d(y,theta)^2
-f = simplify(a / (2 g y))
+f = (d(x,theta)^2 + d(y,theta)^2) / (2 g y)
+f = simplify(f)
 f
 
 thetaA = -pi
