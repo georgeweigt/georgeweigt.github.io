@@ -2,11 +2,13 @@
 
 \section*{Penguin anomaly}
 
-\begin{quote}
-Most unexpected bumps in data go away as more data accumulate, just as you might get seven heads in your first 10 coin tosses only to end up with a 50-50 ratio after many more tosses. But after tripling their original sample size and analyzing approximately 2,400 of the rare penguin decays, the LHCb scientists say the anomaly hasn't diminished. Instead, it has lingered at an estimated statistical significance of ``3.7 sigma'' which means it is just as unlikely for such a large fluctuation to happen randomly as it would be to get 69 heads in 100 coin tosses. Physicists require a 5-sigma deviation from their expectations, equivalent to flipping 75 heads in 100 tosses (the odds of which are less than one in a million), to claim the discovery of a real effect.\footnote{
+Excerpt from {\it `Penguin' Anomaly Hints at Missing Particles}.\footnote{
 Wolchover, Natalie.
-{\it `Penguin' Anomaly Hints at Missing Particles.}
-https://www.quantamagazine.org/20150320-penguin-anomaly-hints-at-missing-particles/}
+{\it `Penguin' Anomaly Hints at Missing Particles.}\\
+www.quantamagazine.org/penguin-anomaly-at-large-hadron-collider-hints-at-missing-particles-20150320/}
+
+\begin{quote}
+Most unexpected bumps in data go away as more data accumulate, just as you might get seven heads in your first 10 coin tosses only to end up with a 50-50 ratio after many more tosses. But after tripling their original sample size and analyzing approximately 2,400 of the rare penguin decays, the LHCb scientists say the anomaly hasn't diminished. Instead, it has lingered at an estimated statistical significance of ``3.7 sigma'' which means it is just as unlikely for such a large fluctuation to happen randomly as it would be to get 69 heads in 100 coin tosses. Physicists require a 5-sigma deviation from their expectations, equivalent to flipping 75 heads in 100 tosses (the odds of which are less than one in a million), to claim the discovery of a real effect.
 \end{quote}
 
 Recall that the binomial mass function with $p=1/2$
@@ -54,20 +56,18 @@ $50+5\sigma=75$ and a
 
 \bigskip
 Flipping 75 heads is a rare event, but flipping 25 or 76 is also rare.
-Let us consider the probability of all rare events.
-To compute the probability of all rare events we need the following cumulative distribution function.
+Let us compute the probability of all rare events.
+Start with the following cumulative distribution function.
 \begin{equation*}
-P(X\le x)=F(x)=\sum_{k=0}^xf(k)
+\Pr(X\le x)=F(x)=\sum_{k=0}^xf(k)
 \end{equation*}
 
-The cumulative distribution function computes the probability of all
-rare events as follows.
+The probability of all rare events is
 \begin{equation*}
-P(X\le25)+P(X\ge75)=F(25)+1-F(74)
+\Pr(X\le25)+\Pr(X\ge75)=F(25)+1-F(74)
 \end{equation*}
 
-In Eigenmath, define the cumulative distribution function and compute
-the probability
+In Eigenmath, define the cumulative distribution function and compute the probability
 of fewer than 26 or more than 74 heads in 100 tosses.
 
 {\color{blue}
