@@ -1,17 +1,19 @@
-"Probability of exactly 75 events"
+"Probability of exactly 75 heads"
 f(k) = choose(n,k) p^k (1-p)^(n-k)
 n = 100
 p = 1/2
-f(75)
-float
+float(f(75))
 
-"Probability of 75 or more events"
+"Probability of 75 or more heads"
 F(x) = sum(k,0,x,f(k))
-1 - F(74)
-float
+float(1 - F(74))
 
-"Verify symmetry"
+"Verify symmetry of cumulative distribution function"
 check(F(25) == 1 - F(74))
 "ok"
 
+"Probability that number of heads is beyond 5 standard deviations of the mean"
 float(2 F(25))
+
+"Probability that number of heads is within 1 standard deviation of the mean"
+float(F(55) - F(45))
