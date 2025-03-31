@@ -1,0 +1,91 @@
+\input{preamble}
+
+\section*{Penguin anomaly}
+
+\begin{quote}
+Most unexpected bumps in data go away as more data accumulate, just as you might get seven heads in your first 10 coin tosses only to end up with a 50-50 ratio after many more tosses. But after tripling their original sample size and analyzing approximately 2,400 of the rare penguin decays, the LHCb scientists say the anomaly hasn't diminished. Instead, it has lingered at an estimated statistical significance of ``3.7 sigma'' which means it is just as unlikely for such a large fluctuation to happen randomly as it would be to get 69 heads in 100 coin tosses. Physicists require a 5-sigma deviation from their expectations, equivalent to flipping 75 heads in 100 tosses (the odds of which are less than one in a million), to claim the discovery of a real effect.\footnote{
+Wolchover, Natalie.
+{\it `Penguin' Anomaly Hints at Missing Particles.}
+https://www.quantamagazine.org/20150320-penguin-anomaly-hints-at-missing-particles/}
+\end{quote}
+
+Recall that the binomial mass function with $p=1/2$
+is the probability of obtaining exactly
+$k$ heads in $n$ tosses.
+\begin{equation*}
+f(k)={n\choose k}p^k(1-p)^{n-k}
+\end{equation*}
+
+In Eigenmath, define the binomial mass function
+and calculate the probability
+of getting exactly 75 heads in 100 tosses.
+
+{\color{blue}
+\begin{verbatim}
+f(k) = choose(n,k) p^k (1-p)^(n-k)
+n = 100
+p = 1/2
+f(75)
+\end{verbatim}}
+
+$\frac{15157454357521070063469}{79228162514264337593543950336}$
+
+{\color{blue}
+\begin{verbatim}
+float
+\end{verbatim}}
+
+$1.91314\times10^{-7}$
+
+\bigskip
+Hence the probability of getting exactly 75 heads in 100 tosses is indeed
+less than one in a million.
+
+\bigskip
+As the following equation shows, the variance for 100 coin tosses is 25.
+\begin{equation*}
+\sigma^2=np(1-p)=100\times\frac{1}{2}\times\frac{1}{2}=25
+\end{equation*}
+
+Hence $\sigma=5$.
+It follows that a 5-sigma deviation from the expected value is
+$50+5\sigma=75$ and a
+3.7-sigma deviation is $50+3.7\sigma=68.5$.
+
+\bigskip
+Flipping 75 heads is a rare event, but flipping 25 or 76 is also rare.
+Let us consider the probability of all rare events.
+To compute the probability of all rare events we need the following cumulative distribution function.
+\begin{equation*}
+P(X\le x)=F(x)=\sum_{k=0}^xf(k)
+\end{equation*}
+
+The cumulative distribution function computes the probability of all
+rare events as follows.
+\begin{equation*}
+P(X\le25)+P(X\ge75)=F(25)+1-F(74)
+\end{equation*}
+
+In Eigenmath, define the cumulative distribution function and compute
+the probability
+of fewer than 26 or more than 74 heads in 100 tosses.
+
+{\color{blue}
+\begin{verbatim}
+F(x) = sum(k,0,x,f(k))
+F(25) + 1 - F(74)
+\end{verbatim}}
+
+$\frac{89310453796450805935325}{158456325028528675187087900672}$
+
+{\color{blue}
+\begin{verbatim}
+float
+\end{verbatim}}
+
+$5.63628\times10^{-7}$
+
+\bigskip
+The probability is still less than one in a million.
+
+\end{document}

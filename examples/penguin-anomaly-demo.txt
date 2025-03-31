@@ -1,0 +1,17 @@
+"Probability of exactly 75 events"
+f(k) = choose(n,k) p^k (1-p)^(n-k)
+n = 100
+p = 1/2
+f(75)
+float
+
+"Probability of 75 or more events"
+F(x) = sum(k,0,x,f(k))
+1 - F(74)
+float
+
+"Verify symmetry"
+check(F(25) == 1 - F(74))
+"ok"
+
+float(2 F(25))
