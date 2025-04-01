@@ -27,14 +27,7 @@ of getting exactly 75 heads in 100 tosses.
 f(k) = choose(n,k) p^k (1-p)^(n-k)
 n = 100
 p = 1/2
-f(75)
-\end{verbatim}}
-
-$\frac{15157454357521070063469}{79228162514264337593543950336}$
-
-{\color{blue}
-\begin{verbatim}
-float
+float(f(75))
 \end{verbatim}}
 
 $1.91314\times10^{-7}$
@@ -46,7 +39,7 @@ less than one in a million.
 \bigskip
 As the following equation shows, the variance for 100 coin tosses is 25.
 \begin{equation*}
-\sigma^2=np(1-p)=100\times\frac{1}{2}\times\frac{1}{2}=25
+\sigma^2=np(1-p)=100\times\tfrac{1}{2}\times\tfrac{1}{2}=25
 \end{equation*}
 
 Hence $\sigma=5$.
@@ -62,25 +55,23 @@ Start with the following cumulative distribution function.
 \Pr(X\le x)=F(x)=\sum_{k=0}^xf(k)
 \end{equation*}
 
-The probability of all rare events is
+Define a ``rare'' result as a total number of heads that is beyond 5 standard deviations of the
+mean $\mu=50$.
+Then the probability of a ``rare'' result after 100 tosses is
 \begin{equation*}
-\Pr(X\le25)+\Pr(X\ge75)=F(25)+1-F(74)
+\Pr(X\le25)+\Pr(X\ge75)=F(25)+1-F(74)=2\,F(25)
 \end{equation*}
 
+The last equivalence is by symmetry of the binomial function.
+
+\bigskip
 In Eigenmath, define the cumulative distribution function and compute the probability
 of fewer than 26 or more than 74 heads in 100 tosses.
 
 {\color{blue}
 \begin{verbatim}
 F(x) = sum(k,0,x,f(k))
-F(25) + 1 - F(74)
-\end{verbatim}}
-
-$\frac{89310453796450805935325}{158456325028528675187087900672}$
-
-{\color{blue}
-\begin{verbatim}
-float
+float(2 F(25))
 \end{verbatim}}
 
 $5.63628\times10^{-7}$

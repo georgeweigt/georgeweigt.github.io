@@ -4,11 +4,9 @@ n = 100
 p = 1/2
 float(f(75))
 
-"Probability of 75 or more heads"
 F(x) = sum(k,0,x,f(k))
-float(1 - F(74))
 
-"Verify symmetry of cumulative distribution function"
+"Verify symmetry"
 check(F(25) == 1 - F(74))
 "ok"
 
