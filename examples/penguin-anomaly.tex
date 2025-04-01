@@ -37,27 +37,28 @@ Hence the probability of getting exactly 75 heads in 100 tosses is indeed
 less than one in a million.
 
 \bigskip
-As the following equation shows, the variance for 100 coin tosses is 25.
+The mean for 100 coin tosses is 50 and the variance is 25.
 \begin{equation*}
-\sigma^2=np(1-p)=100\times\tfrac{1}{2}\times\tfrac{1}{2}=25
+\mu=np=50,\quad\sigma^2=np(1-p)=100\times\tfrac{1}{2}\times\tfrac{1}{2}=25
 \end{equation*}
 
-Hence $\sigma=5$.
-It follows that a 5-sigma deviation from the expected value is
+The standard deviation is $\sigma=5$.
+Hence a 5-sigma deviation from the mean is
 $50+5\sigma=75$ and a
 3.7-sigma deviation is $50+3.7\sigma=68.5$.
 
 \bigskip
-Flipping 75 heads is a rare event, but flipping 25 or 76 is also rare.
-Let us compute the probability of all rare events.
+We have found the probability of getting exactly 75 heads in 100 tosses.
+Let us now find the combined probability of {\it any} unlikely result,
+such as 76 heads or 25 heads, etc.
 Start with the following cumulative distribution function.
 \begin{equation*}
 \Pr(X\le x)=F(x)=\sum_{k=0}^xf(k)
 \end{equation*}
 
-Define a ``rare'' result as a total number of heads that is beyond 5 standard deviations of the
+Define as ``unlikely'' any number of heads that is beyond 5 standard deviations of the
 mean $\mu=50$.
-Then the probability of a ``rare'' result after 100 tosses is
+Then the probability of {\it any} unlikely result after 100 tosses is
 \begin{equation*}
 \Pr(X\le25)+\Pr(X\ge75)=F(25)+1-F(74)=2\,F(25)
 \end{equation*}
