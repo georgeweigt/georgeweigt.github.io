@@ -1,0 +1,27 @@
+\input{preamble}
+
+\section*{Hydrogen radius}
+
+Verify that
+\begin{equation*}
+\langle r\rangle=\frac{3n^2-l(l+1)}{2}\,a_0
+\tag{1}
+\end{equation*}
+
+for $n=1,2,3$ and $l=0,\ldots,n-1$.
+
+\bigskip
+The Eigenmath code proceeds as follows:
+
+\bigskip
+Determine the probability density function $f(r)$.
+\begin{equation*}
+f(r)=\int_0^\pi\int_0^{2\pi}|\psi_{nlm}|^2\,r^2\sin\theta\,d\theta\,d\phi
+\end{equation*}
+
+Calculate the expectation value.
+\begin{equation*}
+\langle r\rangle=\int_0^\infty rf(r)\,dr
+\end{equation*}
+
+\end{document}
