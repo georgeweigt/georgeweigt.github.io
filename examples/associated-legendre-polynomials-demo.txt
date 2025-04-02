@@ -1,0 +1,13 @@
+"Associated Legendre polynomials"
+
+P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+         1/(2^l l!) (1 - x^2)^(m/2) d((x^2 - 1)^l, x, l + m))
+
+"Verify equation (1)"
+
+for(l,0,2, for(m,-l,l,
+ f = P(l,m),
+ check((1 - x^2) d(f,x,2) - 2 x d(f,x) + (l (l + 1) - m^2 / (1 - x^2)) f == 0)
+))
+
+"ok"
