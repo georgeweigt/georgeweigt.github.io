@@ -21,7 +21,7 @@ Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
 -- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
 
 P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
-           2^(-m) sin(theta)^m sum(k, 0, l - m,
+           (sin(theta)/2)^m sum(k, 0, l - m,
            (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
            ((1 - cos(theta)) / 2)^k))
 
