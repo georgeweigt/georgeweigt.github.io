@@ -8,9 +8,17 @@ Verify that
 \tag{1}
 \end{equation*}
 
-for selected associated Legendre polynomials $P_{lm}(x)$.
+for selected associated Legendre polynomials $P_{lm}(x)$ where
+\begin{equation*}
+P_{lm}(x)=\begin{cases}
+\displaystyle
+\frac{(-1)^m}{2^ll!}(1-x^2)^\frac{m}{2}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l, & m\ge0
+\\[3ex]
+\displaystyle
+(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(x), & m<0
+\end{cases}
+\end{equation*}
 
-\bigskip
 Associated Legendre polynomials are needed for spherical harmonic functions $Y_{lm}(\theta,\phi)$.
 \begin{equation*}
 Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
@@ -19,12 +27,14 @@ P_{lm}(\cos\theta)\exp(im\phi)
 
 See arxiv.org/abs/1805.12125 for the following form of $P_{lm}(\cos\theta)$.
 \begin{equation*}
-P_{lm}(\cos\theta)=\begin{cases}\displaystyle
+P_{lm}(\cos\theta)=\begin{cases}
+\displaystyle
 \left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
 (-1)^k\frac{(l+m+k)!}{(l-m-k)!(m+k)!k!}
 \left(\frac{1-\cos\theta}{2}\right)^k, & m\ge0
 \\[4ex]
-\displaystyle(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(\cos\theta), & m<0
+\displaystyle
+(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(\cos\theta), & m<0
 \end{cases}
 \end{equation*}
 

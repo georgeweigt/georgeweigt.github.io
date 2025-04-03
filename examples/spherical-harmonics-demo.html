@@ -16,7 +16,7 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 D(f) = 1/sin(theta) d(sin(theta) d(f,theta), theta) +
        1/sin(theta)^2 d(f,phi,2)
 
-for(l,0,2, for(m,-l,l, check(D(Y(l,m)) == -l (l + 1) Y(l,m))))
+for(l, 0, 2, for(m, -l, l, check(D(Y(l,m)) == -l (l + 1) Y(l,m))))
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

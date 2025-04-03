@@ -8,17 +8,7 @@ r^2\nabla^2Y_{lm}(\theta,\phi)=-l(l+1)Y_{lm}(\theta,\phi)
 \tag{1}
 \end{equation*}
 
-for selected spherical harmonic functions $Y_{lm}(\theta,\phi)$.
-
-\bigskip
-Function $Y_{lm}(\theta,\phi)$ is independent of $r$ hence
-\begin{equation*}
-r^2\nabla^2Y_{lm}(\theta,\phi)=\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
-\left[\sin\theta\frac{\partial}{\partial\theta}Y_{lm}(\theta,\phi)\right]
-+\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}Y_{lm}(\theta,\phi)
-\end{equation*}
-
-Spherical harmonics are formed as
+for selected spherical harmonic functions $Y_{lm}(\theta,\phi)$ where
 \begin{equation*}
 Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
 P_{lm}(\cos\theta)\exp(im\phi)
@@ -33,6 +23,13 @@ P_{lm}(\cos\theta)=\begin{cases}\displaystyle
 \\[4ex]
 \displaystyle(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(\cos\theta), & m<0
 \end{cases}
+\end{equation*}
+
+Function $Y_{lm}(\theta,\phi)$ is independent of $r$ hence
+\begin{equation*}
+r^2\nabla^2Y_{lm}(\theta,\phi)=\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+\left[\sin\theta\frac{\partial}{\partial\theta}Y_{lm}(\theta,\phi)\right]
++\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}Y_{lm}(\theta,\phi)
 \end{equation*}
 
 \end{document}
