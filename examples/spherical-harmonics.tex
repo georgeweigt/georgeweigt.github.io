@@ -11,11 +11,28 @@ r^2\nabla^2Y_{lm}(\theta,\phi)=-l(l+1)Y_{lm}(\theta,\phi)
 for selected spherical harmonic functions $Y_{lm}(\theta,\phi)$.
 
 \bigskip
-Since $Y_{lm}(\theta,\phi)$ is independent of $r$ we have
+$Y_{lm}(\theta,\phi)$ is independent of $r$ hence
 \begin{equation*}
 r^2\nabla^2Y=\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
 \left(\sin\theta\frac{\partial Y}{\partial\theta}\right)
 +\frac{1}{\sin^2\theta}\frac{\partial^2Y}{\partial\phi^2}
+\end{equation*}
+
+Spherical harmonics are formed as
+\begin{equation*}
+Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
+P_{lm}(\cos\theta)\exp(im\phi)
+\end{equation*}
+
+See arxiv.org/abs/1805.12125 for the following form of $P_{lm}(\cos\theta)$.
+\begin{equation*}
+P_{lm}(\cos\theta)=\begin{cases}\displaystyle
+\left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
+(-1)^k\frac{(l+m+k)!}{(l-m-k)!(m+k)!k!}
+\left(\frac{1-\cos\theta}{2}\right)^k, & m\ge0
+\\[4ex]
+\displaystyle(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(\cos\theta), & m<0
+\end{cases}
 \end{equation*}
 
 \end{document}

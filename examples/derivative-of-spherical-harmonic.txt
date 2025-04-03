@@ -3,7 +3,7 @@
 DY(l,m) = m cos(theta) / sin(theta) Y(l,m) +
          sqrt((l - m) (l + m + 1)) exp(-i phi) Y(l,m + 1)
 
-Y(l,m) = (-1)^m sqrt((2l + 1) / (4 pi) (l - m)! / (l + m)!) *
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
          P(l,m) exp(i m phi)
 
 -- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
