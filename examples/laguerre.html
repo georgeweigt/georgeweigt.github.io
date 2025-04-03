@@ -1,18 +1,23 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
--- this works for integer m (k is a local var)
+"Verify Laguerre polynomials"
 
-L(x,n,m,k) = (n + m)! sum(k,0,n,(-x)^k / ((n - k)! (m + k)! k!))
+-- for integer a (k is a local var)
 
--- this works for real or complex a (y is a local var)
+L(x,n,a,k) = (n + a)! sum(k, 0, n, (-x)^k / ((n - k)! (a + k)! k!))
+
+for(n, 0, 2, for(a, 0, n - 1,
+ y = L(x,n,a),
+ check(x d(y,x,x) + (a + 1 - x) d(y,x) + n y == 0)
+))
+
+-- for real or complex a (y is a local var)
 
 L(x,n,a,y) = eval(y^(-a) exp(y) / n! d(exp(-y) y^(n + a), y, n), y, x)
 
-"Verify for n = 3"
-
-n = 3
-y = L(x,n,a)
-y
-check(x d(y,x,x) + (a + 1 - x) d(y,x) + n y == 0)
+for(n, 0, 2,
+ y = L(x,n,a),
+ check(x d(y,x,x) + (a + 1 - x) d(y,x) + n y == 0)
+)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
