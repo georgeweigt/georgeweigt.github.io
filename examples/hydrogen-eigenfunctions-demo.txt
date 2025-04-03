@@ -31,13 +31,15 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
            (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
            ((1 - cos(theta)) / 2)^k))
 
--- H is the Hamiltonian
+-- H is Hamiltonian
 
-H(psi) = -hbar^2 Lap(psi) / (2 mu) - e^2 / (4 pi epsilon0 r) psi
+H(f) = -hbar^2 D(f) / (2 mu) - e^2 / (4 pi epsilon0 r) f
 
-Lap(f) = 1/r^2 d(r^2 d(f,r), r) +
-         1/(r^2 sin(theta)) d(sin(theta) d(f,theta), theta) +
-         1/(r sin(theta))^2 d(f,phi,2)
+-- D is Laplacian
+
+D(f) = 1/r^2 d(r^2 d(f,r), r) +
+       1/(r^2 sin(theta)) d(sin(theta) d(f,theta), theta) +
+       1/(r sin(theta))^2 d(f,phi,2)
 
 -- E(n) returns the nth energy eigenvalue
 
