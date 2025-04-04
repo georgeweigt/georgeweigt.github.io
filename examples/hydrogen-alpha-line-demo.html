@@ -1,12 +1,8 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
--- Compute spontaneous emission coefficients for H-alpha
-
--- psi returns a hydrogen atom eigenfunction
+"Spontaneous emission coefficients for H-alpha"
 
 psi(n,l,m) = R(n,l) Y(l,m)
 
--- R returns a radial eigenfunction
- 
 R(n,l) = 2 / n^2 *
          a0^(-3/2) *
          sqrt((n - l - 1)! / (n + l)!) *
@@ -14,9 +10,11 @@ R(n,l) = 2 / n^2 *
          L(2 r / (n a0),n - l - 1,2 l + 1) *
          exp(-r / (n a0))
 
-L(x,n,m,k) = (n + m)! sum(k,0,n, (-x)^k / ((n - k)! (m + k)! k!))
+-- associated Laguerre polynomial (k is a local var)
 
--- Y returns a spherical harmonic eigenfunction
+L(x,n,m,k) = (n + m)! sum(k, 0, n, (-x)^k / ((n - k)! (m + k)! k!))
+
+-- spherical harmonic
 
 Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
          P(l,m) exp(i m phi)

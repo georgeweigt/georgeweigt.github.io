@@ -4,36 +4,36 @@
 
 Verify
 \begin{equation*}
-(1-x^2)\frac{d^2}{dx^2}P_{lm}(x)-2x\frac{d}{dx}P_{lm}(x)+\left[l(l+1)-\frac{m^2}{1-x^2}\right]P_{lm}(x)=0
+(1-x^2)\frac{d^2}{dx^2}P_l^m(x)-2x\frac{d}{dx}P_l^m(x)+\left[l(l+1)-\frac{m^2}{1-x^2}\right]P_l^m(x)=0
 \end{equation*}
 
-where $P_{lm}(x)$ are associated Legendre polynomials
+where $P_l^m(x)$ are associated Legendre polynomials
 \begin{equation*}
-P_{lm}(x)=\begin{cases}
+P_l^m(x)=\begin{cases}
 \displaystyle
 \frac{(-1)^m}{2^ll!}(1-x^2)^\frac{m}{2}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l, & m\ge0
 \\[3ex]
 \displaystyle
-(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(x), & m<0
+(-1)^m\frac{(l+m)!}{(l-m)!}P_l^{|m|}(x), & m<0
 \end{cases}
 \end{equation*}
 
 Legendre polynomials are needed for spherical harmonic functions $Y_{lm}(\theta,\phi)$.
 \begin{equation*}
 Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
-P_{lm}(\cos\theta)\exp(im\phi)
+P_l^m(\cos\theta)\exp(im\phi)
 \end{equation*}
 
-See arxiv.org/abs/1805.12125 for the following form of $P_{lm}(\cos\theta)$.
+See arxiv.org/abs/1805.12125 for the following form of $P_l^m(\cos\theta)$.
 \begin{equation*}
-P_{lm}(\cos\theta)=\begin{cases}
+P_l^m(\cos\theta)=\begin{cases}
 \displaystyle
 \left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
 (-1)^k\frac{(l+m+k)!}{(l-m-k)!(m+k)!k!}
 \left(\frac{1-\cos\theta}{2}\right)^k, & m\ge0
 \\[4ex]
 \displaystyle
-(-1)^m\frac{(l+m)!}{(l-m)!}P_{l|m|}(\cos\theta), & m<0
+(-1)^m\frac{(l+m)!}{(l-m)!}P_l^{|m|}(\cos\theta), & m<0
 \end{cases}
 \end{equation*}
 
