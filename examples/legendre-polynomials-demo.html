@@ -1,10 +1,8 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
-"Legendre polynomials"
+"Verify Legendre polynomials"
 
 P(l,m) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
          1/(2^l l!) (1 - x^2)^(m/2) d((x^2 - 1)^l, x, l + m))
-
-"Verify equation (1)"
 
 for(l, 0, 2, for(m, -l, l,
  f = P(l,m),
