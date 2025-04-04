@@ -1,0 +1,22 @@
+"Verify angular distance formulas"
+
+x1 = r1 sin(theta1) cos(phi1)
+y1 = r1 sin(theta1) sin(phi1)
+z1 = r1 cos(theta1)
+
+x2 = r2 sin(theta2) cos(phi2)
+y2 = r2 sin(theta2) sin(phi2)
+z2 = r2 cos(theta2)
+
+check(r1^2 == x1^2 + y1^2 + z1^2)
+check(r2^2 == x2^2 + y2^2 + z2^2)
+
+r12 = sqrt((x1 - x2)^2 + (y1 - y2)^2 + (z1 - z2)^2)
+
+d = sin(theta1) sin(theta2) cos(phi1 - phi2) + cos(theta1) cos(theta2)
+
+check(d == (r1^2 + r2^2 - r12^2) / (2 r1 r2))
+
+check(d == (x1 x2 + y1 y2 + z1 z2) / (r1 r2))
+
+"ok"
