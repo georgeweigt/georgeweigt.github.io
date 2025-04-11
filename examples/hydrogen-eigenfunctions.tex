@@ -18,7 +18,7 @@ E_n=-\frac{\hbar^2}{2\mu a_0^2n^2}
 \approx-\frac{1}{n^2}\times13.6\,\text{eV}
 \end{equation*}
 
-Symbol $a_0$ is Bohr radius and $\mu$ is the reduced electron mass
+Symbol $\mu$ is the reduced electron mass
 \begin{equation*}
 \mu=\frac{m_e m_p}{m_e+m_p}
 \end{equation*}
@@ -99,15 +99,26 @@ Noting that
 a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}
 \end{equation*}
 
-we can also write
+we have
+\begin{align*}
+H\psi&=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{e^2}{4\pi\varepsilon_0 r}\psi
+\\
+E_n&=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
+%\approx-\frac{1}{n^2}\times13.6\,\text{eV}
+\end{align*}
+
+Noting that
 \begin{equation*}
-H\psi=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{e^2}{4\pi\varepsilon_0 r}\psi
+e^2=4\pi\epsilon_0\alpha\hbar c
 \end{equation*}
 
-and
-\begin{equation*}
-E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
-\approx-\frac{1}{n^2}\times13.6\,\text{eV}
-\end{equation*}
+we have
+\begin{align*}
+a_0&=\frac{\hbar}{\alpha\mu c}
+\\
+H\psi&=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{\alpha\hbar c}{r}\psi
+\\
+E_n&=-\frac{\mu\alpha^2c^2}{2n^2}
+\end{align*}
 
 \end{document}
