@@ -27,7 +27,7 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 
 -- E(n) returns the nth energy eigenvalue
 
-E(n) = -e^2 / (8 pi epsilon0 a0 n^2)
+E(n) = -hbar^2 / (2 mu a0^2 n^2)
 
 -- integrate f
 
@@ -114,3 +114,11 @@ A3p2s
 
 A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p / 5
 A3d2p
+
+"Verify emission coefficients"
+
+check(abs(A3s2p second / 10^6 - 6.313) < 0.001)
+check(abs(A3p2s second / 10^7 - 2.245) < 0.001)
+check(abs(A3d2p second / 10^7 - 6.465) < 0.001)
+
+"ok"
