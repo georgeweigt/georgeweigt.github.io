@@ -1,18 +1,5 @@
 -- CODATA Internationally recommended 2022 values
 -- https://physics.nist.gov/cuu/Constants/
-
--- a0       Bohr radius (per electron mass, not reduced electron mass)
--- alpha    fine structure constant
--- c        speed of light in vacuum
--- e        elementary charge
--- epsilon0 vacuum electric permittivity
--- h        Planck constant
--- hbar     reduced Planck constant
--- k        Boltzmann constant
--- me       electron mass
--- mp       proton mass
--- mu0      vacuum magnetic permeability
-
 -- c, e, h, and k are exact values
 
 a0 = 5.29177210544 10^(-11) meter
@@ -27,16 +14,12 @@ me = 9.1093837139 10^(-31) kilogram
 mp = 1.67262192595 10^(-27) kilogram
 mu0 = 1.25663706127 10^(-6) newton / ampere^2
 
--- derived units
-
 coulomb = ampere second
 farad = coulomb / volt
 joule = kilogram meter^2 / second^2
 newton = kilogram meter / second^2
 tesla = kilogram / second^2 / ampere
 volt = joule / coulomb
-
--- base units (for printing)
 
 ampere = "ampere"
 kelvin = "kelvin"
@@ -48,20 +31,15 @@ second = "second"
 
 eV = 1/e coulomb / joule "eV"
 
--- examples
-
-"Hydrogen atom"
+pi = float(pi) -- use numerical value of pi
 mu = me mp / (me + mp)
-E0 = -mu c^2 alpha^2 / 2
-E0
+a0 = a0 me / mu -- correction
 
-"In electron volts"
-E0 eV
+E(n) = -mu c^2 alpha^2 / (2 n^2)
+E(1) eV
 
-"Elementary charge"
-e
-sqrt(4 float(pi) epsilon0 alpha hbar c) "coulomb" / coulomb -- convert to coulombs
+E(n) = -hbar^2 / (2 mu a0^2 n^2)
+E(1) eV
 
-"Speed of light"
-c
-1 / sqrt(mu0 epsilon0)
+E(n) = -mu (e^2 / (4 pi epsilon0 hbar))^2 / (2 n^2)
+E(1) eV
