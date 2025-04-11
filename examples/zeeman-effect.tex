@@ -2,9 +2,9 @@
 
 \section*{Zeeman effect}
 
-Hydrogen energy levels in a weak magnetic field $B=|\mathbf B|$ are approximately
+Hydrogen energy levels $E_{nj}$ in a weak magnetic field $B=|\mathbf B|$ are approximately
 \begin{equation*}
-E=\frac{E_0}{n^2}
+E_{nj}=-\frac{\mu c^2\alpha^2}{2n^2}
 \left[
 1+\frac{\alpha^2}{n^2}\left(\frac{n}{j+\frac{1}{2}}-\frac{3}{4}\right)
 \right]+g_Jm_j\mu_BB
@@ -12,8 +12,6 @@ E=\frac{E_0}{n^2}
 
 where
 \begin{gather*}
-E_0=-\frac{\mu c^2\alpha^2}{2}\approx-13.5983\,\text{eV}
-\\[1ex]
 j=\left|l\pm\tfrac{1}{2}\right|,\quad l=0,1,2,\ldots,n-1
 \\[1ex]
 m_j=-j,-j+1,\ldots,j-1,j
@@ -27,32 +25,37 @@ g_J=1+\frac{j(j+1)-l(l+1)+\frac{3}{4}}{2j(j+1)}
 For principal quantum number $n=2$ and magnetic field $B\ne0$ there are eight energy levels.
 \begin{equation*}
 \begin{matrix}
-n & l & j & m_j & E
+n & l & j & m_j & E_{nj}
 \\[2ex]
 2 & 1 & \frac{3}{2} & \frac{3}{2} &
-\frac{E_0}{4}\left(1+\tfrac{1}{16}\alpha^2\right)+2\mu_BB
+\frac{1}{4}E_1(1+\tfrac{1}{16}\alpha^2)+2\mu_BB
 \\[2ex]
 2 & 1 & \frac{3}{2} & -\frac{3}{2} &
-\frac{E_0}{4}\left(1+\tfrac{1}{16}\alpha^2\right)-2\mu_BB
+\frac{1}{4}E_1(1+\tfrac{1}{16}\alpha^2)-2\mu_BB
 \\[2ex]
 2 & 1 & \frac{3}{2} & \frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{1}{16}\alpha^2\right)+\frac{2}{3}\mu_BB
+\frac{1}{4}E_1(1+\tfrac{1}{16}\alpha^2)+\frac{2}{3}\mu_BB
 \\[2ex]
 2 & 1 & \frac{3}{2} & -\frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{1}{16}\alpha^2\right)-\frac{2}{3}\mu_BB
+\frac{1}{4}E_1(1+\tfrac{1}{16}\alpha^2)-\frac{2}{3}\mu_BB
 \\[2ex]
 2 & 1 & \frac{1}{2} & \frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{5}{16}\alpha^2\right)+\frac{1}{3}\mu_BB
+\frac{1}{4}E_1(1+\tfrac{5}{16}\alpha^2)+\frac{1}{3}\mu_BB
 \\[2ex]
 2 & 1 & \frac{1}{2} & -\frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{5}{16}\alpha^2\right)-\frac{1}{3}\mu_BB
+\frac{1}{4}E_1(1+\tfrac{5}{16}\alpha^2)-\frac{1}{3}\mu_BB
 \\[2ex]
 2 & 0 & \frac{1}{2} & \frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{5}{16}\alpha^2\right)+\mu_BB
+\frac{1}{4}E_1(1+\tfrac{5}{16}\alpha^2)+\mu_BB
 \\[2ex]
 2 & 0 & \frac{1}{2} & -\frac{1}{2} &
-\frac{E_0}{4}\left(1+\tfrac{5}{16}\alpha^2\right)-\mu_BB
+\frac{1}{4}E_1(1+\tfrac{5}{16}\alpha^2)-\mu_BB
 \end{matrix}
+\end{equation*}
+
+where
+\begin{equation*}
+E_1=-\frac{\mu c^2\alpha^2}{2}
 \end{equation*}
 
 \end{document}
