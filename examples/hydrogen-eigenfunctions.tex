@@ -9,13 +9,18 @@ H\psi_{nlm}(r,\theta,\phi)=E_n\psi_{nlm}(r,\theta,\phi)
 
 where $H$ is the Hamiltonian operator
 \begin{equation*}
-H\psi=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{e^2}{4\pi\varepsilon_0 r}\psi
+H\psi=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{\hbar^2}{\mu a_0r}\psi
 \end{equation*}
 
 and $E_n$ is the energy eigenvalue
 \begin{equation*}
-E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
+E_n=-\frac{\hbar^2}{2\mu a_0^2n^2}
 \approx-\frac{1}{n^2}\times13.6\,\text{eV}
+\end{equation*}
+
+Symbol $a_0$ is Bohr radius and $\mu$ is the reduced electron mass
+\begin{equation*}
+\mu=\frac{m_e m_p}{m_e+m_p}
 \end{equation*}
 
 Hydrogen eigenfunctions $\psi_{nlm}$ are formed as
@@ -49,16 +54,6 @@ R_{nl}(r)=
 L_{n-l-1}^{2l+1}\left(\frac{2r}{na_0}\right)
 \exp\left(-\frac{r}{na_0}\right)
 a_0^{-3/2}
-\end{equation*}
-
-Symbol $a_0$ is the Bohr radius
-\begin{equation*}
-a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}
-\end{equation*}
-
-Symbol $\mu$ is the reduced electron mass
-\begin{equation*}
-\mu=\frac{m_e m_p}{m_e+m_p}
 \end{equation*}
 
 Symbol $L_n^m$ is the Laguerre polynomial
@@ -97,6 +92,22 @@ Symbol $\nabla^2$ is the Laplacian operator in spherical coordinates.
 \left(\sin\theta\frac{\partial}{\partial\theta}\psi\right)
 +
 \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}\psi
+\end{equation*}
+
+Noting that
+\begin{equation*}
+a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}
+\end{equation*}
+
+we can also write
+\begin{equation*}
+H\psi=-\frac{\hbar^2}{2\mu}\nabla^2\psi-\frac{e^2}{4\pi\varepsilon_0 r}\psi
+\end{equation*}
+
+and
+\begin{equation*}
+E_n=-\frac{\mu}{2n^2}\left(\frac{e^2}{4\pi\varepsilon_0\hbar}\right)^2
+\approx-\frac{1}{n^2}\times13.6\,\text{eV}
 \end{equation*}
 
 \end{document}
