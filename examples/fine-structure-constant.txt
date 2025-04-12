@@ -31,4 +31,4 @@ alpha
 
 e^2 / (4 float(pi) epsilon0 hbar c)
 
-alpha - last
+abs(alpha/last - 1)

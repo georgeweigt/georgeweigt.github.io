@@ -114,9 +114,11 @@ A3d2p
 
 "Verify emission coefficients"
 
-check(abs(A3s2p second / 10^6 - 6.313) < 0.001)
-check(abs(A3p2s second / 10^7 - 2.245) < 0.001)
-check(abs(A3d2p second / 10^7 - 6.465) < 0.001)
+err(a,b) = abs(a/b - 1)
+
+check(err(A3s2p, 6.313 10^6 / second) < 0.001)
+check(err(A3p2s, 2.245 10^7 / second) < 0.001)
+check(err(A3d2p, 6.465 10^7 / second) < 0.001)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
