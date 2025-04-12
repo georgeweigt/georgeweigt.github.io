@@ -32,5 +32,7 @@ alpha
 
 e^2 / (4 float(pi) epsilon0 hbar c)
 
-abs(alpha/last - 1)
+err(a,b) = 2 abs((a - b) / (a + b)) -- relative error
+
+err(alpha, e^2 / (4 float(pi) epsilon0 hbar c))
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

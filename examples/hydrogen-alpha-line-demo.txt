@@ -111,12 +111,12 @@ A3p2s
 A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p / 5
 A3d2p
 
-"Verify emission coefficients"
+"Verify coefficients"
 
-err(a,b) = abs(a/b - 1)
+err(a,b) = 2 abs((a - b) / (a + b)) -- relative error
 
-check(err(A3s2p, 6.313 10^6 / second) < 0.001)
-check(err(A3p2s, 2.245 10^7 / second) < 0.001)
-check(err(A3d2p, 6.465 10^7 / second) < 0.001)
+check(err(A3s2p, 6.313 10^6 / second) < 0.0001)
+check(err(A3p2s, 2.245 10^7 / second) < 0.0001)
+check(err(A3d2p, 6.465 10^7 / second) < 0.0001)
 
 "ok"
