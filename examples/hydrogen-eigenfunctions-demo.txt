@@ -56,6 +56,6 @@ e = sqrt(4 pi epsilon0 alpha hbar c)
 
 check(a0 == hbar / (alpha mu c))
 check(A == -alpha hbar c / r)
-check(B == -mu alpha^2 c^2 / (2 n^2))
+check(B == -alpha^2 mu c^2 / (2 n^2))
 
 "ok"
