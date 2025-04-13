@@ -1,4 +1,4 @@
-.PHONY: default clean
+.PHONY: default clean cat
 
 %.pdf: %.tex preamble
 	pdflatex $<
@@ -21,3 +21,8 @@ unify: unify.c
 
 clean:
 	rm -f *.aux *.log *.synctex.gz *.toc
+
+# @ for silent
+
+cat:
+	@for file in $$(basename -a -s .txt *.txt) ; do echo "clear\n"; cat $$file.txt ; done
