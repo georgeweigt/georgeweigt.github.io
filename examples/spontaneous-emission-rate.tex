@@ -2,7 +2,7 @@
 
 \section*{Spontaneous emission rate}
 
-What is the spontaneous emission rate for hydrogen state 2$p$?
+Find the spontaneous emission rate for hydrogen state 2$p$.
 
 \bigskip
 The wave function for hydrogen is
@@ -19,20 +19,26 @@ R_{nl}(r)=
 L_{n-l-1}^{2l+1}\biggl(\frac{2r}{na_0}\biggr)
 \exp\biggl(-\frac{r}{na_0}\biggr)
 a_0^{-3/2}
-\\
+\\[1ex]
 L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
-\\
+\\[1ex]
 Y_{lm}(\theta,\phi)=(-1)^m
 \biggl(\frac{2l+1}{4\pi}\biggr)^{1/2}
 \biggl(\frac{(l-m)!}{(l+m)!}\biggr)^{1/2}
 P_l^m(\cos\theta)\exp(im\phi)
-\\
-P_l^m(x)=\frac{1}{2^l l!}(1-x^2)^{m/2}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
-\\
-a_0=\frac{4\pi\varepsilon_0\hbar^2}{e^2\mu}\approx0.529\times10^{-10}\,\text{meter}
+\\[1ex]
+P_l^m(\cos\theta)=\begin{cases}
+\displaystyle
+\left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
+(-1)^k\frac{(l+m+k)!}{(l-m-k)!(m+k)!k!}
+\left(\frac{1-\cos\theta}{2}\right)^k, & m\ge0
+\\[3ex]
+\displaystyle
+(-1)^m\frac{(l+m)!}{(l-m)!}P_l^{|m|}(\cos\theta), & m<0
+\end{cases}
 \end{gather*}
 
-The state $2p$ means that $n=2$ and $l=1$.
+State $2p$ is shorthand for $n=2$ and $l=1$.
 For $l=1$ there are three ways to choose $m$ hence all of the following processes correspond to the transition
 $2p\rightarrow1s$.
 It turns out that all three processes have the same transition rate.
@@ -74,7 +80,7 @@ f_{21}=\psi_{100}^*\psi_{210}=\frac{r\cos\theta}{4\sqrt2\pi a_0^4}\exp\biggl(-\f
 dV=r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{gather*}
 
-The integrals are
+The integrals work out to be
 \begin{equation*}
 x_{21}=0,
 \quad
