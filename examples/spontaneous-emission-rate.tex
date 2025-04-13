@@ -14,17 +14,17 @@ where
 \begin{gather*}
 R_{nl}(r)=
 \frac{2}{n^2}
-\biggl(\frac{(n-l-1)!}{(n+l)!}\biggr)^{1/2}
-\biggl(\frac{2r}{na_0}\biggr)^l
-L_{n-l-1}^{2l+1}\biggl(\frac{2r}{na_0}\biggr)
-\exp\biggl(-\frac{r}{na_0}\biggr)
+\sqrt{\frac{(n-l-1)!}{(n+l)!}}
+\left(\frac{2r}{na_0}\right)^l
+L_{n-l-1}^{2l+1}\left(\frac{2r}{na_0}\right)
+\exp\left(-\frac{r}{na_0}\right)
 a_0^{-3/2}
 \\[1ex]
 L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
 \\[1ex]
 Y_{lm}(\theta,\phi)=(-1)^m
-\biggl(\frac{2l+1}{4\pi}\biggr)^{1/2}
-\biggl(\frac{(l-m)!}{(l+m)!}\biggr)^{1/2}
+\sqrt{\frac{(2l+1)}{4\pi}
+\frac{(l-m)!}{(l+m)!}}
 P_l^m(\cos\theta)\exp(im\phi)
 \\[1ex]
 P_l^m(\cos\theta)=\begin{cases}
@@ -59,24 +59,27 @@ A_{21}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\omega_{21}^3|r_{21}|^2
 \end{equation*}
 where
 \begin{gather*}
-\omega_{21}=\frac{E_2-E_1}{\hbar},\quad E_n=-\frac{e^2}{8\pi\varepsilon_0a_0n^2}
-\\
+\omega_{21}=\frac{E_2-E_1}{\hbar},\quad E_n=-\frac{\alpha^2\mu c^2}{2n^2}
+\\[1ex]
 |r_{21}|^2=|x_{21}|^2+|y_{21}|^2+|z_{21}|^2
-\\
+\\[1ex]
 x_{21}=\int\limits_{0}^{2\pi}\int\limits_{0}^{\pi}\int\limits_{0}^{\infty}xf_{21}\,dV,
 \quad
 y_{21}=\int\limits_{0}^{2\pi}\int\limits_{0}^{\pi}\int\limits_{0}^{\infty}yf_{21}\,dV,
 \quad
 z_{21}=\int\limits_{0}^{2\pi}\int\limits_{0}^{\pi}\int\limits_{0}^{\infty}zf_{21}\,dV
-\\
+\end{gather*}
+
+and
+\begin{gather*}
+f_{21}=\psi_{100}^*\psi_{210}%=\frac{r\cos\theta}{4\sqrt2\pi a_0^4}\exp\left(-\frac{3r}{2a_0}\right)
+\\[1ex]
 x=r\sin\theta\cos\phi,
 \quad
 y=r\sin\theta\sin\phi,
 \quad
 z=r\cos\theta
-\\
-f_{21}=\psi_{100}^*\psi_{210}=\frac{r\cos\theta}{4\sqrt2\pi a_0^4}\exp\biggl(-\frac{3r}{2a_0}\biggr)
-\\
+\\[1ex]
 dV=r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{gather*}
 
