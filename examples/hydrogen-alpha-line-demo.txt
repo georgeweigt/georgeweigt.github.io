@@ -25,10 +25,6 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
            (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
            ((1 - cos(theta)) / 2)^k))
 
--- E(n) returns the nth energy eigenvalue
-
-E(n) = -alpha^2 mu c^2 / (2 n^2)
-
 -- integrate f
 
 I(f) = do(
@@ -72,6 +68,16 @@ X3d2p = X(psi(2,1,1),psi(3,2,2)) +
         X(psi(2,1,-1),psi(3,2,-1)) +
         X(psi(2,1,-1),psi(3,2,-1))
 
+X3p2s = X3p2s / 3
+X3d2p = X3d2p / 5
+
+E(n) = -alpha hbar c / (2 n^2 a0)
+omega32 = (E(3) - E(2)) / hbar
+
+A3s2p = 4 alpha omega32^3 X3s2p / (3 c^2)
+A3p2s = 4 alpha omega32^3 X3p2s / (3 c^2)
+A3d2p = 4 alpha omega32^3 X3d2p / (3 c^2)
+
 -- CODATA Internationally recommended 2022 values
 -- https://physics.nist.gov/cuu/Constants/
 -- c, e, h, and k are exact values
@@ -104,15 +110,9 @@ second = "second"
 pi = float(pi) -- use numerical value of pi
 mu = me mp / (me + mp)
 a0 = a0 me / mu -- correction
-omega32 = (E(3) - E(2)) / hbar
 
-A3s2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3s2p
 A3s2p
-
-A3p2s = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3p2s / 3
 A3p2s
-
-A3d2p = e^2 / (3 pi epsilon0 hbar c^3) omega32^3 X3d2p / 5
 A3d2p
 
 "Verify coefficients"
