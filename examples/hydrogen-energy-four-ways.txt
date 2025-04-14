@@ -35,22 +35,38 @@ pi = float(pi) -- use numerical value of pi
 mu = me mp / (me + mp)
 a0 = a0 me / mu -- correction
 
--- traditional form that has epsilon0
+-- traditional form with epsilon0
 
 E(n) = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
 E(1) eV
 
--- get rid of coulombs but still easy to solve Schrodinger equation
+-- eliminate coulombs but still easy to solve Schrodinger equation
 
 E(n) = -hbar^2 / (2 n^2 mu a0^2)
 E(1) eV
 
--- for dividing by hbar to get angular frequency
+-- for dividing by hbar to get angular frequency omega
 
 E(n) = -alpha hbar c / (2 n^2 a0)
 E(1) eV
 
--- this form has mu instead of a0
+-- this form is irreducible
 
 E(n) = -alpha^2 mu c^2 / (2 n^2)
 E(1) eV
+
+clear
+
+A = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
+B = -hbar^2 / (2 n^2 mu a0^2)
+C = -alpha hbar c / (2 n^2 a0)
+D = -alpha^2 mu c^2 / (2 n^2)
+
+a0 = hbar / (alpha mu c)
+e = sqrt(4 pi epsilon0 alpha hbar c)
+
+check(A == D)
+check(B == D)
+check(C == D)
+
+"ok"
