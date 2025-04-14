@@ -69,8 +69,13 @@ X3d2p = X(psi(2,1,1),psi(3,2,2)) +
         X(psi(2,1,-1),psi(3,2,-1)) +
         X(psi(2,1,-1),psi(3,2,-1))
 
-X3p2s = X3p2s / 3
-X3d2p = X3d2p / 5
+-- average over 3 initial states per final state
+
+X3p2s = 1/3 X3p2s
+
+-- average over 5 initial states per final state
+
+X3d2p = 1/5 X3d2p
 
 E(n) = -alpha hbar c / (2 n^2 a0)
 omega32 = (E(3) - E(2)) / hbar

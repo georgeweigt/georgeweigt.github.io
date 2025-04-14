@@ -4,6 +4,7 @@
 
 The following transitions correspond to the H-$\alpha$ line of the hydrogen spectrum.
 See ``Atomic Transition Probabilities Volume I," issued May 20, 1966, page 2.
+$A_{ki}$ is the spontaneous emission rate where $k$ is the upper state and $i$ is the lower state.
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -21,23 +22,18 @@ $2p-3d$ & 6562.81 & $6.465\times10^7$
 \end{tabular}
 \end{center}
 
-$A_{ki}$ is the spontaneous emission rate where $i$ is the lower state and $k$ is the upper state.
-Orbital names correspond to the following azimuthal quantum numbers $\ell$.
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Orbital & $\ell$
+Orbital names correspond to azimuthal quantum numbers $\ell$.
+\begin{equation*}
+\begin{matrix}
+\text{Orbital} & \ell
 \\
-\hline
-$s$ & $0$
+s & 0
 \\
-$p$ & $1$
+p & 1
 \\
-$d$ & $2$
-\\
-\hline
-\end{tabular}
-\end{center}
+d & 2
+\end{matrix}
+\end{equation*}
 
 Each transition in the table has multiple processes due to the magnetic quantum number $m_\ell$.
 (Recall that $m_\ell=0,\pm1,\ldots,\pm\ell$.)
@@ -95,35 +91,36 @@ $A_{ki}$ is computed from the following formula.
 A_{ki}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\,\omega_{ki}^3\,|r_{ki}|^2
 \end{equation*}
 
-The transition frequency $\omega_{ki}$ is given by Bohr's frequency condition.
+The transition frequency $\omega_{ki}$ is given by Bohr's frequency condition
 \begin{equation*}
-\omega_{ki}=\frac{1}{\hbar}(E_k-E_i)
+\omega_{ki}=\frac{E_k-E_i}{\hbar}
 \end{equation*}
 
-The transition probability (multiplied by a physical constant) is
+The transition probability is
 \begin{equation*}
 |r_{ki}|^2
 =|x_{ki}|^2
 +|y_{ki}|^2
 +|z_{ki}|^2
 \end{equation*}
+
 These are the transition amplitudes.
 \begin{align*}
-x_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
-\psi_i^*\,r\sin\theta\cos\phi\,\psi_k
+x_{ki}&=\int_0^\infty\int_0^\pi\int_0^{2\pi}
+r\sin\theta\cos\phi\,\psi_i^*\psi_k
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \\
-y_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
-\psi_i^*\,r\sin\theta\sin\phi\,\psi_k
+y_{ki}&=\int_0^\infty\int_0^\pi\int_0^{2\pi}
+r\sin\theta\sin\phi\,\psi_i^*\psi_k
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \\
-z_{ki}&=\int_0^{2\pi}\int_0^\pi\int_0^\infty
-\psi_i^*\,r\cos\theta\,\psi_k
+z_{ki}&=\int_0^\infty\int_0^\pi\int_0^{2\pi}
+r\cos\theta\,\psi_i^*\psi_k
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{align*}
 
-Using Eigenmath we obtain the following values for average $A_{ki}$.
-The results are essentially identical to the values found in ``Atomic Transition Probabilities.''
+Using Eigenmath,
+the results are essentially identical to the book values.
 \begin{align*}
 A_{3s2p}&=6.31358\times10^6\,\text{second}^{-1}
 \\
