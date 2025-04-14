@@ -1,15 +1,15 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Verify hydrogen energy formulas"
+
 A = -mu / (2 n^2) (e^2 / (4 pi epsilon0 hbar))^2
 B = -hbar^2 / (2 n^2 mu a0^2)
 C = -alpha hbar c / (2 n^2 a0)
 D = -alpha^2 mu c^2 / (2 n^2)
 
 e = sqrt(4 pi epsilon0 alpha hbar c)
-
-check(A == D)
-
 a0 = hbar / (alpha mu c)
 
+check(A == D)
 check(B == D)
 check(C == D)
 
