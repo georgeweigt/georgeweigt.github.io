@@ -45,7 +45,7 @@ E(1) eV
 E(n) = -hbar^2 / (2 n^2 mu a0^2)
 E(1) eV
 
--- for finding simple symbolic forms of transition probabilities
+-- for dividing by hbar to get angular frequency
 
 E(n) = -alpha hbar c / (2 n^2 a0)
 E(1) eV
