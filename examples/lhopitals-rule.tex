@@ -7,7 +7,7 @@ Find the following limit.
 y=\lim_{n\rightarrow\infty}\left(1-\frac{\alpha}{n^2}\right)^n
 \end{equation*}
 
-Rewrite as
+Start by rewriting as limit of exponential.
 \begin{equation*}
 y=\lim_{n\rightarrow\infty}\exp\left[n\log\left(1-\frac{\alpha}{n^2}\right)\right]
 \end{equation*}
@@ -20,12 +20,12 @@ n\log\left(1-\frac{\alpha}{n^2}\right)
 \right]
 \end{equation*}
 
-Rewrite again as
+Make $n$ a denominator.
 \begin{equation*}
-y=\lim_{n\rightarrow\infty}\exp\left[\frac{\log\left(1-\frac{\alpha}{n^2}\right)}{\frac{1}{n}}\right]
+y=\exp\left[\lim_{n\rightarrow\infty}\frac{\log\left(1-\frac{\alpha}{n^2}\right)}{\frac{1}{n}}\right]
 \end{equation*}
 
-Both numerator and denominator have limit zero hence apply l'H\^opital's rule.
+Both numerator and denominator vanish in the limit hence use l'H\^opital's rule.
 \begin{equation*}
 y=\exp\left[
 \lim_{n\rightarrow\infty}
