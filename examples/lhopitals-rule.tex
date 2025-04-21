@@ -1,0 +1,52 @@
+\input{preamble}
+
+\section*{l'H\^opital's rule}
+
+Find the following limit.
+\begin{equation*}
+y=\lim_{n\rightarrow\infty}\left(1-\frac{\alpha}{n^2}\right)^n
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+y=\lim_{n\rightarrow\infty}\exp\left[n\log\left(1-\frac{\alpha}{n^2}\right)\right]
+\end{equation*}
+
+By composition limit law rewrite as exponential of limit.
+\begin{equation*}
+y=\exp\left[
+\lim_{n\rightarrow\infty}
+n\log\left(1-\frac{\alpha}{n^2}\right)
+\right]
+\end{equation*}
+
+Rewrite again as
+\begin{equation*}
+y=\lim_{n\rightarrow\infty}\exp\left[\frac{\log\left(1-\frac{\alpha}{n^2}\right)}{\frac{1}{n}}\right]
+\end{equation*}
+
+Both numerator and denominator have limit zero hence apply l'H\^opital's rule.
+\begin{equation*}
+y=\exp\left[
+\lim_{n\rightarrow\infty}
+\frac{\frac{d}{dn}\log\left(1-\frac{\alpha}{n^2}\right)}
+{\frac{d}{dn}\frac{1}{n}}
+\right]
+=\exp\left(
+\lim_{n\rightarrow\infty}
+\frac
+{\frac{2\alpha}{n^3-\alpha n}}
+{-\frac{1}{n^2}}
+\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+y=\exp\left(
+\lim_{n\rightarrow\infty}
+\frac{2\alpha}{\frac{\alpha}{n}-n}
+\right)
+=\exp(0)=1
+\end{equation*}
+
+\end{document}

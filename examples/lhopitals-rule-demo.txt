@@ -1,0 +1,13 @@
+"l'Hopital's rule"
+
+f = log(1 - alpha / n^2)
+g = 1 / n
+
+check(d(f,n) == 2 alpha / (n^3 - alpha n))
+check(d(g,n) == -1 / n^2)
+
+y = d(f,n) / d(g,n)
+
+check(y == 2 alpha / (alpha / n - n))
+
+"ok"
