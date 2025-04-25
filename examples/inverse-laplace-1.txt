@@ -1,0 +1,25 @@
+-- inverse Laplace transform for 1 / (s^2 + a s + b)
+
+T = -(exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) - exp(t (1/2 sqrt(a^2 - 4 b) - a/2)))/sqrt(a^2 - 4 b)
+
+k = sqrt(a^2 - 4 b)
+
+T1 = exp(1/2 k t) / k
+T2 = -exp(-1/2 k t) / k
+
+check(T == (T1 + T2) exp(-1/2 a t))
+
+-- factor out i
+
+k = sqrt(4 b - a^2)
+
+T1 = exp(1/2 i k t) / (i k)
+T2 = -exp(-1/2 i k t) / (i k)
+
+check(T1 + T2 == 2 sin(1/2 k t) / k)
+
+1 / (s^2 + a s + b)
+
+"Inverse transform is"
+
+2 sin(1/2 k t) / k exp(-1/2 a t)
