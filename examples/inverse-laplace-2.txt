@@ -4,7 +4,6 @@
 T = (a exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) - a exp(t (1/2 sqrt(a^2 - 4 b) - a/2)) + sqrt(a^2 - 4 b) exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) + sqrt(a^2 - 4 b) exp(t (1/2 sqrt(a^2 - 4 b) - a/2)))/(2 sqrt(a^2 - 4 b))
 
 k = sqrt(a^2 - 4 b)
-
 T1 = -a exp(1/2 k t) / (2 k)
 T2 = a exp(-1/2 k t) / (2 k)
 T3 = 1/2 exp(1/2 k t)
@@ -15,7 +14,6 @@ check(T == (T1 + T2 + T3 + T4) exp(-1/2 a t))
 -- factor out i
 
 k = sqrt(4 b - a^2)
-
 T = eval(T, sqrt(a^2 - 4 b), i k)
 T = eval(T, 1 / sqrt(a^2 - 4 b), 1 / (i k))
 
@@ -24,13 +22,14 @@ T2 = a exp(-1/2 i k t) / (2 i k)
 T3 = 1/2 exp(1/2 i k t)
 T4 = 1/2 exp(-1/2 i k t)
 
+check(T == (T1 + T2 + T3 + T4) exp(-1/2 a t))
 check(T1 + T2 == -a sin(1/2 k t) / k)
 check(T3 + T4 == cos(1/2 k t))
 
-check(T == (cos(1/2 k t) - a sin(1/2 k t) / k) exp(-1/2 a t))
+f = (cos(1/2 k t) - a sin(1/2 k t) / k) exp(-1/2 a t)
+check(T == f)
 
-s / (s^2 + a s + b)
-
+F = s / (s^2 + a s + b)
+F
 "Inverse transform is"
-
-(cos(1/2 k t) - a sin(1/2 k t) / k) exp(-1/2 a t)
+f

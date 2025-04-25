@@ -4,18 +4,30 @@
 -- from Wolfram
 T = -(exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) - exp(t (1/2 sqrt(a^2 - 4 b) - a/2)))/sqrt(a^2 - 4 b)
 
+k = sqrt(a^2 - 4 b)
+T1 = exp(1/2 k t) / k
+T2 = -exp(-1/2 k t) / k
+
+check(T == (T1 + T2) exp(-1/2 a t))
+check(T1 + T2 == -2 i sin(1/2 i k t) / k)
+
 -- factor out i
 
 k = sqrt(4 b - a^2)
-
 T = eval(T, sqrt(a^2 - 4 b), i k)
 T = eval(T, 1 / sqrt(a^2 - 4 b), 1 / (i k))
 
-check(T == 2 sin(1/2 k t) / k exp(-1/2 a t))
+T1 = exp(1/2 i k t) / (i k)
+T2 = -exp(-1/2 i k t) / (i k)
 
-1 / (s^2 + a s + b)
+check(T == (T1 + T2) exp(-1/2 a t))
+check(T1 + T2 == 2 sin(1/2 k t) / k)
 
+f = 2 sin(1/2 k t) / k exp(-1/2 a t)
+check(T == f)
+
+F = 1 / (s^2 + a s + b)
+F
 "Inverse transform is"
-
-2 sin(1/2 k t) / k exp(-1/2 a t)
+f
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
