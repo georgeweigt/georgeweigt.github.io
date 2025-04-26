@@ -4,26 +4,19 @@
 -- from Wolfram
 T = (a exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) - a exp(t (1/2 sqrt(a^2 - 4 b) - a/2)) + sqrt(a^2 - 4 b) exp(t (-1/2 sqrt(a^2 - 4 b) - a/2)) + sqrt(a^2 - 4 b) exp(t (1/2 sqrt(a^2 - 4 b) - a/2)))/(2 sqrt(a^2 - 4 b))
 
-k = sqrt(a^2 - 4 b)
-T1 = -a exp(1/2 k t) / (2 k)
-T2 = a exp(-1/2 k t) / (2 k)
-T3 = 1/2 exp(1/2 k t)
-T4 = 1/2 exp(-1/2 k t)
+T = eval(T, a^2 - 4 b, K^2)
+
+T1 = -a exp(1/2 K t) / (2 K)
+T2 = a exp(-1/2 K t) / (2 K)
+T3 = 1/2 exp(1/2 K t)
+T4 = 1/2 exp(-1/2 K t)
 
 check(T == (T1 + T2 + T3 + T4) exp(-1/2 a t))
 
 -- factor out i
 
 k = sqrt(4 b - a^2)
-T = eval(T, sqrt(a^2 - 4 b), i k)
-T = eval(T, 1 / sqrt(a^2 - 4 b), 1 / (i k))
-
-T1 = -a exp(1/2 i k t) / (2 i k)
-T2 = a exp(-1/2 i k t) / (2 i k)
-T3 = 1/2 exp(1/2 i k t)
-T4 = 1/2 exp(-1/2 i k t)
-
-check(T == (T1 + T2 + T3 + T4) exp(-1/2 a t))
+K = i k
 check(T1 + T2 == -a sin(1/2 k t) / k)
 check(T3 + T4 == cos(1/2 k t))
 
