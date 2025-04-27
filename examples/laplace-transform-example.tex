@@ -4,51 +4,51 @@
 
 Solve for $c_a(t)$ and $c_b(t)$ where $c_a(0)=1$, $c_b(0)=0$, and
 \begin{align*}
-i\hbar\dot c_a(t)&=Ae^{-i\omega t}c_b(t)
+\dot c_a(t)&=Ae^{-i\omega t}c_b(t)
 \\
-i\hbar\dot c_b(t)&=Be^{i\omega t}c_a(t)
+\dot c_b(t)&=Be^{i\omega t}c_a(t)
 \end{align*}
 
 Start with Laplace transforms.
 \begin{align*}
-i\hbar sC_a(s)-i\hbar c_a(0)&=AC_b(s+i\omega)
+sC_a(s)-c_a(0)&=AC_b(s+i\omega)
 \\
-i\hbar sC_b(s)-i\hbar c_b(0)&=BC_a(s-i\omega)
+sC_b(s)-c_b(0)&=BC_a(s-i\omega)
 \tag{1}
 \end{align*}
 
 Solve for $C_a(s)$ with $c_a(0)=1$.
 \begin{equation*}
-C_a(s)=\frac{AC_b(s+i\omega)+i\hbar}{i\hbar s}
+C_a(s)=\frac{AC_b(s+i\omega)}{s}+\frac{1}{s}
 \end{equation*}
 
-Hence
+Solve for $C_a(s-i\omega)$.
 \begin{equation*}
-C_a(s-i\omega)=-\frac{iAC_b(s)}{\hbar(s-i\omega)}+\frac{1}{s-i\omega}
+C_a(s-i\omega)=\frac{AC_b(s)}{s-i\omega}+\frac{1}{s-i\omega}
 \tag{2}
 \end{equation*}
 
 Substitute (2) into (1) with $c_b(0)=0$ to obtain
 \begin{equation*}
-i\hbar sC_b(s)=-\frac{iABC_b(s)}{\hbar(s-i\omega)}+\frac{B}{s-i\omega}
+sC_b(s)=\frac{ABC_b(s)}{s-i\omega}+\frac{B}{s-i\omega}
 \end{equation*}
 
 Rearrange as
 \begin{equation*}
-i\hbar sC_b(s)+\frac{iABC_b(s)}{\hbar(s-i\omega)}=\frac{B}{s-i\omega}
+sC_b(s)-\frac{ABC_b(s)}{s-i\omega}=\frac{B}{s-i\omega}
 \end{equation*}
 
 Rearrange again as
 \begin{equation*}
-C_b(s)\left[i\hbar s+\frac{iAB}{\hbar(s-i\omega)}\right]=\frac{B}{s-i\omega}
+C_b(s)\left(s-\frac{AB}{s-i\omega}\right)=\frac{B}{s-i\omega}
 \end{equation*}
 
 Hence
 \begin{equation*}
 C_b(s)=\frac
 {\displaystyle\frac{B}{s-i\omega}}
-{\displaystyle i\hbar s+\frac{iAB}{\hbar(s-i\omega)}}
-=\frac{-iB/\hbar}{s^2-i\omega s+AB/\hbar^2}
+{\displaystyle s-\frac{AB}{s-i\omega}}
+=\frac{B}{s^2-i\omega s-AB}
 \end{equation*}
 
 Inverse Laplace transform:
@@ -58,17 +58,17 @@ Inverse Laplace transform:
 k=\sqrt{4b-a^2}
 \end{equation*}
 
-Hence for $a=-i\omega$ and $b=AB/\hbar^2$ we have
+Hence for $a=-i\omega$ and $b=-AB$ we have
 \begin{equation*}
-c_b(t)=-\frac{2iB}{\hbar k}
+c_b(t)=\frac{2B}{k}
 \sin\left(\frac{kt}{2}\right)
 \exp\left(\frac{i\omega t}{2}\right),\quad
-k=\sqrt{\frac{4AB}{\hbar^2}+\omega^2}
+k=\sqrt{-4AB+\omega^2}
 \end{equation*}
 
 Solve for $c_a(t)$.
 \begin{equation*}
-c_a(t)=\frac{i\hbar\dot c_b(t)}{Be^{i\omega t}}
+c_a(t)=\frac{\dot c_b(t)}{Be^{i\omega t}}
 =\cos\left(\frac{kt}{2}\right)\exp\left(-\frac{i\omega t}{2}\right)
 +\frac{i\omega}{k}\sin\left(\frac{kt}{2}\right)\exp\left(-\frac{i\omega t}{2}\right)
 \end{equation*}

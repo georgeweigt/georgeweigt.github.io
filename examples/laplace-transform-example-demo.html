@@ -1,44 +1,44 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Laplace transform example"
 
-Ca(s) = (A Cb(s + i omega) + i hbar) / (i hbar s)
-T = -i A Cb(s) / (hbar (s - i omega)) + 1 / (s - i omega)
+Ca(s) = (A Cb(s + i omega) + 1) / s
+T = A Cb(s) / (s - i omega) + 1 / (s - i omega)
 check(Ca(s - i omega) == T)
 
 X = B / (s - i omega)
-Y = i hbar s + i A B / (hbar (s - i omega))
+Y = s - A B / (s - i omega)
 
 Cb = X / Y
 
 a = -i omega
-b = A B / hbar^2
+b = -A B
 
-check(Cb == -i B / hbar / (s^2 + a s + b))
+check(Cb == B / (s^2 + a s + b))
 
 k = sqrt(4 b - a^2)
 
 -- inverse Laplace transform
 
-T = 2 sin(k t / 2) exp(-a t / 2) / k
+T = 2/k sin(1/2 k t) exp(-1/2 a t)
 
-cb = -i B / hbar T
-ca = i hbar d(cb,t) / (B exp(i omega t))
+cb = B T
+ca = d(cb,t) / (B exp(i omega t))
 
 ca
 cb
 
 -- verify solutions
 
-X = cos(k t / 2) exp(-i omega t / 2) +
-    i omega / k sin(k t / 2) exp(-i omega t / 2)
+X = cos(1/2 k t) exp(-1/2 i omega t) +
+    i omega / k sin(1/2 k t) exp(-1/2 i omega t)
 
-Y = -2 i B / (hbar k) sin(k t / 2) exp(i omega t / 2)
+Y = 2 B / k sin(1/2 k t) exp(1/2 i omega t)
 
 check(ca == X)
 check(cb == Y)
 
-check(i hbar d(ca,t) == A exp(-i omega t) cb)
-check(i hbar d(cb,t) == B exp(i omega t) ca)
+check(d(ca,t) == A exp(-i omega t) cb)
+check(d(cb,t) == B exp(i omega t) ca)
 
 check(eval(ca,t,0) == 1)
 check(eval(cb,t,0) == 0)
