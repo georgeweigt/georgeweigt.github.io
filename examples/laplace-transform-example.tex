@@ -14,7 +14,6 @@ Start with Laplace transforms.
 sC_a(s)-c_a(0)&=AC_b(s+i\omega)
 \\
 sC_b(s)-c_b(0)&=BC_a(s-i\omega)
-\tag{1}
 \end{align*}
 
 Solve for $C_a(s)$ with $c_a(0)=1$.
@@ -25,10 +24,9 @@ C_a(s)=\frac{AC_b(s+i\omega)}{s}+\frac{1}{s}
 Solve for $C_a(s-i\omega)$.
 \begin{equation*}
 C_a(s-i\omega)=\frac{AC_b(s)}{s-i\omega}+\frac{1}{s-i\omega}
-\tag{2}
 \end{equation*}
 
-Substitute (2) into (1) with $c_b(0)=0$ to obtain
+Multiply by $B$ to obtain $sC_b(s)$.
 \begin{equation*}
 sC_b(s)=\frac{ABC_b(s)}{s-i\omega}+\frac{B}{s-i\omega}
 \end{equation*}

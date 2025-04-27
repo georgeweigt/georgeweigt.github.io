@@ -1,10 +1,6 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Laplace transform example"
 
-Ca(s) = (A Cb(s + i omega) + 1) / s
-T = A Cb(s) / (s - i omega) + 1 / (s - i omega)
-check(Ca(s - i omega) == T)
-
 X = B / (s - i omega)
 Y = s - A B / (s - i omega)
 
@@ -17,11 +13,8 @@ check(Cb == B / (s^2 + a s + b))
 
 k = sqrt(4 b - a^2)
 
--- inverse Laplace transform
+cb = B 2/k sin(1/2 k t) exp(-1/2 a t)
 
-T = 2/k sin(1/2 k t) exp(-1/2 a t)
-
-cb = B T
 ca = d(cb,t) / (B exp(i omega t))
 
 ca
