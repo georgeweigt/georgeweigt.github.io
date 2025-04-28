@@ -1,0 +1,44 @@
+\input{preamble}
+
+\FBOX{
+6-7.
+Suppose the potential energy $V(\mathbf r)=-e\phi(\mathbf r)$
+is the result of a charge distribution $\rho(\mathbf r)$ so that
+\begin{equation*}
+\nabla^2\phi(\mathbf r)=-4\pi\rho(\mathbf r)
+\tag{6.48}
+\end{equation*}
+
+By assuming that $\rho(\mathbf r)$ goes to 0 as $|\mathbf r|\rightarrow\infty$,
+multiplying equation (6.48) by $e^{i(\breve{\mathbf p}/\hbar)\cdot\mathbf r}$,
+and integrating twice over $\mathbf r$,
+show that $v(\breve{\mathbf p})$ can be expressed in terms of $\rho(\mathbf r)$ as
+\begin{equation*}
+v(\breve{\mathbf p})=-\frac{4\pi\hbar^2e}{\breve p^2}
+\int e^{i(\breve{\mathbf p}/\hbar)\cdot\mathbf r}\rho(\mathbf r)\,d^3\mathbf r
+\tag{6.49}
+\end{equation*}
+}
+
+\begin{equation*}
+v(\breve{\mathbf p})=-4\pi e\int\int_0^{\mathbf R}
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)\phi(\mathbf R)\,d\mathbf r\,d\mathbf R
+\end{equation*}
+
+\begin{equation*}
+\int_0^\mathbf R
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+\bigskip
+In polar coordinates
+\begin{equation*}
+I=\int_0^{2\pi}\int_0^\pi\int_0^\infty
+\nabla^2\phi(\mathbf r)
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)
+r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+FIXME
+
+\end{document}

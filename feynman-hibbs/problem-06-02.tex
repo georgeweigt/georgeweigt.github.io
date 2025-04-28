@@ -1,0 +1,233 @@
+\input{preamble}
+
+\FBOX{
+6-2.
+Suppose a system consists of two particles which interact only through a potential
+$V(x,y)$, where $x$ represents the coordinates
+of the first particle and $y$ represents the coordinates of the second
+(see Sec.~3-8 and Eq.~3.75).
+Apart from this interaction, the particles are free.
+If $V$ were 0, then $K$ would be simply a product of the two
+free-particle kernels.
+Using this fact, develop a perturbation expansion for
+$K_V(x_b,y_b,t_b;x_a,y_a,t_a)$.
+By what rules of physical reasoning can the various terms in this expression be described?
+}
+
+For simplicity of notation let
+\begin{equation*}
+K(b,a)\equiv K_V(x_b,y_b,t_b;x_a,y_a,t_a)
+\end{equation*}
+
+Start with this equation adapted from (3.75).
+\begin{multline*}
+K(b,a)=\int_{y_a}^{y_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt
++\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{M\dot y^2}{2}\,dt\right)
+\\
+{}\times\exp\left(-\frac{i}{\hbar}\int_{t_a}^{t_b}V\bigl(x(t_c),y(t_c)\bigr)\,dt_c\right)
+\,\mathscr Dx(t)\,\mathscr Dy(t)
+\end{multline*}
+
+This is the power series expansion of the exponential of $V$.
+\begin{equation*}
+\exp\left(-\frac{i}{\hbar}\int_{t_a}^{t_b}V\bigl(x(t_c),y(t_c)\bigr)\,dt_c\right)
+=1-\frac{i}{\hbar}\int_{t_a}^{t_b}V\bigl(x(t_c),y(t_c)\bigr)\,dt_c+{}\cdots
+\end{equation*}
+
+Hence the perturbation expansion of $K$ is
+\begin{equation*}
+K(b,a)=K_0(b,a)+K^{(1)}(b,a)+{}\cdots
+\end{equation*}
+
+where $K_0(b,a)$ is the free particle propagator and
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{y_a}^{y_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt
++\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{M\dot y^2}{2}\,dt\right)
+\\
+{}\times\int_{t_a}^{t_b}V\bigl(x(t_c),y(t_c)\bigr)
+\,dt_c\,\mathscr Dx(t)\,\mathscr Dy(t)
+\end{multline*}
+
+Interchange the order of the integrals.
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{y_a}^{y_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{m\dot x^2}{2}\,dt
++\frac{i}{\hbar}\int_{t_a}^{t_b}\frac{M\dot y^2}{2}\,dt\right)
+\\
+{}\times V\bigl(x(t_c),y(t_c)\bigr)
+\,\mathscr Dx(t)\,\mathscr Dy(t)\,dt_c
+\end{multline*}
+
+Factor the exponential as follows.
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{y_a}^{y_b}\int_{x_a}^{x_b}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{m\dot x^2}{2}\,dt\right)
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+\\
+{}\times
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{M\dot y^2}{2}\,dt\right)
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{M\dot y^2}{2}\,dt\right)
+V\bigl(x(t_c),y(t_c)\bigr)
+\,\mathscr Dx(t)\,\mathscr Dy(t)\,dt_c
+\end{multline*}
+
+The exponentials are free particle propagators.
+\begin{align*}
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{m\dot x^2}{2}\,dt\right)
+=K_0\bigl(x(t_c),t_c,x_a,t_a,m\bigr)
+&\quad\text{$m$ propagates from $x_a,t_a$ to $x(t_c),t_c$}
+\\
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{m\dot x^2}{2}\,dt\right)
+=K_0\bigl(x_b,t_b,x(t_c),t_c,m\bigr)
+&\quad\text{$m$ propagates from $x(t_c),t_c$ to $x_b,t_b$}
+\\
+\exp\left(\frac{i}{\hbar}\int_{t_a}^{t_c}\frac{M\dot y^2}{2}\,dt\right)
+=K_0\bigl(y(t_c),t_c,y_a,t_a,M\bigr)
+&\quad\text{$M$ propagates from $y_a,t_a$ to $y(t_c),t_c$}
+\\
+\exp\left(\frac{i}{\hbar}\int_{t_c}^{t_b}\frac{M\dot y^2}{2}\,dt\right)
+=K_0\bigl(y_b,t_b,y(t_c),t_c,M\bigr)
+&\quad\text{$M$ propagates from $y(t_c),t_c$ to $y_b,t_b$}
+\end{align*}
+
+Hence
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{y_a}^{y_b}\int_{x_a}^{x_b}
+K_0\bigl(x(t_c),t_c,x_a,t_a,m\bigr)
+K_0\bigl(x_b,t_b,x(t_c),t_c,m\bigr)
+\\
+{}\times
+K_0\bigl(y(t_c),t_c,y_a,t_a,M\bigr)
+K_0\bigl(y_b,t_b,y(t_c),t_c,M\bigr)
+V\bigl(x(t_c),y(t_c)\bigr)
+\,\mathscr Dx(t)\,\mathscr Dy(t)\,dt_c
+\end{multline*}
+
+Let $x_c=x(t_c)$ and $y_c=y(t_c)$.
+Since we are integrating over all possible paths $x(t)$ and $y(t)$,
+we have $-\infty<x_c<\infty$ and $-\infty<y_c<\infty$.
+Hence the integral can be transformed into an integral over $x_c$ and $y_c$.
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{-\infty}^\infty\int_{-\infty}^\infty
+K_0(x_c,t_c,x_a,t_a,m)
+K_0(x_b,t_b,x_c,t_c,m)
+\\
+{}\times
+K_0(y_c,t_c,y_a,t_a,M)
+K_0(y_b,t_b,y_c,t_c,M)
+V(x_c,y_c)
+\,dx_c\,dy_c\,dt_c
+\end{multline*}
+
+These are the free particle propagators in three dimensions.
+\begin{align*}
+K_0(x_c,t_c,x_a,t_a,m)&=\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar(t_c-t_a)}\right)
+&\text{$m$ from $x_a,t_a$ to $x_c,t_c$}
+\\
+K_0(x_b,t_b,x_c,t_c,m)&=\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar(t_b-t_c)}\right)
+&\text{$m$ from $x_c,t_c$ to $x_b,t_b$}
+\\
+K_0(y_c,t_c,y_a,t_a,M)&=\left(\frac{M}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_c-\mathbf y_a|^2}{2\hbar(t_c-t_a)}\right)
+&\text{$M$ from $y_a,t_a$ to $y_c,t_c$}
+\\
+K_0(y_b,t_b,y_c,t_c,M)&=\left(\frac{M}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_b-\mathbf y_c|^2}{2\hbar(t_b-t_c)}\right)
+&\text{$M$ from $y_c,t_c$ to $y_b,t_b$}
+\end{align*}
+
+Hence
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_{t_a}^{t_b}\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar(t_c-t_a)}\right)
+\\
+{}\times
+\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar(t_b-t_c)}\right)
+\\
+{}\times
+\left(\frac{M}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_c-\mathbf y_a|^2}{2\hbar(t_c-t_a)}\right)
+\\
+{}\times
+\left(\frac{M}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_b-\mathbf y_c|^2}{2\hbar(t_b-t_c)}\right)
+V(\mathbf x_c,\mathbf y_c)
+\,d\mathbf x_c\,d\mathbf y_c\,dt_c
+\end{multline*}
+
+Let $t_a=0$ and $t_b=T$.
+\begin{multline*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int_0^T\int_{-\infty}^\infty\int_{-\infty}^\infty
+\left(\frac{m}{2\pi i\hbar t_c}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_c-\mathbf x_a|^2}{2\hbar t_c}\right)
+\\
+{}\times
+\left(\frac{m}{2\pi i\hbar(T-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{im|\mathbf x_b-\mathbf x_c|^2}{2\hbar(T-t_c)}\right)
+\\
+{}\times
+\left(\frac{M}{2\pi i\hbar t_c}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_c-\mathbf y_a|^2}{2\hbar t_c}\right)
+\\
+{}\times
+\left(\frac{M}{2\pi i\hbar(T-t_c)}\right)^\frac{3}{2}
+\exp\left(\frac{iM|\mathbf y_b-\mathbf y_c|^2}{2\hbar(T-t_c)}\right)
+V(\mathbf x_c,\mathbf y_c)
+\,d\mathbf x_c\,d\mathbf y_c\,dt_c
+\end{multline*}
+
+\end{document}
+
+FIXME trying to use method of stationary phase in a novel way
+
+\bigskip
+Let
+\begin{align*}
+f(t_c)&=\left(\frac{M}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\left(\frac{m}{2\pi i\hbar(t_b-t_c)}\right)^\frac{3}{2}
+\left(\frac{M}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\left(\frac{m}{2\pi i\hbar(t_c-t_a)}\right)^\frac{3}{2}
+\\
+g(\mathbf x_c,\mathbf y_c,t_c)
+&=\frac{M|\mathbf y_b-\mathbf y_c|^2}{2(t_b-t_c)}
++\frac{m|\mathbf x_b-\mathbf x_c|^2}{2(t_b-t_c)}
++\frac{M|\mathbf y_c-\mathbf y_a|^2}{2(t_c-t_a)}
++\frac{m|\mathbf x_c-\mathbf x_a|^2}{2(t_c-t_a)}
+\\
+\lambda&=\frac{1}{\hbar}
+\end{align*}
+
+Then
+\begin{equation*}
+K^{(1)}(b,a)=-\frac{i}{\hbar}\int f\exp(i\lambda g)
+V(\mathbf x_c,\mathbf y_c)
+\,d\mathbf x_c\,d\mathbf y_c\,dt_c
+\end{equation*}
+
+The phase of the exponential is stationary ($g'(\mathbf x_c,\mathbf y_c,t_c)=0$) for
+\begin{equation*}
+\mathbf x_c=\frac{\mathbf x_a+\mathbf x_b}{2},\quad
+\mathbf y_c=\frac{\mathbf y_a+\mathbf y_b}{2},\quad
+t_c=\frac{t_a+t_b}{2}
+\end{equation*}
+
+Hence
+\begin{align*}
+K^{(1)}(b,a)&=-\frac{i}{\hbar}\exp\left(\frac{i\pi\operatorname{sgn}g''(c)}{4}\right)
+\left(\frac{2\pi}{\lambda g''(c)}\right)^\frac{1}{2}
+f(c)\exp(i\lambda g(c))
+\\
+&=-\frac{i}{\hbar}\exp\left(\frac{i\pi}{4}\right)
+\left(\frac{t_c^3\pi\hbar}{8M|\mathbf y_c|^2+8m|\mathbf x_c|^2}\right)^\frac{1}{2}
+\left(-\frac{M^3m^3}{T^6\pi^6\hbar^6}\right)
+\exp\left(\frac{2iM|\mathbf y_c|^2+2im|\mathbf x_c|^2}{t_c\hbar}\right)
+V(\mathbf x_c,\mathbf y_c)
+\end{align*}
+
+\end{document}

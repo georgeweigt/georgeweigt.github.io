@@ -1,0 +1,41 @@
+\input{preamble}
+
+\FBOX{
+6-11.
+Suppose the diatomic molecules are oriented in a
+random fashion. Show that the electron scattering averaged over a group of
+such molecules is proportional to
+\begin{equation*}
+f_A^2+f_B^2+2f_Af_B
+\frac{\sin(|\breve{\mathbf p}||\mathbf d|/\hbar)}
+{|\breve{\mathbf p}||\mathbf d|/\hbar}
+\end{equation*}
+
+How can this result be generalized to the case of polyatomic molecules?
+}
+
+From problem 6-10
+\begin{equation*}
+\left|K^{(1)}\right|^2=f_A^2+f_B^2+2f_Af_B
+\cos\left(\frac{\breve{\mathbf p}\cdot\mathbf d}{\hbar}\right)
+\end{equation*}
+
+Let $p=|\breve{\mathbf p}|$ and $d=|\mathbf d|$.
+Then
+\begin{equation*}
+\cos\left(\frac{\breve{\mathbf p}\cdot\mathbf d}{\hbar}\right)
+=\cos\left(\frac{pd\cos\theta}{\hbar}\right)
+\end{equation*}
+
+By the definite integral
+\begin{equation*}
+\int_0^\frac{\pi}{2}\cos(a\cos\theta)\sin\theta\,d\theta=\frac{\sin a}{a}
+\end{equation*}
+
+we have
+\begin{equation*}
+\int_0^\frac{\pi}{2}2f_Af_B\cos\left(\frac{pd\cos\theta}{\hbar}\right)\sin\theta\,d\theta
+=2f_Af_B\frac{\sin(pd/\hbar)}{pd/\hbar}
+\end{equation*}
+
+\end{document}

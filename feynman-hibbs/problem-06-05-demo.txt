@@ -1,0 +1,13 @@
+-- Feynman and Hibbs problem 6-5
+
+f = Rbc^2 / (T - tc) + Rca^2 / tc
+
+g = d(f,tc)
+
+tc = T Rca / (Rbc + Rca)
+
+"Verify stationarity"
+
+check(g == 0)
+
+"ok"
