@@ -1,0 +1,90 @@
+\input{preamble}
+
+\FBOX{
+5.21
+The density of copper is $8.96\,\text{g/cm}^3$, and its atomic weight
+is $63.5\,\text{g/mole}$.
+
+\bigskip
+(a) Calculate the Fermi energy for copper (Equation 5.54).
+Assume $d=1$, and give your answer in electron volts.
+
+\bigskip
+(b) What is the corresponding electron velocity?
+{\it Hint:} Set $E_F=(1/2)mv^2$. Is it safe
+to assume the electrons in copper are nonrelativistic?
+
+\bigskip
+(c) At what temperature would the characteristic thermal energy
+($k_BT$, where $k_B$ is the Boltzmann constant
+and $T$ is the Kelvin temperature)
+equal the Fermi energy, for copper?
+{\it Comment:} This is called the {\bf Fermi temperature}, $T_F$.
+As long as the {\it actual} temperature is substantially below the Fermi
+temperature, the material can be regarded as ``cold,'' with most of the
+electrons in the lowest accessible state.
+Since the melting point of copper is $1356\,\text{K}$,
+solid copper is {\it always} cold.
+
+\bigskip
+(d) Calculate the degeneracy pressure (Equation 5.57) of copper,
+in the electron gas model.
+}
+
+(a) Avogadro's number.
+\begin{equation*}
+N_A=6.02\times10^{23}\,\text{atoms/mole}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{N}{V}=\frac{8.96\,\text{g/cm}^3\times(100\,\text{cm/meter})^3}{63.5\,\text{g/mole}}
+\times6.02\times10^{23}\,\text{mole}^{-1}
+=8.49\times10^{28}\,\text{meter}^{-3}
+\end{equation*}
+
+Each atom contributes $d=1$ electrons.
+\begin{equation*}
+\rho=\frac{Nd}{V}=8.49\times10^{28}\,\text{meter}^{-3}
+\end{equation*}
+
+Then for
+\begin{align*}
+\hbar&=1.05\times10^{-34}\,\text{joule second}
+\\
+m&=9.11\times10^{-31}\,\text{kilogram}
+\end{align*}
+
+we have
+\begin{equation*}
+E_F=\frac{\hbar^2}{2m}\left(3\pi^2\rho\right)^{2/3}=2.34\times10^{-19}\,\text{joule}
+\end{equation*}
+
+Convert to electron volts.
+\begin{equation*}
+E_F=\frac{2.34\times10^{-19}\,\text{joule}}{1.60\times10^{-19}\,\text{joule/electronvolt}}
+=1.46\,\text{electronvolt}
+\end{equation*}
+
+(b) Not relativistic.
+\begin{equation*}
+v=\sqrt{2E_F/m}=717\,\text{kilometer/second},\quad
+v\ll300{,}000\,\text{kilometer/second}
+\end{equation*}
+
+(c) Boltzmann constant.
+\begin{equation*}
+k_B=1.38\times10^{-23}\,\text{joule/kelvin}
+\end{equation*}
+
+Hence
+\begin{equation*}
+T_F=\frac{E_F}{k_B}=16{,}900\,\text{kelvin}
+\end{equation*}
+
+(d)
+\begin{equation*}
+P=\frac{\left(3\pi^2\right)^{2/3}\hbar^2}{5m}\rho^{5/3}=3.80\times10^{10}\,\text{newton/meter}^2
+\end{equation*}
+
+\end{document}

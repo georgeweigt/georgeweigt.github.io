@@ -1,0 +1,110 @@
+\input{preamble}
+
+\FBOX{
+4.54
+What is the probability that an electron in the ground state of hydrogen
+will be found {\it inside the nucleus}?
+
+\bigskip
+(a) First calculate the {\it exact} answer, assuming the wave function (Equation 4.80)
+is correct all the way down to $r=0$.
+Let $b$ be the radius of the nucleus.
+
+\bigskip
+(b) Expand your result as a power series in the small number $\epsilon\equiv2b/a$,
+and show that the lowest-order term is the cubic: $P\approx(4/3)(b/a)^3$.
+This should be a suitable approximation, provided that $b\ll a$ (which it {\it is}).
+
+\bigskip
+(c) Alternatively, we might assume that $\psi(r)$ is essentially constant over the (tiny)
+volume of the nucleus, so that $P\approx(4/3)\pi b^3|\psi(0)|^2$.
+Check that you get the same answer this way.
+
+\bigskip
+(d) Use $b\approx10^{-15}\,\text{m}$ and $a\approx0.5\times10^{-10}\,\text{m}$
+to get a numerical estimate for $P$.
+Roughly speaking, this represents the ``fraction of its time that the electron spends
+inside the nucleus.''
+}
+
+(a)
+\begin{equation*}
+\psi_{100}(r,\theta,\phi)=\frac{1}{\sqrt{\pi a^3}}\exp\left(-\frac{r}{a}\right)
+\tag{4.80}
+\end{equation*}
+
+\begin{equation*}
+|\psi_{100}|^2=\frac{1}{\pi a^3}\exp\left(-\frac{2r}{a}\right)
+\end{equation*}
+
+\begin{equation*}
+\Pr(0<r<b)=\frac{1}{\pi a^3}
+\int_0^b\int_0^\pi\int_0^{2\pi}\exp\left(-\frac{2r}{a}\right)r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$ (multiply by $2\pi$).
+\begin{equation*}
+\Pr(0<r<b)=\frac{2}{a^3}
+\int_0^b\int_0^\pi\exp\left(-\frac{2r}{a}\right)r^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Transform the integral over $\theta$ to an integral over $y$ where
+$y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
+The minus sign in $dy$ is canceled by interchanging integration limits
+$\cos0=1$ and $\cos\pi=-1$.
+\begin{equation*}
+\Pr(0<r<b)=\frac{2}{a^3}
+\int_0^b\int_{-1}^1\exp\left(-\frac{2r}{a}\right)r^2\,dr\,dy
+\end{equation*}
+
+Integrate over $y$ (multiply by 2).
+\begin{equation*}
+\Pr(0<r<b)=\frac{4}{a^3}
+\int_0^b\exp\left(-\frac{2r}{a}\right)r^2\,dr
+\end{equation*}
+
+Solve the integral over $r$.
+\begin{equation*}
+\Pr(0<r<b)=1-\left(\frac{2b^2}{a^2}+\frac{2b}{a}+1\right)
+\exp\left(-\frac{2b}{a}\right)
+\tag{1}
+\end{equation*}
+
+(b) Using the approximation
+\begin{equation*}
+\exp(-\epsilon)=1-\epsilon+\tfrac{1}{2}\epsilon^2-\tfrac{1}{6}\epsilon^3
+\end{equation*}
+
+we have
+\begin{equation*}
+\Pr(0<r<b)=1-\left(\tfrac{1}{2}\epsilon^2+\epsilon+1\right)
+\left(1-\epsilon+\tfrac{1}{2}\epsilon^2-\tfrac{1}{6}\epsilon^3\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\Pr(0<r<b)=\tfrac{1}{6}\epsilon^3-\tfrac{1}{12}\epsilon^4+\tfrac{1}{12}\epsilon^5
+\tag{2}
+\end{equation*}
+
+To lowest order
+\begin{equation*}
+\Pr(0<r<b)=\tfrac{1}{6}\epsilon^3=\frac{4b^3}{3a^3}
+\end{equation*}
+
+(c) We have
+\begin{equation*}
+|\psi(0)|^2=\frac{1}{\pi a^3}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\Pr(0<r<b)=\frac{4}{3}\pi b^3|\psi(0)|^2=\frac{4b^3}{3a^3}
+\end{equation*}
+
+(d)
+\begin{equation*}
+\frac{4b^3}{3a^3}=1.07\times10^{-14}
+\end{equation*}
+
+\end{document}

@@ -1,0 +1,22 @@
+"Problem 5.22"
+
+hbar = 1.05 10^(-34) joule second
+kB = 1.38 10^(-23) joule / kelvin
+m = 9.11 10^(-31) kilogram
+mp = 1.67 10^(-27) kilogram
+
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+joule = kilogram meter^2 / second^2
+
+rho = 82 kilogram / meter^3 / (3 mp)
+rho
+
+EF = hbar^2 / m rho^(2/3)
+EF
+
+TF = EF / kB
+TF

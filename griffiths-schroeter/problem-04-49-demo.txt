@@ -1,0 +1,14 @@
+Psi = Psi1(x,y,z,t) + i Psi2(x,y,z,t)
+
+J = i hbar / (2 m) (Psi grad(conj(Psi)) - conj(Psi) grad(Psi))
+
+"Verify equation (1)"
+T = Psi div(grad(conj(Psi))) - conj(Psi) div(grad(Psi))
+check(div(J) == i hbar / (2 m) T)
+"ok"
+
+"Verify equation (2)"
+T = conj(Psi) (i hbar / (2 m) div(grad(Psi)) - i / hbar V Psi) +
+    Psi (-i hbar / (2 m) div(grad(conj(Psi))) + i / hbar V conj(Psi))
+check(T == -div(J))
+"ok"

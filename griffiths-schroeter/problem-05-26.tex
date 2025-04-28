@@ -1,0 +1,46 @@
+\input{preamble}
+
+\FBOX{
+5.26
+Suppose we use delta function {\it wells}, instead of {\it spikes}
+(i.e.~switch the sign of $\alpha$ in Equation 5.64).
+Analyze this case, constructing the analog to Figure 5.5.
+This requires no new calculation, for the positive energy solutions
+(except that $\beta$ is now negative; use $\beta=-1.5$ for the graph),
+but you {\it do} need to work out the negative energy solutions
+(let $\kappa\equiv\sqrt{-2mE}/\hbar$ and $z\equiv-\kappa a$,
+for $E<0$); your graph will now extend to negative $z$).
+How many states are there in the first allowed band?
+}
+
+For a band such that $-1\le f(z)\le1$ there are $N$ allowed energy states.
+For $\beta=-1.5$ we have $f(0)=1+\beta=-0.5$ and $-1\le f(|z|)\le-0.5$.
+Hence there are $N/4$ positive energy states and $N/4$ negative energy states
+for a total of $N/2$ allowed energy states in the first band.
+
+\bigskip
+The allowed negative energies are $E$ such that $E<0$ and
+\begin{equation*}
+\cos\left(\frac{2\pi n}{N}\right)
+=\cos\left(\frac{\sqrt{-2mE}}{\hbar}a\right)
++\frac{m\alpha}{\hbar\sqrt{-2mE}}\sin\left(\frac{\sqrt{-2mE}}{\hbar}a\right),\quad
+n=0,1,2,\ldots,N-1
+\end{equation*}
+
+Equivalently
+\begin{equation*}
+\cos\left(\frac{2\pi n}{N}\right)
+=\cos\left(\kappa a\right)
++\frac{m\alpha}{\hbar^2\kappa}\sin\left(\kappa a\right)
+\end{equation*}
+
+For $\beta=m\alpha a/\hbar^2$ we have
+\begin{equation*}
+\cos\left(\frac{2\pi n}{N}\right)
+=\cos\left(\kappa a\right)
++\beta\frac{\sin\left(\kappa a\right)}{\kappa a}
+\end{equation*}
+
+Note: $\alpha<0$
+
+\end{document}

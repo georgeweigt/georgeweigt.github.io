@@ -1,0 +1,61 @@
+\input{preamble}
+
+\FBOX{
+11.4
+Suppose the perturbation takes the form of a delta function (in time):
+\begin{equation*}
+\hat H'=\hat U\delta(t);
+\end{equation*}
+
+assume that $U_{aa}=U_{bb}=0$, and let $U_{ab}=U_{ba}^*\equiv\alpha$.
+If $c_a(-\infty)=1$ and $c_b(-\infty)=0$,
+find $c_a(t)$ and $c_b(t)$, and check that $|c_a(t)|^2+|c_b(t)|^2=1$.
+What is the net probability ($P_{a\rightarrow b}$ for $t\rightarrow\infty$)
+that a transition occurs?
+{\it Hint:} You might want to treat the delta function as the limit
+of a sequence of rectangles. {\it Answer:}
+$P_{a\rightarrow b}=\sin^2(|\alpha|/\hbar)$.
+}
+
+Let
+\begin{equation*}
+\delta(t)=\begin{cases}
+1/\epsilon, & 0<t\le\epsilon
+\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation*}
+
+The height of the rectangle is $1/\epsilon$ for unit area.
+Then for $0<t\le\epsilon$ we have
+\begin{equation*}
+H_{ab}'=U_{ab}\delta(t)=\frac{\alpha}{\epsilon},\quad
+H_{ba}'=U_{ba}\delta(t)=\frac{\alpha^*}{\epsilon}
+\end{equation*}
+
+Use these matrix elements and the result from problem 11.3 to obtain for $t\ge\epsilon$
+\begin{align*}
+c_a(t)&=\left[
+\cos\left(\frac{1}{2}\sqrt{\frac{4|\alpha|^2}{\hbar^2}+\epsilon^2\omega_0^2}\,\right)
++\frac{i\omega_0}{\sqrt{\frac{4|\alpha|^2}{\epsilon^2\hbar^2}+\omega_0^2}}
+\sin\left(\frac{1}{2}\sqrt{\frac{4|\alpha|^2}{\hbar^2}+\epsilon^2\omega_0^2}\,\right)
+\right]\exp\left(-\frac{i\epsilon\omega_0}{2}\right)
+\\[1ex]
+c_b(t)&=-\frac{2i\alpha^*}{\sqrt{4|\alpha|^2+\epsilon^2\hbar^2\omega_0^2}}
+\sin\left(\frac{1}{2}\sqrt{\frac{4|\alpha|^2}{\hbar^2}+\epsilon^2\omega_0^2}\,\right)
+\exp\left(\frac{i\epsilon\omega_0}{2}\right)
+\end{align*}
+
+Let $\epsilon\rightarrow0$ to obtain for $t>0$
+\begin{align*}
+c_a(t)&=\cos\frac{|\alpha|}{\hbar}
+\\
+c_b(t)&=-\frac{i\alpha^*}{|\alpha|}\sin\frac{|\alpha|}{\hbar}
+\end{align*}
+
+Hence
+\begin{equation*}
+P_{a\rightarrow b}=|c_b(t)|^2=\sin^2\frac{|\alpha|}{\hbar}
+\end{equation*}
+
+\end{document}

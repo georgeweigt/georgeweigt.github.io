@@ -1,0 +1,37 @@
+"Problem 9.4"
+
+A = 238
+Z = 92
+K1 = 1.980
+K2 = 1.485
+
+r1 = 1.07 A^(1/3)
+
+c = 299792458.0
+e = 1.602176634 10^(-19)
+
+Da = 1.66053906892 10^(-27)
+
+mp = 238.05079 Da -- chemlin.org/isotope/uranium-238
+md = 234.04360 Da -- chemlin.org/isotope/thorium-234
+
+malpha = 6.6446573450 10^(-27)
+
+E = (mp - md - malpha) c^2
+E = 10^(-6) E / e -- convert joules to MeV
+
+v = sqrt(2 10^6 e E / malpha)
+gamma = K1 Z / sqrt(E) - K2 sqrt(Z r1)
+tau = 2 (10^(-15) r1) / v exp(2 gamma)
+tau = tau / (365.4 24 60 60) "years"
+
+E
+v
+tau
+
+E = 5.1
+v = sqrt(2 10^6 e E / malpha)
+gamma = K1 Z / sqrt(E) - K2 sqrt(Z r1)
+tau = 2 (10^(-15) r1) / v exp(2 gamma)
+tau = tau / (365.4 24 60 60) "years"
+tau

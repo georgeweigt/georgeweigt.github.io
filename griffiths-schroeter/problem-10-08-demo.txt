@@ -1,0 +1,26 @@
+"Problem 10.8"
+
+-- use rectangular coordinates
+
+r = sqrt(x^2 + y^2 + z^2)
+
+G = -exp(i k r) / (4 pi r)
+
+"Verify equation (1)"
+A = dot(grad(1/r),grad(exp(i k r)))
+B = div(grad(exp(i k r))) / r
+C = exp(i k r) div(grad(1/r))
+check(-4 pi div(grad(G)) == 2 A + B + C)
+"ok"
+
+"Verify equation (2)"
+check(A == -i k exp(i k r) / r^2)
+"ok"
+
+"Verify equation (3)"
+check(B == 2 i k exp(i k r) / r^2 - k^2 exp(i k r) / r)
+"ok"
+
+"Verify equation (4)"
+check(div(grad(G)) == -k^2 G)
+"ok"

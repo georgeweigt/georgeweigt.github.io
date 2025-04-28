@@ -1,0 +1,20 @@
+"Problem 5.25"
+
+a = sqrt(10 hbar^2 / m)
+
+E = z^2 hbar^2 / (2 m a^2)
+E
+
+a = 0.0
+b = float(pi)
+
+for(k,1,20,
+  z = (a + b) / 2,
+  f = cos(z) + 10 sin(z) / z,
+  test(f > 1, a = z, f < 1, b = z)
+)
+
+z
+
+E = E "eV"
+E

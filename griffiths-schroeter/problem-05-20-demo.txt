@@ -1,0 +1,5 @@
+Etot = hbar^2 (3 pi^2 N d)^(5/3) / (10 pi^2 m V^(2/3))
+
+EF = hbar^2 / (2 m) (3 pi^2 N d / V)^(2/3)
+
+Etot / (N d EF)

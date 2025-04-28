@@ -1,0 +1,38 @@
+"Problem 5.21 (a)"
+
+electronvolt = "electronvolt"
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+joule = kilogram meter^2 / second^2
+
+NA = 6.02 10^23 / mole
+
+rho = (8.96 g/cm^3) (100 cm/meter)^3 / (63.5 g/mole) NA
+rho
+
+hbar = 1.05 10^(-34) joule second
+
+m = 9.11 10^(-31) kilogram
+
+EF = hbar^2 / m rho^(2/3)
+EF
+
+EF = EF / (1.6 10^(-19) joule/electronvolt)
+EF
+
+"Problem 5.21 (b)"
+EF = hbar^2 / m rho^(2/3)
+v = sqrt(2 EF / m)
+v
+
+"Problem 5.21 (c)"
+kB = 1.38 10^(-23) joule / kelvin
+TF = EF / kB
+TF
+
+"Problem 5.21 (d)"
+P = (3 float(pi)^2)^(2/3) hbar^2 / (5 m) rho^(5/3)
+P

@@ -1,0 +1,113 @@
+\input{preamble}
+
+\FBOX{
+11.37
+Quantum Zeno Paradox.
+Suppose a system starts out in an excited state $\psi_b$,
+which has a natural lifetime $\tau$ for transition to the ground state $\psi_a$.
+Ordinarily, for times substantially less that $\tau$, the probability of a transition
+is proportional to $\tau$ (Equation 11.49):
+\begin{equation*}
+P_{b\rightarrow a}=\frac{t}{\tau}.
+\tag{11.145}
+\end{equation*}
+
+If we make a measurement after a time $t$, then, the probability that the system
+is still in the {\it upper} state is
+\begin{equation*}
+P_b(t)=1-\frac{t}{\tau}.
+\tag{11.146}
+\end{equation*}
+
+Suppose we {\it do} find it to be in the upper state.
+In that case the wave function collapses back to $\psi_b$, and the process
+starts all over again.
+If we make a {\it second} measurement, at $2t$, the probability that the system
+is {\it still} in the upper state is
+\begin{equation*}
+\left(1-\frac{t}{\tau}\right)^2\approx1-\frac{2t}{\tau},
+\tag{11.147}
+\end{equation*}
+
+which is the same as it would have been had we never made the first
+measurement at $t$ (as one would naively expect).
+
+\bigskip
+However, for {\it extremely} short times, the probability of a transition is
+{\it not} proportional to $t$, but rather to $t^2$ (Equation 11.46):
+\begin{equation*}
+P_{b\rightarrow a}=\alpha t^2.
+\tag{11.148}
+\end{equation*}
+
+(a) In this case what is the probability that the system is still in the upper
+state after the two measurements?
+What {\it would} it have been (after the same elapsed time) if we had never
+made the first measurement?
+
+\bigskip
+(b) Suppose we examine the system at $n$ regular (extremely short) intervals,
+from $t=0$ out to $t=T$ (that is, we make measurements at $T/n$, $2T/n$, $3T/n,\ldots,T$).
+What is the probability that the system is still in the upper state at time $T$?
+What is its limit as $n\rightarrow\infty$?
+{\it Moral of the story:}
+Because of the collapse of the wave function at every measurement, a {\it continuously}
+observed system never decays at all!
+}
+
+(a) Probability of upper state after two measurements:
+\begin{equation*}
+(1-\alpha t^2)^2\approx1-2\alpha t^2
+\end{equation*}
+
+Probability of upper state after $2t$:
+\begin{equation*}
+1-4\alpha t^2
+\end{equation*}
+
+(b) The probability that the system is still in the upper state is
+\begin{equation*}
+\left(1-\frac{\alpha T^2}{n^2}\right)^n
+\end{equation*}
+
+Let $y$ be the limit.
+\begin{equation*}
+y=\lim_{n\rightarrow\infty}\left(1-\frac{\alpha T^2}{n^2}\right)^n
+=\lim_{n\rightarrow\infty}e^{n\log\left(1-\frac{\alpha T^2}{n^2}\right)}
+=\lim_{n\rightarrow\infty}\exp\left[\frac{\log\left(1-\frac{\alpha T^2}{n^2}\right)}{\frac{1}{n}}\right]
+\end{equation*}
+
+By the composition limit law
+\begin{equation*}
+y=\exp\left[
+\lim_{n\rightarrow\infty}
+\frac{\log\left(1-\frac{\alpha T^2}{n^2}\right)}
+{\frac{1}{n}}
+\right]
+\end{equation*}
+
+Apply l'H\^opital's rule.
+\begin{equation*}
+y=\exp\left[
+\lim_{n\rightarrow\infty}
+\frac{\frac{d}{dn}\log\left(1-\frac{\alpha T^2}{n^2}\right)}
+{\frac{d}{dn}\frac{1}{n}}
+\right]
+=\exp\left(
+\lim_{n\rightarrow\infty}
+\frac
+{\frac{2\alpha T^2}{n^3-\alpha T^2n}}
+{-\frac{1}{n^2}}
+\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+y=\exp\left(
+\lim_{n\rightarrow\infty}
+\frac{2\alpha T^2}{\frac{\alpha T^2}{n}-n}
+\right)
+=\exp(0)=1
+\end{equation*}
+
+\end{document}

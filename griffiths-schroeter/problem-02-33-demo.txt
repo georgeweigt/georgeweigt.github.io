@@ -1,0 +1,41 @@
+"Problem 2.33"
+
+psi1 = A exp(i k x) + B exp(-i k x)
+psi2 = C exp(i kappa x) + D exp(-i kappa x)
+psi3 = F exp(i k x)
+
+k = sqrt(2 m E) / hbar
+kappa = sqrt(2 m (E - V0)) / hbar
+
+"Verify C and D"
+C = (kappa + k) F exp(i k a - i kappa a) / (2 kappa)
+D = (kappa - k) F exp(i k a + i kappa a) / (2 kappa)
+check(eval(psi2,x,a) == eval(psi3,x,a))
+check(eval(d(psi2,x),x,a) == eval(d(psi3,x),x,a))
+check(-hbar^2 / (2 m) d(psi2,x,x) + V0 psi2 == E psi2)
+"ok"
+
+"Verify A and B"
+A = (k + kappa) C exp( i k a - i kappa a) / (2 k) +
+    (k - kappa) D exp( i k a + i kappa a) / (2 k)
+B = (k - kappa) C exp(-i k a - i kappa a) / (2 k) +
+    (k + kappa) D exp(-i k a + i kappa a) / (2 k)
+check(eval(psi1,x,-a) == eval(psi2,x,-a))
+check(eval(d(psi1,x),x,-a) == eval(d(psi2,x),x,-a))
+check(-hbar^2 / (2 m) d(psi1,x,x) == E psi1)
+"ok"
+
+T = A/F conj(A/F)
+K = E / (V0 - E) + V0 / E + 1
+
+"Verify equation (9)"
+check(T == 1 + K/8 (cos(4 a sqrt(2 m (E - V0)) / hbar) - 1))
+"ok"
+
+"Verify equation (10)"
+check(T == 1 + 1/4 K sinh(2 i a / hbar sqrt(2 m (E - V0)))^2)
+"ok"
+
+"Verify equation (11)"
+check(K == V0^2 / (E (V0 - E)))
+"ok"

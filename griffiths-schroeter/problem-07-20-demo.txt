@@ -1,0 +1,16 @@
+"Problem 7.20"
+
+Er = -4 n / (l + 1/2) + 3
+Eso = 2 n (j (j + 1) - l (l + 1) - 3/4) / (l (l + 1/2) (l + 1))
+Efs = 3 - 4 n / (j + 1/2)
+
+T = Er + Eso - Efs
+numerator(T) / n
+
+check(eval(T, j, l + 1/2) == 0)
+check(eval(T, j, l - 1/2) == 0)
+
+check(eval(T, l, j + 1/2) == 0)
+check(eval(T, l, j - 1/2) == 0)
+
+"ok"

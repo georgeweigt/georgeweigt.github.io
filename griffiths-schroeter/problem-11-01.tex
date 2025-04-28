@@ -1,0 +1,62 @@
+\input{preamble}
+
+\FBOX{
+11.1
+Why isn't it {\it trivial} to solve the time-dependent Schr\"odinger equation (11.1),
+in its dependence on $t$?
+After all, it's a first-order differential equation.
+
+\bigskip
+(a) How would you solve the equation
+\begin{equation*}
+\frac{df}{dt}=kf
+\end{equation*}
+
+(for $f(t)$), if $k$ were a constant?
+
+\bigskip
+(b) What if $k$ itself is a function of $t$?
+(Here $k(t)$ and $f(t)$ might also depend on other variables, such as $\mathbf r$---it doesn't matter.)
+
+\bigskip
+(c) Why not do the same thing for the Schr\"odinger equation (with a time-dependent Hamiltonian)?
+To see that this doesn't work, consider the simple case
+\begin{equation*}
+\hat H(t)=\begin{cases}
+\hat H_1, & (0<t<\tau),
+\\
+\hat H_2, & (t>\tau),
+\end{cases}
+\end{equation*}
+
+where $\hat H_1$ and $\hat H_2$ are themselves time-independent.
+If the solution in part (b) held for the Schr\"odinger equation, the wave function
+at time $t>\tau$ would be
+\begin{equation*}
+\Psi(t)=e^{-i\left[\hat H_1\tau+\hat H_2(t-\tau)\right]/\hbar}\Psi(0),
+\end{equation*}
+
+but of course we could also write
+\begin{equation*}
+\Psi(t)=e^{-i\hat H_2(t-\tau)/\hbar}\Psi(\tau)
+=e^{-i\hat H_2(t-\tau)/\hbar}e^{-i\hat H_1t/\hbar}\Psi(0).
+\end{equation*}
+
+Why are these generally {\it not} the same?
+[This is a subtle matter; if you want to pursue it further, see Problem 11.23.]
+}
+
+(a)
+\begin{equation*}
+f(t)=C\exp(kt)
+\end{equation*}
+
+(b)
+\begin{equation*}
+f(t)=C\exp\left(\int k(t)\,dt\right)
+\end{equation*}
+
+
+
+
+\end{document}

@@ -1,0 +1,10 @@
+"Problem 4.17"
+
+"Verify equation (1)"
+
+psi = 1 / sqrt(pi a0^3) exp(-r / a0)
+f = (r cos(theta))^2 psi conj(psi) r^2 sin(theta)
+F = defint(f, phi, 0, 2 pi, theta, 0, pi)
+I = integral(F,r)
+check(0 - eval(I,r,0) == a0^2)
+"ok"

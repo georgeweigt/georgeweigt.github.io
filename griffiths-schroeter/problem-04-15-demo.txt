@@ -1,0 +1,23 @@
+"Problem 4.15"
+
+psi100 = 1 / sqrt(pi a0^3) exp(-r / a0)
+f = psi100 conj(psi100) r^2 sin(theta)
+F = defint(f, phi, 0, 2 pi, theta, 0, pi)
+
+"Verify equation (1)"
+I = integral(r F, r)
+check(0 - eval(I,r,0) == 3/2 a0)
+"ok"
+
+"Verify equation (2)"
+I = integral(r^2 F, r)
+check(0 - eval(I,r,0) == 3 a0^2)
+"ok"
+
+"Verify equation (3)"
+psi211 = -1 / (8 sqrt(pi a0^5)) r sin(theta) exp(-r / (2 a0) + i phi)
+f = (r sin(theta) cos(phi))^2 psi211 conj(psi211) r^2 sin(theta)
+F = defint(f, phi, 0, 2 pi, theta, 0, pi)
+I = integral(F,r)
+check(0 - eval(I,r,0) == 12 a0^2)
+"ok"

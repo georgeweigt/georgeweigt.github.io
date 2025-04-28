@@ -1,0 +1,9 @@
+"Problem 5.23"
+
+"Verify equation (1)"
+P = (3 pi^2)^(2/3) hbar^2 / (5 m) (N d / V)^(5/3)
+check(d(P,V) == -5/3 P / V)
+"ok"
+
+B = 5/3 3.8 10^10
+B

@@ -1,0 +1,36 @@
+\input{preamble}
+
+\FBOX{
+4.17
+Calculate $\langle z\hat Hz\rangle$, in the ground state of hydrogen.
+{\it Hint:} This takes two pages and six integrals, or four lines and no
+integrals, depending on how you set it up.
+To do it the quick way, start by noting that
+$[z,[H,z]]=2zHz-Hz^2-z^2H$.
+}
+
+Noting that
+\begin{equation*}
+[z,[H,z]]\psi=z([H,z]\psi)-([H,z]\psi)z=0
+\end{equation*}
+
+we have
+\begin{equation*}
+zHz=\frac{1}{2}(Hz^2+z^2H)
+\end{equation*}
+
+Hence
+\begin{align*}
+\langle z\hat Hz\rangle&=\frac{1}{2}\langle\psi_{100}|(\hat Hz^2+z^2\hat H)|\psi_{100}\rangle
+\\
+&=\frac{1}{2}\langle\psi_{100}|(E_1z^2+z^2E_1)|\psi_{100}\rangle
+\\
+&=E_1\langle z^2\rangle
+\end{align*}
+
+From problem 4.15
+\begin{equation*}
+E_1\langle z^2\rangle=E_1a_0^2\tag{1}
+\end{equation*}
+
+\end{document}

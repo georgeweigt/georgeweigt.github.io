@@ -1,0 +1,15 @@
+"Verify equation (1)"
+Pr = 4 / a^3 defint(exp(-2 r / a) r^2, r, 0, b)
+check(Pr == 1 - (2 b^2 / a^2 + 2 b / a + 1) exp(-2 b / a))
+"ok"
+
+"Verify equation (2)"
+P = 1 - (1/2 epsilon^2 + epsilon + 1) *
+    (1 - epsilon + 1/2 epsilon^2 - 1/6 epsilon^3)
+check(P = 1/6 epsilon^3 - 1/12 epsilon^4 + 1/12 epsilon^5)
+"ok"
+
+b = 1.0 10^(-15)
+a = 0.5 10^(-10)
+Pr
+4/3 (b/a)^3

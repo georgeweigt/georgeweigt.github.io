@@ -1,0 +1,105 @@
+\input{preamble}
+
+\FBOX{
+5.35
+Certain cold stars (called {\bf white dwarfs}) are stabilized against gravitational
+collapse by the degeneracy pressure of their electrons (Equation 5.57). Assuming
+constant density, the radius $R$ of such an object can be calculated as follows:
+
+\bigskip
+(a) Write the total electron energy (Equation 5.56) in terms of the radius, the number
+of nucleons (protons and neutrons) $N$, the number of electrons per nucleon $d$, and
+the mass of the electron $m$. {\it Beware:} In this problem we are recycling the letters $N$
+and $d$ for a slightly different purpose than in the text.
+
+\bigskip
+(b) Look up, or calculate, the gravitational energy of a uniformly dense sphere.
+Express your answer in terms of $G$ (the constant of universal gravitation), $R$, $N$,
+and $M$ (the mass of a nucleon). Note that the gravitational energy is {\it negative}.
+
+\bigskip
+(c) Find the radius for which the total energy, (a) plus (b), is a minimum. {\it Answer:}
+\begin{equation*}
+R=\left(\frac{9\pi}{4}\right)^{2/3}\frac{\hbar^2d^{5/3}}{GmM^2N^{1/3}}
+\end{equation*}
+
+(Note that the radius {\it decreases} as the total mass {\it increases!}) Put in the actual
+numbers, for everything except $N$, using $d=1/2$ (actually, $d$ decreases a bit as
+the atomic number increases, but this is close enough for our purposes). {\it Answer:}
+$R =7.6\times10^{25} N^{-1/3}\,\text{m}$.
+
+\bigskip
+(d) Determine the radius, in kilometers, of a white dwarf with the mass of the sun.
+
+\bigskip
+(e) Determine the Fermi energy, in electron volts, for the white dwarf in (d), and
+compare it with the rest energy of an electron. Note that this system is getting
+dangerously relativistic (see Problem 5.36).
+}
+
+(a) In equation (5.56) $N$ is the number of atoms and each atom contributes $d$ electrons.
+In this problem $N$ is the number of nucleons and $d$ is the number of electrons per nucleon.
+\begin{equation*}
+E_{\rm tot}=\frac{\hbar^2\left(3\pi^2Nd\right)^{5/3}}{10\pi^2m}V^{-2/3}\tag{5.56}
+\end{equation*}
+
+By $V=4\pi R^3/3$ we have
+\begin{equation*}
+E_{\rm tot}=\frac{\hbar^2\left(3\pi^2Nd\right)^{5/3}}{10\pi^2m}
+\left(\frac{4\pi R^3}{3}\right)^{-2/3}
+=\frac{9}{20}\left(\frac{3\pi^2}{2}\right)^{1/3}\frac{\hbar^2(Nd)^{5/3}}{mR^2}
+\end{equation*}
+
+(b)
+\begin{equation*}
+U=-\frac{3G(NM)^2}{5R}
+\end{equation*}
+
+(c) We have
+\begin{align*}
+\frac{dE_{\rm tot}}{dR}&=-\frac{9}{10}\left(\frac{3\pi^2}{2}\right)^{1/3}
+\frac{\hbar^2(Nd)^{5/3}}{mR^3}
+\\
+\frac{dU}{dR}&=\frac{3G(MN)^2}{5R^2}
+\end{align*}
+
+Find $R$ such that
+\begin{equation*}
+\frac{dE_{\rm tot}}{dR}+\frac{dU}{dR}=0
+\end{equation*}
+
+Substitute and multiply both sides by $R^3$.
+\begin{equation*}
+-\frac{9}{10}\left(\frac{3\pi^2}{2}\right)^{1/3}
+\frac{\hbar^2(Nd)^{5/3}}{m}+\frac{3G(MN)^2}{5}R=0
+\end{equation*}
+
+Hence
+\begin{equation*}
+R=\frac{9}{10}\left(\frac{3\pi^2}{2}\right)^{1/3}\frac{\hbar^2(Nd)^{5/3}}{m}\frac{5}{3G(MN)^2}
+=\left(\frac{9\pi}{4}\right)^{2/3}\frac{\hbar^2d^{5/3}}{GmM^2N^{1/3}}
+\tag{1}
+\end{equation*}
+
+(d) For $M_{\odot}=1.98892\times10^{30}\,\text{kg}$
+and $M=m_p=1.67\times10^{-27}\,\text{kg}$ we have
+\begin{equation*}
+N=\frac{M_{\odot}}{M}=1.19\times10^{57}
+\end{equation*}
+
+Hence
+\begin{equation*}
+R=7160\,\text{km}
+\end{equation*}
+
+(e) The fermi energy is
+\begin{equation*}
+E_F=\frac{\hbar^2}{2m}\left(\frac{3\pi^2Nd}{V}\right)^{2/3}=194\,\text{keV}
+\end{equation*}
+
+The rest energy of an electron is
+\begin{equation*}
+m_ec^2=511\,\text{keV}
+\end{equation*}
+
+\end{document}
