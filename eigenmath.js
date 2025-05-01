@@ -5009,6 +5009,9 @@ eval_defint(p1)
 		integral();
 		F = pop();
 
+		if (findf(F, symbol(INTEGRAL)))
+			stopf("defint: unsolved integral");
+
 		push(F);
 		push(X);
 		push(B);
@@ -5136,6 +5139,16 @@ d_scalar_scalar(F, X)
 	if (!isusersymbol(X))
 		stopf("derivative: symbol expected");
 
+	if (car(F) == symbol(DERIVATIVE)) {
+		derivative_of_derivative(F, X);
+		return;
+	}
+
+	if (car(F) == symbol(INTEGRAL)) {
+		derivative_of_integral(F, X);
+		return;
+	}
+
 	// d(x,x)?
 
 	if (equal(F, X)) {
@@ -5162,11 +5175,6 @@ d_scalar_scalar(F, X)
 
 	if (car(F) == symbol(POWER)) {
 		dpower(F, X);
-		return;
-	}
-
-	if (car(F) == symbol(DERIVATIVE)) {
-		dd(F, X);
 		return;
 	}
 
@@ -5242,11 +5250,6 @@ d_scalar_scalar(F, X)
 
 	if (car(F) == symbol(ERFC)) {
 		derfc(F, X);
-		return;
-	}
-
-	if (car(F) == symbol(INTEGRAL) && caddr(F) == X) {
-		push(cadr(F));
 		return;
 	}
 
@@ -5342,58 +5345,6 @@ dlog(p1, p2)
 	derivative();
 	push(cadr(p1));
 	divide();
-}
-
-//	derivative of derivative
-//
-//	example: d(d(f(x,y),y),x)
-//
-//	p1 = d(f(x,y),y)
-//
-//	p2 = x
-//
-//	cadr(p1) = f(x,y)
-//
-//	caddr(p1) = y
-
-function
-dd(p1, p2)
-{
-	var p3;
-
-	// d(f(x,y),x)
-
-	push(cadr(p1));
-	push(p2);
-	derivative();
-
-	p3 = pop();
-
-	if (car(p3) == symbol(DERIVATIVE)) {
-
-		// sort dx terms
-
-		push_symbol(DERIVATIVE);
-		push_symbol(DERIVATIVE);
-		push(cadr(p3));
-
-		if (lessp(caddr(p3), caddr(p1))) {
-			push(caddr(p3));
-			list(3);
-			push(caddr(p1));
-		} else {
-			push(caddr(p1));
-			list(3);
-			push(caddr(p3));
-		}
-
-		list(3);
-
-	} else {
-		push(p3);
-		push(caddr(p1));
-		derivative();
-	}
 }
 
 // derivative of a generic function
@@ -5701,6 +5652,79 @@ d_tensor_scalar(p1, p2)
 	}
 
 	push(p3);
+}
+
+function
+derivative_of_derivative(F, X)
+{
+	var G, Y;
+
+	G = cadr(F);
+	Y = caddr(F);
+
+	if (X == Y) {
+		push_symbol(DERIVATIVE);
+		push(F);
+		push(X);
+		list(3);
+		return;
+	}
+
+	push(G);
+	push(X);
+	derivative();
+
+	G = pop();
+
+	if (car(G) == symbol(DERIVATIVE)) {
+
+		// sort derivatives
+
+		F = cadr(G);
+		X = caddr(G);
+
+		push_symbol(DERIVATIVE);
+		push_symbol(DERIVATIVE);
+		push(F);
+
+		if (lessp(X, Y)) {
+			push(X);
+			list(3);
+			push(Y);
+			list(3);
+		} else {
+			push(Y);
+			list(3);
+			push(X);
+			list(3);
+		}
+
+		return;
+	}
+
+	push(G);
+	push(Y);
+	derivative();
+}
+
+function
+derivative_of_integral(F, X)
+{
+	var G, Y;
+
+	G = cadr(F);
+	Y = caddr(F);
+
+	if (X == Y) {
+		push(G); // derivative and integral cancel
+		return;
+	}
+
+	push(G);
+	push(X);
+	derivative();
+	push(Y);
+	integral();
 }
 function
 eval_det(p1)
@@ -8214,24 +8238,34 @@ integral()
 		push(X);
 		partition_term();	// push const part then push var part
 		F = pop();		// pop var part
-		integral_nib(F, X);
+		integral_solve(F, X);
 		multiply();		// multiply by const part
 		return;
 	}
 
-	integral_nib(F, X);
+	integral_solve(F, X);
 }
 
 function
-integral_nib(F, X)
+integral_solve(F, X)
 {
 	var p;
+
+	if (car(F) == symbol(INTEGRAL)) {
+		integral_of_integral(F, X);
+		return;
+	}
+
+	if (car(F) == symbol(DERIVATIVE)) {
+		integral_of_derivative(F, X);
+		return;
+	}
 
 	save_symbol(symbol(SA));
 	save_symbol(symbol(SB));
 	save_symbol(symbol(SX));
 
-	integral_solve(F, X);
+	integral_solve_nib(F, X);
 
 	p = pop();
 	restore_symbol();
@@ -8241,7 +8275,7 @@ integral_nib(F, X)
 }
 
 function
-integral_solve(F, X)
+integral_solve_nib(F, X)
 {
 	var h, t;
 
@@ -8576,6 +8610,100 @@ partition_term()
 		swap();
 		cons(); // makes MULTIPLY head of list
 	}
+}
+
+function
+integral_of_integral(F, X)
+{
+	var G, Y;
+
+	G = cadr(F);
+	Y = caddr(F);
+
+	// if X == Y then F is not integrable for X
+
+	if (X == Y) {
+		push_symbol(INTEGRAL);
+		push(F);
+		push(X);
+		list(3);
+		return;
+	}
+
+	push(G);
+	push(X);
+	integral();
+
+	G = pop();
+
+	if (car(G) == symbol(INTEGRAL)) {
+
+		// sort integrals by measure
+
+		F = cadr(G);
+		X = caddr(G);
+
+		push_symbol(INTEGRAL);
+		push_symbol(INTEGRAL);
+		push(F);
+
+		if (lessp(X, Y)) {
+			push(X);
+			list(3);
+			push(Y);
+			list(3);
+		} else {
+			push(Y);
+			list(3);
+			push(X);
+			list(3);
+		}
+
+		return;
+	}
+
+	push(G);
+	push(Y);
+	integral();
+}
+
+function
+integral_of_derivative(F, X)
+{
+	var G, Y;
+
+	G = cadr(F);
+	Y = caddr(F);
+
+	if (X == Y) {
+		push(G); // integral and derivative cancel
+		return;
+	}
+
+	push(G);
+	push(X);
+	integral();
+
+	G = pop();
+
+	// integral before derivative
+
+	if (car(G) == symbol(INTEGRAL)) {
+		F = cadr(G);
+		X = caddr(G);
+		push_symbol(INTEGRAL);
+		push_symbol(DERIVATIVE);
+		push(F);
+		push(Y);
+		list(3);
+		push(X);
+		list(3);
+		return;
+	}
+
+	push(G);
+	push(Y);
+	derivative();
 }
 function
 eval_inv(p1)
@@ -14775,33 +14903,6 @@ lessp(p1, p2)
 {
 	return cmp(p1, p2) < 0;
 }
-/*
-BSD 2-Clause License
-
-Copyright (c) 2024, George Weigt
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
 function
 list(n)
 {

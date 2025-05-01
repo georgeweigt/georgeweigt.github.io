@@ -1,0 +1,76 @@
+\input{preamble}
+
+\section*{Perturbation example}
+
+Let
+\begin{equation*}
+\begin{aligned}
+\dot c_a&=-\frac{i}{\hbar}c_bH_{ab}e^{-i\omega t}
+\\
+\dot c_b&=-\frac{i}{\hbar}c_aH_{ba}e^{i\omega t}
+\end{aligned}
+\end{equation*}
+
+Find $c_a(t)$ and $c_b(t)$ to second order for $c_a(0)=a$ and $c_b(0)=b$.
+(See Griffiths and Schroeter problem 11.6.)
+
+\bigskip
+First order:
+\begin{equation*}
+\begin{aligned}
+\dot c_a^{(1)}&=-\frac{i}{\hbar}H_{ab}e^{-i\omega t}c_b\bigg|_{c_b=b}
+&&=-\frac{ib}{\hbar}H_{ab}e^{-i\omega t}
+\\
+\dot c_b^{(1)}&=-\frac{i}{\hbar}H_{ba}e^{i\omega t}c_a\bigg|_{c_a=a}
+&&=-\frac{ia}{\hbar}H_{ba}e^{i\omega t}
+\end{aligned}
+\tag{1}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\begin{aligned}
+c_a^{(1)}(t)&=a+\int_0^t\dot c_a^{(1)}(t')\,dt'
+&&=a-\frac{ib}{\hbar}\int_0^tH_{ab}(t')e^{-i\omega t'}\,dt'
+\\
+c_b^{(1)}(t)&=b+\int_0^t\dot c_b^{(1)}(t')\,dt'
+&&=b-\frac{ia}{\hbar}\int_0^tH_{ba}(t')e^{i\omega t'}\,dt'
+\end{aligned}
+\tag{2}
+\end{equation*}
+
+Second order:
+\begin{equation*}
+\begin{aligned}
+\dot c_a^{(2)}&=-\frac{i}{\hbar}H_{ab}e^{-i\omega t}c_b\bigg|_{c_b=c_b^{(1)}}
+&&=-\frac{ib}{\hbar}H_{ab}e^{-i\omega t}-\frac{a}{\hbar^2}H_{ab}e^{-i\omega t}
+\int_0^tH_{ba}(t')e^{i\omega t'}\,dt'
+\\
+\dot c_b^{(2)}&=-\frac{i}{\hbar}H_{ba}e^{i\omega t}c_a\bigg|_{c_a=c_a^{(1)}}
+&&=-\frac{ia}{\hbar}H_{ba}e^{i\omega t}-\frac{b}{\hbar^2}H_{ba}e^{i\omega t}
+\int_0^tH_{ab}(t')e^{-i\omega t'}\,dt'
+\end{aligned}
+\tag{3}
+\end{equation*}
+
+Hence
+\begin{multline*}
+c_a^{(2)}(t)=a+\int_0^t\dot c_a^{(2)}(t')\,dt'
+\\
+=a-\frac{ib}{\hbar}\int_0^tH_{ab}(t')e^{-i\omega t'}\,dt'
+-\frac{a}{\hbar^2}\int_0^tH_{ab}(t')e^{-i\omega t'}
+\left[\int_0^{t'}H_{ba}(t'')e^{i\omega t''}\,dt''\right]\,dt'
+\tag{4}
+\end{multline*}
+
+and
+\begin{multline*}
+c_b^{(2)}(t)=b+\int_0^t\dot c_b^{(2)}(t')\,dt'
+\\
+=b-\frac{ia}{\hbar}\int_0^tH_{ba}(t')e^{i\omega t'}\,dt'
+-\frac{b}{\hbar^2}\int_0^tH_{ba}(t')e^{i\omega t'}
+\left[\int_0^{t'}H_{ab}(t'')e^{-i\omega t''}\,dt''\right]\,dt'
+\tag{5}
+\end{multline*}
+
+\end{document}
