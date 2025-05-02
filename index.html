@@ -32,6 +32,7 @@
 <br>
 
 Examples<br>
+<div id="foo">
 <span><!-- Angular distance --> <a href="examples/angular-distance.pdf">Angular distance</a> (<a href="examples/angular-distance-demo.html">demo</a>)<br></span>
 <span><!-- Angular momentum --> <a href="examples/angular-momentum.pdf">Angular momentum</a> (<a href="examples/angular-momentum-demo.html">demo</a>)<br></span>
 <span><!-- Annihilation --> <a href="examples/annihilation.pdf">Annihilation</a> (<a href="examples/annihilation-demo.html">demo</a>)<br></span>
@@ -120,6 +121,7 @@ Examples<br>
 <span><!-- WKB approximation --> <a href="examples/wkb-approximation.pdf">WKB approximation</a> (<a href="examples/wkb-approximation-demo.html">demo</a>)<br></span>
 <span><!-- Yukawa potential --> <a href="examples/yukawa-potential.pdf">Yukawa potential</a> (<a href="examples/yukawa-potential-demo.html">demo</a>)<br></span>
 <span><!-- Zeeman effect --> <a href="examples/zeeman-effect.pdf">Zeeman effect</a> (<a href="examples/zeeman-effect-demo.html">demo</a>)<br></span>
+</div>
 
 <br>
 
@@ -158,5 +160,21 @@ Misc. scripts<br>
 Additional resources<br>
 <a href="https://lindnerdrwg.github.io">lindnerdrwg.github.io</a><br>
 
+<script>
+function
+unsort()
+{
+	var a, b, i, j, n;
+	a = document.getElementById("foo");
+	b = a.getElementsByTagName("span");
+	n = b.length;
+	for (i = 0; i < n - 1; i++) { // n - i == n - (n - 2) == 2
+		j = Math.floor(1e10 * Math.random()) % (n - i);
+		b[0].parentNode.insertBefore(b[i + j], b[i]);
+		b = a.getElementsByTagName("span");
+	}
+}
+unsort();
+</script>
 </body>
 </html>
