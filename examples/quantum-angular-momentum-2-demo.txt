@@ -1,4 +1,4 @@
--- Quantum angular momentum
+"Quantum angular momentum 2"
 
 Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
          P(l,m) exp(i m phi)
