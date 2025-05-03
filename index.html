@@ -177,7 +177,7 @@ sort()
 				k = i;
 			}
 		}
-		n = k + 1;
+		n = k + 1; // add 1 to index k to get number of elements n
 	}
 }
 function
@@ -187,7 +187,10 @@ unsort()
 	a = document.getElementById("foo");
 	b = a.getElementsByTagName("span");
 	n = b.length;
-	for (i = 0; i < n - 1; i++) { // n - i == n - (n - 2) == 2
+	for (i = 0; i < n - 1; i++) {
+		// Note that the final value for i is i = n-2 and consequently
+		// the final value for n-i is n-i = n-(n-2) = 2.
+		// Hence the final value for j is a coin flip, 0 or 1.
 		j = Math.floor(1e10 * Math.random()) % (n - i);
 		b[0].parentNode.insertBefore(b[i + j], b[i]);
 		b = a.getElementsByTagName("span");
