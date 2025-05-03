@@ -2,17 +2,20 @@
 
 \section*{Quantum angular momentum 2}
 
-For $l=1$ and $l=2$, find the eigenfunctions of $L_x$ where
+For $l=1$ and $l=2$, find eigenfunctions $\psi_{l,m}$ such that
+\begin{equation*}
+L_x\psi_{l,m}=m\hbar\psi_{l,m}
+\end{equation*}
+
+where
 \begin{equation*}
 L_x=i\hbar\left(
 \sin\phi\frac{\partial}{\partial\theta}+\cos\phi\cot\theta\frac{\partial}{\partial\phi}
 \right)
 \end{equation*}
 
-In other words, find the eigenfunctions $\psi_{l,m}$ such that $L_x\psi_{l,m}=m\hbar\psi_{l,m}$.
-
-\bigskip
-Using ladder operators we have
+The $\psi_{l,m}$ are linear combinations of spherical harmonics.
+For spherical harmonics $Y_{l,m}$ and ladder operators $L_+$ and $L_-$ we have
 \begin{equation*}
 L_xY_{l,m}=\tfrac{1}{2}(L_++L_-)Y_{l,m}
 =\frac{\hbar}{2}\left(c_{l,m}^+Y_{l,m+1}+c_{l,m}^-Y_{l,m-1}\right)
@@ -53,11 +56,12 @@ c_{1,1}^- & 0 & c_{1,-1}^+
 
 The following $x_m$ are the eigenvectors of $M_x$ where $m$ is the eigenvalue.
 \begin{align*}
-x_1&=\begin{pmatrix}\frac{1}{2} & \frac{1}{\sqrt2} & \frac{1}{2}\end{pmatrix}^T, & M_xx_1&=x_1
+x_1&=\begin{pmatrix}\frac{1}{2}\\[1ex]\frac{1}{\sqrt2}\\[1ex]\frac{1}{2}\end{pmatrix},\quad M_xx_1=x_1
 \\[1ex]
-x_0&=\begin{pmatrix}-\frac{1}{\sqrt2} & 0 & \frac{1}{\sqrt2}\end{pmatrix}^T, & M_xx_0&=0
+x_0&=\begin{pmatrix}-\frac{1}{\sqrt2}\\[1ex]0\\[1ex]\frac{1}{\sqrt2}\end{pmatrix},\quad M_xx_0=0
 \\[1ex]
-x_{-1}&=\begin{pmatrix}-\frac{1}{2} & \frac{1}{\sqrt2} & -\frac{1}{2}\end{pmatrix}^T, & M_xx_{-1}&=-x_{-1}
+x_{-1}&=\begin{pmatrix}-\frac{1}{2}\\[1ex]\frac{1}{\sqrt2}\\[1ex]-\frac{1}{2}\end{pmatrix},\quad
+M_xx_{-1}=-x_{-1}
 \end{align*}
 
 For eigenfunctions $\psi_{1,m}$ we have

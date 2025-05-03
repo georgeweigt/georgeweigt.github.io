@@ -20,13 +20,13 @@ cm(l,m) = sqrt(l (l + 1) - m (m - 1))
 cp(l,m) = sqrt((l - m) (l + m + 1))
 cm(l,m) = sqrt((l + m) (l - m + 1))
 
-"Verify eigenfunctions and eigenvalues for ell=1"
+"Verify for azimuth = 1"
 
 Ym = (Y(1,1),Y(1,0),Y(1,-1))
 
 Mx = zero(3,3)
-for(k,1,2, Mx[k,k+1] = 1/2 cp(1,1 - k))
-for(k,1,2, Mx[k+1,k] = 1/2 cm(1,2 - k))
+for(k,1,2, Mx[k,k+1] = 1/2 cp(1, 1 - k))
+for(k,1,2, Mx[k+1,k] = 1/2 cm(1, 2 - k))
 
 check((Lx(Y(1,1)),Lx(Y(1,0)),Lx(Y(1,-1))) == hbar dot(Mx,Ym))
 
@@ -35,7 +35,7 @@ check((Lx(Y(1,1)),Lx(Y(1,0)),Lx(Y(1,-1))) == hbar dot(Mx,Ym))
 x = (1/2, sqrt(1/2), 1/2)
 check(dot(Mx,x) == x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == hbar psi)
 
 -- m = 0
@@ -43,7 +43,7 @@ check(Lx(psi) == hbar psi)
 x = (-sqrt(1/2), 0, sqrt(1/2))
 check(dot(Mx,x) == 0)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == 0)
 
 -- m = -1
@@ -51,12 +51,12 @@ check(Lx(psi) == 0)
 x = (-1/2, sqrt(1/2), -1/2)
 check(dot(Mx,x) == -x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == -hbar psi)
 
 "ok"
 
-"Verify eigenfunctions and eigenvalues for ell=2"
+"Verify for azimuth = 2"
 
 Ym = (Y(2,2),Y(2,1),Y(2,0),Y(2,-1),Y(2,-2))
 
@@ -71,7 +71,7 @@ check((Lx(Y(2,2)),Lx(Y(2,1)),Lx(Y(2,0)),Lx(Y(2,-1)),Lx(Y(2,-2))) == hbar dot(Mx,
 x = (1/4, 1/2, 1/2 sqrt(3/2), 1/2, 1/4)
 check(dot(Mx,x) == 2 x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == 2 hbar psi)
 
 -- m = -2
@@ -79,7 +79,7 @@ check(Lx(psi) == 2 hbar psi)
 x = (-1/4, 1/2, -1/2 sqrt(3/2), 1/2, -1/4)
 check(dot(Mx,x) == -2 x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == -2 hbar psi)
 
 -- m = 1
@@ -87,7 +87,7 @@ check(Lx(psi) == -2 hbar psi)
 x = (-1/2, -1/2, 0, 1/2, 1/2)
 check(dot(Mx,x) == x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == hbar psi)
 
 -- m = -1
@@ -95,7 +95,7 @@ check(Lx(psi) == hbar psi)
 x = (-1/2, 1/2, 0, -1/2, 1/2)
 check(dot(Mx,x) == -x)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == -hbar psi)
 
 -- m = 0
@@ -103,7 +103,7 @@ check(Lx(psi) == -hbar psi)
 x = (1/2 sqrt(3/2), 0, -1/2, 0, 1/2 sqrt(3/2))
 check(dot(Mx,x) == 0)
 psi = dot(x,Ym)
-check(defint(conj(psi) psi sin(theta), phi,0,2 pi, theta,0,pi) == 1)
+check(defint(conj(psi) psi sin(theta), phi, 0, 2 pi, theta, 0, pi) == 1)
 check(Lx(psi) == 0)
 
 "ok"
