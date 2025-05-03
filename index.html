@@ -31,7 +31,7 @@
 
 <br>
 
-Examples<br>
+Examples <button onclick="sort()">Sort</button><br>
 <div id="foo">
 <span><!-- Angular distance --> <a href="examples/angular-distance.pdf">Angular distance</a> (<a href="examples/angular-distance-demo.html">demo</a>)<br></span>
 <span><!-- Angular momentum --> <a href="examples/angular-momentum.pdf">Angular momentum</a> (<a href="examples/angular-momentum-demo.html">demo</a>)<br></span>
@@ -161,6 +161,25 @@ Additional resources<br>
 <a href="https://lindnerdrwg.github.io">lindnerdrwg.github.io</a><br>
 
 <script>
+function
+sort()
+{
+	var a, b, i, k, n;
+	a = document.getElementById("foo");
+	b = a.getElementsByTagName("span");
+	n = b.length;
+	while (n > 1) {
+		k = 0;
+		for (i = 0; i < n - 1; i++) {
+			if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+				b[0].parentNode.insertBefore(b[i + 1], b[i]);
+				b = a.getElementsByTagName("span");
+				k = i;
+			}
+		}
+		n = k + 1;
+	}
+}
 function
 unsort()
 {
