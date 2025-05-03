@@ -23,60 +23,50 @@ Let
 X_j=x_j,\quad P_j=-i\hbar\frac{\partial}{\partial x_j}
 \end{equation*}
 
-Show that
-
-\begin{enumerate}
-
-\item
-\begin{equation*}
-[\mathbf X,L_3]
+Verify the following formulas where $\psi\equiv\psi(x_1,x_2,x_3,t)$.
+\begin{gather*}
+%
+[\mathbf X,L_3]\psi
 =\begin{pmatrix}
 -i\hbar X_2
 \\
 i\hbar X_1
 \\
 0
-\end{pmatrix}
-\end{equation*}
-
-\item
-\begin{equation*}
-[\mathbf P,L_3]
+\end{pmatrix}\psi
+\tag{1}
+\\[1ex]
+%
+[\mathbf P,L_3]\psi
 =\begin{pmatrix}
 -i\hbar P_2
 \\
 i\hbar P_1
 \\
 0
-\end{pmatrix}
-\end{equation*}
-
-\item
-\begin{equation*}
-[\mathbf L,L^2]=0
-\end{equation*}
-
-\item
-\begin{equation*}
-\mathbf J\times\mathbf J=i\mathbf J
-\end{equation*}
-
-\item
-\begin{equation*}
-\mathbf P\times\mathbf L+\mathbf L\times\mathbf P=2i\hbar\mathbf P
-\end{equation*}
-
-\item
-\begin{equation*}
-\tfrac{1}{2}\left(\mathbf P\times\mathbf L-\mathbf L\times\mathbf P\right)
-=\mathbf P\times\mathbf L-i\hbar\mathbf P
-\end{equation*}
-
-\item
-\begin{equation*}
-[L_i,P_j]=i\hbar\sum_k\epsilon_{ijk}P_k
-\end{equation*}
-
-\end{enumerate}
+\end{pmatrix}\psi
+\tag{2}
+\\[1ex]
+%
+[\mathbf L,L^2]\psi=0
+\tag{3}
+\\[1ex]
+%
+\mathbf J\times\mathbf J\psi=i\mathbf J\psi
+\tag{4}
+\\[1ex]
+%
+(\mathbf P\times\mathbf L+\mathbf L\times\mathbf P)\psi=2i\hbar\mathbf P\psi
+\tag{5}
+\\[1ex]
+%
+\tfrac{1}{2}(\mathbf P\times\mathbf L-\mathbf L\times\mathbf P)\psi
+=(\mathbf P\times\mathbf L-i\hbar\mathbf P)\psi
+\tag{6}
+\\[1ex]
+%
+[L_i,P_j]\psi=i\hbar\sum_k\epsilon_{ijk}P_k\psi
+\tag{7}
+\end{gather*}
 
 \end{document}

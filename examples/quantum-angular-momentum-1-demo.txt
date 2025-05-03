@@ -18,33 +18,33 @@ J1(f) = L1(f) / hbar
 J2(f) = L2(f) / hbar
 J3(f) = L3(f) / hbar
 
-psi = Psi(x1,x2,x3)
+psi = Psi(x1,x2,x3,t)
 
--- 1
-
+"Verify equation (1)"
 check(X1(L3(psi)) - L3(X1(psi)) == -i hbar X2(psi))
 check(X2(L3(psi)) - L3(X2(psi)) == i hbar X1(psi))
 check(X3(L3(psi)) - L3(X3(psi)) == 0)
+"ok"
 
--- 2
-
+"Verify equation (2)"
 check(P1(L3(psi)) - L3(P1(psi)) == -i hbar P2(psi))
 check(P2(L3(psi)) - L3(P2(psi)) == i hbar P1(psi))
 check(P3(L3(psi)) - L3(P3(psi)) == 0)
+"ok"
 
--- 3
-
+"Verify equation (3)"
 check(L1(Lsq(psi)) - Lsq(L1(psi)) == 0)
 check(L2(Lsq(psi)) - Lsq(L2(psi)) == 0)
 check(L3(Lsq(psi)) - Lsq(L3(psi)) == 0)
+"ok"
 
--- 4
-
+"Verify equation (4)"
 check(J2(J3(psi)) - J3(J2(psi)) == i J1(psi))
 check(J3(J1(psi)) - J1(J3(psi)) == i J2(psi))
 check(J1(J2(psi)) - J2(J1(psi)) == i J3(psi))
+"ok"
 
--- 5
+"Verify equation (5)"
 
 PxL = (P2(L3(psi)) - P3(L2(psi)),
        P3(L1(psi)) - P1(L3(psi)),
@@ -58,11 +58,13 @@ P = (P1(psi),P2(psi),P3(psi))
 
 check(PxL + LxP == 2 i hbar P)
 
--- 6
+"ok"
 
+"Verify equation (6)"
 check(1/2 (PxL - LxP) == PxL - i hbar P)
+"ok"
 
--- 7
+"Verify equation (7)"
 
 epsilon = (((0,0,0),(0,0,1),(0,-1,0)),
            ((0,0,-1),(0,0,0),(1,0,0)),
