@@ -14,10 +14,6 @@ L3(f) = X1(P2(f)) - X2(P1(f))
 
 Lsq(f) = L1(L1(f)) + L2(L2(f)) + L3(L3(f))
 
-J1(f) = L1(f) / hbar
-J2(f) = L2(f) / hbar
-J3(f) = L3(f) / hbar
-
 psi = Psi(x1,x2,x3,t)
 
 "Verify equation (1)"
@@ -39,9 +35,9 @@ check(L3(Lsq(psi)) - Lsq(L3(psi)) == 0)
 "ok"
 
 "Verify equation (4)"
-check(J2(J3(psi)) - J3(J2(psi)) == i J1(psi))
-check(J3(J1(psi)) - J1(J3(psi)) == i J2(psi))
-check(J1(J2(psi)) - J2(J1(psi)) == i J3(psi))
+check(L2(L3(psi)) - L3(L2(psi)) == i hbar L1(psi))
+check(L3(L1(psi)) - L1(L3(psi)) == i hbar L2(psi))
+check(L1(L2(psi)) - L2(L1(psi)) == i hbar L3(psi))
 "ok"
 
 "Verify equation (5)"
