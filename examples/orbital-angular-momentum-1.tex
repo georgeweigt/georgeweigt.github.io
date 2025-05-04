@@ -1,16 +1,25 @@
 \input{preamble}
 
-\section*{Quantum angular momentum 1}
+\section*{Orbital angular momentum 1}
 
-Definitions.
+These are the orbital angular momentum operators in rectangular coordinates.
+\begin{align*}
+L_1&=X_2P_3-X_3P_2
+\\
+L_2&=X_3P_1-X_1P_3
+\\
+L_3&=X_1P_2-X_2P_1
+\end{align*}
+
+We also have
 \begin{gather*}
 \mathbf L=\mathbf X\times\mathbf P
 =\begin{pmatrix}
-X_2P_3-X_3P_2
+L_1
 \\
-X_3P_1-X_1P_3
+L_2
 \\
-X_1P_2-X_2P_1
+L_3
 \end{pmatrix}
 \\[1ex]
 L^2=|\mathbf L|^2={L_1}^2+{L_2}^2+{L_3}^2
@@ -23,7 +32,7 @@ Let
 X_j=x_j,\quad P_j=-i\hbar\frac{\partial}{\partial x_j}
 \end{equation*}
 
-Verify the following formulas where $\psi\equiv\psi(x_1,x_2,x_3,t)$.
+Verify the following equations where $\psi\equiv\psi(x_1,x_2,x_3,t)$.
 \begin{gather*}
 %
 [\mathbf X,L_3]\psi
