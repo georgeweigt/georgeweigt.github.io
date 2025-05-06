@@ -1,32 +1,30 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Perturbation example"
 
--- requires Eigenmath version 3.40
-
 ca0 = a
 cb0 = b
 
-da = -i/hbar Hab(t) exp(-i omega t) cb
-db = -i/hbar Hba(t) exp(i omega t) ca
+dca = -i/hbar Hab(t) exp(-i omega t) cb
+dcb = -i/hbar Hba(t) exp(i omega t) ca
 
-da1 = eval(da, cb, cb0)
-db1 = eval(db, ca, ca0)
+dca1 = eval(dca, cb, cb0)
+dcb1 = eval(dcb, ca, ca0)
 
 "Verify equation (1)"
-check(da1 == -i b / hbar Hab(t) exp(-i omega t))
-check(db1 == -i a / hbar Hba(t) exp(i omega t))
+check(dca1 == -i b / hbar Hab(t) exp(-i omega t))
+check(dcb1 == -i a / hbar Hba(t) exp(i omega t))
 "ok"
 
-ca1 = ca0 + integral(da1,t)
-cb1 = cb0 + integral(db1,t)
+ca1 = ca0 + integral(dca1,t)
+cb1 = cb0 + integral(dcb1,t)
 
 "Verify equation (2)"
 check(ca1 == a - i b / hbar integral(Hab(t) exp(-i omega t), t))
 check(cb1 == b - i a / hbar integral(Hba(t) exp(i omega t), t))
 "ok"
 
-da2 = eval(da, cb, cb1)
-db2 = eval(db, ca, ca1)
+dca2 = eval(dca, cb, cb1)
+dcb2 = eval(dcb, ca, ca1)
 
 "Verify equation (3)"
 Ta = -i b / hbar Hab(t) exp(-i omega t) -
@@ -35,12 +33,12 @@ Ta = -i b / hbar Hab(t) exp(-i omega t) -
 Tb = -i a / hbar Hba(t) exp(i omega t) -
      b / hbar^2 Hba(t) exp(i omega t) *
      integral(Hab(t) exp(-i omega t), t)
-check(da2 == Ta)
-check(db2 == Tb)
+check(dca2 == Ta)
+check(dcb2 == Tb)
 "ok"
 
-ca2 = ca0 + integral(da2,t)
-cb2 = cb0 + integral(db2,t)
+ca2 = ca0 + integral(dca2,t)
+cb2 = cb0 + integral(dcb2,t)
 
 "Verify equation (4)"
 I = integral(Hba(t) exp(i omega t), t)
