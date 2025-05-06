@@ -6,26 +6,23 @@ cb0 = b
 dca = -i/hbar Hab(t) exp(-i omega t) cb
 dcb = -i/hbar Hba(t) exp(i omega t) ca
 
+"Verify equation (1)"
 dca1 = eval(dca, cb, cb0)
 dcb1 = eval(dcb, ca, ca0)
-
-"Verify equation (1)"
 check(dca1 == -i b / hbar Hab(t) exp(-i omega t))
 check(dcb1 == -i a / hbar Hba(t) exp(i omega t))
 "ok"
 
+"Verify equation (2)"
 ca1 = ca0 + integral(dca1,t)
 cb1 = cb0 + integral(dcb1,t)
-
-"Verify equation (2)"
 check(ca1 == a - i b / hbar integral(Hab(t) exp(-i omega t), t))
 check(cb1 == b - i a / hbar integral(Hba(t) exp(i omega t), t))
 "ok"
 
+"Verify equation (3)"
 dca2 = eval(dca, cb, cb1)
 dcb2 = eval(dcb, ca, ca1)
-
-"Verify equation (3)"
 Ta = -i b / hbar Hab(t) exp(-i omega t) -
      a / hbar^2 Hab(t) exp(-i omega t) *
      integral(Hba(t) exp(i omega t), t)
@@ -36,10 +33,8 @@ check(dca2 == Ta)
 check(dcb2 == Tb)
 "ok"
 
-ca2 = ca0 + integral(dca2,t)
-cb2 = cb0 + integral(dcb2,t)
-
 "Verify equation (4)"
+ca2 = ca0 + integral(dca2,t)
 I = integral(Hba(t) exp(i omega t), t)
 T = a - i b / hbar integral(Hab(t) exp(-i omega t), t) -
     a / hbar^2 integral(Hab(t) exp(-i omega t) I, t)
@@ -47,8 +42,10 @@ check(ca2 == T)
 "ok"
 
 "Verify equation (5)"
+cb2 = cb0 + integral(dcb2,t)
 I = integral(Hab(t) exp(-i omega t), t)
 T = b - i a / hbar integral(Hba(t) exp(i omega t), t) -
     b / hbar^2 integral(Hba(t) exp(i omega t) I, t)
 check(cb2 == T)
+
 "ok"
