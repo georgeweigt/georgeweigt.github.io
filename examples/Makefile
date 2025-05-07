@@ -4,8 +4,8 @@
 	pdflatex $<
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
 
-%.html: %.txt ../text1 ../text2
-	cat ../text1 $< ../text2 > $@
+%.html: %.txt text1 text2
+	cat text1 $< text2 > $@
 
 default:
 	for file in $$(basename -a -s .tex *.tex | sed "s/unified//") ; do make $$file.pdf ; done
