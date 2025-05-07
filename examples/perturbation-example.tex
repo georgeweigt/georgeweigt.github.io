@@ -18,10 +18,10 @@ Find second order solutions $c_a^{(2)}(t)$ and $c_b^{(2)}(t)$ for $c_a(0)=a$ and
 First order:
 \begin{equation*}
 \begin{aligned}
-\dot c_a^{(1)}&=-\frac{i}{\hbar}H_{ab}(t)e^{-i\omega t}c_b\bigg|_{c_b=b}
+\dot c_a^{(1)}&=-\frac{i}{\hbar}c_bH_{ab}(t)e^{-i\omega t}\bigg|_{c_b=b}
 &&=-\frac{ib}{\hbar}H_{ab}(t)e^{-i\omega t}
 \\
-\dot c_b^{(1)}&=-\frac{i}{\hbar}H_{ba}(t)e^{i\omega t}c_a\bigg|_{c_a=a}
+\dot c_b^{(1)}&=-\frac{i}{\hbar}c_aH_{ba}(t)e^{i\omega t}\bigg|_{c_a=a}
 &&=-\frac{ia}{\hbar}H_{ba}(t)e^{i\omega t}
 \end{aligned}
 \tag{1}
@@ -42,11 +42,11 @@ c_b^{(1)}(t)&=b+\int_0^t\dot c_b^{(1)}(t')\,dt'
 Second order:
 \begin{equation*}
 \begin{aligned}
-\dot c_a^{(2)}&=-\frac{i}{\hbar}H_{ab}(t)e^{-i\omega t}c_b\bigg|_{c_b=c_b^{(1)}}
+\dot c_a^{(2)}&=-\frac{i}{\hbar}c_bH_{ab}(t)e^{-i\omega t}\bigg|_{c_b=c_b^{(1)}}
 &&=-\frac{ib}{\hbar}H_{ab}(t)e^{-i\omega t}-\frac{a}{\hbar^2}H_{ab}(t)e^{-i\omega t}
 \int_0^tH_{ba}(t')e^{i\omega t'}\,dt'
 \\
-\dot c_b^{(2)}&=-\frac{i}{\hbar}H_{ba}(t)e^{i\omega t}c_a\bigg|_{c_a=c_a^{(1)}}
+\dot c_b^{(2)}&=-\frac{i}{\hbar}c_aH_{ba}(t)e^{i\omega t}\bigg|_{c_a=c_a^{(1)}}
 &&=-\frac{ia}{\hbar}H_{ba}(t)e^{i\omega t}-\frac{b}{\hbar^2}H_{ba}(t)e^{i\omega t}
 \int_0^tH_{ab}(t')e^{-i\omega t'}\,dt'
 \end{aligned}
