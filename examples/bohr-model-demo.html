@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Bohr model"
+
+E = -alpha^2 m c^2 / (2 n^2)
+v = sqrt(-2 E / m)
+check(v == alpha c / n)
+
+a0 = 5.29177210544 10^(-11) meter
+alpha = 7.2973525643 10^(-3)
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878188 10^(-12) farad / meter
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+k = 1.380649 10^(-23) joule / kelvin
+me = 9.1093837139 10^(-31) kilogram
+mp = 1.67262192595 10^(-27) kilogram
+mu0 = 1.25663706127 10^(-6) newton / ampere^2
+
+-- derived units
+
+coulomb = ampere second
+farad = coulomb / volt
+joule = kilogram meter^2 / second^2
+newton = kilogram meter / second^2
+tesla = kilogram / second^2 / ampere
+volt = joule / coulomb
+
+-- base units (for printing)
+
+ampere = "ampere"
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+-- eV per joule
+
+eV = 1/e coulomb / joule "eV"
+
+E1 = 1/2 alpha^2 me c^2 eV
+r1 = hbar / (alpha me c)
+
+E1
+r1
+
+"Reduced electron mass"
+
+mu = me mp / (me + mp)
+
+E1 = 1/2 alpha^2 mu c^2 eV
+r1 = hbar / (alpha mu c)
+
+E1
+r1
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
