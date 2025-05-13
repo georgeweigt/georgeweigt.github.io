@@ -5,6 +5,11 @@ E = -alpha^2 m c^2 / (2 n^2)
 v = sqrt(-2 E / m)
 check(v == alpha c / n)
 
+r = n^2 hbar / (alpha m c)
+alpha = e^2 / (4 pi epsilon0 hbar c)
+check(E == -m e^4 / (2 (4 pi epsilon0 hbar)^2 n^2))
+check(r == 4 pi epsilon0 hbar^2 n^2 / (m e^2))
+
 a0 = 5.29177210544 10^(-11) meter
 alpha = 7.2973525643 10^(-3)
 c = 299792458.0 meter / second
