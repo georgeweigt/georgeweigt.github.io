@@ -1,7 +1,11 @@
 "Bohr model"
 
 E = -alpha^2 m c^2 / (2 n^2)
+v = alpha c / n
 r = n^2 hbar / (alpha m c)
+check(E == -1/2 m v^2)
+check(m v r == n hbar)
+
 alpha = e^2 / (4 pi epsilon0 hbar c)
 check(E == -m e^4 / (2 (4 pi epsilon0)^2 hbar^2 n^2))
 check(r == 4 pi epsilon0 hbar^2 n^2 / (m e^2))
