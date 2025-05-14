@@ -1,13 +1,13 @@
 "Bohr model"
 
 E = -alpha^2 m c^2 / (2 n^2)
-v = sqrt(-2 E / m)
-check(v == alpha c / n)
-
 r = n^2 hbar / (alpha m c)
 alpha = e^2 / (4 pi epsilon0 hbar c)
-check(E == -m e^4 / (2 (4 pi epsilon0 hbar)^2 n^2))
+check(E == -m e^4 / (2 (4 pi epsilon0)^2 hbar^2 n^2))
 check(r == 4 pi epsilon0 hbar^2 n^2 / (m e^2))
+
+-- CODATA Internationally recommended 2022 values
+-- https://physics.nist.gov/cuu/Constants/
 
 a0 = 5.29177210544 10^(-11) meter
 alpha = 7.2973525643 10^(-3)
@@ -30,7 +30,7 @@ newton = kilogram meter / second^2
 tesla = kilogram / second^2 / ampere
 volt = joule / coulomb
 
--- base units (for printing)
+-- base units
 
 ampere = "ampere"
 kelvin = "kelvin"
