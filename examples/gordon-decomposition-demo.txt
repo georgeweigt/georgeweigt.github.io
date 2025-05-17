@@ -1,16 +1,16 @@
 "Gordon decomposition"
 
-E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m^2)
-E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m^2)
+E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
+E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
 
 p1 = (E1, p1x, p1y, p1z)
 p2 = (E2, p2x, p2y, p2z)
 
-u11 = (E1 + m, 0, p1z, p1x + i p1y) -- spin up
-u12 = (0, E1 + m, p1x - i p1y, -p1z) -- spin down
+u11 = (E1 + m1, 0, p1z, p1x + i p1y) -- spin up
+u12 = (0, E1 + m1, p1x - i p1y, -p1z) -- spin down
 
-u21 = (E2 + m, 0, p2z, p2x + i p2y) -- spin up
-u22 = (0, E2 + m, p2x - i p2y, -p2z) -- spin down
+u21 = (E2 + m2, 0, p2z, p2x + i p2y) -- spin up
+u22 = (0, E2 + m2, p2x - i p2y, -p2z) -- spin down
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -19,14 +19,14 @@ gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 gamma = (gamma0,gamma1,gamma2,gamma3)
--- transpose first two indices to make compatible with dot product
+-- transpose first two indices to make compatible with dot function
 gammaT = transpose(gamma)
 
-T = transpose(dot(gamma,transpose(gamma)),2,3)
-sigmamunu = i/2 (T - transpose(T))
-S = transpose(sigmamunu,2,3,3,4)
-G = (outer(p2 + p1, I) + i dot(S, gmunu, p2 - p1)) / (2 m)
--- transpose first two indices to make compatible with dot product
+T = dot(gamma,transpose(gamma))
+sigmamunu = i/2 (T - transpose(T,1,3)) -- transpose mu and nu
+sigmamunu = transpose(sigmamunu,3,4) -- transpose nu and beta
+G = (outer(p2 + p1, I) + i dot(sigmamunu, gmunu, p2 - p1)) / (m1 + m2)
+-- transpose first two indices to make compatible with dot function
 G = transpose(G)
 
 "Verify for spin up-up"
