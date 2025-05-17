@@ -1,0 +1,84 @@
+\input{preamble}
+
+\section*{Gordon decomposition}
+
+Show that
+\begin{equation*}
+\bar{u}(p_2,s_2)\gamma^\mu u(p_1,s_1)=
+\bar{u}(p_2,s_2)
+\left[
+\frac{(p_2+p_1)^\mu}{2m}+i\sigma^{\mu\nu}\frac{(p_2-p_1)_\nu}{2m}
+\right]
+u(p_1,s_1)
+\end{equation*}
+
+Start by identifying the cast of characters.
+First, the momentum vectors.
+\begin{equation*}
+p_1=\begin{pmatrix}E_1\\p_{1x}\\p_{1y}\\p_{1z}\end{pmatrix},\quad
+p_2=\begin{pmatrix}E_2\\p_{2x}\\p_{2y}\\p_{2z}\end{pmatrix}
+\end{equation*}
+
+Spinors for particle one.
+\begin{equation*}
+u(p_1,1)=\underset{\text{spin up}}
+{\begin{pmatrix}E_1+m\\0\\p_{1z}\\p_{1x}+ip_{1y}\end{pmatrix}},\quad
+u(p_1,2)=\underset{\text{spin down}}
+{\begin{pmatrix}0\\E_1+m\\p_{1x}-ip_{1y}\\-p_{1z}\end{pmatrix}}
+\end{equation*}
+
+Spinors for particle two.
+\begin{equation*}
+u(p_2,1)=\underset{\text{spin up}}
+{\begin{pmatrix}E_2+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}},\quad
+u(p_2,2)=\underset{\text{spin down}}
+{\begin{pmatrix}0\\E_2+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
+\end{equation*}
+
+Relativistic energy.
+\begin{equation*}
+E_1=\sqrt{p_{1x}^2+p_{1y}^2+p_{1z}^2+m^2},\quad
+E_2=\sqrt{p_{2x}^2+p_{2y}^2+p_{2z}^2+m^2}
+\end{equation*}
+
+This is the definition for tensor $\sigma^{\mu\nu}$.
+\begin{equation*}
+\sigma^{\mu\nu}=\frac{i}{2}\left[\gamma^\mu,\gamma^\nu\right]
+=\frac{i}{2}\left(\gamma^\mu\gamma^\nu-\gamma^\nu\gamma^\mu\right)
+\end{equation*}
+
+In component notation
+\begin{equation*}
+\sigma^{\mu\nu\alpha}{}_\beta
+=\frac{i}{2}\left(\gamma^{\mu\alpha}{}_\rho\gamma^{\nu\rho}{}_\beta
+-\gamma^{\nu\alpha}{}_\rho\gamma^{\mu\rho}{}_\beta\right)
+\end{equation*}
+
+Let $T^{\mu\nu}=\gamma^\mu\gamma^\nu$.
+In component notation
+\begin{equation*}
+T^{\mu\nu\alpha}{}_\beta
+=\gamma^{\mu\alpha}{}_\rho\gamma^{\rho\nu}{}_\beta
+\end{equation*}
+
+In Eigenmath code
+\begin{equation*}
+\text{\tt T}=\text{\tt transpose(dot(gamma,transpose(gamma)),2,3)}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\text{\tt sigmamunu}=\text{\tt i/2 (T - transpose(T))}
+\end{equation*}
+
+Convert $\sigma^{\mu\nu}(p_2-p_1)_\nu$ to code.
+\begin{equation*}
+\sigma^{\mu\nu}(p_2-p_1)_\nu
+=\sigma^{\mu\alpha}{}_\beta{}^{\nu}g_{\nu\rho}(p_2-p_1)^\rho
+=\text{\tt dot(S, gmunu, p2 - p1)}
+\end{equation*}
+
+where $\text{\tt S}=\sigma^{\mu\alpha}{}_\beta{}^\nu
+=\text{\tt transpose(transpose(sigmamunu,2,3),3,4)}$.
+
+\end{document}
