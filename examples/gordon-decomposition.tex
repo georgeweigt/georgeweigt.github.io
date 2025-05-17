@@ -59,15 +59,15 @@ Let $T^{\mu\nu}=\gamma^\mu\gamma^\nu$.
 In component notation
 \begin{equation*}
 T^{\mu\alpha\nu}{}_\beta
-=\gamma^{\mu\alpha}{}_\rho\gamma^{\rho\nu}{}_\beta
+=\gamma^{\mu\alpha}{}_\rho\gamma^{\nu\rho}{}_\beta
 \end{equation*}
 
-In Eigenmath code
+In Eigenmath code (transpose to interchange $\nu$ and $\rho$ of $\gamma^{\nu\rho}{}_\beta$)
 \begin{equation*}
 \text{\tt T}=\text{\tt dot(gamma,transpose(gamma))}
 \end{equation*}
 
-Hence
+Calculate $\sigma^{\mu\nu}$ (transpose to interchange $\mu$ and $\nu$ of $T^{\mu\alpha\nu}{}_\beta$).
 \begin{equation*}
 \text{\tt sigmamunu}=\text{\tt i/2 (T - transpose(T,1,3))}
 \end{equation*}
