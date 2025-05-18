@@ -25,7 +25,7 @@ gammaT = transpose(gamma)
 T = dot(gamma,transpose(gamma))
 sigmamunu = i/2 (T - transpose(T,1,3)) -- transpose mu and nu
 sigmamunu = transpose(sigmamunu,3,4) -- transpose nu and beta
-G = (outer(p2 + p1, I) + i dot(sigmamunu, gmunu, p2 - p1)) / (m1 + m2)
+G = (outer(p1 + p2, I) + i dot(sigmamunu, gmunu, p2 - p1)) / (m1 + m2)
 -- transpose first two indices to make compatible with dot function
 G = transpose(G)
 
