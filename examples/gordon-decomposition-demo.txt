@@ -1,16 +1,16 @@
 "Gordon decomposition"
 
-E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
-E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
-
 p1 = (E1, p1x, p1y, p1z)
 p2 = (E2, p2x, p2y, p2z)
 
-u11 = (E1 + m1, 0, p1z, p1x + i p1y) -- spin up
-u12 = (0, E1 + m1, p1x - i p1y, -p1z) -- spin down
+u11 = (E1 + m1, 0, p1z, p1x + i p1y) / sqrt(E1 + m1) -- spin up
+u12 = (0, E1 + m1, p1x - i p1y, -p1z) / sqrt(E1 + m1) -- spin down
 
-u21 = (E2 + m2, 0, p2z, p2x + i p2y) -- spin up
-u22 = (0, E2 + m2, p2x - i p2y, -p2z) -- spin down
+u21 = (E2 + m2, 0, p2z, p2x + i p2y) / sqrt(E2 + m2) -- spin up
+u22 = (0, E2 + m2, p2x - i p2y, -p2z) / sqrt(E2 + m2) -- spin down
+
+E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
+E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
