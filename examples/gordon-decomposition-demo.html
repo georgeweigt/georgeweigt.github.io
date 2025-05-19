@@ -13,6 +13,13 @@ u22 = (0, E2 + m2, p2x - i p2y, -p2z) / sqrt(E2 + m2) -- spin down
 E1 = sqrt(p1x^2 + p1y^2 + p1z^2 + m1^2)
 E2 = sqrt(p2x^2 + p2y^2 + p2z^2 + m2^2)
 
+"Verify spinor normalization"
+check(dot(conj(u11),u11) == 2 E1)
+check(dot(conj(u12),u12) == 2 E1)
+check(dot(conj(u21),u21) == 2 E2)
+check(dot(conj(u22),u22) == 2 E2)
+"ok"
+
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -30,7 +37,7 @@ G = (outer(p1 + p2, I) + i dot(sigmamunu, gmunu, p2 - p1)) / (m1 + m2)
 -- transpose first two indices to make compatible with dot function
 G = transpose(G)
 
-"Verify for spin up-up"
+"Verify G for spin up-up"
 u1 = u11
 u2 = u21
 u2bar = dot(conj(u2),gamma0)
@@ -39,7 +46,7 @@ B = dot(u2bar, G, u1)
 check(A == B)
 "ok"
 
-"Verify for spin up-down"
+"Verify G for spin up-down"
 u1 = u11
 u2 = u22
 u2bar = dot(conj(u2),gamma0)
@@ -48,7 +55,7 @@ B = dot(u2bar, G, u1)
 check(A == B)
 "ok"
 
-"Verify for spin down-up"
+"Verify G for spin down-up"
 u1 = u12
 u2 = u21
 u2bar = dot(conj(u2),gamma0)
@@ -57,7 +64,7 @@ B = dot(u2bar, G, u1)
 check(A == B)
 "ok"
 
-"Verify for spin down-down"
+"Verify G for spin down-down"
 u1 = u12
 u2 = u22
 u2bar = dot(conj(u2),gamma0)
