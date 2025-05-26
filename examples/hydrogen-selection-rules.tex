@@ -2,9 +2,71 @@
 
 \section*{Hydrogen selection rules}
 
-Verify the following selection rules by computing transition frequencies.
+Verify the following selection rules by computing spontaneous emission rates.
 \begin{equation*}
 |\Delta l|=1,\quad|\Delta m|\le1
 \end{equation*}
+
+The spontaneous emission rate is
+\begin{equation*}
+A_{i\rightarrow f}=\frac{4\alpha\omega_{i\rightarrow f}^3|R_{i\rightarrow f}|^2}{3c^2}
+\end{equation*}
+
+where
+\begin{gather*}
+\omega_{i\rightarrow f}=\frac{E_f-E_i}{\hbar},\quad E_n=-\frac{\alpha\hbar c}{2n^2a_0}
+\\[1ex]
+|R_{i\rightarrow f}|^2=|x_{i\rightarrow f}|^2+|y_{i\rightarrow f}|^2+|z_{i\rightarrow f}|^2
+\\[1ex]
+x_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}x\psi_f^*\psi_i\,dV,
+\quad
+y_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}y\psi_f^*\psi_i\,dV,
+\quad
+z_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}z\psi_f^*\psi_i\,dV
+\end{gather*}
+
+and
+\begin{gather*}
+x=r\sin\theta\cos\phi,
+\quad
+y=r\sin\theta\sin\phi,
+\quad
+z=r\cos\theta
+\\[1ex]
+dV=r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{gather*}
+
+The wave function for hydrogen is
+\begin{equation*}
+\psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_{lm}(\theta,\phi)
+\end{equation*}
+
+where
+\begin{gather*}
+R_{nl}(r)=
+\frac{2}{n^2}
+\sqrt{\frac{(n-l-1)!}{(n+l)!}}
+\left(\frac{2r}{na_0}\right)^l
+L_{n-l-1}^{2l+1}\left(\frac{2r}{na_0}\right)
+\exp\left(-\frac{r}{na_0}\right)
+a_0^{-3/2}
+\\[1ex]
+L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
+\\[1ex]
+Y_{lm}(\theta,\phi)=(-1)^m
+\sqrt{\frac{(2l+1)}{4\pi}
+\frac{(l-m)!}{(l+m)!}}
+P_l^m(\cos\theta)\exp(im\phi)
+\\[1ex]
+P_l^m(\cos\theta)=\begin{cases}
+\displaystyle
+\left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
+(-1)^k\frac{(l+m+k)!}{(l-m-k)!(m+k)!k!}
+\left(\frac{1-\cos\theta}{2}\right)^k, & m\ge0
+\\[3ex]
+\displaystyle
+(-1)^m\frac{(l+m)!}{(l-m)!}P_l^{|m|}(\cos\theta), & m<0
+\end{cases}
+\end{gather*}
 
 \end{document}
