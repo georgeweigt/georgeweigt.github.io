@@ -2,8 +2,8 @@
 
 -- energy levels
 
-n1 = 3
-n2 = 2
+ni = 3
+nf = 2
 
 -- wave function
 
@@ -44,18 +44,17 @@ I(f) = do(
 
 N = 0
 
-for(l1, 0, n1 - 1, for(m1, -l1, l1,
-for(l2, 0, n2 - 1, for(m2, -l2, l2,
- psi1 = psi(n1,l1,m1),
- psi2 = psi(n2,l2,m2),
- f = conj(psi2) psi1,
- xif = I(f r sin(theta) cos(phi)),
- yif = I(f r sin(theta) sin(phi)),
- zif = I(f r cos(theta)),
+for(li, 0, ni - 1, for(mi, -li, li,
+for(lf, 0, nf - 1, for(mf, -lf, lf,
+ psii = psi(ni,li,mi),
+ psif = psi(nf,lf,mf),
+ xif = I(conj(psif) psii r sin(theta) cos(phi)),
+ yif = I(conj(psif) psii r sin(theta) sin(phi)),
+ zif = I(conj(psif) psii r cos(theta)),
  R2 = conj(xif) xif + conj(yif) yif + conj(zif) zif,
  test(R2, do(
-  check(abs(l1 - l2) == 1),
-  check(abs(m1 - m2) <= 1),
+  check(abs(lf - li) == 1),
+  check(abs(mf - mi) <= 1),
   N = N + 1))
 ))))
 
