@@ -6,4 +6,6 @@ default:
 	rsync -c ../eigenmath/doc/*.pdf manual
 	rsync -c ../eigenmath/doc/eigenmath.pdf .
 	rsync -c ../sassafras/doc/sassafras.pdf .
+	rsync -c ../itsmr/doc/itsmr-refman.pdf .
+	rsync -c ../itsmr/doc/arar-algorithm.pdf .
 	make -C examples
