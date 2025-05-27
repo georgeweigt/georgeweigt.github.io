@@ -2,39 +2,44 @@
 
 \section*{Hydrogen selection rules}
 
-Verify the following selection rules by computing spontaneous emission rates.
+By computing transition elements, verify the following selection rules.
 \begin{equation*}
 |\Delta l|=1,\quad|\Delta m|\le1
 \end{equation*}
 
-The spontaneous emission rate is
+The transition element $|R_{i\rightarrow f}|^2$ for spontaneous emission is
 \begin{equation*}
-A_{i\rightarrow f}=\frac{4\alpha\omega_{i\rightarrow f}^3|R_{i\rightarrow f}|^2}{3c^2}
+|R_{i\rightarrow f}|^2
+=|\langle\psi_f|\hat x|\psi_i\rangle|^2
++|\langle\psi_f|\hat y|\psi_i\rangle|^2
++|\langle\psi_f|\hat z|\psi_i\rangle|^2
 \end{equation*}
 
 where
 \begin{gather*}
-\omega_{i\rightarrow f}=\frac{E_f-E_i}{\hbar},\quad E_n=-\frac{\alpha\hbar c}{2n^2a_0}
-\\[1ex]
-|R_{i\rightarrow f}|^2=|x_{i\rightarrow f}|^2+|y_{i\rightarrow f}|^2+|z_{i\rightarrow f}|^2
-\\[1ex]
-x_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}x\psi_f^*\psi_i\,dV,
+\langle\psi_f|\hat x|\psi_i\rangle
+=\int_V\psi_f^*\hat x\psi_i\,dV,
 \quad
-y_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}y\psi_f^*\psi_i\,dV,
+\langle\psi_f|\hat y|\psi_i\rangle
+=\int_V\psi_f^*\hat y\psi_i\,dV,
 \quad
-z_{i\rightarrow f}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}z\psi_f^*\psi_i\,dV
+\langle\psi_f|\hat z|\psi_i\rangle
+=\int_V\psi_f^*\hat z\psi_i\,dV
 \end{gather*}
 
-and
-\begin{gather*}
-x=r\sin\theta\cos\phi,
+For the dipole approximation the operators are
+\begin{equation*}
+\hat x=r\sin\theta\cos\phi,
 \quad
-y=r\sin\theta\sin\phi,
+\hat y=r\sin\theta\sin\phi,
 \quad
-z=r\cos\theta
-\\[1ex]
+\hat z=r\cos\theta
+\end{equation*}
+
+In spherical coordinates the measure is
+\begin{equation*}
 dV=r^2\sin\theta\,dr\,d\theta\,d\phi
-\end{gather*}
+\end{equation*}
 
 The wave function for hydrogen is
 \begin{equation*}
