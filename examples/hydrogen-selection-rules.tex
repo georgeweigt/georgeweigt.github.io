@@ -7,7 +7,7 @@ By computing transition elements, verify the following selection rules.
 |\Delta l|=1,\quad|\Delta m|\le1
 \end{equation*}
 
-The transition element $|R_{i\rightarrow f}|^2$ for spontaneous emission is
+The transition element $|R_{i\rightarrow f}|^2$ for spontaneous emission.
 \begin{equation*}
 |R_{i\rightarrow f}|^2
 =|\langle\psi_f|\hat x|\psi_i\rangle|^2
@@ -15,7 +15,7 @@ The transition element $|R_{i\rightarrow f}|^2$ for spontaneous emission is
 +|\langle\psi_f|\hat z|\psi_i\rangle|^2
 \end{equation*}
 
-The transition amplitudes are
+Transition amplitudes.
 \begin{gather*}
 \langle\psi_f|\hat x|\psi_i\rangle
 =\int_V\psi_f^*\hat x\psi_i\,dV,
@@ -27,7 +27,7 @@ The transition amplitudes are
 =\int_V\psi_f^*\hat z\psi_i\,dV
 \end{gather*}
 
-For the dipole approximation the operators are
+Operators for dipole approximation.
 \begin{equation*}
 \hat x=r\sin\theta\cos\phi,
 \quad
@@ -36,18 +36,24 @@ For the dipole approximation the operators are
 \hat z=r\cos\theta
 \end{equation*}
 
-In spherical coordinates the measure is
+Volume measure for spherical coordinates.
 \begin{equation*}
 dV=r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-The wave function for hydrogen is
+Hydrogen wave functions $\psi_{nlm}$ are solutions to
+the time-independent Schr\"odinger equation.
+\begin{equation*}
+\hat H\psi_{nlm}(r,\theta,\phi)=E_n\psi_{nlm}(r,\theta,\phi)
+\end{equation*}
+
+Hydrogen wave functions are formed as
 \begin{equation*}
 \psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_{lm}(\theta,\phi)
 \end{equation*}
 
-where
-\begin{gather*}
+Radial function.
+\begin{equation*}
 R_{nl}(r)=
 \frac{2}{n^2}
 \sqrt{\frac{(n-l-1)!}{(n+l)!}}
@@ -55,14 +61,23 @@ R_{nl}(r)=
 L_{n-l-1}^{2l+1}\left(\frac{2r}{na_0}\right)
 \exp\left(-\frac{r}{na_0}\right)
 a_0^{-3/2}
-\\[1ex]
+\end{equation*}
+
+Associated Laguerre polynomial.
+\begin{equation*}
 L_n^m(x)=(n+m)!\sum_{k=0}^n\frac{(-x)^k}{(n-k)!(m+k)!k!}
-\\[1ex]
+\end{equation*}
+
+Spherical harmonic.
+\begin{equation*}
 Y_{lm}(\theta,\phi)=(-1)^m
 \sqrt{\frac{(2l+1)}{4\pi}
 \frac{(l-m)!}{(l+m)!}}
 P_l^m(\cos\theta)\exp(im\phi)
-\\[1ex]
+\end{equation*}
+
+Associated Legendre polynomial of $\cos\theta$.
+\begin{equation*}
 P_l^m(\cos\theta)=\begin{cases}
 \displaystyle
 \left(\frac{\sin\theta}{2}\right)^m\,\sum_{k=0}^{l-m}
@@ -72,6 +87,6 @@ P_l^m(\cos\theta)=\begin{cases}
 \displaystyle
 (-1)^m\frac{(l+m)!}{(l-m)!}P_l^{|m|}(\cos\theta), & m<0
 \end{cases}
-\end{gather*}
+\end{equation*}
 
 \end{document}
