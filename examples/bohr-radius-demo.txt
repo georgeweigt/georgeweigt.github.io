@@ -2,13 +2,8 @@ E = hbar^2 / (2 me r^2) - e^2 / (4 pi epsilon0 r)
 dE = d(E,r)
 check(dE == -hbar^2 / (me r^3) + e^2 / (4 pi epsilon0 r^2))
 
-"Bohr radius"
-
-a0 = 4 pi epsilon0 hbar^2 / (e^2 me)
-a0
-
 "Verify energy is minimized"
-r = a0
+r = 4 pi epsilon0 hbar^2 / (e^2 me)
 check(dE == 0)
 "ok"
 
@@ -66,4 +61,5 @@ eV = 1/e coulomb / joule "eV"
 a0
 
 "Computed value"
-4 float(pi) epsilon0 hbar^2 / (e^2 me)
+r = float(r)
+r
