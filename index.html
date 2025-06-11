@@ -31,7 +31,7 @@
 
 <br>
 
-Examples <button onclick="unsort()">&#8635;</button><br>
+Examples <button onclick="sort()">&#8635;</button><br>
 <div id="foo">
 
 <span><!-- Angular separation --><a href="examples/angular-separation.pdf">Angular separation</a> (<a href="examples/angular-separation-demo.html">demo</a>)<br></span>
@@ -298,12 +298,13 @@ unsort()
 		// Note that the final value for i is i = n-2 and consequently
 		// the final value for n-i is n-i = n-(n-2) = 2.
 		// Hence the final value for j is a coin flip, 0 or 1.
-		j = Math.floor(1e10 * Math.random()) % (n - i);
+		j = Math.floor(Math.random() * (n - i));
 		// b[i+j] is moved to just before b[i]
 		b[0].parentNode.insertBefore(b[i + j], b[i]);
 		b = a.getElementsByTagName("span");
 	}
 }
+unsort()
 </script>
 </body>
 </html>
