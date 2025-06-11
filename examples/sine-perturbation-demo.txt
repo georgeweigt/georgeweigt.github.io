@@ -1,0 +1,28 @@
+"Sine perturbation"
+
+"Verify equation (1)"
+f = cos(omega t) exp(i omega0 t)
+f = expform(f)
+I = integral(f,t)
+I = eval(I,t,t) - eval(I,t,0)
+A = (exp(i (omega0 - omega) t) - 1) / (omega0 - omega)
+B = (exp(i (omega0 + omega) t) - 1) / (omega0 + omega)
+check(I == -i/2 (A + B))
+"ok"
+
+"Verify equation (2)"
+cb = -i/hbar Vba (-i/2) (A + B)
+check(cb == -Vba / (2 hbar) (A + B))
+"ok"
+
+"Verify equation (3)"
+cb = -Vba / (2 hbar) A
+T = -i Vba / hbar sin(1/2 (omega0 - omega) t) / (omega0 - omega) *
+    exp(i/2 (omega0 - omega) t)
+check(cb == T)
+"ok"
+
+"Verify equation (4)"
+P = conj(cb) cb
+check(P == Vba^2 / hbar^2 sin(1/2 (omega0 - omega) t)^2 / (omega0 - omega)^2)
+"ok"
