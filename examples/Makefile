@@ -1,4 +1,4 @@
-.PHONY: default clean cat
+.PHONY: default clean selftest
 
 %.pdf: %.tex preamble
 	pdflatex $<
@@ -24,5 +24,5 @@ clean:
 
 # @ for silent
 
-cat:
-	@for file in $$(basename -a -s .txt *.txt) ; do echo "clear\n"; cat $$file.txt ; done
+selftest:
+	@for FILE in *.txt ; do echo "clear\n"; cat $$FILE ; done

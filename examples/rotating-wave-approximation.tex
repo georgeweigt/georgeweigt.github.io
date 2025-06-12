@@ -19,7 +19,7 @@ where
 \hat H_0\Psi=(E_a+E_b)\Psi
 \end{equation*}
 
-It was shown that the Schr\"odinger equation requires
+It was shown that if $\Psi$ is a solution to the Schr\"odinger equation then
 \begin{equation*}
 \frac{d}{dt}c_a(t)=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t),\quad
 \frac{d}{dt}c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
@@ -75,10 +75,30 @@ Symbol $\omega_r$ is the Rabi flopping frequency
 +\bigl|\langle\psi_a|\hat V|\psi_b\rangle\bigr|^2/\hbar^2}
 \end{equation*}
 
-Use equation (1) to solve for $c_a(t)$.
+Use the latter part of equation (1) and the solution for $c_b(t)$ to solve for $c_a(t)$.
 \begin{equation*}
-c_a(t)=\left[\cos(\omega_rt)+\frac{i(\omega_0-\omega)}{2\omega_r}\sin(\omega_rt)\right]
+c_a(t)=\left[\cos(\omega_rt)+i\left(\frac{\omega_0-\omega}{2\omega_r}\right)\sin(\omega_rt)\right]
 \exp\left(-\tfrac{i}{2}(\omega_0-\omega)t\right)
 \end{equation*}
+
+Rewrite $\omega_r$ as
+\begin{equation*}
+\omega_r=\frac{1}{2\hbar}\sqrt{\hbar^2(\omega_0-\omega)^2
++\bigl|\langle\psi_a|\hat V|\psi_b\rangle\bigr|^2}
+\end{equation*}
+
+and note that for
+\begin{equation*}
+\hbar^2(\omega_0-\omega)^2\gg\bigl|\langle\psi_a|\hat V|\psi_b\rangle\bigr|^2
+\end{equation*}
+
+we have
+\begin{equation*}
+\omega_r\approx\tfrac{1}{2}|\omega_0-\omega|
+\end{equation*}
+
+Using this approximation, the transition probability
+$P_{a\rightarrow b}(t)=|c_b(t)|^2$
+becomes identical to the first order perturbation result.
 
 \end{document}
