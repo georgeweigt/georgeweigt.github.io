@@ -63,7 +63,7 @@ and
 \tag{4}
 \end{equation*}
 
-Solve for $c_b(t)$ with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
+Use Laplace transforms to solve for $c_b(t)$ with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
 \begin{equation*}
 c_b(t)=-\frac{i}{2\hbar\omega_r}\langle\psi_b|\hat V|\psi_a\rangle
 \sin(\omega_rt)\exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
@@ -72,7 +72,7 @@ c_b(t)=-\frac{i}{2\hbar\omega_r}\langle\psi_b|\hat V|\psi_a\rangle
 Symbol $\omega_r$ is the Rabi flopping frequency
 \begin{equation*}
 \omega_r=\frac{1}{2}\sqrt{(\omega_0-\omega)^2
-+\frac{|\langle\psi_b|\hat V|\psi_a\rangle|^2}{\hbar^2}}
++\bigl|\langle\psi_a|\hat V|\psi_b\rangle\bigr|^2/\hbar^2}
 \end{equation*}
 
 Use equation (1) to solve for $c_a(t)$.
