@@ -1,0 +1,84 @@
+\input{preamble}
+
+\section*{Rotating wave approximation}
+
+Let $\Psi(\mathbf r,t)$ be the following wave function for a two state system.
+\begin{equation*}
+\Psi(\mathbf r,t)=\psi_a(\mathbf r)c_a(t)\exp(-\tfrac{i}{\hbar}E_at)+
+\psi_b(\mathbf r)c_b(t)\exp(-\tfrac{i}{\hbar}E_bt)
+\end{equation*}
+
+Let $\hat H(\mathbf r,t)$ be the Hamiltonian
+\begin{equation*}
+\hat H(\mathbf r,t)=\hat H_0(\mathbf r)+\hat H_1(\mathbf r,t)
+\end{equation*}
+
+where
+\begin{equation*}
+\hat H_0\psi_a=E_a\psi_a,\quad\hat H_0\psi_b=E_b\psi_b,\quad
+\hat H_0\Psi=(E_a+E_b)\Psi
+\end{equation*}
+
+It was shown that the Schr\"odinger equation requires
+\begin{equation*}
+\frac{d}{dt}c_a(t)=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t),\quad
+\frac{d}{dt}c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
+\tag{1}
+\end{equation*}
+
+where
+\begin{equation*}
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+Let $\hat H_1(\mathbf r,t)$ be the perturbation
+\begin{equation*}
+\hat H_1(\mathbf r,t)=\hat V(\mathbf r)\cos(\omega t)
+\end{equation*}
+
+Then
+\begin{equation*}
+\langle\psi_a|\hat H_1|\psi_b\rangle
+=\langle\psi_a|\hat V|\psi_b\rangle
+\left[\tfrac{1}{2}\exp(i\omega t)+\tfrac{1}{2}\exp(-i\omega t)\right]
+\end{equation*}
+
+The rotating wave approximation discards the second term and asserts
+\begin{equation*}
+\langle\psi_a|\hat H_1|\psi_b\rangle=\tfrac{1}{2}\langle\psi_a|\hat V|\psi_b\rangle\exp(i\omega t)
+\tag{2}
+\end{equation*}
+
+Substitute equation (2) into (1) to obtain
+\begin{equation*}
+\frac{d}{dt}c_a(t)=-\frac{i}{2\hbar}\langle\psi_a|\hat V|\psi_b\rangle
+\exp\bigl(i(\omega-\omega_0)t\bigr)c_b(t)
+\tag{3}
+\end{equation*}
+
+and
+\begin{equation*}
+\frac{d}{dt}c_b(t)=-\frac{i}{2\hbar}\langle\psi_b|\hat V|\psi_a\rangle
+\exp\bigl(i(\omega_0-\omega)t\bigr)c_a(t)
+\tag{4}
+\end{equation*}
+
+Solve for $c_b(t)$ with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
+\begin{equation*}
+c_b(t)=-\frac{i}{2\hbar\omega_r}\langle\psi_b|\hat V|\psi_a\rangle
+\sin(\omega_rt)\exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
+\end{equation*}
+
+Symbol $\omega_r$ is the Rabi flopping frequency
+\begin{equation*}
+\omega_r=\frac{1}{2}\sqrt{(\omega_0-\omega)^2
++\frac{|\langle\psi_b|\hat V|\psi_a\rangle|^2}{\hbar^2}}
+\end{equation*}
+
+Use equation (1) to solve for $c_a(t)$.
+\begin{equation*}
+c_a(t)=\left[\cos(\omega_rt)+\frac{i(\omega_0-\omega)}{2\omega_r}\sin(\omega_rt)\right]
+\exp\left(-\tfrac{i}{2}(\omega_0-\omega)t\right)
+\end{equation*}
+
+\end{document}
