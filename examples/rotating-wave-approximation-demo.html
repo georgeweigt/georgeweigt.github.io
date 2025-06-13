@@ -4,7 +4,7 @@
 Vab = A exp(i phi) -- arbitrary complex number
 Vba = conj(Vab)
 
-cb = -i / (2 hbar omegar) Vba sin(omegar t) exp(i/2 (omega0 - omega) t)
+cb = -i/hbar Vba sin(omegar t) / (2 omegar) exp(i/2 (omega0 - omega) t)
 ca = -2 hbar / (i Vba exp(i (omega0 - omega) t)) d(cb,t)
 
 check(ca == (cos(omegar t) + i (omega0 - omega) / (2 omegar) sin(omegar t)) exp(-i/2 (omega0 - omega) t))

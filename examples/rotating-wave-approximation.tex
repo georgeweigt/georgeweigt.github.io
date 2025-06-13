@@ -65,8 +65,10 @@ and
 
 Use Laplace transforms to solve for $c_b(t)$ with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
 \begin{equation*}
-c_b(t)=-\frac{i}{2\hbar\omega_r}\langle\psi_b|\hat V|\psi_a\rangle
-\sin(\omega_rt)\exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
+c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
+\frac{\sin(\omega_rt)}{2\omega_r}
+\exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
+\tag{5}
 \end{equation*}
 
 Symbol $\omega_r$ is the Rabi flopping frequency
@@ -95,10 +97,16 @@ and note that for
 we have
 \begin{equation*}
 \omega_r\approx\tfrac{1}{2}|\omega_0-\omega|
+\tag{6}
 \end{equation*}
 
-Using this approximation, the transition probability
-$P_{a\rightarrow b}(t)=|c_b(t)|^2$
-becomes identical to the result from first order perturbation theory.
+Substitute (6) into (5) to obtain
+\begin{equation*}
+c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
+\frac{\sin\left(\tfrac{1}{2}|\omega_0-\omega|t\right)}{|\omega_0-\omega|}
+\exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
+\end{equation*}
+
+This is equivalent to $c_b(t)$ obtained from first order perturbation expansion.
 
 \end{document}

@@ -17,9 +17,7 @@ check(cb == -Vba / (2 hbar) (A + B))
 
 "Verify equation (3)"
 cb = -Vba / (2 hbar) A
-T = -i Vba / hbar sin(1/2 (omega0 - omega) t) / (omega0 - omega) *
-    exp(i/2 (omega0 - omega) t)
-check(cb == T)
+check(cb == -i/hbar Vba sin(1/2 (omega0 - omega) t) / (omega0 - omega) exp(i/2 (omega0 - omega) t))
 "ok"
 
 "Verify equation (4)"
