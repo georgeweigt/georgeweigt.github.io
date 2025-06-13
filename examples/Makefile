@@ -1,4 +1,4 @@
-.PHONY: default clean cat
+.PHONY: default clean
 
 %.pdf: %.tex preamble
 	pdflatex $<
@@ -22,10 +22,7 @@ unify: unify.c
 clean:
 	rm -f *.aux *.log *.synctex.gz *.toc
 
-demotest: *.txt
-	make cat > demotest
-
 # @ for silent
 
-cat:
-	@for FILE in *.txt ; do echo "clear\n"; cat $$FILE ; done
+demotest: *.txt
+	@for FILE in *.txt ; do echo "clear\n"; cat $$FILE ; done > demotest
