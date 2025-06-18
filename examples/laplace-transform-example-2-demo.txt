@@ -1,0 +1,29 @@
+"Laplace transform example 2"
+
+a = -(Haa + Hbb + i omega0)
+b = Haa Hbb - Hab Hba + i Hbb omega0
+k = sqrt(4 b - a^2)
+
+cb = 2 Hba / k sin(1/2 k t) exp(-1/2 a t)
+ca = (d(cb,t) - Hbb cb) / (Hba exp(i omega0 t))
+
+check(ca == (cos(1/2 k t) - (a + 2 Hbb) / k sin(1/2 k t)) exp(-i omega0 t) exp(-1/2 a t))
+
+"Verify equation (1)"
+check(d(ca,t) == Haa ca + Hab cb exp(-i omega0 t))
+"ok"
+
+"Verify equation (2)"
+check(d(cb,t) == Hbb cb + Hba ca exp(i omega0 t))
+"ok"
+
+Haa = 0
+Hbb = 0
+
+"Verify equation (6)"
+check(ca == (cos(1/2 k t) + i omega0 / k sin(1/2 k t)) exp(-1/2 i omega0 t))
+"ok"
+
+"Verify equation (7)"
+check(cb == 2 Hba / k sin(1/2 k t) exp(1/2 i omega0 t))
+"ok"

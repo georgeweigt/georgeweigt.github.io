@@ -1,0 +1,120 @@
+\input{preamble}
+
+\section*{Laplace transform example 2}
+
+Let $\hat H(\mathbf r,t)$ be the Hamiltonian
+\begin{equation*}
+\hat H(\mathbf r,t)=\hat H_0(\mathbf r)+\hat H_1(\mathbf r,t)
+\end{equation*}
+
+where
+\begin{equation*}
+\hat H_0\psi_a=E_a\psi_a,\quad\hat H_0\psi_b=E_b\psi_b,\quad
+\hat H_0\Psi=(E_a+E_b)\Psi
+\end{equation*}
+
+Let $\Psi(\mathbf r,t)$ be the following wave function for a two state system.
+\begin{equation*}
+\Psi(\mathbf r,t)=\psi_a(\mathbf r)c_a(t)\exp(-\tfrac{i}{\hbar}E_at)+
+\psi_b(\mathbf r)c_b(t)\exp(-\tfrac{i}{\hbar}E_bt)
+\end{equation*}
+
+From the Schr\"odinger equation
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\Psi=\hat H\Psi
+\end{equation*}
+
+we obtain the differential equations
+\begin{align*}
+\frac{d}{dt}c_a(t)&=H_{aa}c_a(t)+H_{ab}c_b(t)\exp(-i\omega_0t)
+\tag{1}
+\\[1ex]
+\frac{d}{dt}c_b(t)&=H_{bb}c_b(t)+H_{ba}c_a(t)\exp(i\omega_0t)
+\tag{2}
+\end{align*}
+
+where
+\begin{equation*}
+H_{ij}=-\frac{i}{\hbar}\langle\psi_i|\hat H_1|\psi_j\rangle,\quad
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+Solve equations (1) and (2) with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
+
+\bigskip
+Start with the following Laplace transforms for (1) and (2).
+\begin{align*}
+sC_a(s)-c_a(0)&=H_{aa}C_a(s)+H_{ab}C_b(s+i\omega_0)
+\tag{3}
+\\
+sC_b(s)-c_b(0)&=H_{bb}C_b(s)+H_{ba}C_a(s-i\omega_0)
+\tag{4}
+\end{align*}
+
+Use equation (3) to solve for $C_a(s)$ with $c_a(0)=1$.
+\begin{equation*}
+C_a(s)=\frac{H_{ab}C_b(s+i\omega_0)}{s-H_{aa}}+\frac{1}{s-H_{aa}}
+\end{equation*}
+
+Solve for $C_a(s-i\omega_0)$.
+\begin{equation*}
+C_a(s-i\omega)=\frac{H_{ab}C_b(s)}{s-i\omega_0-H_{aa}}+\frac{1}{s-i\omega_0-H_{aa}}
+\tag{5}
+\end{equation*}
+
+Substitute (5) into (4) to obtain
+\begin{equation*}
+sC_b(s)-c_b(0)=H_{bb}C_b(s)+H_{ba}
+\left(
+\frac{H_{ab}C_b(s)}{s-i\omega_0-H_{aa}}+\frac{1}{s-i\omega_0-H_{aa}}
+\right)
+\end{equation*}
+
+It follows that for $c_b(0)=0$
+\begin{equation*}
+C_b(s)\left[s-H_{bb}-\frac{H_{ab}H_{ba}}{s-i\omega_0-H_{aa}}\right]=\frac{H_{ba}}{s-i\omega_0-H_{aa}}
+\end{equation*}
+
+Hence
+\begin{equation*}
+C_b(s)=\frac{H_{ba}}{s^2-(H_{aa}+H_{bb}+i\omega_0)s+H_{aa}H_{bb}-H_{ab}H_{ba}+iH_{bb}\omega_0}
+\end{equation*}
+
+Inverse Laplace transform:
+\begin{equation*}
+\frac{1}{s^2+as+b}\quad\Rightarrow\quad
+\frac{2}{k}\sin\left(\frac{kt}{2}\right)\exp\left(-\frac{at}{2}\right),\quad
+k=\sqrt{4b-a^2}
+\end{equation*}
+
+Hence for
+\begin{equation*}
+a=-(H_{aa}+H_{bb}+i\omega_0),\quad
+b=H_{aa}H_{bb}-H_{ab}H_{ba}+iH_{bb}\omega_0
+\end{equation*}
+
+we have
+\begin{equation*}
+c_b(t)=\frac{2H_{ba}}{k}
+\sin\left(\frac{kt}{2}\right)
+\exp\left(-\frac{at}{2}\right)
+\end{equation*}
+
+Use equation (2) to solve for $c_a(t)$.
+\begin{equation*}
+c_a(t)=\left[
+\cos\left(\frac{kt}{2}\right)-\frac{a+2H_{bb}}{k}\sin\left(\frac{kt}{2}\right)
+\right]\exp(-i\omega_0t)\exp\left(-\frac{at}{2}\right)
+\end{equation*}
+
+For the typical case of $H_{aa}=H_{bb}=0$ we have
+\begin{align*}
+c_a(t)&=\left[\cos\left(\frac{kt}{2}\right)+\frac{i\omega_0}{k}\sin\left(\frac{kt}{2}\right)\right]
+\exp\left(-\frac{i\omega_0t}{2}\right)
+\tag{6}
+\\[1ex]
+c_b(t)&=\frac{2H_{ba}}{k}\sin\left(\frac{kt}{2}\right)\exp\left(\frac{i\omega_0t}{2}\right)
+\tag{7}
+\end{align*}
+
+\end{document}
