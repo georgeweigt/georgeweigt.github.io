@@ -19,16 +19,40 @@ where
 \hat H_0\Psi=(E_a+E_b)\Psi
 \end{equation*}
 
-It was shown that if $\Psi$ is a solution to the Schr\"odinger equation then
+From the Schr\"odinger equation
 \begin{equation*}
-\frac{d}{dt}c_a(t)=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t),\quad
-\frac{d}{dt}c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
-\tag{1}
+i\hbar\frac{\partial}{\partial t}\Psi=\hat H\Psi
+\end{equation*}
+
+we obtain the differential equations
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_a\rangle c_a(t)
+-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t)
+\\[1ex]
+\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_b\rangle c_b(t)
+-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
+\end{aligned}
 \end{equation*}
 
 where
 \begin{equation*}
 \omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+Typically the diagonal elements vanish
+\begin{equation*}
+\langle\psi_a|\hat H_1|\psi_a\rangle=\langle\psi_b|\hat H_1|\psi_b\rangle=0
+\end{equation*}
+
+and the differential equations become
+\begin{equation*}
+\begin{aligned}
+\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t)
+\\[1ex]
+\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
+\end{aligned}
+\tag{1}
 \end{equation*}
 
 Let $\hat H_1(\mathbf r,t)$ be the perturbation
