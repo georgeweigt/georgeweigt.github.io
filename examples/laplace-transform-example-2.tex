@@ -35,18 +35,19 @@ we obtain the differential equations
 
 where
 \begin{equation*}
-H_{ij}=-\frac{i}{\hbar}\langle\psi_i|\hat H_1|\psi_j\rangle,\quad
+H_{jk}=-\frac{i}{\hbar}\langle\psi_j|\hat H_1|\psi_k\rangle,\quad
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 
-Solve equations (1) and (2) with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
+Solve for $c_a(t)$ and $c_b(t)$ in equations (1) and (2) for
+initial conditions $c_a(0)=1$ and $c_b(0)=0$.
 
 \bigskip
 Start with the following Laplace transforms for (1) and (2).
 \begin{align*}
 sC_a(s)-c_a(0)&=H_{aa}C_a(s)+H_{ab}C_b(s+i\omega_0)
 \tag{3}
-\\
+\\[1ex]
 sC_b(s)-c_b(0)&=H_{bb}C_b(s)+H_{ba}C_a(s-i\omega_0)
 \tag{4}
 \end{align*}
@@ -58,7 +59,7 @@ C_a(s)=\frac{H_{ab}C_b(s+i\omega_0)}{s-H_{aa}}+\frac{1}{s-H_{aa}}
 
 Solve for $C_a(s-i\omega_0)$.
 \begin{equation*}
-C_a(s-i\omega)=\frac{H_{ab}C_b(s)}{s-i\omega_0-H_{aa}}+\frac{1}{s-i\omega_0-H_{aa}}
+C_a(s-i\omega_0)=\frac{H_{ab}C_b(s)}{s-i\omega_0-H_{aa}}+\frac{1}{s-i\omega_0-H_{aa}}
 \tag{5}
 \end{equation*}
 
@@ -75,7 +76,17 @@ It follows that for $c_b(0)=0$
 C_b(s)\left[s-H_{bb}-\frac{H_{ab}H_{ba}}{s-i\omega_0-H_{aa}}\right]=\frac{H_{ba}}{s-i\omega_0-H_{aa}}
 \end{equation*}
 
+Multiply both sides by $s-i\omega_0-H_{aa}$.
+\begin{equation*}
+C_b(s)\left[(s-H_{bb})(s-i\omega_0-H_{aa})-H_{ab}H_{ba}\right]=H_{ba}
+\end{equation*}
+
 Hence
+\begin{equation*}
+C_b(s)=\frac{H_{ba}}{(s-H_{bb})(s-i\omega_0-H_{aa})-H_{ab}H_{ba}}
+\end{equation*}
+
+Expand the denominator.
 \begin{equation*}
 C_b(s)=\frac{H_{ba}}{s^2-(H_{aa}+H_{bb}+i\omega_0)s+H_{aa}H_{bb}-H_{ab}H_{ba}+iH_{bb}\omega_0}
 \end{equation*}
@@ -107,7 +118,7 @@ c_a(t)=\left[
 \right]\exp(-i\omega_0t)\exp\left(-\frac{at}{2}\right)
 \end{equation*}
 
-For the typical case of $H_{aa}=H_{bb}=0$ we have
+For the typical case of $H_{aa}=H_{bb}=0$ the solutions simplify as
 \begin{align*}
 c_a(t)&=\left[\cos\left(\frac{kt}{2}\right)+\frac{i\omega_0}{k}\sin\left(\frac{kt}{2}\right)\right]
 \exp\left(-\frac{i\omega_0t}{2}\right)
