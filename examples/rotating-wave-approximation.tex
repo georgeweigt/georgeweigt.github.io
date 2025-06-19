@@ -46,14 +46,13 @@ Typically the diagonal elements vanish
 \end{equation*}
 
 and the differential equations become
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 \frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t)
+\tag{1}
 \\[1ex]
 \frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
-\end{aligned}
-\tag{1}
-\end{equation*}
+\tag{2}
+\end{align*}
 
 Let $\hat H_1(\mathbf r,t)$ be the perturbation
 \begin{equation*}
@@ -70,29 +69,26 @@ Then
 The rotating wave approximation discards the second term and asserts
 \begin{equation*}
 \langle\psi_a|\hat H_1|\psi_b\rangle=\tfrac{1}{2}\langle\psi_a|\hat V|\psi_b\rangle\exp(i\omega t)
-\tag{2}
-\end{equation*}
-
-Substitute equation (2) into (1) to obtain
-\begin{equation*}
-\frac{d}{dt}c_a(t)=-\frac{i}{2\hbar}\langle\psi_a|\hat V|\psi_b\rangle
-\exp\bigl(i(\omega-\omega_0)t\bigr)c_b(t)
 \tag{3}
 \end{equation*}
 
-and
-\begin{equation*}
-\frac{d}{dt}c_b(t)=-\frac{i}{2\hbar}\langle\psi_b|\hat V|\psi_a\rangle
-\exp\bigl(i(\omega_0-\omega)t\bigr)c_a(t)
+Substitute equation (3) into (1) and (2) to obtain
+\begin{align*}
+\frac{d}{dt}c_a(t)&=-\frac{i}{2\hbar}\langle\psi_a|\hat V|\psi_b\rangle
+\exp\bigl(i(\omega-\omega_0)t\bigr)c_b(t)
 \tag{4}
-\end{equation*}
+\\[1ex]
+\frac{d}{dt}c_b(t)&=-\frac{i}{2\hbar}\langle\psi_b|\hat V|\psi_a\rangle
+\exp\bigl(i(\omega_0-\omega)t\bigr)c_a(t)
+\tag{5}
+\end{align*}
 
 Use Laplace transforms to solve for $c_b(t)$ with initial conditions $c_a(0)=1$ and $c_b(0)=0$.
 \begin{equation*}
 c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
 \frac{\sin(\omega_rt)}{2\omega_r}
 \exp\left(\tfrac{i}{2}(\omega_0-\omega)t\right)
-\tag{5}
+\tag{6}
 \end{equation*}
 
 Symbol $\omega_r$ is the Rabi flopping frequency
@@ -101,7 +97,7 @@ Symbol $\omega_r$ is the Rabi flopping frequency
 +\bigl|\langle\psi_a|\hat V|\psi_b\rangle\bigr|^2/\hbar^2}
 \end{equation*}
 
-Use the latter part of equation (1) and the solution for $c_b(t)$ to solve for $c_a(t)$.
+Use equation (2) and the solution for $c_b(t)$ to solve for $c_a(t)$.
 \begin{equation*}
 c_a(t)=\left[\cos(\omega_rt)+i\left(\frac{\omega_0-\omega}{2\omega_r}\right)\sin(\omega_rt)\right]
 \exp\left(-\tfrac{i}{2}(\omega_0-\omega)t\right)
@@ -121,10 +117,10 @@ and note that for
 we have
 \begin{equation*}
 \omega_r\approx\tfrac{1}{2}|\omega_0-\omega|
-\tag{6}
+\tag{7}
 \end{equation*}
 
-Substitute (6) into (5) to obtain
+Substitute (7) into (6) to obtain
 \begin{equation*}
 c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
 \frac{\sin\left(\tfrac{1}{2}|\omega_0-\omega|t\right)}{|\omega_0-\omega|}
