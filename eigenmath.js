@@ -24,6 +24,9 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+erf, erfc, and tgamma use picomath code
+github.com/ghewgill/picomath
 */
 function
 alloc_matrix(nrow, ncol)
@@ -872,6 +875,7 @@ const ARCTAN = "arctan";
 const ARCTANH = "arctanh";
 const ARG = "arg";
 const BINDING = "binding";
+const BREAK = "break";
 const CEILING = "ceiling";
 const CHECK = "check";
 const CIRCEXP = "circexp";
@@ -915,6 +919,7 @@ const INTEGRAL = "integral";
 const INV = "inv";
 const KRONECKER = "kronecker";
 const LOG = "log";
+const LOOP = "loop";
 const MAG = "mag";
 const MINOR = "minor";
 const MINORMATRIX = "minormatrix";
@@ -956,6 +961,7 @@ const TESTGE = "testge";
 const TESTGT = "testgt";
 const TESTLE = "testle";
 const TESTLT = "testlt";
+const TGAMMA = "tgamma";
 const TRANSPOSE = "transpose";
 const TTY = "tty";
 const UNIT = "unit";
@@ -981,15 +987,15 @@ const SA = "$a";
 const SB = "$b";
 const SX = "$x";
 
-const ARG1 = "$1";
-const ARG2 = "$2";
-const ARG3 = "$3";
-const ARG4 = "$4";
-const ARG5 = "$5";
-const ARG6 = "$6";
-const ARG7 = "$7";
-const ARG8 = "$8";
-const ARG9 = "$9";
+const ARG1 = "$arg1";
+const ARG2 = "$arg2";
+const ARG3 = "$arg3";
+const ARG4 = "$arg4";
+const ARG5 = "$arg5";
+const ARG6 = "$arg6";
+const ARG7 = "$arg7";
+const ARG8 = "$arg8";
+const ARG9 = "$arg9";
 function
 copy_tensor(p1)
 {
@@ -4368,6 +4374,12 @@ eval_binding(p1)
 	push(get_binding(cadr(p1)));
 }
 function
+eval_break()
+{
+	breakflag = 1;
+	push_symbol(NIL);
+}
+function
 eval_ceiling(p1)
 {
 	push(cadr(p1));
@@ -6090,7 +6102,7 @@ eval_erf(p1)
 function
 erffunc()
 {
-	var d, i, n, p1;
+	var d, i, n, p1, p2;
 
 	p1 = pop();
 
@@ -6106,16 +6118,15 @@ erffunc()
 		return;
 	}
 
-	if (isdouble(p1)) {
-		push(p1);
+	push(p1);
+	floatfunc();
+	p2 = pop();
+
+	if (isnum(p2)) {
+		push(p2);
 		d = pop_double();
 		d = erf(d);
 		push_double(d);
-		return;
-	}
-
-	if (iszero(p1)) {
-		push_integer(0);
 		return;
 	}
 
@@ -6125,12 +6136,11 @@ erffunc()
 		negate();
 		list(2);
 		negate();
-		return;
+	} else {
+		push_symbol(ERF);
+		push(p1);
+		list(2);
 	}
-
-	push_symbol(ERF);
-	push(p1);
-	list(2);
 }
 function
 eval_erfc(p1)
@@ -6143,7 +6153,7 @@ eval_erfc(p1)
 function
 erfcfunc()
 {
-	var d, i, n, p1;
+	var d, i, n, p1, p2;
 
 	p1 = pop();
 
@@ -6159,22 +6169,32 @@ erfcfunc()
 		return;
 	}
 
-	if (isdouble(p1)) {
-		push(p1);
+	push(p1);
+	floatfunc();
+	p2 = pop();
+
+	if (isnum(p2)) {
+		push(p2);
 		d = pop_double();
 		d = erfc(d);
 		push_double(d);
 		return;
 	}
 
-	if (iszero(p1)) {
-		push_integer(1);
-		return;
+	if (isnegativeterm(p1)) {
+		push_symbol(ERF);
+		push(p1);
+		negate();
+		list(2);
+	} else {
+		push_symbol(ERF);
+		push(p1);
+		list(2);
+		negate();
 	}
 
-	push_symbol(ERFC);
-	push(p1);
-	list(2);
+	push_integer(1);
+	add();
 }
 function
 eval_eval(p1)
@@ -6890,6 +6910,8 @@ eval_for(p1)
 
 	save_symbol(p2);
 
+	breakflag = 0;
+
 	for (;;) {
 		push_integer(j);
 		p3 = pop();
@@ -6900,6 +6922,12 @@ eval_for(p1)
 			evalf();
 			pop();
 			p3 = cdr(p3);
+			if (breakflag) {
+				breakflag = 0;
+				restore_symbol();
+				push_symbol(NIL);
+				return;
+			}
 		}
 		if (j == k)
 			break;
@@ -6910,8 +6938,7 @@ eval_for(p1)
 	}
 
 	restore_symbol();
-
-	push_symbol(NIL); // return value
+	push_symbol(NIL);
 }
 function
 eval_hadamard(p1)
@@ -8961,6 +8988,30 @@ logfunc()
 	push_symbol(LOG);
 	push(p1);
 	list(2);
+}
+function
+eval_loop(p1)
+{
+	var p2;
+	breakflag = 0;
+	if (lengthf(p1) < 2) {
+		push_symbol(NIL);
+		return;
+	}
+	for (;;) {
+		p2 = cdr(p1);
+		while (iscons(p2)) {
+			push(car(p2));
+			evalf();
+			pop();
+			p2 = cdr(p2);
+			if (breakflag) {
+				breakflag = 0;
+				push_symbol(NIL);
+				return;
+			}
+		}
+	}
 }
 function
 eval_mag(p1)
@@ -11810,13 +11861,13 @@ eval_sgn(p1)
 {
 	push(cadr(p1));
 	evalf();
-	sgn();
+	sgnfunc();
 }
 
 function
-sgn()
+sgnfunc()
 {
-	var i, n, p1;
+	var i, n, p1, p2;
 
 	p1 = pop();
 
@@ -11825,26 +11876,34 @@ sgn()
 		n = p1.elem.length;
 		for (i = 0; i < n; i++) {
 			push(p1.elem[i]);
-			sgn();
+			sgnfunc();
 			p1.elem[i] = pop();
 		}
 		push(p1);
 		return;
 	}
 
-	if (!isnum(p1)) {
+	p2 = p1;
+
+	if (!isnum(p2)) {
+		push(p2);
+		floatfunc();
+		p2 = pop();
+	}
+
+	if (!isnum(p2)) {
 		push_symbol(SGN);
 		push(p1);
 		list(2);
 		return;
 	}
 
-	if (iszero(p1)) {
+	if (iszero(p2)) {
 		push_integer(0);
 		return;
 	}
 
-	if (isnegativenumber(p1))
+	if (isnegativenumber(p2))
 		push_integer(-1);
 	else
 		push_integer(1);
@@ -12928,6 +12987,49 @@ cmp_args(p1)
 		return 1;
 }
 function
+eval_tgamma(p1)
+{
+	push(cadr(p1));
+	evalf();
+	tgammafunc();
+}
+
+function
+tgammafunc()
+{
+	var d, i, n, p1, p2;
+
+	p1 = pop();
+
+	if (istensor(p1)) {
+		p1 = copy_tensor(p1);
+		n = p1.elem.length;
+		for (i = 0; i < n; i++) {
+			push(p1.elem[i]);
+			tgammafunc();
+			p1.elem[i] = pop();
+		}
+		push(p1);
+		return;
+	}
+
+	push(p1);
+	floatfunc();
+	p2 = pop();
+
+	if (isnum(p2)) {
+		push(p2);
+		d = pop_double();
+		d = gamma(d);
+		push_double(d);
+		return;
+	}
+
+	push_symbol(TGAMMA);
+	push(p1);
+	list(2);
+}
+function
 eval_transpose(p1)
 {
 	var m, n;
@@ -13185,8 +13287,8 @@ evalf_nib()
 {
 	var p1;
 
-	if (eval_level == 200)
-		stopf("circular definition?");
+	if (eval_level > 1000)
+		stopf("evaluation depth exceeded, possibly due to recursive function or circular symbol definition");
 
 	p1 = pop();
 
@@ -15335,6 +15437,175 @@ function
 erfc(x)
 {
 	return 1.0 - erf(x);
+}
+
+// Visit http://www.johndcook.com/stand_alone_code.html for the source of this code and more like it.
+
+// Note that the functions Gamma and LogGamma are mutually dependent.
+
+function gamma
+(
+    x    // We require x > 0
+)
+{
+    //if (x <= 0.0)
+    //{
+    //    String msg = String.format("Invalid input argument {0}. Argument must be positive.", x);
+    //    throw new IllegalArgumentException(msg);
+    //}
+
+    // Split the function domain into three intervals:
+    // (0, 0.001), [0.001, 12), and (12, infinity)
+
+    ///////////////////////////////////////////////////////////////////////////
+    // First interval: (0, 0.001)
+    //
+    // For small x, 1/Gamma(x) has power series x + gamma x^2  - ...
+    // So in this range, 1/Gamma(x) = x + gamma x^2 with error on the order of x^3.
+    // The relative error over this interval is less than 6e-7.
+
+    var gamma = 0.577215664901532860606512090; // Euler's gamma constant
+
+    if (x < 0.001)
+        return 1.0/(x*(1.0 + gamma*x));
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Second interval: [0.001, 12)
+
+    if (x < 12.0)
+    {
+        // The algorithm directly approximates gamma over (1,2) and uses
+        // reduction identities to reduce other arguments to this interval.
+        
+        var y = x;
+        var n = 0;
+        var arg_was_less_than_one = (y < 1.0);
+
+        // Add or subtract integers as necessary to bring y into (1,2)
+        // Will correct for this below
+        if (arg_was_less_than_one)
+        {
+            y += 1.0;
+        }
+        else
+        {
+            n = Math.floor(y) - 1;  // will use n later
+            y -= n;
+        }
+
+        // numerator coefficients for approximation over the interval (1,2)
+        var p =
+        [
+            -1.71618513886549492533811E+0,
+             2.47656508055759199108314E+1,
+            -3.79804256470945635097577E+2,
+             6.29331155312818442661052E+2,
+             8.66966202790413211295064E+2,
+            -3.14512729688483675254357E+4,
+            -3.61444134186911729807069E+4,
+             6.64561438202405440627855E+4
+        ];
+
+        // denominator coefficients for approximation over the interval (1,2)
+        var q =
+        [
+            -3.08402300119738975254353E+1,
+             3.15350626979604161529144E+2,
+            -1.01515636749021914166146E+3,
+            -3.10777167157231109440444E+3,
+             2.25381184209801510330112E+4,
+             4.75584627752788110767815E+3,
+            -1.34659959864969306392456E+5,
+            -1.15132259675553483497211E+5
+        ];
+
+        var num = 0.0;
+        var den = 1.0;
+
+        var z = y - 1;
+	var i;
+        for (i = 0; i < 8; i++)
+        {
+            num = (num + p[i])*z;
+            den = den*z + q[i];
+        }
+        var result = num/den + 1.0;
+
+        // Apply correction if argument was not initially in (1,2)
+        if (arg_was_less_than_one)
+        {
+            // Use identity gamma(z) = gamma(z+1)/z
+            // The variable "result" now holds gamma of the original y + 1
+            // Thus we use y-1 to get back the orginal y.
+            result /= (y-1.0);
+        }
+        else
+        {
+            // Use the identity gamma(z+n) = z*(z+1)* ... *(z+n-1)*gamma(z)
+            for (i = 0; i < n; i++)
+                result *= y++;
+        }
+
+        return result;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Third interval: [12, infinity)
+
+    if (x > 171.624)
+    {
+        // Correct answer too large to display. 
+//        return Double.POSITIVE_INFINITY;
+	return Infinity;
+    }
+
+    return Math.exp(log_gamma(x));
+}
+
+function log_gamma
+(
+    x    // x must be positive
+)
+{
+    //if (x <= 0.0)
+    //{
+    //        String msg = String.format("Invalid input argument {0}. Argument must be positive.", x);
+    //throw new IllegalArgumentException(msg);
+    //}
+
+    if (x < 12.0)
+    {
+        return Math.log(Math.abs(gamma(x)));
+    }
+
+    // Abramowitz and Stegun 6.1.41
+    // Asymptotic series should be good to at least 11 or 12 figures
+    // For error analysis, see Whittiker and Watson
+    // A Course in Modern Analysis (1927), page 252
+
+    var c =
+    [
+         1.0/12.0,
+        -1.0/360.0,
+         1.0/1260.0,
+        -1.0/1680.0,
+         1.0/1188.0,
+        -691.0/360360.0,
+         1.0/156.0,
+        -3617.0/122400.0
+    ];
+    var z = 1.0/(x*x);
+    var sum = c[7];
+    for (var i=6; i >= 0; i--)
+    {
+        sum *= z;
+        sum += c[i];
+    }
+    var series = sum/x;
+
+    var halfLogTwoPi = 0.91893853320467274178032973640562;
+    var logGamma = (x - 0.5)*Math.log(x) - x + halfLogTwoPi + series;    
+    return logGamma;
 }
 function
 pop_double()
@@ -17520,6 +17791,7 @@ var drawing;
 var nonstop;
 var trace1;
 var trace2;
+var breakflag;
 
 var symtab = {
 "abs":		{printname:ABS,		func:eval_abs},
@@ -17533,6 +17805,7 @@ var symtab = {
 "arctanh":	{printname:ARCTANH,	func:eval_arctanh},
 "arg":		{printname:ARG,		func:eval_arg},
 "binding":	{printname:BINDING,	func:eval_binding},
+"break":	{printname:BREAK,	func:eval_break},
 "ceiling":	{printname:CEILING,	func:eval_ceiling},
 "check":	{printname:CHECK,	func:eval_check},
 "circexp":	{printname:CIRCEXP,	func:eval_expform},
@@ -17576,6 +17849,7 @@ var symtab = {
 "inv":		{printname:INV,		func:eval_inv},
 "kronecker":	{printname:KRONECKER,	func:eval_kronecker},
 "log":		{printname:LOG,		func:eval_log},
+"loop":		{printname:LOOP,	func:eval_loop},
 "mag":		{printname:MAG,		func:eval_mag},
 "minor":	{printname:MINOR,	func:eval_minor},
 "minormatrix":	{printname:MINORMATRIX,	func:eval_minormatrix},
@@ -17617,6 +17891,7 @@ var symtab = {
 "testgt":	{printname:TESTGT,	func:eval_testgt},
 "testle":	{printname:TESTLE,	func:eval_testle},
 "testlt":	{printname:TESTLT,	func:eval_testlt},
+"tgamma":	{printname:TGAMMA,	func:eval_tgamma},
 "transpose":	{printname:TRANSPOSE,	func:eval_transpose},
 "unit":		{printname:UNIT,	func:eval_unit},
 "zero":		{printname:ZERO,	func:eval_zero},
@@ -17642,13 +17917,13 @@ var symtab = {
 "$b":		{printname:SB,		func:eval_user_symbol},
 "$x":		{printname:SX,		func:eval_user_symbol},
 
-"$1":		{printname:ARG1,	func:eval_user_symbol},
-"$2":		{printname:ARG2,	func:eval_user_symbol},
-"$3":		{printname:ARG3,	func:eval_user_symbol},
-"$4":		{printname:ARG4,	func:eval_user_symbol},
-"$5":		{printname:ARG5,	func:eval_user_symbol},
-"$6":		{printname:ARG6,	func:eval_user_symbol},
-"$7":		{printname:ARG7,	func:eval_user_symbol},
-"$8":		{printname:ARG8,	func:eval_user_symbol},
-"$9":		{printname:ARG9,	func:eval_user_symbol},
+"$arg1":	{printname:ARG1,	func:eval_user_symbol},
+"$arg2":	{printname:ARG2,	func:eval_user_symbol},
+"$arg3":	{printname:ARG3,	func:eval_user_symbol},
+"$arg4":	{printname:ARG4,	func:eval_user_symbol},
+"$arg5":	{printname:ARG5,	func:eval_user_symbol},
+"$arg6":	{printname:ARG6,	func:eval_user_symbol},
+"$arg7":	{printname:ARG7,	func:eval_user_symbol},
+"$arg8":	{printname:ARG8,	func:eval_user_symbol},
+"$arg9":	{printname:ARG9,	func:eval_user_symbol},
 };
