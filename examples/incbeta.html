@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+-- Incomplete beta function
+
+-- zlib License
+-- Copyright (c) 2016, 2017 Lewis Van Winkle
+-- https://codeplea.com/incomplete-beta-function-c
+
+incbeta(a,b,x) = test(
+ or(x < 0, x > 1), tgamma(0),
+ x > (a + 1) / (a + b + 2), 1 - incbeta1(b, a, 1 - x),
+ incbeta1(a,b,x)
+)
+
+incbeta1(a,b,x,c,d,f,i,m,n) = do(
+ f = 1,
+ c = 1,
+ d = 0,
+ for(i,0,200,
+  m = floor(i / 2),
+  test(
+   i == 0, n = 1,
+   mod(i,2) == 0, n = m (b - m) x / (a + 2 m - 1) / (a + 2 m),
+   n = -(a + m) (a + b + m) x / (a + 2 m) / (a + 2 m + 1)
+  ),
+  d = 1 + n d,
+  test(abs(d) < 10.0^(-30), d = 10.0^(-30)),
+  d = 1 / d,
+  c = 1 + n / c,
+  test(abs(c) < 10.0^(-30), c = 10.0^(-30)),
+  f = f c d,
+  test(abs(1 - c d) < 10.0^(-8), break)
+ ),
+ m = log(abs(tgamma(a))) + log(abs(tgamma(b))) - log(abs(tgamma(a + b))),
+ x = float(x),
+ m = exp(log(x) a + log(1 - x) b - m) / a,
+ test(abs(1 - c d) < 10.0^(-8), m (f - 1), tgamma0)
+)
+
+xrange = (0,1)
+yrange = (0,1)
+draw(incbeta(8,8,x))
+
+fdist(t,df1,df2) = test(
+ t == tgamma(0), 1,
+ t <= 0, 0,
+ incbeta(df1 / 2, df2 / 2, t / (t + df2 / df1))
+)
+
+xrange = (0,5)
+yrange = (0,1)
+draw(fdist(x,1,1))
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
