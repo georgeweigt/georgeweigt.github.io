@@ -4,6 +4,8 @@
 -- Copyright (c) 2016, 2017 Lewis Van Winkle
 -- https://codeplea.com/incomplete-beta-function-c
 
+-- What follows is the copyrighted C code converted to Eigenmath:
+
 incbeta(a,b,x) = test(
  or(x < 0, x > 1), tgamma(0),
  x > (a + 1) / (a + b + 2), 1 - incbeta1(b, a, 1 - x),
