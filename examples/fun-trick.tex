@@ -1,0 +1,53 @@
+\input{preamble}
+
+\section*{Fun trick}
+
+Show that
+\begin{equation*}
+\left[p^2,\mathbf r\right]=-2i\hbar\mathbf p
+\end{equation*}
+
+where
+\begin{equation*}
+\mathbf r=\otimes(x,y,z),\quad
+\mathbf p=-i\hbar\nabla,\quad
+p^2=\mathbf p\cdot\mathbf p=-\hbar^2\nabla^2
+\end{equation*}
+
+We have
+\begin{align*}
+[p^2,\mathbf r]
+&=p^2\mathbf r-\mathbf rp^2
+\\
+&=\mathbf p\cdot\mathbf p\mathbf r-\mathbf r \mathbf p\cdot\mathbf p
+\\
+&=[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p]_{1,2}
++[\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]_{2,3}
+\tag*{\text{trick!}}
+\\
+&=[\mathbf p(\mathbf{pr}-\mathbf{rp})]_{1,2}+[(\mathbf{pr}-\mathbf{rp})\mathbf p]_{2,3}
+\\
+&=\mathbf p(-i\hbar)+(-i\hbar)\mathbf p
+\\
+&=-2i\hbar\mathbf p
+\end{align*}
+
+where $[\,]_{i,j}$ means contract on indices $i$ and $j$.
+
+\bigskip
+Verify the following formulas.
+\begin{align*}
+[p^2,\mathbf r]
+&=-2i\hbar\mathbf p
+\tag{1}
+\\[1ex]
+[p^2,\mathbf r]
+&=[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p]_{1,2}
++[\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]_{2,3}
+\tag{2}
+\\[1ex]
+\mathbf p\mathbf r-\mathbf r\mathbf p&=-i\hbar\mathbf I_{3\times3}
+\tag{3}
+\end{align*}
+
+\end{document}

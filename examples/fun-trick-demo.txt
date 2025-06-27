@@ -1,0 +1,21 @@
+r(f) = outer(f,(x,y,z))
+p(f) = -i hbar (d(f,x), d(f,y), d(f,z))
+p2(f) = -hbar^2 (d(f,x,x) + d(f,y,y) + d(f,z,z))
+
+Psi = psi(x,y,z,t)
+C = p2(r(Psi)) - r(p2(Psi))
+
+"Verify equation (1)"
+check(C == -2 i hbar p(Psi))
+"ok"
+
+"Verify equation (2)"
+A = p(p(r(Psi))) - p(r(p(Psi)))
+B = p(r(p(Psi))) - r(p(p(Psi)))
+check(C == contract(A,1,2) + contract(B,2,3))
+"ok"
+
+"Verify equation (3)"
+I = ((1,0,0),(0,1,0),(0,0,1))
+check(p(r(Psi)) - r(p(Psi)) == -i hbar Psi I)
+"ok"
