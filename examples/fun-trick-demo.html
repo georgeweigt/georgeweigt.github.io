@@ -11,9 +11,8 @@ check(C == -2 i hbar p(Psi))
 "ok"
 
 "Verify equation (2)"
-A = p(p(r(Psi))) - p(r(p(Psi)))
-B = p(r(p(Psi))) - r(p(p(Psi)))
-check(C == contract(A,1,2) + contract(B,2,3))
+T = p(p(r(Psi))) - p(r(p(Psi))) + p(r(p(Psi))) - r(p(p(Psi)))
+check(C == contract(T))
 "ok"
 
 "Verify equation (3)"
@@ -22,6 +21,6 @@ check(p(r(Psi)) - r(p(Psi)) == -i hbar Psi I)
 "ok"
 
 "Verify equation (4)"
-check(p2(Psi) == contract(p(p(Psi)),1,2))
+check(p2(Psi) == contract(p(p(Psi))))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

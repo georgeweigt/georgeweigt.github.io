@@ -21,20 +21,19 @@ We have
 \\
 &=\mathbf p\cdot\mathbf p\mathbf r-\mathbf r \mathbf p\cdot\mathbf p
 \\
-&=[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p]_{1,2}
-+[\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]_{2,3}
+&=\operatorname{Tr}[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p
++\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]
 \tag*{\text{trick!}}
 \\
-&=[\mathbf p(\mathbf{pr}-\mathbf{rp})]_{1,2}+[(\mathbf{pr}-\mathbf{rp})\mathbf p]_{2,3}
-\\
-&=[\mathbf p(-i\hbar\mathbf I)]_{1,2}+[(-i\hbar\mathbf I)\mathbf p]_{2,3}
+&=\operatorname{Tr}[\mathbf p(\mathbf{pr}-\mathbf{rp})
++(\mathbf{pr}-\mathbf{rp})\mathbf p]
 \\
 &=\mathbf p(-i\hbar)+(-i\hbar)\mathbf p
 \\
 &=-2i\hbar\mathbf p
 \end{align*}
 
-where $[\,]_{i,j}$ means contract on indices $i$ and $j$ and
+where $\operatorname{Tr}$ means trace (contraction of indices $1$ and $2$) and
 $\mathbf I$ is the $3\times3$ identity matrix.
 
 \bigskip
@@ -45,14 +44,14 @@ Verify the following formulas.
 \tag{1}
 \\[1ex]
 [p^2,\mathbf r]
-&=[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p]_{1,2}
-+[\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]_{2,3}
+&=\operatorname{Tr}[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p
++\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]
 \tag{2}
 \\[1ex]
 \mathbf p\mathbf r-\mathbf r\mathbf p&=-i\hbar\mathbf I
 \tag{3}
 \\[1ex]
-\mathbf p\cdot\mathbf p&=[\mathbf p\mathbf p]_{1,2}
+\mathbf p\cdot\mathbf p&=\operatorname{Tr}[\mathbf p\mathbf p]
 \tag{4}
 \end{align*}
 
