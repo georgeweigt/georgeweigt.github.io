@@ -19,3 +19,7 @@ check(C == contract(A,1,2) + contract(B,2,3))
 I = ((1,0,0),(0,1,0),(0,0,1))
 check(p(r(Psi)) - r(p(Psi)) == -i hbar Psi I)
 "ok"
+
+"Verify equation (4)"
+check(p2(Psi) == contract(p(p(Psi)),1,2))
+"ok"
