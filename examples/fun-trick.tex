@@ -21,6 +21,8 @@ We have
 \\
 &=\mathbf p\cdot\mathbf p\mathbf r-\mathbf r \mathbf p\cdot\mathbf p
 \\
+&=\operatorname{Tr}[\mathbf{ppr}-\mathbf{rpp}]
+\\
 &=\operatorname{Tr}[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p
 +\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]
 \tag*{\text{trick!}}
@@ -33,8 +35,9 @@ We have
 &=-2i\hbar\mathbf p
 \end{align*}
 
-where $\operatorname{Tr}$ means trace (contraction of indices $1$ and $2$) and
-$\mathbf I$ is the $3\times3$ identity matrix.
+The trick is adding null term $-\mathbf{prp}+\mathbf{prp}$
+so that the operators can be factored.
+Trace operator $\operatorname{Tr}$ contracts on indices $1$ and $2$.
 
 \bigskip
 Verify the following formulas.
@@ -44,15 +47,19 @@ Verify the following formulas.
 \tag{1}
 \\[1ex]
 [p^2,\mathbf r]
-&=\operatorname{Tr}[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p
-+\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]
+&=\operatorname{Tr}[\mathbf{ppr}-\mathbf{rpp}]
 \tag{2}
 \\[1ex]
-\mathbf p\mathbf r-\mathbf r\mathbf p&=-i\hbar\mathbf I
+[p^2,\mathbf r]
+&=\operatorname{Tr}[\mathbf p\mathbf p\mathbf r-\mathbf p\mathbf r\mathbf p
++\mathbf p\mathbf r\mathbf p-\mathbf r\mathbf p\mathbf p]
 \tag{3}
 \\[1ex]
-\mathbf p\cdot\mathbf p&=\operatorname{Tr}[\mathbf p\mathbf p]
+\mathbf p\mathbf r-\mathbf r\mathbf p&=-i\hbar\mathbf I
 \tag{4}
+\\[1ex]
+\mathbf p\cdot\mathbf p&=\operatorname{Tr}[\mathbf p\mathbf p]
+\tag{5}
 \end{align*}
 
 \end{document}
