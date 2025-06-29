@@ -1,4 +1,4 @@
-"Classic integration trick"
+"Fun trick 2"
 a = 1 / (2 sigma^2)
 b = i k
 f = sqrt(pi / a) exp(b^2 / (4 a))

@@ -1,4 +1,4 @@
-"Fun trick"
+"Fun trick 1"
 
 r(f) = outer(f,(x,y,z))
 p(f) = -i hbar (d(f,x), d(f,y), d(f,z))
