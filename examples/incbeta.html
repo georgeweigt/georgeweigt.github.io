@@ -7,13 +7,13 @@
 
 -- What follows is the copyrighted C code converted to Eigenmath:
 
-incbeta(a,b,x) = test(
+incbeta(x,a,b) = test(
  or(x < 0, x > 1), tgamma(0),
- x > (a + 1) / (a + b + 2), 1 - incbeta1(b, a, 1 - x),
- incbeta1(a,b,x)
+ x > (a + 1) / (a + b + 2), 1 - incbeta1(1 - x, b, a),
+ incbeta1(x,a,b)
 )
 
-incbeta1(a,b,x,c,d,f,i,m,n) = do(
+incbeta1(x,a,b,c,d,f,i,m,n) = do(
  f = 1,
  c = 1,
  d = 0,
@@ -40,12 +40,12 @@ incbeta1(a,b,x,c,d,f,i,m,n) = do(
 
 xrange = (0,1)
 yrange = (0,1)
-draw(incbeta(8,8,x))
+draw(incbeta(x,8,8))
 
 fdist(t,df1,df2) = test(
  t == tgamma(0), 1,
  t <= 0, 0,
- incbeta(df1 / 2, df2 / 2, t / (t + df2 / df1))
+ incbeta(t / (t + df2 / df1), df1 / 2, df2 / 2)
 )
 
 xrange = (0,5)
