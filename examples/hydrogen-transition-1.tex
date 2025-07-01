@@ -25,11 +25,11 @@ c_b(t)=-\frac{i}{\hbar}\int_0^t
 Solve the integral to obtain
 \begin{multline*}
 c_b(t)=\frac{eA_0}{2\hbar m_e}
-\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \\
 +\frac{eA_0}{2\hbar m_e}
-\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
 \tag{1}
 \end{multline*}
@@ -38,14 +38,14 @@ As an approximation, discard the second term since the first term
 dominates for $\omega\approx\omega_0$.
 \begin{equation*}
 c_b(t)=\frac{eA_0}{2\hbar m_e}
-\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \end{equation*}
 
 Rewrite $c_b(t)$ in the form of a sine function.
 \begin{equation*}
 c_b(t)=\frac{ieA_0}{\hbar m_e}
-\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
 \tag{2}
@@ -54,7 +54,7 @@ c_b(t)=\frac{ieA_0}{\hbar m_e}
 Hence the transition probability is
 \begin{equation*}
 P_{a\rightarrow b}(t)=|c_b(t)|^2=\frac{e^2|A_0|^2}{\hbar^2m_e^2}
-\bigl|\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle\bigr|^2
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
 \frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \end{equation*}
 
