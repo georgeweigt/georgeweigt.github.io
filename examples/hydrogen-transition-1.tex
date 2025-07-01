@@ -1,0 +1,61 @@
+\input{preamble}
+
+\section*{Hydrogen transition 1}
+
+Start with the perturbing Hamiltonian
+\begin{equation*}
+H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
+\cos(-\mathbf k\cdot\mathbf r+\omega t)
+\end{equation*}
+
+In exponential form
+\begin{equation*}
+H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
+\left[\tfrac{1}{2}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
++\tfrac{1}{2}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\right]
+\end{equation*}
+
+Given the initial condition $c_b(0)=0$ the first-order approximation for $c_b(t)$ is
+\begin{equation*}
+c_b(t)=-\frac{i}{\hbar}\int_0^t
+\langle\psi_b|H_1|\psi_a\rangle\exp(i\omega_0t')\,dt',\quad
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+Solve the integral to obtain
+\begin{multline*}
+c_b(t)=\frac{eA_0}{2\hbar m_e}
+\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
+\\
++\frac{eA_0}{2\hbar m_e}
+\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
+\tag{1}
+\end{multline*}
+
+As an approximation, discard the second term since the first term
+dominates for $\omega\approx\omega_0$.
+\begin{equation*}
+c_b(t)=\frac{eA_0}{2\hbar m_e}
+\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
+\end{equation*}
+
+Rewrite $c_b(t)$ in the form of a sine function.
+\begin{equation*}
+c_b(t)=\frac{ieA_0}{\hbar m_e}
+\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle
+\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
+\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
+\tag{2}
+\end{equation*}
+
+Hence the transition probability is
+\begin{equation*}
+P_{a\rightarrow b}(t)=|c_b(t)|^2=\frac{e^2|A_0|^2}{\hbar^2m_e^2}
+\bigl|\langle\psi_a|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_b\rangle\bigr|^2
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
+\end{equation*}
+
+\end{document}

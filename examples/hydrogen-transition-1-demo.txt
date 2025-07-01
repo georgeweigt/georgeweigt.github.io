@@ -1,0 +1,24 @@
+"Hydrogen transition 1"
+
+H1 = -e A0 epsilon p / me expcos(-k r + omega t)
+
+cb = -i / hbar defint(H1 exp(i omega0 t), t, 0, t)
+
+A = e A0 / (2 hbar me) epsilon p exp(i k r) *
+    (exp(i (omega0 - omega) t) - 1) / (omega0 - omega)
+
+B = e A0 / (2 hbar me) epsilon p exp(-i k r) *
+    (exp(i (omega0 + omega) t) - 1) / (omega0 + omega)
+
+"Verify equation (1)"
+check(cb == A + B)
+"ok"
+
+cb = A
+
+"Verify equation (2)"
+T = i e A0 / (hbar me) epsilon p exp(i k r) *
+    sin(1/2 (omega0 - omega) t) / (omega0 - omega) *
+    exp(i/2 (omega0 - omega) t)
+check(cb == T)
+"ok"
