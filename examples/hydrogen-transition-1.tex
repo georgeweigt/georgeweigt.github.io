@@ -11,8 +11,8 @@ H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
 In exponential form
 \begin{equation*}
 H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
-\left[\tfrac{1}{2}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
-+\tfrac{1}{2}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\right]
+\left(\tfrac{1}{2}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
++\tfrac{1}{2}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\right)
 \end{equation*}
 
 Given the initial condition $c_b(0)=0$ the first-order approximation for $c_b(t)$ is
@@ -21,6 +21,17 @@ c_b(t)=-\frac{i}{\hbar}\int_0^t
 \langle\psi_b|H_1|\psi_a\rangle\exp(i\omega_0t')\,dt',\quad
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
+
+Factor the integrand.
+\begin{multline*}
+c_b(t)=\frac{ieA_0}{2\hbar m_e}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\\
+\times\int_0^t
+\bigl(\exp(i\mathbf k\cdot\mathbf r-i\omega t)
++\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\bigr)
+\exp(i\omega_0t')\,dt'
+\end{multline*}
 
 Solve the integral to obtain
 \begin{multline*}
@@ -51,9 +62,9 @@ c_b(t)=\frac{ieA_0}{\hbar m_e}
 \tag{2}
 \end{equation*}
 
-Hence the transition probability is
+Hence the probability to go from state $a$ to $b$ is
 \begin{equation*}
-P_{a\rightarrow b}(t)=|c_b(t)|^2=\frac{e^2|A_0|^2}{\hbar^2m_e^2}
+\Pr_{a\rightarrow b}(t)=|c_b(t)|^2=\frac{e^2|A_0|^2}{\hbar^2m_e^2}
 \bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
 \frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \end{equation*}
