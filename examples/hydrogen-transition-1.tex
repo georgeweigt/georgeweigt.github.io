@@ -5,7 +5,7 @@
 Start with the perturbing Hamiltonian
 \begin{equation*}
 H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
-\cos(-\mathbf k\cdot\mathbf r+\omega t)
+\cos(\mathbf k\cdot\mathbf r-\omega t)
 \end{equation*}
 
 In exponential form
@@ -18,7 +18,7 @@ H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
 Given the initial condition $c_b(0)=0$ the first-order approximation for $c_b(t)$ is
 \begin{equation*}
 c_b(t)=-\frac{i}{\hbar}\int_0^t
-\langle\psi_b|H_1|\psi_a\rangle\exp(i\omega_0t')\,dt',\quad
+\langle\psi_b|H_1(\mathbf r,t')|\psi_a\rangle\exp(i\omega_0t')\,dt',\quad
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 

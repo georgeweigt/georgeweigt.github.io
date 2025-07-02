@@ -1,6 +1,6 @@
 "Hydrogen transition 1"
 
-H1 = -e A0 epsilon p / me expcos(-k r + omega t)
+H1 = -e A0 epsilon p / me expcos(k r - omega t)
 
 cb = -i / hbar defint(H1 exp(i omega0 t), t, 0, t)
 
