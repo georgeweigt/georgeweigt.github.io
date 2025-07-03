@@ -22,3 +22,21 @@ T = i e A0 / (hbar me) epsilon p exp(i k r) *
     exp(i/2 (omega0 - omega) t)
 check(cb == T)
 "ok"
+
+"Verify dimensions"
+
+momentum = kilogram meter / second
+newton = kilogram meter / second^2
+joule = kilogram meter^2 / second^2
+
+e = coulomb
+E0 = newton / coulomb
+hbar = joule second
+m = kilogram
+omega = second^(-1)
+p = momentum
+
+check(e E0 p / (m omega) == joule)
+check(e E0 / (hbar m omega) p / omega == 1)
+
+"ok"

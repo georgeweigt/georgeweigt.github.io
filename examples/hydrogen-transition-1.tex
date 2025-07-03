@@ -2,15 +2,15 @@
 
 \section*{Hydrogen transition 1}
 
-Start with the perturbing Hamiltonian
+Start with the perturbing Hamiltonian ($E_0$ is peak electric field in newtons per coulomb)
 \begin{equation*}
-H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
+H_1(\mathbf r,t)=-\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
 \cos(\mathbf k\cdot\mathbf r-\omega t)
 \end{equation*}
 
 In exponential form
 \begin{equation*}
-H_1(\mathbf r,t)=-\frac{eA_0\boldsymbol{\epsilon}\cdot\mathbf p}{m_e}
+H_1(\mathbf r,t)=-\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
 \left(\tfrac{1}{2}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
 +\tfrac{1}{2}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\right)
 \end{equation*}
@@ -25,22 +25,22 @@ c_b(t)=-\frac{i}{\hbar}\int_0^t
 Factor the integrand.
 \begin{multline*}
 c_b(t)
-=\frac{ieA_0}{2\hbar m_e}
+=\frac{ieE_0}{2\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \int_0^t\exp(-i\omega t')\exp(i\omega_0t')\,dt'
 \\
-+\frac{ieA_0}{2\hbar m_e}
++\frac{ieE_0}{2\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \int_0^t\exp(i\omega t')\exp(i\omega_0t')\,dt'
 \end{multline*}
 
 Solve the integrals to obtain
 \begin{multline*}
-c_b(t)=\frac{eA_0}{2\hbar m_e}
+c_b(t)=\frac{eE_0}{2\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \\
-+\frac{eA_0}{2\hbar m_e}
++\frac{eE_0}{2\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
 \tag{1}
@@ -49,24 +49,70 @@ c_b(t)=\frac{eA_0}{2\hbar m_e}
 As an approximation, discard the second term since the first term
 dominates for $\omega\approx\omega_0$.
 \begin{equation*}
-c_b(t)=\frac{eA_0}{2\hbar m_e}
+c_b(t)=\frac{eE_0}{2\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \end{equation*}
 
 Rewrite $c_b(t)$ in the form of a sine function.
 \begin{equation*}
-c_b(t)=\frac{ieA_0}{\hbar m_e}
+c_b(t)=\frac{ieE_0}{\hbar m\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
 \tag{2}
 \end{equation*}
 
-%The probability to go from state $a$ to state $b$ is $|c_b(t)|^2$
-%provided that $|c_b(t)|^2\ll1$.
-%\begin{equation*}
-%\Pr_{a\rightarrow b}(t)=|c_b(t)|^2
-%\end{equation*}
+Verify dimensions.
+\begin{equation*}
+\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
+=\frac{
+\begin{matrix}
+e & E_0 & \boldsymbol{\epsilon}\cdot\mathbf p
+\\
+\text{coulomb}
+& \text{newton}\,\text{coulomb}^{-1}
+& \text{momentum}
+\end{matrix}
+}{
+\begin{matrix}
+m & \omega
+\\
+\text{kilogram} & \text{second}^{-1}
+\end{matrix}
+}=\text{joule}
+\end{equation*}
+%
+\begin{equation*}
+c_b(t)=\frac{
+\begin{matrix}
+e & E_0
+\\
+\text{coulomb} & \text{newton}\,\text{coulomb}^{-1}
+\end{matrix}
+}{
+\begin{matrix}
+\hbar & m & \omega
+\\
+\text{joule}\,\text{second} & \text{kilogram} &\text{second}^{-1}
+\end{matrix}
+}
+\,
+\frac{
+\begin{matrix}
+\\
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\\
+\text{momentum}
+\end{matrix}
+}{
+\begin{matrix}
+\omega_0-\omega
+\\
+\text{second}^{-1}
+\end{matrix}
+}
+=1
+\end{equation*}
 
 \end{document}
