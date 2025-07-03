@@ -2,7 +2,7 @@
 
 \section*{Hydrogen transition 1}
 
-Start with the perturbing Hamiltonian ($E_0$ is peak electric field in newtons per coulomb).
+Start with the perturbing Hamiltonian where $E_0$ is electric field strength.
 \begin{equation*}
 H_1(\mathbf r,t)=-\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
 \cos(\mathbf k\cdot\mathbf r-\omega t)
@@ -25,22 +25,22 @@ c_b(t)=-\frac{i}{\hbar}\int_0^t
 Factor the integrand.
 \begin{multline*}
 c_b(t)
-=\frac{ieE_0}{2\hbar m\omega}
+=\frac{ieE_0}{2m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \int_0^t\exp(-i\omega t')\exp(i\omega_0t')\,dt'
 \\
-+\frac{ieE_0}{2\hbar m\omega}
++\frac{ieE_0}{2m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \int_0^t\exp(i\omega t')\exp(i\omega_0t')\,dt'
 \end{multline*}
 
 Solve the integrals to obtain
 \begin{multline*}
-c_b(t)=\frac{eE_0}{2\hbar m\omega}
+c_b(t)=\frac{eE_0}{2m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \\
-+\frac{eE_0}{2\hbar m\omega}
++\frac{eE_0}{2m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
 \tag{1}
@@ -49,14 +49,14 @@ c_b(t)=\frac{eE_0}{2\hbar m\omega}
 As an approximation, discard the second term since the first term
 dominates for $\omega\approx\omega_0$.
 \begin{equation*}
-c_b(t)=\frac{eE_0}{2\hbar m\omega}
+c_b(t)=\frac{eE_0}{2m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \end{equation*}
 
 Rewrite $c_b(t)$ in the form of a sine function.
 \begin{equation*}
-c_b(t)=\frac{ieE_0}{\hbar m\omega}
+c_b(t)=\frac{ieE_0}{m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
@@ -64,7 +64,7 @@ c_b(t)=\frac{ieE_0}{\hbar m\omega}
 \end{equation*}
 
 Verify dimensions.
-\begin{equation*}
+\begin{gather*}
 \frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
 =\frac{
 \begin{matrix}
@@ -81,9 +81,7 @@ m & \omega
 \text{kilogram} & \text{second}^{-1}
 \end{matrix}
 }=\text{joule}
-\end{equation*}
-%
-\begin{equation*}
+\\ % gather
 c_b(t)=\frac{
 \begin{matrix}
 e & E_0
@@ -92,9 +90,9 @@ e & E_0
 \end{matrix}
 }{
 \begin{matrix}
-\hbar & m & \omega
+m & \hbar & \omega
 \\
-\text{joule}\,\text{second} & \text{kilogram} &\text{second}^{-1}
+\text{kilogram} & \text{joule}\,\text{second} & \text{second}^{-1}
 \end{matrix}
 }
 \,
@@ -113,9 +111,9 @@ e & E_0
 \end{matrix}
 }
 =1
-\end{equation*}
+\end{gather*}
 
 Wave functions $\psi_a$ and $\psi_b$ have dimension $\text{meter}^{-1/2}$
-which cancel with $dx=\text{meter}$ when integrated.
+hence their product cancels with $dx=\text{meter}$ in the integral.
 
 \end{document}

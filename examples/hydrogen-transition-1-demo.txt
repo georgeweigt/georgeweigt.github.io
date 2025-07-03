@@ -1,13 +1,13 @@
 "Hydrogen transition 1"
 
-H1 = -e A0 epsilon p / me expcos(k r - omega t)
+H1 = -e E0 epsilon p / (m omega) expcos(k r - omega t)
 
 cb = -i / hbar defint(H1 exp(i omega0 t), t, 0, t)
 
-A = e A0 / (2 hbar me) epsilon p exp(i k r) *
+A = e E0 / (2 m hbar omega) epsilon p exp(i k r) *
     (exp(i (omega0 - omega) t) - 1) / (omega0 - omega)
 
-B = e A0 / (2 hbar me) epsilon p exp(-i k r) *
+B = e E0 / (2 m hbar omega) epsilon p exp(-i k r) *
     (exp(i (omega0 + omega) t) - 1) / (omega0 + omega)
 
 "Verify equation (1)"
@@ -17,7 +17,7 @@ check(cb == A + B)
 cb = A
 
 "Verify equation (2)"
-T = i e A0 / (hbar me) epsilon p exp(i k r) *
+T = i e E0 / (m hbar omega) epsilon p exp(i k r) *
     sin(1/2 (omega0 - omega) t) / (omega0 - omega) *
     exp(i/2 (omega0 - omega) t)
 check(cb == T)
@@ -37,6 +37,6 @@ omega = second^(-1)
 p = momentum
 
 check(e E0 p / (m omega) == joule)
-check(e E0 / (hbar m omega) p / omega == 1)
+check(e E0 / (m hbar omega) p / omega == 1)
 
 "ok"
