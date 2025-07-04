@@ -1,0 +1,109 @@
+\input{preamble}
+
+\section*{Atomic transitions 3}
+
+In the previous section we obtained
+\begin{equation*}
+c_b(t)=\frac{ieE_0}{m\hbar\omega}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
+\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
+\tag{1}
+\end{equation*}
+
+Use the dipole approximation
+\begin{equation*}
+\exp(i\mathbf k\cdot\mathbf r)=1+i\mathbf k\cdot\mathbf r+\cdots\approx1
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\approx
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\mathbf p=\frac{im}{\hbar}[H_0,\mathbf r]
+\tag{2}
+\end{equation*}
+
+we have
+\begin{align*}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
+&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot[H_0,\mathbf r]|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot H_0\mathbf r|\psi_a\rangle
+-\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf rH_0|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}E_b\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+-\frac{im}{\hbar}E_a\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}(E_b-E_a)\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\\
+&=im\omega_0\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\end{align*}
+
+Hence
+\begin{equation*}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\approx
+im\omega_0\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\end{equation*}
+
+Substitute into (1) to obtain
+\begin{equation*}
+c_b(t)=-\frac{eE_0}{\hbar}\frac{\omega_0}{\omega}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
+\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
+\end{equation*}
+
+Verify dimensions.
+\begin{equation*}
+c_b(t)\propto
+\frac{\begin{matrix}
+e & E_0
+\\
+\text{coulomb} & \text{newton}\,\text{coulomb}^{-1}
+\end{matrix}}
+{\begin{matrix}
+\hbar
+\\
+\text{joule}\,\text{second}
+\end{matrix}}
+\times
+\frac{\begin{matrix}
+\omega_0
+\\
+\text{second}^{-1}
+\end{matrix}}
+{\begin{matrix}
+\omega
+\\
+\text{second}^{-1}
+\end{matrix}}
+\times
+\frac{\begin{matrix}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\\
+\text{meter}
+\end{matrix}}
+{\begin{matrix}
+\omega_0-\omega
+\\
+\text{second}^{-1}
+\end{matrix}}
+=1
+\end{equation*}
+
+Note that for an experiment with $\boldsymbol{\epsilon}\cdot\mathbf r=z$ we have
+\begin{equation*}
+c_b(t)=-\frac{eE_0}{\hbar}\frac{\omega_0}{\omega}
+\langle\psi_b|z|\psi_a\rangle
+\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
+\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
+\end{equation*}
+
+\end{document}
