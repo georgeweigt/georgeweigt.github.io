@@ -85,9 +85,16 @@ Hence
 t
 \end{equation*}
 
+The transition rate is
+\begin{equation*}
+R_{a\rightarrow b}=\frac{d}{dt}\Pr_{a\rightarrow b}(t)
+=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\end{equation*}
+
 Verify dimensions.
 \begin{equation*}
-\Pr_{a\rightarrow b}(t)\propto
+R_{a\rightarrow b}\propto
 \frac{\begin{matrix}
 e^2 & \rho(\omega_0)
 \\
@@ -106,14 +113,7 @@ e^2 & \rho(\omega_0)
 \\
 \text{kg}^2\,\text{m}^2\,\text{s}^{-2}
 \end{matrix}
-\times
-\begin{matrix}
-\\
-t
-\\
-\text{s}
-\end{matrix}
-=1
+=\text{s}^{-1}
 \end{equation*}
 
 \end{document}

@@ -21,8 +21,7 @@ rho = joule second / meter^3
 epsilon0 = coulomb^2 / joule / meter
 hbar = joule second
 A = meter
-t = second
 
-check(e^2 rho / (epsilon0 hbar^2) A^2 t == 1)
+check(e^2 rho / (epsilon0 hbar^2) A^2 == 1/second)
 
 "ok"
