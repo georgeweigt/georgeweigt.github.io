@@ -10,7 +10,7 @@ c_b(t)=\frac{ieE_0}{m\hbar\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
 \end{equation*}
 
-The probability to go from state $a$ to state $b$ is
+The transition probability is
 \begin{equation*}
 \Pr_{a\rightarrow b}(t)=|c_b(t)|^2
 =\frac{e^2E_0^2}{m^2\hbar^2\omega^2}
@@ -38,7 +38,7 @@ For incoherent radiation
 u=\int_{-\infty}^\infty\rho(\omega)\,d\omega
 \end{equation*}
 
-where $\rho(\omega)$ has dimensions energy per unit volume per hertz.
+where $\rho(\omega)$ is energy per volume per hertz.
 By substitution
 \begin{equation*}
 \Pr_{a\rightarrow b}(t)
@@ -52,13 +52,11 @@ By substitution
 The integrand is sharply peaked at $\omega=\omega_0$ so we use the approximation
 \begin{equation*}
 \int_{-\infty}^\infty\frac{\rho(\omega)}{\omega^2}
-\cdots
-%\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
+\times\cdots
 \,d\omega
 \approx\frac{\rho(\omega_0)}{\omega_0^2}
 \int_{-\infty}^\infty
 \cdots
-%\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \,d\omega
 \end{equation*}
 
