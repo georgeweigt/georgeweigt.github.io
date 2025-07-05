@@ -1,0 +1,28 @@
+"Atomic transitions 4"
+
+r(f) = outer(f,(x,y,z))
+p(f) = -i hbar (d(f,x), d(f,y), d(f,z))
+p2(f) = -hbar^2 (d(f,x,x) + d(f,y,y) + d(f,z,z))
+H0(f) = p2(f) / (2 m) + V(x,y,z) f
+
+"Verify equation (1)"
+Psi = psi(x,y,z,t)
+check(p(Psi) == i m / hbar (H0(r(Psi)) - r(H0(Psi))))
+"ok"
+
+"Verify dimensions"
+
+momentum = kilogram meter / second
+newton = kilogram meter / second^2
+joule = kilogram meter^2 / second^2
+
+e = coulomb
+rho = joule second / meter^3
+epsilon0 = coulomb^2 / joule / meter
+hbar = joule second
+A = meter
+t = second
+
+check(e^2 rho / (epsilon0 hbar^2) A^2 t == 1)
+
+"ok"

@@ -1,0 +1,86 @@
+\input{preamble}
+
+\section*{Atomic transitions 4}
+
+From the previous section
+\begin{equation*}
+\Pr_{a\rightarrow b}(t)
+=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+t
+\end{equation*}
+
+Use the dipole approximation
+\begin{equation*}
+\exp(i\mathbf k\cdot\mathbf r)=1+i\mathbf k\cdot\mathbf r+\cdots\approx1
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\Pr_{a\rightarrow b}(t)
+=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle\bigr|^2
+t
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\mathbf p=\frac{im}{\hbar}[H_0,\mathbf r]
+\tag{1}
+\end{equation*}
+
+we have
+\begin{align*}
+\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
+&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot[H_0,\mathbf r]|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot H_0\mathbf r|\psi_a\rangle
+-\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf rH_0|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}E_b\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+-\frac{im}{\hbar}E_a\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\\
+&=\frac{im}{\hbar}(E_b-E_a)\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\\
+&=im\omega_0\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\end{align*}
+
+Hence
+\begin{equation*}
+\Pr_{a\rightarrow b}(t)
+=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0\hbar^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle\bigr|^2
+t
+\end{equation*}
+
+Verify dimensions.
+\begin{equation*}
+\Pr_{a\rightarrow b}(t)\propto
+\frac{\begin{matrix}
+e^2 & \rho(\omega)
+\\
+\text{C}^2 & \text{J}\,\text{m}^{-3}\,\text{s}
+\end{matrix}}
+{\begin{matrix}
+\epsilon_0 & \hbar^2
+\\
+\text{C}^2\,\text{J}^{-1}\,\text{m}^{-1} & \text{J}^2\,\text{s}^2
+\end{matrix}}
+\times
+\begin{matrix}
+\\
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle\bigr|^2
+\\
+\text{m}^2
+\end{matrix}
+\times
+\begin{matrix}
+\\
+t
+\\
+\text{s}
+\end{matrix}
+=1
+\end{equation*}
+
+\end{document}

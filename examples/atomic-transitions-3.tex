@@ -2,108 +2,118 @@
 
 \section*{Atomic transitions 3}
 
-In the previous section we obtained
+From the previous section
 \begin{equation*}
 c_b(t)=\frac{ieE_0}{m\hbar\omega}
 \langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
 \frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
-\tag{1}
 \end{equation*}
 
-Use the dipole approximation
+The probability to go from state $a$ to state $b$ is
 \begin{equation*}
-\exp(i\mathbf k\cdot\mathbf r)=1+i\mathbf k\cdot\mathbf r+\cdots\approx1
+\Pr_{a\rightarrow b}(t)=|c_b(t)|^2
+=\frac{e^2E_0^2}{m^2\hbar^2\omega^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \end{equation*}
 
-to obtain
+We are now going to pivot from $E_0$ to a full spectrum electric field.
+Let $u$ be energy density such that
 \begin{equation*}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
-\approx
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
+E_0^2=\frac{2u}{\varepsilon_0}
 \end{equation*}
 
-By the identity
+By substitution
 \begin{equation*}
-\mathbf p=\frac{im}{\hbar}[H_0,\mathbf r]
-\tag{2}
+\Pr_{a\rightarrow b}(t)
+=\frac{2u}{\varepsilon_0}
+\frac{e^2}{m^2\hbar^2\omega^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
+\end{equation*}
+
+For incoherent radiation
+\begin{equation*}
+u=\int_{-\infty}^\infty\rho(\omega)\,d\omega
+\end{equation*}
+
+where $\rho(\omega)$ has dimensions energy per unit volume per hertz.
+By substitution
+\begin{equation*}
+\Pr_{a\rightarrow b}(t)
+=\frac{2}{\varepsilon_0}
+\frac{e^2}{m^2\hbar^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\int_{-\infty}^\infty\frac{\rho(\omega)}{\omega^2}
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}\,d\omega
+\end{equation*}
+
+The integrand is sharply peaked at $\omega=\omega_0$ so we use the approximation
+\begin{equation*}
+\int_{-\infty}^\infty\frac{\rho(\omega)}{\omega^2}
+\cdots
+%\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
+\,d\omega
+\approx\frac{\rho(\omega_0)}{\omega_0^2}
+\int_{-\infty}^\infty
+\cdots
+%\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
+\,d\omega
+\end{equation*}
+
+Using change of variable
+\begin{equation*}
+y=\tfrac{1}{2}(\omega-\omega_0)t,\quad
+dy=\frac{t}{2}\,d\omega,\quad
+\omega-\omega_0=\frac{2y}{t}
 \end{equation*}
 
 we have
-\begin{align*}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
-&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot[H_0,\mathbf r]|\psi_a\rangle
-\\
-&=\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot H_0\mathbf r|\psi_a\rangle
--\frac{im}{\hbar}\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf rH_0|\psi_a\rangle
-\\
-&=\frac{im}{\hbar}E_b\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
--\frac{im}{\hbar}E_a\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
-\\
-&=\frac{im}{\hbar}(E_b-E_a)\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
-\\
-&=im\omega_0\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
-\end{align*}
+\begin{equation*}
+\int_{-\infty}^\infty
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}\,d\omega
+=\frac{t}{2}\int_{-\infty}^\infty\frac{\sin^2(-y)}{y^2}\,dy
+=\frac{\pi}{2}t
+\end{equation*}
 
 Hence
 \begin{equation*}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
-\approx
-im\omega_0\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
-\end{equation*}
-
-Substitute into (1) to obtain
-\begin{equation*}
-c_b(t)=-\frac{eE_0}{\hbar}\frac{\omega_0}{\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
-\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
-\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
+\Pr_{a\rightarrow b}(t)
+=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+t
 \end{equation*}
 
 Verify dimensions.
 \begin{equation*}
-c_b(t)\propto
+\Pr_{a\rightarrow b}(t)\propto
 \frac{\begin{matrix}
-e & E_0
+e^2 & \rho(\omega_0)
 \\
-\text{coulomb} & \text{newton}\,\text{coulomb}^{-1}
-\end{matrix}}
-{\begin{matrix}
-\hbar
+\text{C}^2 & \text{J}\,\text{m}^{-3}\,\text{s}
+\end{matrix}
+}{\begin{matrix}
+\varepsilon_0 & m^2 & \hbar^2 & \omega_0^2
 \\
-\text{joule}\,\text{second}
+\text{C}^2\,\text{J}^{-1}\,\text{m}^{-1}
+& \text{kg}^2 & \text{J}^2\,\text{s}^2 & \text{s}^{-2}
 \end{matrix}}
 \times
-\frac{\begin{matrix}
-\omega_0
+\begin{matrix}
 \\
-\text{second}^{-1}
-\end{matrix}}
-{\begin{matrix}
-\omega
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
 \\
-\text{second}^{-1}
-\end{matrix}}
+\text{kg}^2\,\text{m}^2\,\text{s}^{-2}
+\end{matrix}
 \times
-\frac{\begin{matrix}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf r|\psi_a\rangle
+\begin{matrix}
 \\
-\text{meter}
-\end{matrix}}
-{\begin{matrix}
-\omega_0-\omega
+t
 \\
-\text{second}^{-1}
-\end{matrix}}
+\text{s}
+\end{matrix}
 =1
-\end{equation*}
-
-Note that for an experiment with $\boldsymbol{\epsilon}\cdot\mathbf r=x$ we have
-\begin{equation*}
-c_b(t)=-\frac{eE_0}{\hbar}\frac{\omega_0}{\omega}
-\langle\psi_b|x|\psi_a\rangle
-\frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
-\exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
 \end{equation*}
 
 \end{document}
