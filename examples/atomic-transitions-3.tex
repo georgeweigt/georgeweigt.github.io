@@ -18,7 +18,7 @@ The transition probability is
 \frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \end{equation*}
 
-We are now going to pivot from $E_0$ to a full spectrum electric field.
+We are now going to pivot from $E_0$ to a full radiation field.
 Let $u$ be energy density such that
 \begin{equation*}
 E_0^2=\frac{2u}{\varepsilon_0}
@@ -33,7 +33,7 @@ By substitution
 \frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}
 \end{equation*}
 
-For incoherent radiation
+For a full radiation field
 \begin{equation*}
 u=\int_{-\infty}^\infty\rho(\omega)\,d\omega
 \end{equation*}
@@ -45,24 +45,29 @@ By substitution
 =\frac{2}{\varepsilon_0}
 \frac{e^2}{m^2\hbar^2}
 \bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
-\int_{-\infty}^\infty\frac{\rho(\omega)}{\omega^2}
+\int_{-\infty}^\infty
+\frac{\rho(\omega)}{\omega^2}
 \frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}\,d\omega
 \end{equation*}
 
-The integrand is sharply peaked at $\omega=\omega_0$ so we use the approximation
+Because the integrand is sharply peaked at $\omega=\omega_0$,
+we are going to make the following move.
+Substitute $\omega_0$ for $\omega$ in $\rho(\omega)/\omega^2$.
+That makes the term a constant so it can be moved outside the integral.
+We now have
 \begin{equation*}
-\int_{-\infty}^\infty\frac{\rho(\omega)}{\omega^2}
-\times\cdots
-\,d\omega
-\approx\frac{\rho(\omega_0)}{\omega_0^2}
+\Pr_{a\rightarrow b}(t)
+=\frac{2}{\varepsilon_0}
+\frac{e^2}{m^2\hbar^2}
+\bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\frac{\rho(\omega_0)}{\omega_0^2}
 \int_{-\infty}^\infty
-\cdots
-\,d\omega
+\frac{\sin^2\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{(\omega_0-\omega)^2}\,d\omega
 \end{equation*}
 
 Using change of variable
 \begin{equation*}
-y=\tfrac{1}{2}(\omega-\omega_0)t,\quad
+y=\frac{1}{2}(\omega-\omega_0)t,\quad
 dy=\frac{t}{2}\,d\omega,\quad
 \omega-\omega_0=\frac{2y}{t}
 \end{equation*}
