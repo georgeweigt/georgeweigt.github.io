@@ -1,9 +1,9 @@
 "Atomic transitions 6"
 
 "Verify equation (1)"
-a = pi e^2 / (3 epsilon0 hbar^2)
-b = hbar omega^3 / (pi^2 c^3)
-check(a b == e^2 omega^3 / (3 pi epsilon0 hbar c^3))
+Rab = pi e^2 / (3 epsilon0 hbar^2)
+rho = hbar omega^3 / (pi^2 c^3)
+check(Rab rho == e^2 omega^3 / (3 pi epsilon0 hbar c^3))
 "ok"
 
 "Verify dimensions"
