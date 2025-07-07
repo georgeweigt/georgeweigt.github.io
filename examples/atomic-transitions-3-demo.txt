@@ -2,18 +2,15 @@
 
 "Verify dimensions"
 
-momentum = kilogram meter / second
-newton = kilogram meter / second^2
 joule = kilogram meter^2 / second^2
-
 e = coulomb
 rho = joule second / meter^3
-epsilon0 = coulomb^2 / joule / meter
+epsilon0 = coulomb^2 / (joule meter)
 hbar = joule second
 m = kilogram
 omega = 1/second
-A = momentum
+Iab = kilogram meter / second
 
-check(e^2 rho / (epsilon0 m^2 hbar^2 omega^2) A^2 == 1/second)
+check(e^2 / (epsilon0 m^2 hbar^2) Iab^2 rho / omega^2 == 1/second)
 
 "ok"

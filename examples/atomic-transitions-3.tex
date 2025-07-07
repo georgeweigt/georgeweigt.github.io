@@ -83,31 +83,33 @@ to obtain
 Hence
 \begin{equation*}
 \Pr_{a\rightarrow b}(t)
-=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+=\frac{\pi e^2}{\varepsilon_0m^2\hbar^2}
 \bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\frac{\rho(\omega_0)}{\omega_0^2}
 t
 \end{equation*}
 
 The transition rate is
 \begin{equation*}
 R_{a\rightarrow b}=\frac{d}{dt}\Pr_{a\rightarrow b}(t)
-=\frac{\pi e^2\rho(\omega_0)}{\varepsilon_0m^2\hbar^2\omega_0^2}
+=\frac{\pi e^2}{\varepsilon_0m^2\hbar^2}
 \bigl|\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle\bigr|^2
+\frac{\rho(\omega_0)}{\omega_0^2}
 \end{equation*}
 
 Verify dimensions.
 \begin{equation*}
 R_{a\rightarrow b}\propto
 \frac{\begin{matrix}
-e^2 & \rho(\omega_0)
+e^2
 \\
-\text{C}^2 & \text{J}\,\text{m}^{-3}\,\text{s}
+\text{C}^2
 \end{matrix}
 }{\begin{matrix}
-\varepsilon_0 & m^2 & \hbar^2 & \omega_0^2
+\varepsilon_0 & m^2 & \hbar^2
 \\
 \text{C}^2\,\text{J}^{-1}\,\text{m}^{-1}
-& \text{kg}^2 & \text{J}^2\,\text{s}^2 & \text{s}^{-2}
+& \text{kg}^2 & \text{J}^2\,\text{s}^2
 \end{matrix}}
 \times
 \begin{matrix}
@@ -116,6 +118,20 @@ e^2 & \rho(\omega_0)
 \\
 \text{kg}^2\,\text{m}^2\,\text{s}^{-2}
 \end{matrix}
+\times
+\frac{
+\begin{matrix}
+\rho(\omega_0)
+\\
+\text{J}\,\text{m}^{-3}\,\text{s}
+\end{matrix}
+}{
+\begin{matrix}
+\omega_0^2
+\\
+\text{s}^{-2}
+\end{matrix}
+}
 =\text{s}^{-1}
 \end{equation*}
 

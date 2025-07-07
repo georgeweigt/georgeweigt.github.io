@@ -11,11 +11,11 @@ check(a b == e^2 omega^3 / (3 pi epsilon0 hbar c^3))
 joule = kilogram meter^2 / second^2
 e = coulomb
 omega0 = 1/second
-epsilon0 = coulomb^2 / joule / meter
+epsilon0 = coulomb^2 / (joule meter)
 hbar = joule second
 c = meter / second
-M = meter
+Iab = meter
 
-check(e^2 omega0^3 / (epsilon0 hbar c^3) M^2 == 1/second)
+check(e^2 omega0^3 / (epsilon0 hbar c^3) Iab^2 == 1/second)
 
 "ok"

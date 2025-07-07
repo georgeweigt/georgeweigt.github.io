@@ -13,17 +13,14 @@ check(p(Psi) == i m / hbar (H0(r(Psi)) - r(H0(Psi))))
 
 "Verify dimensions"
 
-momentum = kilogram meter / second
-newton = kilogram meter / second^2
 joule = kilogram meter^2 / second^2
-
 e = coulomb
 rho = joule second / meter^3
-epsilon0 = coulomb^2 / joule / meter
+epsilon0 = coulomb^2 / (joule meter)
 hbar = joule second
-A = meter
+Iba = meter
 
-check(e^2 rho / (epsilon0 hbar^2) A^2 == 1/second)
+check(e^2 / (epsilon0 hbar^2) Iba^2 rho == 1/second)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
