@@ -25,16 +25,14 @@ check(cb == T)
 
 "Verify dimensions"
 
-momentum = kilogram meter / second
 newton = kilogram meter / second^2
 joule = kilogram meter^2 / second^2
-
 e = coulomb
 E0 = newton / coulomb
 hbar = joule second
 m = kilogram
-omega = second^(-1)
-p = momentum
+omega = 1/second
+p = kilogram meter / second
 
 check(e E0 p / (m omega) == joule)
 check(e E0 / (m hbar omega) p / omega == 1)
