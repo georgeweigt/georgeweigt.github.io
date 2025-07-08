@@ -9,6 +9,11 @@ R_{a\rightarrow b}
 \bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2\rho(\omega_0)
 \end{equation*}
 
+where
+\begin{equation*}
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
 Interchange $\psi_a$ and $\psi_b$ by the identity
 \begin{equation*}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
@@ -22,19 +27,36 @@ R_{b\rightarrow a}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2\rho(\omega_0)
 \end{equation*}
 
-The stimulated emission coefficient is
+By Planck's law
 \begin{equation*}
-B_{b\rightarrow a}=\frac{R_{b\rightarrow a}}{\rho(\omega_0)}
-=\frac{\pi e^2}{3\varepsilon_0\hbar^2}
+\rho(\omega_0)=\frac{\hbar\omega_0^3}{\pi^2c^3}
+\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
+\end{equation*}
+
+Hence the absorption rate is
+\begin{equation*}
+R_{a\rightarrow b}
+=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
+\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
+\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
+\tag{1}
+\end{equation*}
+
+and the stimulated emission rate is
+\begin{equation*}
+R_{b\rightarrow a}
+=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
+\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
+\tag{2}
 \end{equation*}
 
 The spontaneous emission rate is
 \begin{equation*}
-A_{b\rightarrow a}=\frac{\hbar\omega_0^3}{\pi^2c^3}B_{b\rightarrow a}
+A_{b\rightarrow a}=\left[\exp\left(\tfrac{\hbar\omega_0}{kT}\right)-1\right]R_{b\rightarrow a}
 =\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
-\tag{1}
+\tag{3}
 \end{equation*}
 
 Verify dimensions.
@@ -64,35 +86,6 @@ e^2 & \omega_0^3
 \text{m}^2
 \end{matrix}
 =\text{s}^{-1}
-\end{equation*}
-
-By Planck's law
-\begin{equation*}
-\rho(\omega_0)=\frac{\hbar\omega_0^3}{\pi^2c^3}
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\end{equation*}
-
-Hence the absorption rate is
-\begin{equation*}
-R_{a\rightarrow b}
-=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
-\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\tag{2}
-\end{equation*}
-
-and the stimulated emission rate is
-\begin{equation*}
-R_{b\rightarrow a}
-=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
-\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\tag{3}
-\end{equation*}
-
-where
-\begin{equation*}
-\omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 
 \end{document}

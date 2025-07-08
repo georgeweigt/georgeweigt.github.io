@@ -1,18 +1,17 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Atomic transitions 6"
 
-Rab = pi e^2 / (3 epsilon0 hbar^2) Iab^2 rho
-
-"Verify equation (1)"
-Bba = Rab / rho
-Aba = hbar omega0^3 / (pi^2 c^3) Bba
-check(Aba == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2)
-"ok"
-
-"Verify equations (2) and (3)"
+Rba = pi e^2 / (3 epsilon0 hbar^2) Iab^2 rho
 Exp = 1 / (exp(hbar omega0 / (k T)) - 1)
 rho = hbar omega0^3 / (pi^2 c^3) Exp
-check(Rab == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2 Exp)
+
+"Verify equations (1) and (2)"
+check(Rba == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2 Exp)
+"ok"
+
+"Verify equation (3)"
+Aba = Rba / Exp
+check(Aba == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2)
 "ok"
 
 "Verify dimensions"
