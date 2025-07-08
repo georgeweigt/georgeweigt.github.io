@@ -9,7 +9,7 @@ R_{a\rightarrow b}
 \bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2\rho(\omega_0)
 \end{equation*}
 
-where
+where $E_b>E_a$ and
 \begin{equation*}
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
@@ -48,15 +48,15 @@ R_{b\rightarrow a}
 =\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
 \frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\tag{2}
 \end{equation*}
 
 The spontaneous emission rate is
 \begin{equation*}
-A_{b\rightarrow a}=\left[\exp\left(\tfrac{\hbar\omega_0}{kT}\right)-1\right]R_{b\rightarrow a}
+A_{b\rightarrow a}=R_{b\rightarrow a}
+\left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
 =\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
 \bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
-\tag{3}
+\tag{2}
 \end{equation*}
 
 Verify dimensions.
@@ -86,6 +86,41 @@ e^2 & \omega_0^3
 \text{m}^2
 \end{matrix}
 =\text{s}^{-1}
+\end{equation*}
+
+We will now show why
+\begin{equation*}
+A_{b\rightarrow a}=R_{b\rightarrow a}
+\left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
+\end{equation*}
+
+Let $N_a$ be the number of atoms in the lower state and let $N_b$ be
+the number of atoms in the upper state.
+From thermodynamics
+\begin{equation*}
+\frac{N_a}{N_b}=\exp\left(\frac{\hbar\omega_0}{kT}\right)
+\end{equation*}
+
+At thermal equilibrium
+\begin{equation*}
+N_aR_{a\rightarrow b}=N_b(A_{b\rightarrow a}+R_{b\rightarrow a})
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{N_a}{N_b}=\frac{A_{b\rightarrow a}+R_{b\rightarrow a}}{R_{a\rightarrow b}}
+=\exp\left(\frac{\hbar\omega_0}{kT}\right)
+\end{equation*}
+
+Solve for $A_{b\rightarrow a}$.
+\begin{equation*}
+A_{b\rightarrow a}=R_{a\rightarrow b}\exp\left(\frac{\hbar\omega_0}{kT}\right)-R_{b\rightarrow a}
+\end{equation*}
+
+Noting that $R_{a\rightarrow b}=R_{b\rightarrow a}$ we have
+\begin{equation*}
+A_{b\rightarrow a}
+=R_{b\rightarrow a}\left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
 \end{equation*}
 
 \end{document}

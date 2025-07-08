@@ -1,15 +1,16 @@
 "Atomic transitions 6"
 
-Rba = pi e^2 / (3 epsilon0 hbar^2) Iab^2 rho
+Rab = pi e^2 / (3 epsilon0 hbar^2) Iab^2 rho
+Rba = Rab
 Exp = 1 / (exp(hbar omega0 / (k T)) - 1)
 rho = hbar omega0^3 / (pi^2 c^3) Exp
 
-"Verify equations (1) and (2)"
-check(Rba == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2 Exp)
+"Verify equation (1)"
+check(Rab == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2 Exp)
 "ok"
 
-"Verify equation (3)"
-Aba = Rba / Exp
+"Verify equation (2)"
+Aba = Rba (exp(hbar omega0 / (k T)) - 1)
 check(Aba == e^2 omega0^3 / (3 pi epsilon0 hbar c^3) Iab^2)
 "ok"
 
