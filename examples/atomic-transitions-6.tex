@@ -24,11 +24,16 @@ R_{a\rightarrow b}
 \tag{1}
 \end{equation*}
 
-The spontaneous emission rate is
+Noting that
 \begin{equation*}
-A_{b\rightarrow a}=R_{a\rightarrow b}\left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
+R_{b\rightarrow a}=R_{a\rightarrow b}
+\end{equation*}
+
+the spontaneous emission rate is
+\begin{equation*}
+A_{b\rightarrow a}=R_{b\rightarrow a}\left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
 =\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
-\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
+\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
 \end{equation*}
 
 Verify dimensions.
@@ -53,11 +58,19 @@ e^2 & \omega_0^3
 \times
 \begin{matrix}
 \\
-\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
+\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
 \\
 \text{m}^2
 \end{matrix}
 =\text{s}^{-1}
+\end{equation*}
+
+The stimulated emission rate is
+\begin{equation*}
+B_{b\rightarrow a}=\frac{\pi^2c^3}{\hbar\omega_0^3}A_{b\rightarrow a}
+=\frac{\pi e^2}{3\varepsilon_0\hbar^2}
+\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
+\tag{2}
 \end{equation*}
 
 \end{document}
