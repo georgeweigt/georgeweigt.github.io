@@ -1,14 +1,14 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Atomic transitions 2"
 
-H1 = -e E0 epsilon p / (m omega) expcos(k r - omega t)
+H1 = -e E0 / (m omega) expcos(k r - omega t) epsilon p
 
 cb = -i / hbar defint(H1 exp(i omega0 t), t, 0, t)
 
-A = e E0 / (2 m hbar omega) epsilon p exp(i k r) *
+A = e E0 / (2 m hbar omega) exp(i k r) epsilon p *
     (exp(i (omega0 - omega) t) - 1) / (omega0 - omega)
 
-B = e E0 / (2 m hbar omega) epsilon p exp(-i k r) *
+B = e E0 / (2 m hbar omega) exp(-i k r) epsilon p *
     (exp(i (omega0 + omega) t) - 1) / (omega0 + omega)
 
 "Verify equation (1)"
@@ -18,7 +18,7 @@ check(cb == A + B)
 cb = A
 
 "Verify equation (2)"
-T = i e E0 / (m hbar omega) epsilon p exp(i k r) *
+T = i e E0 / (m hbar omega) exp(i k r) epsilon p *
     sin(1/2 (omega0 - omega) t) / (omega0 - omega) *
     exp(i/2 (omega0 - omega) t)
 check(cb == T)

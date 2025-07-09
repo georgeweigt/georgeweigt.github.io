@@ -4,15 +4,17 @@
 
 Start with the perturbing Hamiltonian where $E_0$ is the amplitude of the electric field.
 \begin{equation*}
-H_1(\mathbf r,t)=-\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
+H_1(\mathbf r,t)=-\frac{eE_0}{m\omega}
 \cos(\mathbf k\cdot\mathbf r-\omega t)
+\boldsymbol{\epsilon}\cdot\mathbf p
 \end{equation*}
 
 In exponential form
 \begin{equation*}
-H_1(\mathbf r,t)=-\frac{eE_0\boldsymbol{\epsilon}\cdot\mathbf p}{m\omega}
+H_1(\mathbf r,t)=-\frac{eE_0}{m\omega}
 \left(\tfrac{1}{2}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
 +\tfrac{1}{2}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)\right)
+\boldsymbol{\epsilon}\cdot\mathbf p
 \end{equation*}
 
 Given the initial condition $c_b(0)=0$ the first-order approximation for $c_b(t)$ is
@@ -26,22 +28,22 @@ Factor the integrand.
 \begin{multline*}
 c_b(t)
 =\frac{ieE_0}{2m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \int_0^t\exp(-i\omega t')\exp(i\omega_0t')\,dt'
 \\
 +\frac{ieE_0}{2m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(-i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \int_0^t\exp(i\omega t')\exp(i\omega_0t')\,dt'
 \end{multline*}
 
 Solve the integrals to obtain
 \begin{multline*}
 c_b(t)=\frac{eE_0}{2m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \\
 +\frac{eE_0}{2m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(-i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(-i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
 \tag{1}
 \end{multline*}
@@ -50,14 +52,14 @@ As an approximation, discard the second term since the first term
 dominates for $\omega\approx\omega_0$.
 \begin{equation*}
 c_b(t)=\frac{eE_0}{2m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \end{equation*}
 
 Rewrite $c_b(t)$ in the form of a sine function.
 \begin{equation*}
 c_b(t)=\frac{ieE_0}{m\hbar\omega}
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \frac{\sin\bigl(\tfrac{1}{2}(\omega_0-\omega)t\bigr)}{\omega_0-\omega}
 \exp\bigl(\tfrac{i}{2}(\omega_0-\omega)t\bigr)
 \tag{2}
@@ -68,11 +70,10 @@ Verify dimensions.
 H_1(\mathbf r,t)
 \propto\frac{
 \begin{matrix}
-e & E_0 & \boldsymbol{\epsilon}\cdot\mathbf p
+e & E_0
 \\
 \text{C}
 & \text{N}\,\text{C}^{-1}
-& \text{kg}\,\text{m}\,\text{s}^{-1}
 \end{matrix}
 }{
 \begin{matrix}
@@ -80,7 +81,15 @@ m & \omega
 \\
 \text{kg} & \text{s}^{-1}
 \end{matrix}
-}=\text{N}\,\text{m}=\text{J}
+}
+\times
+\begin{matrix}
+\\
+\boldsymbol{\epsilon}\cdot\mathbf p
+\\
+\text{kg}\,\text{m}\,\text{s}^{-1}
+\end{matrix}
+=\text{N}\,\text{m}=\text{J}
 \\ % gather
 c_b(t)\propto\frac{
 \begin{matrix}
@@ -99,7 +108,7 @@ m & \hbar & \omega
 \frac{
 \begin{matrix}
 \\
-\langle\psi_b|\boldsymbol{\epsilon}\cdot\mathbf p\exp(i\mathbf k\cdot\mathbf r)|\psi_a\rangle
+\langle\psi_b|\exp(i\mathbf k\cdot\mathbf r)\boldsymbol{\epsilon}\cdot\mathbf p|\psi_a\rangle
 \\
 \text{kg}\,\text{m}\,\text{s}^{-1}
 \end{matrix}
