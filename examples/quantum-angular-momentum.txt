@@ -1,0 +1,20 @@
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+Lz(f) = -i hbar d(f,phi)
+
+
+-- Y is an eigenfunction of Lz
+
+Lz(Y(2,2)) == 2 hbar Y(2,2)
+Lz(Y(2,1)) == hbar Y(2,1)
+Lz(Y(2,0)) == 0
+Lz(Y(2,-1)) == -hbar Y(2,-1)
+Lz(Y(2,-2)) == -2 hbar Y(2,-2)
