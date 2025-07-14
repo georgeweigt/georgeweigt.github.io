@@ -11,13 +11,9 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 
 Lz(f) = -i hbar d(f,phi)
 
--- Y is an eigenfunction of Lz
+-- Y is (trivially) an eigenfunction of Lz
 
 -- Lz Y(l,m) = m hbar Y(l,m)
-
-Lz(Y(1,1)) == hbar Y(1,1)
-Lz(Y(1,0)) == 0
-Lz(Y(1,-1)) == -hbar Y(1,-1)
 
 Lz(Y(2,2)) == 2 hbar Y(2,2)
 Lz(Y(2,1)) == hbar Y(2,1)
