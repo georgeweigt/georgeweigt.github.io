@@ -31,7 +31,7 @@ incbeta1(x,a,b,c,d,f,i,m,n) = do(
   f = f c d,
   test(abs(1 - c d) < 10.0^(-8), break)
  ),
- m = log(tgamma(a)) + log(tgamma(b)) - log(tgamma(a + b)),
+ m = lgamma(a) + lgamma(b) - lgamma(a + b),
  x = float(x),
  m = exp(log(x) a + log(1 - x) b - m) / a,
  test(abs(1 - c d) < 10.0^(-8), m (f - 1), tgamma(0))
