@@ -1,0 +1,5 @@
+y = zero(100)
+for(k, 1, 100, y[k] = rand())
+yrange = (0,1)
+xrange = (1,100)
+draw(y[floor(x)],x)
