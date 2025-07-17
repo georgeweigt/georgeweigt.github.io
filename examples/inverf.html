@@ -17,9 +17,8 @@ Finverf(x,k) = sum(k, 1, 14, Cinverf[k] (Dinverf x)^(2 k - 1))
 -- absolute errors for x = -1 to 1
 for(k, -10, 10,
  x = k / 10.0,
- print(x - erf(Finverf(x)))
+ print(x, x - erf(Finverf(x)))
 )
 
-xrange = (-2,2)
 draw(Finverf(x),x)
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
