@@ -13,10 +13,8 @@ Dinverf = sqrt(float(pi)) / 2
 
 Finverf(x,k) = sum(k, 1, 14, Cinverf[k] (Dinverf x)^(2 k - 1))
 
--- absolute errors for x = -1 to 1
-for(k, -10, 10,
- x = k / 10.0,
- print(x, x - erf(Finverf(x)))
-)
+-- errors for x = -1 to 1
+
+for(k, -10, 10, x = k / 10.0, print(x, erf(Finverf(x)) - x))
 
 draw(Finverf(x),x)
