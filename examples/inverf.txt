@@ -11,7 +11,7 @@ Binverf = (1, 3, 30, 630, 22680, 178200, 97297200, 10216206000, 198486288000, 23
 Cinverf = float(Ainverf / Binverf)
 Dinverf = sqrt(float(pi)) / 2
 
-Finverf(x) = sum(k, 1, 14, Cinverf[k] (Dinverf x)^(2 k - 1))
+Finverf(x,k) = sum(k, 1, 14, Cinverf[k] (Dinverf x)^(2 k - 1))
 
 -- absolute errors for x = -1 to 1
 for(k, -10, 10,
