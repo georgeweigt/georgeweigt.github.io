@@ -50,21 +50,25 @@ i\hbar\psi_a(\mathbf r)\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 \tag{1}
 \end{equation*}
 
-Take the inner product of (1) with $\psi_a$ to obtain
-\begin{equation*}
+Take the inner product $\psi_a$ and equation (1) to obtain
+\begin{multline*}
 i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+\\
+=\langle\psi_a|H_1|\Psi\rangle
 =\langle\psi_a|H_1|\psi_a\rangle c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 +\langle\psi_a|H_1|\psi_b\rangle c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \tag{2}
-\end{equation*}
+\end{multline*}
 
-Take the inner product of (1) with $\psi_b$ to obtain
-\begin{equation*}
+Take the inner product of $\psi_b$ and equation (1) to obtain
+\begin{multline*}
 i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\\
+=\langle\psi_b|H_1|\Psi\rangle
 =\langle\psi_b|H_1|\psi_a\rangle c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 +\langle\psi_b|H_1|\psi_b\rangle c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \tag{3}
-\end{equation*}
+\end{multline*}
 
 Let it be the case that diagonal elements vanish, that is,
 \begin{equation*}
