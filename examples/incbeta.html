@@ -6,7 +6,8 @@
 -- https://codeplea.com/incomplete-beta-function-c
 
 incbeta(x,a,b) = test(
- or(x < 0, x > 1), tgamma(0),
+ x <= 0, 0,
+ x >= 1, 1,
  x > (a + 1) / (a + b + 2), 1 - incbeta1(1 - x, b, a),
  incbeta1(x,a,b)
 )
@@ -36,10 +37,7 @@ incbeta1(x,a,b,c,d,f,i,m,n) = do(
  test(abs(1 - c d) < 10.0^(-8), m (f - 1), tgamma(0))
 )
 
-fdist(t,df1,df2) = test(
- t <= 0, 0,
- incbeta(t / (t + df2 / df1), 0.5 df1, 0.5 df2)
-)
+fdist(t,df1,df2) = incbeta(t / (t + df2 / df1), 0.5 df1, 0.5 df2)
 
 tdist(t,df) = incbeta(0.5 (t+sqrt(t^2+df)) / sqrt(t^2+df), 0.5 df, 0.5 df)
 
@@ -47,6 +45,7 @@ tdist(t,df) = incbeta(0.5 (t+sqrt(t^2+df)) / sqrt(t^2+df), 0.5 df, 0.5 df)
 
 epsilon = 10.0^(-6)
 
+check(fdist(0,1,1) == 0)
 check(abs(fdist(0.1,3,2) - 0.04710751) < epsilon) -- R code: pf(0.1,3,2)
 check(abs(fdist(1,3,2) - 0.464758)     < epsilon)
 check(abs(fdist(2,3,2) - 0.6495191)    < epsilon)
