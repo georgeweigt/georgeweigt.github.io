@@ -1,0 +1,107 @@
+\input{preamble}
+
+\section*{Atomic transitions 1}
+
+Let $\Psi(\mathbf r,t)$ be the following linear combination of two atomic states.
+\begin{equation*}
+\Psi(\mathbf r,t)=\psi_a(\mathbf r)c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)+
+\psi_b(\mathbf r)c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\end{equation*}
+
+Let the Hamiltonian be
+\begin{equation*}
+H(\mathbf r,t)=H_0(\mathbf r)+H_1(\mathbf r,t)
+\end{equation*}
+
+where
+\begin{equation*}
+H_0\psi_a=E_a\psi_a,\quad H_0\psi_b=E_b\psi_b
+\end{equation*}
+
+We want to find solutions for $c_a(t)$ and $c_b(t)$.
+Start with the Schr\"odinger equation.
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\Psi=H\Psi
+\end{equation*}
+
+Evaluate the left side of the Schr\"odinger equation.
+\begin{multline*}
+i\hbar\frac{\partial}{\partial t}\Psi
+=\overbrace{E_a\psi_a(\mathbf r)c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++E_b\psi_b(\mathbf r)c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)}^\text{cancels with right side}
+\\
++i\hbar\psi_a(\mathbf r)\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++i\hbar\psi_b(\mathbf r)\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\end{multline*}
+
+Evaluate the right side of the Schr\"odinger equation.
+\begin{equation*}
+H\Psi
+=\overbrace{E_a\psi_a(\mathbf r)c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++E_b\psi_b(\mathbf r)c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)}^\text{cancels with left side}
++H_1\Psi
+\end{equation*}
+
+After cancellations
+\begin{equation*}
+i\hbar\psi_a(\mathbf r)\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++i\hbar\psi_b(\mathbf r)\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+=H_1\Psi
+\tag{1}
+\end{equation*}
+
+Take the inner product of (1) with $\psi_a$ to obtain
+\begin{equation*}
+i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+=\langle\psi_a|H_1|\psi_a\rangle c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++\langle\psi_a|H_1|\psi_b\rangle c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\tag{2}
+\end{equation*}
+
+Take the inner product of (1) with $\psi_b$ to obtain
+\begin{equation*}
+i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+=\langle\psi_b|H_1|\psi_a\rangle c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++\langle\psi_b|H_1|\psi_b\rangle c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\tag{3}
+\end{equation*}
+
+Let it be the case that diagonal elements vanish, that is,
+\begin{equation*}
+\langle\psi_a|H_1|\psi_a\rangle=\langle\psi_b|H_1|\psi_b\rangle=0
+\end{equation*}
+
+Then (2) and (3) simplify as
+\begin{equation*}
+\begin{aligned}
+i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+&=\langle\psi_a|H_1|\psi_b\rangle c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\\
+i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+&=\langle\psi_b|H_1|\psi_a\rangle c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+\end{aligned}
+\tag{4}
+\end{equation*}
+
+Let $E_b>E_a$ and let
+\begin{equation*}
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+Rewrite (4) as
+\begin{align*}
+\dot c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|H_1|\psi_b\rangle c_b(t)\exp(-i\omega_0t)
+\\
+\dot c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|H_1|\psi_a\rangle c_a(t)\exp(i\omega_0t)
+\end{align*}
+
+Let the initial conditions be $c_a(0)=1$ and $c_b(0)=0$.
+It was shown in ``Perturbation example'' that the first-order perturbation solutions are
+\begin{align*}
+c_a(t)&=1
+\\
+c_b(t)&=-\frac{i}{\hbar}\int_0^t
+\langle\psi_b|H_1(\mathbf r,t')|\psi_a\rangle\exp(i\omega_0t')\,dt'
+\end{align*}
+
+\end{document}
