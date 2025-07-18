@@ -30,10 +30,10 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 
 E(n) = -hbar^2 / (2 n^2 mu a0^2)
 
--- for example, energy levels 2 and 3
+-- for example, energy levels 1 and 2
 
-na = 2
-nb = 3
+na = 1
+nb = 2
 
 psia = psi(na,0,0)
 psib = psi(nb,0,0)
@@ -41,7 +41,7 @@ psib = psi(nb,0,0)
 Ea = E(na)
 Eb = E(nb)
 
-Psi = psia ca(t) exp(-i/hbar Ea t) + psib cb(t) exp(-i/hbar Eb t)
+Psi = ca(t) psia exp(-i/hbar Ea t) + cb(t) psib exp(-i/hbar Eb t)
 
 -- time-independent Hamiltonian
 
@@ -61,17 +61,17 @@ A = i hbar d(Psi, t)
 
 B = H0(Psi) + H1(Psi)
 
--- the part that cancels
+-- C is the part that cancels
 
-E = Ea psia ca(t) exp(-i/hbar Ea t) + Eb psib cb(t) exp(-i/hbar Eb t)
+C = Ea ca(t) psia exp(-i/hbar Ea t) + Eb cb(t) psib exp(-i/hbar Eb t)
 
--- the part that remains
+-- D is the part that remains
 
-T = i hbar psia d(ca(t),t) exp(-i/hbar Ea t) +
-    i hbar psib d(cb(t),t) exp(-i/hbar Eb t)
+D = i hbar d(ca(t),t) psia exp(-i/hbar Ea t) +
+    i hbar d(cb(t),t) psib exp(-i/hbar Eb t)
 
 "Verify equation (1)"
-check(A - E == T)
-check(B - E == H1(Psi))
+check(A - C == D)
+check(B - C == H1(Psi))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
