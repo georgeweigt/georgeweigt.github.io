@@ -1,0 +1,22 @@
+sort(v,i,k,n,t) = do(
+ n = dim(v),
+ loop(
+  test(n < 2, break),
+  k = 1,
+  for(i, 1, n - 1,
+   test(v[i] > v[i + 1], do(
+    t = v[i],
+    v[i] = v[i + 1],
+    v[i + 1] = t,
+    k = i
+  ))),
+  n = k
+ ),
+ v
+)
+
+A = zero(10)
+for(i, 1, 10, A[i] = floor(10 rand()))
+B = sort(A)
+check(sum(A) == sum(B))
+B
