@@ -16,8 +16,8 @@ sort(v,i,k,n,t) = do(
  v
 )
 
-A = zero(10)
-for(i, 1, 10, A[i] = floor(10 rand()))
+A = zero(5)
+for(i, 1, 5, A[i] = floor(10 rand()))
 B = sort(A)
 check(sum(A) == sum(B))
 B
