@@ -2,10 +2,11 @@
 
 \section*{Sine perturbation}
 
-Let $\Psi(\mathbf r,t)$ be the following wave function for a two state system.
+Let $\Psi(\mathbf r,t)$ be the following linear combination of two wave functions.
 \begin{equation*}
-\Psi(\mathbf r,t)=\psi_a(\mathbf r)c_a(t)\exp(-\tfrac{i}{\hbar}E_at)+
-\psi_b(\mathbf r)c_b(t)\exp(-\tfrac{i}{\hbar}E_bt)
+\Psi(\mathbf r,t)
+=c_a(t)\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++c_b(t)\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \end{equation*}
 
 Let $\hat H(\mathbf r,t)$ be the Hamiltonian
@@ -15,8 +16,7 @@ Let $\hat H(\mathbf r,t)$ be the Hamiltonian
 
 where
 \begin{equation*}
-\hat H_0\psi_a=E_a\psi_a,\quad\hat H_0\psi_b=E_b\psi_b,\quad
-\hat H_0\Psi=(E_a+E_b)\Psi
+\hat H_0\psi_a=E_a\psi_a,\quad\hat H_0\psi_b=E_b\psi_b
 \end{equation*}
 
 It was shown that to first order
@@ -40,31 +40,31 @@ Solve the integral.
 \begin{equation*}
 \int_0^t\cos(\omega t')\exp(i\omega_0t')\,dt'
 =-\frac{i}{2}
-\left[
+\left(
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 +\frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
-\right]
+\right)
 \tag{1}
 \end{equation*}
 
 Hence
 \begin{equation*}
 c_b(t)=-\frac{\langle\psi_b|\hat V|\psi_a\rangle}{2\hbar}
-\left[
+\left(
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 +\frac{\exp\bigl(i(\omega_0+\omega)t\bigr)-1}{\omega_0+\omega}
-\right]
+\right)
 \tag{2}
 \end{equation*}
 
-Discard the second term as an approximation since the first
+As an approximation, discard the second term since the first
 term dominates for $\omega\approx\omega_0$.
 \begin{equation*}
 c_b(t)=-\frac{\langle\psi_b|\hat V|\psi_a\rangle}{2\hbar}
 \frac{\exp\bigl(i(\omega_0-\omega)t\bigr)-1}{\omega_0-\omega}
 \end{equation*}
 
-Coefficient $c_b(t)$ can also be written as
+Rewrite $c_b(t)$ using a sine function.
 \begin{equation*}
 c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
 \frac{\sin\left(\tfrac{1}{2}(\omega_0-\omega)t\right)}{\omega_0-\omega}
@@ -72,9 +72,9 @@ c_b(t)=-\frac{i}{\hbar}\langle\psi_b|\hat V|\psi_a\rangle
 \tag{3}
 \end{equation*}
 
-Hence the transition probability is
+The transition probability is
 \begin{equation*}
-P_{a\rightarrow b}(t)=|c_b(t)|^2
+\Pr_{a\rightarrow b}(t)=|c_b(t)|^2
 =\frac{\bigl|\langle\psi_b|\hat V|\psi_a\rangle\bigr|^2}{\hbar^2}
 \frac{\sin^2\left(\tfrac{1}{2}(\omega_0-\omega)t\right)}
 {(\omega_0-\omega)^2}
