@@ -2,7 +2,9 @@
 
 \section*{Sine perturbation}
 
-Let $\Psi(\mathbf r,t)$ be the following linear combination of two wave functions.
+Let $\Psi(\mathbf r,t)$ be the following linear combination of two wave functions
+where $c_a(t)$ and $c_b(t)$ are dimensionless time-dependent coefficients
+such that $|c_a(t)|^2+|c_b(t)|^2=1$ for all time $t$.
 \begin{equation*}
 \Psi(\mathbf r,t)
 =c_a(t)\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
@@ -19,7 +21,8 @@ where
 \hat H_0\psi_a=E_a\psi_a,\quad\hat H_0\psi_b=E_b\psi_b
 \end{equation*}
 
-It was shown that to first order
+Let $E_b>E_a$.
+The first-order perturbation solution for $c_b(t)$ is
 \begin{equation*}
 c_b(t)=-\frac{i}{\hbar}\int_0^t
 \langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t')\,dt',\quad\omega_0=\frac{E_b-E_a}{\hbar}
