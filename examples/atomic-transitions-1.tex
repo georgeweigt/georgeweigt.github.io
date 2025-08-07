@@ -81,23 +81,22 @@ Let it be the case that the following amplitudes vanish.
 \end{equation*}
 
 Then equations (2) and (3) simplify as
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
 i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 &=c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+\tag{4}
 \\
 i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 &=c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
-\end{aligned}
-\tag{4}
-\end{equation*}
+\tag{5}
+\end{align*}
 
 Let $E_b>E_a$ and let
 \begin{equation*}
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 
-Rewrite equation (4) as
+Rewrite equations (4) and (5) as
 \begin{align*}
 \dot c_a(t)&=-\frac{i}{\hbar}c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp(-i\omega_0t)
 \\
@@ -117,5 +116,7 @@ The integral is not as bad as it looks because $\psi_a(\mathbf r)$ and $\psi_b(\
 are independent of time $t$.
 For $H_1(\mathbf r,t)$ representing an electric plane wave,
 the integrand reduces to a simple exponential of $t'$ which is easily solved.
+
+%%% Can't use Laplace transforms if H_1 is a function of t.
 
 \end{document}
