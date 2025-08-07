@@ -4,8 +4,9 @@
 
 Let $\Psi(\mathbf r,t)$ be the following wave function for a two state system.
 \begin{equation*}
-\Psi(\mathbf r,t)=\psi_a(\mathbf r)c_a(t)\exp(-\tfrac{i}{\hbar}E_at)+
-\psi_b(\mathbf r)c_b(t)\exp(-\tfrac{i}{\hbar}E_bt)
+\Psi(\mathbf r,t)
+=c_a(t)\psi_a(\mathbf r)\exp(-\tfrac{i}{\hbar}E_at)
++c_b(t)\psi_b(\mathbf r)\exp(-\tfrac{i}{\hbar}E_bt)
 \end{equation*}
 
 Let $\hat H(\mathbf r,t)$ be the Hamiltonian
@@ -26,11 +27,11 @@ i\hbar\frac{\partial}{\partial t}\Psi=\hat H\Psi
 we obtain the differential equations
 \begin{equation*}
 \begin{aligned}
-\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_a\rangle c_a(t)
--\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t)
+\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}c_a(t)\langle\psi_a|\hat H_1|\psi_a\rangle
+-\frac{i}{\hbar}c_b(t)\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)
 \\[1ex]
-\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_b\rangle c_b(t)
--\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
+\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}c_b(t)\langle\psi_b|\hat H_1|\psi_b\rangle
+-\frac{i}{\hbar}c_a(t)\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)
 \end{aligned}
 \end{equation*}
 
@@ -39,17 +40,17 @@ where
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 
-Typically the diagonal elements vanish
+Typically the diagonal elements vanish as
 \begin{equation*}
 \langle\psi_a|\hat H_1|\psi_a\rangle=\langle\psi_b|\hat H_1|\psi_b\rangle=0
 \end{equation*}
 
 and the differential equations become
 \begin{align*}
-\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)c_b(t)
+\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}c_b(t)\langle\psi_a|\hat H_1|\psi_b\rangle\exp(-i\omega_0t)
 \tag{1}
 \\[1ex]
-\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)c_a(t)
+\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}c_a(t)\langle\psi_b|\hat H_1|\psi_a\rangle\exp(i\omega_0t)
 \tag{2}
 \end{align*}
 
@@ -62,7 +63,7 @@ Then
 \begin{equation*}
 \langle\psi_a|\hat H_1|\psi_b\rangle
 =\langle\psi_a|\hat V|\psi_b\rangle
-\left[\tfrac{1}{2}\exp(i\omega t)+\tfrac{1}{2}\exp(-i\omega t)\right]
+\left(\tfrac{1}{2}\exp(i\omega t)+\tfrac{1}{2}\exp(-i\omega t)\right)
 \end{equation*}
 
 The rotating wave approximation discards the second term and asserts
@@ -73,12 +74,12 @@ The rotating wave approximation discards the second term and asserts
 
 Substitute equation (3) into (1) and (2) to obtain
 \begin{align*}
-\frac{d}{dt}c_a(t)&=-\frac{i}{2\hbar}\langle\psi_a|\hat V|\psi_b\rangle
-\exp\bigl(i(\omega-\omega_0)t\bigr)c_b(t)
+\frac{d}{dt}c_a(t)&=-\frac{i}{2\hbar}c_b(t)\langle\psi_a|\hat V|\psi_b\rangle
+\exp\bigl(i(\omega-\omega_0)t\bigr)
 \tag{4}
 \\[1ex]
-\frac{d}{dt}c_b(t)&=-\frac{i}{2\hbar}\langle\psi_b|\hat V|\psi_a\rangle
-\exp\bigl(i(\omega_0-\omega)t\bigr)c_a(t)
+\frac{d}{dt}c_b(t)&=-\frac{i}{2\hbar}c_a(t)\langle\psi_b|\hat V|\psi_a\rangle
+\exp\bigl(i(\omega_0-\omega)t\bigr)
 \tag{5}
 \end{align*}
 

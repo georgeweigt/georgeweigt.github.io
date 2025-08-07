@@ -12,10 +12,10 @@ check(ca == (cos(omegar t) + i (omega0 - omega) / (2 omegar) sin(omegar t)) exp(
 omegar = 1/2 sqrt((omega0 - omega)^2 + Vab Vba / hbar^2)
 
 "Verify equation (4)"
-check(d(ca,t) == -i / (2 hbar) Vab exp(i (omega - omega0) t) cb)
+check(d(ca,t) == -i / (2 hbar) cb Vab exp(i (omega - omega0) t))
 "ok"
 
 "Verify equation (5)"
-check(d(cb,t) == -i / (2 hbar) Vba exp(i (omega0 - omega) t) ca)
+check(d(cb,t) == -i / (2 hbar) ca Vba exp(i (omega0 - omega) t))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
