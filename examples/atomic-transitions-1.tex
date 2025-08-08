@@ -56,24 +56,24 @@ i\hbar\frac{dc_a(t)}{dt}\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 \end{equation*}
 
 Evaluate the inner product of $\psi_a$ and equation (1) to obtain
-\begin{multline*}
+\begin{align*}
 i\hbar\frac{dc_a(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_at\right)
+&=\langle\psi_a|H_1|\Psi\rangle
 \\
-=\langle\psi_a|H_1|\Psi\rangle
-=c_a(t)\langle\psi_a|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
+&=c_a(t)\langle\psi_a|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
 +c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \tag{2}
-\end{multline*}
+\end{align*}
 
 Evaluate the inner product of $\psi_b$ and equation (1) to obtain
-\begin{multline*}
+\begin{align*}
 i\hbar\frac{dc_b(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+&=\langle\psi_b|H_1|\Psi\rangle
 \\
-=\langle\psi_b|H_1|\Psi\rangle
-=c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
+&=c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
 +c_b(t)\langle\psi_b|H_1|\psi_b\rangle\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \tag{3}
-\end{multline*}
+\end{align*}
 
 Let it be the case that the following amplitudes vanish.
 \begin{equation*}
