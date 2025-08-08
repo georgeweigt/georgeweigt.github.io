@@ -34,8 +34,8 @@ i\hbar\frac{\partial}{\partial t}\Psi
 +E_bc_b(t)\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)}
 ^\text{cancels with other side of Schr\"odinger equation}
 \\
-+i\hbar\dot c_a(t)\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
-+i\hbar\dot c_b(t)\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
++i\hbar\frac{dc_a(t)}{dt}\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++i\hbar\frac{dc_b(t)}{dt}\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \end{multline*}
 
 Evaluate the right side of the Schr\"odinger equation.
@@ -49,15 +49,15 @@ H\Psi
 
 After cancellations
 \begin{equation*}
-i\hbar\dot c_a(t)\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
-+i\hbar\dot c_b(t)\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+i\hbar\frac{dc_a(t)}{dt}\psi_a(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_at\right)
++i\hbar\frac{dc_b(t)}{dt}\psi_b(\mathbf r)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 =H_1\Psi
 \tag{1}
 \end{equation*}
 
 Evaluate the inner product of $\psi_a$ and equation (1) to obtain
 \begin{multline*}
-i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+i\hbar\frac{dc_a(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_at\right)
 \\
 =\langle\psi_a|H_1|\Psi\rangle
 =c_a(t)\langle\psi_a|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
@@ -67,7 +67,7 @@ i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
 
 Evaluate the inner product of $\psi_b$ and equation (1) to obtain
 \begin{multline*}
-i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+i\hbar\frac{dc_b(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \\
 =\langle\psi_b|H_1|\Psi\rangle
 =c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
@@ -82,11 +82,11 @@ Let it be the case that the following amplitudes vanish.
 
 Then equations (2) and (3) simplify as
 \begin{align*}
-i\hbar\dot c_a(t)\exp\left(-\tfrac{i}{\hbar}E_at\right)
+i\hbar\frac{dc_a(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_at\right)
 &=c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 \tag{4}
 \\
-i\hbar\dot c_b(t)\exp\left(-\tfrac{i}{\hbar}E_bt\right)
+i\hbar\frac{dc_b(t)}{dt}\exp\left(-\tfrac{i}{\hbar}E_bt\right)
 &=c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp\left(-\tfrac{i}{\hbar}E_at\right)
 \tag{5}
 \end{align*}
@@ -98,9 +98,9 @@ Let $E_b>E_a$ and let
 
 Rewrite equations (4) and (5) as
 \begin{align*}
-\dot c_a(t)&=-\frac{i}{\hbar}c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp(-i\omega_0t)
+\frac{d}{dt}c_a(t)&=-\frac{i}{\hbar}c_b(t)\langle\psi_a|H_1|\psi_b\rangle\exp(-i\omega_0t)
 \\
-\dot c_b(t)&=-\frac{i}{\hbar}c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp(i\omega_0t)
+\frac{d}{dt}c_b(t)&=-\frac{i}{\hbar}c_a(t)\langle\psi_b|H_1|\psi_a\rangle\exp(i\omega_0t)
 \end{align*}
 
 Let the initial conditions be $c_a(0)=1$ and $c_b(0)=0$.
