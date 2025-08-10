@@ -1,5 +1,6 @@
 -- CODATA Internationally recommended 2022 values
 -- https://physics.nist.gov/cuu/Constants/
+-- c, e, h, and k are exact values
 
 -- a0       Bohr radius (per electron mass, not reduced electron mass)
 -- alpha    fine structure constant
@@ -12,8 +13,6 @@
 -- me       electron mass
 -- mp       proton mass
 -- mu0      vacuum magnetic permeability
-
--- c, e, h, and k are exact values
 
 a0 = 5.29177210544 10^(-11) meter
 alpha = 7.2973525643 10^(-3)
