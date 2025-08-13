@@ -99,4 +99,7 @@ A21
 err(a,b) = 2 abs((a - b) / (a + b)) -- relative error
 check(err(A21, 6.265 10^8 / second) < 0.0001)
 
+A21 = (2/3)^8 alpha^5 mu c^2 / hbar
+check(err(A21, 6.265 10^8 / second) < 0.0001)
+
 "ok"
