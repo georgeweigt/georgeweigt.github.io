@@ -54,21 +54,43 @@ It turns out that all three processes have the same transition rate.
 
 The spontaneous emission rate is
 \begin{equation*}
-A_{21}=\frac{4\alpha\omega_{21}^3|r_{21}|^2}{3c^2}
+A_{21}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\omega_{21}^3|r_{21}|^2
+\end{equation*}
+
+Noting that
+\begin{equation*}
+e^2=4\pi\varepsilon_0\hbar c\alpha
+\end{equation*}
+
+we can also write
+\begin{equation*}
+A_{21}=\frac{4\alpha}{3c^2}\omega_{21}^3|r_{21}|^2
 \tag{1}
 \end{equation*}
-where
-\begin{gather*}
+
+Verify dimensions:
+\begin{equation*}
+A_{21}\propto(\text{m/s})^{-2}\times\text{s}^{-3}\times\text{m}^2=\text{s}^{-1}\,\text{(or hertz)}
+\end{equation*}
+
+For angular frequency $\omega_{21}$ we have
+\begin{equation*}
 \omega_{21}=\frac{E_2-E_1}{\hbar},\quad E_n=-\frac{\alpha\hbar c}{2n^2a_0}
-\\[1ex]
+\end{equation*}
+
+For displacement $r_{21}$ we have
+\begin{equation*}
 |r_{21}|^2=|x_{21}|^2+|y_{21}|^2+|z_{21}|^2
-\\[1ex]
+\end{equation*}
+
+where
+\begin{equation*}
 x_{21}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}xf_{21}\,dV,
 \quad
 y_{21}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}yf_{21}\,dV,
 \quad
 z_{21}=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}zf_{21}\,dV
-\end{gather*}
+\end{equation*}
 
 and
 \begin{gather*}
