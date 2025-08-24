@@ -9,9 +9,24 @@ R_{a\rightarrow b}
 \bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2\rho(\omega_0)
 \end{equation*}
 
-where $E_b>E_a$ and
+where $b$ is the upper level and
 \begin{equation*}
 \omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+By Planck's law
+\begin{equation*}
+\rho(\omega_0)=\frac{\hbar\omega_0^3}{\pi^2c^3}
+\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
+\end{equation*}
+
+Hence
+\begin{equation*}
+R_{a\rightarrow b}
+=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
+\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
+\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
+\tag{1}
 \end{equation*}
 
 Interchange $\psi_a$ and $\psi_b$ by the identity
@@ -22,35 +37,11 @@ Interchange $\psi_a$ and $\psi_b$ by the identity
 
 to obtain
 \begin{equation*}
-R_{b\rightarrow a}
-=\frac{\pi e^2}{3\varepsilon_0\hbar^2}
-\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2\rho(\omega_0)
+\underset{\substack{\text{absorption}\\\text{rate}}}{R_{a\rightarrow b}}=
+\underset{\substack{\text{stimulated}\\\text{emission}\\\text{rate}}}{R_{b\rightarrow a}}
 \end{equation*}
 
-By Planck's law
-\begin{equation*}
-\rho(\omega_0)=\frac{\hbar\omega_0^3}{\pi^2c^3}
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\end{equation*}
-
-Hence the absorption rate is
-\begin{equation*}
-R_{a\rightarrow b}
-=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
-\bigl|\langle\psi_b|\mathbf r|\psi_a\rangle\bigr|^2
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\tag{1}
-\end{equation*}
-
-and the stimulated emission rate is
-\begin{equation*}
-R_{b\rightarrow a}
-=\frac{e^2\omega_0^3}{3\pi\varepsilon_0\hbar c^3}
-\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
-\frac{1}{\exp\left(\frac{\hbar\omega_0}{kT}\right)-1}
-\end{equation*}
-
-The spontaneous emission rate is
+For the spontaneous emission rate $A_{b\rightarrow a}$ we have (more on this in a moment)
 \begin{equation*}
 A_{b\rightarrow a}=R_{b\rightarrow a}
 \left[\exp\left(\frac{\hbar\omega_0}{kT}\right)-1\right]
