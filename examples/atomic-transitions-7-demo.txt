@@ -1,0 +1,105 @@
+-- Spontaneous emission rate for hydrogen state 2p
+
+psi(n,l,m) = R(n,l) Y(l,m)
+ 
+R(n,l) = 2 / n^2 *
+         a0^(-3/2) *
+         sqrt((n - l - 1)! / (n + l)!) *
+         (2 r / (n a0))^l *
+         L(2 r / (n a0), n - l - 1, 2 l + 1) *
+         exp(-r / (n a0))
+
+L(x,n,m,k) = (n + m)! sum(k,0,n, (-x)^k / ((n - k)! (m + k)! k!))
+
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+-- integrate f
+
+I(f) = do(
+  f = f r^2 sin(theta), -- multiply by volume element
+  f = expform(f), -- convert to exponential form
+  f = defint(f,theta,0,pi,phi,0,2pi),
+  f = integral(f,r),
+  0 - eval(f,r,0) -- return value
+)
+
+psi2 = psi(2,1,0) -- try psi(2,1,1) and psi(2,1,-1) also
+psi1 = psi(1,0,0)
+
+f21 = conj(psi1) psi2
+f21
+
+x = r sin(theta) cos(phi)
+y = r sin(theta) sin(phi)
+z = r cos(theta)
+
+x21 = I(x f21)
+y21 = I(y f21)
+z21 = I(z f21)
+
+print(x21,y21,z21)
+
+r21sq = conj(x21) x21 + conj(y21) y21 + conj(z21) z21
+r21sq
+
+E(n) = -alpha hbar c / (2 n^2 a0)
+omega21 = (E(2) - E(1)) / hbar
+omega21
+
+A21 = 4 alpha omega21^3 r21sq / (3 c^2)
+A21
+
+-- CODATA Internationally recommended 2022 values
+-- https://physics.nist.gov/cuu/Constants/
+-- c, e, h, and k are exact values
+
+a0 = 5.29177210544 10^(-11) meter
+alpha = 7.2973525643 10^(-3)
+c = 299792458.0 meter / second
+e = 1.602176634 10^(-19) coulomb
+epsilon0 = 8.8541878188 10^(-12) farad / meter
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
+k = 1.380649 10^(-23) joule / kelvin
+me = 9.1093837139 10^(-31) kilogram
+mp = 1.67262192595 10^(-27) kilogram
+mu0 = 1.25663706127 10^(-6) newton / ampere^2
+
+coulomb = ampere second
+farad = coulomb / volt
+joule = kilogram meter^2 / second^2
+newton = kilogram meter / second^2
+tesla = kilogram / second^2 / ampere
+volt = joule / coulomb
+
+ampere = "ampere"
+kelvin = "kelvin"
+kilogram = "kilogram"
+meter = "meter"
+second = "second"
+
+pi = float(pi) -- use numerical value of pi
+mu = me mp / (me + mp)
+a0 = a0 me / mu -- correction for reduced electron mass
+
+"Spontaneous emission rate"
+
+A21
+
+"Verify emission rate"
+
+err(a,b) = 2 abs((a - b) / (a + b)) -- relative error
+check(err(A21, 6.265 10^8 / second) < 0.0001)
+
+A21 = (2/3)^8 alpha^5 mu c^2 / hbar
+check(err(A21, 6.265 10^8 / second) < 0.0001)
+
+"ok"

@@ -1,0 +1,112 @@
+\input{preamble}
+
+\section*{Atomic transitions 7}
+
+From the previous section the spontaneous emission rate is
+\begin{equation*}
+A_{b\rightarrow a}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\omega_{ba}^3
+\bigl|\langle\psi_a|\mathbf r|\psi_b\rangle\bigr|^2
+\end{equation*}
+
+For hydrogen $2p\rightarrow1s$ we have
+\begin{equation*}
+A_{21}=\frac{e^2}{3\pi\varepsilon_0\hbar c^3}\omega_{21}^3
+\bigl|\langle\psi_1|\mathbf r|\psi_2\rangle\bigr|^2
+\end{equation*}
+
+Noting that
+\begin{equation*}
+e^2=4\pi\varepsilon_0\hbar c\alpha
+\end{equation*}
+
+we can also write
+\begin{equation*}
+A_{21}=\frac{4\alpha}{3c^2}\omega_{21}^3
+\bigl|\langle\psi_1|\mathbf r|\psi_2\rangle\bigr|^2
+\tag{1}
+\end{equation*}
+
+Verify dimensions:
+\begin{equation*}
+A_{21}\propto(\text{m/s})^{-2}\times\text{s}^{-3}\times\text{m}^2=\text{s}^{-1}\,\text{(or hertz)}
+\end{equation*}
+
+For angular frequency $\omega_{21}$ we have
+\begin{equation*}
+\omega_{21}=\frac{E_2-E_1}{\hbar}
+\end{equation*}
+
+and for hydrogen
+\begin{equation*}
+E_n=-\frac{\alpha\hbar c}{2n^2a_0}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\omega_{21}=\frac{3\alpha c}{8a_0}
+\end{equation*}
+
+For the transition ``probability'' we have
+\begin{equation*}
+\bigl|\langle\psi_1|\mathbf r|\psi_2\rangle\bigr|^2
+=|x_{21}|^2+|y_{21}|^2+|z_{21}|^2
+\end{equation*}
+
+where
+\begin{align*}
+x_{21}&=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}
+\psi_{100}^*\,x\,\psi_{210}\,dV
+\\
+y_{21}&=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}
+\psi_{100}^*\,y\,\psi_{210}\,dV
+\\
+z_{21}&=\int\limits_{0}^{\infty}\int\limits_{0}^{\pi}\int\limits_{0}^{2\pi}
+\psi_{100}^*\,z\,\psi_{210}\,dV
+\end{align*}
+
+and
+\begin{equation*}
+x=r\sin\theta\cos\phi,
+\quad
+y=r\sin\theta\sin\phi,
+\quad
+z=r\cos\theta,
+\quad
+dV=r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+The integrals work out to be
+\begin{equation*}
+x_{21}=0,
+\quad
+y_{21}=0,
+\quad
+z_{21}=\frac{2^7}{3^5}\sqrt2a_0
+\end{equation*}
+
+hence
+\begin{equation*}
+\bigl|\langle\psi_1|\mathbf r|\psi_2\rangle\bigr|^2=|z_{21}|^2=\frac{2^{15}}{3^{10}}a_0^2
+\end{equation*}
+
+By equation (1) the spontaneous emission rate is
+\begin{equation*}
+A_{21}=\frac{2^8}{3^8}\frac{\alpha^4c}{a_0}=6.26\times10^8\,\text{s}^{-1}
+\end{equation*}
+
+Noting that
+\begin{equation*}
+a_0=\frac{\hbar}{\alpha\mu c}
+\end{equation*}
+
+we can also write
+\begin{equation*}
+A_{21}=\frac{2^8}{3^8}\frac{\alpha^5\mu c^2}{\hbar}=6.26\times10^8\,\text{s}^{-1}
+\end{equation*}
+
+where $\mu$ is reduced electron mass
+\begin{equation*}
+\mu=\frac{m_em_p}{m_e+m_p}
+\end{equation*}
+
+\end{document}
