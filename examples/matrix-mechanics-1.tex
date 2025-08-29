@@ -1,0 +1,25 @@
+\input{preamble}
+
+\section*{Matrix mechanics 1}
+
+For the quantum harmonic oscillator
+\begin{equation*}
+\frac{m}{2}\left(\frac{d}{dt}x\right)^2+\frac{m}{2}\omega_0^2x^2=E
+\tag{1}
+\end{equation*}
+
+the nonzero matrix elements are
+\begin{equation*}
+x_{n,n+1}=x_{n+1,n}^*=e^{-i\omega_0t}\sqrt{\frac{(n+1)\hbar}{2m\omega_0}},\quad
+E_{n,n}=\left(n+\tfrac{1}{2}\right)\hbar\omega_0,\quad
+n=0,1,\ldots
+\end{equation*}
+
+In the Eigenmath script indexing starts with 1 hence
+\begin{equation*}
+x_{n,n+1}=x_{n+1,n}^*=e^{-i\omega_0t}\sqrt{\frac{n\hbar}{2m\omega_0}},\quad
+E_{n,n}=\left(n-\tfrac{1}{2}\right)\hbar\omega_0,\quad
+n=1,2,\ldots
+\end{equation*}
+
+\end{document}
