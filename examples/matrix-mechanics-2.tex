@@ -1,0 +1,79 @@
+\input{preamble}
+
+\section*{Matrix mechanics 2}
+
+Show that for hydrogen
+\begin{align*}
+L_1&=
+\bordermatrix{
+& \psi_{1,0,0} & \psi_{2,1,-1} & \psi_{2,1,0} & \psi_{2,1,1} \cr
+\psi_{1,0,0} & 0 & 0 & 0 & 0 \cr
+\psi_{2,1,-1} & 0 & 0 & \frac{\hbar}{\sqrt2} & 0 \cr
+\psi_{2,1,0} & 0 & \frac{\hbar}{\sqrt2} & 0 & \frac{\hbar}{\sqrt2} \cr
+\psi_{2,1,1} & 0 & 0 & \frac{\hbar}{\sqrt2} & 0
+}
+\\[1ex]
+L_2&=
+\bordermatrix{
+& \psi_{1,0,0} & \psi_{2,1,-1} & \psi_{2,1,0} & \psi_{2,1,1} \cr
+\psi_{1,0,0} & 0 & 0 & 0 & 0 \cr
+\psi_{2,1,-1} & 0 & 0 & \frac{i\hbar}{\sqrt2} & 0 \cr
+\psi_{2,1,0} & 0 & -\frac{i\hbar}{\sqrt2} & 0 & \frac{i\hbar}{\sqrt2} \cr
+\psi_{2,1,1} & 0 & 0 & -\frac{i\hbar}{\sqrt2} & 0
+}
+\\[1ex]
+L_3&=
+\bordermatrix{
+& \psi_{1,0,0} & \psi_{2,1,-1} & \psi_{2,1,0} & \psi_{2,1,1} \cr
+\psi_{1,0,0} & 0 & 0 & 0 & 0 \cr
+\psi_{2,1,-1} & 0 & -\hbar & 0 & 0 \cr
+\psi_{2,1,0} & 0 & 0 & 0 & 0 \cr
+\psi_{2,1,1} & 0 & 0 & 0 & \hbar
+}
+\end{align*}
+
+and
+\begin{equation*}
+L^2=
+\bordermatrix{
+& \psi_{1,0,0} & \psi_{2,1,-1} & \psi_{2,1,0} & \psi_{2,1,1} \cr
+\psi_{1,0,0} & 0 & 0 & 0 & 0 \cr
+\psi_{2,1,-1} & 0 & 2\hbar^2 & 0 & 0 \cr
+\psi_{2,1,0} & 0 & 0 & 2\hbar^2 & 0 \cr
+\psi_{2,1,1} & 0 & 0 & 0 & 2\hbar^2
+}
+\end{equation*}
+
+Verify
+\begin{equation*}
+L^2={L_1}^2+{L_2}^2+{L_3}^2
+\end{equation*}
+
+and
+\begin{align*}
+L_2L_3-L_3L_2&=i\hbar L_1
+\\
+L_3L_1-L_1L_3&=i\hbar L_2
+\\
+L_1L_2-L_2L_1&=i\hbar L_3
+\end{align*}
+
+In spherical coordinates the angular momentum operators are
+\begin{align*}
+\hat L_1&=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
++\cot\theta\cos\phi\frac{\partial}{\partial\phi}\right)
+\\
+\hat L_2&=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
++\cot\theta\sin\phi\frac{\partial}{\partial\phi}\right)
+\\
+\hat L_3&=-i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
+
+and
+\begin{equation*}
+\hat L^2=-\hbar^2\left(\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+\left(\sin\theta\frac{\partial}{\partial\theta}\right)
++\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}\right)
+\end{equation*}
+
+\end{document}

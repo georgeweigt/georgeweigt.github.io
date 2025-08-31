@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+-- Matrix mechanics 2
+
+psi(n,l,m) = R(n,l) Y(l,m)
+ 
+R(n,l) = 2 / n^2 *
+         a0^(-3/2) *
+         sqrt((n - l - 1)! / (n + l)!) *
+         (2 r / (n a0))^l *
+         L(2 r / (n a0), n - l - 1, 2 l + 1) *
+         exp(-r / (n a0))
+
+L(x,n,m,k) = (n + m)! sum(k,0,n, (-x)^k / ((n - k)! (m + k)! k!))
+
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+Psi = (psi(1,0,0),
+       psi(2,1,-1),
+       psi(2,1,0),
+       psi(2,1,1))
+
+L1op(f) = i hbar (sin(phi) d(f,theta) + 
+          cos(phi) cos(theta) / sin(theta) d(f,phi))
+
+L2op(f) = i hbar (-cos(phi) d(f,theta) +
+          sin(phi) cos(theta) / sin(theta) d(f,phi))
+
+L3op(f) = -i hbar d(f,phi)
+
+Lsqop(f) = -hbar^2 (d(sin(theta) d(f,theta),theta) / sin(theta) +
+           d(f,phi,phi) / sin(theta)^2)
+
+N = 4
+
+L1 = zero(N,N)
+L2 = zero(N,N)
+L3 = zero(N,N)
+Lsq = zero(N,N)
+
+-- integrate f
+
+I(f) = do(
+ f = f r^2 sin(theta), -- multiply by volume element
+ f = expform(f), -- convert to exponential form
+ f = defint(f,theta,0,pi,phi,0,2pi),
+ f = integral(f,r),
+ 0 - eval(f,r,0) -- return value
+)
+
+for(n, 1, N, for(m, 1, N,
+ L1[n,m] = I(conj(Psi[n]) L1op(Psi[m])),
+ L2[n,m] = I(conj(Psi[n]) L2op(Psi[m])),
+ L3[n,m] = I(conj(Psi[n]) L3op(Psi[m])),
+ Lsq[n,m] = I(conj(Psi[n]) Lsqop(Psi[m]))
+))
+
+"Verify equations"
+
+check(L1 == hbar / sqrt(2) ((0,0,0,0),(0,0,1,0),(0,1,0,1),(0,0,1,0)))
+check(L2 == i hbar / sqrt(2) ((0,0,0,0),(0,0,1,0),(0,-1,0,1),(0,0,-1,0)))
+check(L3 == hbar ((0,0,0,0),(0,-1,0,0),(0,0,0,0),(0,0,0,1)))
+
+check(Lsq == 2 hbar^2 ((0,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)))
+
+check(dot(L2,L3) - dot(L3,L2) == i hbar L1)
+check(dot(L3,L1) - dot(L1,L3) == i hbar L2)
+check(dot(L1,L2) - dot(L2,L1) == i hbar L3)
+
+check(Lsq == dot(L1,L1) + dot(L2,L2) + dot(L3,L3))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
