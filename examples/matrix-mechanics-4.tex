@@ -1,15 +1,15 @@
 \input{preamble}
 
-\section*{Galilean transformation}
+\section*{Matrix mechanics 4}
 
-Let $G_1$, $G_2$, and $G_3$ be Galilean transformation operators.
+Let $K_1$, $K_2$, and $K_3$ be the following spatial translation matrices.
 \begin{equation*}
-G_1=\frac{m}{\hbar}X_1,\quad G_2=\frac{m}{\hbar}X_2,\quad G_3=\frac{m}{\hbar}X_3
+K_1=\frac{1}{\hbar}P_1,\quad K_2=\frac{1}{\hbar}P_2,\quad K_3=\frac{1}{\hbar}P_3
 \end{equation*}
 
 Let $U$ be the unitary transformation
 \begin{equation*}
-U=1-i\epsilon G_3-\tfrac{1}{2}\epsilon^2{G_3}^2
+U=1-i\epsilon K_3-\tfrac{1}{2}\epsilon^2{K_3}^2
 \end{equation*}
 
 1. Show that to order $\epsilon^2$
@@ -18,7 +18,7 @@ U^{-1}X_1U&=X_1
 \\
 U^{-1}X_2U&=X_2
 \\
-U^{-1}X_3U&=X_3
+U^{-1}X_3U&=X_3+\epsilon
 \end{align*}
 
 2. Show that to order $\epsilon^2$
@@ -27,21 +27,21 @@ U^{-1}P_1U&=P_1
 \\
 U^{-1}P_2U&=P_2
 \\
-U^{-1}P_3U&=P_3-\epsilon m
+U^{-1}P_3U&=P_3
 \end{align*}
 
 3. Show that to order $\epsilon^2$
 \begin{align*}
-U^{-1}L_1U&=L_1-\epsilon mX_1
+U^{-1}L_1U&=L_1-\epsilon P_2
 \\
-U^{-1}L_2U&=L_2+\epsilon mX_2
+U^{-1}L_2U&=L_2+\epsilon P_1
 \\
 U^{-1}L_3U&=L_3
 \end{align*}
 
 4. Show that to order $\epsilon^2$
 \begin{equation*}
-U^{-1}HU=H-\epsilon P_3+\tfrac{1}{2}\epsilon^2m
+U^{-1}HU=H
 \end{equation*}
 
 where

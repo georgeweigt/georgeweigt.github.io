@@ -1,4 +1,4 @@
-"Time translation"
+-- Matrix mechanics 4
 
 X1(f) = x1 f
 X2(f) = x2 f
@@ -12,12 +12,12 @@ L1(f) = X2(P3(f)) - X3(P2(f))
 L2(f) = X3(P1(f)) - X1(P3(f))
 L3(f) = X1(P2(f)) - X2(P1(f))
 
-H(f) = (P1(P1(f)) + P2(P2(f)) + P3(P3(f))) / (2 m)
+K1(f) = P1(f) / hbar
+K2(f) = P2(f) / hbar
+K3(f) = P3(f) / hbar
 
-Omega(f) = H(f) / hbar
-
-U(f) = f - i epsilon Omega(f) - 1/2 epsilon^2 Omega(Omega(f))
-V(f) = f + i epsilon Omega(f) - 1/2 epsilon^2 Omega(Omega(f)) -- inverse of U
+U(f) = f - i epsilon K3(f) - 1/2 epsilon^2 K3(K3(f))
+V(f) = f + i epsilon K3(f) - 1/2 epsilon^2 K3(K3(f)) -- inverse of U
 
 psi = Psi(x1,x2,x3)
 
@@ -29,15 +29,15 @@ check(T == psi)
 
 T1 = V(X1(U(psi)))
 T1 = eval(T1, epsilon^4, 0, epsilon^3, 0)
-check(T1 == X1(psi) + epsilon P1(psi) / m)
+check(T1 == X1(psi))
 
 T2 = V(X2(U(psi)))
 T2 = eval(T2, epsilon^4, 0, epsilon^3, 0)
-check(T2 == X2(psi) + epsilon P2(psi) / m)
+check(T2 == X2(psi))
 
 T3 = V(X3(U(psi)))
 T3 = eval(T3, epsilon^4, 0, epsilon^3, 0)
-check(T3 == X3(psi) + epsilon P3(psi) / m)
+check(T3 == X3(psi) + epsilon psi)
 
 "ok"
 
@@ -61,11 +61,11 @@ check(T3 == P3(psi))
 
 T1 = V(L1(U(psi)))
 T1 = eval(T1, epsilon^4, 0, epsilon^3, 0)
-check(T1 == L1(psi))
+check(T1 == L1(psi) - epsilon P2(psi))
 
 T2 = V(L2(U(psi)))
 T2 = eval(T2, epsilon^4, 0, epsilon^3, 0)
-check(T2 == L2(psi))
+check(T2 == L2(psi) + epsilon P1(psi))
 
 T3 = V(L3(U(psi)))
 T3 = eval(T3, epsilon^4, 0, epsilon^3, 0)
@@ -74,6 +74,8 @@ check(T3 == L3(psi))
 "ok"
 
 "Verify (4)"
+
+H(f) = (P1(P1(f)) + P2(P2(f)) + P3(P3(f))) / (2 m)
 
 T = V(H(U(psi)))
 T = eval(T, epsilon^4, 0, epsilon^3, 0)
