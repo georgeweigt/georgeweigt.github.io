@@ -17,22 +17,6 @@ Show that
 (XP-PX)\psi(x,t)=i\hbar\psi(x,t)
 \end{equation*}
 
-\iffalse
-Then
-\begin{align*}
-(XP-PX)\psi(x,t)&=XP\psi(x,t)-PX\psi(x,t)
-\\
-&=x\left(-i\hbar\frac{\partial}{\partial x}\psi(x,t)\right)
-+i\hbar\frac{\partial}{\partial x}\bigl(x\psi(x,t)\bigr)
-\\
-&=-i\hbar x\frac{\partial}{\partial x}\psi(x,t)
-+i\hbar\left(\frac{\partial}{\partial x}x\right)\psi(x,t)
-+i\hbar x\frac{\partial}{\partial x}\psi(x,t)
-\\
-&=i\hbar\psi(x,t)
-\end{align*}
-\fi
-
 Eigenmath code:
 {\color{blue}
 \begin{verbatim}
@@ -47,36 +31,27 @@ Result:
 $i\hbar\psi(x,t)$
 
 \bigskip
-Another example: Show that
+In three dimensions:
 \begin{equation*}
-[X^2,P^2]=2i\hbar(XP+PX)
+X=\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}\otimes,\quad P=-i\hbar\nabla
 \end{equation*}
 
 Eigenmath code:
 {\color{blue}
 \begin{verbatim}
-X2(f) = X(X(f))
-P2(f) = P(P(f))
-A = X2(P2(psi(x,t))) - P2(X2(psi(x,t)))
-B = 2 i hbar (X(P(psi(x,t))) + P(X(psi(x,t))))
-check(A == B) -- continue if A equals B
-"ok"
+X(f) = outer((x1,x2,x3),f)
+P(f) = -i hbar d(f,(x1,x2,x3))
+X(P(psi(x1,x2,x3,t))) - P(X(psi(x1,x2,x3,t)))
 \end{verbatim}}
 
 Result:
 
 \bigskip
-ok
-
-\iffalse
-\bigskip
-Notes:
-\begin{enumerate}
-\item
-Fedak  and Prentis write, ``The theory of Fourier and the correspondence principle of Bohr played a vital role in Heisenberg's development of quantum mechanics.''
-\item
-Aitchison, MacManus, and Snyder write, ``This `difficulty' clearly unsettled Heisenberg: but it very quickly became clear that the non-commutativity (in general) of kinematical quantities in quantum theory was the really essential new technical idea in the paper.''
-\end{enumerate}
-\fi
+$\begin{bmatrix}
+i\hbar\psi(x_1,x_2,x_3,t)&0&0\\
+0&i\hbar\psi(x_1,x_2,x_3,t)&0\\
+0&0&i\hbar\psi(x_1,x_2,x_3,t)
+\end{bmatrix}
+$
 
 \end{document}

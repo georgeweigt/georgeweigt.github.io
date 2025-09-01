@@ -3,10 +3,7 @@ X(f) = x f
 P(f) = -i hbar d(f,x)
 X(P(psi(x,t))) - P(X(psi(x,t)))
 
-X2(f) = X(X(f))
-P2(f) = P(P(f))
-A = X2(P2(psi(x,t))) - P2(X2(psi(x,t)))
-B = 2 i hbar (X(P(psi(x,t))) + P(X(psi(x,t))))
-check(A == B) -- continue if A equals B
-"ok"
+X(f) = outer((x1,x2,x3),f)
+P(f) = -i hbar d(f,(x1,x2,x3))
+X(P(psi(x1,x2,x3,t))) - P(X(psi(x1,x2,x3,t)))
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
