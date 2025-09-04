@@ -3,7 +3,6 @@
 \section*{Annihilation}
 
 Annihilation is the interaction $e^-+e^+\rightarrow\gamma+\gamma$.
-%
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -14,7 +13,7 @@ Annihilation is the interaction $e^-+e^+\rightarrow\gamma+\gamma$.
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
-%
+
 In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
 p_1=\underset{\substack{\text{inbound}\\ \text{electron}}}
@@ -65,19 +64,17 @@ where
 \end{equation*}
 
 Symbol $e$ is elementary charge and
-\begin{gather*}
-\begin{aligned}
+\begin{align*}
 \slashed q_1&=(p_1-p_3)^\alpha g_{\alpha\beta}\gamma^\beta
 \\
 \slashed q_2&=(p_1-p_4)^\alpha g_{\alpha\beta}\gamma^\beta
-\end{aligned}
-\\[1ex]
-\begin{aligned}
+\end{align*}
+%
+\begin{align*}
 t&=(p_1-p_3)^2
 \\
 u&=(p_1-p_4)^2
-\end{aligned}
-\end{gather*}
+\end{align*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
 is the average of spin states.
@@ -96,29 +93,34 @@ Hence
 \right)
 \end{equation*}
 
-To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
-write $\mathcal M_{1ab}$ in component form.
-\begin{equation*}
-(\mathcal M_{1ab})^{\mu\nu}=\frac{
+In component form (note that indices $\mu$ and $\nu$ are interchanged for $\mathcal M_{2ab}$)
+\begin{align*}
+(\mathcal M_{1ab})^{\mu\nu}&=\frac{
 (\bar v_{2b})_\alpha
 (-ie\gamma^{\mu\alpha}{}_\beta)
 (\slashed q_1+m)^\beta{}_\rho
 (-ie\gamma^{\nu\rho}{}_\sigma)
 (u_{1a})^\sigma}{t-m^2}
-\end{equation*}
+\\
+(\mathcal M_{2ab})^{\nu\mu}&=\frac{
+(\bar v_{2b})_\alpha
+(-ie\gamma^{\nu\alpha}{}_\beta)
+(\slashed q_2+m)^\beta{}_\rho
+(-ie\gamma^{\mu\rho}{}_\sigma)
+(u_{1a})^\sigma}{u-m^2}
+\end{align*}
 
-Metric tensor $g_{\mu\nu}$ is required to sum over indices $\mu$ and $\nu$.
-\begin{equation*}
-\mathcal M_{1ab}\mathcal M_{1ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
-=(\mathcal M_{1ab})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
-\end{equation*}
-
-Similarly for $\mathcal M_{2ab}\mathcal M_{2ab}^*$.
-For $\mathcal M_{2ab}$ the index order is $\nu$ followed by $\mu$ hence
-\begin{equation*}
-\mathcal M_{1ab}\mathcal M_{2ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
-=(\mathcal M_{1ab})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ab}^*)^{\beta\alpha}g_{\alpha\mu}
-\end{equation*}
+Products are formed with $g_{\mu\nu}$ as
+\begin{align*}
+\mathcal M_{1ab}\mathcal M_{1ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
+=(\mathcal M_{1ab})^{\mu\nu}\left[g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}\right]
+\\
+\mathcal M_{1ab}\mathcal M_{2ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{1ab})^{\mu\nu}\left[g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\beta\mu}\right]
+\\
+\mathcal M_{2ab}\mathcal M_{2ab}^*&=(\mathcal M_{2ab})^{\nu\mu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{2ab})^{\nu\mu}\left[g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\beta\mu}\right]
+\end{align*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
