@@ -96,20 +96,36 @@ where
 \frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
 \end{equation*}
 
-Symbol $e$ is elementary charge and
-\begin{gather*}
-\begin{aligned}
+Symbols $\slashed q_1$ and $\slashed q_2$ are momentum transfer.
+\begin{align*}
 \slashed q_1&=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta
 \\
 \slashed q_2&=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
-\end{aligned}
-\\[1ex]
-\begin{aligned}
+\end{align*}
+
+Symbols $s$ and $u$ are Mandelstam variables.
+\begin{align*}
 s&=(p_1+p_2)^2
 \\
 u&=(p_1-p_4)^2
-\end{aligned}
-\end{gather*}
+\end{align*}
+
+In component form (note that indices $\mu$ and $\nu$ are interchanged for $\mathcal M_{2ab}$)
+\begin{align*}
+(\mathcal M_{1ab})^{\mu\nu}&=\frac{
+(\bar{u}_{4b})_\alpha
+(-ie\gamma^{\mu\alpha}{}_\beta)
+(\slashed{q}_1+m)^\beta{}_\rho
+(-ie\gamma^{\nu\rho}{}_\sigma)
+(u_{2a})^\sigma}{s-m^2}
+\\
+(\mathcal M_{2ab})^{\nu\nu}&=\frac{
+(\bar{u}_{4b})_\alpha
+(-ie\gamma^{\nu\alpha}{}_\beta)
+(\slashed{q}_2+m)^\beta{}_\rho
+(-ie\gamma^{\mu\rho}{}_\sigma)
+(u_{2a})^\sigma}{u-m^2}
+\end{align*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
 is the average of spin states.
@@ -128,29 +144,17 @@ Hence
 \right)
 \end{equation*}
 
-To understand how $\mathcal M_{1ab}\mathcal M_{1ab}^*$ is calculated,
-write $\mathcal M_{1ab}$ in component form.
-\begin{equation*}
-(\mathcal M_{1ab})^{\mu\nu}=\frac{
-(\bar{u}_{4b})_\alpha
-(-ie\gamma^{\mu\alpha}{}_\beta)
-(\slashed{q}_1+m)^\beta{}_\rho
-(-ie\gamma^{\nu\rho}{}_\sigma)
-(u_{2a})^\sigma}{s-m^2}
-\end{equation*}
-
 Metric tensor $g_{\mu\nu}$ is required to sum over indices $\mu$ and $\nu$.
-\begin{equation*}
-\mathcal M_{1ab}\mathcal M_{1ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
-=(\mathcal M_{1ab})^{\mu\nu}g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
-\end{equation*}
-
-Similarly for $\mathcal M_{2ab}\mathcal M_{2ab}^*$.
-For $\mathcal M_{2ab}$ the index order is $\nu$ followed by $\mu$ hence
-\begin{equation*}
-\mathcal M_{1ab}\mathcal M_{2ab}^*=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
-=(\mathcal M_{1ab})^{\mu\nu}g_{\nu\beta}(\mathcal M_{2ab}^*)^{\beta\alpha}g_{\alpha\mu}
-\end{equation*}
+\begin{align*}
+\mathcal M_{1ab}\mathcal M_{1ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
+=(\mathcal M_{1ab})^{\mu\nu}\left[g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}\right]
+\\
+\mathcal M_{1ab}\mathcal M_{2ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{1ab})^{\mu\nu}\left[g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\alpha\mu}\right]
+\\
+\mathcal M_{2ab}\mathcal M_{2ab}^*&=(\mathcal M_{2ab})^{\nu\mu}(\mathcal M_{2ab}^*)_{\nu\mu}
+=(\mathcal M_{2ab})^{\nu\mu}\left[g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\beta\mu}\right]
+\end{align*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
