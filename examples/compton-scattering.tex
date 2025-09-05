@@ -82,19 +82,20 @@ p_{4x}-ip_{4y}\\
 \end{pmatrix}}
 \end{equation*}
 
-The probability amplitude $\mathcal M_{ab}$ for spin state $ab$ is
+The scattering amplitude $\mathcal M_{ab}{}^{\mu\nu}$
+for spin $ab$ and polarization $\mu\nu$ is
 \begin{equation*}
-\mathcal M_{ba}=\mathcal M_{1ab}+\mathcal M_{2ab}
+\mathcal M_{ba}{}^{\mu\nu}=\mathcal M_{1ab}{}^{\mu\nu}+\mathcal M_{2ab}{}^{\nu\mu}
 \end{equation*}
 
 where
-\begin{equation*}
-\mathcal M_{1ab}=
-\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2},
-\quad
-\mathcal M_{2ab}=
-\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
-\end{equation*}
+\begin{align*}
+\mathcal M_{1ab}{}^{\mu\nu}
+&=\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2}
+\\
+\mathcal M_{2ab}{}^{\nu\mu}
+&=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
+\end{align*}
 
 Matrices $\slashed q_1$ and $\slashed q_2$ represent momentum transfer.
 \begin{align*}
@@ -112,14 +113,14 @@ u&=(p_1-p_4)^2
 
 In component form (note that indices $\mu$ and $\nu$ are interchanged for $\mathcal M_{2ab}$)
 \begin{align*}
-(\mathcal M_{1ab})^{\mu\nu}&=\frac{
+\mathcal M_{1ab}{}^{\mu\nu}&=\frac{
 (\bar{u}_{4b})_\alpha
 (-ie\gamma^{\mu\alpha}{}_\beta)
 (\slashed{q}_1+m)^\beta{}_\rho
 (-ie\gamma^{\nu\rho}{}_\sigma)
 (u_{2a})^\sigma}{s-m^2}
 \\
-(\mathcal M_{2ab})^{\nu\nu}&=\frac{
+\mathcal M_{2ab}{}^{\nu\nu}&=\frac{
 (\bar{u}_{4b})_\alpha
 (-ie\gamma^{\nu\alpha}{}_\beta)
 (\slashed{q}_2+m)^\beta{}_\rho
@@ -128,35 +129,24 @@ In component form (note that indices $\mu$ and $\nu$ are interchanged for $\math
 \end{align*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
-is the average of spin states.
+is the average over spin and polarization states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2|\mathcal M_{ab}|^2
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a,b}\sum_{\mu,\nu}\bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
 \end{equation*}
 
-Hence
-\begin{equation*}
+In component form
+\begin{multline*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2
-\left(
-\mathcal M_{1ab}\mathcal M_{1ab}^*
-+\mathcal M_{1ab}\mathcal M_{2ab}^*+\mathcal M_{2ab}\mathcal M_{1ab}^*
-+\mathcal M_{2ab}\mathcal M_{2ab}^*
-\right)
-\end{equation*}
-
-Metric tensor $g_{\mu\nu}$ lowers indices.
-\begin{align*}
-\mathcal M_{1ab}\mathcal M_{1ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{1ab}^*)_{\mu\nu}
-=(\mathcal M_{1ab})^{\mu\nu}\,g_{\mu\alpha}(\mathcal M_{1ab}^*)^{\alpha\beta}g_{\beta\nu}
+=\frac{1}{4}\sum_{a,b}\biggl[
+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
++\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
 \\
-\mathcal M_{1ab}\mathcal M_{2ab}^*&=(\mathcal M_{1ab})^{\mu\nu}(\mathcal M_{2ab}^*)_{\nu\mu}
-=(\mathcal M_{1ab})^{\mu\nu}\,g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\beta\mu}
-\\
-\mathcal M_{2ab}\mathcal M_{2ab}^*&=(\mathcal M_{2ab})^{\nu\mu}(\mathcal M_{2ab}^*)_{\nu\mu}
-=(\mathcal M_{2ab})^{\nu\mu}\,g_{\nu\alpha}(\mathcal M_{2ab}^*)^{\alpha\beta}g_{\beta\mu}
-\end{align*}
++\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
++\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+\biggr]
+\end{multline*}
 
-The Casimir trick uses matrix arithmetic to sum over spin states.
+The Casimir trick uses matrix arithmetic to sum over spin and polarization states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =
