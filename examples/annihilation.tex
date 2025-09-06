@@ -104,7 +104,15 @@ is the average over spin and polarization states.
 =\frac{1}{4}\sum_{a,b}\sum_{\mu,\nu}\bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
 \end{equation*}
 
-In component form
+Summing over $\mu$ and $\nu$ requires $g_{\mu\nu}$ to lower indices.
+\begin{equation*}
+\langle|\mathcal M|^2\rangle
+=\frac{1}{4}\sum_{a,b}\mathcal M_{ab}{}^{\mu\nu}
+\left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+\end{equation*}
+
+Substitute $\mathcal M_{1ab}+\mathcal M_{2ab}$
+for $\mathcal M_{ab}$.
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{a,b}\biggl[
