@@ -151,4 +151,26 @@ I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
 check(f sin(theta) == d(I,theta))
 
 "ok"
+
+"Verify another way"
+
+T11 = M111 + transpose(M211)
+T12 = M112 + transpose(M212)
+T21 = M121 + transpose(M221)
+T22 = M122 + transpose(M222)
+
+-- sum over mu and nu
+
+U11 = contract(dot(T11,gmunu,transpose(conj(T11)),gmunu))
+U12 = contract(dot(T12,gmunu,transpose(conj(T12)),gmunu))
+U21 = contract(dot(T21,gmunu,transpose(conj(T21)),gmunu))
+U22 = contract(dot(T22,gmunu,transpose(conj(T22)),gmunu))
+
+-- sum over spins
+
+U = U11 + U12 + U21 + U22
+
+check(U == M11 + M12 + M21 + M22)
+
+"ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
