@@ -141,49 +141,73 @@ Summing over $\mu$ and $\nu$ requires $g_{\mu\nu}$ to lower indices.
 \left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
 \end{equation*}
 
-Substitute $\mathcal M_{1ab}+\mathcal M_{2ab}$
-for $\mathcal M_{ab}$.
+Substitute $\mathcal M_{1ab}+\mathcal M_{2ab}$ for $\mathcal M_{ab}$.
+(Note that $P_{12}=P_{21}^*$ hence by the property that probabilities are real we have $P_{12}=P_{21}$.)
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{a,b}\biggl[
+\underbrace{
 \mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+}_{P_{11ab}}
++
+\underbrace{
+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+}_{P_{12ab}}
 \\
-+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
++
+\underbrace{
+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+}_{P_{21ab}}
++
+\underbrace{
+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+}_{P_{22ab}}
 \biggr]
 \end{multline*}
 
-The Casimir trick uses matrix arithmetic to sum over spin and polarization states.
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=
-\frac{e^4}{4}
-\left(
-\frac{f_{11}}{(s-m^2)^2}
-+\frac{2f_{12}}{(s-m^2)(u-m^2)}
-+\frac{f_{22}}{(u-m^2)^2}
-\right)
-\tag{1}
-\end{equation*}
+The Casimir trick uses matrix arithmetic to sum over spin and polarization states:
+\begin{align*}
+\sum_{a,b}P_{11ab}&=\frac{e^4}{(t-m^2)^2}\operatorname{Tr}
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+\right]
+\\
+\sum_{a,b}P_{12ab}&=\frac{e^4}{(t-m^2)(u-m^2)}\operatorname{Tr}
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+\right]
+\\
+\sum_{a,b}P_{22ab}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+\right]
+\end{align*}
 
-where
+Let
 \begin{align*}
 f_{11}&=\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_1+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_1+m)\gamma_\mu
-\right)
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+\right]
 \\
 f_{12}&=\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\mu(\slashed{q}_1+m)\gamma_\nu
-\right)
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+\right]
 \\
 f_{22}&=\operatorname{Tr}
-\left(
-(\slashed{p}_2+m)\gamma^\mu(\slashed{q}_2+m)\gamma^\nu(\slashed{p}_4+m)\gamma_\nu(\slashed{q}_2+m)\gamma_\mu
-\right)
+\left[
+(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+\right]
 \end{align*}
+
+so that
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
+\left[
+\frac{f_{11}}{(t-m^2)^2}+\frac{2f_{12}}{(t-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}
+\right]
+\end{equation*}
 
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
