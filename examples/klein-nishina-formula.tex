@@ -170,19 +170,19 @@ Substitute $\mathcal M_{1ab}+\mathcal M_{2ab}$ for $\mathcal M_{ab}$.
 
 The Casimir trick uses matrix arithmetic to sum over spin and polarization states:
 \begin{align*}
-\sum_{a,b}P_{11ab}&=\frac{e^4}{(t-m^2)^2}\operatorname{Tr}
+\sum_{a,b}P_{11ab}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+(\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right]
 \\
-\sum_{a,b}P_{12ab}&=\frac{e^4}{(t-m^2)(u-m^2)}\operatorname{Tr}
+\sum_{a,b}P_{12ab}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right]
 \\
 \sum_{a,b}P_{22ab}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right]
 \end{align*}
 
@@ -190,17 +190,17 @@ Let
 \begin{align*}
 f_{11}&=\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+(\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right]
 \\
 f_{12}&=\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right]
 \\
 f_{22}&=\operatorname{Tr}
 \left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right]
 \end{align*}
 
@@ -208,7 +208,7 @@ so that
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
 \left[
-\frac{f_{11}}{(t-m^2)^2}+\frac{2f_{12}}{(t-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}
+\frac{f_{11}}{(s-m^2)^2}+\frac{2f_{12}}{(s-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}
 \right]
 \end{equation*}
 
