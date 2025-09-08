@@ -51,23 +51,31 @@ u4 = (u41,u42)
 v1bar = dot(conj(v1),gamma0) -- adjoint of v1
 u4bar = dot(conj(u4),gamma0) -- adjoint of u4
 
-M1(a,b,c,d) =
--e^2 dot(dot(v1bar[a],gammaT,v3[c]),dot(u4bar[d],gammaL,u2[b]))
+M1(a,b,c,d) = -e^2 dot(
+ dot(v1bar[a],gammaT,v3[c]),
+ dot(u4bar[d],gammaL,u2[b])
+)
 
-M2(a,b,c,d) =
-e^2 dot(dot(v1bar[a],gammaT,u2[b]),dot(u4bar[d],gammaL,v3[c]))
+M2(a,b,c,d) = e^2 dot(
+ dot(v1bar[a],gammaT,u2[b]),
+ dot(u4bar[d],gammaL,v3[c])
+)
 
 M11 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
-M1(a,b,c,d) conj(M1(a,b,c,d)) ))))
+ M1(a,b,c,d) conj(M1(a,b,c,d))
+))))
 
 M12 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
-M1(a,b,c,d) conj(M2(a,b,c,d)) ))))
+ M1(a,b,c,d) conj(M2(a,b,c,d))
+))))
 
 M21 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
-M2(a,b,c,d) conj(M1(a,b,c,d)) ))))
+ M2(a,b,c,d) conj(M1(a,b,c,d))
+))))
 
 M22 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
-M2(a,b,c,d) conj(M2(a,b,c,d)) ))))
+ M2(a,b,c,d) conj(M2(a,b,c,d))
+))))
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
