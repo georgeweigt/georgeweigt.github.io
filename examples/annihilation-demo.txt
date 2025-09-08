@@ -94,9 +94,9 @@ f12 = contract(T,3,5,2,3,1,2)
 T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
 f22 = contract(T,3,4,2,3,1,2)
 
-f11 = simplify(f11)
-f12 = simplify(f12)
-f22 = simplify(f22)
+--f11 = simplify(f11)
+--f12 = simplify(f12)
+--f22 = simplify(f22)
 
 check(e^4 f11 == P1111 + P1112 + P1121 + P1122)
 check(e^4 f12 == P1211 + P1212 + P1221 + P1222)
@@ -119,22 +119,30 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-t = simplify(t)
-u = simplify(u)
-
-check(s == 2 p12 + 2 m^2)
-check(t == -2 p13 + m^2)
-check(u == -2 p14 + m^2)
+--t = simplify(t)
+--u = simplify(u)
 
 check(f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4)
 check(f12 == 8 s m^2 - 32 m^4)
 check(f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4)
 
+-- save these relations for future use
+
+check(s == 2 p12 + 2 m^2)
+check(t == -2 p13 + m^2)
+check(u == -2 p14 + m^2)
+
+check(p12 == 1/2 s - m^2)
+check(p13 == -1/2 (t - m^2))
+check(p14 == -1/2 (u - m^2))
+
+-- f is the expected probability density function
+
 d11 = (t - m^2)^2
 d12 = (t - m^2) (u - m^2)
 d22 = (u - m^2)^2
 
-f = e^4 (f11/d11 + 2 f12/d12 + f22/d22) / 4
+f = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 -- high energy approximation
 

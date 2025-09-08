@@ -95,6 +95,10 @@ f12 = contract(T,3,5,2,3,1,2)
 T = dot(P2,gammaT,Q2,gammaT,P4,gammaL,Q2,gammaL)
 f22 = contract(T,3,4,2,3,1,2)
 
+--f11 = simplify(f11)
+--f12 = simplify(f12)
+--f22 = simplify(f22)
+
 check(e^4 f11 == P1111 + P1112 + P1121 + P1122)
 check(e^4 f12 == P1211 + P1212 + P1221 + P1222)
 check(e^4 f12 == P2111 + P2112 + P2121 + P2122)
@@ -116,22 +120,22 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-t = simplify(t)
-u = simplify(u)
-
-check(s == 2 p12 + m^2)
-check(t == -2 p13)
-check(u == -2 p14 + m^2)
+--t = simplify(t)
+--u = simplify(u)
 
 check(f11 == -8 s u + 24 s m^2 + 8 u m^2 + 8 m^4)
 check(f12 == 8 s m^2 + 8 u m^2 + 16 m^4)
 check(f22 == -8 s u + 8 s m^2 + 24 u m^2 + 8 m^4)
 
+check(s == 2 p12 + m^2)
+check(t == -2 p13)
+check(u == -2 p14 + m^2)
+
 d11 = (s - m^2)^2
 d12 = (s - m^2) (u - m^2)
 d22 = (u - m^2)^2
 
-f = e^4 (f11/d11 + 2 f12/d12 + f22/d22) / 4
+f = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 -- high energy approximation
 
@@ -163,9 +167,9 @@ p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
 
-check(f11 == 32 p12 p14 + 64 m^2 p12 - 32 m^2 p13 - 32 m^2 p14 + 32 m^4)
-check(f12 == 16 m^2 p12 - 16 m^2 p14 + 32 m^4)
-check(f22 == 32 p12 p14 + 32 m^2 p12 - 32 m^2 p13 - 64 m^2 p14 + 32 m^4)
+check(f11 == 32 p12 p14 + 32 p12 m^2 + 32 m^4)
+check(f12 == 16 p12 m^2 - 16 p14 m^2 + 32 m^4)
+check(f22 == 32 p12 p14 - 32 p14 m^2 + 32 m^4)
 
 -- verify s, t, and u in the lab frame
 
