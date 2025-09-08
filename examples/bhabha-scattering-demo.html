@@ -99,10 +99,6 @@ T1 = contract(dot(X1,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X3,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
-f11 = simplify(f11)
-f12 = simplify(f12)
-f22 = simplify(f22)
-
 check(e^4 f11 == M11)
 check(e^4 f12 == M12)
 check(e^4 f12 == M21)
@@ -123,9 +119,6 @@ check(f22 == 32 p13^2 + 32 p14^2 + 64 p13 m^2 + 64 p14 m^2)
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
-
-t = simplify(t)
-u = simplify(u)
 
 check(f11 == 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4)
 check(f12 == 8 u^2 - 64 u m^2 + 96 m^4)
@@ -157,16 +150,15 @@ check(s == 4 E^2)
 check(t == -2 E^2 (1 - cos(theta)))
 check(u == -2 E^2 (1 + cos(theta)))
 
-T11 = (u^2 + s^2) / t^2
-T12 = 2 u^2 / (s t)
-T22 = (u^2 + t^2) / s^2
-
-check(f == 2 e^4 (T11 + T12 + T22))
+T11 = 1/8 f11 / t^2
+T12 = 1/8 2 f12 / (s t)
+T22 = 1/8 f22 / s^2
 
 check(2 T11 == (2 (1 + cos(theta))^2 + 8) / (1 - cos(theta))^2)
 check(2 T12 == -2 (1 + cos(theta))^2 / (1 - cos(theta)))
 check(2 T22 == 1 + cos(theta)^2)
 
+check(f == 2 e^4 (T11 + T12 + T22))
 check(f == e^4 ((cos(theta)^2 + 3) / (cos(theta) - 1))^2)
 
 m = quote(m)
@@ -182,4 +174,10 @@ I = 16 / (cos(theta) - 1) -
 check(f sin(theta) == d(I,theta))
 
 "ok"
+
+f11 = simplify(f11)
+f12 = simplify(f12)
+f22 = simplify(f22)
+
+print(f11,f12,f22)
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

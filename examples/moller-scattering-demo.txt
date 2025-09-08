@@ -169,3 +169,9 @@ I = -8 cos(theta) / sin(theta)^2 - cos(theta)
 check(f sin(theta) == d(I,theta))
 
 "ok"
+
+f11 = simplify(f11)
+f12 = simplify(f12)
+f22 = simplify(f22)
+
+print(f11,f12,f22)
