@@ -2,7 +2,7 @@
 
 \section*{Moller scattering}
 
-Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
+Moller scattering is the process $e^-+e^-\rightarrow e^-+e^-$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -17,13 +17,13 @@ Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
 
 The following momentum vectors are for the center-of-mass frame with $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
-p_1=\underset{e^-\rightarrow}
+p_1=\underset{e^- \, \longrightarrow}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 \qquad
-p_2=\underset{\leftarrow\,e^-}
+p_2=\underset{\longleftarrow \, e^-}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{e^-\nearrow}
+p_3=\underset{\substack{\phantom{e^-} \, \nearrow\\e^- \, \phantom{\nearrow}}}
 {\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
@@ -31,7 +31,7 @@ p\sin\theta\sin\phi\\
 p\cos\theta
 \end{pmatrix}}
 \qquad
-p_4=\underset{\swarrow\,e^-}
+p_4=\underset{\substack{\phantom{\swarrow} \, e^-\\\swarrow \, \phantom{e^-}}}
 {\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
@@ -40,45 +40,47 @@ E\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for inbound electrons.
+Spinors for $p_1$.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up }e^-\rightarrow}
+\underset{\text{spin up }}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down }e^-\rightarrow}
+\underset{\text{spin down }}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \end{equation*}
-%
+
+Spinors for $p_2$.
 \begin{equation*}
 u_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\leftarrow\,e^-\text{ spin up}}
+\underset{\text{spin up}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 \qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\leftarrow\,e^-\text{ spin down}}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \end{equation*}
 
-Spinors for outbound electrons.
+Spinors for $p_3$.
 \begin{equation*}
 u_{31}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up }e^-\nearrow}
+\underset{\text{spin up}}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 \qquad
 u_{32}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down }e^-\nearrow}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 \end{equation*}
-%
+
+Spinors for $p_4$.
 \begin{equation*}
 u_{41}=\frac{1}{\sqrt{E+m}}
-\underset{\swarrow\,e^-\text{ spin up}}
+\underset{\text{spin up}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 \qquad
 u_{42}=\frac{1}{\sqrt{E+m}}
-\underset{\swarrow\,e^-\text{ spin down}}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
@@ -98,7 +100,7 @@ where
 {(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})}
 \end{equation*}
 
-Symbol $e$ is elementary charge and
+Symbols $t$ and $u$ are Mandelstam variables.
 \begin{align*}
 t&=(p_1-p_3)^2
 \\
@@ -106,33 +108,54 @@ u&=(p_1-p_4)^2
 \end{align*}
 
 The expected probability density $\langle|\mathcal M|^2\rangle$
-is the average over spin states.
+is the sum of squared amplitudes divided by the number of inbound states.
 \begin{equation*}
 \langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{abcd}|\mathcal M_{abcd}|^2
 \end{equation*}
 
-Hence
+Expand the summand and label the terms.
+By hermiticity $\boxed{\scriptstyle2}=\boxed{\scriptstyle3}$.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{1}{4}
 \sum_{abcd}
-\left(
-\mathcal M_{1abcd}\mathcal M_{1abcd}^*
-+\mathcal M_{1abcd}\mathcal M_{2abcd}^*
-+\mathcal M_{2abcd}\mathcal M_{1abcd}^*
-+\mathcal M_{2abcd}\mathcal M_{2abcd}^*
-\right)
+\Bigl(
+\underset{\boxed{\scriptstyle1}}
+{\mathcal M_{1abcd}\mathcal M_{1abcd}^*}+
+\underset{\boxed{\scriptstyle2}}
+{\mathcal M_{1abcd}\mathcal M_{2abcd}^*}+
+\underset{\boxed{\scriptstyle3}}
+{\mathcal M_{2abcd}\mathcal M_{1abcd}^*}+
+\underset{\boxed{\scriptstyle4}}
+{\mathcal M_{2abcd}\mathcal M_{2abcd}^*}
+\Bigr)
 \end{equation*}
 
-The Casimir trick uses matrix arithmetic to sum over spin states.
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{t^2}+\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
-\right)
-\end{equation*}
+The following Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{align*}
+\sum_{abcd}\boxed{\scriptstyle1}&=\frac{e^4}{t^2}
+\operatorname{Tr}\left[
+(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
+\right]
+\operatorname{Tr}\left[
+(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
+\right]
+\\
+\sum_{abcd}\boxed{\scriptstyle2}&=-\frac{e^4}{tu}
+\operatorname{Tr}\left[
+(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
+(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
+\right]
+\\
+\sum_{abcd}\boxed{\scriptstyle4}&=\frac{e^4}{u^2}
+\operatorname{Tr}\left[
+(\slashed p_4+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
+\right]
+\operatorname{Tr}\left[
+(\slashed p_3+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
+\right]
+\end{align*}
 
-where
+Let
 \begin{align*}
 f_{11}&=
 \operatorname{Tr}\left[
@@ -156,6 +179,15 @@ f_{22}&=
 (\slashed p_3+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
 \right]
 \end{align*}
+
+so that
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{e^4}{4}
+\left(
+\frac{f_{11}}{t^2}+\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
+\right)
+\end{equation*}
 
 The following formulas are equivalent to the Casimir trick.
 (Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
