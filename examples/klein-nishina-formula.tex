@@ -19,13 +19,13 @@ It is easy to derive the Klein-Nishina formula from Dirac's equation by starting
 out in the center-of-mass frame and then boosting to the lab frame.
 The following momentum vectors are for the center-of-mass frame with $E=\sqrt{\omega^2+m^2}$.
 \begin{equation*}
-p_1=\underset{\substack{\text{inbound}\\ \text{photon}}}
+p_1=\underset{\gamma \, \longrightarrow}
 {\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
 \qquad
-p_2=\underset{\substack{\text{inbound}\\ \text{electron}}}
+p_2=\underset{\longleftarrow \, e^-}
 {\begin{pmatrix}E\\0\\0\\-\omega\end{pmatrix}}
 \qquad
-p_3=\underset{\substack{\text{outbound}\\ \text{photon}}}
+p_3=\underset{\substack{\phantom{\gamma} \, \nearrow\\\gamma \, \phantom{\nearrow}}}
 {\begin{pmatrix}
 \omega\\
 \omega\sin\theta\cos\phi\\
@@ -33,7 +33,7 @@ p_3=\underset{\substack{\text{outbound}\\ \text{photon}}}
 \omega\cos\theta
 \end{pmatrix}}
 \qquad
-p_4=\underset{\substack{\text{outbound}\\ \text{electron}}}
+p_4=\underset{\substack{\phantom{\swarrow} \, e^-\\\swarrow \, \phantom{e^-}}}
 {\begin{pmatrix}
 E\\
 -\omega\sin\theta\cos\phi\\
@@ -42,10 +42,10 @@ E\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for the inbound electron.
+Spinors for $p_2$.
 \begin{equation*}
 u_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound electron}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}
 E+m\\
 0\\
@@ -54,7 +54,7 @@ E+m\\
 \end{pmatrix}}
 \qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound electron}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}
 0\\
 E+m\\
@@ -63,10 +63,10 @@ E+m\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for the outbound electron.
+Spinors for $p_4$.
 \begin{equation*}
 u_{41}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound electron}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}
 E+m\\
 0\\
@@ -75,7 +75,7 @@ p_{4x}+ip_{4y}
 \end{pmatrix}}
 \qquad
 u_{42}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound electron}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}
 0\\
 E+m\\
@@ -130,57 +130,53 @@ In component form (note that indices $\mu$ and $\nu$ are interchanged for $\math
 (u_{2a})^\sigma}{u-m^2}
 \end{align*}
 
-The expected probability density $\langle|\mathcal M|^2\rangle$
-is the average over spin and polarization states.
+Expected probability density $\langle|\mathcal M|^2\rangle$
+is the sum of squared amplitudes divided by the number of inbound states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{a,b}\sum_{\mu,\nu}
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{ab}\sum_{\mu\nu}
 \bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
 \end{equation*}
 
-Summing over $\mu$ and $\nu$ requires $g_{\mu\nu}$ to lower indices.
+Summing over $\mu\nu$ requires $g_{\mu\nu}$ to lower indices.
 \begin{equation*}
 \langle|\mathcal M|^2\rangle
-=\frac{1}{4}\sum_{a,b}\mathcal M_{ab}{}^{\mu\nu}
+=\frac{1}{4}\sum_{ab}\mathcal M_{ab}{}^{\mu\nu}
 \left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
 \end{equation*}
 
-Substitute $\mathcal M_{1ab}+\mathcal M_{2ab}$ for $\mathcal M_{ab}$.
-(Note that $P_{12}=P_{21}^*$ hence by the property that probabilities are real we have $P_{12}=P_{21}$.)
+Expand the summand and label the terms.
+By hermiticity ${\scriptsize\boxed2}={\scriptsize\boxed3}$.
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{1}{4}\sum_{a,b}\biggl[
-\underbrace{
-\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-}_{P_{11ab}}
+=\frac{1}{4}\sum_{ab}\Bigl[
+\underset{\scriptsize\boxed1}
+{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
 +
-\underbrace{
-\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
-}_{P_{12ab}}
+\underset{\scriptsize\boxed2}
+{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
 \\
 +
-\underbrace{
-\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-}_{P_{21ab}}
+\underset{\scriptsize\boxed3}
+{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
 +
-\underbrace{
-\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
-}_{P_{22ab}}
-\biggr]
+\underset{\scriptsize\boxed4}
+{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
+\Bigr]
 \end{multline*}
 
-The Casimir trick uses matrix arithmetic to sum over spin and polarization states:
+The following Casimir trick uses matrix arithmetic to sum over spin and polarization states.
 \begin{align*}
-\sum_{a,b}P_{11ab}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
+\sum_{ab}{\scriptsize\boxed1}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right]
 \\
-\sum_{a,b}P_{12ab}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
+\sum_{ab}{\scriptsize\boxed2}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right]
 \\
-\sum_{a,b}P_{22ab}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
+\sum_{ab}{\scriptsize\boxed4}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right]
