@@ -2,7 +2,7 @@
 
 \section*{Compton scattering}
 
-Compton scattering is the interaction $e^-+\gamma\rightarrow e^-+\gamma$.
+Compton scattering is the process $\gamma+e^-\rightarrow\gamma+e^-$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -142,38 +142,38 @@ Summing over $\mu\nu$ requires $g_{\mu\nu}$ to lower indices.
 \end{equation*}
 
 Expand the summand and label the terms.
-By hermiticity ${\scriptsize\boxed2}={\scriptsize\boxed3}$.
+By hermiticity $\boxed{\scriptstyle2}=\boxed{\scriptstyle3}$.
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{ab}\Bigl[
-\underset{\scriptsize\boxed1}
+\underset{\boxed{\scriptstyle1}}
 {\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
 +
-\underset{\scriptsize\boxed2}
+\underset{\boxed{\scriptstyle2}}
 {\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
 \\
 +
-\underset{\scriptsize\boxed3}
+\underset{\boxed{\scriptstyle3}}
 {\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
 +
-\underset{\scriptsize\boxed4}
+\underset{\boxed{\scriptstyle4}}
 {\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
 \Bigr]
 \end{multline*}
 
 The Casimir trick uses matrix arithmetic to sum over spin and polarization states.
 \begin{align*}
-\sum_{ab}{\scriptsize\boxed1}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
+\sum_{ab}{\boxed{\scriptstyle1}}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
 \right]
 \\
-\sum_{ab}{\scriptsize\boxed2}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
+\sum_{ab}{\boxed{\scriptstyle2}}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
 \right]
 \\
-\sum_{ab}{\scriptsize\boxed4}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
+\sum_{ab}{\boxed{\scriptstyle4}}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
 \left[
 (\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
 \right]
