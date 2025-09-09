@@ -17,13 +17,13 @@ Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
 
 The following momentum vectors are for the center-of-mass frame with $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
-p_1=\underset{\substack{\text{inbound left}}}
+p_1=\underset{e^-\rightarrow}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 \qquad
-p_2=\underset{\substack{\text{inbound right}}}
+p_2=\underset{\leftarrow\,e^-}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{\substack{\text{outbound top}}}
+p_3=\underset{e^-\nearrow}
 {\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
@@ -31,7 +31,7 @@ p\sin\theta\sin\phi\\
 p\cos\theta
 \end{pmatrix}}
 \qquad
-p_4=\underset{\substack{\text{outbound bottom}}}
+p_4=\underset{\swarrow\,e^-}
 {\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
@@ -40,45 +40,45 @@ E\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for the inbound electrons.
+Spinors for inbound electrons.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up going $\rightarrow$}}
+\underset{\text{spin up }e^-\rightarrow}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down going $\rightarrow$}}
+\underset{\text{spin down }e^-\rightarrow}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \end{equation*}
 %
 \begin{equation*}
 u_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up going $\leftarrow$}}
+\underset{\leftarrow\,e^-\text{ spin up}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 \qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down going $\leftarrow$}}
+\underset{\leftarrow\,e^-\text{ spin down}}
 {\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \end{equation*}
 
-Spinors for the outbound electrons.
+Spinors for outbound electrons.
 \begin{equation*}
 u_{31}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up going $\nearrow$}}
+\underset{\text{spin up }e^-\nearrow}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 \qquad
 u_{32}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down going $\nearrow$}}
+\underset{\text{spin down }e^-\nearrow}
 {\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 \end{equation*}
 %
 \begin{equation*}
 u_{41}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin up going $\swarrow$}}
+\underset{\swarrow\,e^-\text{ spin up}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 \qquad
 u_{42}=\frac{1}{\sqrt{E+m}}
-\underset{\text{spin down going $\swarrow$}}
+\underset{\swarrow\,e^-\text{ spin down}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
