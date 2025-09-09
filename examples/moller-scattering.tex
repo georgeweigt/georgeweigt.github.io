@@ -3,7 +3,7 @@
 \section*{Moller scattering}
 
 Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
-%
+
 \begin{center}
 \begin{tikzpicture}
 \draw[dashed] (0,0) circle (0.5cm);
@@ -14,8 +14,8 @@ Moller scattering is the interaction $e^-+e^-\rightarrow e^-+e^-$.
 \draw (1,0.5) node {$\theta$};
 \end{tikzpicture}
 \end{center}
-%
-In the center-of-mass frame we have the following momentum vectors where $E=\sqrt{p^2+m^2}$.
+
+The following momentum vectors are for the center-of-mass frame with $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
 p_1=\underset{\substack{\text{inbound left}}}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
@@ -40,51 +40,49 @@ E\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for the inbound electron (left).
+Spinors for the inbound electrons.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound left}\\ \text{spin up}}}
+\underset{\text{spin up going $\rightarrow$}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound left}\\ \text{spin down}}}
+\underset{\text{spin down going $\rightarrow$}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \end{equation*}
-
-Spinors for the inbound electron (right).
+%
 \begin{equation*}
 u_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound right}\\ \text{spin up}}}
+\underset{\text{spin up going $\leftarrow$}}
 {\begin{pmatrix}E+m\\0\\-p\\0\end{pmatrix}}
 \qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound right}\\ \text{spin down}}}
+\underset{\text{spin down going $\leftarrow$}}
 {\begin{pmatrix}0\\E+m\\0\\p\end{pmatrix}}
 \end{equation*}
 
-Spinors for the outbound electron (top).
+Spinors for the outbound electrons.
 \begin{equation*}
 u_{31}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound top}\\ \text{spin up}}}
+\underset{\text{spin up going $\nearrow$}}
 {\begin{pmatrix}E+m\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 \qquad
 u_{32}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound top}\\ \text{spin down}}}
+\underset{\text{spin down going $\nearrow$}}
 {\begin{pmatrix}0\\E+m\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 \end{equation*}
-
-Spinors for the outbound electron (bottom).
+%
 \begin{equation*}
 u_{41}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound bottom}\\ \text{spin up}}}
+\underset{\text{spin up going $\swarrow$}}
 {\begin{pmatrix}E+m\\0\\p_{4z}\\p_{4x}+ip_{4y}\end{pmatrix}}
 \qquad
 u_{42}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{outbound bottom}\\ \text{spin down}}}
+\underset{\text{spin down going $\swarrow$}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
-The probability amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
+The scattering amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 \begin{equation*}
 \mathcal M_{abcd}=\mathcal M_{1abcd}+\mathcal M_{2abcd}
 \end{equation*}
