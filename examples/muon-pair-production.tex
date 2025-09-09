@@ -2,7 +2,7 @@
 
 \section*{Muon pair production}
 
-Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
+Muon pair production is the process $e^-+e^+\rightarrow\mu^-+\mu^+$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -18,13 +18,13 @@ Muon pair production is the interaction $e^-+e^+\rightarrow\mu^-+\mu^+$.
 The following momentum vectors are for the center-of-mass frame
 with $p=\sqrt{E^2-m^2}$ and $\rho=\sqrt{E^2-M^2}$.
 \begin{equation*}
-p_1=\underset{\text{inbound $e^-$}}
+p_1=\underset{e^- \, \longrightarrow}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 \qquad
-p_2=\underset{\text{inbound $e^+$}}
+p_2=\underset{\longleftarrow \, e^+}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{\text{outbound $\mu^-$}}
+p_3=\underset{\substack{\phantom{\mu^-} \, \nearrow\\\mu^- \, \phantom{\nearrow}}}
 {\begin{pmatrix}
 E\\
 \rho\sin\theta\cos\phi\\
@@ -33,7 +33,7 @@ E\\
 \end{pmatrix}}
 \qquad
 p_4=
-\underset{\text{outbound $\mu^+$}}
+\underset{\substack{\phantom{\swarrow} \, \mu^+\\\swarrow \, \phantom{\mu^+}}}
 {\begin{pmatrix}
 E\\
 -\rho\sin\theta\cos\phi\\
@@ -42,47 +42,47 @@ E\\
 \end{pmatrix}}
 \end{equation*}
 
-Spinors for the inbound electron.
+Spinors for $p_1$.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound $e^-$}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
 \qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound $e^-$}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
 \end{equation*}
 
-Spinors for the inbound positron.
+Spinors for $p_2$.
 \begin{equation*}
 v_{21}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound $e^+$}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}-p\\0\\E+m\\0\end{pmatrix}}
 \qquad
 v_{22}=\frac{1}{\sqrt{E+m}}
-\underset{\substack{\text{inbound $e^+$}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
 
-Spinors for the outbound muon.
+Spinors for $p_3$.
 \begin{equation*}
 u_{31}=\frac{1}{\sqrt{E+M}}
-\underset{\substack{\text{outbound $\mu^-$}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}E+M\\0\\p_{3z}\\p_{3x}+ip_{3y}\end{pmatrix}}
 \qquad
 u_{32}=\frac{1}{\sqrt{E+M}}
-\underset{\substack{\text{outbound $\mu^-$}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}0\\E+M\\p_{3x}-ip_{3y}\\-p_{3z}\end{pmatrix}}
 \end{equation*}
 
-Spinors for the outbound anti-muon.
+Spinors for $p_4$.
 \begin{equation*}
 v_{41}=\frac{1}{\sqrt{E+M}}
-\underset{\substack{\text{outbound $\mu^+$}\\ \text{spin up}}}
+\underset{\text{spin up}}
 {\begin{pmatrix}p_{4z}\\p_{4x}+ip_{4y}\\E+M\\0\end{pmatrix}}
 \qquad
 v_{42}=\frac{1}{\sqrt{E+M}}
-\underset{\substack{\text{outbound $\mu^+$}\\ \text{spin down}}}
+\underset{\text{spin down}}
 {\begin{pmatrix}p_{4x}-ip_{4y}\\-p_{4z}\\0\\E+M\end{pmatrix}}
 \end{equation*}
 
@@ -91,26 +91,27 @@ The scattering amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 \mathcal{M}_{abcd}=\frac{e^2}{s}(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})
 \end{equation*}
 
-Symbol $e$ is elementary charge and
+Symbol $s$ is the Mandelstam variable
 \begin{equation*}
 s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
-The expected probability density $\langle|\mathcal{M}|^2\rangle$ is the average of spin states.
+The expected probability density $\langle|\mathcal{M}|^2\rangle$
+is the sum of squared amplitudes divided by the number of inbound states.
 \begin{align*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2\big|\mathcal{M}_{abcd}\big|^2
+&=\frac{1}{4}\sum_{abcd}\big|\mathcal{M}_{abcd}\big|^2
 \\
-&=\frac{e^4}{64E^4}\sum_{a=1}^2\sum_{b=1}^2\sum_{c=1}^2\sum_{d=1}^2
-\left|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\right|^2
+&=\frac{e^4}{64E^4}\sum_{abcd}
+\bigl|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\bigr|^2
 \end{align*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{64E^4}
-\mathop{\rm Tr}\left((\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right)
-\mathop{\rm Tr}\left((\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right)
+\operatorname{Tr}\left[(\slashed{p}_3+M)\gamma^\mu(\slashed{p}_4-M)\gamma^\nu\right]
+\operatorname{Tr}\left[(\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right]
 \end{equation*}
 
 \iffalse
