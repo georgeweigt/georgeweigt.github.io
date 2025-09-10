@@ -88,12 +88,23 @@ v_{42}=\frac{1}{\sqrt{E+M}}
 
 The scattering amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 \begin{equation*}
-\mathcal{M}_{abcd}=\frac{e^2}{s}(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})
+\mathcal{M}_{abcd}=\frac{e^2}{s}(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})
 \end{equation*}
 
 Symbol $s$ is the Mandelstam variable
 \begin{equation*}
 s=(p_1+p_2)^2=4E^2
+\end{equation*}
+
+In component form
+\begin{equation*}
+\mathcal{M}_{abcd}=\frac{e^2}{s}
+\bigl[
+(\bar{u}_{3c})_\alpha\gamma^{\mu\alpha}{}_\beta(v_{4d})^\beta
+\bigr]
+\bigl[
+(\bar{v}_{2b})_\rho\gamma_\mu{}^\rho{}_\sigma(u_{1a})^\sigma
+\bigr]
 \end{equation*}
 
 The expected probability density $\langle|\mathcal{M}|^2\rangle$
@@ -103,7 +114,7 @@ is the sum of squared amplitudes divided by the number of inbound states.
 &=\frac{1}{4}\sum_{abcd}\big|\mathcal{M}_{abcd}\big|^2
 \\
 &=\frac{e^4}{64E^4}\sum_{abcd}
-\bigl|(\bar{u}_{3c}\gamma_\mu v_{4d})(\bar{v}_{2b}\gamma^\mu u_{1a})\bigr|^2
+\bigl|(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})\bigr|^2
 \end{align*}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
