@@ -3,11 +3,11 @@
 \section*{Angular separation}
 
 Let $P_1$ and $P_2$ be points in polar coordinates such that
-\begin{equation*}
-P_1=r_1\hat{\mathbf e}_r+\theta_1\hat{\mathbf e}_\theta+\phi_1\hat{\mathbf e}_\phi,
-\quad
+\begin{align*}
+P_1=r_1\hat{\mathbf e}_r+\theta_1\hat{\mathbf e}_\theta+\phi_1\hat{\mathbf e}_\phi
+\\
 P_2=r_2\hat{\mathbf e}_r+\theta_2\hat{\mathbf e}_\theta+\phi_2\hat{\mathbf e}_\phi
-\end{equation*}
+\end{align*}
 
 The angular separation $\theta_{12}$ between $P_1$ and $P_2$ is
 \begin{align*}
@@ -26,11 +26,17 @@ r_{12}^2=(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2
 
 and
 \begin{align*}
-x_1&=r_1\sin\theta_1\cos\phi_1 & x_2&=r_2\sin\theta_2\cos\phi_2
+x_1&=r_1\sin\theta_1\cos\phi_1
+&
+y_1&=r_1\sin\theta_1\sin\phi_1
+&
+z_1&=r_1\cos\theta_1
 \\
-y_1&=r_1\sin\theta_1\sin\phi_1 & y_2&=r_2\sin\theta_2\sin\phi_2
-\\
-z_1&=r_1\cos\theta_1 & z_2&=r_2\cos\theta_2
+x_2&=r_2\sin\theta_2\cos\phi_2
+&
+y_2&=r_2\sin\theta_2\sin\phi_2
+&
+z_2&=r_2\cos\theta_2
 \end{align*}
 
 \end{document}
