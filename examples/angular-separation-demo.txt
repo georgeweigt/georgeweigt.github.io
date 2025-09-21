@@ -13,6 +13,8 @@ check(r2^2 == x2^2 + y2^2 + z2^2)
 
 r12 = sqrt((x1 - x2)^2 + (y1 - y2)^2 + (z1 - z2)^2)
 
+-- d is cos(theta12)
+
 d = sin(theta1) sin(theta2) cos(phi1 - phi2) + cos(theta1) cos(theta2)
 
 check(d == (r1^2 + r2^2 - r12^2) / (2 r1 r2))
