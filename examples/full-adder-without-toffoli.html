@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+UADD(psi) = rotate(psi,
+  C,0,X,2,      -- cnot
+  C,1,X,2,      -- cnot
+  H,3,          -- hadamard
+  C,1,X,3,      -- cnot
+  P,3,-pi/4,    -- phase
+  C,0,X,3,      -- cnot
+  P,3,pi/4,     -- phase
+  C,1,X,3,      -- cnot
+  P,3,-pi/4,    -- phase
+  C,0,X,3,      -- cnot
+  P,3,pi/4,     -- phase
+  H,3,          -- hadamard
+  P,1,pi/4,     -- phase
+  C,0,X,1,      -- cnot
+  P,1,-pi/4,    -- phase
+  P,0,pi/4,     -- phase
+  C,0,X,1)      -- cnot
+
+ket0000 = (1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0001 = (0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0010 = (0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0011 = (0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0)
+ket0100 = (0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0)
+ket0101 = (0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0)
+ket0110 = (0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0)
+ket0111 = (0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0)
+ket1000 = (0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0)
+ket1001 = (0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0)
+ket1010 = (0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0)
+ket1011 = (0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0)
+ket1100 = (0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0)
+ket1101 = (0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0)
+ket1110 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
+ket1111 = (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)
+
+"Verify addition of A and B"
+
+--           Input      Output
+--              AB          AB
+check(UADD(ket0000) == ket0000)
+check(UADD(ket0001) == ket0101)
+check(UADD(ket0010) == ket0110)
+check(UADD(ket0011) == ket1011)
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
