@@ -95,10 +95,6 @@ f12 = contract(T,3,5,2,3,1,2)
 T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
 f22 = contract(T,3,4,2,3,1,2)
 
---f11 = simplify(f11)
---f12 = simplify(f12)
---f22 = simplify(f22)
-
 check(e^4 f11 == P1111 + P1112 + P1121 + P1122)
 check(e^4 f12 == P1211 + P1212 + P1221 + P1222)
 check(e^4 f12 == P2111 + P2112 + P2121 + P2122)
@@ -120,8 +116,9 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
---t = simplify(t)
---u = simplify(u)
+check(s == 4 p^2 + 4 m^2)
+check(t == 2 E p cos(theta) - 2 p^2 - m^2)
+check(u == -2 E p cos(theta) - 2 p^2 - m^2)
 
 check(f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4)
 check(f12 == 8 s m^2 - 32 m^4)
