@@ -5,7 +5,7 @@ c[1] = 1.0
 for(n,2,dim(c),c[n]=sum(k,1,n-1,c[k]*c[n-k]/k/(2k-1)))
 for(n,1,dim(c),c[n]=c[n]/(2n-1)*(sqrt(float(pi))/2)^(2n-1))
 
-f(x) = test(x < -0.998, -10^10, x > 0.998, 10^10,
+f(x) = test(x < -0.998, -10.0^10, x > 0.998, 10.0^10,
        sum(k, 1, dim(c), c[k] x^(2 k - 1)))
 
 -- max error
