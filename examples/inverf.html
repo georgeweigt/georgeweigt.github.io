@@ -9,5 +9,5 @@ f(x) = sum(k, 1, dim(c), c[k] x^(2 k - 1))
 
 -- errors for x = -1 to 1
 
-for(k, -10, 10, x = k / 10.0, print(erf(f(x)) - x))
+for(k, -10, 10, x = 0.1 k, print(erf(f(x)) - x))
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
