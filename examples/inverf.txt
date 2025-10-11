@@ -1,4 +1,4 @@
--- see stackoverflow.com/questions/27229371/inverse-error-function-in-c
+-- stackoverflow.com/questions/27229371/inverse-error-function-in-c
 
 -- f is inverse error function
 
