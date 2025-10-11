@@ -6,7 +6,7 @@
 f(x) = test(x <= -1.0, -10.0, x >= 1.0, 10.0, f1(x))
 
 f1(x,p,t) = do(
- t = log(-x^2 + 1),
+ t = log(1 - x^2),
  test(abs(t) > 6.125,
   do(
   p =       3.03697567 10.0^(-10),
@@ -29,7 +29,7 @@ f1(x,p,t) = do(
   p = p t + 1.15392581 10.0^(-2),
   p = p t - 2.32015476 10.0^(-1),
   p = p t + 8.86226892 10.0^(-1))),
- x p -- return value
+ p x -- return value
 )
 
 -- max error for inverse erf
