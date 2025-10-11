@@ -3,7 +3,7 @@
 
 -- f is inverse error function
 
-f(x) = test(x <= -1.0, -10.0, x >= 1.0, 10.0, f1(x))
+f(x) = test(x <= -1.0, -tgamma(0), x >= 1.0, tgamma(0), f1(x))
 
 f1(x,p,t) = do(
  t = log(1 - x^2),
