@@ -1,22 +1,56 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
-c = zero(24)
+-- see stackoverflow.com/questions/27229371/inverse-error-function-in-c
 
-c[1] = 1.0
-for(n,2,dim(c),c[n]=sum(k,1,n-1,c[k]*c[n-k]/k/(2k-1)))
-for(n,1,dim(c),c[n]=c[n]/(2n-1)*(sqrt(float(pi))/2)^(2n-1))
+-- f is inverse error function
 
-f(x) = test(x < -0.992, -10.0, x > 0.992, 10.0,
-       sum(k, 1, dim(c), c[k] x^(2 k - 1)))
+f(x) = test(x <= -1.0, -10.0, x >= 1.0, 10.0, f1(x))
 
--- max error
+f1(x,p,t) = do(
+ t = log(-x^2 + 1),
+ test(abs(t) > 6.125,
+  do(
+  p =       3.03697567 10.0^(-10),
+  p = p t + 2.93243101 10.0^(-8),
+  p = p t + 1.22150334 10.0^(-6),
+  p = p t + 2.84108955 10.0^(-5),
+  p = p t + 3.93552968 10.0^(-4),
+  p = p t + 3.02698812 10.0^(-3),
+  p = p t + 4.83185798 10.0^(-3),
+  p = p t - 2.64646143 10.0^(-1),
+  p = p t + 8.40016484 10.0^(-1)),
+  do(
+  p =       5.43877832 10.0^(-9),
+  p = p t + 1.43285448 10.0^(-7),
+  p = p t + 1.22774793 10.0^(-6),
+  p = p t + 1.12963626 10.0^(-7),
+  p = p t - 5.61530760 10.0^(-5),
+  p = p t - 1.47697632 10.0^(-4),
+  p = p t + 2.31468678 10.0^(-3),
+  p = p t + 1.15392581 10.0^(-2),
+  p = p t - 2.32015476 10.0^(-1),
+  p = p t + 8.86226892 10.0^(-1))),
+ x p -- return value
+)
+
+-- max error for inverse erf
 
 m = 0
 for(k, -1000, 1000,
  x = 0.001 k,
  t = abs(erf(f(x)) - x),
  test(t > m, do(m = t, y = x)))
-"Max error"
+"Max error for inverse erf"
 m
-"at"
+y
+
+-- max error for inverse erfc
+
+m = 0
+for(k, 0, 2000,
+ x = 0.001 k,
+ t = abs(erfc(f(1 - x)) - x),
+ test(t > m, do(m = t, y = x)))
+"Max error for inverse erfc"
+m
 y
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
