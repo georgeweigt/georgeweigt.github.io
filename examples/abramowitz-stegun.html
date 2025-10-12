@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+-- Abramowitz and Stegun algorithm for computing inverse erf
+
+-- stackoverflow.com/questions/12556685/is-there-a-javascript-implementation-of-the-inverse-error-function-akin-to-matl
+
+f(x) = test(x <= -1.0, -10.0, x >= 1.0, 10.0, f1(x))
+
+f1(x,a,b,sqrt1,sqrt2) = do(
+ a = 0.147,  
+ b = 2/(float(pi) * a) + log(1-x^2)/2,
+ sqrt1 = sqrt( b^2 - log(1-x^2)/a ),
+ sqrt2 = sqrt( sqrt1 - b ),
+ sqrt2 * sgn(x) -- return value
+)
+
+"Max error"
+
+m = 0
+for(k, -1000, 1000,
+ x = 0.001 k,
+ t = abs(erf(f(x)) - x),
+ test(t > m, do(m = t, y = x)))
+m
+y
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
