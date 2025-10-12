@@ -1,0 +1,21 @@
+-- mathworld.wolfram.com/InverseErf.html
+
+c = zero(100) -- coefficients
+
+c[1] = 1.0
+for(n,2,dim(c),c[n]=sum(k,1,n-1,c[k]*c[n-k]/k/(2k-1)))
+for(n,1,dim(c),c[n]=c[n]/(2n-1)*(sqrt(float(pi))/2)^(2n-1))
+
+f(x) = test(x <= -0.999, -10.0, x >= 0.999, 10.0,
+       sum(k, 1, dim(c), c[k] x^(2 k - 1)))
+
+"Max error"
+
+m = 0
+for(k, -1000, 1000,
+ x = 0.001 k,
+ t = abs(erf(f(x)) - x),
+ test(t > m, do(m = t, y = x))
+) -- end of for loop
+m
+y
