@@ -18,6 +18,7 @@ m = 0
 for(k, -1000, 1000,
  x = 0.001 k,
  t = abs(erf(f(x)) - x),
- test(t > m, do(m = t, y = x)))
+ test(t > m, do(m = t, y = x))
+) -- end of for loop
 m
 y

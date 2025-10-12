@@ -31,24 +31,13 @@ f1(x,p,t) = do(
  p x -- return value
 )
 
--- max error for inverse erf
+"Max error"
 
 m = 0
 for(k, -1000, 1000,
  x = 0.001 k,
  t = abs(erf(f(x)) - x),
- test(t > m, do(m = t, y = x)))
-"Max error for inverse erf"
-m
-y
-
--- max error for inverse erfc
-
-m = 0
-for(k, 0, 2000,
- x = 0.001 k,
- t = abs(erfc(f(1 - x)) - x),
- test(t > m, do(m = t, y = x)))
-"Max error for inverse erfc"
+ test(t > m, do(m = t, y = x))
+) -- end of for loop
 m
 y
