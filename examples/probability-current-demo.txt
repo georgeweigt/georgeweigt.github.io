@@ -1,6 +1,6 @@
 "Probability current"
 
-Psi = PsiR(x,y,z,t) + i PsiI(x,y,z,t) -- so conj(Psi) distinct from Psi
+Psi = exp(i psi(x,y,z,t)) -- so conj(Psi) is distinct from Psi
 
 J = i hbar / (2 m) (Psi grad(conj(Psi)) - conj(Psi) grad(Psi))
 
@@ -18,6 +18,6 @@ dt(f) = i hbar / (2 m) div(grad(f)) - i / hbar V(x,y,z,t) f
 
 "Verify equation (4)"
 
-check(div(J) == -(conj(Psi) dt(Psi) + Psi conj(dt(Psi))))
+check(-div(J) == conj(Psi) dt(Psi) + Psi conj(dt(Psi)))
 
 "ok"
