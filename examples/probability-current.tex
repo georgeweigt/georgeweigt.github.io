@@ -30,21 +30,32 @@ Hence
 \tag{1}
 \end{equation*}
 
-By the Schr\"odinger equation
-\begin{equation*}
-\frac{\partial\Psi}{\partial t}
-=\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi
-\end{equation*}
-
-we have
+For the time derivative we have
 \begin{equation*}
 \frac{\partial}{\partial t}|\Psi|^2
+=\frac{\partial}{\partial t}(\Psi^*\Psi)
 =\Psi^*\frac{\partial\Psi}{\partial t}+\Psi\frac{\partial\Psi^*}{\partial t}
-=\frac{i\hbar}{2m}\left(\Psi^*\nabla^2\Psi-\Psi\nabla^2\Psi^*\right)
 \tag{2}
 \end{equation*}
 
-Hence by (1) and (2)
+Recall the Schr\"odinger equation
+\begin{equation*}
+\frac{\partial\Psi}{\partial t}
+=\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi
+\tag{3}
+\end{equation*}
+
+Substitute (3) into (2) to obtain
+\begin{align*}
+\frac{\partial}{\partial t}|\Psi|^2
+&=\Psi^*\left(\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi\right)
++\Psi\left(-\frac{i\hbar}{2m}\nabla^2\Psi+\frac{i}{\hbar}V\Psi\right)
+\\
+&=\frac{i\hbar}{2m}\left(\Psi^*\nabla^2\Psi-\Psi\nabla^2\Psi^*\right)
+\tag{4}
+\end{align*}
+
+Hence by (1) and (4)
 \begin{equation*}
 \nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
 \end{equation*}

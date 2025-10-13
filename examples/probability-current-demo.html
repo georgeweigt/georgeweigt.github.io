@@ -1,16 +1,25 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
-Psi = Psi1(x,y,z,t) + i Psi2(x,y,z,t)
+"Probability current"
+
+Psi = PsiR(x,y,z,t) + i PsiI(x,y,z,t) -- so conj(Psi) distinct from Psi
 
 J = i hbar / (2 m) (Psi grad(conj(Psi)) - conj(Psi) grad(Psi))
 
+L(f) = div(grad(f)) -- Laplacian
+
 "Verify equation (1)"
-T = Psi div(grad(conj(Psi))) - conj(Psi) div(grad(Psi))
-check(div(J) == i hbar / (2 m) T)
+
+check(div(J) == i hbar / (2 m) (Psi conj(L(Psi)) - conj(Psi) L(Psi)))
+
 "ok"
 
-"Verify equation (2)"
-T = conj(Psi) (i hbar / (2 m) div(grad(Psi)) - i / hbar V Psi) +
-    Psi (-i hbar / (2 m) div(grad(conj(Psi))) + i / hbar V conj(Psi))
-check(div(J) == -T)
+-- Schrodinger equation
+
+dt(f) = i hbar / (2 m) div(grad(f)) - i / hbar V(x,y,z,t) f
+
+"Verify equation (4)"
+
+check(div(J) == -(conj(Psi) dt(Psi) + Psi conj(dt(Psi))))
+
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
