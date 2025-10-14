@@ -7,7 +7,7 @@ J = i hbar / (2 m) (Psi grad(conj(Psi)) - conj(Psi) grad(Psi))
 
 L(f) = div(grad(f)) -- Laplacian
 
-"Verify equation (1)"
+"Verify equation (3)"
 
 check(div(J) == i hbar / (2 m) (Psi L(conj(Psi)) - conj(Psi) L(Psi)))
 
@@ -19,7 +19,7 @@ dt(f) = i hbar / (2 m) div(grad(f)) - i / hbar V(x,y,z,t) f
 
 check(dt(conj(Psi)) == -conj(dt(Psi)))
 
-"Verify equation (4)"
+"Verify equation (6)"
 
 check(-div(J) == conj(Psi) dt(Psi) - Psi dt(conj(Psi)))
 check(-div(J) == conj(Psi) dt(Psi) + Psi conj(dt(Psi)))

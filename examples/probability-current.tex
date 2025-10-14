@@ -5,37 +5,42 @@
 Let $\mathbf J$ be the probability current
 \begin{equation*}
 \mathbf J=\frac{i\hbar}{2m}\left(\Psi\nabla\Psi^*-\Psi^*\nabla\Psi\right)
+\tag{1}
 \end{equation*}
 
 Show that
 \begin{equation*}
 \nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
+\tag{2}
 \end{equation*}
 
-Recall that
+Recall that divergence of gradient equals Laplacian.
 \begin{equation*}
 \nabla\cdot\nabla=\nabla^2
 \end{equation*}
 
-By the product rule for divergence we have
-\begin{equation*}
-\nabla\cdot(\Psi\nabla\Psi^*)
-=\nabla\Psi\cdot\nabla\Psi^*+\Psi\nabla^2\Psi^*
-\end{equation*}
+By the product rule for divergence
+\begin{align*}
+\nabla\cdot\Psi\nabla\Psi^*&=\nabla\Psi\cdot\nabla\Psi^*+\Psi\nabla^2\Psi^*
+\\
+\nabla\cdot\Psi^*\nabla\Psi&=\nabla\Psi^*\cdot\nabla\Psi+\Psi^*\nabla^2\Psi
+\end{align*}
 
-Hence
-\begin{equation*}
+Hence the divergence of $\mathbf J$ in (1) is
+\begin{align*}
 \nabla\cdot\mathbf J
-=\frac{i\hbar}{2m}\left(\Psi\nabla^2\Psi^*-\Psi^*\nabla^2\Psi\right)
-\tag{1}
-\end{equation*}
+&=\frac{i\hbar}{2m}\left(\nabla\cdot\Psi\nabla\Psi^*-\nabla\cdot\Psi^*\nabla\Psi\right)
+\\
+&=\frac{i\hbar}{2m}\left(\Psi\nabla^2\Psi^*-\Psi^*\nabla^2\Psi\right)
+\tag{3}
+\end{align*}
 
-For the time derivative we have
+For the time derivative in (2) we have
 \begin{equation*}
 \frac{\partial}{\partial t}|\Psi|^2
 =\frac{\partial}{\partial t}(\Psi^*\Psi)
 =\Psi^*\frac{\partial}{\partial t}\Psi+\Psi\frac{\partial}{\partial t}\Psi^*
-\tag{2}
+\tag{4}
 \end{equation*}
 
 Recall the Schr\"odinger equation
@@ -50,20 +55,20 @@ and
 =-\frac{i\hbar}{2m}\nabla^2\Psi^*+\frac{i}{\hbar}V\Psi^*
 \end{equation*}
 
-Substitute the Schr\"odinger equation into (2) to obtain
+Substitute the Schr\"odinger equation into (4) to obtain
 \begin{align*}
 \frac{\partial}{\partial t}|\Psi|^2
 &=\Psi^*\left(\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi\right)
 +\Psi\left(-\frac{i\hbar}{2m}\nabla^2\Psi^*+\frac{i}{\hbar}V\Psi^*\right)
 \\
 &=\frac{i\hbar}{2m}\left(\Psi^*\nabla^2\Psi-\Psi\nabla^2\Psi^*\right)
-\tag{3}
+\tag{5}
 \end{align*}
 
-Hence by (1) and (3)
+Substitute (5) into (3) to obtain
 \begin{equation*}
 \nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
-\tag{4}
+\tag{6}
 \end{equation*}
 
 \end{document}
