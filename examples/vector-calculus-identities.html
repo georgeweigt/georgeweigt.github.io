@@ -46,7 +46,7 @@ check(div(f(x,y,z) F) == f(x,y,z) div(F) + dot(F,grad(f(x,y,z))))
 "8. Verify div(F x G) = G . curl F - F . curl G"
 check(div(cross(F,G)) == dot(G,curl(F)) - dot(F,curl(G)))
 
-"9. Verify curl(f F) = f curl F + grad f x F"
+"9. Verify curl(f F) = f curl F + (grad f) x F"
 check(curl(f(x,y,z) F) == f(x,y,z) curl(F) + cross(grad(f(x,y,z)),F))
 
 "10. Verify curl(F x G) = F div G - G div F + (grad F) . G - (grad G) . F"
