@@ -1,6 +1,6 @@
 "Probability current"
 
-Psi = exp(i psi(x,y,z,t)) -- so conj(Psi) is distinct from Psi
+Psi = a(x,y,z,t) + i b(x,y,z,t) -- make Psi complex valued
 
 J = i hbar / (2 m) (Psi grad(conj(Psi)) - conj(Psi) grad(Psi))
 
