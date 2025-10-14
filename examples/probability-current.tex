@@ -42,22 +42,28 @@ Recall the Schr\"odinger equation
 \begin{equation*}
 \frac{\partial}{\partial t}\Psi
 =\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi
-\tag{3}
 \end{equation*}
 
-Substitute (3) into (2) to obtain
+and
+\begin{equation*}
+\frac{\partial}{\partial t}\Psi^*=\left(\frac{\partial}{\partial t}\Psi\right)^*
+=-\frac{i\hbar}{2m}\nabla^2\Psi^*+\frac{i}{\hbar}V\Psi^*
+\end{equation*}
+
+Substitute the Schr\"odinger equation into (2) to obtain
 \begin{align*}
 \frac{\partial}{\partial t}|\Psi|^2
 &=\Psi^*\left(\frac{i\hbar}{2m}\nabla^2\Psi-\frac{i}{\hbar}V\Psi\right)
-+\Psi\left(-\frac{i\hbar}{2m}\nabla^2\Psi+\frac{i}{\hbar}V\Psi\right)
++\Psi\left(-\frac{i\hbar}{2m}\nabla^2\Psi^*+\frac{i}{\hbar}V\Psi^*\right)
 \\
 &=\frac{i\hbar}{2m}\left(\Psi^*\nabla^2\Psi-\Psi\nabla^2\Psi^*\right)
-\tag{4}
+\tag{3}
 \end{align*}
 
-Hence by (1) and (4)
+Hence by (1) and (3)
 \begin{equation*}
 \nabla\cdot\mathbf J=-\frac{\partial}{\partial t}|\Psi|^2
+\tag{4}
 \end{equation*}
 
 \end{document}
