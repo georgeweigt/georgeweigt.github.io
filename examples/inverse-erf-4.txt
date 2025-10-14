@@ -1,0 +1,25 @@
+-- binary search method
+
+-- f is inverse erf
+
+f(x,a,b,k,t,y) = do(
+ a = -10.0,
+ b = 10.0,
+ for(k,1,100,
+  t = (a + b) / 2,
+  y = erf(t),
+  test(abs(x - y) < 0.000001, break, y < x, a = t, b = t)
+ ), -- end of for loop
+ t -- return value
+)
+
+"Max error"
+
+m = 0
+for(k, -1000, 1000,
+ x = 0.001 k,
+ t = abs(erf(f(x)) - x),
+ test(t > m, do(m = t, y = x))
+) -- end of for loop
+m
+y
