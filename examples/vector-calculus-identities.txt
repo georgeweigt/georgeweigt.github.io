@@ -1,0 +1,54 @@
+"Vector calculus identities"
+
+grad(v) = d(v,(x,y,z))
+
+div(v) = contract(grad(v))
+
+cross(u,v) = (
+  u[2] v[3] - u[3] v[2],
+  u[3] v[1] - u[1] v[3],
+  u[1] v[2] - u[2] v[1]
+)
+
+curl(f) = (
+  d(f[3],y) - d(f[2],z),
+  d(f[1],z) - d(f[3],x),
+  d(f[2],x) - d(f[1],y)
+)
+
+laplacian(f) = d(f,x,x) + d(f,y,y) + d(f,z,z)
+
+F = (FX(x,y,z),FY(x,y,z),FZ(x,y,z))
+G = (GX(x,y,z),GY(x,y,z),GZ(x,y,z))
+
+"1. Verify div(curl F) = 0"
+check(div(curl(F)) == 0)
+
+"2. Verify curl(grad f) = 0"
+check(curl(grad(f(x,y,z))) == 0)
+
+"3. Verify div(grad f) = laplacian f"
+check(div(grad(f(x,y,z))) == laplacian(f(x,y,z)))
+
+"4. Verify curl(curl F) = grad(div F) - laplacian F"
+check(curl(curl(F)) == grad(div(F)) - laplacian(F))
+
+"5. Verify grad(f g) = f grad g + g grad f"
+check(grad(f(x,y,z) g(x,y,z)) == f(x,y,z) grad(g(x,y,z)) + g(x,y,z) grad(f(x,y,z)))
+
+"6. Verify grad(F . G) = (grad F) . G + (grad G) . F + G x curl F + F x curl G"
+check(grad(dot(F,G)) == dot(grad(F),G) + dot(grad(G),F) + cross(G,curl(F)) + cross(F,curl(G)))
+
+"7. Verify div(f F) = f div F + F . grad f"
+check(div(f(x,y,z) F) == f(x,y,z) div(F) + dot(F,grad(f(x,y,z))))
+
+"8. Verify div(F x G) = G . curl F - F . curl G"
+check(div(cross(F,G)) == dot(G,curl(F)) - dot(F,curl(G)))
+
+"9. Verify curl(f F) = f curl F + grad f x F"
+check(curl(f(x,y,z) F) == f(x,y,z) curl(F) + cross(grad(f(x,y,z)),F))
+
+"10. Verify curl(F x G) = F div G - G div F + (grad F) . G - (grad G) . F"
+check(curl(cross(F,G)) == F div(G) - G div(F) + dot(grad(F),G) - dot(grad(G),F))
+
+"ok"
