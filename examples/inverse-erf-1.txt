@@ -1,6 +1,6 @@
 -- stackoverflow.com/questions/27229371/inverse-error-function-in-c
 
--- f is inverse error function
+-- f(x) is inverse erf
 
 f(x) = test(x <= -1.0, -10.0, x >= 1.0, 10.0, f1(x))
 
