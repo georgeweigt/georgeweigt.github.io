@@ -21,23 +21,23 @@ laplacian(f) = d(f,x,x) + d(f,y,y) + d(f,z,z)
 F = (FX(x,y,z),FY(x,y,z),FZ(x,y,z))
 G = (GX(x,y,z),GY(x,y,z),GZ(x,y,z))
 
-"1. Verify div(curl F) = 0"
+"1. Verify div curl F = 0"
 check(div(curl(F)) == 0)
 
-"2. Verify curl(grad f) = 0"
+"2. Verify curl grad f = 0"
 check(curl(grad(f(x,y,z))) == 0)
 
-"3. Verify div(grad f) = laplacian f"
+"3. Verify div grad f = laplacian f"
 check(div(grad(f(x,y,z))) == laplacian(f(x,y,z)))
 
-"4. Verify curl(curl F) = grad(div F) - laplacian F"
+"4. Verify curl curl F = grad div F - laplacian F"
 check(curl(curl(F)) == grad(div(F)) - laplacian(F))
 
 "5. Verify grad(f g) = f grad g + g grad f"
 check(grad(f(x,y,z) g(x,y,z)) == f(x,y,z) grad(g(x,y,z)) + g(x,y,z) grad(f(x,y,z)))
 
-"6. Verify grad(F . G) = (grad F) . G + (grad G) . F + G x curl F + F x curl G"
-check(grad(dot(F,G)) == dot(grad(F),G) + dot(grad(G),F) + cross(G,curl(F)) + cross(F,curl(G)))
+"6. Verify grad(F . G) = (grad F) . G + (grad G) . F + F x curl G + G x curl F"
+check(grad(dot(F,G)) == dot(grad(F),G) + dot(grad(G),F) + cross(F,curl(G)) + cross(G,curl(F)))
 
 "7. Verify div(f F) = f div F + F . grad f"
 check(div(f(x,y,z) F) == f(x,y,z) div(F) + dot(F,grad(f(x,y,z))))
