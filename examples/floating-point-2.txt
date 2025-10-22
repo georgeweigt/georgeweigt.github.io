@@ -1,6 +1,6 @@
 "Verify 0x3dcccccd is the best approximation for 0.1"
 
-A = 100000001490116119384765625 / 10^27 -- 0x3dcccccd from strtof(0.1)
+A = 100000001490116119384765625 / 10^27 -- 0x3dcccccd from strtof
 B = 099999994039535522460937500 / 10^27 -- 0x3dcccccc
 
 check(abs(10 A - 1) < abs(10 B - 1))
