@@ -3,6 +3,15 @@
 A = 100000001490116119384765625 / 10^27 -- 0x3dcccccd from strtof
 B = 099999994039535522460937500 / 10^27 -- 0x3dcccccc
 
-check(abs(10 A - 1) < abs(10 B - 1))
+C = abs(A - 1/10)
+D = abs(B - 1/10)
+
+C
+D
+
+check(C < D)
+check(C == 1 / 2^26 / 10)
+check(D == 1 / 2^24 / 10)
+check(C == 1/4 D)
 
 "ok"
