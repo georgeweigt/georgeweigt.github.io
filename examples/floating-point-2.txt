@@ -1,9 +1,10 @@
-"Verify 0x3dcccccd is the best approximation for 0.1"
+"Verify 0xcccccd is the best 24 bit mantissa for 0.1"
 
-A = 100000001490116119384765625 / 10^27 -- 0x3dcccccd from strtof
-B = 099999994039535522460937500 / 10^27 -- 0x3dcccccc
+A = 13421773 / 2^27 -- from strtof
+B = 13421772 / 2^27
 
-check(A - B == (1/2)^27)
+check(A == 100000001490116119384765625 / 10^27)
+check(B == 099999994039535522460937500 / 10^27)
 
 C = A - 1/10
 D = 1/10 - B
