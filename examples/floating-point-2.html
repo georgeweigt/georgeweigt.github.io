@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Verify 0xcccccd is the best 24 bit mantissa for 0.1"
 
-A = 13421773 / 2^27 -- from strtof
-B = 13421772 / 2^27
+A = 13421773 / 2^27 -- 0xcccccd = 13421773
+B = 13421772 / 2^27 -- 0xcccccc = 13421772
 
 check(A == 100000001490116119384765625 / 10^27)
 check(B == 099999994039535522460937500 / 10^27)
