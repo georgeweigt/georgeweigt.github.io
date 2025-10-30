@@ -8,5 +8,4 @@ default:
 	rsync -c ../sassafras/doc/sassafras.pdf .
 	rsync -c ../itsmr/doc/itsmr-refman.pdf .
 	rsync -c ../itsmr/doc/arar-algorithm.pdf .
-	rsync -c ../mel/nather.pdf .
 	make -C examples
