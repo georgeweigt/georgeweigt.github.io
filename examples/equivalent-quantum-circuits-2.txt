@@ -1,0 +1,21 @@
+# Show that the following quantum circuits are equivalent
+
+# Q0 ---------.----
+#             |
+# Q1 ----Z----X----
+
+# Q0 ----.----Z----
+#        |
+# Q1 ----X----Z----
+
+psi1 = (a,b,c,d)
+psi2 = (a,b,c,d)
+
+psi1 = rotate(psi1,Z,1,C,0,X,1)
+psi1
+
+psi2 = rotate(psi2,C,0,X,1,Z,0,Z,1)
+psi2
+
+check(psi1 == psi2)
+"ok"
