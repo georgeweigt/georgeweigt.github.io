@@ -11,7 +11,7 @@
 psi1 = (a,b,c,d)
 psi2 = (a,b,c,d)
 
-psi1 = rotate(psi1,W,0,1) # W is swap qubits
+psi1 = rotate(psi1,W,0,1) # W,0,1 swaps Q0 and Q1
 psi1
 
 psi2 = rotate(psi2,C,0,X,1,C,1,X,0,C,0,X,1)
