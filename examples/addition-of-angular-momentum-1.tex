@@ -20,14 +20,14 @@ L_z\psi&=-i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\
 & S_z\chi&=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}\chi
 \end{align*}
 
-Let $\phi$ be the product of wave function $\psi$ and electron spinor $\chi$.
+Let $\Psi$ be the product of wave function $\psi$ and electron spinor $\chi$.
 \begin{equation*}
-\phi=\psi\chi
+\Psi=\psi\chi
 \end{equation*}
 
 Then
 \begin{equation*}
-\mathbf J\phi=\mathbf L\phi+\mathbf S\phi
+\mathbf J\Psi=\mathbf L\Psi+\mathbf S\Psi
 \end{equation*}
 
 Let $J^2$ be the magnitude-squared of total angular momentum.
@@ -42,7 +42,7 @@ J^2=(\mathbf L+\mathbf S)\cdot(\mathbf L+\mathbf S)=L^2+S^2+2\mathbf L\cdot\math
 
 In Eigenmath code
 \begin{equation*}
-\mathbf L\cdot\mathbf S\phi=\text{\tt contract(L(S(phi)))}
+\mathbf L\cdot\mathbf S\Psi=\text{\tt contract(L(S(Psi)))}
 \tag{1}
 \end{equation*}
 
