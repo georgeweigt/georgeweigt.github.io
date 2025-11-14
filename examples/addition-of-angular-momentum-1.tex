@@ -1,0 +1,98 @@
+\input{preamble}
+
+\section*{Addition of angular momentum}
+
+Let $\mathbf J$ be the sum of orbital angular momentum $\mathbf L$
+and spin angular momentum $\mathbf S$.
+\begin{equation*}
+\mathbf J=\mathbf L+\mathbf S
+\end{equation*}
+
+Recall that
+\begin{align*}
+L_x\psi&=-i\hbar\left(y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y}\right)\psi
+& S_x\chi&=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}\chi
+\\
+L_y\psi&=-i\hbar\left(z\frac{\partial}{\partial x}-x\frac{\partial}{\partial z}\right)\psi
+& S_y\chi&=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}\chi
+\\
+L_z\psi&=-i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right)\psi
+& S_z\chi&=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}\chi
+\end{align*}
+
+Let $\phi$ be the product of wave function $\psi$ and electron spinor $\chi$.
+\begin{equation*}
+\phi=\psi\chi
+\end{equation*}
+
+Then
+\begin{equation*}
+\mathbf J\phi=\mathbf L\phi+\mathbf S\phi
+\end{equation*}
+
+Let $J^2$ be the magnitude-squared of total angular momentum.
+\begin{equation*}
+J^2=\mathbf J\cdot\mathbf J=J_x^2+J_y^2+J_z^2
+\end{equation*}
+
+Operator $J^2$ can be decomposed as
+\begin{equation*}
+J^2=(\mathbf L+\mathbf S)\cdot(\mathbf L+\mathbf S)=L^2+S^2+2\mathbf L\cdot\mathbf S
+\end{equation*}
+
+In Eigenmath code
+\begin{equation*}
+\mathbf L\cdot\mathbf S\phi=\text{\tt contract(L(S(phi)))}
+\tag{1}
+\end{equation*}
+
+The commutation relations for $J^2$ are
+\begin{align*}
+[J^2,L^2]&=0
+\\
+[J^2,S^2]&=0
+\\[1ex]
+[J^2,J_x]&=0
+\\
+[J^2,J_y]&=0
+\\
+[J^2,J_z]&=0
+\\[1ex]
+[J^2,L_x]&\ne0
+\\
+[J^2,L_y]&\ne0
+\\
+[J^2,L_z]&\ne0
+\\[1ex]
+[J^2,S_x]&\ne0
+\\
+[J^2,S_y]&\ne0
+\\
+[J^2,S_z]&\ne0
+\end{align*}
+
+\end{document}
+
+\begin{center}
+\begin{tabular}{cccccccccccccccc}
+& $J_x$ & $J_y$ & $J_z$ & & $L_x$ & $L_y$ & $L_z$ & & $S_x$ & $S_y$ & $S_z$ & & $J^2$ & $L^2$ & $S^2$\\
+\\
+$J_x$ & \checkmark & & & & \checkmark & & & & \checkmark & & & & \checkmark & \checkmark & \checkmark \\
+$J_y$ & & \checkmark & & & & \checkmark & & & & \checkmark & & & \checkmark & \checkmark & \checkmark \\
+$J_z$ & & & \checkmark & & & & \checkmark & & & & \checkmark & & \checkmark & \checkmark & \checkmark\\
+\\
+$L_x$ \\
+$L_y$ \\
+$L_z$ \\
+\\
+$S_x$ \\
+$S_y$ \\
+$S_z$ \\
+\\
+$J^2$ \\
+$L^2$ \\
+$S^2$
+\end{tabular}
+\end{center}
+
+\end{document}

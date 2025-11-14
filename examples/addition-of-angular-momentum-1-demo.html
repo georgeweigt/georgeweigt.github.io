@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Addition of angular momentum"
+
+Lx(f) = -i hbar (y d(f,z) - z d(f,y))
+Ly(f) = -i hbar (z d(f,x) - x d(f,z))
+Lz(f) = -i hbar (x d(f,y) - y d(f,x))
+
+L(f) = (Lx(f),Ly(f),Lz(f))
+L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
+
+LxL(f) = (Ly(Lz(f)) - Lz(Ly(f)),
+          Lz(Lx(f)) - Lx(Lz(f)),
+          Lx(Ly(f)) - Ly(Lx(f)))
+
+Sx(f) = hbar / 2 dot(((0,1),(1,0)),f)
+Sy(f) = hbar / 2 dot(((0,-i),(i,0)),f)
+Sz(f) = hbar / 2 dot(((1,0),(0,-1)),f)
+
+S(f) = (Sx(f),Sy(f),Sz(f))
+S2(f) = Sx(Sx(f)) + Sy(Sy(f)) + Sz(Sz(f))
+
+SxS(f) = (Sy(Sz(f)) - Sz(Sy(f)),
+          Sz(Sx(f)) - Sx(Sz(f)),
+          Sx(Sy(f)) - Sy(Sx(f)))
+
+Jx(f) = Lx(f) + Sx(f)
+Jy(f) = Ly(f) + Sy(f)
+Jz(f) = Lz(f) + Sz(f)
+
+J(f) = (Jx(f),Jy(f),Jz(f))
+J2(f) = Jx(Jx(f)) + Jy(Jy(f)) + Jz(Jz(f))
+
+JxJ(f) = (Jy(Jz(f)) - Jz(Jy(f)),
+          Jz(Jx(f)) - Jx(Jz(f)),
+          Jx(Jy(f)) - Jy(Jx(f)))
+
+chi = (c1(x,y,z,t), c2(x,y,z,t))
+phi = psi(x,y,z,t) chi
+
+check(LxL(phi) == i hbar L(phi))
+check(SxS(phi) == i hbar S(phi))
+check(JxJ(phi) == i hbar J(phi))
+
+"Verify equation (1)"
+LS(f) = contract(L(S(phi)))
+check(J2(phi) == L2(phi) + S2(phi) + 2 LS(phi))
+"ok"
+
+"Verify commutation relations"
+
+check(J2(L2(phi)) - L2(J2(phi)) == 0)
+check(J2(S2(phi)) - S2(J2(phi)) == 0)
+
+check(J2(Jx(phi)) - Jx(J2(phi)) == 0)
+check(J2(Jy(phi)) - Jy(J2(phi)) == 0)
+check(J2(Jz(phi)) - Jz(J2(phi)) == 0)
+
+check(J2(Lx(phi)) - Lx(J2(phi)))
+check(J2(Ly(phi)) - Ly(J2(phi)))
+check(J2(Lz(phi)) - Lz(J2(phi)))
+
+check(J2(Sx(phi)) - Sx(J2(phi)))
+check(J2(Sy(phi)) - Sy(J2(phi)))
+check(J2(Sz(phi)) - Sz(J2(phi)))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
