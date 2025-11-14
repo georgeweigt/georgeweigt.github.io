@@ -25,4 +25,4 @@ clean:
 # @ for silent
 
 demotest: *.txt
-	@for FILE in *.txt ; do echo "clear\n"; cat $$FILE ; done > demotest
+	@for FILE in *.txt ; do echo \"$$FILE\" ; cat $$FILE ; echo \"$$FILE\" ; echo status ; echo clear ; done > demotest
