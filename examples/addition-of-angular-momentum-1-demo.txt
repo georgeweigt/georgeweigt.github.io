@@ -62,4 +62,12 @@ check(J2(Sx(phi)) - Sx(J2(phi)))
 check(J2(Sy(phi)) - Sy(J2(phi)))
 check(J2(Sz(phi)) - Sz(J2(phi)))
 
+check(L2(Lx(phi)) - Lx(L2(phi)) == 0)
+check(L2(Ly(phi)) - Ly(L2(phi)) == 0)
+check(L2(Lz(phi)) - Lz(L2(phi)) == 0)
+
+check(S2(Sx(phi)) - Sx(S2(phi)) == 0)
+check(S2(Sy(phi)) - Sy(S2(phi)) == 0)
+check(S2(Sz(phi)) - Sz(S2(phi)) == 0)
+
 "ok"
