@@ -1,0 +1,54 @@
+"Addition of angular momentum 2"
+
+Lx(f) = i hbar (sin(phi) d(f,theta) + cos(phi) cos(theta) / sin(theta) d(f,phi))
+Ly(f) = i hbar (-cos(phi) d(f,theta) + sin(phi) cos(theta) / sin(theta) d(f,phi))
+Lz(f) = -i hbar d(f,phi)
+
+L(f) = (Lx(f),Ly(f),Lz(f))
+
+L2(f) = -hbar^2 (d(sin(theta) d(f,theta), theta) / sin(theta)
+        + d(f,phi,phi) / sin(theta)^2)
+
+--L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
+
+Sx(f) = 1/2 hbar dot(((0,1),(1,0)),f)
+Sy(f) = 1/2 hbar dot(((0,-i),(i,0)),f)
+Sz(f) = 1/2 hbar dot(((1,0),(0,-1)),f)
+
+S(f) = (Sx(f),Sy(f),Sz(f))
+S2(f) = Sx(Sx(f)) + Sy(Sy(f)) + Sz(Sz(f))
+
+Jx(f) = Lx(f) + Sx(f)
+Jy(f) = Ly(f) + Sy(f)
+Jz(f) = Lz(f) + Sz(f)
+
+J(f) = (Jx(f),Jy(f),Jz(f))
+J2(f) = Jx(Jx(f)) + Jy(Jy(f)) + Jz(Jz(f))
+
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+l = 3
+m = 2
+
+chi = (1,0)
+
+Psi = Y(l,m) chi
+
+check(Lz(Psi) == m hbar Psi)
+check(L2(Psi) == l (l + 1) hbar^2 Psi)
+
+check(Sz(chi) = 1/2 hbar chi)
+check(S2(Psi) == 3/4 hbar^2 Psi)
+
+check(Jz(Psi) == Lz(Psi) + Sz(Psi))
+check(J2(Psi) == L2(Psi) + S2(Psi) + 2 contract(L(S(Psi))))
+
+"ok"

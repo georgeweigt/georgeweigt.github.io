@@ -1,4 +1,4 @@
-"Addition of angular momentum"
+"Addition of angular momentum 1"
 
 Lx(f) = -i hbar (y d(f,z) - z d(f,y))
 Ly(f) = -i hbar (z d(f,x) - x d(f,z))
