@@ -36,9 +36,7 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 l = 3
 m = 2
 
-chi = (1,0)
-
-Psi = Y(l,m) chi
+Psi = Y(l,m) (1,0) # spin up
 
 check(Lz(Psi) == m hbar Psi)
 check(L2(Psi) == l (l + 1) hbar^2 Psi)
@@ -46,8 +44,17 @@ check(L2(Psi) == l (l + 1) hbar^2 Psi)
 check(Sz(Psi) = 1/2 hbar Psi)
 check(S2(Psi) == 3/4 hbar^2 Psi)
 
-check(Jz(Psi) == Lz(Psi) + Sz(Psi))
-check(J2(Psi) == L2(Psi) + S2(Psi) + 2 contract(L(S(Psi))))
+check(Jz(Psi) == (m + 1/2) hbar Psi)
+
+Psi = Y(l,m) (0,1) # spin down
+
+check(Lz(Psi) == m hbar Psi)
+check(L2(Psi) == l (l + 1) hbar^2 Psi)
+
+check(Sz(Psi) = -1/2 hbar Psi)
+check(S2(Psi) == 3/4 hbar^2 Psi)
+
+check(Jz(Psi) == (m - 1/2) hbar Psi)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
