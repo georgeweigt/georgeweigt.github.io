@@ -45,7 +45,7 @@ Psi = Y(l,m) chi
 check(Lz(Psi) == m hbar Psi)
 check(L2(Psi) == l (l + 1) hbar^2 Psi)
 
-check(Sz(chi) = 1/2 hbar chi)
+check(Sz(Psi) = 1/2 hbar Psi)
 check(S2(Psi) == 3/4 hbar^2 Psi)
 
 check(Jz(Psi) == Lz(Psi) + Sz(Psi))
