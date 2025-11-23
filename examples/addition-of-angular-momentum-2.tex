@@ -27,17 +27,29 @@ L_zY_{lm}=m\hbar Y_{lm}
 
 and
 \begin{equation*}
-S_z\chi_\pm=\pm\tfrac{1}{2}\hbar\chi_\pm
+\chi_+=\begin{pmatrix}1\\0\end{pmatrix},
+\quad
+\chi_-=\begin{pmatrix}0\\1\end{pmatrix}
 \end{equation*}
 
-Hence for $\Psi=Y_{lm}\chi_\pm$ we have
+Hence for $\Psi=Y_{lm}\chi_+$ we have
 \begin{align*}
 J_z\Psi
 &=L_z\Psi+S_z\Psi
 \\
-&=m\hbar\Psi\pm\tfrac{1}{2}\hbar\Psi
+&=m\hbar\Psi+\tfrac{1}{2}\hbar\Psi
 \\
-&=\left(m\pm\tfrac{1}{2}\right)\hbar\Psi
+&=\left(m+\tfrac{1}{2}\right)\hbar\Psi
+\end{align*}
+
+and for $\Psi=Y_{lm}\chi_-$
+\begin{align*}
+J_z\Psi
+&=L_z\Psi+S_z\Psi
+\\
+&=m\hbar\Psi-\tfrac{1}{2}\hbar\Psi
+\\
+&=\left(m-\tfrac{1}{2}\right)\hbar\Psi
 \end{align*}
 
 \end{document}
