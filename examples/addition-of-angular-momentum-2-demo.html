@@ -9,6 +9,10 @@ L(f) = (Lx(f),Ly(f),Lz(f))
 
 L2(f) = -hbar^2 (d(sin(theta) d(f,theta), theta) / sin(theta) + d(f,phi,phi) / sin(theta)^2)
 
+Psi = psi(theta,phi)
+
+check(Lx(Lx(Psi)) + Ly(Ly(Psi)) + Lz(Lz(Psi)) == L2(Psi))
+
 Sx(f) = 1/2 hbar dot(((0,1),(1,0)),f)
 Sy(f) = 1/2 hbar dot(((0,-i),(i,0)),f)
 Sz(f) = 1/2 hbar dot(((1,0),(0,-1)),f)
@@ -36,7 +40,9 @@ P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
 l = 3
 m = 2
 
-Psi = Y(l,m) (1,0) # spin up
+"Check equation 1"
+
+Psi = Y(l,m) (1,0)
 
 check(Lz(Psi) == m hbar Psi)
 check(L2(Psi) == l (l + 1) hbar^2 Psi)
@@ -46,7 +52,11 @@ check(S2(Psi) == 3/4 hbar^2 Psi)
 
 check(Jz(Psi) == (m + 1/2) hbar Psi)
 
-Psi = Y(l,m) (0,1) # spin down
+"ok"
+
+"Check equation 2"
+
+Psi = Y(l,m) (0,1)
 
 check(Lz(Psi) == m hbar Psi)
 check(L2(Psi) == l (l + 1) hbar^2 Psi)
