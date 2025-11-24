@@ -51,8 +51,10 @@ for(l,0,3,
 
 "Check equation 3"
 
-for(l,1,3,for(m,-l+1,l-1,
- Psi = sqrt((l+m+1)/(2l+1)) Y(l,m) (1,0) + sqrt((l-m)/(2l+1)) Y(l,m+1) (0,1),
+for(l,1,3,for(m, -l + 1, l - 1,
+ A = sqrt((l + m + 1) / (2 l + 1)),
+ B = sqrt((l - m) / (2 l + 1)),
+ Psi = A Y(l,m) (1,0) + B Y(l, m + 1) (0,1),
  j = l + 1/2,
  check(J2(Psi) == j (j + 1) hbar^2 Psi)
 ))
