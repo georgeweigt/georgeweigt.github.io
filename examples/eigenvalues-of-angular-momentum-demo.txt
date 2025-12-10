@@ -30,6 +30,10 @@ check(Lx(Ly(psi)) - Ly(Lx(psi)) == i hbar Lz(psi))
 check(Ly(Lz(psi)) - Lz(Ly(psi)) == i hbar Lx(psi))
 check(Lz(Lx(psi)) - Lx(Lz(psi)) == i hbar Ly(psi))
 
+check(L2(Lx(psi)) - Lx(L2(psi)) == 0)
+check(L2(Ly(psi)) - Ly(L2(psi)) == 0)
+check(L2(Lz(psi)) - Lz(L2(psi)) == 0)
+
 "ok"
 
 "Verify ladder operators"

@@ -9,6 +9,8 @@ We will derive eigenvalues for $L^2$ and $L_z$ from the following commutation re
 [L_y,L_z]&=i\hbar L_x
 \\
 [L_z,L_x]&=i\hbar L_y
+\\[1ex]
+[L^2,L_z]&=0
 \end{align*}
 
 Start by defining the following ladder operators.
@@ -18,17 +20,14 @@ L_+&=L_x+iL_y
 L_-&=L_x-iL_y
 \end{align*}
 
-From the ladder operators we have the commutation relations
+We have the following commutation relations for ladder operators.
 \begin{align*}
 [L_z,L_+]&=[L_z,L_x]+i[L_z,L_y]
 \\
 &=i\hbar L_y+i(-i\hbar L_x)
 \\
 &=\hbar L_+
-\end{align*}
-
-and
-\begin{align*}
+\\[1ex]
 [L_z,L_-]&=[L_z,L_x]-i[L_z,L_y]
 \\
 &=i\hbar L_y-i(-i\hbar L_x)
@@ -43,10 +42,7 @@ L_-L_+&=(L_x-iL_y)(L_x+iL_y)
 &=L_x^2+L_y^2+i[L_x,L_y]
 \\
 &=L^2-L_z^2-\hbar L_z
-\end{align*}
-
-and
-\begin{align*}
+\\[1ex]
 L_+L_-&=(L_x+iL_y)(L_x-iL_y)
 \\
 &=L_x^2+L_y^2-i[L_x,L_y]
@@ -217,7 +213,6 @@ Substitute $\mu_k+n\hbar$ for $\mu_m$ in (3) to obtain
 Cancel $\mu_k^2$ and rewrite the remaining terms as
 \begin{equation*}
 2\mu_k(n+1)\hbar+n(n+1)\hbar^2=0
-\tag{4}
 \end{equation*}
 
 Divide through by $(n+1)\hbar$ to obtain
@@ -237,12 +232,12 @@ and
 
 Define quantum number $l$ as
 \begin{equation*}
-l\hbar=\mu_m=\frac{n\hbar}{2}
+l=\frac{n}{2}=0,\,\tfrac{1}{2},\,1,\,\tfrac{3}{2},\,2,\,\ldots
 \end{equation*}
 
-Hence
+Then
 \begin{equation*}
-l=0,\,\tfrac{1}{2},\,1,\,\tfrac{3}{2},\,2,\,\ldots
+\mu_m=l\hbar
 \end{equation*}
 
 By equation (1) we have
