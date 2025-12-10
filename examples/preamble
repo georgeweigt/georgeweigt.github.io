@@ -5,6 +5,7 @@
 \usepackage{mathrsfs}
 \usepackage{slashed}
 \usepackage{tikz}
+%\usepackage[implicit=false]{hyperref} % don't make links to sections
 \usepackage{hyperref}
 \parindent=0pt
 \pdfinfoomitdate=1

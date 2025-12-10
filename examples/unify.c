@@ -13,6 +13,7 @@ main(int argc, char *argv[])
 
 	system("cat preamble");
 
+//	fputs("\\begin{center}\n\\LARGE Quantum Mechanics with Eigenmath\n\\end{center}\n\\newpage\n", stdout);
 	fputs("\\tableofcontents\n\\newpage\n", stdout);
 
 	for (i = 1; i < argc; i++)
