@@ -5,6 +5,7 @@
 \usepackage{mathrsfs}
 \usepackage{slashed}
 \usepackage{tikz}
+\usepackage{hyperref}
 \parindent=0pt
 \pdfinfoomitdate=1
 \pdftrailerid{}

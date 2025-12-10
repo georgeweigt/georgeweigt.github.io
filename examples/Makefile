@@ -1,6 +1,6 @@
 .PHONY: default clean
 
-%.pdf: %.tex preamble
+%.pdf: %.tex
 	pdflatex $<
 	if [ -e $*.toc ] ; then pdflatex $< ; pdflatex $< ; fi
 
@@ -20,7 +20,7 @@ unify: unify.c
 	$(CC) -o unify unify.c
 
 clean:
-	rm -f *.aux *.log *.synctex.gz *.toc
+	rm -f *.aux *.log *.out *.synctex.gz *.toc
 
 # @ for silent
 
