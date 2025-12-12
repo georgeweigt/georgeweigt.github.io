@@ -1,0 +1,27 @@
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+phi = 0
+
+r = (cos(theta),sin(theta))
+
+xrange = (-1,1) / 2
+yrange = (-1,1) / 2
+
+z = Y(2,2)
+f = z conj(z) r
+draw(f,theta)
+
+z = Y(2,1)
+f = z conj(z) r
+draw(f,theta)
+
+z = Y(2,0)
+f = z conj(z) r
+draw(f,theta)
