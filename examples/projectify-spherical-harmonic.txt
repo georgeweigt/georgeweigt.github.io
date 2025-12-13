@@ -1,0 +1,29 @@
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) P(l,m) exp(i m phi)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+Y = float(Y(2,0))
+
+N = 1000
+A = zero(N,2)
+pie = float(pi)
+
+for(k,1,N,
+ Theta = pie rand(),
+ Phi = 2 pie rand(),
+ a = eval(Y, theta, Theta, phi, Phi),
+ r = a conj(a),
+ x = r sin(Theta) cos(Phi),
+ y = r sin(Theta) sin(Phi),
+ z = r cos(Theta),
+ A[k] = (y,z)
+)
+
+xrange = (-1,1) / 2
+yrange = (-1,1) / 2
+trange = (1,N)
+
+draw(A[floor(k)],k)
