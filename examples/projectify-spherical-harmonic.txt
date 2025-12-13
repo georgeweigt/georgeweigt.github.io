@@ -1,4 +1,4 @@
-# Sample a spherical harmonic and project onto a plane
+# Sample |Y|^2 and project onto x-z plane
 
 Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) P(l,m) exp(i m phi)
 
@@ -21,7 +21,7 @@ for(k,1,N,
  x = r sin(Theta) cos(Phi),
  y = r sin(Theta) sin(Phi),
  z = r cos(Theta),
- A[k] = (y,z)
+ A[k] = (x,z)
 )
 
 xrange = (-1,1) / 2
