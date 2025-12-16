@@ -1,0 +1,182 @@
+\input{preamble}
+
+\section*{Green's function}
+
+Find the Green's function $G(\mathbf x)$ such that
+\begin{equation*}
+(\nabla^2+k^2)G(\mathbf x)=\delta^3(\mathbf x)
+\tag{1}
+\end{equation*}
+
+Let $g(\mathbf y)$ be the Fourier transform of $G(\mathbf x)$ such that
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+\tag{2}
+\end{equation*}
+
+Substitute (2) into (1) to obtain
+\begin{equation*}
+(\nabla^2+k^2)
+\left[\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y\right]
+=\delta(\mathbf x)
+\end{equation*}
+
+By linearity of differentiation we have
+\begin{equation*}
+\frac{1}{(2\pi)^\frac{3}{2}}
+\int(\nabla^2+k^2)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+=\delta(\mathbf x)
+\end{equation*}
+
+Noting that
+\begin{equation*}
+\nabla^2\exp(i\mathbf x\cdot\mathbf y)=-y^2\exp(i\mathbf x\cdot\mathbf y)
+\end{equation*}
+
+and
+\begin{equation*}
+\delta(\mathbf x)=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
+\end{equation*}
+
+we have
+\begin{equation*}
+\frac{1}{(2\pi)^\frac{3}{2}}
+\int(-y^2+k^2)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Hence
+\begin{equation*}
+g(\mathbf y)=\frac{1}{(2\pi)^\frac{3}{2}(k^2-y^2)}
+\end{equation*}
+
+Substitute for $g(\mathbf y)$ in (2) to obtain
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^3}\int\frac{\exp(i\mathbf x\cdot\mathbf y)}{k^2-y^2}\,d\mathbf y
+\end{equation*}
+
+Change to polar coordinates where $x=|\mathbf x|$, $y=|\mathbf y|$,
+and $\theta$ and $\phi$ are the angular distance from $\mathbf x$ to $\mathbf y$.
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^3}
+\int_0^\infty\int_0^\pi\int_0^{2\pi}
+\frac{\exp(ixy\cos\theta)}{k^2-y^2}\,y^2\sin\theta\,dy\,d\theta\,d\phi
+\end{equation*}
+
+For the integrals over $\theta$ and $\phi$ we have
+\begin{equation*}
+\int_0^\pi\int_0^{2\pi}\exp(ixy\cos\theta)\sin\theta\,d\theta\,d\phi=\frac{4\pi\sin(xy)}{xy}
+\end{equation*}
+
+Hence
+\begin{equation*}
+G(\mathbf x)=\frac{1}{2\pi^2x}
+\int_0^\infty\frac{y\sin(xy)}{k^2-y^2}\,dy
+\end{equation*}
+
+Noting that $y\sin(xy)$ is an even function of $y$ we can change the integral limits as follows.
+\begin{equation*}
+G(\mathbf x)=\frac{1}{4\pi^2x}
+\int_{-\infty}^\infty\frac{y\sin(xy)}{k^2-y^2}\,dy
+\end{equation*}
+
+Negate the denominator.
+\begin{equation*}
+G(\mathbf x)=\frac{1}{4\pi^2x}
+\int_{-\infty}^\infty-\frac{y\sin(xy)}{y^2-k^2}\,dy
+\end{equation*}
+
+Change the sine function to exponential form and factor the denominator.
+\begin{equation*}
+G(\mathbf x)
+=\frac{i}{8\pi^2x}
+\left[
+\int_{-\infty}^\infty\frac{y\exp(ixy)}{(y-k)(y+k)}\,dy
+-\int_{-\infty}^\infty\frac{y\exp(-ixy)}{(y-k)(y+k)}\,dy
+\right]
+\end{equation*}
+
+By Cauchy's integral formula we have
+\begin{equation*}
+\int_{-\infty}^\infty\frac{y\exp(ixy)}{y+k}\frac{1}{y-k}\,dy
+=i\pi\exp(ikx)
+\end{equation*}
+
+and
+\begin{equation*}
+\int_{-\infty}^\infty\frac{y\exp(-ixy)}{y-k}\frac{1}{y+k}\,dy
+=-i\pi\exp(ikx)
+\end{equation*}
+
+Hence
+\begin{equation*}
+G(\mathbf x)
+=-\frac{\exp(ikx)}{4\pi x},\quad x=|\mathbf x|
+\tag{3}
+\end{equation*}
+
+Verify that (3) satisfies (1).
+From Griffiths and Schroeter problem 10.8
+\begin{equation*}
+\nabla^2(1/r)=-4\pi\delta^3(\mathbf r)
+\end{equation*}
+
+Recall $\nabla^2=\nabla\cdot\nabla$ and
+\begin{equation*}
+\nabla\cdot(f\mathbf A)=\nabla f\cdot\mathbf A+f\nabla\mathbf\cdot\mathbf A
+\end{equation*}
+
+Substituting $\mathbf r$ for $\mathbf x$ we have
+\begin{align*}
+\nabla^2G(\mathbf r)&=-\frac{1}{4\pi}\nabla\cdot\nabla\left(\frac{e^{ikr}}{r}\right)
+\\
+&=-\frac{1}{4\pi}\nabla\cdot\left(\frac{1}{r}\nabla e^{ikr}+e^{ikr}\nabla\frac{1}{r}\right)
+\\
+&=-\frac{1}{4\pi}\biggl(
+\underset{\text{see eq.~(5)}}{\nabla\frac{1}{r}\cdot\nabla e^{ikr}}
++\underset{\text{see eq.~(6)}}{\frac{1}{r}\nabla^2e^{ikr}}
++\underset{\text{see eq.~(5)}}{\nabla e^{ikr}\cdot\nabla\frac{1}{r}}
++e^{ikr}\nabla^2\frac{1}{r}
+\biggr)\tag{4}
+\end{align*}
+
+In spherical coordinates
+\begin{equation*}
+\nabla\frac{1}{r}\cdot\nabla e^{ikr}
+=\left(-\frac{1}{r^2}\mathbf e_r+0\mathbf e_\theta+0\mathbf e_\phi\right)
+\left(ike^{ikr}\mathbf e_r+0\mathbf e_\theta+0\mathbf e_\phi\right)
+=-\frac{ike^{ikr}}{r^2}
+\tag{5}
+\end{equation*}
+
+and
+\begin{align*}
+\frac{1}{r}\nabla^2e^{ikr}&=\frac{1}{r^2}\frac{\partial^2}{\partial r^2}(re^{ikr})
+\\
+&=\frac{1}{r^2}\frac{\partial}{\partial r}\left(e^{ikr}+ikre^{ikr}\right)
+\\
+&=\frac{1}{r^2}\left(2ike^{ikr}-k^2re^{ikr}\right)
+\\
+&=\frac{2ike^{ikr}}{r^2}-\frac{k^2e^{ikr}}{r}
+\tag{6}
+\end{align*}
+
+Substitute (5) and (6) into (4) to obtain
+\begin{align*}
+\nabla^2G(\mathbf r)&=\frac{k^2e^{ikr}}{4\pi r}-\frac{1}{4\pi}e^{ikr}\nabla^2\frac{1}{r}
+\\
+&=-k^2G(\mathbf r)+\delta^3(\mathbf r)e^{ikr}
+\end{align*}
+
+Noting that $e^{ikr}=1$ at $r=0$ the $e^{ikr}$ can be discarded leaving
+\begin{equation*}
+\nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)
+\tag{7}
+\end{equation*}
+
+Hence
+\begin{equation*}
+(\nabla^2+k^2)G(\mathbf r)=\delta^3(\mathbf r)
+\end{equation*}
+
+\end{document}
