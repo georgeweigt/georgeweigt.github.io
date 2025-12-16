@@ -21,7 +21,7 @@ Substitute (2) into (1) to obtain
 =\delta(\mathbf x)
 \end{equation*}
 
-By linearity of differentiation we have
+By linearity of differentiation the $(\nabla^2+k^2)$ can be moved inside the integral.
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
 \int(\nabla^2+k^2)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
@@ -126,7 +126,7 @@ Recall $\nabla^2=\nabla\cdot\nabla$ and
 \nabla\cdot(f\mathbf A)=\nabla f\cdot\mathbf A+f\nabla\mathbf\cdot\mathbf A
 \end{equation*}
 
-Substituting $\mathbf r$ for $\mathbf x$ we have
+Substituting $\mathbf r$ for $\mathbf x$ in (3) we have for the Laplacian of $G(\mathbf r)$
 \begin{align*}
 \nabla^2G(\mathbf r)&=-\frac{1}{4\pi}\nabla\cdot\nabla\left(\frac{e^{ikr}}{r}\right)
 \\
@@ -168,7 +168,7 @@ Substitute (5) and (6) into (4) to obtain
 &=-k^2G(\mathbf r)+\delta^3(\mathbf r)e^{ikr}
 \end{align*}
 
-Noting that $e^{ikr}=1$ at $r=0$ the $e^{ikr}$ can be discarded leaving
+Noting that $e^{ikr}=1$ at $r=0$, the $e^{ikr}$ term can be discarded leaving
 \begin{equation*}
 \nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)
 \tag{7}
@@ -178,5 +178,7 @@ Hence
 \begin{equation*}
 (\nabla^2+k^2)G(\mathbf r)=\delta^3(\mathbf r)
 \end{equation*}
+
+\href{https://georgeweigt.github.io/examples/greens-function-demo.html}{Eigenmath code}
 
 \end{document}
