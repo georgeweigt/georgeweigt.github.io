@@ -1,24 +1,27 @@
 "Green's function"
 
-r = sqrt(x^2 + y^2 + z^2)
+# Note: In Eigenmath, div(grad(1/r)) == 0
 
 G = -exp(i k r) / (4 pi r)
-
-"Verify equation (4)"
-A = dot(grad(1/r),grad(exp(i k r)))
-B = div(grad(exp(i k r))) / r
-C = exp(i k r) div(grad(1/r))
-check(-4 pi div(grad(G)) == 2 A + B + C)
-"ok"
+r = sqrt(x^2 + y^2 + z^2)
 
 "Verify equation (5)"
-check(A == -i k exp(i k r) / r^2)
+check(-4 pi div(grad(G)) ==
+ dot(grad(1/r),grad(exp(i k r))) +
+ div(grad(exp(i k r))) / r +
+ dot(grad(1/r),grad(exp(i k r))) +
+ exp(i k r) div(grad(1/r))
+)
 "ok"
 
 "Verify equation (6)"
-check(B == 2 i k exp(i k r) / r^2 - k^2 exp(i k r) / r)
+check(dot(grad(1/r),grad(exp(i k r))) == -i k exp(i k r) / r^2)
 "ok"
 
 "Verify equation (7)"
+check(div(grad(exp(i k r))) / r == 2 i k exp(i k r) / r^2 - k^2 exp(i k r) / r)
+"ok"
+
+"Verify equation (8)"
 check(div(grad(G)) == -k^2 G)
 "ok"

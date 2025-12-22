@@ -128,6 +128,7 @@ Verify that (3) satisfies (1).
 We will need the following formula from Griffiths and Schroeter problem 10.8.
 \begin{equation*}
 \nabla^2(1/r)=-4\pi\delta^3(\mathbf r)
+\tag{4}
 \end{equation*}
 
 Recall that $\nabla^2=\nabla\cdot\nabla$ and
@@ -142,11 +143,11 @@ Substituting $\mathbf r$ for $\mathbf x$ in (3) we have for the Laplacian of $G(
 &=-\frac{1}{4\pi}\nabla\cdot\left(\frac{1}{r}\nabla e^{ikr}+e^{ikr}\nabla\frac{1}{r}\right)
 \\
 &=-\frac{1}{4\pi}\biggl(
-\underset{\text{see eq.~(5)}}{\nabla\frac{1}{r}\cdot\nabla e^{ikr}}
-+\underset{\text{see eq.~(6)}}{\frac{1}{r}\nabla^2e^{ikr}}
-+\underset{\text{see eq.~(5)}}{\nabla e^{ikr}\cdot\nabla\frac{1}{r}}
-+e^{ikr}\nabla^2\frac{1}{r}
-\biggr)\tag{4}
+\underset{\text{subst.~(6)}}{\nabla\frac{1}{r}\cdot\nabla e^{ikr}}
++\underset{\text{subst.~(7)}}{\frac{1}{r}\nabla^2e^{ikr}}
++\underset{\text{subst.~(6)}}{\nabla e^{ikr}\cdot\nabla\frac{1}{r}}
++\underset{\text{subst.~(4)}}{e^{ikr}\nabla^2\frac{1}{r}}
+\biggr)\tag{5}
 \end{align*}
 
 In spherical coordinates
@@ -156,7 +157,7 @@ In spherical coordinates
 \cdot
 \left(ike^{ikr}\mathbf e_r+0\mathbf e_\theta+0\mathbf e_\phi\right)
 =-\frac{ike^{ikr}}{r^2}
-\tag{5}
+\tag{6}
 \end{equation*}
 
 and
@@ -168,20 +169,23 @@ and
 &=\frac{1}{r^2}\left(2ike^{ikr}-k^2re^{ikr}\right)
 \\
 &=\frac{2ike^{ikr}}{r^2}-\frac{k^2e^{ikr}}{r}
-\tag{6}
+\tag{7}
 \end{align*}
 
-Substitute (5) and (6) into (4) to obtain
-\begin{align*}
-\nabla^2G(\mathbf r)&=\frac{k^2e^{ikr}}{4\pi r}-\frac{1}{4\pi}e^{ikr}\nabla^2\frac{1}{r}
-\\
-&=-k^2G(\mathbf r)+\delta^3(\mathbf r)e^{ikr}
-\end{align*}
+Substitute (4), (6), and (7) into (5) to obtain
+\begin{equation*}
+\nabla^2G(\mathbf r)=\frac{k^2e^{ikr}}{4\pi r}+\delta^3(\mathbf r)e^{ikr}
+\end{equation*}
+
+Then by equation (3)
+\begin{equation*}
+\nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)e^{ikr}
+\end{equation*}
 
 Noting that $e^{ikr}=1$ at $r=0$, the $e^{ikr}$ term can be discarded leaving
 \begin{equation*}
 \nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)
-\tag{7}
+\tag{8}
 \end{equation*}
 
 Hence
