@@ -4,7 +4,7 @@
 
 In this section we will find the Green's function $G(\mathbf x)$ such that
 \begin{equation*}
-(\nabla^2+k^2)G(\mathbf x)=\delta^3(\mathbf x)
+\left(\nabla^2+k^2\right)G(\mathbf x)=\delta^3(\mathbf x)
 \tag{1}
 \end{equation*}
 
@@ -16,7 +16,7 @@ G(\mathbf x)=\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\ma
 
 Substitute (2) into (1) to obtain
 \begin{equation*}
-(\nabla^2+k^2)
+\left(\nabla^2+k^2\right)
 \left[\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y\right]
 =\delta(\mathbf x)
 \end{equation*}
@@ -24,7 +24,7 @@ Substitute (2) into (1) to obtain
 By linearity of differentiation the $(\nabla^2+k^2)$ can be moved inside the integral.
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
-\int(\nabla^2+k^2)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+\int\left(\nabla^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
 =\delta(\mathbf x)
 \end{equation*}
 
@@ -41,13 +41,13 @@ and
 we have
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
-\int(-y^2+k^2)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+\int\left(-y^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
 =\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
 \end{equation*}
 
 Hence
 \begin{equation*}
-g(\mathbf y)=\frac{1}{(2\pi)^\frac{3}{2}(k^2-y^2)}
+g(\mathbf y)=\frac{1}{(2\pi)^\frac{3}{2}\left(k^2-y^2\right)}
 \end{equation*}
 
 Substitute for $g(\mathbf y)$ in (2) to obtain
@@ -164,7 +164,7 @@ In spherical coordinates
 
 and
 \begin{align*}
-\frac{1}{r}\nabla^2e^{ikr}&=\frac{1}{r^2}\frac{\partial^2}{\partial r^2}(re^{ikr})
+\frac{1}{r}\nabla^2e^{ikr}&=\frac{1}{r^2}\frac{\partial^2}{\partial r^2}\left(re^{ikr}\right)
 \\
 &=\frac{1}{r^2}\frac{\partial}{\partial r}\left(e^{ikr}+ikre^{ikr}\right)
 \\
@@ -192,7 +192,7 @@ Noting that $e^{ikr}=1$ at $r=0$, the $e^{ikr}$ term can be discarded leaving
 
 Hence
 \begin{equation*}
-(\nabla^2+k^2)G(\mathbf r)=\delta^3(\mathbf r)
+\left(\nabla^2+k^2\right)G(\mathbf r)=\delta^3(\mathbf r)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/greens-function-demo.html}{Eigenmath code}
