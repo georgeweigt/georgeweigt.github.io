@@ -21,11 +21,12 @@ Substitute (2) into (1) to obtain
 =\delta(\mathbf x)
 \end{equation*}
 
-By linearity of differentiation the $(\nabla^2+k^2)$ can be moved inside the integral.
+By linearity of differentiation the $(\nabla^2+k^2)$ term can be moved inside the integral.
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
 \int\left(\nabla^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
 =\delta(\mathbf x)
+\tag{3}
 \end{equation*}
 
 Noting that
@@ -38,14 +39,14 @@ and
 \delta(\mathbf x)=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
 \end{equation*}
 
-we have
+we have by substitution into (3)
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
 \int\left(-y^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
 =\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
 \end{equation*}
 
-Hence
+Solve for $g(\mathbf y)$.
 \begin{equation*}
 g(\mathbf y)=\frac{1}{(2\pi)^\frac{3}{2}\left(k^2-y^2\right)}
 \end{equation*}
@@ -114,7 +115,7 @@ Hence
 G(\mathbf x)
 =-\frac{\exp(ikx)}{4\pi x}
 }
-\tag{3}
+\tag{4}
 \end{equation*}
 
 where
@@ -122,13 +123,13 @@ where
 x=|\mathbf x|
 \end{equation*}
 
-Verify that (3) satisfies (1).
+Verify that (4) satisfies (1).
 
 \bigskip
 We will need the following formula from Griffiths and Schroeter problem 10.8.
 \begin{equation*}
 \nabla^2(1/r)=-4\pi\delta^3(\mathbf r)
-\tag{4}
+\tag{5}
 \end{equation*}
 
 Recall that $\nabla^2=\nabla\cdot\nabla$ and for scalar functions
@@ -149,7 +150,8 @@ Substituting $\mathbf r$ for $\mathbf x$ in (3) we have for the Laplacian of $G(
 +\frac{1}{r}\nabla^2e^{ikr}
 +\nabla e^{ikr}\cdot\nabla\frac{1}{r}
 +e^{ikr}\nabla^2\frac{1}{r}
-\biggr)\tag{5}
+\biggr)
+\tag{6}
 \end{align*}
 
 In spherical coordinates
@@ -159,7 +161,7 @@ In spherical coordinates
 \cdot
 \biggl(ike^{ikr}\mathbf e_r+0\mathbf e_\theta+0\mathbf e_\phi\biggr)
 =-\frac{ike^{ikr}}{r^2}
-\tag{6}
+\tag{7}
 \end{equation*}
 
 and
@@ -171,15 +173,15 @@ and
 &=\frac{1}{r^2}\left(2ike^{ikr}-k^2re^{ikr}\right)
 \\
 &=\frac{2ike^{ikr}}{r^2}-\frac{k^2e^{ikr}}{r}
-\tag{7}
+\tag{8}
 \end{align*}
 
-Substitute (4), (6), and (7) into (5) to obtain
+Substitute (5), (7), and (8) into (6) to obtain
 \begin{equation*}
 \nabla^2G(\mathbf r)=\frac{k^2e^{ikr}}{4\pi r}+\delta^3(\mathbf r)e^{ikr}
 \end{equation*}
 
-Then by equation (3)
+Then by equation (4)
 \begin{equation*}
 \nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)e^{ikr}
 \end{equation*}
@@ -187,7 +189,7 @@ Then by equation (3)
 Noting that $e^{ikr}=1$ at $r=0$, the $e^{ikr}$ term can be discarded leaving
 \begin{equation*}
 \nabla^2G(\mathbf r)=-k^2G(\mathbf r)+\delta^3(\mathbf r)
-\tag{8}
+\tag{9}
 \end{equation*}
 
 Hence
