@@ -131,26 +131,24 @@ We will need the following formula from Griffiths and Schroeter problem 10.8.
 \tag{4}
 \end{equation*}
 
-Recall that $\nabla^2=\nabla\cdot\nabla$ and for a scalar function
-$f$ and a vector function $\mathbf F$ we have
+Recall that $\nabla^2=\nabla\cdot\nabla$ and for scalar functions
+$f$ and $g$ we have
 \begin{equation*}
-\nabla\cdot(f\mathbf F)
-=\frac{\partial}{\partial x}(fF_x)+\frac{\partial}{\partial y}(fF_y)
-+\frac{\partial}{\partial z}(fF_z)
-=\nabla f\cdot\mathbf F+f\nabla\mathbf\cdot\mathbf F
+\nabla\cdot(f\nabla g)=\nabla f\cdot\nabla g+f\nabla^2g
 \end{equation*}
 
 Substituting $\mathbf r$ for $\mathbf x$ in (3) we have for the Laplacian of $G(\mathbf r)$
 \begin{align*}
-\nabla^2G(\mathbf r)&=-\frac{1}{4\pi}\nabla\cdot\nabla\left(\frac{e^{ikr}}{r}\right)
+\nabla^2G(\mathbf r)
+&=\nabla\cdot\nabla\left(-\frac{e^{ikr}}{4\pi r}\right)
 \\
 &=-\frac{1}{4\pi}\nabla\cdot\left(\frac{1}{r}\nabla e^{ikr}+e^{ikr}\nabla\frac{1}{r}\right)
 \\
 &=-\frac{1}{4\pi}\biggl(
-\underset{\text{subst.~(6)}}{\nabla\frac{1}{r}\cdot\nabla e^{ikr}}
-+\underset{\text{subst.~(7)}}{\frac{1}{r}\nabla^2e^{ikr}}
-+\underset{\text{subst.~(6)}}{\nabla e^{ikr}\cdot\nabla\frac{1}{r}}
-+\underset{\text{subst.~(4)}}{e^{ikr}\nabla^2\frac{1}{r}}
+\nabla\frac{1}{r}\cdot\nabla e^{ikr}
++\frac{1}{r}\nabla^2e^{ikr}
++\nabla e^{ikr}\cdot\nabla\frac{1}{r}
++e^{ikr}\nabla^2\frac{1}{r}
 \biggr)\tag{5}
 \end{align*}
 
