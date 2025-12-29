@@ -154,7 +154,14 @@ Substituting $\mathbf r$ for $\mathbf x$ in (3) we have for the Laplacian of $G(
 \tag{6}
 \end{align*}
 
-In spherical coordinates
+In spherical coordinates the gradient of $f$ is
+\begin{equation*}
+\nabla f=\left(\frac{\partial f}{\partial r}\right)\mathbf e_r
++\left(\frac{1}{r}\frac{\partial f}{\partial\theta}\right)\mathbf e_\theta
++\left(\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}\right)\mathbf e_\phi
+\end{equation*}
+
+hence
 \begin{equation*}
 \nabla\frac{1}{r}\cdot\nabla e^{ikr}
 =\biggl(-\frac{1}{r^2}\mathbf e_r+0\mathbf e_\theta+0\mathbf e_\phi\biggr)
@@ -164,7 +171,15 @@ In spherical coordinates
 \tag{7}
 \end{equation*}
 
-and
+In spherical coordinates the Laplacian of $f$ is
+\begin{equation*}
+\nabla^2f=\frac{1}{r}\frac{\partial^2}{\partial r^2}(rf)
++\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}
+\left(\sin\theta\frac{\partial f}{\partial\theta}\right)
++\frac{1}{r^2\sin^2\theta}\frac{\partial^2f}{\partial\phi^2}
+\end{equation*}
+
+hence
 \begin{align*}
 \frac{1}{r}\nabla^2e^{ikr}&=\frac{1}{r^2}\frac{\partial^2}{\partial r^2}\left(re^{ikr}\right)
 \\
