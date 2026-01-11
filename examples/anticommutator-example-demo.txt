@@ -1,4 +1,4 @@
-"Anticommutation example"
+"Anticommutator example"
 
 sigma1 = ((0,1),(1,0))
 sigma2 = ((0,-i),(i,0))
