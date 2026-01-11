@@ -1,0 +1,36 @@
+\input{preamble}
+
+\section*{Anticommutation example}
+
+Show that
+\begin{equation*}
+\{\Sigma_i,\Sigma_j\}=2\delta_{ij}
+\end{equation*}
+
+where
+\begin{equation*}
+\Sigma_i=\begin{pmatrix}\sigma_i&0\\0&\sigma_i\end{pmatrix}
+\end{equation*}
+
+and $\sigma_i$ are the Pauli spin matrices.
+
+\bigskip
+Notes on the Eigenmath script:
+\begin{enumerate}
+
+\item
+The $\Sigma_i$ matrices are formed using the \verb$kronecker$ product.
+
+\item
+The vector $\Sigma=(\Sigma_1,\Sigma_2,\Sigma_3)$
+is defined so that \verb$for$ loops can be used.
+
+\item
+Indices $j$ and $k$ are used instead of
+$i$ and $j$ to avoid overriding the imaginary unit $i$.
+
+\end{enumerate}
+
+\href{https://georgeweigt.github.io/examples/anticommutation-example-demo.html}{Eigenmath script}
+
+\end{document}

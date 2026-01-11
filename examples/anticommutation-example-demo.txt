@@ -1,0 +1,25 @@
+"Anticommutation example"
+
+sigma1 = ((0,1),(1,0))
+sigma2 = ((0,-i),(i,0))
+sigma3 = ((1,0),(0,-1))
+
+I = ((1,0),(0,1))
+
+Sigma1 = kronecker(I,sigma1)
+Sigma2 = kronecker(I,sigma2)
+Sigma3 = kronecker(I,sigma3)
+
+Sigma = (Sigma1,Sigma2,Sigma3)
+
+-- C is the anticommutator
+
+C(j,k) = dot(Sigma[j],Sigma[k]) + dot(Sigma[k],Sigma[j])
+
+delta(j,k) = (j == k) unit(4)
+
+for(j,1,3,for(k,1,3,
+ check(C(j,k) == 2 delta(j,k))
+))
+
+"ok"
