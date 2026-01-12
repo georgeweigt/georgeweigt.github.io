@@ -19,15 +19,13 @@ Notes on the Eigenmath script:
 \begin{enumerate}
 
 \item
-The $\Sigma_i$ matrices are formed using the \verb$kronecker$ product.
+The $\Sigma_i$ matrices are formed using the \verb$kronecker$ function.
 
 \item
-The vector $\Sigma=(\Sigma_1,\Sigma_2,\Sigma_3)$
-is defined so that \verb$for$ loops can be used.
+Index $k$ is used instead of $i$ to avoid overriding imaginary unit $i$.
 
 \item
-Indices $j$ and $k$ are used instead of
-$i$ and $j$ to avoid overriding the imaginary unit $i$.
+The expression \verb$j == k$ is equivalent to $\delta_{jk}$.
 
 \end{enumerate}
 

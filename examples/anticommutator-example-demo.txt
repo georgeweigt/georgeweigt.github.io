@@ -16,8 +16,10 @@ Sigma = (Sigma1,Sigma2,Sigma3)
 
 C(j,k) = dot(Sigma[j],Sigma[k]) + dot(Sigma[k],Sigma[j])
 
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
 for(j,1,3,for(k,1,3,
- check(C(j,k) == 2 (j == k) unit(4))
+ check(C(j,k) == 2 (j == k) I)
 ))
 
 "ok"
