@@ -2,17 +2,7 @@
 
 \section*{Dirac equation 3}
 
-Let
-\begin{equation*}
-\xi=p_\mu x^\mu=Et-p_xx-p_yy-p_zz
-\end{equation*}
-
-where
-\begin{equation*}
-E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
-\end{equation*}
-
-Fermion fields are the following solutions to the Dirac equation.
+From the previous section
 \begin{align*}
 \psi_1&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}
 \underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
@@ -27,38 +17,53 @@ Fermion fields are the following solutions to the Dirac equation.
 \underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{align*}
 
-Spinors are the vectors
+where
+\begin{equation*}
+\xi=p_\mu x^\mu=Et-p_xx-p_yy-p_zz
+\end{equation*}
+
+and
+\begin{equation*}
+E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
+\end{equation*}
+
+Spinors are $\psi$ without the exponentials.
 \begin{align*}
-u_1&=\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
+u_1&=\frac{1}{\sqrt{E/c+mc}}
+\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 &
-u_2&=\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
+u_2&=\frac{1}{\sqrt{E/c+mc}}
+\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \\[1ex]
-v_1&=\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
+v_1&=\frac{1}{\sqrt{E/c+mc}}
+\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 &
-v_2&=\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+v_2&=\frac{1}{\sqrt{E/c+mc}}
+\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{align*}
 
-Recall that the spacetime momentum vector $p^\mu$ is
-\begin{equation*}
-p^\mu=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
-\end{equation*}
-
 Spinors are solutions to the momentum-space Dirac equations
-\begin{equation*}
-\slashed pu=mcu,
-\quad
-\slashed pv=-mcv
-\end{equation*}
+\begin{align*}
+\slashed pu&=mcu
+\\
+\slashed pv&=-mcv
+\end{align*}
+
 where
 \begin{equation*}
 \slashed p=p^\mu g_{\mu\nu}\gamma^\nu
 \end{equation*}
 
-Spinors have the ``completeness property'' of
+and
+\begin{equation*}
+p^\mu=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
+\end{equation*}
+
+Spinors have the following ``completeness property.''
 \begin{align*}
-u_1\bar u_1+u_2\bar u_2&=(E/c+mc)(\slashed p+mc)
+u_1\bar u_1+u_2\bar u_2&=\slashed p+mc
 \\
-v_1\bar v_1+v_2\bar v_2&=(E/c+mc)(\slashed p-mc)
+v_1\bar v_1+v_2\bar v_2&=\slashed p-mc
 \end{align*}
 
 Adjoints of spinors are formed as
