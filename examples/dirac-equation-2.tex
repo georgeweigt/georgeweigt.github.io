@@ -2,30 +2,7 @@
 
 \section*{Dirac equation 2}
 
-This is the Dirac equation.
-\begin{equation*}
-i\hbar\left(
-\frac{1}{c}
-\gamma^0\frac{\partial}{\partial t}+
-\gamma^1\frac{\partial}{\partial x}+
-\gamma^2\frac{\partial}{\partial y}+
-\gamma^3\frac{\partial}{\partial z}
-\right)\psi
-=mc\psi
-\end{equation*}
-
-Gamma matrices for the ``Dirac representation'' are
-\begin{align*}
-\gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
-&
-\gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
-\\[1ex]
-\gamma^2&=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}
-&
-\gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
-\end{align*}
-
-The solutions to the Dirac equation are
+Let
 \begin{align*}
 \psi_1&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
 &
@@ -46,10 +23,33 @@ and
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-The solutions are normalized as
+Verify that $\psi$ are solutions to the Dirac equation
+\begin{equation*}
+i\hbar\left(
+\frac{1}{c}
+\gamma^0\frac{\partial}{\partial t}+
+\gamma^1\frac{\partial}{\partial x}+
+\gamma^2\frac{\partial}{\partial y}+
+\gamma^3\frac{\partial}{\partial z}
+\right)\psi
+=mc\psi
+\end{equation*}
+
+and that the solutions are normalized as
 \begin{equation*}
 |\psi|^2=\frac{2E}{c}
 \end{equation*}
+
+Gamma matrices for the ``Dirac representation'' are
+\begin{align*}
+\gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
+&
+\gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
+\\[1ex]
+\gamma^2&=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}
+&
+\gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
+\end{align*}
 
 Let us check physical dimensions.
 
