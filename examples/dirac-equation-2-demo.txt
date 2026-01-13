@@ -1,19 +1,19 @@
+-- Dirac equation 2
+
+psi1 = C exp(-i xi / hbar) (E/c + m c, 0, pz, px + i py)
+psi2 = C exp(-i xi / hbar) (0, E/c + m c, px - i py, -pz)
+
+psi3 = C exp(i xi / hbar) (pz, px + i py, E/c + m c, 0)
+psi4 = C exp(i xi / hbar) (px - i py, -pz, 0, E/c + m c)
+
+C = 1 / sqrt(E / c + m c)
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
+xi = E t - px x - py y - pz z
+
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
-
-phi = E t - px x - py y - pz z
-
-E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
-
-C = 1 / sqrt(E / c + m c)
-
-psi1 = C exp(-i phi / hbar) (E/c + m c, 0, pz, px + i py)
-psi2 = C exp(-i phi / hbar) (0, E/c + m c, px - i py, -pz)
-
-psi3 = C exp(i phi / hbar) (pz, px + i py, E/c + m c, 0)
-psi4 = C exp(i phi / hbar) (px - i py, -pz, 0, E/c + m c)
 
 D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma1,d(psi,x)) +
