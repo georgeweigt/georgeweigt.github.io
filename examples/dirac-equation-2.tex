@@ -2,7 +2,7 @@
 
 \section*{Dirac equation 2}
 
-This is Dirac's equation.
+This is the Dirac equation.
 \begin{equation*}
 i\hbar\left(
 \frac{\gamma^0}{c}\frac{\partial}{\partial t}+
@@ -16,65 +16,47 @@ i\hbar\left(
 Gamma matrices for the ``Dirac representation'' are
 \begin{align*}
 \gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
-& \gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
-\\
-\\
+&
+\gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
+\\[1ex]
 \gamma^2&=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}
-& \gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
+&
+\gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
 \end{align*}
 
-Let $\phi$ be the field
-\begin{equation*}
-\phi=p_xx+p_yy+p_zz-Et
-\end{equation*}
+The solutions to the Dirac equation are
+\begin{align*}
+\psi_1&=\frac{e^{-i\phi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
+&
+\psi_2&=\frac{e^{-i\phi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
+\\[1ex]
+\psi_3&=\frac{e^{i\phi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
+&
+\psi_4&=\frac{e^{i\phi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
+\end{align*}
+
 where
+\begin{equation*}
+\phi=p_\mu x^\mu=Et-p_xx-p_yy-p_zz
+\end{equation*}
+
+and
 \begin{equation*}
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-The four positive wave solutions to the Dirac equation are
-\begin{align*}
-\psi_1&=\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
-\exp\left(\frac{i\phi}{\hbar}\right)
-& \psi_2&=\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
-\exp\left(\frac{i\phi}{\hbar}\right)
-\\
-\\
-\psi_3&=\begin{pmatrix}p_z\\p_x+ip_y\\E/c-mc\\0\end{pmatrix}
-\exp\left(\frac{i\phi}{\hbar}\right)
-& \psi_4&=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c-mc\end{pmatrix}
-\exp\left(\frac{i\phi}{\hbar}\right)
-\end{align*}
+The solutions are normalized as
+\begin{equation*}
+|\psi|^2=\frac{2E}{c}
+\end{equation*}
 
-The four negative wave solutions are
-\begin{align*}
-\psi_5&=\begin{pmatrix}E/c-mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
-\exp\left(-\frac{i\phi}{\hbar}\right)
-& \psi_6&=\begin{pmatrix}0\\E/c-mc\\p_x-ip_y\\-p_z\end{pmatrix}
-\exp\left(-\frac{i\phi}{\hbar}\right)
-\\
-\\
-\psi_7&=\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
-\exp\left(-\frac{i\phi}{\hbar}\right)
-& \psi_8&=\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
-\exp\left(-\frac{i\phi}{\hbar}\right)
-\end{align*}
+Let us check physical units.
+For the $Et$ term in $\phi$ we have
+\begin{equation*}
+Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
+=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
 
-Negative wave solutions flip the sign of the $mc$ term.
-
-\bigskip
-The following solutions are used for fermion fields.
-\begin{center}
-\begin{tabular}{ll}
-$\psi_1$ & fermion, spin up\\
-$\psi_2$ & fermion, spin down\\
-\\
-$\psi_7$ & anti-fermion, spin up\\
-$\psi_8$ & anti-fermion, spin down
-\end{tabular}
-\end{center}
-
-Here is a check of physical units.
 The momenta $p_x$, $p_y$, and $p_z$ have units of
 \begin{equation*}
 \frac{\text{kilogram}\,\text{meter}}{\text{second}}
@@ -82,12 +64,7 @@ The momenta $p_x$, $p_y$, and $p_z$ have units of
 
 Hence
 \begin{equation*}
-p_xx\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
-\end{equation*}
-
-For the time-dependent term
-\begin{equation*}
-Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
+-p_xx-p_yy-p_zz\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}\times\text{meter}
 =\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \end{equation*}
 
@@ -96,9 +73,9 @@ We have for the reduced Planck constant
 \hbar\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \end{equation*}
 
-Hence $\phi/\hbar$ is dimensionless as required by the exponential function.
+Hence $\phi/\hbar$ is dimensionless as required by the exponential function:
 \begin{equation*}
-\frac{p_xx-Et}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\frac{Et-p_xx-p_yy-p_zz}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
 \times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
 \end{equation*}
 

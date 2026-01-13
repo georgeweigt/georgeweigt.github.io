@@ -3,19 +3,17 @@ gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
-phi = px x + py y + pz z - E t
+phi = E t - px x - py y - pz z
 
 E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
-psi1 = exp(i phi / hbar) (E/c + m c, 0, pz, px + i py)
-psi2 = exp(i phi / hbar) (0, E/c + m c, px - i py, -pz)
-psi3 = exp(i phi / hbar) (pz, px + i py, E/c - m c, 0)
-psi4 = exp(i phi / hbar) (px - i py, -pz, 0, E/c - m c)
+C = 1 / sqrt(E / c + m c)
 
-psi5 = exp(-i phi / hbar) (E/c - m c, 0, pz, px + i py)
-psi6 = exp(-i phi / hbar) (0, E/c - m c, px - i py, -pz)
-psi7 = exp(-i phi / hbar) (pz, px + i py, E/c + m c, 0)
-psi8 = exp(-i phi / hbar) (px - i py, -pz, 0, E/c + m c)
+psi1 = C exp(-i phi / hbar) (E/c + m c, 0, pz, px + i py)
+psi2 = C exp(-i phi / hbar) (0, E/c + m c, px - i py, -pz)
+
+psi3 = C exp(i phi / hbar) (pz, px + i py, E/c + m c, 0)
+psi4 = C exp(i phi / hbar) (px - i py, -pz, 0, E/c + m c)
 
 D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma1,d(psi,x)) +
@@ -28,9 +26,14 @@ check(i hbar D(psi1) == m c psi1)
 check(i hbar D(psi2) == m c psi2)
 check(i hbar D(psi3) == m c psi3)
 check(i hbar D(psi4) == m c psi4)
-check(i hbar D(psi5) == m c psi5)
-check(i hbar D(psi6) == m c psi6)
-check(i hbar D(psi7) == m c psi7)
-check(i hbar D(psi8) == m c psi8)
+
+"ok"
+
+"Verify normalization"
+
+check(dot(psi1,conj(psi1)) == 2 E / c)
+check(dot(psi2,conj(psi2)) == 2 E / c)
+check(dot(psi3,conj(psi3)) == 2 E / c)
+check(dot(psi4,conj(psi4)) == 2 E / c)
 
 "ok"
