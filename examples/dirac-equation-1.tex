@@ -1,0 +1,45 @@
+\input{preamble}
+
+\section*{Dirac equation 1}
+
+From Fitzpatrick problem 11.11.
+
+\bigskip
+Let
+\begin{equation*}
+\psi^r=\exp\left(-\frac{i}{\hbar}\epsilon_rp_\mu x^\mu\right)\omega^r(\mathbf p)
+\end{equation*}
+
+where
+\begin{align*}
+\omega^1(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
+\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
+&
+\omega^2(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
+\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
+\\[1ex]
+\omega^3(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
+\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
+&
+\omega^4(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
+\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
+\end{align*}
+
+and
+\begin{equation*}
+\epsilon=(1,1,-1,-1)
+\end{equation*}
+
+Verify that $\psi^r$ are solutions to the Dirac equation
+\begin{equation*}
+i\hbar\gamma^\mu\partial_\mu\psi=mc\psi
+\end{equation*}
+
+and that the solutions are normalized as
+\begin{equation*}
+|\psi|^2=\frac{E}{mc^2}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/dirac-equation-1-demo.html}{Eigenmath script}
+
+\end{document}
