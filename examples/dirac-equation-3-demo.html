@@ -34,6 +34,16 @@ check(dot(pslash,v2) == -m c v2)
 
 "ok"
 
+"Verify normalization"
+
+check(dot(u1,conj(u1)) == 2 E / c)
+check(dot(u2,conj(u2)) == 2 E / c)
+
+check(dot(v1,conj(v1)) == 2 E / c)
+check(dot(v2,conj(v2)) == 2 E / c)
+
+"ok"
+
 "Verify completeness"
 
 adjoint(u) = dot(conj(u),gamma0)

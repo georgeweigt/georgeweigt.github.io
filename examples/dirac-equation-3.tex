@@ -4,17 +4,17 @@
 
 From the previous section
 \begin{align*}
-\psi_1&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}
-\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
+\psi_1&=\underset{\text{wavefunction for fermion spin up}}
+{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 &
-\psi_2&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}
-\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
+\psi_2&=\underset{\text{wavefunction for fermion spin down}}
+{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \\[1ex]
-\psi_3&=\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}
-\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
+\psi_3&=\underset{\text{wavefunction for antifermion spin up}}
+{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 &
-\psi_4&=\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}
-\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+\psi_4&=\underset{\text{wavefunction for antifermion spin down}}
+{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{align*}
 
 where
@@ -29,17 +29,17 @@ E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 
 Spinors are $\psi$ without the exponentials.
 \begin{align*}
-u_1&=\frac{1}{\sqrt{E/c+mc}}
-\underset{\text{fermion spin up}}{\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
+u_1&=\underset{\text{spinor for fermion spin up}}
+{\frac{1}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 &
-u_2&=\frac{1}{\sqrt{E/c+mc}}
-\underset{\text{fermion spin down}}{\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
+u_2&=\underset{\text{spinor for fermion spin down}}
+{\frac{1}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \\[1ex]
-v_1&=\frac{1}{\sqrt{E/c+mc}}
-\underset{\text{anti-fermion spin up}}{\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
+v_1&=\underset{\text{spinor for antifermion spin up}}
+{\frac{1}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 &
-v_2&=\frac{1}{\sqrt{E/c+mc}}
-\underset{\text{anti-fermion spin down}}{\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+v_2&=\underset{\text{spinor for antifermion spin down}}
+{\frac{1}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{align*}
 
 Spinors are solutions to the momentum-space Dirac equations
@@ -74,5 +74,8 @@ Adjoints of spinors are formed as
 \end{equation*}
 
 hence $u\bar u$ and $v\bar v$ are outer products that form $4\times4$ matrices.
+
+\bigskip
+\href{https://georgeweigt.github.io/examples/dirac-equation-3-demo.html}{Eigenmath script}
 
 \end{document}

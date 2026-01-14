@@ -20,7 +20,7 @@ D(psi) = 1/c dot(gamma0,d(psi,t)) +
          dot(gamma2,d(psi,y)) +
          dot(gamma3,d(psi,z))
 
-"Verify solutions"
+"Verify wavefunctions"
 
 check(i hbar D(psi1) == m c psi1)
 check(i hbar D(psi2) == m c psi2)

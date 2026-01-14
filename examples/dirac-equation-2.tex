@@ -4,13 +4,17 @@
 
 Let
 \begin{align*}
-\psi_1&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}
+\psi_1&=\underset{\text{wavefunction for fermion spin up}}
+{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
 &
-\psi_2&=\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}
+\psi_2&=\underset{\text{wavefunction for fermion spin down}}
+{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
 \\[1ex]
-\psi_3&=\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}
+\psi_3&=\underset{\text{wavefunction for antifermion spin up}}
+{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
 &
-\psi_4&=\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}
+\psi_4&=\underset{\text{wavefunction for antifermion spin down}}
+{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
 \end{align*}
 
 where
@@ -104,5 +108,7 @@ The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
 mc\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
 \end{equation*}
+
+\href{https://georgeweigt.github.io/examples/dirac-equation-2-demo.html}{Eigenmath script}
 
 \end{document}
