@@ -1,4 +1,4 @@
--- Dirac equation 2
+"Dirac equation 2"
 
 psi1 = C exp(-i xi / hbar) (E/c + m c, 0, pz, px + i py)
 psi2 = C exp(-i xi / hbar) (0, E/c + m c, px - i py, -pz)

@@ -1,4 +1,4 @@
--- Dirac equation 1
+"Dirac equation 1"
 
 E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
