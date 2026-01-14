@@ -86,27 +86,43 @@ Hence $\xi/\hbar$ is dimensionless as required by the exponential function:
 \times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
 \end{equation*}
 
+From the normalization property we have
+\begin{equation*}
+\psi\propto\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\end{equation*}
+
 The derivatives introduce inverse units.
+
+\bigskip
+For the time derivative
 \begin{equation*}
 \frac{\partial\psi}{\partial t}\propto\frac{1}{\text{second}}
-\qquad
+\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\end{equation*}
+
+For the spatial derivatives
+\begin{equation*}
 \frac{\partial\psi}{\partial x}\propto\frac{1}{\text{meter}}
+\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
 \end{equation*}
 
 Hence
 \begin{equation*}
 \frac{\hbar}{c}\frac{\partial\psi}{\partial t}
 \propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
 \end{equation*}
 
 and
 \begin{equation*}
 \hbar\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
 \end{equation*}
 
 The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
-mc\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+mc\psi\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/dirac-equation-2-demo.html}{Eigenmath script}
