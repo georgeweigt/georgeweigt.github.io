@@ -1,12 +1,18 @@
 "Dirac equation 3"
 
+u1 = sqrt(E + m c^2) *
+     (1, 0, c pz / (E + m c^2), (px + i py) c / (E + m c^2))
+
+u2 = sqrt(E + m c^2) *
+     (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2))
+
+v1 = sqrt(E + m c^2) *
+     (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0)
+
+v2 = sqrt(E + m c^2) *
+     ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1)
+
 E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
-
-u1 = (E/c + m c, 0, pz, px + i py) / sqrt(E/c + m c)
-u2 = (0, E/c + m c, px - i py, -pz) / sqrt(E/c + m c)
-
-v1 = (pz, px + i py, E/c + m c, 0) / sqrt(E/c + m c)
-v2 = (px - i py, -pz, 0, E/c + m c) / sqrt(E/c + m c)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -35,11 +41,11 @@ check(dot(pslash,v2) == -m c v2)
 
 "Verify normalization"
 
-check(dot(u1,conj(u1)) == 2 E / c)
-check(dot(u2,conj(u2)) == 2 E / c)
+check(dot(u1,conj(u1)) == 2 E)
+check(dot(u2,conj(u2)) == 2 E)
 
-check(dot(v1,conj(v1)) == 2 E / c)
-check(dot(v2,conj(v2)) == 2 E / c)
+check(dot(v1,conj(v1)) == 2 E)
+check(dot(v2,conj(v2)) == 2 E)
 
 "ok"
 
@@ -47,7 +53,7 @@ check(dot(v2,conj(v2)) == 2 E / c)
 
 adjoint(u) = dot(conj(u),gamma0)
 
-check(outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == pslash + m c I)
-check(outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == pslash - m c I)
+check(outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == pslash c + m c^2 I)
+check(outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == pslash c - m c^2 I)
 
 "ok"

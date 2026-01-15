@@ -5,16 +5,32 @@
 Let
 \begin{align*}
 \psi_1&=\underset{\text{wavefunction for fermion spin up}}
-{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}E/c+mc\\0\\p_z\\p_x+ip_y\end{pmatrix}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
+e^{-i\xi/\hbar}
+}
 &
 \psi_2&=\underset{\text{wavefunction for fermion spin down}}
-{\frac{e^{-i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}0\\E/c+mc\\p_x-ip_y\\-p_z\end{pmatrix}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
+e^{-i\xi/\hbar}
+}
 \\[1ex]
 \psi_3&=\underset{\text{wavefunction for antifermion spin up}}
-{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_z\\p_x+ip_y\\E/c+mc\\0\end{pmatrix}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
+e^{i\xi/\hbar}
+}
 &
 \psi_4&=\underset{\text{wavefunction for antifermion spin down}}
-{\frac{e^{i\xi/\hbar}}{\sqrt{E/c+mc}}\begin{pmatrix}p_x-ip_y\\-p_z\\0\\E/c+mc\end{pmatrix}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
+e^{i\xi/\hbar}
+}
 \end{align*}
 
 where
@@ -41,7 +57,7 @@ i\hbar\left(
 
 and that the solutions are normalized as
 \begin{equation*}
-|\psi|^2=\frac{2E}{c}
+|\psi|^2=2E
 \end{equation*}
 
 Gamma matrices for the ``Dirac representation'' are
@@ -88,7 +104,7 @@ Hence $\xi/\hbar$ is dimensionless as required by the exponential function:
 
 From the normalization property we have
 \begin{equation*}
-\psi\propto\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\psi\propto\text{joule}^{1/2}
 \end{equation*}
 
 The derivatives introduce inverse units.
@@ -97,32 +113,32 @@ The derivatives introduce inverse units.
 For the time derivative
 \begin{equation*}
 \frac{\partial\psi}{\partial t}\propto\frac{1}{\text{second}}
-\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 For the spatial derivatives
 \begin{equation*}
 \frac{\partial\psi}{\partial x}\propto\frac{1}{\text{meter}}
-\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 Hence
 \begin{equation*}
 \frac{\hbar}{c}\frac{\partial\psi}{\partial t}
 \propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
-\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 and
 \begin{equation*}
 \hbar\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
-\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
 mc\psi\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
-\times\left(\frac{\text{kilogram}\,\text{meter}}{\text{second}}\right)^{1/2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/dirac-equation-2-demo.html}{Eigenmath script}
