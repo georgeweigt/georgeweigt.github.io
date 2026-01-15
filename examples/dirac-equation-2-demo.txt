@@ -16,8 +16,8 @@ psi4 = sqrt(E + m c^2) *
        ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1) *
        exp(i xi / hbar)
 
-E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 xi = E t - px x - py y - pz z
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))

@@ -1,16 +1,6 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Dirac equation 1"
 
-E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
-
-C = sqrt((E + m c^2) / (2 m c^2))
-
-w1 = C (1, 0, pz c / (E + m c^2), (px + i py) c / (E + m c^2))
-w2 = C (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2))
-
-w3 = C (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0)
-w4 = C ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1)
-
 P = (E / c, px, py, pz)
 X = (c t, x, y, z)
 
@@ -21,6 +11,20 @@ psi2 = exp(-i dot(P,gmunu,X) / hbar) w2
 
 psi3 = exp(i dot(P,gmunu,X) / hbar) w3
 psi4 = exp(i dot(P,gmunu,X) / hbar) w4
+
+w1 = sqrt((E + m c^2) / (2 m c^2)) *
+     (1, 0, pz c / (E + m c^2), (px + i py) c / (E + m c^2))
+
+w2 = sqrt((E + m c^2) / (2 m c^2)) *
+     (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2))
+
+w3 = sqrt((E + m c^2) / (2 m c^2)) *
+     (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0)
+
+w4 = sqrt((E + m c^2) / (2 m c^2)) *
+     ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1)
+
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
 
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
