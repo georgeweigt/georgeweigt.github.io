@@ -183,6 +183,7 @@ The total energy per unit volume is the sum of (1) and (2).
 U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle
 +\frac{1}{2\mu_0}\langle\hat B^2\rangle
 =\hbar\omega\left(\bar n+\tfrac{1}{2}\right)
+\tag{3}
 \end{equation*}
 
 Check units.
@@ -209,7 +210,7 @@ c_n=\sqrt\frac{\bar n}{n}\exp(-i\omega t)c_{n-1}
 Hence
 \begin{equation*}
 \hat a\bigl(c_n|n\rangle\bigr)=c_n\sqrt{n}|n-1\rangle=\sqrt{\bar n}\exp(-i\omega t)c_{n-1}|n-1\rangle
-\tag{3}
+\tag{4}
 \end{equation*}
 
 Noting that $\hat a|0\rangle=0$ we can write the summation starting from $n=1$.
@@ -217,13 +218,24 @@ Noting that $\hat a|0\rangle=0$ we can write the summation starting from $n=1$.
 \hat a|\Psi\rangle=\hat a\sum_{n=1}^\infty c_n|n\rangle
 \end{equation*}
 
-By equation (3) we have
+By equation (4) we have
 \begin{equation*}
 \hat a|\Psi\rangle=\sqrt{\bar n}\exp(-i\omega t)\sum_{n=1}^\infty c_{n-1}|n-1\rangle
 =\sqrt{\bar n}\exp(-i\omega t)|\Psi\rangle
 \end{equation*}
 
+\href{https://georgeweigt.github.io/examples/coherent-state-demo.html}{Eigenmath script}
+
 \end{document}
+
+
+
+
+
+
+
+
+
 
 \section*{Energy states}
 For state $|n\rangle$ we have
@@ -259,5 +271,7 @@ U=\frac{\epsilon_0}{2}\langle\hat E^2\rangle
 +\frac{1}{2\mu_0}\langle\hat B^2\rangle
 =\hbar\omega\left(n+\tfrac{1}{2}\right)
 \end{equation*}
+
+\href{https://georgeweigt.github.io/examples/coherent-state-demo.html}{Eigenmath script}
 
 \end{document}

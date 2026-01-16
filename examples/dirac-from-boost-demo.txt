@@ -1,3 +1,5 @@
+"Dirac from boost"
+
 u0 = (1, 0, 0, 0)
 
 Lambda = ((E + m, 0, p, 0),

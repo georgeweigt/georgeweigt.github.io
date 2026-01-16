@@ -1,4 +1,4 @@
-"Verify formulas"
+"Coherent state"
 
 E = i sqrt(nbar hbar omega / (2 epsilon0)) (exp(-i omega t) - exp(i omega t))
 B = sqrt(nbar hbar omega mu0 / 2) (exp(-i omega t) + exp(i omega t))
@@ -12,10 +12,14 @@ E2 = -hbar omega / (2 epsilon0) *
 B2 = hbar omega mu0 / 2 *
 (nbar exp(-2 i omega t) + nbar exp(2 i omega t) + 2 nbar + 1)
 
+"Verify equation (1)"
 check(E2 == -hbar omega / (2 epsilon0) (-4 nbar sin(omega t)^2 - 1))
+"ok"
 
+"Verify equation (2)"
 check(B2 == hbar omega mu0 / 2 (4 nbar cos(omega t)^2 + 1))
+"ok"
 
+"Verify equation (3)"
 check(epsilon0 / 2 E2 + 1 / (2 mu0) B2 == (nbar + 1/2) hbar omega)
-
 "ok"

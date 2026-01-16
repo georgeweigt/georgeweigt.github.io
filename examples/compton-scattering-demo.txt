@@ -1,4 +1,4 @@
--- Verify formulas for Compton scattering
+"Compton scattering"
 
 E = sqrt(omega^2 + m^2)
 

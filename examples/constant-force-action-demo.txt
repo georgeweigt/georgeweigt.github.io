@@ -1,3 +1,5 @@
+"Constant force action"
+
 A = (xb - xa) / T - F T / (2 m)
 B = xa
 x = F t^2 / (2 m) + A t + B
