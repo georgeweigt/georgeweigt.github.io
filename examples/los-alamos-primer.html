@@ -1,19 +1,19 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Energy of fission process"
 
--- energy released per atom
+# energy released per atom
 E = 170 10^6 "eV" / "atom"
 
--- convert eV to ergs
+# convert eV to ergs
 E = E 4.8 10^(-10) / 300 "erg" / "eV"
 
--- convert atoms to grams
+# convert atoms to grams
 E = E / (3.88 10^(-22) "gram" / "atom")
 
--- convert ergs to tons of TNT
+# convert ergs to tons of TNT
 E = E / (3.6 10^16 "erg" / "tons of TNT")
 
--- energy per kg of U235
+# energy per kg of U235
 E = E 1000 "gram"
 E
 
