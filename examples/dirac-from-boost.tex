@@ -11,14 +11,14 @@ Let $u_0$ be the spinor for an electron at rest with spin up along the $z$ axis.
 u_0=\begin{pmatrix}\sqrt{2m}\\0\\0\\0\end{pmatrix}
 \end{equation*}
 
-Matrix $A$ boosts a spinor in the $z$ direction where $E=\sqrt{p^2+m^2}$.
+Matrix $A$ boosts $u_0$ in the $z$ direction where $E=\sqrt{p_z^2+m^2}$.
 \begin{equation*}
 A=\frac{1}{\sqrt{2m(E+m)}}
 \begin{pmatrix}
-E+m & 0 & -p & 0\\
-0 & E+m & 0 & p\\
-p & 0 & E+m & 0\\
-0 & -p & 0 & E+m\\
+E+m & 0 & -p_z & 0\\
+0 & E+m & 0 & p_z\\
+p_z & 0 & E+m & 0\\
+0 & -p_z & 0 & E+m\\
 \end{pmatrix}
 \end{equation*}
 
@@ -28,14 +28,14 @@ u&=Au_0
 \\
 &=\frac{1}{\sqrt{2m(E+m)}}
 \begin{pmatrix}
-E+m & 0 & p & 0\\
-0 & E+m & 0 & -p\\
--p & 0 & E+m & 0\\
-0 & p & 0 & E+m\\
+E+m & 0 & -p_z & 0\\
+0 & E+m & 0 & p_z\\
+p_z & 0 & E+m & 0\\
+0 & -p_z & 0 & E+m\\
 \end{pmatrix}
 \begin{pmatrix}\sqrt{2m}\\0\\0\\0\end{pmatrix}
 \\
-&=\frac{1}{\sqrt{E+m}}\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}
+&=\frac{1}{\sqrt{E+m}}\begin{pmatrix}E+m\\0\\p_z\\0\end{pmatrix}
 \end{align*}
 
 Noting that $E=m$ in the rest frame, spinor $u$ has the same normalization as $u_0$.
@@ -79,7 +79,7 @@ Right multiply both sides by $A$.
 \tag{1}
 \end{equation*}
 
-To recover the Dirac equation from (1), start with the identity
+To recover the Dirac equation from boost $A$, start with the identity
 \begin{equation*}
 \gamma^0u_0=u_0
 \end{equation*}

@@ -4,16 +4,16 @@
 
 u0 = (C, 0, 0, 0)
 
-A = ((E + m, 0, -p, 0),
-     (0, E + m, 0, p),
-     (p, 0, E + m, 0),
-     (0, -p, 0, E + m)) / sqrt(E + m) / C
+A = ((E + m, 0, -pz, 0),
+     (0, E + m, 0, pz),
+     (pz, 0, E + m, 0),
+     (0, -pz, 0, E + m)) / sqrt(E + m) / C
 
 u = dot(A,u0)
 u
 
 "Check normalization"
-E = sqrt(p^2 + m^2)
+E = sqrt(pz^2 + m^2)
 check(dot(conj(u),u) == 2 E)
 E = quote(E)
 "ok"
