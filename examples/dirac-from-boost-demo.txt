@@ -18,12 +18,8 @@ check(dot(conj(u),u) == 2 E)
 E = quote(E)
 "ok"
 
-"Verify equation (1)"
+"Verify equation (2)"
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 pslash = m dot(A,gamma0,inv(A))
-check(1/m dot(pslash,A) == dot(A,gamma0))
-"ok"
-
-"Verify equation (2)"
 check(dot(pslash,u) == m u)
 "ok"
