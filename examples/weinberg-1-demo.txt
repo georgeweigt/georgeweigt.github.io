@@ -1,0 +1,40 @@
+"Weinberg 1"
+
+X1(f) = x1 f
+X2(f) = x2 f
+X3(f) = x3 f
+
+P1(f) = -i hbar d(f,x1)
+P2(f) = -i hbar d(f,x2)
+P3(f) = -i hbar d(f,x3)
+
+L1(f) = X2(P3(f)) - X3(P2(f))
+L2(f) = X3(P1(f)) - X1(P3(f))
+L3(f) = X1(P2(f)) - X2(P1(f))
+
+PP(f) = P1(P1(f)) + P2(P2(f)) + P3(P3(f))
+LL(f) = L1(L1(f)) + L2(L2(f)) + L3(L3(f))
+
+PXL1(f) = P2(L3(f)) - P3(L2(f))
+PXL2(f) = P3(L1(f)) - P1(L3(f))
+PXL3(f) = P1(L2(f)) - P2(L1(f))
+
+LXP1(f) = L2(P3(f)) - L3(P2(f))
+LXP2(f) = L3(P1(f)) - L1(P3(f))
+LXP3(f) = L1(P2(f)) - L2(P1(f))
+
+R1(f) = -Z e^2 X1(f) / r + 1 / (2 m) (PXL1(f) - LXP1(f))
+R2(f) = -Z e^2 X2(f) / r + 1 / (2 m) (PXL2(f) - LXP2(f))
+R3(f) = -Z e^2 X3(f) / r + 1 / (2 m) (PXL3(f) - LXP3(f))
+
+RR(f) = R1(R1(f)) + R2(R2(f)) + R3(R3(f))
+
+H(f) = PP(f) / (2 m) - Z e^2 / r f
+
+r = sqrt(x1^2 + x2^2 + x3^2)
+
+Y = psi(x1,x2,x3)
+
+"Verify equation (4.8.7) for wavefunctions"
+check(RR(Y) == Z^2 e^4 Y + 2 / m H(LL(Y) + hbar^2 Y))
+"ok"
