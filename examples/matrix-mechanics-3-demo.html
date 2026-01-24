@@ -39,4 +39,15 @@ Y = psi(x1,x2,x3,t)
 "Verify equation (4.8.7) for wavefunctions"
 check(RR(Y) == Z^2 e^4 Y + 2 / m H(LL(Y) + hbar^2 Y))
 "ok"
+
+
+"Verify commutation relations"
+
+check(R1(H(Y)) == H(R1(Y)))
+check(R2(H(Y)) == H(R2(Y)))
+check(R3(H(Y)) == H(R3(Y)))
+
+check(RR(H(Y)) == H(RR(Y)))
+
+"ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
