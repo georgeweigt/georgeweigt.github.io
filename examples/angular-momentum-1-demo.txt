@@ -1,0 +1,25 @@
+"Angular momentum 1"
+
+px(f) = -i hbar d(f,x)
+py(f) = -i hbar d(f,y)
+pz(f) = -i hbar d(f,z)
+
+Lx(f) = y pz(f) - z py(f)
+Ly(f) = z px(f) - x pz(f)
+Lz(f) = x py(f) - y px(f)
+
+L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
+
+"Verify commutation relations"
+
+Y = psi(x,y,z,t)
+
+check(Lx(Ly(Y)) - Ly(Lx(Y)) == i hbar Lz(Y))
+check(Ly(Lz(Y)) - Lz(Ly(Y)) == i hbar Lx(Y))
+check(Lz(Lx(Y)) - Lx(Lz(Y)) == i hbar Ly(Y))
+
+check(Lx(L2(Y)) - L2(Lx(Y)) == 0)
+check(Ly(L2(Y)) - L2(Ly(Y)) == 0)
+check(Lz(L2(Y)) - L2(Lz(Y)) == 0)
+
+"ok"
