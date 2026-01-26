@@ -1,20 +1,37 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
-Y = psi(r,theta,phi)
+-- spherical coordinates
 
 X1(f) = r sin(theta) cos(phi) f
 X2(f) = r sin(theta) sin(phi) f
 X3(f) = r cos(theta) f
 
-P1(f) = i hbar d(f,phi) sin(phi) / (r sin(theta))
-P2(f) = -i hbar d(f,phi) cos(phi) / (r sin(theta))
-P3(f) = i hbar d(f,theta) / (r sin(theta))
+D1(f) = sin(theta) cos(phi) d(f,r) +
+        cos(theta) cos(phi) / r d(f,theta) -
+        sin(phi) / (r sin(theta)) d(f,phi)
 
-L1(f) = i hbar (d(f,theta) sin(phi) + d(f,phi) cos(phi) cos(theta) / sin(theta))
-L2(f) = i hbar (-d(f,theta) cos(phi) + d(f,phi) sin(phi) cos(theta) / sin(theta))
-L3(f) = -i hbar d(f,phi)
+D2(f) = sin(theta) sin(phi) d(f,r) +
+        cos(theta) sin(phi) / r d(f,theta) +
+        cos(phi) / (r sin(theta)) d(f,phi)
+
+D3(f) = cos(theta) d(f,r) - sin(theta) / r d(f,theta)
+
+P1(f) = -i hbar D1(f)
+P2(f) = -i hbar D2(f)
+P3(f) = -i hbar D3(f)
 
 PP(f) = P1(P1(f)) + P2(P2(f)) + P3(P3(f))
-LL(f) = -hbar^2 (d(sin(theta) d(f,theta),theta) / sin(theta) + d(f,phi,phi) / sin(theta)^2)
+
+L1(f) = i hbar (sin(phi) d(f,theta) +
+        cos(theta) cos(phi) / sin(theta) d(f,phi))
+
+L2(f) = i hbar (-cos(phi) d(f,theta) +
+        cos(theta) sin(phi) / sin(theta) d(f,phi))
+
+L3(f) = -i hbar d(f,phi)
+
+LL(f) = -hbar^2 (d(f,theta,theta) +
+        cos(theta) / sin(theta) d(f,theta) +
+        1 / sin(theta)^2 d(f,phi,phi))
 
 PXL1(f) = P2(L3(f)) - P3(L2(f))
 PXL2(f) = P3(L1(f)) - P1(L3(f))
@@ -24,9 +41,13 @@ LXP1(f) = L2(P3(f)) - L3(P2(f))
 LXP2(f) = L3(P1(f)) - L1(P3(f))
 LXP3(f) = L1(P2(f)) - L2(P1(f))
 
-check(L1(Y) == X2(P3(Y)) - X3(P2(Y)))
-check(L2(Y) == X3(P1(Y)) - X1(P3(Y)))
-check(L3(Y) == X1(P2(Y)) - X2(P1(Y)))
+W = psi(r,theta,phi)
 
-check(L1(L1(Y)) + L2(L2(Y)) + L3(L3(Y)) == LL(Y))
+check(X2(P3(W)) - X3(P2(W)) == L1(W))
+check(X3(P1(W)) - X1(P3(W)) == L2(W))
+check(X1(P2(W)) - X2(P1(W)) == L3(W))
+
+check(L1(L1(W)) + L2(L2(W)) + L3(L3(W)) == LL(W))
+
+"ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

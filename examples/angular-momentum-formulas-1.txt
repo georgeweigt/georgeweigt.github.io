@@ -1,4 +1,4 @@
-Y = psi(x1,x2,x3)
+-- rectangular coordinates
 
 X1(f) = x1 f
 X2(f) = x2 f
@@ -8,11 +8,12 @@ P1(f) = -i hbar d(f,x1)
 P2(f) = -i hbar d(f,x2)
 P3(f) = -i hbar d(f,x3)
 
+PP(f) = P1(P1(f)) + P2(P2(f)) + P3(P3(f))
+
 L1(f) = X2(P3(f)) - X3(P2(f))
 L2(f) = X3(P1(f)) - X1(P3(f))
 L3(f) = X1(P2(f)) - X2(P1(f))
 
-PP(f) = P1(P1(f)) + P2(P2(f)) + P3(P3(f))
 LL(f) = L1(L1(f)) + L2(L2(f)) + L3(L3(f))
 
 PXL1(f) = P2(L3(f)) - P3(L2(f))
@@ -22,3 +23,5 @@ PXL3(f) = P1(L2(f)) - P2(L1(f))
 LXP1(f) = L2(P3(f)) - L3(P2(f))
 LXP2(f) = L3(P1(f)) - L1(P3(f))
 LXP3(f) = L1(P2(f)) - L2(P1(f))
+
+"ok"
