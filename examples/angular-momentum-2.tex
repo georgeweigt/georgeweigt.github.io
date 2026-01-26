@@ -2,280 +2,125 @@
 
 \section*{Angular momentum 2}
 
-In this section we will derive the eigenvalues of $L^2$ and $L_z$ from the commutators
-\begin{align*}
-[L_x,L_y]&=i\hbar L_z
-\\
-[L_y,L_z]&=i\hbar L_x
-\\
-[L_z,L_x]&=i\hbar L_y
-\end{align*}
-
-and
-\begin{equation*}
-[L^2,L_x]=[L^2,L_y]=[L^2,L_z]=0
-\end{equation*}
-
-Start by defining ladder operators $L_+$ and $L_-$.
-\begin{align*}
-L_+&=L_x+iL_y
-\\
-L_-&=L_x-iL_y
-\end{align*}
-
-We have the following commutation relations for ladder operators.
-\begin{align*}
-[L_z,L_+]&=[L_z,L_x]+i[L_z,L_y]
-\\
-&=i\hbar L_y+i(-i\hbar L_x)
-\\
-&=\hbar L_+
-\\[1ex]
-[L_z,L_-]&=[L_z,L_x]-i[L_z,L_y]
-\\
-&=i\hbar L_y-i(-i\hbar L_x)
-\\
-&=-\hbar L_-
-\end{align*}
-
-We also have
-\begin{align*}
-L_-L_+&=(L_x-iL_y)(L_x+iL_y)
-\\
-&=L_x^2+L_y^2+i[L_x,L_y]
-\\
-&=L^2-L_z^2-\hbar L_z
-\\[1ex]
-L_+L_-&=(L_x+iL_y)(L_x-iL_y)
-\\
-&=L_x^2+L_y^2-i[L_x,L_y]
-\\
-&=L^2-L_z^2+\hbar L_z
-\end{align*}
-
-Operators $L^2$ and $L_z$ commute hence they share eigenfunctions $\psi$.
+The cross product in $\mathbf L=\mathbf r\times\mathbf p$
+demands rectangular coordinates.
+Hence for a wavefunction $\psi$ in spherical coordinates,
+vectors $\mathbf r$ and $\mathbf p$
+must be transformed in $\mathbf L\psi$.
 
 \bigskip
-Let $\lambda$ be an eigenvalue of $L^2$ and let $\mu$ be an eigenvalue of $L_z$ such that
+Vector $\mathbf r$ transforms as
 \begin{equation*}
-L^2\psi=\lambda\psi
+\mathbf r=\begin{pmatrix}x\\y\\z\end{pmatrix}
+=\begin{pmatrix}
+r\sin\theta\cos\phi
+\\
+r\sin\theta\sin\phi
+\\
+r\cos\theta
+\end{pmatrix}
 \end{equation*}
+
+To transform $\mathbf p$ we have by the chain rule
+\begin{align*}
+%
+%Dx(f) = sin(theta) cos(phi) d(f,r) +
+%        cos(theta) cos(phi) / r d(f,theta) -
+%        sin(phi) / (r sin(theta)) d(f,phi)
+%
+\frac{\partial}{\partial x}
+&=\sin\theta\cos\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial\theta}
+-\frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\\[1ex]
+%
+%Dy(f) = sin(theta) sin(phi) d(f,r) +
+%        cos(theta) sin(phi) / r d(f,theta) +
+%        cos(phi) / (r sin(theta)) d(f,phi)
+%
+\frac{\partial}{\partial y}
+&=\sin\theta\sin\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial\theta}
++\frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\\[1ex]
+%
+%Dz(f) = cos(theta) d(f,r) - sin(theta) / r d(f,theta)
+%
+\frac{\partial}{\partial z}
+&=\cos\theta\frac{\partial}{\partial r}
+-\frac{\sin\theta}{r}\frac{\partial}{\partial\theta}
+\end{align*}
+
+Hence
+\begin{align*}
+p_x&=-i\hbar\frac{\partial}{\partial x}=-i\hbar\left(
+\sin\theta\cos\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial\theta}
+-\frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\right)
+\\[1ex]
+p_y&=-i\hbar\frac{\partial}{\partial y}=-i\hbar\left(
+\sin\theta\sin\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial\theta}
++\frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\right)
+\\[1ex]
+p_z&=-i\hbar\frac{\partial}{\partial z}=-i\hbar\left(
+\cos\theta\frac{\partial}{\partial r}
+-\frac{\sin\theta}{r}\frac{\partial}{\partial\theta}
+\right)
+\end{align*}
+
+Using the transformed coordinates
+\begin{align*}
+%
+%x = r sin(theta) cos(phi)
+%y = r sin(theta) sin(phi)
+%z = r cos(theta)
+%
+x&=r\sin\theta\cos\phi
+\\
+y&=r\sin\theta\sin\phi
+\\
+z&=r\cos\theta
+\end{align*}
+
+we have in spherical coordinates
+\begin{align*}
+%
+%Lx(f) = i hbar (sin(phi) d(f,theta) +
+%        cos(theta) cos(phi) / sin(theta) d(f,phi))
+%
+L_x&=yp_z-zp_y=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\cos\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+%
+%Ly(f) = i hbar (-cos(phi) d(f,theta) +
+%        cos(theta) sin(phi) / sin(theta) d(f,phi))
+%
+L_y&=zp_x-xp_z=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\sin\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+%
+%Lz(f) = -i hbar d(f,phi)
+%
+L_z&=xp_y-yp_x=-i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
 
 and
 \begin{equation*}
-L_z\psi=\mu\psi
+%
+%LL(f) = -hbar^2 (d(f,theta,theta) +
+%        cos(theta) / sin(theta) d(f,theta) +
+%        1 / sin(theta)^2 d(f,phi,phi))
+%
+L^2={L_x}^2+{L_y}^2+{L_z}^2=-\hbar^2\left(
+\frac{\partial^2}{\partial\theta^2}
++\frac{\cos\theta}{\sin\theta}\frac{\partial}{\partial\theta}
++\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+\right)
 \end{equation*}
 
-We will now show that
-\begin{equation*}
-\lambda\ge\mu^2
-\end{equation*}
-
-By definition of $L^2$ we have
-\begin{equation*}
-L^2\psi=\left(L_x^2+L_y^2+L_z^2\right)\psi
-\end{equation*}
-
-Substitute $\lambda$ for $L^2$ and $\mu$ for $L_z$ to obtain
-\begin{equation*}
-\lambda\psi=\left(L_x^2+L_y^2+\mu^2\right)\psi
-\end{equation*}
-
-Rewrite as
-\begin{equation*}
-\left(L_x^2+L_y^2\right)\psi=(\lambda-\mu^2)\psi
-\end{equation*}
-
-The eigenvalues of squared Hermitian operators are nonnegative hence $\lambda-\mu^2\ge 0$.
-Hence
-\begin{equation*}
-\lambda\ge\mu^2
-\end{equation*}
-
-The property $\lambda\ge\mu^2$ means that $\mu$ has an upper limit.
-
-\bigskip
-Let $\mu_m$ be the maximum $\mu$.
-Then for eigenfunction $\psi_m$ we have
-\begin{equation*}
-L_z\psi_m=\mu_m\psi_m
-\end{equation*}
-
-Apply $L_+$ to both sides.
-\begin{equation*}
-L_+L_z\psi_m=\mu_mL_+\psi_m
-\end{equation*}
-
-Expand the left hand side.
-\begin{equation*}
-(L_zL_+-L_zL_++L_+L_z)\psi_m=\mu_mL_+\psi_m
-\end{equation*}
-
-Substitute $\hbar L_+$ for $[L_z,L_+]$.
-\begin{equation*}
-L_zL_+\psi_m-\hbar L_+\psi_m=\mu_mL_+\psi_m
-\end{equation*}
-
-Hence
-\begin{equation*}
-L_zL_+\psi_m=(\mu_m+\hbar)L_+\psi_m
-\end{equation*}
-
-Because $\mu_m$ is the maximum eigenvalue and $\mu_m+\hbar>\mu_m$ we must have
-\begin{equation*}
-L_+\psi_m=0
-\end{equation*}
-
-Consequently
-\begin{equation*}
-L_-L_+\psi_m=0
-\end{equation*}
-
-Recalling that
-\begin{equation*}
-L_-L_+=L^2-L_z^2-\hbar L_z
-\end{equation*}
-
-we have
-\begin{equation*}
-(L^2-L_z^2-\hbar L_z)\psi_m
-=(\lambda-\mu_m^2-\hbar\mu_m)\psi_m=0
-\end{equation*}
-
-Hence
-\begin{equation*}
-\lambda=\mu_m^2+\hbar\mu_m
-\tag{1}
-\end{equation*}
-
-Let $\mu_k$ be the minimum $\mu$.
-Then for eigenfunction $\psi_k$ we have
-\begin{equation*}
-L_z\psi_k=\mu_k\psi_k
-\end{equation*}
-
-Apply $L_-$ to both sides.
-\begin{equation*}
-L_-L_z\psi_k=\mu_kL_-\psi_k
-\end{equation*}
-
-Expand the left hand side.
-\begin{equation*}
-(L_zL_--L_zL_-+L_-L_z)\psi_k=\mu_mL_-\psi_k
-\end{equation*}
-
-Substitute $-\hbar L_-$ for $[L_z,L_-]$.
-\begin{equation*}
-L_zL_-\psi_k+\hbar L_-\psi_k=\mu_kL_-\psi_k
-\end{equation*}
-
-Hence
-\begin{equation*}
-L_zL_-\psi_k=(\mu_k-\hbar)L_-\psi_k
-\end{equation*}
-
-Because $\mu_k$ is the minimum eigenvalue and $\mu_k-\hbar<\mu_k$ we must have
-\begin{equation*}
-L_-\psi_k=0
-\end{equation*}
-
-Consequently
-\begin{equation*}
-L_+L_-\psi_k=0
-\end{equation*}
-
-Recalling that
-\begin{equation*}
-L_+L_-=L^2-L_z^2+\hbar L_z
-\end{equation*}
-
-we have
-\begin{equation*}
-(L^2-L_z^2+\hbar L_z)\psi_k=(\lambda-\mu_k^2+\hbar\mu_k)\psi_k=0
-\end{equation*}
-
-Hence
-\begin{equation*}
-\lambda=\mu_k^2-\hbar\mu_k
-\tag{2}
-\end{equation*}
-
-By equivalence of (1) and (2) we have
-\begin{equation*}
-\mu_m^2+\hbar\mu_m-\mu_k^2+\hbar\mu_k=0
-\tag{3}
-\end{equation*}
-
-By ladder operators there is an integer $n$ such that
-\begin{equation*}
-\mu_m=\mu_k+n\hbar
-\end{equation*}
-
-Substitute $\mu_k+n\hbar$ for $\mu_m$ in (3) to obtain
-\begin{equation*}
-\mu_k^2+2\mu_kn\hbar+n^2\hbar^2+\hbar\mu_k+n\hbar^2-\mu_k^2+\hbar\mu_k=0
-\end{equation*}
-
-Cancel $\mu_k^2$ and rewrite the remaining terms as
-\begin{equation*}
-2\mu_k(n+1)\hbar+n(n+1)\hbar^2=0
-\end{equation*}
-
-Divide through by $(n+1)\hbar$ to obtain
-\begin{equation*}
-2\mu_k+n\hbar=0
-\end{equation*}
-
-Hence
-\begin{equation*}
-\mu_k=-\frac{n\hbar}{2}
-\end{equation*}
-
-and
-\begin{equation*}
-\mu_m=\mu_k+n\hbar=\frac{n\hbar}{2}
-\end{equation*}
-
-Define quantum number $l$ as
-\begin{equation*}
-l=\frac{n}{2}=0,\tfrac{1}{2},1,\tfrac{3}{2},2,\ldots
-\end{equation*}
-
-Then
-\begin{equation*}
-\mu_m=l\hbar
-\end{equation*}
-
-By equation (1) we have
-\begin{equation*}
-\lambda=\mu_m^2+\mu_m\hbar=(l\hbar)^2+l\hbar^2=l(l+1)\hbar^2
-\end{equation*}
-
-Hence $l(l+1)\hbar^2$ are eigenvalues of $L^2$.
-\begin{equation*}
-L^2\psi=\lambda\psi=l(l+1)\hbar^2\psi
-\end{equation*}
-
-For a given $l$, operator $L_z$ has eigenvalues
-\begin{equation*}
-\mu=\mu_k,\ldots,\mu_m=-l\hbar,(-l+1)\hbar,\ldots,(l-1)\hbar,l\hbar
-\end{equation*}
-
-Define quantum number $m$ as
-\begin{equation*}
-m=-l,-l+1,\dots,l-1,l
-\end{equation*}
-
-Then
-\begin{equation*}
-\mu=m\hbar
-\end{equation*}
-
-Hence $m\hbar$ are eigenvalues of $L_z$.
-\begin{equation*}
-L_z\psi=\mu\psi=m\hbar\psi
-\end{equation*}
-
-\href{https://georgeweigt.github.io/examples/angular-momentum-2-demo.html}{Eigenmath script}
+\href{https://georgeweigt.github.io/examples/angular-momentum-3-demo.html}{Eigenmath script}
 
 \end{document}

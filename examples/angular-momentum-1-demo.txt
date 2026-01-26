@@ -8,7 +8,7 @@ Lx(f) = y pz(f) - z py(f)
 Ly(f) = z px(f) - x pz(f)
 Lz(f) = x py(f) - y px(f)
 
-L2(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
+LL(f) = Lx(Lx(f)) + Ly(Ly(f)) + Lz(Lz(f))
 
 "Verify commutation relations"
 
@@ -18,8 +18,8 @@ check(Lx(Ly(W)) - Ly(Lx(W)) == i hbar Lz(W))
 check(Ly(Lz(W)) - Lz(Ly(W)) == i hbar Lx(W))
 check(Lz(Lx(W)) - Lx(Lz(W)) == i hbar Ly(W))
 
-check(Lx(L2(W)) - L2(Lx(W)) == 0)
-check(Ly(L2(W)) - L2(Ly(W)) == 0)
-check(Lz(L2(W)) - L2(Lz(W)) == 0)
+check(Lx(LL(W)) - LL(Lx(W)) == 0)
+check(Ly(LL(W)) - LL(Ly(W)) == 0)
+check(Lz(LL(W)) - LL(Lz(W)) == 0)
 
 "ok"
