@@ -18,21 +18,22 @@ py(f) = -i hbar Dy(f)
 pz(f) = -i hbar Dz(f)
 
 Lx(f) = i hbar (sin(phi) d(f,theta) +
-        cos(phi) cos(theta) / sin(theta) d(f,phi))
+        cos(theta) cos(phi) / sin(theta) d(f,phi))
 
 Ly(f) = i hbar (-cos(phi) d(f,theta) +
-        sin(phi) cos(theta) / sin(theta) d(f,phi))
+        cos(theta) sin(phi) / sin(theta) d(f,phi))
 
 Lz(f) = -i hbar d(f,phi)
 
-LL(f) = -hbar^2 (cos(theta) / sin(theta) d(f,theta) +
-        d(f,theta,theta) + 1 / sin(theta)^2 d(f,phi,phi))
+LL(f) = -hbar^2 (d(f,theta,theta) +
+        cos(theta) / sin(theta) d(f,theta) +
+        1 / sin(theta)^2 d(f,phi,phi))
 
 x = r sin(theta) cos(phi)
 y = r sin(theta) sin(phi)
 z = r cos(theta)
 
-"Verify momentum operators"
+"Verify operators"
 
 check(y pz(W) - z py(W) == Lx(W))
 check(z px(W) - x pz(W) == Ly(W))

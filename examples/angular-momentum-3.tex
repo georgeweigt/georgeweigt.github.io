@@ -2,8 +2,10 @@
 
 \section*{Angular momentum 3}
 
-The cross product in $\mathbf L=\mathbf r\times\mathbf p$ demands rectangular coordinates.
-Hence for $\psi$ in spherical coordinates the vectors $\mathbf r$ and $\mathbf p$
+The cross product in $\mathbf L=\mathbf r\times\mathbf p$
+demands rectangular coordinates.
+Hence for a wavefunction $\psi$ in spherical coordinates,
+vectors $\mathbf r$ and $\mathbf p$
 must be transformed in $\mathbf L\psi$.
 
 \bigskip
@@ -21,16 +23,29 @@ r\cos\theta
 
 To transform $\mathbf p$ we have by the chain rule
 \begin{align*}
+%
+%Dx(f) = sin(theta) cos(phi) d(f,r) +
+%        cos(theta) cos(phi) / r d(f,theta) -
+%        sin(phi) / (r sin(theta)) d(f,phi)
+%
 \frac{\partial}{\partial x}
 &=\sin\theta\cos\phi\frac{\partial}{\partial r}
 +\frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial\theta}
 -\frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
 \\[1ex]
+%
+%Dy(f) = sin(theta) sin(phi) d(f,r) +
+%        cos(theta) sin(phi) / r d(f,theta) +
+%        cos(phi) / (r sin(theta)) d(f,phi)
+%
 \frac{\partial}{\partial y}
 &=\sin\theta\sin\phi\frac{\partial}{\partial r}
 +\frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial\theta}
 +\frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
 \\[1ex]
+%
+%Dz(f) = cos(theta) d(f,r) - sin(theta) / r d(f,theta)
+%
 \frac{\partial}{\partial z}
 &=\cos\theta\frac{\partial}{\partial r}
 -\frac{\sin\theta}{r}\frac{\partial}{\partial\theta}
@@ -58,6 +73,11 @@ p_z&=-i\hbar\frac{\partial}{\partial z}=-i\hbar\left(
 
 Using the transformed coordinates
 \begin{align*}
+%
+%x = r sin(theta) cos(phi)
+%y = r sin(theta) sin(phi)
+%z = r cos(theta)
+%
 x&=r\sin\theta\cos\phi
 \\
 y&=r\sin\theta\sin\phi
@@ -65,22 +85,39 @@ y&=r\sin\theta\sin\phi
 z&=r\cos\theta
 \end{align*}
 
-we have for the angular momentum operators
+we have in spherical coordinates
 \begin{align*}
+%
+%Lx(f) = i hbar (sin(phi) d(f,theta) +
+%        cos(theta) cos(phi) / sin(theta) d(f,phi))
+%
 L_x&=yp_z-zp_y=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
 +\frac{\cos\theta\cos\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
 \\[1ex]
+%
+%Ly(f) = i hbar (-cos(phi) d(f,theta) +
+%        cos(theta) sin(phi) / sin(theta) d(f,phi))
+%
 L_y&=zp_x-xp_z=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
 +\frac{\cos\theta\sin\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
 \\[1ex]
+%
+%Lz(f) = -i hbar d(f,phi)
+%
 L_z&=xp_y-yp_x=-i\hbar\frac{\partial}{\partial\phi}
 \end{align*}
 
 and
 \begin{equation*}
+%
+%LL(f) = -hbar^2 (d(f,theta,theta) +
+%        cos(theta) / sin(theta) d(f,theta) +
+%        1 / sin(theta)^2 d(f,phi,phi))
+%
 L^2={L_x}^2+{L_y}^2+{L_z}^2=-\hbar^2\left(
-\frac{\cos\theta}{\sin\theta}\frac{\partial}{\partial\theta}
-+\frac{\partial^2}{\partial\theta^2}+\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+\frac{\partial^2}{\partial\theta^2}
++\frac{\cos\theta}{\sin\theta}\frac{\partial}{\partial\theta}
++\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
 \right)
 \end{equation*}
 
