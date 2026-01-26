@@ -1,0 +1,42 @@
+"Angular momentum 3"
+
+W = psi(r,theta,phi,t)
+
+Dx(f) = sin(theta) cos(phi) d(f,r) +
+        cos(theta) cos(phi) / r d(f,theta) -
+        sin(phi) / (r sin(theta)) d(f,phi)
+
+Dy(f) = sin(theta) sin(phi) d(f,r) +
+        cos(theta) sin(phi) / r d(f,theta) +
+        cos(phi) / (r sin(theta)) d(f,phi)
+
+Dz(f) = cos(theta) d(f,r) - sin(theta) / r d(f,theta)
+
+px(f) = -i hbar Dx(f)
+py(f) = -i hbar Dy(f)
+pz(f) = -i hbar Dz(f)
+
+Lx(f) = i hbar (sin(phi) d(f,theta) +
+        cos(phi) cos(theta) / sin(theta) d(f,phi))
+
+Ly(f) = i hbar (-cos(phi) d(f,theta) +
+        sin(phi) cos(theta) / sin(theta) d(f,phi))
+
+Lz(f) = -i hbar d(f,phi)
+
+LL(f) = -hbar^2 (cos(theta) / sin(theta) d(f,theta) +
+        d(f,theta,theta) + 1 / sin(theta)^2 d(f,phi,phi))
+
+x = r sin(theta) cos(phi)
+y = r sin(theta) sin(phi)
+z = r cos(theta)
+
+"Verify momentum operators"
+
+check(y pz(W) - z py(W) == Lx(W))
+check(z px(W) - x pz(W) == Ly(W))
+check(x py(W) - y px(W) == Lz(W))
+
+check(Lx(Lx(W)) + Ly(Ly(W)) + Lz(Lz(W)) == LL(W))
+
+"ok"

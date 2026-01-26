@@ -1,0 +1,89 @@
+\input{preamble}
+
+\section*{Angular momentum 3}
+
+The cross product in $\mathbf L=\mathbf r\times\mathbf p$ demands rectangular coordinates.
+Hence for $\psi$ in spherical coordinates the vectors $\mathbf r$ and $\mathbf p$
+must be transformed in $\mathbf L\psi$.
+
+\bigskip
+Vector $\mathbf r$ transforms as
+\begin{equation*}
+\mathbf r=\begin{pmatrix}x\\y\\z\end{pmatrix}
+=\begin{pmatrix}
+r\sin\theta\cos\phi
+\\
+r\sin\theta\sin\phi
+\\
+r\cos\theta
+\end{pmatrix}
+\end{equation*}
+
+To transform $\mathbf p$ we have by the chain rule
+\begin{align*}
+\frac{\partial}{\partial x}
+&=\sin\theta\cos\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial\theta}
+-\frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\\[1ex]
+\frac{\partial}{\partial y}
+&=\sin\theta\sin\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial\theta}
++\frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\\[1ex]
+\frac{\partial}{\partial z}
+&=\cos\theta\frac{\partial}{\partial r}
+-\frac{\sin\theta}{r}\frac{\partial}{\partial\theta}
+\end{align*}
+
+Hence
+\begin{align*}
+p_x&=-i\hbar\frac{\partial}{\partial x}=-i\hbar\left(
+\sin\theta\cos\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial\theta}
+-\frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\right)
+\\[1ex]
+p_y&=-i\hbar\frac{\partial}{\partial y}=-i\hbar\left(
+\sin\theta\sin\phi\frac{\partial}{\partial r}
++\frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial\theta}
++\frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial\phi}
+\right)
+\\[1ex]
+p_z&=-i\hbar\frac{\partial}{\partial z}=-i\hbar\left(
+\cos\theta\frac{\partial}{\partial r}
+-\frac{\sin\theta}{r}\frac{\partial}{\partial\theta}
+\right)
+\end{align*}
+
+Using the transformed coordinates
+\begin{align*}
+x&=r\sin\theta\cos\phi
+\\
+y&=r\sin\theta\sin\phi
+\\
+z&=r\cos\theta
+\end{align*}
+
+we have for the angular momentum operators
+\begin{align*}
+L_x&=yp_z-zp_y=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\cos\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+L_y&=zp_x-xp_z=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\sin\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+L_z&=xp_y-yp_x=-i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
+
+and
+\begin{equation*}
+L^2={L_x}^2+{L_y}^2+{L_z}^2=-\hbar^2\left(
+\frac{\cos\theta}{\sin\theta}\frac{\partial}{\partial\theta}
++\frac{\partial^2}{\partial\theta^2}+\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+\right)
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/angular-momentum-3-demo.html}{Eigenmath script}
+
+\end{document}
