@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Angular momentum 4"
+
+Lx(f) = i hbar (sin(phi) d(f,theta) +
+        cos(theta) cos(phi) / sin(theta) d(f,phi))
+
+Ly(f) = i hbar (-cos(phi) d(f,theta) +
+        cos(theta) sin(phi) / sin(theta) d(f,phi))
+
+Lz(f) = -i hbar d(f,phi)
+
+LL(f) = -hbar^2 (d(f,theta,theta) +
+        cos(theta) / sin(theta) d(f,theta) +
+        d(f,phi,phi) / sin(theta)^2)
+
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+"Verify eigenfunctions"
+
+for(l,0,2, for(m,-l,l, do(
+ psi = Y(l,m),
+ check(LL(psi) = l (l + 1) hbar^2 psi),
+ check(Lz(psi) = m hbar psi)
+)))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

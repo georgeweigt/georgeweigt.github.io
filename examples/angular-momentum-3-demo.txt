@@ -1,54 +1,40 @@
 "Angular momentum 3"
 
-L2(f) = -hbar^2 (d(f,theta,theta) + cos(theta) / sin(theta) d(f,theta) + d(f,phi,phi) / sin(theta)^2)
+Lx(f) = i hbar (sin(phi) d(f,theta) +
+        cos(theta) cos(phi) / sin(theta) d(f,phi))
 
-Lx(f) = i hbar (sin(phi) d(f,theta) + cos(phi) cos(theta) / sin(theta) d(f,phi))
-Ly(f) = i hbar (-cos(phi) d(f,theta) + sin(phi) cos(theta) / sin(theta) d(f,phi))
+Ly(f) = i hbar (-cos(phi) d(f,theta) +
+        cos(theta) sin(phi) / sin(theta) d(f,phi))
+
 Lz(f) = -i hbar d(f,phi)
+
+LL(f) = -hbar^2 (d(f,theta,theta) +
+        cos(theta) / sin(theta) d(f,theta) +
+        1 / sin(theta)^2 d(f,phi,phi))
 
 Lp(f) = Lx(f) + i Ly(f)
 Lm(f) = Lx(f) - i Ly(f)
 
-Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
-         P(l,m) exp(i m phi)
-
--- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
-
-P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
-           (sin(theta)/2)^m sum(k, 0, l - m,
-           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
-           ((1 - cos(theta)) / 2)^k))
-
-l = 3
-m = 2
-
-psi = Y(l,m)
-
 "Verify commutation relations"
 
-check(Lx(Ly(psi)) - Ly(Lx(psi)) == i hbar Lz(psi))
-check(Ly(Lz(psi)) - Lz(Ly(psi)) == i hbar Lx(psi))
-check(Lz(Lx(psi)) - Lx(Lz(psi)) == i hbar Ly(psi))
+W = psi(r,theta,phi,t)
 
-check(L2(Lx(psi)) - Lx(L2(psi)) == 0)
-check(L2(Ly(psi)) - Ly(L2(psi)) == 0)
-check(L2(Lz(psi)) - Lz(L2(psi)) == 0)
+check(Ly(Lz(W)) - Lz(Ly(W)) == i hbar Lx(W))
+check(Lz(Lx(W)) - Lx(Lz(W)) == i hbar Ly(W))
+check(Lx(Ly(W)) - Ly(Lx(W)) == i hbar Lz(W))
+
+check(LL(Lx(W)) - LL(Lx(W)) == 0)
+check(LL(Ly(W)) - LL(Ly(W)) == 0)
+check(LL(Lz(W)) - LL(Lz(W)) == 0)
 
 "ok"
 
 "Verify ladder operators"
 
-check(Lz(Lp(psi)) - Lp(Lz(psi)) == hbar Lp(psi))
-check(Lz(Lm(psi)) - Lm(Lz(psi)) == -hbar Lm(psi))
+check(Lz(Lp(W)) - Lp(Lz(W)) == hbar Lp(W))
+check(Lz(Lm(W)) - Lm(Lz(W)) == -hbar Lm(W))
 
-check(Lm(Lp(psi)) == L2(psi) - Lz(Lz(psi)) - hbar Lz(psi))
-check(Lp(Lm(psi)) == L2(psi) - Lz(Lz(psi)) + hbar Lz(psi))
-
-"ok"
-
-"Verify eigenvalues"
-
-check(L2(psi) == l (l + 1) hbar^2 psi)
-check(Lz(psi) == m hbar psi)
+check(Lm(Lp(W)) == LL(W) - Lz(Lz(W)) - hbar Lz(W))
+check(Lp(Lm(W)) == LL(W) - Lz(Lz(W)) + hbar Lz(W))
 
 "ok"

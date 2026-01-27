@@ -1,0 +1,69 @@
+\input{preamble}
+
+\section*{Angular momentum 4}
+
+From the previous section we found quantum numbers $l$ and $m$ such that
+\begin{equation*}
+l=0,\tfrac{1}{2},1,\tfrac{3}{2},2,\ldots
+\end{equation*}
+
+and
+\begin{equation*}
+m=-l,-l+1,\ldots,l-1,l
+\end{equation*}
+
+The eigenvalues of $L^2$ are $l(l+1)\hbar$.
+\begin{equation*}
+L^2\psi=l(l+1)\hbar^2\psi
+\end{equation*}
+
+The eigenvalues of $L_z$ are $m\hbar$.
+\begin{equation*}
+L_z\psi=m\hbar\psi
+\end{equation*}
+
+We now seek eigenfunctions $\psi$ that solve
+these eigenvalue equations.
+
+\medskip
+For integer $l$ the eigenfunctions are
+spherical harmonics $Y_{lm}$.
+\begin{equation*}
+\psi=Y_{lm}(\theta,\phi)
+%=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}P_{lm}(\cos\theta)\exp(im\phi)
+\end{equation*}
+
+Hence
+\begin{equation*}
+L^2Y_{lm}=l(l+1)\hbar^2Y_{lm}
+\end{equation*}
+
+and
+\begin{equation*}
+L_zY_{lm}=m\hbar Y_{lm}
+\end{equation*}
+
+\iffalse % FIXME any solutions for l = 1/2 and L (not S) ?
+
+For $l=\tfrac{1}{2}$ the eigenfunction is
+\begin{equation*}
+\psi=S_m=\begin{pmatrix}
+?
+\\
+?
+\end{pmatrix},\quad m=\pm\tfrac{1}{2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+L^2S_m=\tfrac{3}{4}\hbar^2S_m
+\end{equation*}
+
+and
+\begin{equation*}
+L_zS_m=m\hbar S_m
+\end{equation*}
+
+\fi
+
+\end{document}
