@@ -13,6 +13,7 @@ main(int argc, char *argv[])
 	system("cat preamble");
 	puts("\\renewcommand{\\contentsname}{}");
 	puts("\\tableofcontents");
+	puts("\\newpage");
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);
 	puts("\\end{document}");
