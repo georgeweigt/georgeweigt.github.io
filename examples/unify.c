@@ -10,16 +10,12 @@ int
 main(int argc, char *argv[])
 {
 	int i;
-
 	system("cat preamble");
-
-//	fputs("\\begin{center}\n\\LARGE Quantum Mechanics with Eigenmath\n\\end{center}\n\\newpage\n", stdout);
-	fputs("\\tableofcontents\n\\newpage\n", stdout);
-
+	puts("\\renewcommand{\\contentsname}{}");
+	puts("\\tableofcontents");
 	for (i = 1; i < argc; i++)
 		emit(argv[i]);
-
-	fputs("\\end{document}\n", stdout);
+	puts("\\end{document}");
 }
 
 void
