@@ -123,4 +123,105 @@ L^2={L_x}^2+{L_y}^2+{L_z}^2=-\hbar^2\left(
 
 \href{https://georgeweigt.github.io/examples/angular-momentum-3-demo.html}{Eigenmath script}
 
+\subsubsection*{Note}
+
+Griffith's book has a different approach.
+
+\medskip
+Noting that in spherical coordinates
+\begin{equation*}
+\mathbf r=r\mathbf e_r
+\end{equation*}
+
+and
+\begin{equation*}
+\nabla=\mathbf e_r\frac{\partial}{\partial r}
++\mathbf e_\theta\frac{1}{r}\frac{\partial}{\partial\theta}
++\mathbf e_\phi\frac{1}{r\sin\theta}\frac{\partial}{\partial\phi}
+\end{equation*}
+
+we have for angular momentum $\mathbf L$
+\begin{equation*}
+\mathbf L=-i\hbar(\mathbf r\times\nabla)
+=-i\hbar\left[
+r(\mathbf e_r\times\mathbf e_r)\frac{\partial}{\partial r}
++(\mathbf e_r\times\mathbf e_\theta)\frac{\partial}{\partial\theta}
++(\mathbf e_r\times\mathbf e_\phi)\frac{1}{\sin\theta}\frac{\partial}{\partial\phi}
+\right]
+\end{equation*}
+
+In rectangular coordinates
+\begin{equation*}
+%er = (sin(theta) cos(phi), sin(theta) sin(phi), cos(theta))
+\mathbf e_r=\begin{pmatrix}
+\sin\theta\cos\phi
+\\
+\sin\theta\sin\phi
+\\
+\cos\theta
+\end{pmatrix},\quad
+%etheta = (cos(theta) cos(phi), cos(theta) sin(phi), -sin(theta))
+\mathbf e_\theta=\begin{pmatrix}
+\cos\theta\cos\phi
+\\
+\cos\theta\sin\phi
+\\
+-\sin\theta
+\end{pmatrix},\quad
+%ephi = (-sin(phi), cos(phi), 0)
+\mathbf e_\phi=\begin{pmatrix}
+-\sin\phi
+\\
+\cos\phi
+\\
+0
+\end{pmatrix}
+\end{equation*}
+
+Hence for the cross products
+\begin{align*}
+\mathbf e_r\times\mathbf e_r&=0
+\\
+\mathbf e_r\times\mathbf e_\theta&=\mathbf e_\phi
+\\
+\mathbf e_r\times\mathbf e_\phi&=-\mathbf e_\theta
+\end{align*}
+
+Angular momentum $\mathbf L$ now reduces to
+\begin{equation*}
+\mathbf L=-i\hbar\left(
+\mathbf e_\phi\frac{\partial}{\partial\theta}
+-\mathbf e_\theta\frac{1}{\sin\theta}\frac{\partial}{\partial\phi}
+\right)
+\end{equation*}
+
+Substitute for the basis vectors
+\begin{align*}
+\mathbf e_\theta&=\mathbf e_x\cos\theta\cos\phi
++\mathbf e_y\cos\theta\sin\phi
+-\mathbf e_z\sin\theta
+\\
+\mathbf e_\phi&=-\mathbf e_x\sin\phi+\mathbf e_y\cos\phi
+\end{align*}
+
+to obtain
+\begin{equation*}
+\mathbf L=-i\hbar\left[
+(-\mathbf e_x\sin\phi+\mathbf e_y\cos\phi)\frac{\partial}{\partial\theta}
+-(\mathbf e_x\cos\theta\cos\phi+\mathbf e_y\cos\theta\sin\phi-\mathbf e_z\sin\theta)
+\frac{1}{\sin\theta}\frac{\partial}{\partial\phi}
+\right]
+\end{equation*}
+
+In component form
+\begin{align*}
+L_x&=\mathbf L\cdot\mathbf e_x=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\cos\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+L_y&=\mathbf L\cdot\mathbf e_y=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
++\frac{\cos\theta\sin\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
+\\[1ex]
+L_z&=\mathbf L\cdot\mathbf e_z=-i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
+
 \end{document}
