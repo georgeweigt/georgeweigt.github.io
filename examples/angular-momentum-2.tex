@@ -195,33 +195,37 @@ Angular momentum $\mathbf L$ now reduces to
 \right)
 \end{equation*}
 
-Substitute for the basis vectors
-\begin{align*}
-\mathbf e_\theta&=\mathbf e_x\cos\theta\cos\phi
-+\mathbf e_y\cos\theta\sin\phi
--\mathbf e_z\sin\theta
-\\
-\mathbf e_\phi&=-\mathbf e_x\sin\phi+\mathbf e_y\cos\phi
-\end{align*}
-
-to obtain
+Substitute for the basis vectors.
 \begin{equation*}
-\mathbf L=-i\hbar\left[
-(-\mathbf e_x\sin\phi+\mathbf e_y\cos\phi)\frac{\partial}{\partial\theta}
--(\mathbf e_x\cos\theta\cos\phi+\mathbf e_y\cos\theta\sin\phi-\mathbf e_z\sin\theta)
+\mathbf L=-i\hbar
+\begin{pmatrix}
+-\sin\phi
+\\
+\cos\phi
+\\
+0
+\end{pmatrix}
+\frac{\partial}{\partial\theta}
++i\hbar
+\begin{pmatrix}
+\cos\theta\cos\phi
+\\
+\cos\theta\sin\phi
+\\
+-\sin\theta
+\end{pmatrix}
 \frac{1}{\sin\theta}\frac{\partial}{\partial\phi}
-\right]
 \end{equation*}
 
 In component form
 \begin{align*}
-L_x&=\mathbf L\cdot\mathbf e_x=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
+L_x&=i\hbar\left(\sin\phi\frac{\partial}{\partial\theta}
 +\frac{\cos\theta\cos\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
 \\[1ex]
-L_y&=\mathbf L\cdot\mathbf e_y=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
+L_y&=i\hbar\left(-\cos\phi\frac{\partial}{\partial\theta}
 +\frac{\cos\theta\sin\phi}{\sin\theta}\frac{\partial}{\partial\phi}\right)
 \\[1ex]
-L_z&=\mathbf L\cdot\mathbf e_z=-i\hbar\frac{\partial}{\partial\phi}
+L_z&=-i\hbar\frac{\partial}{\partial\phi}
 \end{align*}
 
 \end{document}
