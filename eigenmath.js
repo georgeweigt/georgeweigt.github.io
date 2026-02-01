@@ -5421,15 +5421,30 @@ darccos(p1, p2)
 function
 darctan(p1, p2)
 {
-	push(cadr(p1));
-	push(p2);
-	derivative();
+	if (!findf(p1, p2)) {
+		push_integer(0);
+		return;
+	}
+	if (iszero(cadr(p1)) || iszero(caddr(p1))) {
+		push_symbol(DERIVATIVE);
+		push(p1);
+		push(p2);
+		list(3);
+		return;
+	}
+	push(cadr(p1));		// y
+	push(caddr(p1));	// x
+	divide();
+	p1 = pop();
+	push(p1);
+	push(p1);
+	multiply();
 	push_integer(1);
-	push(cadr(p1));
-	push_integer(2);
-	power();
 	add();
 	reciprocate();
+	push(p1);
+	push(p2);
+	derivative();
 	multiply();
 }
 
@@ -6744,19 +6759,17 @@ expform(flag)
 			push(caddr(p1)); // x
 			expform(1);
 			den = pop();
-			if (iszero(num) || iszero(den)) {
+			if (isplusone(den)) {
+				scan("-1/2 i log((i - z) / (i + z))", 0);
+				push_symbol(Z_LOWER);
+				push(num);
+				subst();
+				evalf();
+			} else {
 				push_symbol(ARCTAN);
 				push(num);
 				push(den);
 				list(3);
-			} else {
-				scan("-1/2 i log((i - z) / (i + z))", 0);
-				push_symbol(Z_LOWER);
-				push(num);
-				push(den);
-				divide();
-				subst();
-				evalf();
 			}
 			return;
 		}
