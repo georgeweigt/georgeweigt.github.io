@@ -4428,9 +4428,6 @@ eval_clear()
 	binding = {};
 	usrfunc = {};
 
-	binding[symbol(I_LOWER).printname] = imaginaryunit;
-	usrfunc[symbol(I_LOWER).printname] = symbol(NIL);
-
 	initscript();
 
 	restore_symbol();
@@ -6543,7 +6540,7 @@ expfunc()
 function
 eval_expcos(p1)
 {
-	scan("1/2 exp(i z) + 1/2 exp(-i z)", 0);
+	scan("1/2 exp(sqrt(-1) z) + 1/2 exp(-sqrt(-1) z)", 0);
 	push_symbol(Z_LOWER);
 	push(cadr(p1));
 	subst();
@@ -6569,13 +6566,6 @@ eval_expform(p1)
 function
 expform(flag)
 {
-	if (isimaginaryunit(get_binding(symbol(I_LOWER))))
-		expform_nib(flag);
-}
-
-function
-expform_nib(flag)
-{
 	var h, i, n, p1, num, den;
 
 	p1 = pop();
@@ -6585,7 +6575,7 @@ expform_nib(flag)
 		n = p1.elem.length;
 		for (i = 0; i < n; i++) {
 			push(p1.elem[i]);
-			expform_nib(flag);
+			expform(flag);
 			p1.elem[i] = pop();
 		}
 		push(p1);
@@ -6602,7 +6592,7 @@ expform_nib(flag)
 		p1 = cdr(p1);
 		while (iscons(p1)) {
 			push(car(p1));
-			expform_nib(flag);
+			expform(flag);
 			p1 = cdr(p1);
 		}
 		add_terms(stack.length - h);
@@ -6622,13 +6612,13 @@ expform_nib(flag)
 			p1 = cdr(p1);
 			while (iscons(p1)) {
 				push(car(p1));
-				expform_nib(flag);
+				expform(flag);
 				p1 = cdr(p1);
 			}
 			multiply_factors(stack.length - h);
 		} else {
 			push(p1);
-			expform_nib(flag);
+			expform(flag);
 		}
 		num = pop();
 
@@ -6638,13 +6628,13 @@ expform_nib(flag)
 			p1 = cdr(p1);
 			while (iscons(p1)) {
 				push(car(p1));
-				expform_nib(flag);
+				expform(flag);
 				p1 = cdr(p1);
 			}
 			multiply_factors(stack.length - h);
 		} else {
 			push(p1);
-			expform_nib(flag);
+			expform(flag);
 		}
 		den = pop();
 
@@ -6656,38 +6646,38 @@ expform_nib(flag)
 
 	if (car(p1) == symbol(POWER)) {
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		push(caddr(p1));
-		expform_nib(flag);
+		expform(flag);
 		power();
 		return;
 	}
 
 	if (car(p1) == symbol(COS)) {
-		scan("1/2 exp(i z) + 1/2 exp(-i z)", 0);
+		scan("1/2 exp(sqrt(-1) z) + 1/2 exp(-sqrt(-1) z)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
 	}
 
 	if (car(p1) == symbol(SIN)) {
-		scan("-1/2 i exp(i z) + 1/2 i exp(-i z)", 0);
+		scan("-1/2 sqrt(-1) exp(sqrt(-1) z) + 1/2 sqrt(-1) exp(-sqrt(-1) z)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
 	}
 
 	if (car(p1) == symbol(TAN)) {
-		scan("i / (exp(2 i z) + 1) - i exp(2 i z) / (exp(2 i z) + 1)", 0);
+		scan("sqrt(-1) / (exp(2 sqrt(-1) z) + 1) - sqrt(-1) exp(2 sqrt(-1) z) / (exp(2 sqrt(-1) z) + 1)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
@@ -6697,7 +6687,7 @@ expform_nib(flag)
 		scan("1/2 exp(-z) + 1/2 exp(z)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
@@ -6707,7 +6697,7 @@ expform_nib(flag)
 		scan("-1/2 exp(-z) + 1/2 exp(z)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
@@ -6717,7 +6707,7 @@ expform_nib(flag)
 		scan("-1 / (exp(2 z) + 1) + exp(2 z) / (exp(2 z) + 1)", 0);
 		push_symbol(Z_LOWER);
 		push(cadr(p1));
-		expform_nib(flag);
+		expform(flag);
 		subst();
 		evalf();
 		return;
@@ -6726,20 +6716,20 @@ expform_nib(flag)
 	if (flag) {
 
 		if (car(p1) == symbol(ARCCOS)) {
-			scan("-i log(z + i sqrt(1 - abs(z)^2))", 0);
+			scan("-sqrt(-1) log(z + sqrt(-1) sqrt(1 - abs(z)^2))", 0);
 			push_symbol(Z_LOWER);
 			push(cadr(p1));
-			expform_nib(1);
+			expform(1);
 			subst();
 			evalf();
 			return;
 		}
 
 		if (car(p1) == symbol(ARCSIN)) {
-			scan("-i log(i z + sqrt(1 - abs(z)^2))", 0);
+			scan("-sqrt(-1) log(sqrt(-1) z + sqrt(1 - abs(z)^2))", 0);
 			push_symbol(Z_LOWER);
 			push(cadr(p1));
-			expform_nib(1);
+			expform(1);
 			subst();
 			evalf();
 			return;
@@ -6747,13 +6737,13 @@ expform_nib(flag)
 
 		if (car(p1) == symbol(ARCTAN)) {
 			push(cadr(p1)); // y
-			expform_nib(1);
+			expform(1);
 			num = pop();
 			push(caddr(p1)); // x
-			expform_nib(1);
+			expform(1);
 			den = pop();
 			if (isplusone(den)) {
-				scan("-1/2 i log((i - z) / (i + z))", 0);
+				scan("-1/2 sqrt(-1) log((sqrt(-1) - z) / (sqrt(-1) + z))", 0);
 				push_symbol(Z_LOWER);
 				push(num);
 				subst();
@@ -6771,7 +6761,7 @@ expform_nib(flag)
 			scan("log(z + sqrt(abs(z)^2 - 1))", 0);
 			push_symbol(Z_LOWER);
 			push(cadr(p1));
-			expform_nib(1);
+			expform(1);
 			subst();
 			evalf();
 			return;
@@ -6781,7 +6771,7 @@ expform_nib(flag)
 			scan("log(z + sqrt(abs(z)^2 + 1))", 0);
 			push_symbol(Z_LOWER);
 			push(cadr(p1));
-			expform_nib(1);
+			expform(1);
 			subst();
 			evalf();
 			return;
@@ -6791,7 +6781,7 @@ expform_nib(flag)
 			scan("1/2 log((1 + z) / (1 - z))", 0);
 			push_symbol(Z_LOWER);
 			push(cadr(p1));
-			expform_nib(1);
+			expform(1);
 			subst();
 			evalf();
 			return;
@@ -6803,7 +6793,7 @@ expform_nib(flag)
 	p1 = cdr(p1);
 	while (iscons(p1)) {
 		push(car(p1));
-		expform_nib(flag);
+		expform(flag);
 		p1 = cdr(p1);
 	}
 	list(stack.length - h);
@@ -6812,7 +6802,7 @@ expform_nib(flag)
 function
 eval_expsin(p1)
 {
-	scan("-1/2 i exp(i z) + 1/2 i exp(-i z)", 0);
+	scan("-1/2 sqrt(-1) exp(sqrt(-1) z) + 1/2 sqrt(-1) exp(-sqrt(-1) z)", 0);
 	push_symbol(Z_LOWER);
 	push(cadr(p1));
 	subst();
@@ -6830,7 +6820,7 @@ eval_expsinh(p1)
 function
 eval_exptan(p1)
 {
-	scan("i / (exp(2 i z) + 1) - i exp(2 i z) / (exp(2 i z) + 1)", 0);
+	scan("sqrt(-1) / (exp(2 sqrt(-1) z) + 1) - sqrt(-1) exp(2 sqrt(-1) z) / (exp(2 sqrt(-1) z) + 1)", 0);
 	push_symbol(Z_LOWER);
 	push(cadr(p1));
 	subst();
@@ -12170,25 +12160,6 @@ simplify()
 
 	push(p1);
 	simplify_nib();
-	p2 = pop();
-
-	if (!iscons(p2)) {
-		push(p2);
-		return;
-	}
-
-	if (!equal(p1, p2)) {
-		p1 = p2;
-		push(p1);
-		numerator();
-		p2 = pop();
-		if (iszero(p2)) {
-			push_integer(0);
-			return;
-		}
-	}
-
-	push(p1);
 }
 
 function
@@ -15160,11 +15131,9 @@ init()
 	push_rational(1, 2);
 	list(3);
 	imaginaryunit = pop();
-
-	binding[symbol(I_LOWER).printname] = imaginaryunit;
-	usrfunc[symbol(I_LOWER).printname] = symbol(NIL);
 }
 var init_script = [
+"i = sqrt(-1)\n",
 "grad(f) = d(f,(x,y,z))",
 "cross(a,b) = (dot(a[2],b[3])-dot(a[3],b[2]),dot(a[3],b[1])-dot(a[1],b[3]),dot(a[1],b[2])-dot(a[2],b[1]))",
 "curl(u) = (d(u[3],y) - d(u[2],z),d(u[1],z) - d(u[3],x),d(u[2],x) - d(u[1],y))",
