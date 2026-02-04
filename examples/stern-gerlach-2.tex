@@ -28,8 +28,8 @@ provides the following solutions.
 \left(\frac{\mu_B\alpha m}{\hbar^2}\right)^{1/3}
 \left(\frac{\mu_B\alpha}{4m}\right)t^2
 -\left(\frac{\mu_B\alpha m}{\hbar^2}\right)^{1/3}z\right]
-\exp\left(\frac{i\alpha\mu_Bzt}{2\hbar}\right)
-\exp\left(\frac{\mu_BB_0t}{\hbar}\right)
+\exp\left(+\frac{i\alpha\mu_Bzt}{2\hbar}\right)
+\exp\left(+\frac{\mu_BB_0t}{\hbar}\right)
 \end{align*}
 
 Let us construct polynomial approximations for $\psi_1$ and $\psi_2$.
@@ -48,7 +48,7 @@ a_1&=-\frac{1}{3^{1/3}\Gamma(1/3)}
 \\
 a_2&=0
 \\\
-a_{n+1}&=\frac{a_n}{(n+3)(n+2)}
+a_{n+3}&=\frac{a_n}{(n+3)(n+2)}
 \end{align*}
 
 For $n=9$ we obtain
@@ -88,8 +88,8 @@ Calculate departures from equality of the Schr\"odinger equations for $\psi_1$ a
 % - 2.77556 10^(-17) alpha^(4/3) m^(1/3) muB^(4/3) z^2 / hbar^(2/3)
 % + 8.67362 10^(-19) i alpha^4 muB^4 t^3 z^4 / hbar^3
 
-After calculating $\epsilon_1$ and $\epsilon_2$,
-zero-out factors $t^n$ and $z^m$ where $n\ge8$ and $m\ge5$.
+After calculating $\epsilon_1$ and $\epsilon_2$, cancel exponentials and
+zero out factors $t^n$ and $z^m$ where $n\ge8$ and $m\ge5$.
 
 \medskip
 The results are
@@ -135,6 +135,6 @@ and
 \end{multline*}
 
 All of the numerical values are small relative to the coefficients in
-$\operatorname{Ai}(x)$ hence $\psi_1$ and $\psi_2$ are confirmed.
+$\operatorname{Ai}(x)$ hence $\psi_1$ and $\psi_2$ are confirmed as solutions.
 
 \end{document}
