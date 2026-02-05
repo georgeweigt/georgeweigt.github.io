@@ -15,7 +15,7 @@ for a Stern-Gerlach experiment.
 We now seek solutions for $\psi_1$ and $\psi_2$.
 
 \medskip
-The paper ``Construction of Exact Solutions for the Stern-Gerlach Effect''
+An online paper\footnote{``Construction of Exact Solutions for the Stern-Gerlach Effect'' by Bulnes and Oliveira.}
 provides the following solutions.
 \begin{align*}
 \psi_1&=\operatorname{Ai}\left[
@@ -33,10 +33,11 @@ provides the following solutions.
 \exp\left(+\frac{\mu_BB_0t}{\hbar}\right)
 \end{align*}
 
-Let us construct polynomial approximations for $\psi_1$ and $\psi_2$.
+Let us try verifying $\psi_1$ and $\psi_2$ with a Taylor series
+expansion of the Airy function $\operatorname{Ai}(x)$.
 
 \medskip
-For the Airy function we have
+We have
 \begin{equation*}
 \operatorname{Ai}(x)\approx\sum_{k=0}^n a_kx^k
 \end{equation*}
@@ -80,15 +81,12 @@ calculate departures from equality of the Schr\"odinger equations.
 -i\hbar\frac{\partial}{\partial t}\psi_2
 \end{align*}
 
-% epsilon1
-% = 2.1684 10^(-19) alpha^(16/3) muB^(16/3) t^6 z^2 / (hbar^(8/3) m^(5/3))
-% + 2.1684 10^(-19) alpha^5 muB^5 t^6 z / (hbar^2 m^2)
-% + 8.67362 10^(-19) alpha^(13/3) muB^(13/3) t^4 z^3 / (hbar^(8/3) m^(2/3))
-% + 1.73472 10^(-18) alpha^4 muB^4 t^4 z^2 / (hbar^2 m)
-% - 1.73472 10^(-18) alpha^(10/3) muB^(10/3) t^4 / (hbar^(2/3) m^(5/3))
-% - 1.38778 10^(-17) alpha^(7/3) muB^(7/3) t^2 z / (hbar^(2/3) m^(2/3))
-% - 2.77556 10^(-17) alpha^(4/3) m^(1/3) muB^(4/3) z^2 / hbar^(2/3)
-% + 8.67362 10^(-19) i alpha^4 muB^4 t^3 z^4 / hbar^3
+% epsilon1 =
+% -6.50521 10^(-19) alpha^(16/3) muB^(16/3) t^6 z^2 / (hbar^(8/3) m^(5/3))
+% + 5.42101 10^(-20) alpha^5 muB^5 t^6 z / (hbar^2 m^2)
+% - 1.73472 10^(-18) alpha^(13/3) muB^(13/3) t^4 z^3 / (hbar^(8/3) m^(2/3))
+% - 3.46945 10^(-18) alpha^(10/3) m^(1/3) muB^(10/3) t^2 z^4 / hbar^(8/3)
+% - 2.1684 10^(-19) i alpha^(16/3) muB^(16/3) t^5 z^4 / (hbar^(11/3) m^(2/3))
 
 After calculating $\epsilon_1$ and $\epsilon_2$, cancel exponentials and
 zero out factors $t^n$ and $z^m$ where $n\ge8$ and $m\ge5$.
@@ -97,46 +95,37 @@ zero out factors $t^n$ and $z^m$ where $n\ge8$ and $m\ge5$.
 The results are
 \begin{multline*}
 \epsilon_1=
-\boxed{2.1684\times10^{-19}}\,\frac{ \alpha^{16/3} \mu_B^{16/3} t^6 z^2}{\hbar^{8/3} m^{5/3}}
-+\boxed{2.1684\times10^{-19}}\,\frac{ \alpha^5 \mu_B^5 t^6 z}{\hbar^2 m^2}
-\\
-+\boxed{8.67362\times10^{-19}}\,\frac{ \alpha^{13/3} \mu_B^{13/3} t^4 z^3}{\hbar^{8/3} m^{2/3}}
-+\boxed{1.73472\times10^{-18}}\,\frac{ \alpha^4 \mu_B^4 t^4 z^2}{\hbar^2 m}
-\\
--\boxed{1.73472\times10^{-18}}\,\frac{ \alpha^{10/3} \mu_B^{10/3} t^4}{\hbar^{2/3} m^{5/3}}
--\boxed{1.38778\times10^{-17}}\,\frac{ \alpha^{7/3} \mu_B^{7/3} t^2 z}{\hbar^{2/3} m^{2/3}}
-\\
--\boxed{2.77556\times10^{-17}}\,\frac{ \alpha^{4/3} m^{1/3} \mu_B^{4/3} z^2}{\hbar^{2/3}}
-+\boxed{8.67362\times10^{-19}}\,\frac{ i \alpha^4 \mu_B^4 t^3 z^4}{\hbar^3}
+ \boxed{-6.50521\times10^{-19}}\,\frac{ \alpha^{16/3} \mu_B^{16/3} t^6 z^2}{\hbar^{8/3} m^{5/3}}
+ + \boxed{5.42101\times10^{-20}}\,\frac{ \alpha^5 \mu_B^5 t^6 z}{\hbar^2 m^2}
+ \\
+ - \boxed{1.73472\times10^{-18}}\,\frac{ \alpha^{13/3} \mu_B^{13/3} t^4 z^3}{\hbar^{8/3} m^{2/3}}
+ - \boxed{3.46945\times10^{-18}}\,\frac{ \alpha^{10/3} m^{1/3} \mu_B^{10/3} t^2 z^4}{\hbar^{8/3}}
+ \\
+ - \boxed{2.1684\times10^{-19}}\,\frac{ i \alpha^{16/3} \mu_B^{16/3} t^5 z^4}{\hbar^{11/3} m^{2/3}}
 \end{multline*}
 
 % epsilon2
-% = 2.1684 10^(-19) alpha^(16/3) muB^(16/3) t^6 z^2 / (hbar^(8/3) m^(5/3))
-% - 2.1684 10^(-19) alpha^5 muB^5 t^6 z / (hbar^2 m^2)
-% - 8.67362 10^(-19) alpha^(13/3) muB^(13/3) t^4 z^3 / (hbar^(8/3) m^(2/3))
-% + 1.73472 10^(-18) alpha^4 muB^4 t^4 z^2 / (hbar^2 m)
-% - 1.73472 10^(-18) alpha^(10/3) muB^(10/3) t^4 / (hbar^(2/3) m^(5/3))
-% + 1.38778 10^(-17) alpha^(7/3) muB^(7/3) t^2 z / (hbar^(2/3) m^(2/3))
-% - 2.77556 10^(-17) alpha^(4/3) m^(1/3) muB^(4/3) z^2 / hbar^(2/3)
-% + 8.67362 10^(-19) i alpha^4 muB^4 t^3 z^4 / hbar^3
+% = -6.50521 10^(-19) alpha^(16/3) muB^(16/3) t^6 z^2 / (hbar^(8/3) m^(5/3))
+% - 5.42101 10^(-20) alpha^5 muB^5 t^6 z / (hbar^2 m^2)
+% + 1.73472 10^(-18) alpha^(13/3) muB^(13/3) t^4 z^3 / (hbar^(8/3) m^(2/3))
+% - 3.46945 10^(-18) alpha^(10/3) m^(1/3) muB^(10/3) t^2 z^4 / hbar^(8/3)
+% - 2.1684 10^(-19) i alpha^(16/3) muB^(16/3) t^5 z^4 / (hbar^(11/3) m^(2/3))
 
 and
 \begin{multline*}
 \epsilon_2
-=\boxed{2.1684\times10^{-19}}\,\frac{ \alpha^{16/3} \mu_B^{16/3} t^6 z^2}{\hbar^{8/3} m^{5/3}}
--\boxed{2.1684\times10^{-19}}\,\frac{ \alpha^5 \mu_B^5 t^6 z}{\hbar^2 m^2}
-\\
--\boxed{8.67362\times10^{-19}}\,\frac{ \alpha^{13/3} \mu_B^{13/3} t^4 z^3}{\hbar^{8/3} m^{2/3}}
-+\boxed{1.73472\times10^{-18}}\,\frac{ \alpha^4 \mu_B^4 t^4 z^2}{\hbar^2 m}
-\\
--\boxed{1.73472\times10^{-18}}\,\frac{ \alpha^{10/3} \mu_B^{10/3} t^4}{\hbar^{2/3} m^{5/3}}
-+\boxed{1.38778\times10^{-17}}\,\frac{ \alpha^{7/3} \mu_B^{7/3} t^2 z}{\hbar^{2/3} m^{2/3}}
-\\
--\boxed{2.77556\times10^{-17}}\,\frac{ \alpha^{4/3} m^{1/3} \mu_B^{4/3} z^2}{\hbar^{2/3}}
-+\boxed{8.67362\times10^{-19}}\,\frac{ i \alpha^4 \mu_B^4 t^3 z^4}{\hbar^3}
+ = \boxed{-6.50521\times10^{-19}}\,\frac{ \alpha^{16/3} \mu_B^{16/3} t^6 z^2}{\hbar^{8/3} m^{5/3}}
+ - \boxed{5.42101\times10^{-20}}\,\frac{ \alpha^5 \mu_B^5 t^6 z}{\hbar^2 m^2}
+ \\
+ + \boxed{1.73472\times10^{-18}}\,\frac{ \alpha^{13/3} \mu_B^{13/3} t^4 z^3}{\hbar^{8/3} m^{2/3}}
+ - \boxed{3.46945\times10^{-18}}\,\frac{ \alpha^{10/3} m^{1/3} \mu_B^{10/3} t^2 z^4}{\hbar^{8/3}}
+ \\
+ - \boxed{2.1684\times10^{-19}}\,\frac{ i \alpha^{16/3} \mu_B^{16/3} t^5 z^4}{\hbar^{11/3} m^{2/3}}
 \end{multline*}
 
-All of the numerical values are small relative to the coefficients for
-$\operatorname{Ai}(x)$ hence $\psi_1$ and $\psi_2$ are confirmed as solutions.
+The numerical values are negligible hence $\psi_1$ and $\psi_2$ are confirmed as solutions.
+
+\medskip
+\href{https://georgeweigt.github.io/examples/stern-gerlach-2-demo.html}{Eigenmath script}
 
 \end{document}
