@@ -1,0 +1,224 @@
+\input{preamble}
+
+\section*{Stern-Gerlach experiment 1}
+
+From problem 4.74 of Griffiths and Schroeter.
+
+\medskip
+The Hamiltonian for a Stern-Gerlach experiment is
+\begin{equation*}
+H=-\frac{\hbar^2}{2m}\nabla^2+\frac{e}{m}\mathbf B\cdot\mathbf S
+\end{equation*}
+
+Given vectors
+\begin{equation*}
+\mathbf B=-\alpha x\begin{pmatrix}1\\0\\0\end{pmatrix}
++(B_0+\alpha z)\begin{pmatrix}0\\0\\1\end{pmatrix},\qquad
+\mathbf S=\frac{\hbar}{2}\begin{pmatrix}\sigma_x\\\sigma_y\\\sigma_z\end{pmatrix}
+\end{equation*}
+
+we have the dot product
+\begin{equation*}
+\frac{e}{m}\mathbf B\cdot\mathbf S
+=-\frac{e\hbar}{2m}\alpha x\sigma_x
++\frac{e\hbar}{2m}(B_0+\alpha z)\sigma_z
+\end{equation*}
+
+Let $\Psi$ be the spin state vector
+\begin{equation*}
+\Psi=\begin{pmatrix}\psi_1\\\psi_2\end{pmatrix}
+\end{equation*}
+
+where $\psi_1$ and $\psi_2$ are wavefunctions for spin up and down.
+
+\medskip
+Plug $H$ and $\Psi$ into the Schr\"odinger equation to obtain
+\begin{equation*}
+-\frac{\hbar^2}{2m}\nabla^2\Psi
+-\frac{e\hbar}{2m}\alpha x\sigma_x\Psi
++\frac{e\hbar}{2m}(B_0+\alpha z)\sigma_z\Psi
+=i\hbar\frac{\partial}{\partial t}\Psi
+\end{equation*}
+
+Noting that
+\begin{equation*}
+\sigma_x\Psi
+=\begin{pmatrix}0&1\\1&0\end{pmatrix}\Psi
+=\begin{pmatrix}\psi_2\\\psi_1\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+\sigma_z\Psi
+=\begin{pmatrix}1&0\\0&-1\end{pmatrix}\Psi
+=\begin{pmatrix}\psi_1\\-\psi_2\end{pmatrix}
+\end{equation*}
+
+we have
+\begin{equation*}
+-\frac{\hbar^2}{2m}\nabla^2\begin{pmatrix}\psi_1\\\psi_2\end{pmatrix}
+-\frac{e\hbar}{2m}\alpha x\begin{pmatrix}\psi_2\\\psi_1\end{pmatrix}
++\frac{e\hbar}{2m}(B_0+\alpha z)\begin{pmatrix}\psi_1\\-\psi_2\end{pmatrix}
+=i\hbar\frac{\partial}{\partial t}\begin{pmatrix}\psi_1\\\psi_2\end{pmatrix}
+\end{equation*}
+
+In component form
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar^2}{2m}\nabla^2\psi_1
+-\boxed{\frac{e\hbar}{2m}\alpha x\psi_2}
++\frac{e\hbar}{2m}(B_0+\alpha z)\psi_1
+=i\hbar\frac{\partial}{\partial t}\psi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\psi_2
+-\boxed{\frac{e\hbar}{2m}\alpha x\psi_1}
+-\frac{e\hbar}{2m}(B_0+\alpha z)\psi_2
+=i\hbar\frac{\partial}{\partial t}\psi_2
+\end{aligned}
+\tag{1}
+\end{equation*}
+
+We now seek to eliminate the cross terms shown in boxes.
+
+\medskip
+Let
+\begin{align*}
+\psi_1&=\exp\left(-\frac{ieB_0t}{2m}\right)\phi_1
+\\
+\psi_2&=\exp\left(+\frac{ieB_0t}{2m}\right)\phi_2
+\end{align*}
+
+Then
+\begin{equation*}
+\begin{aligned}
+i\hbar\frac{\partial}{\partial t}\psi_1
+&=\exp\left(-\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_1
++\frac{e\hbar}{2m}B_0\psi_1
+\\
+i\hbar\frac{\partial}{\partial t}\psi_2
+&=\exp\left(+\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_2
+-\frac{e\hbar}{2m}B_0\psi_2
+\end{aligned}
+\tag{2}
+\end{equation*}
+
+Substitute into (1) to obtain
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\psi_1
+-\frac{e\hbar}{2m}\alpha x\psi_2
++\frac{e\hbar}{2m}(B_0+\alpha z)\psi_1
+=\exp\left(-\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_1
++\frac{e\hbar}{2m}B_0\psi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\psi_2
+-\frac{e\hbar}{2m}\alpha x\psi_1
+-\frac{e\hbar}{2m}(B_0+\alpha z)\psi_2
+=\exp\left(+\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_2
+-\frac{e\hbar}{2m}B_0\psi_2
+\end{align*}
+
+The $B_0$ terms cancel.
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\psi_1
+-\frac{e\hbar}{2m}\alpha x\psi_2
++\frac{e\hbar}{2m}\alpha z\psi_1
+=\exp\left(-\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\psi_2
+-\frac{e\hbar}{2m}\alpha x\psi_1
+-\frac{e\hbar}{2m}\alpha z\psi_2
+=\exp\left(+\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\phi_2
+\end{align*}
+
+Multiply through by the conjugate of the respective exponential
+(note $\psi\rightarrow\phi$).
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\phi_1
+-\exp\left(+\frac{ieB_0t}{m}\right)\frac{e\hbar}{2m}\alpha x\phi_2
++\frac{e\hbar}{2m}\alpha z\phi_1
+=i\hbar\frac{\partial}{\partial t}\phi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\phi_2
+-\exp\left(-\frac{ieB_0t}{m}\right)\frac{e\hbar}{2m}\alpha x\phi_1
+-\frac{e\hbar}{2m}\alpha z\phi_2
+=i\hbar\frac{\partial}{\partial t}\phi_2
+\end{align*}
+
+We now simply discard the cross terms
+with the argument that the exponential factors oscillate causing
+the cross terms to vanish on average.
+\begin{equation*}
+\begin{aligned}
+-\frac{\hbar^2}{2m}\nabla^2\phi_1
++\frac{e\hbar}{2m}\alpha z\phi_1
+=i\hbar\frac{\partial}{\partial t}\phi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\phi_2
+-\frac{e\hbar}{2m}\alpha z\phi_2
+=i\hbar\frac{\partial}{\partial t}\phi_2
+\end{aligned}
+\tag{3}
+\end{equation*}
+
+Now do the reverse. Let
+\begin{align*}
+\phi_1&=\exp\left(+\frac{ieB_0t}{2m}\right)\psi_1
+\\
+\phi_2&=\exp\left(-\frac{ieB_0t}{2m}\right)\psi_2
+\end{align*}
+
+Then
+\begin{align*}
+i\hbar\frac{\partial}{\partial t}\phi_1
+&=\exp\left(+\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\psi_1
+-\frac{e\hbar}{2m}B_0\phi_1
+\\
+i\hbar\frac{\partial}{\partial t}\phi_2
+&=\exp\left(-\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\psi_2
++\frac{e\hbar}{2m}B_0\phi_2
+\end{align*}
+
+Substitute into (3) to obtain
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\phi_1
++\frac{e\hbar}{2m}\alpha z\phi_1
+=\exp\left(+\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\psi_1
+-\frac{e\hbar}{2m}B_0\phi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\phi_2
+-\frac{e\hbar}{2m}\alpha z\phi_2
+=\exp\left(-\frac{ieB_0t}{2m}\right)i\hbar\frac{\partial}{\partial t}\psi_2
++\frac{e\hbar}{2m}B_0\phi_2
+\end{align*}
+
+Multiply through by the conjugate of the respective exponential
+(note $\phi\rightarrow\psi$).
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\psi_1
++\frac{e\hbar}{2m}\alpha z\psi_1
+=i\hbar\frac{\partial}{\partial t}\psi_1
+-\frac{e\hbar}{2m}B_0\psi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\psi_2
+-\frac{e\hbar}{2m}\alpha z\psi_2
+=i\hbar\frac{\partial}{\partial t}\psi_2
++\frac{e\hbar}{2m}B_0\psi_2
+\end{align*}
+
+Rewrite as
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla^2\psi_1
++\frac{e\hbar}{2m}(B_0+\alpha z)\psi_1
+=i\hbar\frac{\partial}{\partial t}\psi_1
+\\[1ex]
+-\frac{\hbar^2}{2m}\nabla^2\psi_2
+-\frac{e\hbar}{2m}(B_0+\alpha z)\psi_2
+=i\hbar\frac{\partial}{\partial t}\psi_2
+\end{align*}
+
+The result is identical to (1) with the boxed terms discarded.
+
+\medskip
+\href{https://georgeweigt.github.io/examples/stern-gerlach-experiment-1-demo.html}{Eigenmath script}
+
+\end{document}

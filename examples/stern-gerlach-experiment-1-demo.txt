@@ -1,0 +1,17 @@
+"Stern-Gerlach experiment 1"
+
+"Verify equation (2)"
+
+W1 = exp(-i e B0 t / (2 m))
+W2 = exp(+i e B0 t / (2 m))
+
+phi1 = Phi1(x,y,z,t)
+phi2 = Phi2(x,y,z,t)
+
+psi1 = W1 phi1
+psi2 = W2 phi2
+
+check(i hbar d(psi1,t) == W1 i hbar d(phi1,t) + e hbar / (2 m) B0 psi1)
+check(i hbar d(psi2,t) == W2 i hbar d(phi2,t) - e hbar / (2 m) B0 psi2)
+
+"ok"
