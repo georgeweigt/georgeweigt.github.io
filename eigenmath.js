@@ -904,11 +904,13 @@ const EXPSINH = "expsinh";
 const EXPTAN = "exptan";
 const EXPTANH = "exptanh";
 const FACTORIAL = "factorial";
+const FDIST = "fdist";
 const FLOAT = "float";
 const FLOOR = "floor";
 const FOR = "for";
 const HADAMARD = "hadamard";
 const IMAG = "imag";
+const INCBETA = "incbeta";
 const INFIXFORM = "infixform";
 const INNER = "inner";
 const INTEGRAL = "integral";
@@ -954,6 +956,8 @@ const SUM = "sum";
 const TAN = "tan";
 const TANH = "tanh";
 const TAYLOR = "taylor";
+const TDIST = "tdist";
+const TDISTINV = "tdistinv";
 const TEST = "test";
 const TESTEQ = "testeq";
 const TESTGE = "testge";
@@ -6802,6 +6806,57 @@ factorial()
 	list(2);
 }
 function
+eval_fdist(p1)
+{
+	var a, b, df1, df2, t, x, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("fdist: 1st argument is not numerical");
+	push(p2);
+	t = pop_double();
+	if (!isFinite(t))
+		stopf("fdist: 1st argument is not finite");
+
+	push(caddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("fdist: 2nd argument is not numerical");
+	push(p2);
+	df1 = pop_double();
+	if (!isFinite(df1))
+		stopf("fdist: 2nd argument is not finite");
+
+	push(cadddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("fdist: 3rd argument is not numerical");
+	push(p2);
+	df2 = pop_double();
+	if (!isFinite(df2))
+		stopf("fdist: 3rd argument is not finite");
+
+	if (t <= 0.0) {
+		push_double(0.0);
+		return;
+	}
+
+	x = t / (t + df2 / df1);
+	a = 0.5 * df1;
+	b = 0.5 * df2;
+
+	x = incbeta(a, b, x);
+
+	if (!isFinite(x))
+		stopf("fdist did not converge");
+
+	push_double(x);
+}
+function
 eval_float(p1)
 {
 	push(cadr(p1));
@@ -7093,6 +7148,144 @@ imag()
 	conjfunc();
 	subtract();
 	multiply_factors(3);
+}
+function
+eval_incbeta(p1)
+{
+	var a, b, x, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("incbeta: 1st argument is not numerical");
+	push(p2);
+	x = pop_double();
+	if (!isFinite(x))
+		stopf("incbeta: 1st argument is not finite");
+
+	push(caddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("incbeta: 2nd argument is not numerical");
+	push(p2);
+	a = pop_double();
+	if (!isFinite(a))
+		stopf("incbeta: 2nd argument is not finite");
+
+	push(cadddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("incbeta: 3rd argument is not numerical");
+	push(p2);
+	b = pop_double();
+	if (!isFinite(b))
+		stopf("incbeta: 3rd argument is not finite");
+
+	if (x <= 0.0) {
+		push_double(0.0);
+		return;
+	}
+
+	if (x >= 1.0) {
+		push_double(1.0);
+		return;
+	}
+
+	x = incbeta(a, b, x);
+
+	if (!isFinite(x))
+		stopf("incbeta did not converge");
+
+	push_double(x);
+}
+
+// https://github.com/codeplea/incbeta/blob/master/incbeta.c
+
+/*
+ * zlib License
+ *
+ * Regularized Incomplete Beta Function
+ *
+ * Copyright (c) 2016, 2017 Lewis Van Winkle
+ * http://CodePlea.com
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgement in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+
+//#include <math.h>
+
+//#define STOPVAL 1.0e-8
+//#define TINY 1.0e-30
+
+function
+incbeta(a, b, x)
+{
+    var STOPVAL = 1.0e-8;
+    var TINY = 1.0e-30;
+
+    if (x < 0.0 || x > 1.0) return 1.0/0.0;
+
+    /*The continued fraction converges nicely for x < (a+1)/(a+b+2)*/
+    if (x > (a+1.0)/(a+b+2.0)) {
+        return (1.0-incbeta(b,a,1.0-x)); /*Use the fact that beta is symmetrical.*/
+    }
+
+    /*Find the first part before the continued fraction.*/
+    var lbeta_ab = log_gamma(a)+log_gamma(b)-log_gamma(a+b);
+    var front = Math.exp(Math.log(x)*a+Math.log(1.0-x)*b-lbeta_ab) / a;
+
+    /*Use Lentz's algorithm to evaluate the continued fraction.*/
+    var f = 1.0, c = 1.0, d = 0.0;
+
+    var i, m;
+    for (i = 0; i <= 200; ++i) {
+        m = Math.floor(i/2);
+
+        var numerator;
+        if (i == 0) {
+            numerator = 1.0; /*First numerator is 1.0.*/
+        } else if (i % 2 == 0) {
+            numerator = (m*(b-m)*x)/((a+2.0*m-1.0)*(a+2.0*m)); /*Even term.*/
+        } else {
+            numerator = -((a+m)*(a+b+m)*x)/((a+2.0*m)*(a+2.0*m+1)); /*Odd term.*/
+        }
+
+        /*Do an iteration of Lentz's algorithm.*/
+        d = 1.0 + numerator * d;
+        if (Math.abs(d) < TINY) d = TINY;
+        d = 1.0 / d;
+
+        c = 1.0 + numerator / c;
+        if (Math.abs(c) < TINY) c = TINY;
+
+        var cd = c*d;
+        f *= cd;
+
+        /*Check for stop.*/
+        if (Math.abs(1.0-cd) < STOPVAL) {
+            return front * (f-1.0);
+        }
+    }
+
+    return 1.0/0.0; /*Needed more loops, did not converge.*/
 }
 function
 eval_index(p1)
@@ -13123,6 +13316,104 @@ eval_taylor(p1)
 	add_terms(stack.length - h);
 }
 function
+eval_tdist(p1)
+{
+	var df, t, x, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("tdist: 1st argument is not numerical");
+	push(p2);
+	t = pop_double();
+	if (!isFinite(t))
+		stopf("tdist: 1st argument is not finite");
+
+	push(caddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("tdist: 2nd argument is not numerical");
+	push(p2);
+	df = pop_double();
+	if (!isFinite(df))
+		stopf("tdist: 2nd argument is not finite");
+
+	x = tdist(t, df);
+
+	if (!isFinite(x))
+		stopf("tdist did not converge");
+
+	push_double(x);
+}
+
+function
+tdist(t, df)
+{
+	var x, a, b;
+	x = 0.5 * (t + Math.sqrt(t * t + df)) / Math.sqrt(t * t + df);
+	a = 0.5 * df;
+	b = 0.5 * df;
+	return incbeta(a, b, x);
+}
+function
+eval_tdistinv(p1)
+{
+	var i, a, b, c, df, x, y, p2;
+
+	push(cadr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("tdistinv: 1st argument is not numerical");
+	push(p2);
+	x = pop_double();
+	if (!isFinite(x))
+		stopf("tdistinv: 1st argument is not finite");
+
+	push(caddr(p1));
+	evalf();
+	p2 = pop();
+	if (!isnum(p2))
+		stopf("tdistinv: 2nd argument is not numerical");
+	push(p2);
+	df = pop_double();
+	if (!isFinite(df))
+		stopf("tdistinv: 2nd argument is not finite");
+
+	if (x < 1e-12) {
+		push_double(-Infinity);
+		return;
+	}
+
+	if (x == 0.5) {
+		push_double(0.0);
+		return;
+	}
+
+	if (x > 1.0 - 1e-12) {
+		push_double(Infinity);
+		return;
+	}
+
+	a = -100.0;
+	b = 100.0;
+
+	for (i = 0; i < 50; i++) {
+		c = 0.5 * (a + b);
+		y = tdist(c, df);
+		if (!isFinite(y))
+			stopf("tdistinv did not converge");
+		if (y < x)
+			a = c;
+		else
+			b = c;
+	}
+
+	push_double(c);
+}
+function
 eval_tensor(p1)
 {
 	var i, n;
@@ -18075,11 +18366,13 @@ var symtab = {
 "exptan":	{printname:EXPTAN,	func:eval_exptan},
 "exptanh":	{printname:EXPTANH,	func:eval_exptanh},
 "factorial":	{printname:FACTORIAL,	func:eval_factorial},
+"fdist":	{printname:FDIST,	func:eval_fdist},
 "float":	{printname:FLOAT,	func:eval_float},
 "floor":	{printname:FLOOR,	func:eval_floor},
 "for":		{printname:FOR,		func:eval_for},
 "hadamard":	{printname:HADAMARD,	func:eval_hadamard},
 "imag":		{printname:IMAG,	func:eval_imag},
+"incbeta":	{printname:INCBETA,	func:eval_incbeta},
 "infixform":	{printname:INFIXFORM,	func:eval_infixform},
 "inner":	{printname:INNER,	func:eval_inner},
 "integral":	{printname:INTEGRAL,	func:eval_integral},
@@ -18125,6 +18418,8 @@ var symtab = {
 "tan":		{printname:TAN,		func:eval_tan},
 "tanh":		{printname:TANH,	func:eval_tanh},
 "taylor":	{printname:TAYLOR,	func:eval_taylor},
+"tdist":	{printname:TDIST,	func:eval_tdist},
+"tdistinv":	{printname:TDISTINV,	func:eval_tdistinv},
 "test":		{printname:TEST,	func:eval_test},
 "testeq":	{printname:TESTEQ,	func:eval_testeq},
 "testge":	{printname:TESTGE,	func:eval_testge},

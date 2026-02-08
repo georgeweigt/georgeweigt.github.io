@@ -132,7 +132,8 @@ The $B_0$ terms cancel.
 
 Multiply through by the conjugate of the respective exponential
 (note $\psi\rightarrow\phi$).
-\begin{align*}
+\begin{equation*}
+\begin{aligned}
 -\frac{\hbar^2}{2m}\nabla^2\phi_1
 -\exp\left(+\frac{ieB_0t}{m}\right)\frac{e\hbar}{2m}\alpha x\phi_2
 +\frac{e\hbar}{2m}\alpha z\phi_1
@@ -142,7 +143,9 @@ Multiply through by the conjugate of the respective exponential
 -\exp\left(-\frac{ieB_0t}{m}\right)\frac{e\hbar}{2m}\alpha x\phi_1
 -\frac{e\hbar}{2m}\alpha z\phi_2
 =i\hbar\frac{\partial}{\partial t}\phi_2
-\end{align*}
+\end{aligned}
+\tag{3}
+\end{equation*}
 
 We now simply discard the cross terms
 with the argument that the exponential factors oscillate causing
@@ -157,7 +160,7 @@ the cross terms to vanish on average.
 -\frac{e\hbar}{2m}\alpha z\phi_2
 =i\hbar\frac{\partial}{\partial t}\phi_2
 \end{aligned}
-\tag{3}
+\tag{4}
 \end{equation*}
 
 Now do the reverse. Let
@@ -178,7 +181,7 @@ i\hbar\frac{\partial}{\partial t}\phi_2
 +\frac{e\hbar}{2m}B_0\phi_2
 \end{align*}
 
-Substitute into (3) to obtain
+Substitute into (4) to obtain
 \begin{align*}
 -\frac{\hbar^2}{2m}\nabla^2\phi_1
 +\frac{e\hbar}{2m}\alpha z\phi_1
@@ -216,7 +219,7 @@ Rewrite as
 =i\hbar\frac{\partial}{\partial t}\psi_2
 \end{align*}
 
-The result is identical to (1) with the boxed terms discarded.
+The result is identical to (1) with the boxed terms eliminated.
 
 \medskip
 \href{https://georgeweigt.github.io/examples/stern-gerlach-1-demo.html}{Eigenmath script}
