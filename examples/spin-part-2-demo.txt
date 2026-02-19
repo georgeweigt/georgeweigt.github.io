@@ -1,0 +1,11 @@
+"Spin part 2"
+
+theta = pi/3
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+s
+
+"Verify expectation value"
+Sz = 1/2 hbar ((1,0),(0,-1))
+dot(conj(s),Sz,s)
+check(last == 1/4 hbar)
+"ok"

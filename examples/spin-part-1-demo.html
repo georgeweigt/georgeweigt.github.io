@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Spin part 1"
+
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+zp = (1,0)
+zm = (0,1)
+
+xp = (1,1) / sqrt(2)
+xm = (1,-1) / sqrt(2)
+
+yp = (1,i) / sqrt(2)
+ym = (1,-i) / sqrt(2)
+
+"Verify probabilities"
+
+check(mag(dot(conj(zp),s))^2 == 1/2 + 1/2 cos(theta))
+check(mag(dot(conj(zm),s))^2 == 1/2 - 1/2 cos(theta))
+
+check(mag(dot(conj(xp),s))^2 == 1/2 + 1/2 sin(theta) cos(phi))
+check(mag(dot(conj(xm),s))^2 == 1/2 - 1/2 sin(theta) cos(phi))
+
+check(mag(dot(conj(yp),s))^2 == 1/2 + 1/2 sin(theta) sin(phi))
+check(mag(dot(conj(ym),s))^2 == 1/2 - 1/2 sin(theta) sin(phi))
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

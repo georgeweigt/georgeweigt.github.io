@@ -1,0 +1,68 @@
+\input{preamble}
+
+\section*{Spin part 1}
+
+Let $|s\rangle$ be a spin with polar angle $\theta$ and azimuth angle $\phi$.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\[1ex]\sin(\theta/2)\,e^{i\phi}\end{pmatrix}
+\end{equation*}
+
+Spin measurement probabilities are the transition probabilities from $|s\rangle$ to an eigenstate.
+
+\medskip
+In the $z$ direction the eigenstates are
+\begin{equation*}
+|z_+\rangle=\begin{pmatrix}1\\0\end{pmatrix},\quad
+|z_-\rangle=\begin{pmatrix}0\\1\end{pmatrix}
+\end{equation*}
+
+Hence in the $z$ direction
+\begin{align*}
+\Pr(+)
+&=|\langle z_+|s\rangle|^2
+=\cos^2(\theta/2)
+=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+\\[1ex]
+\Pr(-)
+&=|\langle z_-|s\rangle|^2
+=\sin^2(\theta/2)
+=\tfrac{1}{2}-\tfrac{1}{2}\cos\theta
+\end{align*}
+
+In the $x$ direction the eigenstates are
+\begin{equation*}
+|x_+\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\quad
+|x_-\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+\end{equation*}
+
+Hence in the $x$ direction
+\begin{align*}
+\Pr(+)
+&=|\langle x_+|s\rangle|^2
+=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
+\\[1ex]
+\Pr(-)
+&=|\langle x_-|s\rangle|^2
+=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
+\end{align*}
+
+In the $y$ direction the eigenstates are
+\begin{equation*}
+|y_+\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix},\quad
+|y_-\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
+\end{equation*}
+
+Hence in the $y$ direction
+\begin{align*}
+\Pr(+)
+&=|\langle y_+|s\rangle|^2
+=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
+\\[1ex]
+\Pr(-)
+&=|\langle y_-|s\rangle|^2
+=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
+\end{align*}
+
+For each direction we have $\Pr(+)+\Pr(-)=1$ as required by total probability.
+
+\end{document}
