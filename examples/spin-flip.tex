@@ -2,6 +2,10 @@
 
 \section*{Spin flip}
 
+From exercise 10.6 of ``Quantum Mechanics''
+(Lulu edition) by Richard Fitzpatrick.
+
+\medskip
 Consider an electron at rest in the following magnetic field.
 \begin{equation*}
 \mathbf B=B_0\cos(\omega t)\begin{pmatrix}0\\0\\1\end{pmatrix}
@@ -10,7 +14,7 @@ Consider an electron at rest in the following magnetic field.
 Find the minimum $B_0$ such that the sign of $\langle S_x\rangle$
 flips periodically.
 
-\bigskip
+\medskip
 Start with the Hamiltonian for the electron.
 \begin{equation*}
 H=\frac{ge}{2m}\mathbf B\cdot\mathbf S
@@ -44,7 +48,7 @@ c_2(t)&=C_2\exp\left(\frac{ige}{4m\omega}B_0\sin(\omega t)\right)
 \tag{1}
 \end{equation*}
 
-where $C_1$ and $C_2$ are complex coefficients
+where $C_1$ and $C_2$ are the complex coefficients
 \begin{equation*}
 C_1=a_1\exp(i\theta_1),\quad C_2=a_2\exp(i\theta_2),\quad|c_1(t)|^2+|c_2(t)|^2=a_1^2+a_2^2=1
 \end{equation*}
@@ -57,21 +61,21 @@ S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
 we have
 \begin{equation*}
 \langle S_x\rangle=\langle s|S_x|s\rangle
-=a_1a_2\hbar\cos\left(\frac{ge}{2m\omega}B_0\sin(\omega t)-\theta_1+\theta_2\right)
+=a_1a_2\hbar\cos\left[\frac{ge}{2m\omega}B_0\sin(\omega t)-\theta_1+\theta_2\right]
 \tag{2}
 \end{equation*}
 
 Assume $\theta_1=\theta_2$ for this problem so that
 \begin{equation*}
-\langle S_x\rangle=a_1a_2\hbar\cos\left(\frac{ge}{2m\omega}B_0\sin(\omega t)\right)
+\langle S_x\rangle=a_1a_2\hbar\cos\left[\frac{ge}{2m\omega}B_0\sin(\omega t)\right]
 \end{equation*}
 
-Note that if the sign of $\langle S_x\rangle$ is constant in time then
+Note that the cosine function remains positive for
 \begin{equation*}
 -\frac{\pi}{2}\le\frac{ge}{2m\omega}B_0\sin(\omega t)\le\frac{\pi}{2}
 \end{equation*}
 
-For $t$ such that $\sin(\omega t)=1$ we have
+At the maximum $\sin(\omega t)=1$ we have
 \begin{equation*}
 \frac{ge}{2m\omega}B_0\le\frac{\pi}{2}
 \end{equation*}
@@ -80,8 +84,5 @@ Hence the sign of $\langle S_x\rangle$ changes periodically for
 \begin{equation*}
 B_0>\frac{\pi m\omega}{ge}
 \end{equation*}
-
-See exercise 10.6 of {\it Quantum Mechanics}
-(Lulu edition) by Richard Fitzpatrick.
 
 \end{document}

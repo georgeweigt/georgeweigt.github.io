@@ -1,7 +1,7 @@
 "Spin part 2"
 
-theta = pi/3
 s = (cos(theta/2), sin(theta/2) exp(i phi))
+theta = 1/3 pi
 s
 
 "Verify expectation value"
