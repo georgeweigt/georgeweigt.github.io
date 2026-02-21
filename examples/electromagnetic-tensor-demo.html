@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
--- electromagnetic tensor demo
+"Electromagnetic tensor"
 
 -- u for up index, d for down index
 
@@ -24,31 +24,37 @@ Ez = E[3]
 X = (t,x,y,z)
 Add = d(Ad,X)
 Fdd = transpose(Add) - Add
-Fdd
 
+"Verify equation (1)"
 T = ((0, Ex, Ey, Ez),
      (-Ex, 0, -Bz, By),
      (-Ey, Bz, 0, -Bx),
      (-Ez, -By, Bx, 0))
-
 check(Fdd == T)
+"ok"
 
+"Verify equation (2)"
 Fuu = dot(guu,Fdd,guu)
 T = contract(dot(transpose(Fdd),Fuu))
 check(T == 2 dot(B,B) - 2 dot(E,E))
+"ok"
 
+"Verify equation (3)"
 check(det(Fdd) == dot(B,E)^2)
 check(det(Fuu) == dot(B,E)^2)
+"ok"
 
 Ju = contract(d(Fuu,X),1,3)
 
+"Verify equation (4)"
 check(contract(d(Ju,X)) == 0)
+"ok"
 
+"Verify equation (5)"
 Jx = Ju[2]
 Jy = Ju[3]
 Jz = Ju[4]
 J = (Jx,Jy,Jz)
 check(J == curl(B) - d(E,t))
-
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
