@@ -5,7 +5,7 @@
 From exercise 5.8 of ``Quantum Mechanics'' by Richard Fitzpatrick.
 
 \medskip
-Consider an electron at rest in the following magnetic field.
+Consider an electron at rest in the following magnetic field $\mathbf B$.
 \begin{equation*}
 \mathbf B=B_0\cos(\omega t)\begin{pmatrix}0\\0\\1\end{pmatrix}
 \end{equation*}
@@ -26,10 +26,10 @@ H=\frac{e}{m}B_0\cos(\omega t)S_z
 
 Let $|s\rangle$ be the following spin state.
 \begin{equation*}
-|s\rangle=\begin{pmatrix}c_1(t)\\c_2(t)\end{pmatrix}
+|s\rangle=\begin{pmatrix}c_1(t)\\[1ex]c_2(t)\end{pmatrix}
 \end{equation*}
 
-Consider the Schr\"odinger equation for spin state $|s\rangle$.
+By the Schr\"odinger equation
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}|s\rangle=H|s\rangle
 \end{equation*}
@@ -41,34 +41,29 @@ i\hbar\frac{\partial}{\partial t}c_1(t)&=\frac{e\hbar}{2m}B_0\cos(\omega t)c_1(t
 i\hbar\frac{\partial}{\partial t}c_2(t)&=-\frac{e\hbar}{2m}B_0\cos(\omega t)c_2(t)
 \end{align*}
 
-Solve for $c_1(t)$ and $c_2(t)$ and normalize for $|c_1(t)|^2+|c_2(t)|^2=1$.
+Solve for $c_1(t)$ and $c_2(t)$ and normalize so that $\langle s|s\rangle=|c_1(t)|^2+|c_2(t)|^2=1$.
 \begin{equation*}
 \begin{aligned}
-c_1(t)&=\frac{1}{\sqrt2}\exp\left(-\frac{ie}{2m\omega}B_0\sin(\omega t)\right)
+c_1(t)&=\frac{1}{\sqrt2}\exp\left[-\frac{ie}{2m\omega}B_0\sin(\omega t)\right]
 \\
-c_2(t)&=\frac{1}{\sqrt2}\exp\left(\frac{ie}{2m\omega}B_0\sin(\omega t)\right)
+c_2(t)&=\frac{1}{\sqrt2}\exp\left[\frac{ie}{2m\omega}B_0\sin(\omega t)\right]
 \end{aligned}
 \tag{1}
 \end{equation*}
 
-Hence for $\langle S_x\rangle$ we have
+Having obtained $|s\rangle$ we can now solve for $\langle S_x\rangle$.
 \begin{equation*}
 \langle S_x\rangle=\langle s|S_x|s\rangle
 =\frac{\hbar}{2}\cos\left[\frac{e}{m\omega}B_0\sin(\omega t)\right]
 \tag{2}
 \end{equation*}
 
-At time $t=0$ we have $\sin(\omega t)=0$ and
+At time $t=0$
 \begin{equation*}
 \langle S_x\rangle=\frac{\hbar}{2}
 \end{equation*}
 
-To obtain
-\begin{equation*}
-\langle S_x\rangle=-\frac{\hbar}{2}
-\end{equation*}
-
-we must have
+To obtain $\langle S_x\rangle=-\frac{\hbar}{2}$ we must have
 \begin{equation*}
 \frac{e}{m\omega}B_0\sin(\omega t)=\pi
 \end{equation*}
@@ -77,5 +72,7 @@ Taking $\sin(\omega t)=1$ we have
 \begin{equation*}
 B_0=\frac{\pi m\omega}{e}
 \end{equation*}
+
+\href{https://georgeweigt.github.io/examples/spin-flip-demo.html}{Eigenmath script}
 
 \end{document}
