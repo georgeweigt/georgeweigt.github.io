@@ -26,17 +26,12 @@ Add = d(Ad,X)
 Fdd = transpose(Add) - Add
 
 "Verify equation (1)"
-T = ((0, Ex, Ey, Ez),
-     (-Ex, 0, -Bz, By),
-     (-Ey, Bz, 0, -Bx),
-     (-Ez, -By, Bx, 0))
-check(Fdd == T)
+check(Fdd == ((0,Ex,Ey,Ez),(-Ex,0,-Bz,By),(-Ey,Bz,0,-Bx),(-Ez,-By,Bx,0)))
 "ok"
 
 "Verify equation (2)"
 Fuu = dot(guu,Fdd,guu)
-T = contract(dot(transpose(Fdd),Fuu))
-check(T == 2 dot(B,B) - 2 dot(E,E))
+check(contract(dot(transpose(Fdd),Fuu)) == 2 dot(B,B) - 2 dot(E,E))
 "ok"
 
 "Verify equation (3)"
@@ -54,7 +49,6 @@ check(contract(d(Ju,X)) == 0)
 Jx = Ju[2]
 Jy = Ju[3]
 Jz = Ju[4]
-J = (Jx,Jy,Jz)
-check(J == curl(B) - d(E,t))
+check((Jx,Jy,Jz) == curl(B) - d(E,t))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
