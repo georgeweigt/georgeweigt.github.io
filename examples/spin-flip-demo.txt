@@ -8,16 +8,16 @@ Sz = 1/2 hbar ((1,0),(0,-1))
 
 S = (Sx,Sy,Sz)
 
-H = g e / (2 m) dot(B,S)
+H = e / m dot(B,S)
+H
 
 "Verify equation (1)"
-c1 = a1 exp(i theta1) exp(-i g e / (4 m omega) B0 sin(omega t))
-c2 = a2 exp(i theta2) exp(i g e / (4 m omega) B0 sin(omega t))
+c1 = exp(-i e / (2 m omega) B0 sin(omega t)) / sqrt(2)
+c2 = exp(i e / (2 m omega) B0 sin(omega t)) / sqrt(2)
 s = (c1,c2)
 check(i hbar d(s,t) == dot(H,s))
 "ok"
 
 "Verify equation (2)"
-check(dot(conj(s),Sx,s) ==
-a1 a2 hbar cos(g e / (2 m omega) B0 sin(omega t) - theta1 + theta2))
+check(dot(conj(s),Sx,s) == 1/2 hbar cos(e / (m omega) B0 sin(omega t)))
 "ok"
