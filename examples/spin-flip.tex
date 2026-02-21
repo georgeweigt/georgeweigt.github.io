@@ -14,7 +14,7 @@ Find the minimum $B_0$ such that $\langle S_x\rangle$ ranges from
 $-\frac{\hbar}{2}$ to $+\frac{\hbar}{2}$.
 
 \medskip
-The Hamiltonian for an electron in a magnetic field is
+The Hamiltonian is
 \begin{equation*}
 H=\frac{e}{m}\mathbf B\cdot\mathbf S
 \end{equation*}
@@ -29,19 +29,19 @@ Let $|s\rangle$ be the following spin state.
 |s\rangle=\begin{pmatrix}c_1(t)\\c_2(t)\end{pmatrix}
 \end{equation*}
 
-Consider the Schrodinger equation for spin state $|s\rangle$.
+Consider the Schr\"odinger equation for spin state $|s\rangle$.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}|s\rangle=H|s\rangle
 \end{equation*}
 
-By the Schrodinger equation we have for $c_1(t)$ and $c_2(t)$
+In component form
 \begin{align*}
 i\hbar\frac{\partial}{\partial t}c_1(t)&=\frac{e\hbar}{2m}B_0\cos(\omega t)c_1(t)
 \\
 i\hbar\frac{\partial}{\partial t}c_2(t)&=-\frac{e\hbar}{2m}B_0\cos(\omega t)c_2(t)
 \end{align*}
 
-Solve for $c_1(t)$ and $c_2(t)$.
+Solve for $c_1(t)$ and $c_2(t)$ and normalize for $|c_1(t)|^2+|c_2(t)|^2=1$.
 \begin{equation*}
 \begin{aligned}
 c_1(t)&=\frac{1}{\sqrt2}\exp\left(-\frac{ie}{2m\omega}B_0\sin(\omega t)\right)
