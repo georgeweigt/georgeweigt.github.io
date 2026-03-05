@@ -1,7 +1,0 @@
--- www.sciencealert.com/the-sum-of-three-cubes-problem-has-been-solved-for-42
-
-x = -80538738812075974
-y = 80435758145817515
-z = 12602123297335631
-
-x^3 + y^3 + z^3

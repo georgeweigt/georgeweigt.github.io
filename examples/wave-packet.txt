@@ -1,3 +1,0 @@
-f = 5 sin(3 x) exp(-x^2 / 10)
-
-draw(f)
