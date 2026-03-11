@@ -1,0 +1,20 @@
+"Particle in a box"
+
+psi = (A sin(k x) + B cos(k x)) exp(-i omega t)
+omega = hbar k^2 / (2 m)
+
+"Verify Schrodinger equation"
+check(i hbar d(psi,t) == -hbar^2 / (2 m) d(psi,x,x))
+"ok"
+
+"Verify boundary conditions"
+B = 0
+k = pi / a
+check(eval(psi,x,0) == 0)
+check(eval(psi,x,a) == 0)
+"ok"
+
+"Verify normalization"
+A = sqrt(2 / a)
+check(defint(conj(psi) psi, x, 0, a) == 1)
+"ok"
