@@ -8,10 +8,19 @@ C(n) = 1 / sqrt(2^n n!) (m omega / (pi hbar))^(1/4)
 
 "Verify wave functions solve Schrodinger equation"
 
-for(n,0,4,
- Psi = psi(n),
- check(i hbar d(Psi,t) == -hbar^2 / (2 m) d(Psi,x,x) + 1/2 m omega^2 x^2 Psi)
-)
+psi0 = psi(0)
+psi1 = psi(1)
+psi2 = psi(2)
+psi3 = psi(3)
+psi4 = psi(4)
+
+Hhat(f) = -hbar^2 / (2 m) d(f,x,x) + 1/2 m omega^2 x^2 f
+
+check(i hbar d(psi0,t) == Hhat(psi0))
+check(i hbar d(psi1,t) == Hhat(psi1))
+check(i hbar d(psi2,t) == Hhat(psi2))
+check(i hbar d(psi3,t) == Hhat(psi3))
+check(i hbar d(psi4,t) == Hhat(psi4))
 
 "ok"
 
@@ -20,12 +29,19 @@ for(n,0,4,
 psi(n) = C(n) exp(m omega x^2 / (2 hbar)) *
          d(exp(-m omega x^2 / hbar), x, n)
 
+psi0 = psi(0)
+psi1 = psi(1)
+psi2 = psi(2)
+psi3 = psi(3)
+psi4 = psi(4)
+
 E(n) = hbar omega (n + 1/2)
 
-for(n,0,4,
- Psi = psi(n),
- check(-hbar^2 / (2 m) d(Psi,x,x) + 1/2 m omega^2 x^2 Psi == E(n) Psi)
-)
+check(Hhat(psi0) == E(0) psi0)
+check(Hhat(psi1) == E(1) psi1)
+check(Hhat(psi2) == E(2) psi2)
+check(Hhat(psi3) == E(3) psi3)
+check(Hhat(psi4) == E(4) psi4)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
