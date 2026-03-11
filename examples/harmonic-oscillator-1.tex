@@ -26,7 +26,7 @@ where $C_n$ is the normalization constant
 C_n=\frac{1}{\sqrt{2^nn!}}\biggl(\frac{m\omega}{\pi\hbar}\biggr)^{\frac{1}{4}}
 \end{equation*}
 
-By inspection of the time-dependent exponential in $\psi_n(x,t)$ we find that
+By inspection of the time exponential in $\psi_n(x,t)$ we find that
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\psi(x,t)=\hbar\omega(n+\tfrac{1}{2})\psi(x,t)
 \end{equation*}
@@ -42,86 +42,11 @@ where for the harmonic oscillator
 E_n=\hbar\omega(n+\tfrac{1}{2})
 \end{equation*}
 
-The time exponential of $\psi_n$ cancels in (1) hence we can write $\psi_n$ as independent of time.
+The time exponential of $\psi_n(x,t)$ cancels in (1) hence we have $\psi_n(x)$ independent of time.
 \begin{equation*}
 \psi_n(x)=C_n\exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
-
-\end{document}
-
-
-
-
-
-The eigenvalues are
-\begin{equation*}
-E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
-\end{equation*}
-
-The ladder operators are
-\begin{align*}
-\hat a&=\sqrt{\frac{m\omega}{2\hbar}}\left(x+\frac{i\hat p}{m\omega}\right)
-\\[1ex]
-\hat a^\dag&=\sqrt{\frac{m\omega}{2\hbar}}\left(x-\frac{i\hat p}{m\omega}\right)
-\end{align*}
-
-Operator $\hat a$ lowers $\psi_n$.
-\begin{equation*}
-\hat a\psi_n=\sqrt n\psi_{n-1}
-\end{equation*}
-
-Operator $\hat a^\dag$ raises $\psi_n$.
-\begin{equation*}
-\hat a^\dag\psi_n=\sqrt{n+1}\psi_{n+1}
-\end{equation*}
-
-This is how $\psi_n$ can be obtained from $\psi_0$.
-\begin{equation*}
-\psi_n=\frac{(\hat a^\dag)^n}{\sqrt{n!}}\psi_0
-\end{equation*}
-
-The number operator is the result of lowering then raising.
-\begin{equation*}
-\hat N=\hat a^\dag\hat a,\quad\hat N\psi_n=n\psi_n
-\end{equation*}
-
-\subsubsection*{Exercises}
-
-1. Verify $\psi_n$ and $E_n$.
-
-\bigskip
-2. Verify ladder operators.
-
-\bigskip
-3. Let
-\begin{equation*}
-\Psi(x)=\frac{\psi_2(x)+\psi_3(x)}{\sqrt2}
-\end{equation*}
-
-Verify that
-\begin{align*}
-\Pr(x\ge0)=\int_0^\infty \Psi^*\Psi\,dx\approx0.85
-\end{align*}
-
-4. Let
-\begin{equation*}
-m=6.64\times10^{-27}\,\text{kilogram},\quad
-V(10^{-6}\,\text{meter})=1\,\text{electronvolt}
-\end{equation*}
-
-Verify that
-\begin{equation*}
-\omega=\sqrt{\frac{2V(x)}{mx^2}}=6.95\times10^9\,\text{second}^{-1}
-\end{equation*}
-
-For $\Psi=(\psi_2+\psi_3)/\sqrt2$ verify that
-\begin{align*}
-\langle x\rangle&=\int_{-\infty}^\infty x\Psi^*\Psi\,dx=1.85\times10^{-9}\,\text{meter}
-\\
-\langle E\rangle&=\int_{-\infty}^\infty \Psi^*\hat H\Psi\,dx=1.37\times10^{-5}\,\text{electronvolt}
-=\frac{E_2+E_3}{2}
-\end{align*}
 
 \href{https://georgeweigt.github.io/examples/harmonic-oscillator-1-demo.html}{Eigenmath script}
 
