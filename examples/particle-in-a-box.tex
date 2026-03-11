@@ -32,17 +32,14 @@ By the boundary condition $\psi(0,t)=0$ we have
 B=0
 \end{equation*}
 
-By the boundary condition $\psi(a,t)=0$ we have
+By the boundary condition $\psi(a,t)=0$ we have for integer $n$
 \begin{equation*}
 kx=\frac{n\pi x}{a}
 \end{equation*}
 
-where $n$ is an integer.
-
-\bigskip
-We seek $A$ such that the probability of finding the particle in the box is unity.
+We seek $A$ that normalizes probability density $|\psi|^2$.
 \begin{equation*}
-\int_0^a\psi^*\psi\,dx=\tfrac{1}{2}|A|^2a=1
+\int_0^a|\psi|^2\,dx=\frac{a}{2}\,|A|^2=1
 \end{equation*}
 
 Hence
@@ -57,7 +54,7 @@ E_n=\hbar\omega=\frac{n^2\pi^2\hbar^2}{2ma^2}
 
 Put everything together and write
 \begin{equation*}
-\psi_n(x,t)=\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)
+\psi_n(x,t)=\sqrt{\frac{2}{a}}\sin\biggl(\frac{n\pi x}{a}\biggr)
 \exp\left(-\frac{iE_nt}{\hbar}\right)
 \end{equation*}
 
@@ -69,5 +66,7 @@ Check dimensions.
 E_n&=\frac{n^2\pi^2\hbar^2}{2ma^2}
 =\frac{[\text{J}^2\,\text{s}^2]}{[\text{kg}]\,[\text{m}^2]}=[\text{J}]
 \end{align*}
+
+\href{https://georgeweigt.github.io/examples/particle-in-a-box-demo.html}{Eigenmath script}
 
 \end{document}
