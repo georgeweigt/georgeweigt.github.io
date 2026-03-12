@@ -1,0 +1,33 @@
+\input{preamble}
+
+\section*{Harmonic oscillator 2}
+
+From the previous section we have
+\begin{equation*}
+\psi_n(x)=\frac{1}{\sqrt{2^nn!}}
+\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\end{equation*}
+
+Take the derivative of $\psi_n(x)$ to obtain
+\begin{align*}
+\frac{d}{dx}\psi_n(x)
+&=\frac{m\omega x}{\hbar}\psi_n(x)
++\frac{1}{\sqrt{2^nn!}}
+\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+\frac{d^{n+1}}{dx^{n+1}}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\\[1ex]
+&=\frac{m\omega x}{\hbar}\psi_n(x)+\sqrt{2(n+1)}\psi_{n+1}(x)
+\end{align*}
+
+Hence
+\begin{equation*}
+\sqrt{n+1}\,\psi_{n+1}(x)=\frac{1}{\sqrt2}
+\left[\frac{d}{dx}\psi_n(x)-\frac{m\omega x}{\hbar}\psi_n(x)\right]
+\end{equation*}
+
+
+
+\end{document}
