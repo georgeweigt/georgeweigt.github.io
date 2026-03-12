@@ -4,7 +4,7 @@
 
 % {\it Anything quadratic is called harmonic.} ---A.~Zee
 
-Let $V(x)$ be the potential energy
+Let $V(x)$ be the potential energy for a harmonic oscillator.
 \begin{equation*}
 V(x)=\frac{m\omega^2 x^2}{2}
 \end{equation*}
@@ -17,21 +17,21 @@ i\hbar\frac{\partial}{\partial t}\psi(x,t)
 
 The solution is
 \begin{equation*}
-\psi_n(x,t)=C_n\exp\left[\frac{m\omega x^2}{2\hbar}-i\omega t(n+\tfrac{1}{2})\right]
+\psi_n(x,t)=C_n\exp\left[\frac{m\omega x^2}{2\hbar}-i\omega t\left(n+\tfrac{1}{2}\right)\right]
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
 where $C_n$ is the normalization constant
 \begin{equation*}
-C_n=\frac{1}{\sqrt{2^nn!}}\biggl(\frac{m\omega}{\pi\hbar}\biggr)^{\frac{1}{4}}
+C_n=\frac{1}{\sqrt{2^nn!}}\biggl(\frac{m\omega}{\pi\hbar}\biggr)^{1/4}
 \end{equation*}
 
 By inspection of the time exponential in $\psi_n(x,t)$ we find that
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=\hbar\omega(n+\tfrac{1}{2})\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=\hbar\omega\left(n+\tfrac{1}{2}\right)\psi(x,t)
 \end{equation*}
 
-Hence $\psi(x,t)$ solves the time-independent Schrodinger equation
+Hence $\psi(x,t)$ also solves the time-independent Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)+V(x)\psi(x,t)=E_n\psi(x,t)
 \tag{1}
@@ -39,7 +39,7 @@ Hence $\psi(x,t)$ solves the time-independent Schrodinger equation
 
 where for the harmonic oscillator
 \begin{equation*}
-E_n=\hbar\omega(n+\tfrac{1}{2})
+E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
 \end{equation*}
 
 The time exponential of $\psi_n(x,t)$ cancels in (1) hence $\psi_n(x)$ is also a solution where
