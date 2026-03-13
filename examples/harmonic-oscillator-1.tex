@@ -23,7 +23,9 @@ The solution is
 
 where $n=0,1,2,\ldots$ and $C_n$ is the normalization constant
 \begin{equation*}
-C_n=\frac{1}{\sqrt{2^nn!}}\biggl(\frac{m\omega}{\pi\hbar}\biggr)^{1/4}
+C_n=\frac{1}{\sqrt{2^nn!}}
+\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\left(\frac{\hbar}{m\omega}\right)^{n/2}
 \end{equation*}
 
 By inspection of the time exponential in $\psi_n(x,t)$ we find that
@@ -48,6 +50,15 @@ The time exponential of $\psi_n(x,t)$ cancels in (1) hence $\psi_n(x)$ is also a
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
+By convention a factor of $(-1)^n$ is included.
+\begin{equation*}
+\psi_n(x)=(-1)^nC_n\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\end{equation*}
+
+This factor cancels in the Schrodinger equation so it is not really needed.
+
+\bigskip
 \href{https://georgeweigt.github.io/examples/harmonic-oscillator-1-demo.html}{Eigenmath script}
 
 \end{document}

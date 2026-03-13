@@ -4,30 +4,70 @@
 
 From the previous section we have
 \begin{equation*}
-\psi_n(x)=\frac{1}{\sqrt{2^nn!}}
+\psi_n(x)=\frac{(-1)^n}{\sqrt{2^nn!}}
 \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\left(\frac{\hbar}{m\omega}\right)^{n/2}
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
 Take the derivative of $\psi_n(x)$ to obtain
-\begin{align*}
+\begin{equation*}
 \frac{d}{dx}\psi_n(x)
-&=\frac{m\omega x}{\hbar}\psi_n(x)
+=\frac{m\omega x}{\hbar}\psi_n(x)
 +\frac{1}{\sqrt{2^nn!}}
 \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\left(\frac{\hbar}{m\omega}\right)^{n/2}
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^{n+1}}{dx^{n+1}}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
-\\[1ex]
-&=\frac{m\omega x}{\hbar}\psi_n(x)+\sqrt{2(n+1)}\psi_{n+1}(x)
-\end{align*}
+\end{equation*}
+
+Substitute $\psi_{n+1}(x)$ for the right-hand side.
+\begin{equation*}
+\frac{d}{dx}\psi_n(x)
+=\frac{m\omega x}{\hbar}\psi_n(x)
+-\sqrt{2}\sqrt{n+1}\left(\frac{\hbar}{m\omega}\right)^{-1/2}\psi_{n+1}(x)
+\end{equation*}
 
 Hence
 \begin{equation*}
-\sqrt{n+1}\,\psi_{n+1}(x)=\frac{1}{\sqrt2}
-\left[\frac{d}{dx}\psi_n(x)-\frac{m\omega x}{\hbar}\psi_n(x)\right]
+\left(\frac{\hbar}{2m\omega}\right)^{1/2}
+\left[\frac{m\omega x}{\hbar}\psi_n(x)-\frac{d}{dx}\psi_n(x)\right]
+=\sqrt{n+1}\,\psi_{n+1}(x)
 \end{equation*}
 
+By inspection of this result we define step-up operator $\hat a^\dag$ as
+\begin{equation*}
+\hat a^\dag=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
+\left[\frac{m\omega x}{\hbar}-\frac{d}{dx}\right]
+\end{equation*}
 
+Hence
+\begin{equation*}
+\hat a^\dag\psi_n(x)=\sqrt{n+1}\,\psi_{n+1}(x)
+\end{equation*}
+
+Let $\hat a$ be the step-down operator
+\begin{equation*}
+\hat a=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
+\left[\frac{m\omega x}{\hbar}+\frac{d}{dx}\right]
+\end{equation*}
+
+Hence (how to prove?)
+\begin{equation*}
+\hat a\psi_n(x)=\sqrt{n}\,\psi_{n-1}(x)
+\end{equation*}
+
+Let $\hat N$ be the number operator
+\begin{equation*}
+\hat N=\hat a^\dag\hat a
+\end{equation*}
+
+Hence
+\begin{equation*}
+\hat N\psi_n=\hat a^\dag\hat a\psi_n=\hat a^\dag\left(\sqrt n\psi_{n-1}\right)=n\psi_n
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/harmonic-oscillator-2-demo.html}{Eigenmath script}
 
 \end{document}
