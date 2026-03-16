@@ -4,29 +4,39 @@
 
 From the previous section we have
 \begin{equation*}
-\psi_n(x)=\frac{(-1)^n}{\sqrt{2^nn!}}
-\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
-\left(\frac{\hbar}{m\omega}\right)^{n/2}
+\psi_n(x)=C_n
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\end{equation*}
+
+where
+\begin{equation*}
+C_n=\frac{(-1)^n}{\sqrt{2^nn!}}
+\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\left(\frac{\hbar}{m\omega}\right)^{n/2}
 \end{equation*}
 
 Take the derivative of $\psi_n(x)$ to obtain
 \begin{equation*}
 \frac{d}{dx}\psi_n(x)
 =\frac{m\omega x}{\hbar}\psi_n(x)
-+\frac{(-1)^n}{\sqrt{2^nn!}}
-\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
-\left(\frac{\hbar}{m\omega}\right)^{n/2}
++C_n
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^{n+1}}{dx^{n+1}}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
-Substitute $\psi_{n+1}(x)$ for the right-hand side.
+Substitute $\psi_{n+1}(x)$ for the right-hand side to obtain
 \begin{equation*}
 \frac{d}{dx}\psi_n(x)
 =\frac{m\omega x}{\hbar}\psi_n(x)
-+\frac{\sqrt{2\,(n+1)}}{(-1)}\left(\frac{\hbar}{m\omega}\right)^{-1/2}\psi_{n+1}(x)
++\frac{C_n}{C_{n+1}}\psi_{n+1}(x)
+\end{equation*}
+
+where
+\begin{equation*}
+\frac{C_n}{C_{n+1}}
+=\frac{\sqrt{2\,(n+1)}}{(-1)}\left(\frac{\hbar}{m\omega}\right)^{-1/2}
+=-\left(\frac{2m\omega}{\hbar}\right)^{1/2}\sqrt{n+1}
 \end{equation*}
 
 Hence
@@ -36,7 +46,7 @@ Hence
 =\sqrt{n+1}\,\psi_{n+1}(x)
 \end{equation*}
 
-By inspection of this result we define step-up operator $\hat a^\dag$ as
+By inspection we define step-up operator $\hat a^\dag$ as
 \begin{equation*}
 \hat a^\dag=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
 \left[\frac{m\omega x}{\hbar}-\frac{d}{dx}\right]
