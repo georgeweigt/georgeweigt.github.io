@@ -1,0 +1,147 @@
+\input{preamble}
+
+\section*{Born approximation}
+
+The Born approximation gives scattering amplitude $\phi(\mathbf p)$ as
+\begin{equation*}
+\phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
+\tag{1}
+\end{equation*}
+
+For Coulomb potential
+\begin{equation*}
+V(\mathbf y)=-\frac{Z\alpha\hbar c}{|\mathbf y|}
+\end{equation*}
+
+the solution is
+\begin{equation*}
+\phi(\mathbf p)=-\frac{2mZ\alpha\hbar c}{|\mathbf p|^2}
+\end{equation*}
+
+By the identity
+\begin{equation*}
+|\mathbf p|^2=4mE(1-\cos\theta)
+\end{equation*}
+
+we have
+\begin{equation*}
+\phi(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+Hence the Rutherford cross section
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=|\phi(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
+\tag{2}
+\end{equation*}
+
+Let us derive (1) from the time-independent Schrodinger equation
+\begin{equation*}
+-\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
+\end{equation*}
+
+Rewrite the Schrodinger equation as
+\begin{equation*}
+\left(\nabla^2+k^2\right)\psi(\mathbf x)=\frac{2m}{\hbar^2}V(\mathbf x)\psi(\mathbf x)
+\end{equation*}
+
+where
+\begin{equation*}
+k=\frac{\sqrt{2mE}}{\hbar}
+\end{equation*}
+
+Now we are going to make the Schrodinger equation even more complicated.
+
+\medskip
+By the sifting property of $\delta(\mathbf x-\mathbf y)$ we can write
+\begin{equation*}
+\left(\nabla^2+k^2\right)\psi(\mathbf x)=\frac{2m}{\hbar^2}
+\int\delta(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Let $G(\mathbf x)$ be a Green's function such that
+\begin{equation*}
+\left(\nabla^2+k^2\right)G(\mathbf x)=\delta(\mathbf x)
+\end{equation*}
+
+Then by substitution
+\begin{equation*}
+\left(\nabla^2+k^2\right)\psi(\mathbf x)=\frac{2m}{\hbar^2}
+\int\left(\nabla^2+k^2\right)G(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+By linearity
+\begin{equation*}
+\left(\nabla^2+k^2\right)\psi(\mathbf x)=\left(\nabla^2+k^2\right)\frac{2m}{\hbar^2}
+\int G(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Hence
+\begin{equation*}
+\psi(\mathbf x)=\frac{2m}{\hbar^2}
+\int G(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+The well-known solution for $G(\mathbf x)$ is
+\begin{equation*}
+G(\mathbf x)=-\frac{\exp(ik|\mathbf x|)}{4\pi|\mathbf x|}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}
+\int\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+For potentials $V(\mathbf y)\approx0$ for large $|\mathbf y|$ we have the approximation
+\begin{equation*}
+\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}V(\mathbf y)
+\approx\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
+\exp\left(-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)V(\mathbf y)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
+\int\exp\left(-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)
+V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+For the Born approximation we use
+\begin{equation*}
+\psi(\mathbf y)=\exp\left(\frac{ik\mathbf x'\cdot\mathbf y}{|\mathbf x'|}\right)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
+\int\exp\left(\frac{ik\mathbf x'\cdot\mathbf y}{|\mathbf x'|}
+-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)
+V(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Let $\mathbf p$ be momentum transfer
+\begin{equation*}
+\mathbf p=\hbar k\left(\frac{\mathbf x'}{|\mathbf x'|}-\frac{\mathbf x}{|\mathbf x|}\right)
+\end{equation*}
+
+Then by substitution
+\begin{equation*}
+\psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
+V(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Partition $\psi(\mathbf x)$ as
+\begin{equation*}
+\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\phi(\mathbf p)
+\end{equation*}
+
+where $\phi(\mathbf p)$ is the scattering amplitude
+\begin{equation*}
+\phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
+V(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+\end{document}
