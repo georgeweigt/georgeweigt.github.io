@@ -2,14 +2,19 @@
 
 \section*{Born approximation}
 
-The Born approximation gives scattering amplitude $\phi(\mathbf p)$ as
+Let $\phi(\mathbf p)$ be the scattering amplitude for momentum
+transfer vector $\mathbf p$ where
+\begin{equation*}
+\mathbf p=\mathbf p_i-\mathbf p_f
+\end{equation*}
+
+The Born approximation gives
 \begin{equation*}
 \phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
-\tag{1}
 \end{equation*}
 
-For Coulomb potential
+For example, given Coulomb potential
 \begin{equation*}
 V(\mathbf y)=-\frac{Z\alpha\hbar c}{|\mathbf y|}
 \end{equation*}
@@ -32,10 +37,10 @@ we have
 Hence the Rutherford cross section
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=|\phi(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
-\tag{2}
+\tag{1}
 \end{equation*}
 
-Let us derive (1) from the time-independent Schrodinger equation
+Let us derive $\phi(\mathbf p)$ from the time-independent Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
 \end{equation*}
@@ -143,5 +148,7 @@ where $\phi(\mathbf p)$ is the scattering amplitude
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
 V(\mathbf y)\,d\mathbf y
 \end{equation*}
+
+\href{https://georgeweigt.github.io/examples/born-approximation-demo.html}{Eigenmath script}
 
 \end{document}
