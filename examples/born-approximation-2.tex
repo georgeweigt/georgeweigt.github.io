@@ -1,0 +1,137 @@
+\input{preamble}
+
+% Griffiths and Schroeter
+
+\section*{Born approximation 2}
+
+We will now derive the Green's function that was used in the previous section.
+
+\bigskip
+Let $G(\mathbf x)$ be a Green's function such that
+\begin{equation*}
+\left(\nabla^2+k^2\right)G(\mathbf x)=\delta(\mathbf x)
+\tag{1}
+\end{equation*}
+
+Let $g(\mathbf y)$ be the Fourier transform of $G(\mathbf x)$ such that
+\begin{equation*}
+G(\mathbf x)
+=\frac{1}{(2\pi)^{3/2}}
+\int\exp(i\mathbf x\cdot\mathbf y)
+g(\mathbf y)\,d\mathbf y
+\tag{2}
+\end{equation*}
+
+By equations (1) and (2)
+\begin{equation*}
+\left(\nabla^2+k^2\right)
+\left[\frac{1}{(2\pi)^{3/2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y\right]
+=\delta(\mathbf x)
+\end{equation*}
+
+By linearity
+\begin{equation*}
+\frac{1}{(2\pi)^{3/2}}
+\int\left(\nabla^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+=\delta(\mathbf x)
+\end{equation*}
+
+Noting that $\nabla^2$ operates on $\mathbf x$ and not $\mathbf y$ we have
+\begin{equation*}
+\nabla^2\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)
+=-|\mathbf y|^2\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{1}{(2\pi)^{3/2}}
+\int\left(-|\mathbf y|^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+=\delta(\mathbf x)
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\delta(\mathbf x)=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
+\end{equation*}
+
+we have
+\begin{equation*}
+\frac{1}{(2\pi)^{3/2}}
+\int\left(-|\mathbf y|^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
+=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
+\end{equation*}
+
+Hence
+\begin{equation*}
+g(\mathbf y)=\frac{1}{(2\pi)^{3/2}\left(k^2-|\mathbf y|^2\right)}
+\end{equation*}
+
+Substitute for $g(\mathbf y)$ in (2) to obtain
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^3}\int\frac{\exp(i\mathbf x\cdot\mathbf y)}{k^2-|\mathbf y|^2}\,d\mathbf y
+\end{equation*}
+
+Change to polar coordinates where $x=|\mathbf x|$ and $r=|\mathbf y|$.
+%and $\theta$ and $\phi$ are the angular distance from $\mathbf x$ to $\mathbf y$.
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^3}
+\int_0^\infty\int_0^\pi\int_0^{2\pi}
+\frac{\exp(ixr\cos\theta)}{k^2-r^2}\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+For the integrals over $\theta$ and $\phi$ we have
+\begin{equation*}
+\int_0^\pi\int_0^{2\pi}\exp(ixr\cos\theta)\sin\theta\,d\theta\,d\phi=\frac{4\pi\sin(xr)}{xr}
+\end{equation*}
+
+Hence
+\begin{equation*}
+G(\mathbf x)=\frac{1}{2\pi^2x}
+\int_0^\infty\frac{\sin(xr)}{k^2-r^2}r\,dr
+\end{equation*}
+
+Noting that $r\sin(xr)$ is an even function of $r$ we can extend the lower limit as
+\begin{equation*}
+G(\mathbf x)=\frac{1}{4\pi^2x}
+\int_{-\infty}^\infty\frac{\sin(xr)}{k^2-r^2}r\,dr
+\end{equation*}
+
+Negate the denominator.
+\begin{equation*}
+G(\mathbf x)=\frac{1}{4\pi^2x}
+\int_{-\infty}^\infty-\frac{\sin(xr)}{r^2-k^2}r\,dr
+\end{equation*}
+
+Change the sine function to exponential form and factor the denominator.
+\begin{equation*}
+G(\mathbf x)
+=\frac{i}{8\pi^2x}
+\left[
+\int_{-\infty}^\infty\frac{\exp(ixr)}{(r+k)(r-k)}r\,dr
+-\int_{-\infty}^\infty\frac{\exp(-ixr)}{(r+k)(r-k)}r\,dr
+\right]
+\tag{3}
+\end{equation*}
+
+By Cauchy's integral formula we have
+\begin{equation*}
+\int_{-\infty}^\infty\frac{r\exp(ixy)}{r+k}\frac{1}{r-k}\,dr
+=i\pi\exp(ikx)
+\end{equation*}
+
+and
+\begin{equation*}
+\int_{-\infty}^\infty\frac{r\exp(-ixy)}{r-k}\frac{1}{r+k}\,dr
+=-i\pi\exp(ikx)
+\end{equation*}
+
+Hence
+\begin{equation*}
+G(\mathbf x)
+=-\frac{\exp(ikx)}{4\pi x}
+\tag{4}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/born-approximation-2-demo.html}{Eigenmath script}
+
+\end{document}

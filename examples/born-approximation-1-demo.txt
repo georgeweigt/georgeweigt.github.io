@@ -1,4 +1,4 @@
-"Born approximation"
+"Born approximation 1"
 
 phi = -Z alpha hbar c / (2 E (1 - cos(theta)))
 

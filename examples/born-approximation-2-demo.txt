@@ -1,0 +1,19 @@
+"Born approximation 2"
+
+"Verify equation (3)"
+
+A = 1 / (4 pi^2 x) r sin(x r) / (k^2 - r^2)
+B = i / (8 pi^2 x) r (exp(i x r) - exp(-i x r)) / (r^2 - k^2)
+
+check(A == B)
+
+"ok"
+
+"Verify equation (4)"
+
+A = i pi exp(i k x)
+B = -i pi exp(i k x)
+
+check(i / (8 pi^2 x) (A - B) == -exp(i k x) / (4 pi x))
+
+"ok"
