@@ -15,11 +15,11 @@ $e^-+\text{atom}\rightarrow e^-+\text{atom}$.
 \end{tikzpicture}
 \end{center}
 
-Momentum vectors for Rutherford scattering where $E=\sqrt{p^2+m^2}$.
+These are the momentum vectors for Rutherford scattering where $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
 p_1=\underset{\substack{\text{inbound}\\ \text{electron}}}
-{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}},
-\quad
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\qquad
 p_2=\underset{\substack{\text{outbound}\\ \text{electron}}}
 {\begin{pmatrix}
 E\\
@@ -33,8 +33,8 @@ Spinors for the inbound electron.
 \begin{equation*}
 u_{11}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\text{inbound electron}\\ \text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}},
-\quad
+{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+\qquad
 u_{12}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\text{inbound electron}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
@@ -44,8 +44,8 @@ Spinors for the outbound electron.
 \begin{equation*}
 u_{21}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\text{outbound electron}\\ \text{spin up}}}
-{\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}},
-\quad
+{\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
+\qquad
 u_{22}=\frac{1}{\sqrt{E+m}}
 \underset{\substack{\text{outbound electron}\\ \text{spin down}}}
 {\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
@@ -82,7 +82,7 @@ The result is
 =2\left(\frac{Z\alpha}{q^2}\right)^2\left(E^2+m^2+p^2\cos\theta\right)
 \end{equation*}
 
-For low energy experiments where $p\ll m$ we can use the approximation
+Recall that $m\approx0.511\,\text{MeV}$ hence for $m\gg p$ we can use the approximation
 \begin{equation*}
 E^2+m^2+p^2\cos\theta\approx2m^2
 \end{equation*}
@@ -112,10 +112,11 @@ we can also write
 \frac{d\sigma}{d\Omega}=\left[\frac{Z\alpha}{2E(\cos\theta-1)}\right]^2
 \end{equation*}
 
+\href{https://georgeweigt.github.io/examples/rutherford-scattering-3-demo.html}{Eigenmath script}
 
+\end{document}
 
-
-\iffalse
+%%%%%%%%%%%%%%
 
 Noting that
 \begin{equation*}
@@ -166,39 +167,3 @@ The probability density function is
 \begin{equation*}
 f(\theta)=\frac{dF(\theta)}{d\theta}=\frac{1}{I(\pi)-I(a)}\frac{1}{(\cos\theta-1)^2}\sin\theta
 \end{equation*}
-
-\subsubsection*{Notes}
-1. The original Rutherford scattering experiment in 1911 used alpha particles, not electrons.
-However, scattering of any charged particle by Coulomb interaction
-is now known as Rutherford scattering.
-The first Rutherford scattering experiment using electrons appears to have
-been done by F.~L.~Arnot, then a student of Rutherford, in 1929.
-
-\bigskip
-2. Lancaster and Blundell page 356 has
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{Z^2\alpha^2}{4m^2\mathbf v^4\sin^4(\theta/2)}
-\end{equation*}
-
-Noting that
-\begin{equation*}
-\frac{1}{m^2\mathbf v^4}=\frac{m^2}{m^4\mathbf v^4}=\frac{m^2}{p^4}
-\end{equation*}
-
-and
-\begin{equation*}
-4\sin^4(\theta/2)=(\cos\theta-1)^2
-\end{equation*}
-
-we have
-\begin{equation*}
-\frac{Z^2\alpha^2}{4m^2\mathbf v^4\sin^4(\theta/2)}
-=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
-\end{equation*}
-
-\fi
-
-\href{https://georgeweigt.github.io/examples/rutherford-scattering-3-demo.html}{Eigenmath script}
-
-\end{document}
