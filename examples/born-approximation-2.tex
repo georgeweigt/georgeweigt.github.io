@@ -1,6 +1,6 @@
 \input{preamble}
 
-% Griffiths and Schroeter
+% Griffiths and Schroeter p. 388
 
 \section*{Born approximation 2}
 
@@ -79,27 +79,43 @@ G(\mathbf x)=\frac{1}{(2\pi)^3}
 \frac{\exp(ixr\cos\theta)}{k^2-r^2}\,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-For the integrals over $\theta$ and $\phi$ we have
+Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-\int_0^\pi\int_0^{2\pi}\exp(ixr\cos\theta)\sin\theta\,d\theta\,d\phi=\frac{4\pi\sin(xr)}{xr}
+G(\mathbf x)=\frac{1}{(2\pi)^2}
+\int_0^\infty\int_0^\pi
+\frac{\exp(ixr\cos\theta)}{k^2-r^2}\,r^2\sin\theta\,dr\,d\theta
 \end{equation*}
 
-Hence
+For the integral over $\theta$ use change of variable
+$u=\cos\theta$ and $du=-\sin\theta\,d\theta$ to obtain
+\begin{equation*}
+G(\mathbf x)=\frac{1}{(2\pi)^2}
+\int_0^\infty\int_1^{-1}
+-\frac{\exp(ixru)}{k^2-r^2}\,r^2\,dr\,du
+\end{equation*}
+
+By the integral
+\begin{equation*}
+\int_1^{-1}-\exp(ixru)\,du=\frac{2\sin(xr)}{xr}
+\tag{3}
+\end{equation*}
+
+we have
 \begin{equation*}
 G(\mathbf x)=\frac{1}{2\pi^2x}
-\int_0^\infty\frac{\sin(xr)}{k^2-r^2}r\,dr
+\int_0^\infty\frac{\sin(xr)}{k^2-r^2}\,r\,dr
 \end{equation*}
 
 Noting that $r\sin(xr)$ is an even function of $r$ we can extend the lower limit as
 \begin{equation*}
 G(\mathbf x)=\frac{1}{4\pi^2x}
-\int_{-\infty}^\infty\frac{\sin(xr)}{k^2-r^2}r\,dr
+\int_{-\infty}^\infty\frac{\sin(xr)}{k^2-r^2}\,r\,dr
 \end{equation*}
 
 Negate the denominator.
 \begin{equation*}
 G(\mathbf x)=\frac{1}{4\pi^2x}
-\int_{-\infty}^\infty-\frac{\sin(xr)}{r^2-k^2}r\,dr
+\int_{-\infty}^\infty-\frac{\sin(xr)}{r^2-k^2}\,r\,dr
 \end{equation*}
 
 Change the sine function to exponential form and factor the denominator.
@@ -107,10 +123,10 @@ Change the sine function to exponential form and factor the denominator.
 G(\mathbf x)
 =\frac{i}{8\pi^2x}
 \left[
-\int_{-\infty}^\infty\frac{\exp(ixr)}{(r+k)(r-k)}r\,dr
--\int_{-\infty}^\infty\frac{\exp(-ixr)}{(r+k)(r-k)}r\,dr
+\int_{-\infty}^\infty\frac{\exp(ixr)}{(r+k)(r-k)}\,r\,dr
+-\int_{-\infty}^\infty\frac{\exp(-ixr)}{(r+k)(r-k)}\,r\,dr
 \right]
-\tag{3}
+\tag{4}
 \end{equation*}
 
 By Cauchy's integral formula we have
@@ -129,7 +145,12 @@ Hence
 \begin{equation*}
 G(\mathbf x)
 =-\frac{\exp(ikx)}{4\pi x}
-\tag{4}
+\tag{5}
+\end{equation*}
+
+where
+\begin{equation*}
+x=|\mathbf x|
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/born-approximation-2-demo.html}{Eigenmath script}
