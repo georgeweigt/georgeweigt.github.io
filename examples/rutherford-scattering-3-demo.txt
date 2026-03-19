@@ -1,4 +1,4 @@
--- Verify formulas for Rutherford scattering
+"Rutherford scattering 3"
 
 E = sqrt(p^2 + m^2)
 
@@ -31,30 +31,31 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 u21bar = dot(conj(u22),gamma0) -- adjoint of u21
 u22bar = dot(conj(u22),gamma0) -- adjoint of u22
 
-M11 = dot(u21bar, gamma0, u11)
-M12 = dot(u21bar, gamma0, u12)
-M21 = dot(u22bar, gamma0, u11)
-M22 = dot(u22bar, gamma0, u12)
+M11 = Z alpha / q^2 dot(u21bar, gamma0, u11)
+M12 = Z alpha / q^2 dot(u21bar, gamma0, u12)
+M21 = Z alpha / q^2 dot(u22bar, gamma0, u11)
+M22 = Z alpha / q^2 dot(u22bar, gamma0, u12)
 
 M = 1/2 (conj(M11) M11 + conj(M12) M12 + conj(M21) M21 + conj(M22) M22)
 
 pslash1 = dot(p1,gmunu,gamma)
 pslash2 = dot(p2,gmunu,gamma)
 
-f = 1/2 contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
+f = 1/2 (Z alpha / q^2)^2 *
+    contract(dot(pslash2 + m I, gamma0, pslash1 + m I, gamma0))
 
-check(f == M)
+check(M == f)
 
 "ok"
 
 "Verify probability density"
 
-check(f == 2 (E^2 + m^2 + p^2 cos(theta)))
+check(f == 2 (Z alpha / q^2)^2 (E^2 + m^2 + p^2 cos(theta)))
 
 q = p1 - p2
-q4 = dot(q,gmunu,q)^2
-check(q4 == 16 p^4 sin(theta/2)^4)
-check(q4 == 4 p^4 (cos(theta) - 1)^2)
+q2 = dot(q,gmunu,q)
+check(q2 == 2 p^2 (cos(theta) - 1))
+check(q2^2 == 16 p^4 sin(theta/2)^4)
 
 -- verify integral
 

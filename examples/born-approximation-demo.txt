@@ -1,11 +1,11 @@
 "Born approximation"
 
-phi = Z alpha hbar c / (2 E (1 - cos(theta)))
+phi = -Z alpha hbar c / (2 E (1 - cos(theta)))
 
 E = 1/2 m v^2
 hbar = 1
 c = 1
 
-"Verify equation (1) with Lancaster and Blundell page 356"
+"Verify equation (1) see Lancaster and Blundell page 356"
 check(conj(phi) phi == Z^2 alpha^2 / (4 m^2 v^4 sin(theta/2)^4))
 "ok"

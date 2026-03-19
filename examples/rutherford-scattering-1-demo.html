@@ -1,4 +1,6 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Rutherford scattering 1"
+
 "Verify equation (1)"
 f = exp(i p r / hbar - epsilon r) - exp(-i p r / hbar - epsilon r)
 F = integral(f,r)
@@ -8,15 +10,14 @@ check(I == -1 / (i p / hbar - epsilon) - 1 / (i p / hbar + epsilon))
 
 "Verify equation (2)"
 epsilon = 0
-f = -m Z e^2 / (4 pi epsilon0 hbar^2) hbar / (i p) I
-check(f == -m Z e^2 / (2 pi epsilon0 p^2))
-e = sqrt(4 pi epsilon0 alpha hbar c)
-p = sqrt(4 m E (1 - cos(theta)))
+f = -m Z alpha c / hbar hbar / (i p) I
+check(f == -2 m Z alpha hbar c / p^2)
+p = sqrt(4 m E (cos(theta) - 1))
 dsigma = conj(f) f
-check(dsigma == Z^2 alpha^2 (hbar c)^2 / (4 E^2 (1 - cos(theta))^2))
+check(dsigma == (Z alpha hbar c / (2 E (cos(theta) - 1)))^2)
 "ok"
 
 "Verify equation (3)"
-check(dsigma == Z^2 alpha^2 (hbar c)^2 / (16 E^2 sin(theta/2)^4))
+check(dsigma == (Z alpha hbar c / (2 E))^2 / (4 sin(theta/2)^4))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

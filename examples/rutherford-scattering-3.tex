@@ -51,14 +51,14 @@ u_{22}=\frac{1}{\sqrt{E+m}}
 {\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
 \end{equation*}
 
-The probability density $|\mathcal M_{ab}|^2$ for spin state $ab$.
+The probability density $|\mathcal M_{ab}|^2$ for spin state $ab$ is
 \begin{equation*}
-|\mathcal{M}_{ab}|^2=\frac{Z^2e^4}{q^4}\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
+|\mathcal{M}_{ab}|^2=\left(\frac{Z\alpha}{q^2}\right)^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
 \end{equation*}
 
-$q$ is momentum transfer such that
+where $q^2$ is momentum transfer such that
 \begin{equation*}
-q^4=(p_1-p_2)^4=\left[(p_1-p_2)^\mu g_{\mu\nu}(p_1-p_2)^\nu\right]^2=4p^4(\cos\theta-1)^2
+q^2=(p_1-p_2)^2=(p_1-p_2)^\mu g_{\mu\nu}(p_1-p_2)^\nu=2p^2(\cos\theta-1)
 \end{equation*}
 
 The expected probability density
@@ -72,45 +72,50 @@ is the average of spin states.
 The Casimir trick uses matrix arithmetic to sum over spin states.
 \begin{equation*}
 \langle\vert\mathcal{M}\vert^2\rangle
-=\frac{Z^2e^4}{2q^4}\mathop{\rm Tr}\left[(\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right]
+=\frac{1}{2}\left(\frac{Z\alpha}{q^2}\right)^2
+\operatorname{Tr}\left[(\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right]
 \end{equation*}
 
 The result is
 \begin{equation*}
 \langle\vert\mathcal{M}\vert^2\rangle
-=\frac{2Z^2e^4}{q^4}\left(E^2+m^2+p^2\cos\theta\right)
+=2\left(\frac{Z\alpha}{q^2}\right)^2\left(E^2+m^2+p^2\cos\theta\right)
 \end{equation*}
 
-For low energy experiments such that $p\ll m$ we can use the approximation
+For low energy experiments where $p\ll m$ we can use the approximation
 \begin{equation*}
 E^2+m^2+p^2\cos\theta\approx2m^2
 \end{equation*}
 
 Hence
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{4Z^2e^4m^2}{q^4}
+\langle|\mathcal{M}|^2\rangle=\left(\frac{2mZ\alpha}{q^2}\right)^2
 \end{equation*}
 
-Substituting $e^4=16\pi^2\alpha^2$ and $q^4=4p^4(\cos\theta-1)^2$ we have
+The differential cross section is equivalent to the expected probability density.
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
+\frac{d\sigma}{d\Omega}=\langle|\mathcal{M}|^2\rangle=\left(\frac{2mZ\alpha}{q^2}\right)^2
 \end{equation*}
 
-\subsubsection*{Cross section}
-The differential cross section for Rutherford scattering is
+Substitute $q^2=2p^2(\cos\theta-1)$ to obtain
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{16\pi^2}
+\frac{d\sigma}{d\Omega}=\left[\frac{mZ\alpha}{p^2(\cos\theta-1)}\right]^2
 \end{equation*}
 
-For low energy experiments we have
+Noting that
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{16\pi^2Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
+p^2=2mE
 \end{equation*}
 
-Hence for low energy experiments
+we can also write
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
+\frac{d\sigma}{d\Omega}=\left[\frac{Z\alpha}{2E(\cos\theta-1)}\right]^2
 \end{equation*}
+
+
+
+
+\iffalse
 
 Noting that
 \begin{equation*}
@@ -191,5 +196,9 @@ we have
 \frac{Z^2\alpha^2}{4m^2\mathbf v^4\sin^4(\theta/2)}
 =\frac{Z^2\alpha^2m^2}{p^4(\cos\theta-1)^2}
 \end{equation*}
+
+\fi
+
+\href{https://georgeweigt.github.io/examples/rutherford-scattering-3-demo.html}{Eigenmath script}
 
 \end{document}
