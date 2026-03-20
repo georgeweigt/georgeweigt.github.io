@@ -1,0 +1,71 @@
+\input{preamble}
+
+\section*{Born approximation 3}
+
+We will now show why we can use the approximation
+\begin{equation*}
+\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}\,V(\mathbf y)
+\approx\frac{1}{|\mathbf x|}
+\exp\left(ik|\mathbf x|-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)V(\mathbf y)
+\end{equation*}
+
+The main idea is that for the Coulomb potential we have for large $\mathbf y$
+\begin{equation*}
+V(\mathbf y)\approx0
+\end{equation*}
+
+Hence we can restrict our attention to the $\mathbf y$-ball such that
+\begin{equation*}
+|\mathbf y|\ll|\mathbf x|
+\end{equation*}
+
+and let $V(\mathbf y)$ censor everything else.
+
+\medskip
+Consider the following expansions.
+\begin{align*}
+|\mathbf x-\mathbf y|^2
+&=|\mathbf x|^2-2\mathbf x\cdot\mathbf y+|\mathbf y|^2
+\\[1ex]
+\left(|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
+&=|\mathbf x|^2-2\mathbf x\cdot\mathbf y
++\left(\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
+\end{align*}
+
+Discard the $\mathbf y^2$ terms to obtain
+\begin{equation*}
+|\mathbf x-\mathbf y|^2=\left(|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
+\end{equation*}
+
+Hence for $\mathbf x\gg\mathbf y$
+\begin{equation*}
+|\mathbf x-\mathbf y|\approx|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}
+\end{equation*}
+
+It follows that
+\begin{equation*}
+\exp(ik|\mathbf x-\mathbf y|)
+\approx
+\exp\left(ik|\mathbf x|-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)
+\tag{1}
+\end{equation*}
+
+For the factor
+\begin{equation*}
+\frac{1}{|\mathbf x-\mathbf y|}
+\end{equation*}
+
+we discard $\mathbf y$ altogether and use
+\begin{equation*}
+\frac{1}{|\mathbf x-\mathbf y|}\approx\frac{1}{|\mathbf x|}
+\tag{2}
+\end{equation*}
+
+Hence by (1) and (2) we have
+\begin{equation*}
+\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}\,V(\mathbf y)
+\approx\frac{1}{|\mathbf x|}
+\exp\left(ik|\mathbf x|-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)V(\mathbf y)
+\end{equation*}
+
+\end{document}
