@@ -8,7 +8,7 @@ transfer vector $\mathbf p$ where
 \mathbf p=\mathbf p_i-\mathbf p_f
 \end{equation*}
 
-The Born approximation gives
+The Born approximation for $\phi(\mathbf p)$ is
 \begin{equation*}
 \phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
@@ -36,7 +36,7 @@ we have
 \phi(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
 
-Hence the Rutherford cross section
+Hence the Rutherford scattering cross section
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=|\phi(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \tag{1}
@@ -97,12 +97,12 @@ G(\mathbf x)=-\frac{\exp(ik|\mathbf x|)}{4\pi|\mathbf x|}
 Hence
 \begin{equation*}
 \psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}
-\int\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
+\int\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}\,V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
 \end{equation*}
 
 For potentials $V(\mathbf y)\approx0$ for large $|\mathbf y|$ we have the approximation
 \begin{equation*}
-\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}V(\mathbf y)
+\frac{\exp(ik|\mathbf x-\mathbf y|)}{|\mathbf x-\mathbf y|}\,V(\mathbf y)
 \approx\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
 \exp\left(-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)V(\mathbf y)
 \end{equation*}
@@ -141,7 +141,7 @@ V(\mathbf y)\,d\mathbf y
 
 Partition $\psi(\mathbf x)$ as
 \begin{equation*}
-\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\phi(\mathbf p)
+\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\,\phi(\mathbf p)
 \end{equation*}
 
 where $\phi(\mathbf p)$ is the scattering amplitude
