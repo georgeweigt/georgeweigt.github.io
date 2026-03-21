@@ -9,8 +9,8 @@ We will now show why we can use the approximation
 \exp\left(ik|\mathbf x|-\frac{ik\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)V(\mathbf y)
 \end{equation*}
 
-In scattering experiments we have $V(\mathbf x)=0$ because
-the detector at location $\mathbf x$ is far from the origin.
+The main idea is that for scattering experiments we have $V(\mathbf x)\approx0$
+because $\mathbf x$ is far from the origin.
 Hence we can restrict our attention to the $\mathbf y$-ball such that
 $|\mathbf y|\ll|\mathbf x|$ and let $V(\mathbf y)$ censor everything else.
 
@@ -25,17 +25,19 @@ Consider the following expansions.
 +\left(\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
 \end{align*}
 
-Discard the $\mathbf y^2$ terms to obtain
+For small $\mathbf y^2$ we have
 \begin{equation*}
-|\mathbf x-\mathbf y|^2=\left(|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
+|\mathbf x-\mathbf y|^2
+\approx
+\left(|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}\right)^2
 \end{equation*}
 
-Hence for $|\mathbf y|\ll|\mathbf x|$
+It follows that
 \begin{equation*}
 |\mathbf x-\mathbf y|\approx|\mathbf x|-\frac{\mathbf x\cdot\mathbf y}{|\mathbf x|}
 \end{equation*}
 
-It follows that
+Hence
 \begin{equation*}
 \exp(ik|\mathbf x-\mathbf y|)
 \approx
