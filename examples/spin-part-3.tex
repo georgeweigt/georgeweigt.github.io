@@ -1,0 +1,66 @@
+\input{preamble}
+
+\section*{Spin part 3}
+
+From the previous section we have for the $z$ direction
+\begin{align*}
+\Pr(+)&=|\langle z_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+\\[1ex]
+\Pr(-)&=|\langle z_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\cos\theta
+\end{align*}
+
+If $|s\rangle$ is not an eigenstate then the result
+of measuring $|s\rangle$ is a random value.
+For example, let $\theta=\pi/3$.
+Then $\cos\theta=\frac{1}{2}$ and the probabilities are
+\begin{align*}
+\Pr(+)&=\tfrac{3}{4}
+\\[1ex]
+\Pr(-)&=\tfrac{1}{4}
+\end{align*}
+
+Expected value is a useful statistic for analyzing stochastic data.
+By experimental design,
+``$+$'' indicates a spin value of $+\frac{\hbar}{2}$ and
+``$-$'' indicates a spin value of $-\frac{\hbar}{2}$.
+Hence the expected value is
+\begin{equation*}
+\left(+\frac{\hbar}{2}\right)\Pr(+)+\left(-\frac{\hbar}{2}\right)\Pr(-)
+\end{equation*}
+
+For state $|s\rangle$ such that $\theta=\pi/3$ the expected value in the $z$ direction is
+\begin{equation*}
+\left(+\frac{\hbar}{2}\right)\frac{3}{4}+\left(-\frac{\hbar}{2}\right)\frac{1}{4}=\frac{\hbar}{4}
+\end{equation*}
+
+Expected values are easily obtained from spin operators.
+\begin{equation*}
+\langle S_x\rangle=\langle s|S_x|s\rangle\qquad
+\langle S_y\rangle=\langle s|S_y|s\rangle\qquad
+\langle S_z\rangle=\langle s|S_z|s\rangle
+\end{equation*}
+
+The spin operators are
+\begin{equation*}
+S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}\qquad
+S_y=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}\qquad
+S_z=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\end{equation*}
+
+Returning to the example $\theta=\pi/3$ we have
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}
+\end{equation*}
+
+Hence the expected value in the $z$ direction is
+\begin{equation*}
+\langle S_z\rangle=\langle s|S_z|s\rangle
+=\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}^\dag
+\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}
+=\frac{\hbar}{4}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/spin-part-3-demo.html}{Eigenmath script}
+
+\end{document}

@@ -2,70 +2,39 @@
 
 \section*{Spin part 1}
 
-Let $|s\rangle$ be a spin with polar angle $\theta$ and azimuth angle $\phi$.
+Spin matrices are given by
 \begin{equation*}
-|s\rangle=\begin{pmatrix}\cos(\theta/2)\\[1ex]\sin(\theta/2)\,e^{i\phi}\end{pmatrix}
+S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\qquad
+S_y=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&\phantom{-}0\end{pmatrix}
+\qquad
+S_z=\frac{\hbar}{2}\begin{pmatrix}1&\phantom{-}0\\0&-1\end{pmatrix}
 \end{equation*}
 
-Spin measurement probabilities are the transition probabilities from $|s\rangle$ to an eigenstate.
-
-\medskip
-In the $z$ direction the eigenstates are
-\begin{equation*}
-|z_+\rangle=\begin{pmatrix}1\\0\end{pmatrix}\qquad
-|z_-\rangle=\begin{pmatrix}0\\1\end{pmatrix}
-\end{equation*}
-
-Hence in the $z$ direction
+Given the eigenvectors
 \begin{align*}
-\Pr(+)
-&=|\langle z_+|s\rangle|^2
-=\cos^2(\theta/2)
-=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+|x_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}
+&
+|y_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}
+&
+|z_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\0\end{pmatrix}
 \\[1ex]
-\Pr(-)
-&=|\langle z_-|s\rangle|^2
-=\sin^2(\theta/2)
-=\tfrac{1}{2}-\tfrac{1}{2}\cos\theta
+|x_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+&
+|y_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
+&
+|z_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}0\\1\end{pmatrix}
 \end{align*}
 
-In the $x$ direction the eigenstates are
-\begin{equation*}
-|x_+\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}\qquad
-|x_-\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
-\end{equation*}
-
-Hence in the $x$ direction
+spin matrices can also be written as
 \begin{align*}
-\Pr(+)
-&=|\langle x_+|s\rangle|^2
-=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
+S_x&=\frac{\hbar}{2}\,|x_+\rangle\langle x_+| - \frac{\hbar}{2}\,|x_-\rangle\langle x_-|
 \\[1ex]
-\Pr(-)
-&=|\langle x_-|s\rangle|^2
-=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
+S_y&=\frac{\hbar}{2}\,|y_+\rangle\langle y_+| - \frac{\hbar}{2}\,|y_-\rangle\langle y_-|
+\\[1ex]
+S_z&=\frac{\hbar}{2}\,|z_+\rangle\langle z_+| - \frac{\hbar}{2}\,|z_-\rangle\langle z_-|
 \end{align*}
 
-In the $y$ direction the eigenstates are
-\begin{equation*}
-|y_+\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}\qquad
-|y_-\rangle=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
-\end{equation*}
-
-Hence in the $y$ direction
-\begin{align*}
-\Pr(+)
-&=|\langle y_+|s\rangle|^2
-=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
-\\[1ex]
-\Pr(-)
-&=|\langle y_-|s\rangle|^2
-=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
-\end{align*}
-
-For each direction we have $\Pr(+)+\Pr(-)=1$ as required by total probability.
-
-\medskip
 \href{https://georgeweigt.github.io/examples/spin-part-1-demo.html}{Eigenmath script}
 
 \end{document}

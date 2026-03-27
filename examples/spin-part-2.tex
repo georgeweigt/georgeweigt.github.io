@@ -2,65 +2,65 @@
 
 \section*{Spin part 2}
 
-From the previous section we have for the $z$ direction
+Let $|s\rangle$ be a spin with polar angle $\theta$ and azimuth angle $\phi$.
+\begin{equation*}
+|s\rangle=\begin{pmatrix}\cos(\theta/2)\\[1ex]\sin(\theta/2)\,e^{i\phi}\end{pmatrix}
+\end{equation*}
+
+Spin measurement probabilities are the transition probabilities from $|s\rangle$ to an eigenstate.
+
+\medskip
+The eigenstates are given by the eigenvectors
 \begin{align*}
-\Pr(+)&=|\langle z_+|s\rangle|^2=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+|x_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}
+&
+|y_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}
+&
+|z_+\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\0\end{pmatrix}
 \\[1ex]
-\Pr(-)&=|\langle z_-|s\rangle|^2=\tfrac{1}{2}-\tfrac{1}{2}\cos\theta
+|x_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+&
+|y_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}
+&
+|z_-\rangle&=\frac{1}{\sqrt2}\begin{pmatrix}0\\1\end{pmatrix}
 \end{align*}
 
-If $|s\rangle$ is not an eigenstate then the result
-of measuring $|s\rangle$ is a random value.
-For example, let $\theta=\pi/3$.
-Then $\cos\theta=\frac{1}{2}$ and the probabilities are
+Hence in the $x$ direction
 \begin{align*}
-\Pr(+)&=\tfrac{3}{4}
+\Pr(+)
+&=|\langle x_+|s\rangle|^2
+=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\cos\phi
 \\[1ex]
-\Pr(-)&=\tfrac{1}{4}
+\Pr(-)
+&=|\langle x_-|s\rangle|^2
+=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\cos\phi
 \end{align*}
 
-Expected value is a useful statistic for analyzing stochastic data.
-By experimental design,
-``$+$'' indicates a spin value of $+\frac{\hbar}{2}$ and
-``$-$'' indicates a spin value of $-\frac{\hbar}{2}$.
-Hence the expected value is
-\begin{equation*}
-\left(+\frac{\hbar}{2}\right)\Pr(+)+\left(-\frac{\hbar}{2}\right)\Pr(-)
-\end{equation*}
+In the $y$ direction
+\begin{align*}
+\Pr(+)
+&=|\langle y_+|s\rangle|^2
+=\tfrac{1}{2}+\tfrac{1}{2}\sin\theta\sin\phi
+\\[1ex]
+\Pr(-)
+&=|\langle y_-|s\rangle|^2
+=\tfrac{1}{2}-\tfrac{1}{2}\sin\theta\sin\phi
+\end{align*}
 
-For state $|s\rangle$ such that $\theta=\pi/3$ the expected value in the $z$ direction is
-\begin{equation*}
-\left(+\frac{\hbar}{2}\right)\frac{3}{4}+\left(-\frac{\hbar}{2}\right)\frac{1}{4}=\frac{\hbar}{4}
-\end{equation*}
+In the $z$ direction
+\begin{align*}
+\Pr(+)
+&=|\langle z_+|s\rangle|^2
+=\tfrac{1}{2}+\tfrac{1}{2}\cos\theta
+\\[1ex]
+\Pr(-)
+&=|\langle z_-|s\rangle|^2
+=\tfrac{1}{2}-\tfrac{1}{2}\cos\theta
+\end{align*}
 
-Expected values are easily obtained from spin operators.
-\begin{equation*}
-\langle S_x\rangle=\langle s|S_x|s\rangle\qquad
-\langle S_y\rangle=\langle s|S_y|s\rangle\qquad
-\langle S_z\rangle=\langle s|S_z|s\rangle
-\end{equation*}
+For each direction we have $\Pr(+)+\Pr(-)=1$ as required by total probability.
 
-The spin operators are
-\begin{equation*}
-S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}\qquad
-S_y=\frac{\hbar}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix}\qquad
-S_z=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
-\end{equation*}
-
-Returning to the example $\theta=\pi/3$ we have
-\begin{equation*}
-|s\rangle=\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}
-\end{equation*}
-
-Hence the expected value in the $z$ direction is
-\begin{equation*}
-\langle S_z\rangle=\langle s|S_z|s\rangle
-=\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}^\dag
-\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
-\begin{pmatrix}\frac{\sqrt3}{2}\\[1ex]\frac{1}{2}e^{i\phi}\end{pmatrix}
-=\frac{\hbar}{4}
-\end{equation*}
-
+\medskip
 \href{https://georgeweigt.github.io/examples/spin-part-2-demo.html}{Eigenmath script}
 
 \end{document}
