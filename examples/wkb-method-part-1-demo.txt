@@ -1,3 +1,5 @@
+"WKB method part 1"
+
 "Verify equation (3)"
 
 psi = A(x) exp(i phi(x))
