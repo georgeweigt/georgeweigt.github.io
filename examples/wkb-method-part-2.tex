@@ -7,11 +7,11 @@
 Consider the following potential energy function.
 \begin{equation*}
 V(x)=\begin{cases}
-0, & x<0
+0 & x<0
 \\
-V_0, & 0\le x\le L
+V_0 & 0\le x\le L
 \\
-0, & x>L
+0 & x>L
 \end{cases}
 \end{equation*}
 
@@ -19,11 +19,11 @@ Suppose a particle with mass $m$ and energy $E<V_0$ is traveling from left to ri
 along the $x$ axis.
 The particle has a Schrodinger equation for each region of $V(x)$.
 \begin{align*}
--\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_1=E\psi_1, & &x<0
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_1=E\psi_1 & x&<0
 \\[1ex]
--\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_2+V_0\psi_2=E\psi_2, & &0\le x\le L
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_2+V_0\psi_2=E\psi_2 & 0&\le x\le L
 \\[1ex]
--\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_3=E\psi_3, & &x>L
+-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_3=E\psi_3 & x&>L
 \end{align*}
 
 Let $\psi_1$ and $\psi_3$ have the most general
@@ -59,7 +59,9 @@ C\exp\left(\sqrt{\frac{2m(V_0-E)}{\hbar^2}}x\right)
 
 To simplify the formulas let
 \begin{equation*}
-k=\sqrt{\frac{2mE}{\hbar^2}},\quad\beta=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}
+k=\sqrt{\frac{2mE}{\hbar^2}}
+\qquad
+\beta=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}
 \end{equation*}
 
 and write
@@ -84,7 +86,7 @@ at $x=0$ and $x=L$.
 \psi_1(0)&=\psi_2(0)
 \\
 \psi_1'(0)&=\psi_2'(0)
-\\
+\\[1ex]
 \psi_2(L)&=\psi_3(L)
 \\
 \psi_2'(L)&=\psi_3'(L)
@@ -161,7 +163,7 @@ where
 The tunneling probability $T$ is the magnitude of the transmitted
 wave divided by the magnitude of the inbound wave.
 \begin{equation*}
-T=\frac{|F|^2}{|A|^2}
+T=\left|\frac{F}{A}\right|^2
 =\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L)+i\gamma\sinh(\beta L)\bigr)}\right|^2
 \end{equation*}
 

@@ -23,17 +23,17 @@ check(eval(d(psi1,x),x,-a) == eval(d(psi2,x),x,-a))
 check(-hbar^2 / (2 m) d(psi1,x,x) == E psi1)
 "ok"
 
-T = A/F conj(A/F)
+T1 = A/F conj(A/F)
 K = E / (V0 - E) + V0 / E + 1
 
 "Verify equation (5)"
-check(T == 1 + K/8 (cos(4 a sqrt(2 m (E - V0)) / hbar) - 1))
+check(T1 == 1 + K/8 (cos(4 a sqrt(2 m (E - V0)) / hbar) - 1))
 "ok"
 
 "Verify equation (6)"
-check(T == 1 + K/4 sinh(2 i a / hbar sqrt(2 m (E - V0)))^2)
+check(T1 == 1 + K/4 sinh(2 i a / hbar sqrt(2 m (E - V0)))^2)
 "ok"
 
 "Verify equation (7)"
-check(K == V0^2 / (E (V0 - E)))
+check(T1 == 1 + V0^2 / (4 E (V0 - E)) sinh(2 i a / hbar sqrt(2 m (E - V0)))^2)
 "ok"
