@@ -4,7 +4,7 @@
 
 \section*{WKB method part 2}
 
-Consider the following potential energy function.
+Let $V(x)$ be the following barrier potential.
 \begin{equation*}
 V(x)=\begin{cases}
 0 & x<0
@@ -15,9 +15,10 @@ V_0 & 0\le x\le L
 \end{cases}
 \end{equation*}
 
-Suppose a particle with mass $m$ and energy $E<V_0$ is traveling from left to right
-along the $x$ axis.
-The particle has a Schrodinger equation for each region of $V(x)$.
+Find the tunneling probability $T$ for a particle with mass $m$ and energy $E<V_0$.
+
+\bigskip
+We have the following Schrodinger equations, one for each region of $V(x)$.
 \begin{align*}
 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_1=E\psi_1 & x&<0
 \\[1ex]
@@ -160,8 +161,7 @@ where
 \gamma=\frac{1}{2}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)
 \end{equation*}
 
-The tunneling probability $T$ is the magnitude of the transmitted
-wave divided by the magnitude of the inbound wave.
+The tunneling probability $T$ is
 \begin{equation*}
 T=\left|\frac{F}{A}\right|^2
 =\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L)+i\gamma\sinh(\beta L)\bigr)}\right|^2
