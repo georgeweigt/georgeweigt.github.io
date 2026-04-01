@@ -15,7 +15,7 @@ V_0 & 0\le x\le L
 \end{cases}
 \end{equation*}
 
-Find the tunneling probability $T$ for a particle with mass $m$ and energy $E<V_0$.
+Find tunneling probability $T$ for a particle with mass $m$ and energy $E<V_0$.
 
 \bigskip
 We have the following Schrodinger equations, one for each region of $V(x)$.
@@ -37,25 +37,31 @@ free-particle solutions.
 +G\exp\left(-i\sqrt{\frac{2mE}{\hbar^2}}x\right)
 \end{align*}
 
-Use the WKB approximation to solve for $\psi_2$.
+Use the WKB method to solve for $\psi_2$.
 \begin{equation*}
-\psi_2(x)\approx
+\psi_2(x)=
 C\exp\left(i\int\sqrt{\frac{2m(E-V_0)}{\hbar^2}}\,dx\right)
 +D\exp\left(-i\int\sqrt{\frac{2m(E-V_0)}{\hbar^2}}\,dx\right)
 \end{equation*}
 
 Cancel $i$ by swapping $E$ and $V_0$.
 \begin{equation*}
-\psi_2(x)\approx
+\psi_2(x)=
 C\exp\left(\int\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,dx\right)
 +D\exp\left(-\int\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,dx\right)
 \end{equation*}
 
-Substitute $x$ for $\int dx$.
+Noting that
 \begin{equation*}
-\psi_2(x)\approx
-C\exp\left(\sqrt{\frac{2m(V_0-E)}{\hbar^2}}x\right)
-+D\exp\left(-\sqrt{\frac{2m(V_0-E)}{\hbar^2}}x\right)
+\int\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,dx
+=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,x
+\end{equation*}
+
+we have
+\begin{equation*}
+\psi_2(x)=
+C\exp\left(\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,x\right)
++D\exp\left(-\sqrt{\frac{2m(V_0-E)}{\hbar^2}}\,x\right)
 \end{equation*}
 
 To simplify the formulas let
@@ -83,11 +89,17 @@ There is no particle moving right to left at $x>L$ hence $G=0$.
 Let us now solve for the coefficients using boundary conditions.
 Four boundary conditions are needed to ensure continuity
 at $x=0$ and $x=L$.
+
+\bigskip
+Boundary conditions at $x=0$.
 \begin{align*}
 \psi_1(0)&=\psi_2(0)
 \\
 \psi_1'(0)&=\psi_2'(0)
-\\[1ex]
+\end{align*}
+
+Boundary conditions at $x=L$.
+\begin{align*}
 \psi_2(L)&=\psi_3(L)
 \\
 \psi_2'(L)&=\psi_3'(L)
@@ -161,7 +173,7 @@ where
 \gamma=\frac{1}{2}\left(\frac{\beta}{k}-\frac{k}{\beta}\right)
 \end{equation*}
 
-The tunneling probability $T$ is
+Tunneling probability $T$ is
 \begin{equation*}
 T=\left|\frac{F}{A}\right|^2
 =\left|\frac{1}{\exp(ikL)\bigl(\cosh(\beta L)+i\gamma\sinh(\beta L)\bigr)}\right|^2

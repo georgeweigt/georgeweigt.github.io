@@ -13,10 +13,10 @@ V_0 & -a\le x\le a
 \end{cases}
 \end{equation*}
 
-Find the transmission coefficient for this barrier potential.
+Find tunneling probability $T$ for a particle with mass $m$ and energy $E<V_0$.
 
 \bigskip
-Start with Schrodinger equations, one for each region of $V(x)$.
+We have the following Schrodinger equations, one for each region of $V(x)$.
 \begin{align*}
 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_1=E\psi_1 & x&\le-a
 \\[1ex]
@@ -36,21 +36,24 @@ The solutions are
 
 where
 \begin{equation*}
-k=\frac{\sqrt{2mE}}{\hbar},\quad
+k=\frac{\sqrt{2mE}}{\hbar}
+\qquad
 \kappa=\frac{\sqrt{2m(E-V_0)}}{\hbar}
 \end{equation*}
 
-Boundary conditions for $\psi_1$ and $\psi_2$.
-\begin{equation*}
-\psi_1(-a)=\psi_2(-a),\quad
-\left.\frac{d\psi_1}{dx}\right|_{x=-a}=\left.\frac{d\psi_2}{dx}\right|_{x=-a}
-\end{equation*}
+Boundary conditions at $x=-a$.
+\begin{align*}
+\psi_1(-a)&=\psi_2(-a)
+\\
+\psi_1'(-a)&=\psi_2'(-a)
+\end{align*}
 
-Boundary conditions for $\psi_2$ and $\psi_3$.
-\begin{equation*}
-\psi_2(a)=\psi_3(a),\quad
-\left.\frac{d\psi_2}{dx}\right|_{x=a}=\left.\frac{d\psi_3}{dx}\right|_{x=a}
-\end{equation*}
+Boundary conditions at $x=a$.
+\begin{align*}
+\psi_2(a)&=\psi_3(a)
+\\
+\psi_2'(a)&=\psi_3'(a)
+\end{align*}
 
 From boundary conditions for $\psi_2$ and $\psi_3$ we have
 \begin{equation*}
@@ -115,8 +118,8 @@ B=\frac{(k-\kappa)C\exp(-ika-i\kappa a)}{2k}+\frac{(k+\kappa)D\exp(-ika+i\kappa 
 We now have $A$ as linear in $C$ and $D$, and $C$ and $D$ as linear in $F$.
 Hence $A$ is linear in $F$.
 
-\medskip
-For transmission coefficient $T$ we have
+\bigskip
+Tunneling probability $T$ is
 \begin{equation*}
 T^{-1}=\frac{A}{F}\left(\frac{A}{F}\right)^*
 =1+\frac{1}{8}\left(\frac{E}{V_0-E}+\frac{V_0}{E}+1\right)
