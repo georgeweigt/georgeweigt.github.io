@@ -1,0 +1,135 @@
+\input{preamble}
+
+% https://physicspages.com/pdf/Quantum%20mechanics/Alpha%20decay%20using%20the%20WKB%20approximation.pdf
+
+% https://arxiv.org/abs/2112.09578
+
+\section*{Alpha decay}
+
+Let $V(r)$ be an ansatz potential for alpha decay where $Z$ is atomic number.
+\begin{equation*}
+V(r)=\begin{cases}
+-V_0 & 0<r<r_1
+\\[1ex]
+{\displaystyle \frac{2(Z-2)\alpha\hbar c}{r}} & r>r_1
+\end{cases}
+\end{equation*}
+
+Let $r_2$ be a radius such that $r_2>r_1$ and
+\begin{equation*}
+V(r_2)=\frac{2(Z-2)\alpha\hbar c}{r_2}=E
+\end{equation*}
+
+Hence the region from $r_1$ to $r_2$ is a barrier potential for an alpha particle with energy $E$.
+
+\bigskip
+Using the WKB method we have
+\begin{equation*}
+T\approx e^{-2\gamma}
+\end{equation*}
+
+where
+\begin{equation*}
+\gamma=\frac{\sqrt{2m}}{\hbar}\int_{r_1}^{r_2}\sqrt{V(r)-E}\,dr
+\end{equation*}
+
+Factor out $\sqrt E$ to obtain
+\begin{align*}
+\gamma&=\frac{\sqrt{2mE}}{\hbar}\int_{r_1}^{r_2}\sqrt{\frac{V(r)}{E}-1}\,dr
+\\[1ex]
+&=\frac{\sqrt{2mE}}{\hbar}\int_{r_1}^{r_2}\sqrt{\frac{r_2}{r}-1}\,dr
+\end{align*}
+
+Use the substitution
+\begin{equation*}
+r=r_2\sin^2u
+\qquad
+dr=2r_2\sin u\cos u
+\end{equation*}
+
+to obtain
+\begin{align*}
+\gamma&=\frac{\sqrt{2mE}}{\hbar}\,2r_2\int_{u_1}^{u_2}
+\sqrt{\frac{1}{\sin^2u}-1}\,\sin u\cos u\,du
+\\[1ex]
+&=\frac{\sqrt{2mE}}{\hbar}\,2r_2\int_{u_1}^{u_2}\sqrt{1-\sin^2u}\,\cos u\,du
+\\[1ex]
+&=\frac{\sqrt{2mE}}{\hbar}\,2r_2\int_{u_1}^{u_2}\cos^2u\,du
+\end{align*}
+
+where
+\begin{equation*}
+u_1=\sin^{-1}\sqrt{r_1/r_2}
+\qquad
+u_2=\frac{\pi}{2}
+\end{equation*}
+
+Solve the integral.
+\begin{equation*}
+\gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2\left[\frac{u}{2}+\frac{\sin(2u)}{4}\right]_{u_1}^{u_2}
+\end{equation*}
+
+Evaluate the limits.
+\begin{equation*}
+\gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2
+\left[
+\frac{\pi}{4}
+-\frac{1}{2}\arcsin\sqrt{r_1/r_2}
+-\frac{1}{4}\sin\left(2\arcsin\sqrt{r_1/r_2}\,\right)
+\right]
+\end{equation*}
+
+From the identities
+\begin{equation*}
+\sin(2x)=2\sin x\cos x
+\end{equation*}
+
+and
+\begin{equation*}
+\cos(\arcsin x)=\sqrt{1-x^2}
+\end{equation*}
+
+the final term simplifies as
+\begin{equation*}
+\frac{1}{4}\sin\left(2\arcsin\sqrt{r_1/r_2}\,\right)
+=\frac{1}{2}\sqrt{r_1/r_2}\sqrt{1-r_1/r_2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2
+\left[
+\frac{\pi}{4}
+-\frac{1}{2}\sin^{-1}\sqrt{r_1/r_2}
+-\frac{1}{2}\sqrt{r_1/r_2}\sqrt{1-r_1/r_2}\,
+\right]
+\end{equation*}
+
+For $r_2\gg r_1$ we have the approximation
+\begin{equation*}
+\gamma\approx\frac{\sqrt{2mE}}{\hbar}\,2r_2
+\left[\frac{\pi}{4}-\sqrt{r_1/r_2}\,\right]
+\end{equation*}
+
+For values
+\begin{align*}
+m&=4m_p
+\\
+E&=3.9\times10^6\,\text{eV}
+\\
+r_1&=9.3\times10^{-15}\,\text{m}
+\\
+r_2&=63\times10^{-15}\,\text{m}
+\end{align*}
+
+we obtain
+\begin{equation*}
+\gamma\approx44
+\end{equation*}
+
+and
+\begin{equation*}
+T=e^{-2\gamma}\approx8.5\times10^{-39}
+\end{equation*}
+
+\end{document}
