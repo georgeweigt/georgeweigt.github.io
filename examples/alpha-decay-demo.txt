@@ -58,11 +58,11 @@ eV = "eV"
 
 A = 238.0
 Z = 92.0
-E = 4.2 10^6 eV
+E = 4.27 10^6 eV
 
 E = E e joule / coulomb / eV -- convert eV to joules
 
-r1 = A^(1/3) 1.2 10^(-15) meter
+r1 = A^(1/3) 1.07 10^(-15) meter
 r2 = 2 (Z - 2) alpha hbar c / E
 
 r1
