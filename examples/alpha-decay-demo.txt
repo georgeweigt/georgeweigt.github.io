@@ -63,11 +63,12 @@ r2 = 2 (Z - 2) alpha hbar c / E
 r1
 r2
 
-pie = float(pi)
+pi = float(pi)
 
 m = Malpha
 
-gamma = sqrt(2 m E) / hbar 2 r2 (pie/4 - sqrt(r1/r2))
+gamma = sqrt(2 m E) / hbar r2 *
+        (pi/2 - arcsin(sqrt(r1/r2)) - sqrt(r1/r2) sqrt(1 - r1/r2))
 gamma
 
 T = exp(-2 gamma)
