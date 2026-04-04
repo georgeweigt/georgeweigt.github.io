@@ -4,6 +4,10 @@
 
 % https://arxiv.org/abs/2112.09578
 
+% https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl
+
+% https://physics.nist.gov/cgi-bin/cuu/Value?malu
+
 \section*{Alpha decay}
 
 Let $V(r)$ be an ansatz potential for alpha decay where $Z$ is atomic number.
@@ -113,27 +117,30 @@ For $r_2\gg r_1$ we have the approximation
 \left[\frac{\pi}{4}-\sqrt{r_1/r_2}\,\right]
 \end{equation*}
 
-For ${}^{238}_{\phantom{0}92}\mathrm U$ we have
+For ${}^{238}_{\phantom{0}92}\mathrm U\rightarrow{}^{234}_{\phantom{0}90}\mathrm{Th}$ we have
 \begin{align*}
 A&=238
 \\
 Z&=92
 \\
-E&=4.27\,\text{MeV}
-\\
-r_1&=A^{1/3}\times1.07\times10^{-15}\,\text{m}=6.63\times10^{-15}\,\text{m}
-\\
-r_2&=\frac{2(Z-2)\alpha\hbar c}{E}=60.7\times10^{-15}\,\text{m}
+E&=5.29\,\text{MeV}
 \end{align*}
 
-Then for $m=4m_p$ we obtain
+Hence
+\begin{align*}
+r_1&=A^{1/3}\times1.07\times10^{-15}\,\text{m} & &=6.63\times10^{-15}\,\text{m}
+\\
+r_2&=\frac{2(Z-2)\alpha\hbar c}{E} & &=49.0\times10^{-15}\,\text{m}
+\end{align*}
+
+Then for $m=4.0015\,\text{u}$ we obtain
 \begin{equation*}
-\gamma=50.1
+\gamma=41.2
 \end{equation*}
 
 and
 \begin{equation*}
-T=e^{-2\gamma}=3\times10^{-44}
+T=e^{-2\gamma}=1.8\times10^{-36}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/alpha-decay-demo.html}{Eigenmath script}
