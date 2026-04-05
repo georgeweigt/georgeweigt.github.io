@@ -48,12 +48,14 @@ u = 1.66053906892 10^(-27) kilogram
 
 M238 = 238.0507884 u
 M234 = 234.0435998 u
-Malpha = 4.001506179129 u
+M4 = 4.00260325413 u
 
-E = (M238 - M234 - Malpha) 931.49410372 "MeV" / u
+-- electron masses cancel
+
+E = (M238 - M234 - M4) 931.49410372 "MeV" / u
 E
 
-E = (M238 - M234 - Malpha) c^2
+E = (M238 - M234 - M4) c^2
 
 A = 238.0
 Z = 92.0
@@ -66,7 +68,7 @@ r2
 
 pi = float(pi)
 
-m = Malpha
+m = 4.001506179129 u
 
 gamma = sqrt(2 m E) / hbar r2 *
         (pi/2 - arcsin(sqrt(r1/r2)) - sqrt(r1/r2) sqrt(1 - r1/r2))
