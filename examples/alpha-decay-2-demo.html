@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Alpha decay 2"
+
+M238 = 238.0507884
+M234 = 234.0435998
+M4 = 4.00260325413
+
+E = (M238 - M234 - M4) 931.49410372
+E
+
+Z = 90
+
+C1 = 28.9
+C2 = 1.60
+C3 = 1.61
+
+tau12 = 10^(-C1 - C2 Z^(2/3) + C3 Z / sqrt(E))
+tau12
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

@@ -8,20 +8,21 @@
 
 % https://physics.nist.gov/cgi-bin/cuu/Value?malu
 
-\section*{Alpha decay}
+\section*{Alpha decay 1}
 
-Let $V(r)$ be an ansatz potential for alpha decay where $Z$ is atomic number.
+Let $V(r)$ be an ansatz potential for alpha decay
+where $2Z$ is alpha-particle charge times daughter nucleus charge.
 \begin{equation*}
 V(r)=\begin{cases}
 -V_0 & 0<r<r_1
 \\[1ex]
-{\displaystyle \frac{2(Z-2)\alpha\hbar c}{r}} & r>r_1
+{\displaystyle \frac{2Z\alpha\hbar c}{r}} & r>r_1
 \end{cases}
 \end{equation*}
 
 Let $r_2$ be a radius such that $r_2>r_1$ and
 \begin{equation*}
-V(r_2)=\frac{2(Z-2)\alpha\hbar c}{r_2}=E
+V(r_2)=\frac{2Z\alpha\hbar c}{r_2}=E
 \end{equation*}
 
 Hence the region from $r_1$ to $r_2$ is a barrier potential for an alpha particle with energy $E$.
@@ -104,11 +105,54 @@ the final term simplifies as
 Hence
 \begin{equation*}
 \gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2
-\left[
+\left(
 \frac{\pi}{4}
 -\frac{1}{2}\arcsin\sqrt{r_1/r_2}
 -\frac{1}{2}\sqrt{r_1/r_2}\sqrt{1-r_1/r_2}\,
-\right]
+\right)
+\end{equation*}
+
+Noting that $r_2\gg r_1$ we introduce the approximations
+\begin{align*}
+\arcsin\sqrt{r_1/r_2}&\approx\sqrt{r_1/r_2}
+\\[1ex]
+\sqrt{r_1/r_2}\sqrt{1-r_1/r_2}&\approx\sqrt{r_1/r_2}
+\end{align*}
+
+and write
+\begin{equation*}
+\gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2
+\left(
+\frac{\pi}{4}
+-\sqrt{r_1/r_2}\,
+\right)
+\end{equation*}
+
+Distribute the $r_2$.
+\begin{equation*}
+\gamma=\frac{2\sqrt{2mE}}{\hbar}
+\left(
+\frac{\pi r_2}{4}
+-\sqrt{r_1r_2}\,
+\right)
+\end{equation*}
+
+Substitute
+\begin{equation*}
+r_2=\frac{2Z\alpha\hbar c}{E}
+\end{equation*}
+
+to obtain
+\begin{equation*}
+\gamma=C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}
+\tag{3}
+\end{equation*}
+
+where
+\begin{equation*}
+C_1=\sqrt{2m}\,\pi\alpha c
+\qquad
+C_2=4\sqrt\frac{m\alpha c}{\hbar}
 \end{equation*}
 
 For the alpha decay process
@@ -117,7 +161,7 @@ ${}^{238}_{\phantom{0}92}\mathrm U
 \begin{align*}
 A&=238
 \\
-Z&=92
+Z&=90
 \\
 E&=4.27\,\text{MeV}
 \end{align*}
@@ -126,17 +170,17 @@ Hence
 \begin{align*}
 r_1&=A^{1/3}\times1.2\times10^{-15}\,\text{m} & &=7.44\times10^{-15}\,\text{m}
 \\
-r_2&=\frac{2(Z-2)\alpha\hbar c}{E} & &=60.7\times10^{-15}\,\text{m}
+r_2&=\frac{2Z\alpha\hbar c}{E} & &=60.7\times10^{-15}\,\text{m}
 \end{align*}
 
 Then for $m=4.0015\,\text{u}$ we obtain
 \begin{equation*}
-\gamma=48.6
+\gamma=47.8
 \end{equation*}
 
 and
 \begin{equation*}
-T=e^{-2\gamma}=6.39\times10^{-43}
+T=e^{-2\gamma}=3.17\times10^{-42}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/alpha-decay-demo.html}{Eigenmath script}
