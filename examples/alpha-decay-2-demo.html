@@ -10,10 +10,9 @@ E
 
 Z = 90
 
-C1 = 28.9
-C2 = 1.60
-C3 = 1.61
+tau12 = exp(3.681 Z / sqrt(E) - 120.8) "s"
+tau12
 
-tau12 = 10^(-C1 - C2 Z^(2/3) + C3 Z / sqrt(E))
+tau12 = tau12 / (365.25 24 60 60) "yr" / "s"
 tau12
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

@@ -1,36 +1,31 @@
 \input{preamble}
 
+% https://phys.libretexts.org/Bookshelves/Quantum_Mechanics/Introductory_Quantum_Mechanics_(Fitzpatrick)/04%3A_One-Dimensional_Potentials/4.05%3A_Alpha_Decay
+
 \section*{Alpha decay 2}
 
 Let our hypothesis be that the nucleus produces alpha particles at an average rate $\nu$
-which then tunnel with probability $T$.
+which then tunnel with probability $e^{-2\gamma}$.
 Hence the decay rate $\lambda$ is
 \begin{equation*}
-\lambda=\nu T
+\lambda=\nu e^{-2\gamma}
 \end{equation*}
 
 The half-life $\tau_{1/2}$ is
 \begin{equation*}
-\tau_{1/2}=\frac{\log2}{\lambda}=\frac{\log2}{\nu T}
+\tau_{1/2}=\frac{\log2}{\lambda}=\frac{\log2}{\nu}e^{2\gamma}
 \end{equation*}
 
-We seek to calculate $\tau_{1/2}$ from $T$.
+We seek to calculate $\tau_{1/2}$ from $\gamma$.
 The problem is that $\nu$ is only known empirically so we
-use the Geiger-Nuttall formula
+use the following modified Geiger-Nuttall formula
 \begin{equation*}
-\log_{10}\tau_{1/2}=-C_1-C_2Z^{2/3}+C_3\frac{Z}{\sqrt{E}}
-\tag{1}
+\log\tau_{1/2}=3.681\frac{Z}{\sqrt{E}}-120.8
 \end{equation*}
 
-where
-\begin{align*}
-C_1&=28.9
-\\
-C_2&=1.60
-\\
-C_3&=1.61
-\end{align*}
+where $\tau_{1/2}$ is seconds and $E$ is MeV.
 
+\bigskip
 For the alpha decay process
 ${}^{238}_{\phantom{0}92}\mathrm U\rightarrow{}^{234}_{\phantom{0}90}\mathrm{Th}$
 we have
@@ -42,7 +37,7 @@ E&=4.27\,\text{MeV}
 
 Hence
 \begin{equation*}
-\tau_{1/2}=1.2\times10^9\,\text{yr}
+\tau_{1/2}=1.43\times10^{17}\,\text{s}=4.52\times10^9\,\text{yr}
 \end{equation*}
 
 The actual half-life of ${}^{238}\mathrm U$ is
