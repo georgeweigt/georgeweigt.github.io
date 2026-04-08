@@ -78,7 +78,7 @@ Y
 beta = dot(inv(dot(X,transpose(X))),X,Y)
 beta
 
-Yhat = beta[1] X[1] + beta[2] X[2] + beta[3]
+Yhat = dot(beta,X)
 Yhat
 
 "Coefficient of determination (R squared)"
