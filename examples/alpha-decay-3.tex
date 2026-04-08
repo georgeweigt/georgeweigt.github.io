@@ -4,23 +4,33 @@
 
 In this section we derive a regression formula for the following data set
 where $\log\tau_{1/2}$ is the response variable.
+Atomic number $Z=90$ indicates Uranium and $Z=88$ indicates Thorium.
+Recall that $Z$ is parent nucleus atomic number minus two.
 \begin{equation*}
 \begin{matrix}
-& \log\tau_{1/2} & E
+\log\tau_{1/2} & A & Z & E
 \\[1ex]
-{}^{226}\mathrm U & -1.31 & 7.70
+-1.31 & 226 & 90 & 7.70
 \\
-{}^{228}\mathrm U & \phantom{-}6.30 & 6.80
+\phantom{-}6.30 & 228 & 90 & 6.80
 \\
-{}^{230}\mathrm U & 14.4 & 5.99
+14.4 & 230 & 90 & 5.99
 \\
-{}^{232}\mathrm U & 21.5 & 5.41
+21.5 & 232 & 90 & 5.41
 \\
-{}^{234}\mathrm U & 29.7 & 4.86
+29.7 & 234 & 90 & 4.86
 \\
-{}^{236}\mathrm U & 34.2 & 4.57
+34.2 & 236 & 90 & 4.57
 \\
-{}^{238}\mathrm U & 39.5 & 4.27
+39.5 & 238 & 90 & 4.27
+\\
+\phantom{-}7.52 & 226 & 88 & 6.45
+\\
+17.9 & 228 & 88 & 5.52
+\\
+28.5 & 230 & 88 & 4.77
+\\
+40.6 & 232 & 88 & 4.08
 \end{matrix}
 \end{equation*}
 
@@ -36,23 +46,21 @@ and
 
 Combine the formulas as
 \begin{equation*}
-\log\tau_{1/2}=\beta_1\frac{90}{\sqrt E}+\beta_0
+\log\tau_{1/2}=\beta_2\frac{Z}{\sqrt E}+\beta_1\sqrt{ZA^{1/3}}+\beta_0
 \end{equation*}
 
-Radius $r_1\propto A^{1/3}$ is discarded
-because it does not change very much.
-
-\bigskip
 By ordinary least squares we obtain
 \begin{align*}
-\beta_1&=3.682
+\beta_2&=3.736
 \\
-\beta_0&=-120.8
+\beta_1&=-2.797
+\\
+\beta_0&=-57.12
 \end{align*}
 
 Hence
 \begin{equation*}
-\log\tau_{1/2}=3.682\frac{90}{\sqrt E}-120.8
+\log\tau_{1/2}=3.736\frac{Z}{\sqrt E}-2.797\sqrt{ZA^{1/3}}-57.12
 \end{equation*}
 
 From the regression formula we obtain the following predicted values.
@@ -75,6 +83,14 @@ From the regression formula we obtain the following predicted values.
 34.2 & 34.1
 \\
 39.5 & 39.5
+\\
+\phantom{-}7.52 & \phantom{-}7.55
+\\
+17.9 & 18.0
+\\
+28.5 & 28.5
+\\
+40.6 & 40.6
 \end{matrix}
 \end{equation*}
 
