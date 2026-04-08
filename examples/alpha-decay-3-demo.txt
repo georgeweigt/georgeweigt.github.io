@@ -58,7 +58,7 @@ Y
 
 -- ordinary least squares
 
-beta = dot(dot(X,Y),inv(dot(X,transpose(X))))
+beta = dot(inv(dot(X,transpose(X))),X,Y)
 beta
 
 Yhat = beta[1] + beta[2] X[2]
