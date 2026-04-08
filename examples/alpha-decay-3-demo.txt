@@ -1,0 +1,74 @@
+"Alpha decay 3"
+
+-- Uranium masses
+
+MU = (
+226.029339,
+228.031369,
+230.0339401,
+232.0371548,
+234.0409503,
+236.0455661,
+238.050787618)
+
+-- Thorium masses
+
+MTh = (
+222.018468,
+224.021466,
+226.0249037,
+228.0287397,
+230.0331323,
+232.0380536,
+234.0435998)
+
+-- Helium mass
+
+MHe = 4.00260325413
+
+E = MU - MTh - MHe
+E = 931.49410372 E -- convert to MeV
+E
+
+Z = 90
+
+-- design matrix
+
+X = zero(2,7)
+X[1] = X[1] + 1
+X[2] = Z / sqrt(E)
+
+years = 365.25 24 60 60
+days = 24 60 60
+mins = 60
+
+-- observed half-life in seconds
+
+tau = (
+0.269,            -- U226
+9.1 mins,         -- U228
+20.23 days,       -- U230
+68.9 years,       -- U232
+2.455 10^5 years, -- U234
+2.342 10^7 years, -- U236
+4.463 10^9 years) -- U238
+
+Y = log(tau)
+Y
+
+-- ordinary least squares
+
+beta = dot(dot(X,Y),inv(dot(X,transpose(X))))
+beta
+
+Yhat = beta[1] + beta[2] X[2]
+Yhat
+
+"Coefficient of determination (R squared)"
+
+Ybar = sum(Y) / dim(Y)
+
+RSS = sum((Y - Yhat)^2) -- residual sum of squares
+TSS = sum((Y - Ybar)^2) -- total sum of squares
+
+1 - RSS / TSS

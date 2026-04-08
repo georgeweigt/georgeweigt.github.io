@@ -9,7 +9,7 @@ E
 
 Z = 90
 
-tau12 = exp(3.681 Z / sqrt(E) - 120.8) "s"
+tau12 = exp(3.682 Z / sqrt(E) - 120.8) "s"
 tau12
 
 tau12 = tau12 / (365.25 24 60 60) "yr" / "s"
