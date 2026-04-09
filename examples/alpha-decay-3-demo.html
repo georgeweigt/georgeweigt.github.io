@@ -8,7 +8,6 @@ mins = 60
 -- observed half-life in seconds
 
 tau = (
-0.269,            -- U226
 9.1 mins,         -- U228
 20.23 days,       -- U230
 68.9 years,       -- U232
@@ -20,28 +19,31 @@ tau = (
 7.54 10^4 years,  -- Th230
 1.40 10^10 years) -- Th232
 
-A = (226,228,230,232,234,236,238,226,228,230,232)
-Z = (90,90,90,90,90,90,90,88,88,88,88)
+Y = log(tau)
+Y
 
--- Parent mass
+-- atomic number of daughter nucleus
+
+Z = (90,90,90,90,90,90,88,88,88,88)
+Z = float(Z)
+
+-- parent mass
 
 M1 = (
-226.029339,    -- U226
-228.031369,    -- U228
-230.0339401,   -- U230
-232.0371548,   -- U232
-234.0409503,   -- U234
-236.0455661,   -- U236
-238.0507876,   -- U238
-226.0249037,   -- Th226
-228.0287397,   -- Th228
-230.0331323,   -- Th230
-232.0380536)   -- Th232
+228.031369,  -- U228
+230.0339401, -- U230
+232.0371548, -- U232
+234.0409503, -- U234
+236.0455661, -- U236
+238.0507876, -- U238
+226.0249037, -- Th226
+228.0287397, -- Th228
+230.0331323, -- Th230
+232.0380536) -- Th232
 
--- Daughter mass
+-- daughter mass
 
 M2 = (
-222.018468,  -- Th222
 224.021466,  -- Th224
 226.0249037, -- Th226
 228.0287397, -- Th228
@@ -53,33 +55,27 @@ M2 = (
 226.0254082, -- 226Ra
 228.0310686) -- 228Ra
 
--- Helium mass
+-- helium mass
 
-MHe = 4.00260325413
+M3 = 4.00260325413
 
-E = M1 - M2 - MHe
+E = M1 - M2 - M3
 E = 931.49410372 E -- convert to MeV
 E
 
 -- design matrix
 
-A = float(A)
-Z = float(Z)
-
-X = zero(3,11)
+X = zero(3,10)
 X[1] = Z / sqrt(E)
-X[2] = sqrt(Z A^(1/3))
+X[2] = Z^(2/3)
 X[3] = X[3] + 1
-
-Y = log(tau)
-Y
 
 -- ordinary least squares
 
 beta = dot(inv(dot(X,transpose(X))),X,Y)
 beta
 
-Yhat = beta[1] X[1] + beta[2] X[2] + beta[3]
+Yhat = dot(beta,X)
 Yhat
 
 "Coefficient of determination (R squared)"

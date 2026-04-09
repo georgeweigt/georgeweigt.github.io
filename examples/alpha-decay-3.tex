@@ -2,89 +2,82 @@
 
 \section*{Alpha decay 3}
 
-In this section we derive a regression formula for the following data set
-where $\log\tau_{1/2}$ is the response variable.
+In this section we derive a regression formula for the following half-life data.
 Rows with $Z=90$ are uranium and $Z=88$ are thorium.
 Recall that $Z$ is atomic number minus two.
 \begin{equation*}
 \begin{matrix}
-\log\tau_{1/2} & A & Z & E
+\log\tau_{1/2} & Z & E
 \\[1ex]
--1.31 & 226 & 90 & 7.70
+6.30 & 90 & 6.80
 \\
-\phantom{-}6.30 & 228 & 90 & 6.80
+14.4 & 90 & 5.99
 \\
-14.4 & 230 & 90 & 5.99
+21.5 & 90 & 5.41
 \\
-21.5 & 232 & 90 & 5.41
+29.7 & 90 & 4.86
 \\
-29.7 & 234 & 90 & 4.86
+34.2 & 90 & 4.57
 \\
-34.2 & 236 & 90 & 4.57
+39.5 & 90 & 4.27
 \\
-39.5 & 238 & 90 & 4.27
+7.52 & 88 & 6.45
 \\
-\phantom{-}7.52 & 226 & 88 & 6.45
+17.9 & 88 & 5.52
 \\
-17.9 & 228 & 88 & 5.52
+28.5 & 88 & 4.77
 \\
-28.5 & 230 & 88 & 4.77
-\\
-40.6 & 232 & 88 & 4.08
+40.6 & 88 & 4.08
 \end{matrix}
 \end{equation*}
 
 From the previous sections we have
 \begin{equation*}
 \log\tau_{1/2}\propto\gamma
-\end{equation*}
-
-and
-\begin{equation*}
+\qquad
 \gamma=C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}
 \end{equation*}
 
-Hence the regression model
+Noting that $r_1\propto A^{1/3}$ and
+to a good approximation $A\propto Z$ we have
 \begin{equation*}
-\log\tau_{1/2}=\beta_2\frac{Z}{\sqrt E}+\beta_1\sqrt{ZA^{1/3}}+\beta_0
+\sqrt{Zr_1}\propto\sqrt{ZZ^{1/3}}=Z^{2/3}
 \end{equation*}
 
-By ordinary least squares we obtain
+Hence the Geiger–Nuttall regression model
+\begin{equation*}
+\log\tau_{1/2}=\beta_2\frac{Z}{\sqrt E}+\beta_1Z^{2/3}+\beta_0
+\end{equation*}
+
+By ordinary least squares the best coefficients for the above data are
 \begin{align*}
-\beta_2&=3.736
+\beta_2&=3.702
 \\
-\beta_1&=-2.797
+\beta_1&=-3.104
 \\
-\beta_0&=-57.12
+\beta_0&=-59.28
 \end{align*}
 
-Hence
-\begin{equation*}
-\log\tau_{1/2}=3.736\frac{Z}{\sqrt E}-2.797\sqrt{ZA^{1/3}}-57.12
-\end{equation*}
-
-From the regression formula we obtain the following predicted values.
+The regression formula yields the following predicted values.
 \begin{equation*}
 \begin{matrix}
 & \text{Predicted}
 \\
 \log\tau_{1/2} & \log\tau_{1/2}
 \\[1ex]
--1.31 & -1.40
+6.30 & 6.15
 \\
-\phantom{-}6.30 & \phantom{-}6.27
-\\
-14.4 & 14.6
+14.4 & 14.5
 \\
 21.5 & 21.6
 \\
-29.7 & 29.5
+29.7 & 29.6
 \\
-34.2 & 34.1
+34.2 & 34.2
 \\
-39.5 & 39.5
+39.5 & 39.6
 \\
-\phantom{-}7.52 & \phantom{-}7.55
+7.52 & 7.56
 \\
 17.9 & 18.0
 \\
