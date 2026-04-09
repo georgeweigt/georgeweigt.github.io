@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Linear regression"
+
+Y = (
+6.30, -- U228
+14.4, -- U230
+21.5, -- U232
+29.7, -- U234
+34.2, -- U236
+39.5, -- U238
+7.52, -- Th226
+17.9, -- Th228
+28.5, -- Th230
+40.6) -- Th232
+
+Z = (90,90,90,90,90,90,88,88,88,88)
+Z = float(Z)
+
+E = (
+6.80,
+5.99,
+5.41,
+4.86,
+4.57,
+4.27,
+6.45,
+5.52,
+4.77,
+4.08)
+
+-- design matrix
+
+X = zero(3,10)
+X[1] = Z / sqrt(E)
+X[2] = Z^(2/3)
+X[3] = X[3] + 1
+
+-- ordinary least squares
+
+beta = dot(inv(dot(X,transpose(X))),X,Y)
+beta
+
+Yhat = dot(beta,X)
+Yhat
+
+"Coefficient of determination (R squared)"
+
+Ybar = sum(Y) / dim(Y)
+
+RSS = sum((Y - Yhat)^2) -- residual sum of squares
+TSS = sum((Y - Ybar)^2) -- total sum of squares
+
+1 - RSS / TSS
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
