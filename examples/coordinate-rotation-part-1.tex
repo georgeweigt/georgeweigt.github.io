@@ -1,0 +1,46 @@
+\input{preamble}
+
+\section*{Coordinate rotation part 1}
+
+Let $R_z(a)$ be the operator
+\begin{equation*}
+R_z(\alpha)=\exp\left(\frac{i\alpha}{\hbar}L_z\right)
+=\exp\left(\alpha\frac{\partial}{\partial\phi}\right)
+\end{equation*}
+
+Show that
+\begin{equation*}
+R_z(\alpha)Y_{lm}(\theta,\phi)=Y_{lm}(\theta,\phi+\alpha)
+\tag{1}
+\end{equation*}
+
+For spherical harmonic $Y_{lm}(\theta,\phi)$ we have
+\begin{equation*}
+Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
+P_l^m(\cos\theta)e^{im\phi}
+\end{equation*}
+
+Noting that $e^{im\phi}$ is the only factor that depends on $\phi$
+\begin{align*}
+R_z(\alpha)e^{im\phi}
+&=\left(1+\alpha\frac{\partial}{\partial\phi}
++\frac{\alpha^2}{2!}\frac{\partial^2}{\partial\phi^2}
++\frac{\alpha^3}{3!}\frac{\partial^3}{\partial\phi^3}
++\cdots\right)e^{im\phi}
+\\
+&=\left(1+im\alpha
++\frac{(im\alpha)^2}{2!}
++\frac{(im\alpha)^3}{3!}
++\cdots\right)e^{im\phi}
+\\
+&=e^{im\alpha}e^{im\phi}
+\end{align*}
+
+Hence
+\begin{equation*}
+R_z(\alpha)Y_{lm}(\theta,\phi)=Y_{lm}(\theta,\phi)e^{im\alpha}=Y_{lm}(\theta,\phi+\alpha)
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/coordinate-rotation-part-1-demo.html}{Eigenmath script}
+
+\end{document}

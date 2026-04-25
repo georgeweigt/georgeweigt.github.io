@@ -1,0 +1,21 @@
+"Coordinate rotation part 1"
+
+Y(l,m) = (-1)^m sqrt((2 l + 1) / (4 pi) (l - m)! / (l + m)!) *
+         P(l,m) exp(i m phi)
+
+-- associated Legendre of cos theta (arxiv.org/abs/1805.12125)
+
+P(l,m,k) = test(m < 0, (-1)^m (l + m)! / (l - m)! P(l,-m),
+           (sin(theta)/2)^m sum(k, 0, l - m,
+           (-1)^k (l + m + k)! / (l - m - k)! / (m + k)! / k! *
+           ((1 - cos(theta)) / 2)^k))
+
+psi = Y(3,2) + Y(3,1) + Y(3,0)
+
+"Verify equation (1)"
+
+R(f,a) = f + a d(f,phi) + 1/2 a^2 d(f,phi,2) + 1/6 a^3 d(f,phi,3)
+Rpsi = eval(psi, phi, phi + a)
+check(R(psi,a) == taylor(Rpsi, a, 3, 0))
+
+"ok"
