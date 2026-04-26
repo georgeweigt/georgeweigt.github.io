@@ -1,0 +1,25 @@
+"Coordinate rotation part 2"
+
+R = ((1,-theta/n),(theta/n,1))
+
+"Verify eigenvalues and eigenvectors"
+
+lambda1 = 1 + i theta / n
+x1 = (1,-i)
+x1 = x1 / sqrt(dot(conj(x1),x1)) -- normalize
+check(dot(R,x1) == lambda1 x1)
+
+lambda2 = 1 - i theta / n
+x2 = (-1,-i)
+x2 = x2 / sqrt(dot(conj(x2),x2)) -- normalize
+check(dot(R,x2) == lambda2 x2)
+
+"ok"
+
+Q = transpose((x1,x2))
+
+Dn = ((exp(i phi),0),(0,exp(-i phi)))
+
+"Verify equation (1)"
+check(dot(Q,Dn,inv(Q)) == ((cos(phi),-sin(phi)),(sin(phi),cos(phi))))
+"ok"

@@ -1,0 +1,122 @@
+\input{preamble}
+
+% From Griffiths and Schroeter problem 6.14
+
+\section*{Coordinate rotation part 2}
+
+Let $R$ be the matrix
+\begin{equation*}
+R=\begin{pmatrix}
+1 & -\theta/n
+\\
+\theta/n & 1
+\end{pmatrix}
+\end{equation*}
+
+Show that
+\begin{equation*}
+\lim_{n\rightarrow\infty}R^n=\begin{pmatrix}
+\cos\theta & -\sin\theta
+\\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\end{equation*}
+
+The problem is simplified by diagonalizing $R$ as follows.
+
+\bigskip
+Solve for $\lambda$ in
+\begin{equation*}
+|R-\lambda I|=0
+\end{equation*}
+
+to obtain eigenvalues
+\begin{equation*}
+\lambda=1\pm\frac{i\theta}{n}
+\end{equation*}
+
+Solve for eigenvectors to obtain
+\begin{equation*}
+\frac{1}{\sqrt2}\begin{pmatrix}
+\pm1
+\\
+-i
+\end{pmatrix}
+\end{equation*}
+
+Hence matrix $R$ is diagonalized as
+\begin{equation*}
+R=QDQ^{-1}
+\end{equation*}
+
+where $D$ is the diagonal matrix of eigenvalues
+\begin{equation*}
+D=\begin{pmatrix}
+1+i\theta/n & 0
+\\
+0 & 1-i\theta/n
+\end{pmatrix}
+\end{equation*}
+
+and $Q$ is the matrix of eigenvectors
+\begin{equation*}
+Q=\frac{1}{\sqrt2}\begin{pmatrix}
+1 & -1
+\\
+-i & -i
+\end{pmatrix}
+\end{equation*}
+
+Noting that
+\begin{equation*}
+R^n=\left(QDQ^{-1}\right)^n
+=QDQ^{-1}QDQ^{-1}\cdots QDQ^{-1}
+=QD^nQ^{-1}
+\end{equation*}
+
+we have
+\begin{equation*}
+\lim_{n\rightarrow\infty}R^n=Q\left(\lim_{n\rightarrow\infty}D^n\right)Q^{-1}
+\end{equation*}
+
+By definition of the exponential function we have
+\begin{equation*}
+\lim_{n\rightarrow\infty}\left(1\pm\frac{i\theta}{n}\right)^n=e^{\pm i\theta}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\lim_{n\rightarrow\infty}D^n=
+\begin{pmatrix}
+e^{i\theta} & 0
+\\
+0 & e^{-i\theta}
+\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+\lim_{n\rightarrow\infty}R^n
+=Q
+\begin{pmatrix}
+e^{i\theta} & 0
+\\
+0 & e^{-i\theta}
+\end{pmatrix}
+Q^{-1}
+=\frac{1}{2}\begin{pmatrix}
+e^{i\theta}+e^{-i\theta} & ie^{i\theta}-ie^{-i\theta}
+\\
+-ie^{i\theta}+ie^{-i\theta} & e^{i\theta}+e^{-i\theta}
+\end{pmatrix}
+=\begin{pmatrix}
+\cos\theta & -\sin\theta
+\\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\tag{1}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/coordinate-rotation-part-2-demo.html}{Eigenmath script}
+
+\end{document}
