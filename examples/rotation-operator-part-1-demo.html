@@ -20,4 +20,12 @@ Rpsi = eval(psi, phi, phi + a)
 check(R(psi,a) == taylor(Rpsi, a, 3, 0))
 
 "ok"
+
+"Verify equation (2)"
+
+R(f,a) = f + a d(f,theta) + 1/2 a^2 d(f,theta,2) + 1/6 a^3 d(f,theta,3)
+Rpsi = eval(psi, theta, theta + a)
+check(R(psi,a) == taylor(Rpsi, a, 3, 0))
+
+"ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

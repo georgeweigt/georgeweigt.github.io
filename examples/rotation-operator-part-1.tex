@@ -11,13 +11,12 @@ R_z(\alpha)=\exp\left(\frac{i\alpha}{\hbar}L_z\right)
 Show that
 \begin{equation*}
 R_z(\alpha)Y_{lm}(\theta,\phi)=Y_{lm}(\theta,\phi+\alpha)
-\tag{1}
 \end{equation*}
 
 For spherical harmonic $Y_{lm}(\theta,\phi)$ we have
 \begin{equation*}
 Y_{lm}(\theta,\phi)=(-1)^m\sqrt{\frac{(2l+1)}{4\pi}\frac{(l-m)!}{(l+m)!}}
-P_l^m(\cos\theta)e^{im\phi}
+P_{lm}(\cos\theta)e^{im\phi}
 \end{equation*}
 
 Noting that $e^{im\phi}$ is the only factor that depends on $\phi$
@@ -39,6 +38,18 @@ R_z(\alpha)e^{im\phi}
 Hence
 \begin{equation*}
 R_z(\alpha)Y_{lm}(\theta,\phi)=Y_{lm}(\theta,\phi)e^{im\alpha}=Y_{lm}(\theta,\phi+\alpha)
+\tag{1}
+\end{equation*}
+
+Let $R_\theta(\alpha)$ be the rotation operator
+\begin{equation*}
+R_\theta(\alpha)=\exp\left(\alpha\frac{\partial}{\partial\theta}\right)
+\end{equation*}
+
+Show that
+\begin{equation*}
+R_\theta(\alpha)Y_{lm}(\theta,\phi)=Y_{lm}(\theta+\alpha,\phi)
+\tag{2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/rotation-operator-part-1-demo.html}{Eigenmath script}
