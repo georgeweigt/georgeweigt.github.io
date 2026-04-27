@@ -1,4 +1,4 @@
-"Coordinate rotation part 2"
+"Rotation operator part 2"
 
 R = ((1,-theta/n),(theta/n,1))
 
