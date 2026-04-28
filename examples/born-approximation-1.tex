@@ -2,15 +2,15 @@
 
 \section*{Born approximation 1}
 
-Let $\phi(\mathbf p)$ be the scattering amplitude for momentum
+Let $f(\mathbf p)$ be the scattering amplitude for momentum
 transfer vector $\mathbf p$ where
 \begin{equation*}
 \mathbf p=\mathbf p_i-\mathbf p_f
 \end{equation*}
 
-The Born approximation for $\phi(\mathbf p)$ is
+The Born approximation for $f(\mathbf p)$ is
 \begin{equation*}
-\phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
+f(\mathbf p)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
 \end{equation*}
 
@@ -23,7 +23,7 @@ V(\mathbf y)
 
 the solution is
 \begin{equation*}
-\phi(\mathbf p)=-\frac{2mZ\alpha\hbar c}{|\mathbf p|^2}
+f(\mathbf p)=-\frac{2mZ\alpha\hbar c}{|\mathbf p|^2}
 \end{equation*}
 
 By the identity
@@ -33,16 +33,16 @@ By the identity
 
 we have
 \begin{equation*}
-\phi(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+f(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
 
 Hence the Rutherford scattering cross section
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=|\phi(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
+\frac{d\sigma}{d\Omega}=|f(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \tag{1}
 \end{equation*}
 
-Let us derive $\phi(\mathbf p)$ from the time-independent Schrodinger equation
+Let us derive $f(\mathbf p)$ from the time-independent Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
 \end{equation*}
@@ -57,10 +57,8 @@ where
 k=\frac{\sqrt{2mE}}{\hbar}
 \end{equation*}
 
-Now we are going to make the Schrodinger equation even more complicated.
-
-\medskip
-By the sifting property of $\delta(\mathbf x-\mathbf y)$ we can write
+By the sifting property of $\delta(\mathbf x-\mathbf y)$ we can make the right-hand
+side an integral.
 \begin{equation*}
 \left(\nabla^2+k^2\right)\psi(\mathbf x)=\frac{2m}{\hbar^2}
 \int\delta(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
@@ -141,16 +139,16 @@ V(\mathbf y)\,d\mathbf y
 
 Partition $\psi(\mathbf x)$ as
 \begin{equation*}
-\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\,\phi(\mathbf p)
+\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\,f(\mathbf p)
 \end{equation*}
 
-where $\phi(\mathbf p)$ is the scattering amplitude
+where $f(\mathbf p)$ is the scattering amplitude
 \begin{equation*}
-\phi(\mathbf p)=-\frac{m}{2\pi\hbar^2}
+f(\mathbf p)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
 V(\mathbf y)\,d\mathbf y
 \end{equation*}
 
-\href{https://georgeweigt.github.io/examples/born-approximation-demo.html}{Eigenmath script}
+\href{https://georgeweigt.github.io/examples/born-approximation-1-demo.html}{Eigenmath script}
 
 \end{document}

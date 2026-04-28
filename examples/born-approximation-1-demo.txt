@@ -1,11 +1,11 @@
 "Born approximation 1"
 
-phi = -Z alpha hbar c / (2 E (1 - cos(theta)))
+f = -Z alpha hbar c / (2 E (1 - cos(theta)))
 
 E = 1/2 m v^2
 hbar = 1
 c = 1
 
-"Verify equation (1) with Lancaster and Blundell equation (40.4)"
-check(conj(phi) phi == Z^2 alpha^2 / (4 m^2 v^4 sin(theta/2)^4))
+"Verify equation (1) is equivalent to Lancaster and Blundell equation (40.4)"
+check(conj(f) f == Z^2 alpha^2 / (4 m^2 v^4 sin(theta/2)^4))
 "ok"
