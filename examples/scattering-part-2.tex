@@ -1,0 +1,91 @@
+\input{preamble}
+
+\section*{Scattering part 2}
+
+Let $f(\theta)$ be the Born approximation
+\begin{equation*}
+f(\theta)\approx-\frac{m}{2\pi\hbar^2}\int
+\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
+\tag{1}
+\end{equation*}
+
+where $\mathbf p$ is momentum transfer
+\begin{equation*}
+\mathbf p=\mathbf p_i-\mathbf p_f
+\end{equation*}
+
+and
+\begin{equation*}
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
+\end{equation*}
+
+Let $V$ be a spherically symmetric potential $V(r)$.
+Show that
+\begin{equation*}
+f(\theta)=-\frac{2m}{\hbar p}\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
+\end{equation*}
+
+Convert (1) to polar coordinates.
+\begin{equation*}
+f(\theta)
+=-\frac{m}{2\pi\hbar^2}
+\int_0^\infty
+\int_0^\pi
+\int_0^{2\pi}
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$ (multiply by $2\pi$).
+\begin{equation*}
+f(\theta)
+=-\frac{m}{\hbar^2}
+\int_0^\infty
+\int_0^\pi
+\exp\left(\frac{ipr\cos\theta}{\hbar}\right)V(r)\,
+r^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Transform the integral over $\theta$ into an integral over $u$
+where $u=\cos\theta$ and $du=-\sin\theta\,d\theta$.
+The minus sign in $du$ is canceled by interchanging integration limits
+$\cos0=1$ and $\cos\pi=-1$.
+\begin{equation*}
+f(\theta)
+=-\frac{m}{\hbar^2}
+\int_0^\infty
+\int_{-1}^1
+\exp\left(\frac{ipru}{\hbar}\right)V(r)\,
+r^2\,dr\,du
+\end{equation*}
+
+Solve the integral over $u$.
+\begin{equation*}
+f(\theta)=-\frac{m}{\hbar^2}
+\int_0^\infty
+\left[\frac{\hbar}{ipr}\exp\left(\frac{ipru}{\hbar}\right)\right]_{u=-1}^{u=1}
+V(r)\,r^2\,dr
+\end{equation*}
+
+Cancel $r$ and evaluate limits.
+\begin{equation*}
+f(\theta)=-\frac{m}{\hbar p}
+\int_0^\infty
+\left[-i\exp\left(\frac{ipr}{\hbar}\right)+i\exp\left(-\frac{ipr}{\hbar}\right)\right]V(r)\,r\,dr
+\end{equation*}
+
+Recalling that
+\begin{equation*}
+2\sin x=-ie^{ix}+ie^{-ix}
+\end{equation*}
+
+we have
+\begin{equation*}
+f(\theta)=-\frac{2m}{\hbar p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
+\tag{2}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/scattering-part-2-demo.txt}{Eigenmath script}
+
+\end{document}
