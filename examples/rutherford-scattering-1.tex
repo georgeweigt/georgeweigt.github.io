@@ -1,6 +1,6 @@
 \input{preamble}
 
-% Cf. Feynman and Hibbs problem 6-6
+% Feynman and Hibbs problem 6-6
 
 \section*{Rutherford scattering 1}
 
@@ -134,27 +134,27 @@ f(\mathbf p)=-\frac{2mZ\alpha\hbar c}{p^2}
 
 Note that $\mathbf p$ is momentum transfer such that
 \begin{equation*}
-p^2=|\mathbf p|^2=4mE(\cos\theta-1)
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 \end{equation*}
 
 Hence
 \begin{equation*}
-f(\theta)=-\frac{Z\alpha\hbar c}{2E(\cos\theta-1)}
+f(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
 
 Calculate the cross section.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=|f(\theta)|^2
-=\left[\frac{Z\alpha\hbar c}{2E(\cos\theta-1)}\right]^2
+=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \tag{2}
 \end{equation*}
 
-Note that
+Noting that
 \begin{equation*}
-(\cos\theta-1)^2=4\sin^4(\theta/2)
+(1-\cos\theta)^2=4\sin^4(\theta/2)
 \end{equation*}
 
-Hence equation (2) is equivalent to
+we can also write
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\left(\frac{Z\alpha\hbar c}{2E}\right)^2

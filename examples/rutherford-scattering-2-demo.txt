@@ -10,6 +10,6 @@ check(f == -2 m Z alpha hbar c / (p^2 + (hbar / a)^2))
 "ok"
 
 "Verify equation (2)"
-p = sqrt(4 m E (cos(theta) - 1))
-check(f == -2 m Z alpha hbar c / (4 m E (cos(theta) - 1) + (hbar/a)^2))
+p = sqrt(4 m E (1 - cos(theta)))
+check(f == -2 m Z alpha hbar c / (4 m E (1 - cos(theta)) + (hbar/a)^2))
 "ok"
