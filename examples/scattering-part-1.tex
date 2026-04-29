@@ -1,0 +1,65 @@
+\input{preamble}
+
+\section*{Scattering part 1}
+
+Let $\psi(r,\theta,\phi)$ be a wave function of the form
+\begin{equation*}
+\psi(r,\theta,\phi)=\frac{e^{ikr}}{r}f(\theta,\phi)
+\end{equation*}
+
+where
+\begin{equation*}
+k=\frac{\sqrt{2mE}}{\hbar}
+\end{equation*}
+
+The density is
+\begin{equation*}
+|\psi|^2=\psi^*\psi=\frac{|f(\theta,\phi)|^2}{r^2}
+\end{equation*}
+
+Let $d\sigma$ be the differential cross section
+\begin{equation*}
+d\sigma=|\psi|^2\,dA=|\psi|^2r^2\,d\Omega=|f(\theta,\phi)|^2\,d\Omega
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=|f(\theta,\phi)|^2
+\end{equation*}
+
+For Coulomb potentials we have
+\begin{equation*}
+f(\theta,\phi)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+Hence the Rutherford cross section
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
+\end{equation*}
+
+Noting that
+\begin{equation*}
+(1-\cos\theta)^2=4\sin^4(\theta/2)
+\end{equation*}
+
+we can also write
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left(\frac{Z\alpha\hbar c}{2E}\right)^2
+\frac{1}{4\sin^4(\theta/2)}
+\end{equation*}
+
+Verify dimensions of exponential.
+\begin{equation*}
+\frac{\sqrt{2mE}}{\hbar}\,r
+=\frac{\sqrt{[\text{kg}]\,[\text J]}}{[\text J\,\text s]}\,[\text m]=[1]
+\end{equation*}
+
+Verify dimensions of cross section.
+\begin{equation*}
+\left(\frac{Z\alpha\hbar c}{2E}\right)^2
+=\left(\frac{[\text J\,\text s]\,[\text m\,\text s^{-1}]}{[\text J]}\right)^2=[\text m^2]
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/scattering-part-1-demo.html}{Eigenmath script}
+
+\end{document}

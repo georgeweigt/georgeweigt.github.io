@@ -1,0 +1,17 @@
+"Scattering part 1"
+
+joule = "kilogram" "meter"^2 / "second"^2
+
+E = joule
+hbar = joule "second"
+m = "kilogram"
+r = "meter"
+c = "meter" / "second"
+
+"Verify dimensions"
+
+check(sqrt(m E) / hbar r == 1)
+
+check((hbar c / E)^2 == "meter"^2)
+
+"ok"
