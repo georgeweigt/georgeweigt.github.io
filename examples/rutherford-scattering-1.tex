@@ -10,18 +10,26 @@ V(r)=-\frac{Ze^2}{4\pi\varepsilon_0r}
 =-\frac{Z\alpha\hbar c}{r}
 \end{equation*}
 
-Let $f(\mathbf p)$ be the scattering amplitude for momentum transfer vector
-$\mathbf p=\mathbf p_i-\mathbf p_f$.
-The following formula is the Born approximation for $f(\mathbf p)$.
+using the Born approximation
 \begin{equation*}
-f(\mathbf p)
-=\frac{m}{2\pi\hbar^2}
+f(\theta)
+\approx\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf r}{\hbar}\right)V(\mathbf r)\,d\mathbf r
 \end{equation*}
 
-Convert to polar coordinates where $p=|\mathbf p|$.
+where $\mathbf p$ is momentum transfer
 \begin{equation*}
-f(\mathbf p)
+\mathbf p=\mathbf p_i-\mathbf p_f
+\end{equation*}
+
+and
+\begin{equation*}
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
+\end{equation*}
+
+Convert to polar coordinates.
+\begin{equation*}
+f(\theta)
 =\frac{m}{2\pi\hbar^2}
 \int_0^\infty
 \int_0^\pi
@@ -30,14 +38,14 @@ f(\mathbf p)
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Substitute the Coulomb potential
+Substitute
 \begin{equation*}
 V(r,\theta,\phi)=-\frac{Z\alpha\hbar c}{r}
 \end{equation*}
 
 to obtain
 \begin{equation*}
-f(\mathbf p)
+f(\theta)
 =-\frac{mZ\alpha c}{2\pi\hbar}
 \int_0^\infty
 \int_0^\pi
@@ -48,7 +56,7 @@ r\sin\theta\,dr\,d\theta\,d\phi
 
 Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-f(\mathbf p)
+f(\theta)
 =-\frac{mZ\alpha c}{\hbar}
 \int_0^\infty
 \int_0^\pi
@@ -61,7 +69,7 @@ where $u=\cos\theta$ and $du=-\sin\theta\,d\theta$.
 The minus sign in $du$ is canceled by interchanging integration limits
 $\cos0=1$ and $\cos\pi=-1$.
 \begin{equation*}
-f(\mathbf p)
+f(\theta)
 =-\frac{mZ\alpha c}{\hbar}
 \int_0^\infty
 \int_{-1}^1
@@ -71,7 +79,7 @@ r\,dr\,du
 
 Solve the integral over $u$.
 \begin{equation*}
-f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
+f(\theta)=-\frac{mZ\alpha c}{\hbar}
 \int_0^\infty
 \left[\frac{\hbar}{ipr}\exp\left(\frac{ipru}{\hbar}\right)\right]_{u=-1}^{u=1}
 r\,dr
@@ -79,7 +87,7 @@ r\,dr
 
 Cancel $r$ and evaluate the limits.
 \begin{equation*}
-f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
+f(\theta)=-\frac{mZ\alpha c}{\hbar}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}\right)-\exp\left(-\frac{ipr}{\hbar}\right)\right]
@@ -88,7 +96,7 @@ dr
 
 Solve the integral over $r$.
 \begin{equation*}
-f(\mathbf p)
+f(\theta)
 =-\frac{mZ\alpha c}{\hbar}\frac{\hbar}{ip}
 \left[
 \frac{\hbar}{ip}
@@ -101,7 +109,7 @@ f(\mathbf p)
 The exponentials fail to converge at the upper limit.
 The workaround is to go back and multiply the integrand by $\exp(-\epsilon r)\approx1$.
 \begin{equation*}
-f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
+f(\theta)=-\frac{mZ\alpha c}{\hbar}
 \int_0^\infty
 \frac{\hbar}{ip}
 \left[\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
@@ -111,7 +119,7 @@ dr
 
 Solve the modified integral.
 \begin{equation*}
-f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
+f(\theta)=-\frac{mZ\alpha c}{\hbar}
 \frac{\hbar}{ip}
 \left[
 \frac{1}{ip/\hbar-\epsilon}\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
@@ -121,7 +129,7 @@ f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
 
 Evaluate the limits. Now the exponentials vanish at the upper limit.
 \begin{equation*}
-f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
+f(\theta)=-\frac{mZ\alpha c}{\hbar}
 \frac{\hbar}{ip}
 \left(-\frac{1}{ip/\hbar-\epsilon}-\frac{1}{ip/\hbar+\epsilon}\right)
 \tag{1}
@@ -129,15 +137,10 @@ f(\mathbf p)=-\frac{mZ\alpha c}{\hbar}
 
 Set $\epsilon=0$ to obtain
 \begin{equation*}
-f(\mathbf p)=-\frac{2mZ\alpha\hbar c}{p^2}
+f(\theta)=-\frac{2mZ\alpha\hbar c}{p^2}
 \end{equation*}
 
-Note that $\mathbf p$ is momentum transfer such that
-\begin{equation*}
-p^2=|\mathbf p|^2=4mE(1-\cos\theta)
-\end{equation*}
-
-Hence
+Substitute for $p^2$.
 \begin{equation*}
 f(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
