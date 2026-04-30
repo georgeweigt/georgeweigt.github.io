@@ -7,17 +7,25 @@ Find $\sigma_{\rm total}$ for the Yukawa potential
 V(r)=-\frac{V_0\exp(-\mu r)}{\mu r}
 \end{equation*}
 
-Let $f(\mathbf k)$ be the scattering amplitude for $\mathbf k=\mathbf k_i-\mathbf k_f$.
-The following formula is the Born approximation for $f(\mathbf k)$.
+using the Born approximation
 \begin{equation*}
-f(\mathbf k)
-=\frac{m}{2\pi\hbar^2}
+f(\theta)\approx\frac{m}{2\pi\hbar^2}
 \int\exp(i\mathbf k\cdot\mathbf r)V(\mathbf r)\,d\mathbf r
 \end{equation*}
 
-Convert to polar coordinates where $k=|\mathbf k|$.
+where $\mathbf k$ is momentum transfer
 \begin{equation*}
-f(\mathbf k)
+\mathbf k=\mathbf k_i-\mathbf k_f
+\end{equation*}
+
+and
+\begin{equation*}
+k^2=|\mathbf k|^2=\frac{4mE(1-\cos\theta)}{\hbar^2}
+\end{equation*}
+
+Convert to polar coordinates.
+\begin{equation*}
+f(\theta)
 =\frac{m}{2\pi\hbar^2}
 \int_0^\infty
 \int_0^\pi
@@ -26,14 +34,14 @@ f(\mathbf k)
 \,r^2\sin\theta\,dr\,d\theta\,d\phi
 \end{equation*}
 
-Substitute the Yukawa potential
+Substitute
 \begin{equation*}
 V(r,\theta,\phi)=-\frac{V_0\exp(-\mu r)}{\mu r}
 \end{equation*}
 
 to obtain
 \begin{equation*}
-f(\mathbf k)
+f(\theta)
 =-\frac{mV_0}{2\pi\hbar^2\mu}
 \int_0^\infty
 \int_0^\pi
@@ -44,7 +52,7 @@ f(\mathbf k)
 
 Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-f(\mathbf k)
+f(\theta)
 =-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
 \int_0^\pi
@@ -56,7 +64,7 @@ Let $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
 The minus sign in $dy$ is canceled by interchanging integration limits
 $\cos(0)=1$ and $\cos(\pi)=-1$.
 \begin{equation*}
-f(\mathbf k)
+f(\theta)
 =-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
 \int_{-1}^1
@@ -66,7 +74,7 @@ f(\mathbf k)
 
 Solve the integral over $y$.
 \begin{equation*}
-f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
+f(\theta)=-\frac{mV_0}{\hbar^2\mu}
 \int_0^\infty
 \left[\frac{1}{ikr}\exp(ikry-\mu r)\right]_{y=-1}^{y=1}
 r\,dr
@@ -74,7 +82,7 @@ r\,dr
 
 Cancel $r$ and evaluate the limits.
 \begin{equation*}
-f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}\frac{1}{ik}
+f(\theta)=-\frac{mV_0}{\hbar^2\mu}\frac{1}{ik}
 \int_0^\infty
 \bigl[\exp(ikr-\mu r)-\exp(-ikr-\mu r)\bigr]
 \,dr
@@ -82,7 +90,7 @@ f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}\frac{1}{ik}
 
 Solve the integral over $r$.
 \begin{equation*}
-f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
+f(\theta)=-\frac{mV_0}{\hbar^2\mu}
 \frac{1}{ik}
 \left[
 \frac{1}{ik-\mu}
@@ -94,7 +102,7 @@ f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
 
 Evaluate the limits. The exponentials vanish at the upper limit.
 \begin{equation*}
-f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
+f(\theta)=-\frac{mV_0}{\hbar^2\mu}
 \frac{1}{ik}
 \left[
 -\frac{1}{ik-\mu}
@@ -104,12 +112,7 @@ f(\mathbf k)=-\frac{mV_0}{\hbar^2\mu}
 \tag{1}
 \end{equation*}
 
-Substitute
-\begin{equation*}
-k^2=\frac{|\mathbf p_i-\mathbf p_f|^2}{\hbar^2}=\frac{4mE(1-\cos\theta)}{\hbar^2}
-\end{equation*}
-
-to obtain
+Substitute for $k^2$.
 \begin{equation*}
 f(\theta)=-\frac{2mV_0}{\mu}\frac{1}{4mE(1-\cos\theta)+\mu^2\hbar^2}
 \tag{2}
