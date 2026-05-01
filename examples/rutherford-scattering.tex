@@ -1,0 +1,118 @@
+\input{preamble}
+
+\section*{Rutherford scattering}
+
+Rutherford scattering is the interaction
+$e^-+X\rightarrow e^-+X$ where $X$ is an atom.
+
+\begin{center}
+\begin{tikzpicture}
+\draw[dashed] (0,0) circle (0.5cm);
+\draw (0,0) node {$X$};
+\draw[thick,->] (-2,0) node[anchor=east] {$e^-$} -- (-0.6,0);
+\draw[thick,->] (0.40,0.40) -- (1.3,1.3) node[anchor=south west] {$e^-$};
+\draw (1,0.5) node {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+These are the momentum vectors for Rutherford scattering where $E=\sqrt{p^2+m^2}$.
+\begin{equation*}
+p_1=\underset{\substack{\text{inbound}\\ \text{electron}}}
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\qquad
+p_2=\underset{\substack{\text{outbound}\\ \text{electron}}}
+{\begin{pmatrix}
+E\\
+p\sin\theta\cos\phi\\
+p\sin\theta\sin\phi\\
+p\cos\theta
+\end{pmatrix}}
+\end{equation*}
+
+Spinors for the inbound electron.
+\begin{equation*}
+u_{11}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p\\0\end{pmatrix}}
+\qquad
+u_{12}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{inbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}0\\E+m\\0\\-p\end{pmatrix}}
+\end{equation*}
+
+Spinors for the outbound electron.
+\begin{equation*}
+u_{21}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound electron}\\ \text{spin up}}}
+{\begin{pmatrix}E+m\\0\\p_{2z}\\p_{2x}+ip_{2y}\end{pmatrix}}
+\qquad
+u_{22}=\frac{1}{\sqrt{E+m}}
+\underset{\substack{\text{outbound electron}\\ \text{spin down}}}
+{\begin{pmatrix}0\\E+m\\p_{2x}-ip_{2y}\\-p_{2z}\end{pmatrix}}
+\end{equation*}
+
+The probability density $|\mathcal M_{ab}|^2$ for spin state $ab$ is
+\begin{equation*}
+|\mathcal{M}_{ab}|^2=\left(\frac{Z\alpha}{q^2}\right)^2\left|\bar{u}_{2b}\gamma^0 u_{1a}\right|^2
+\end{equation*}
+
+where $q^2$ is momentum transfer such that
+\begin{equation*}
+q^2=(p_1-p_2)^2=(p_1-p_2)^\mu g_{\mu\nu}(p_1-p_2)^\nu=2p^2(\cos\theta-1)
+\end{equation*}
+
+The expected probability density
+$\langle\vert\mathcal{M}\vert^2\rangle$
+is the average of spin states.
+\begin{equation*}
+\langle\vert\mathcal{M}\vert^2\rangle
+=\frac{1}{2}\sum_{a=1}^2\sum_{b=1}^2\left|\mathcal{M}_{ab}\right|^2
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{equation*}
+\langle\vert\mathcal{M}\vert^2\rangle
+=\frac{1}{2}\left(\frac{Z\alpha}{q^2}\right)^2
+\operatorname{Tr}\left[(\slashed{p}_1+m)\gamma^0(\slashed{p}_2+m)\gamma^0\right]
+\end{equation*}
+
+The result is
+\begin{equation*}
+\langle\vert\mathcal{M}\vert^2\rangle
+=2\left(\frac{Z\alpha}{q^2}\right)^2\left(E^2+m^2+p^2\cos\theta\right)
+\end{equation*}
+
+Recall that $m\approx0.511\,\text{MeV}$.
+For $m\gg p$ we can use the approximation
+\begin{equation*}
+E^2+m^2+p^2\cos\theta\approx2m^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=\left(\frac{2mZ\alpha}{q^2}\right)^2
+\end{equation*}
+
+The differential cross section is equivalent to the expected probability density.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\langle|\mathcal{M}|^2\rangle=\left(\frac{2mZ\alpha}{q^2}\right)^2
+\end{equation*}
+
+Substitute $q^2=2p^2(\cos\theta-1)$ to obtain
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left[\frac{mZ\alpha}{p^2(\cos\theta-1)}\right]^2
+\end{equation*}
+
+Noting that
+\begin{equation*}
+p^2=2mE
+\end{equation*}
+
+we can also write
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left[\frac{Z\alpha}{2E(\cos\theta-1)}\right]^2
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/rutherford-scattering-demo.html}{Eigenmath script}
+
+\end{document}

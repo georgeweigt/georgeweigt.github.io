@@ -8,6 +8,7 @@ f = -2 m beta / (p^2 + epsilon^2 hbar^2)
 epsilon = 0
 beta = -Z alpha hbar c
 p = sqrt(4 m E (1 - cos(theta)))
-check(f conj(f) == (Z alpha hbar c / (2 E))^2 / (4 sin(theta/2)^4))
+dsigma = f conj(f)
+check(dsigma == (Z alpha hbar c / (2 E))^2 / (4 sin(theta/2)^4))
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
