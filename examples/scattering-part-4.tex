@@ -1,0 +1,57 @@
+\input{preamble}
+
+\section*{Scattering part 4}
+
+From the previous section we have
+\begin{equation*}
+f(\theta)=-\frac{2m\beta}{p^2+\epsilon^2\hbar^2}
+\end{equation*}
+
+where $V(r)$ is the Yukawa potential
+\begin{equation*}
+V(r)=\frac{\beta}{r}\exp(-\epsilon r)
+\end{equation*}
+
+For the Coulomb potential
+\begin{equation*}
+V(r)=-\frac{q_1q_2}{4\pi\varepsilon_0r}
+=-\frac{Ze^2}{4\pi\varepsilon_0r}
+=-\frac{Z\alpha\hbar c}{r}
+\end{equation*}
+
+we substitute $\epsilon=0$ and $\beta=-Z\alpha\hbar c$ to obtain
+\begin{equation*}
+f(\theta)=\frac{2mZ\alpha\hbar c}{p^2}
+\end{equation*}
+
+Substitute
+\begin{equation*}
+p^2=4mE(1-\cos\theta)
+\end{equation*}
+
+to obtain
+\begin{equation*}
+f(\theta)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+Hence the Rutherford cross section formula
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=|f(\theta,\phi)|^2
+=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
+\end{equation*}
+
+Noting that
+\begin{equation*}
+(1-\cos\theta)^2=4\sin^4(\theta/2)
+\end{equation*}
+
+we can also write
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left(\frac{Z\alpha\hbar c}{2E}\right)^2
+\frac{1}{4\sin^4(\theta/2)}
+\tag{1}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/scattering-part-4-demo.html}{Eigenmath script}
+
+\end{document}
