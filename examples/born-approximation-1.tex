@@ -2,47 +2,47 @@
 
 \section*{Born approximation 1}
 
-Let $f(\mathbf p)$ be the scattering amplitude for momentum
-transfer vector $\mathbf p$ where
+The Born approximation is
+\begin{equation*}
+\psi(r,\theta,\phi)=\frac{e^{ikr}}{r}f(\theta,\phi)
+\end{equation*}
+
+where
+\begin{equation*}
+k=\frac{\sqrt{2mE}}{\hbar}
+\end{equation*}
+
+and $f(\theta,\phi)$ is the scattering amplitude
+\begin{equation*}
+f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
+\end{equation*}
+
+Vector $\mathbf p$ is momentum transfer such that
 \begin{equation*}
 \mathbf p=\mathbf p_i-\mathbf p_f
 \end{equation*}
 
-The Born approximation for $f(\mathbf p)$ is
+and
 \begin{equation*}
-f(\mathbf p)=-\frac{m}{2\pi\hbar^2}
-\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)V(\mathbf y)\,d\mathbf y
+p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 \end{equation*}
 
-For example, given Coulomb potential
+For example, for Coulomb potentials we have
 \begin{equation*}
-V(\mathbf y)
-=-\frac{Ze^2}{4\pi\varepsilon_0|\mathbf y|}
-=-\frac{Z\alpha\hbar c}{|\mathbf y|}
+f(\theta,\phi)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
 
-the solution is
+Hence the Rutherford cross section
 \begin{equation*}
-f(\mathbf p)=-\frac{2mZ\alpha\hbar c}{|\mathbf p|^2}
+\frac{d\sigma}{d\Omega}
+=|\psi|^2r^2
+=|f(\theta,\phi)|^2
+=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \end{equation*}
 
-By the identity
-\begin{equation*}
-|\mathbf p|^2=4mE(1-\cos\theta)
-\end{equation*}
-
-we have
-\begin{equation*}
-f(\theta)=-\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
-\end{equation*}
-
-Hence the Rutherford scattering cross section
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=|f(\theta)|^2=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
-\tag{1}
-\end{equation*}
-
-Let us derive $f(\mathbf p)$ from the time-independent Schrodinger equation
+Let us derive the Born approximation
+starting with the Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
 \end{equation*}
@@ -133,18 +133,6 @@ Let $\mathbf p$ be momentum transfer
 Then by substitution
 \begin{equation*}
 \psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
-\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
-V(\mathbf y)\,d\mathbf y
-\end{equation*}
-
-Partition $\psi(\mathbf x)$ as
-\begin{equation*}
-\psi(\mathbf x)=\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}\,f(\mathbf p)
-\end{equation*}
-
-where $f(\mathbf p)$ is the scattering amplitude
-\begin{equation*}
-f(\mathbf p)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
 V(\mathbf y)\,d\mathbf y
 \end{equation*}
