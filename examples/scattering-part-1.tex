@@ -2,7 +2,7 @@
 
 \section*{Scattering part 1}
 
-Let $\psi(r,\theta,\phi)$ be a wave function of the form
+Let $\psi(r,\theta,\phi)$ be the Born approximation
 \begin{equation*}
 \psi(r,\theta,\phi)=\frac{e^{ikr}}{r}f(\theta,\phi)
 \end{equation*}
@@ -10,6 +10,12 @@ Let $\psi(r,\theta,\phi)$ be a wave function of the form
 where
 \begin{equation*}
 k=\frac{\sqrt{2mE}}{\hbar}
+\end{equation*}
+
+and
+\begin{equation*}
+f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
 The density is
@@ -27,9 +33,9 @@ Hence the cross section is completely defined by $f(\theta,\phi)$ from the wave 
 \frac{d\sigma}{d\Omega}=|f(\theta,\phi)|^2
 \end{equation*}
 
-For example, for Coulomb potentials we have
+For example, for Coulomb potentials we have the Born approximation
 \begin{equation*}
-f(\theta,\phi)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\psi(r,\theta,\phi)=\frac{e^{ikr}}{r}\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
 \end{equation*}
 
 Hence the Rutherford cross section formula

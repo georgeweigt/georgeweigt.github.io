@@ -1,12 +1,10 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Scattering part 3"
 
-"Verify equation (1)"
 f = i / (-i p / hbar - epsilon) - i / (i p / hbar - epsilon)
 check(f == -2 hbar p / (p^2 + epsilon^2 hbar^2))
-"ok"
 
-"Verify equation (2)"
+"Verify scattering amplitude for Yukawa potential"
 f = -2 m / (hbar p) sin(p r / hbar) V r
 V = beta / r exp(-epsilon r)
 f = expform(f)

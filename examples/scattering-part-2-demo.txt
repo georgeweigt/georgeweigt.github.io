@@ -1,7 +1,7 @@
 "Scattering part 2"
 
-"Verify equation (2)"
+"Verify integral over u"
 f = -m / hbar^2 exp(i p r u / hbar) V r^2
-F = defint(f, u, -1, 1)
-check(F == -2 m / (hbar p) sin(p r / hbar) V r)
+f = defint(f, u, -1, 1)
+check(f == -2 m / (hbar p) sin(p r / hbar) V r)
 "ok"

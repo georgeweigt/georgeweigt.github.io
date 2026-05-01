@@ -1,11 +1,9 @@
 "Scattering part 3"
 
-"Verify equation (1)"
 f = i / (-i p / hbar - epsilon) - i / (i p / hbar - epsilon)
 check(f == -2 hbar p / (p^2 + epsilon^2 hbar^2))
-"ok"
 
-"Verify equation (2)"
+"Verify scattering amplitude for Yukawa potential"
 f = -2 m / (hbar p) sin(p r / hbar) V r
 V = beta / r exp(-epsilon r)
 f = expform(f)
