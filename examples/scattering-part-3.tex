@@ -1,0 +1,59 @@
+\input{preamble}
+
+\section*{Scattering part 3}
+
+From the previous section we have
+\begin{equation*}
+f(\theta)=-\frac{2m}{\hbar p}\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
+\end{equation*}
+
+where $p$ is momentum transfer
+\begin{equation*}
+p=\sqrt{2mE(1-\cos\theta)}
+\end{equation*}
+
+Find $f(\theta)$ for the Yukawa potential
+\begin{equation*}
+V(r)=\frac{\beta}{r}\exp(-\epsilon r)
+\end{equation*}
+
+By the exponential form of the sine function we have
+\begin{equation*}
+f(\theta)=-\frac{m\beta}{\hbar p}\int_0^\infty
+\left[
+i\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
+-i\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
+\right]\,dr
+\end{equation*}
+
+Solve the integral.
+\begin{equation*}
+f(\theta)=-\frac{m\beta}{\hbar p}
+\left[
+\frac{i}{-ip/\hbar-\epsilon}\exp\left(-\frac{ipr}{\hbar}-\epsilon r\right)
+-\frac{i}{ip/\hbar-\epsilon}\exp\left(\frac{ipr}{\hbar}-\epsilon r\right)
+\right]_{r=0}^{r=\infty}
+\end{equation*}
+
+Evaluate the limits. The exponentials vanish at the upper limit.
+\begin{equation*}
+f(\theta)=0-f(\theta)\bigg|_{r=0}
+=\frac{m\beta}{\hbar p}
+\left(\frac{i}{-ip/\hbar-\epsilon}-\frac{i}{ip/\hbar-\epsilon}\right)
+\end{equation*}
+
+The fractions rationalize as
+\begin{equation*}
+\frac{i}{-ip/\hbar-\epsilon}-\frac{i}{ip/\hbar-\epsilon}=-\frac{2\hbar p}{p^2+\epsilon^2\hbar^2}
+\tag{1}
+\end{equation*}
+
+Hence
+\begin{equation*}
+f(\theta)=-\frac{2m\beta}{p^2+\epsilon^2\hbar^2}
+\tag{2}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/scattering-part-3-demo.html}{Eigenmath script}
+
+\end{document}
