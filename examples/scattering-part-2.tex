@@ -4,7 +4,7 @@
 
 From the Born approximation we have the scattering amplitude
 \begin{equation*}
-f(\theta)=-\frac{m}{2\pi\hbar^2}\int
+f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}\int
 \exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
@@ -21,12 +21,12 @@ p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 Let $V$ be a spherically symmetric potential $V(r)$.
 Show that
 \begin{equation*}
-f(\theta)=-\frac{2m}{\hbar p}\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
+f(\theta,\phi)=-\frac{2m}{\hbar p}\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
 \end{equation*}
 
 For the Born approximation in polar coordinates we have
 \begin{equation*}
-f(\theta)
+f(\theta,\phi)
 =-\frac{m}{2\pi\hbar^2}
 \int_0^\infty
 \int_0^\pi
@@ -37,7 +37,7 @@ f(\theta)
 
 Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-f(\theta)
+f(\theta,\phi)
 =-\frac{m}{\hbar^2}
 \int_0^\infty
 \int_0^\pi
@@ -50,7 +50,7 @@ where $u=\cos\theta$ and $du=-\sin\theta\,d\theta$.
 The minus sign in $du$ is canceled by interchanging integration limits
 $\cos0=1$ and $\cos\pi=-1$.
 \begin{equation*}
-f(\theta)
+f(\theta,\phi)
 =-\frac{m}{\hbar^2}
 \int_0^\infty
 \int_{-1}^1
@@ -60,7 +60,7 @@ r^2\,dr\,du
 
 Solve the integral over $u$.
 \begin{equation*}
-f(\theta)=-\frac{m}{\hbar^2}
+f(\theta,\phi)=-\frac{m}{\hbar^2}
 \int_0^\infty
 \left[\frac{\hbar}{ipr}\exp\left(\frac{ipru}{\hbar}\right)\right]_{u=-1}^{u=1}
 V(r)\,r^2\,dr
@@ -68,17 +68,18 @@ V(r)\,r^2\,dr
 
 Cancel $r$ and evaluate limits.
 \begin{equation*}
-f(\theta)=-\frac{m}{\hbar p}
+f(\theta,\phi)=-\frac{m}{\hbar p}
 \int_0^\infty
 \left[-i\exp\left(\frac{ipr}{\hbar}\right)+i\exp\left(-\frac{ipr}{\hbar}\right)\right]V(r)\,r\,dr
 \end{equation*}
 
-Recalling that
+Hence
 \begin{equation*}
-2\sin x=-ie^{ix}+ie^{-ix}
+f(\theta,\phi)=-\frac{2m}{\hbar p}
+\int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
 \end{equation*}
 
-we have
+We can use $f(\theta)$ instead of $f(\theta,\phi)$ because nothing depends on $\phi$.
 \begin{equation*}
 f(\theta)=-\frac{2m}{\hbar p}
 \int_0^\infty\sin\left(\frac{pr}{\hbar}\right)V(r)\,r\,dr
