@@ -47,13 +47,17 @@ Hence the Rutherford cross section
 =\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \end{equation*}
 
-Let us derive the Born approximation
-starting with the Schrodinger equation
+Let us derive the Born approximation starting with the Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
 \end{equation*}
 
-Rewrite the Schrodinger equation as
+Multiply through by $-2m/\hbar^2$ to obtain
+\begin{equation*}
+\nabla^2\psi(\mathbf x)-\frac{2m}{\hbar^2}V(\mathbf x)\psi(\mathbf x)=-\frac{2mE}{\hbar^2}\psi(\mathbf x)
+\end{equation*}
+
+Rewrite as
 \begin{equation*}
 \left(\nabla^2+k^2\right)\psi(\mathbf x)=\frac{2m}{\hbar^2}V(\mathbf x)\psi(\mathbf x)
 \end{equation*}
@@ -118,7 +122,7 @@ Hence
 V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
 \end{equation*}
 
-For a first-order approximation we substitute a plane wave for $\psi(\mathbf y)$.
+For a first approximation we substitute a plane wave for $\psi(\mathbf y)$.
 \begin{equation*}
 \psi(\mathbf y)=\exp\left(\frac{ik\mathbf x'\cdot\mathbf y}{|\mathbf x'|}\right)
 \end{equation*}
