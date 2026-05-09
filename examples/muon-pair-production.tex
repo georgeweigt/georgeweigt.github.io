@@ -149,12 +149,14 @@ The result is
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
 \end{equation*}
 
+\iffalse
+
 For $E\gg M$ a useful approximation is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
-\subsubsection*{Cross section}
+\fi
 
 The differential cross section is
 \begin{equation*}
@@ -167,12 +169,12 @@ where
 s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
-For high energy experiments we have
+For the high energy approximation
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
-Hence
+we have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{e^4}{4(4\pi\varepsilon_0)^2s}\left(1+\cos^2\theta\right)
 \end{equation*}
@@ -182,10 +184,12 @@ Noting that
 e^2=4\pi\varepsilon_0\alpha\hbar c
 \end{equation*}
 
-we have
+we also have
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
+\frac{d\sigma}{d\Omega}=\frac{(\alpha\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
 \end{equation*}
+
+\iffalse
 
 Noting that
 \begin{equation*}
@@ -404,5 +408,7 @@ R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
 \end{equation*}
 
 The result indicates that electroweak theory explains 98\% of the variance in the data.
+
+\fi
 
 \end{document}

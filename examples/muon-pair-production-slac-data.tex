@@ -1,0 +1,173 @@
+\input{preamble}
+
+\section*{Muon pair production SLAC data}
+
+See www.hepdata.net/record/ins216031, Table 1, $s=(29.0\,\text{GeV})^2$.
+
+\begin{center}
+\begin{tabular}{cc}
+$x$ & $y$
+\\[1ex]
+$-0.925$ & 67.08\\
+$-0.85\phantom{0}$ & 58.67\\
+$-0.75\phantom{0}$ & 54.66\\
+$-0.65\phantom{0}$ & 51.72\\
+$-0.55\phantom{0}$ & 43.70\\
+$-0.45\phantom{0}$ & 41.12\\
+$-0.35\phantom{0}$ & 39.71\\
+$-0.25\phantom{0}$ & 35.34\\
+$-0.15\phantom{0}$ & 33.35\\
+$-0.05\phantom{0}$ & 34.69\\
+$\phantom{+}0.05\phantom{0}$ & 34.05\\
+$\phantom{+}0.15\phantom{0}$ & 34.48\\
+$\phantom{+}0.25\phantom{0}$ & 34.66\\
+$\phantom{+}0.35\phantom{0}$ & 35.23\\
+$\phantom{+}0.45\phantom{0}$ & 35.60\\
+$\phantom{+}0.55\phantom{0}$ & 40.13\\
+$\phantom{+}0.65\phantom{0}$ & 42.56\\
+$\phantom{+}0.75\phantom{0}$ & 46.37\\
+$\phantom{+}0.85\phantom{0}$ & 49.28\\
+$\phantom{+}0.925$ & 55.70
+\end{tabular}
+\end{center}
+
+For $x$ and $y$ we have
+\begin{equation*}
+x=\cos\theta,
+\qquad
+y=s\,\frac{d\sigma}{d\cos\theta}=2\pi s\,\frac{d\sigma}{d\Omega}
+\end{equation*}
+
+The cross section formula is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{(\alpha\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
+\end{equation*}
+
+To compute predicted values $\hat{y}$, multiply by $10^{37}$ to convert square meters to nanobarns.
+\begin{equation*}
+\hat y=2\pi s\,\frac{d\sigma}{d\Omega}
+=\frac{\pi(\alpha\hbar c)^2}{2}\left(1+x^2\right)\times10^{37}
+\end{equation*}
+
+The following table shows predicted values $\hat{y}$.
+
+\begin{center}
+\begin{tabular}{ccc}
+$x$ & $y$ & $\hat{y}$
+\\[1ex]
+$-0.925$ & 67.08 & 60.44\\
+$-0.85\phantom{0}$ & 58.67 & 56.10\\
+$-0.75\phantom{0}$ & 54.66 & 50.89\\
+$-0.65\phantom{0}$ & 51.72 & 46.33\\
+$-0.55\phantom{0}$ & 43.70 & 42.42\\
+$-0.45\phantom{0}$ & 41.12 & 39.17\\
+$-0.35\phantom{0}$ & 39.71 & 36.56\\
+$-0.25\phantom{0}$ & 35.34 & 34.61\\
+$-0.15\phantom{0}$ & 33.35 & 33.30\\
+$-0.05\phantom{0}$ & 34.69 & 32.65\\
+$\phantom{+}0.05\phantom{0}$ & 34.05 & 32.65\\
+$\phantom{+}0.15\phantom{0}$ & 34.48 & 33.30\\
+$\phantom{+}0.25\phantom{0}$ & 34.66 & 34.61\\
+$\phantom{+}0.35\phantom{0}$ & 35.23 & 36.56\\
+$\phantom{+}0.45\phantom{0}$ & 35.60 & 39.17\\
+$\phantom{+}0.55\phantom{0}$ & 40.13 & 42.42\\
+$\phantom{+}0.65\phantom{0}$ & 42.56 & 46.33\\
+$\phantom{+}0.75\phantom{0}$ & 46.37 & 50.89\\
+$\phantom{+}0.85\phantom{0}$ & 49.28 & 56.10\\
+$\phantom{+}0.925$ & 55.70 & 60.44
+\end{tabular}
+\end{center}
+
+The coefficient of determination $R^2$ measures how well predicted values fit the data.
+\begin{equation*}
+R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.87
+\end{equation*}
+
+The result indicates that the model $d\sigma$ explains 87\% of the variance in the data.
+
+\iffalse
+
+\subsubsection*{Electroweak model}
+
+The following differential cross section formula from electroweak
+theory results in a better fit to the
+data.\footnote
+{See {\it Quantum Field Theory Revised Edition} by Mandl and Shaw, p.~316.}
+
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=F(s)\bigl(1+\cos^2\theta\bigr)+G(s)\cos\theta
+\end{equation*}
+
+where
+\begin{align*}
+F(s)&=\frac{\alpha^2}{4s}
+\left(
+1+\frac{g_V^2}{\sqrt{2}\pi}\left(\frac{m_Z^2}{s-m_Z^2}\right)\left(\frac{sG}{\alpha}\right)
++\frac{(g_A^2+g_V^2)^2}{8\pi^2}\left(\frac{m_Z^2}{s-m_Z^2}\right)^2\left(\frac{sG}{\alpha}\right)^2
+\right)
+\\
+G(s)&=\frac{\alpha^2}{4s}
+\left(
+\frac{\sqrt{2}g_A^2}{\pi}\left(\frac{m_Z^2}{s-m_Z^2}\right)\left(\frac{sG}{\alpha}\right)
++\frac{g_A^2g_V^2}{\pi^2}\left(\frac{m_Z^2}{s-m_Z^2}\right)^2\left(\frac{sG}{\alpha}\right)^2
+\right)
+\end{align*}
+
+and
+\begin{align*}
+g_A&=-0.5
+\\
+g_V&=-0.0348
+\\
+m_Z&=91.17\,\text{GeV}
+\\
+G&=1.166\times10^{-5}\,\text{GeV}^{-2}
+\end{align*}
+
+The corresponding formula for $\hat{y}$ is
+\begin{equation*}
+\hat{y}=2\pi\left[F(s)(1+x^2)+G(s)x\right]\times(\hbar c)^2\times10^{37}
+\end{equation*}
+
+where $\sqrt{s}=29\,\text{GeV}$ is the center of mass collision energy.
+Here are the predicted values $\hat{y}$ based on the above formula.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$x$ & $y$ & $\hat{y}$ \\
+\hline
+$-0.925$ & 67.08 & 65.59\\
+$-0.85\phantom{0}$ & 58.67 & 60.84\\
+$-0.75\phantom{0}$ & 54.66 & 55.07\\
+$-0.65\phantom{0}$ & 51.72 & 49.96\\
+$-0.55\phantom{0}$ & 43.70 & 45.49\\
+$-0.45\phantom{0}$ & 41.12 & 41.69\\
+$-0.35\phantom{0}$ & 39.71 & 38.53\\
+$-0.25\phantom{0}$ & 35.34 & 36.02\\
+$-0.15\phantom{0}$ & 33.35 & 34.17\\
+$-0.05\phantom{0}$ & 34.69 & 32.97\\
+$\phantom{+}0.05\phantom{0}$ & 34.05 & 32.42\\
+$\phantom{+}0.15\phantom{0}$ & 34.48 & 32.53\\
+$\phantom{+}0.25\phantom{0}$ & 34.66 & 33.28\\
+$\phantom{+}0.35\phantom{0}$ & 35.23 & 34.69\\
+$\phantom{+}0.45\phantom{0}$ & 35.60 & 36.75\\
+$\phantom{+}0.55\phantom{0}$ & 40.13 & 39.47\\
+$\phantom{+}0.65\phantom{0}$ & 42.56 & 42.83\\
+$\phantom{+}0.75\phantom{0}$ & 46.37 & 46.85\\
+$\phantom{+}0.85\phantom{0}$ & 49.28 & 51.52\\
+$\phantom{+}0.925$ & 55.70 & 55.45\\
+\hline
+\end{tabular}
+\end{center}
+
+The coefficient of determination $R^2$ is
+\begin{equation*}
+R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
+\end{equation*}
+
+The result indicates that electroweak theory explains 98\% of the variance in the data.
+
+\fi
+
+\end{document}
