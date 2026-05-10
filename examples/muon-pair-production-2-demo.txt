@@ -1,6 +1,6 @@
-"Muon pair production SLAC data"
+"Muon pair production 2"
 
--- www.hepdata.net/record/ins216031 (Table 1, 29.0 GeV)
+-- hepdata.net/record/ins216031, Table 1, 29 GeV
 
 x = (
 -0.925,
