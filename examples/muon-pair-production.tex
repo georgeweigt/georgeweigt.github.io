@@ -87,17 +87,12 @@ v_{42}=\frac{1}{\sqrt{E+M}}
 
 The scattering amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
 \begin{equation*}
-\mathcal{M}_{abcd}=\frac{e^2}{s}(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})
-\end{equation*}
-
-Symbol $s$ is the Mandelstam variable
-\begin{equation*}
-s=(p_1+p_2)^2=4E^2
+\mathcal{M}_{abcd}=\frac{e^2}{4E^2}(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})
 \end{equation*}
 
 In component form
 \begin{equation*}
-\mathcal{M}_{abcd}=\frac{e^2}{s}
+\mathcal{M}_{abcd}=\frac{e^2}{4E^2}
 \bigl[
 (\bar{u}_{3c})_\alpha\gamma^{\mu\alpha}{}_\beta(v_{4d})^\beta
 \bigr]
@@ -106,17 +101,22 @@ In component form
 \bigr]
 \end{equation*}
 
-The average density $\langle|\mathcal{M}|^2\rangle$
-is the sum over squared amplitudes divided by the number of inbound states.
-\begin{align*}
-\langle|\mathcal{M}|^2\rangle
-&=\frac{1}{4}\sum_{abcd}\big|\mathcal{M}_{abcd}\big|^2
-\\
-&=\frac{e^4}{64E^4}\sum_{abcd}
-\bigl|(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})\bigr|^2
-\end{align*}
+Scattering density $|\mathcal M_{abcd}|^2$ is the squared magnitude
+of scattering amplitude $\mathcal M_{abcd}$.
+\begin{equation*}
+|\mathcal M_{abcd}|^2=\mathcal M_{abcd}^*\mathcal M_{abcd}
+\end{equation*}
 
-The Casimir trick uses matrix arithmetic to sum over spin states.
+Average scattering density $\langle|\mathcal{M}|^2\rangle$
+is the sum over all scattering densities divided by the number of inbound states.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{1}{4}\sum_{abcd}\left|\mathcal{M}_{abcd}\right|^2
+%=\frac{e^4}{64E^4}\sum_{abcd}
+%\left|(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})\right|^2
+\end{equation*}
+
+The Casimir trick uses matrix arithmetic to sum over densities.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{64E^4}
@@ -124,291 +124,38 @@ The Casimir trick uses matrix arithmetic to sum over spin states.
 \operatorname{Tr}\left[(\slashed{p}_2-m)\gamma_\mu(\slashed{p}_1+m)\gamma_\nu\right]
 \end{equation*}
 
-\iffalse
-
-Another way to compute $\langle|\mathcal{M}|^2\rangle$ is
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4s^2}
-\left(-8 s^2 + 16 t^2 - 16 s u + (64 s + 32 u) \left(m^2 + M^2\right) - 48 \left(m^2 + M^2\right)^2\right)
-\end{equation*}
-where
-\begin{align*}
-s&=(p_1+p_2)^2
-\\
-t&=(p_1-p_3)^2
-\\
-u&=(p_1-p_4)^2
-\end{align*}
-
-\fi
-
 The result is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
+\tag{1}
 \end{equation*}
 
-\iffalse
+The cross section is
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{(\alpha\hbar c)^2}{e^4}
+\frac{\langle|\mathcal{M}|^2\rangle}{16E^2}
+\end{equation*}
 
-For $E\gg M$ a useful approximation is
+For high collision energies such that $E\gg M$ we use the following approximation of (1).
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
-\fi
-
-The differential cross section is
+Hence
 \begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
+\frac{d\sigma}{d\Omega}=\frac{(\alpha\hbar c)^2}{16E^2}\left(1+\cos^2\theta\right)
 \end{equation*}
 
-where
+In terms of Mandelstam variable $s$ where
 \begin{equation*}
 s=(p_1+p_2)^2=4E^2
 \end{equation*}
 
-For the high energy approximation
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
-\end{equation*}
-
 we have
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{e^4}{4(4\pi\varepsilon_0)^2s}\left(1+\cos^2\theta\right)
-\end{equation*}
-
-Noting that
-\begin{equation*}
-e^2=4\pi\varepsilon_0\alpha\hbar c
-\end{equation*}
-
-we also have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{(\alpha\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
 \end{equation*}
-
-\iffalse
-
-Noting that
-\begin{equation*}
-d\Omega=\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-we also have
-\begin{equation*}
-d\sigma=\frac{\alpha^2(\hbar c)^2}{4s}\left(1+\cos^2\theta\right)
-\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
-\begin{equation*}
-S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
-\end{equation*}
-
-The solution is
-\begin{equation*}
-S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{4s}[I(\theta_2)-I(\theta_1)]
-\end{equation*}
-
-where
-\begin{equation*}
-I(\theta)=-\frac{\cos^3\theta}{3}-\cos\theta
-\end{equation*}
-
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)
-=\frac{S(0,\theta)}{S(0,\pi)}
-=\frac{I(\theta)-I(0)}{I(\pi)-I(0)}
-=-\frac{\cos^3\theta}{8}-\frac{3\cos\theta}{8}+\frac{1}{2},
-\quad
-0\le\theta\le\pi
-\end{equation*}
-
-The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
-\begin{equation*}
-P(\theta_1\le\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
-\end{equation*}
-
-The probability density function is
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{3}{8}
-\left(1+\cos^2\theta\right)
-\sin\theta
-\end{equation*}
-
-\subsubsection*{Data from SLAC PEP experiment}
-
-See www.hepdata.net/record/ins216031, Table 1, $s=(29.0\,\text{GeV})^2$.
-
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-$x$ & $y$\\
-\hline
-$-0.925$ & 67.08\\
-$-0.85\phantom{0}$ & 58.67\\
-$-0.75\phantom{0}$ & 54.66\\
-$-0.65\phantom{0}$ & 51.72\\
-$-0.55\phantom{0}$ & 43.70\\
-$-0.45\phantom{0}$ & 41.12\\
-$-0.35\phantom{0}$ & 39.71\\
-$-0.25\phantom{0}$ & 35.34\\
-$-0.15\phantom{0}$ & 33.35\\
-$-0.05\phantom{0}$ & 34.69\\
-$\phantom{+}0.05\phantom{0}$ & 34.05\\
-$\phantom{+}0.15\phantom{0}$ & 34.48\\
-$\phantom{+}0.25\phantom{0}$ & 34.66\\
-$\phantom{+}0.35\phantom{0}$ & 35.23\\
-$\phantom{+}0.45\phantom{0}$ & 35.60\\
-$\phantom{+}0.55\phantom{0}$ & 40.13\\
-$\phantom{+}0.65\phantom{0}$ & 42.56\\
-$\phantom{+}0.75\phantom{0}$ & 46.37\\
-$\phantom{+}0.85\phantom{0}$ & 49.28\\
-$\phantom{+}0.925$ & 55.70\\
-\hline
-\end{tabular}
-\end{center}
-
-Data $x$ and $y$ have the following relationship with the differential cross section formula.
-\begin{equation*}
-x=\cos\theta,
-\quad
-y=s\frac{d\sigma}{d\cos\theta}=2\pi s\frac{d\sigma}{d\Omega}
-\end{equation*}
-
-The cross section formula is
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4s}\left(1+\cos^2\theta\right)\times(\hbar c)^2
-\end{equation*}
-
-To compute predicted values $\hat{y}$, multiply by $10^{37}$ to convert square meters to nanobarns.
-\begin{equation*}
-\hat y=2\pi s\frac{d\sigma}{d\Omega}=\frac{\pi\alpha^2}{2}\left(1+x^2\right)\times(\hbar c)^2\times10^{37}
-\end{equation*}
-
-The following table shows predicted values $\hat{y}$.
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$x$ & $y$ & $\hat{y}$ \\
-\hline
-$-0.925$ & 67.08 & 60.44\\
-$-0.85\phantom{0}$ & 58.67 & 56.10\\
-$-0.75\phantom{0}$ & 54.66 & 50.89\\
-$-0.65\phantom{0}$ & 51.72 & 46.33\\
-$-0.55\phantom{0}$ & 43.70 & 42.42\\
-$-0.45\phantom{0}$ & 41.12 & 39.17\\
-$-0.35\phantom{0}$ & 39.71 & 36.56\\
-$-0.25\phantom{0}$ & 35.34 & 34.61\\
-$-0.15\phantom{0}$ & 33.35 & 33.30\\
-$-0.05\phantom{0}$ & 34.69 & 32.65\\
-$\phantom{+}0.05\phantom{0}$ & 34.05 & 32.65\\
-$\phantom{+}0.15\phantom{0}$ & 34.48 & 33.30\\
-$\phantom{+}0.25\phantom{0}$ & 34.66 & 34.61\\
-$\phantom{+}0.35\phantom{0}$ & 35.23 & 36.56\\
-$\phantom{+}0.45\phantom{0}$ & 35.60 & 39.17\\
-$\phantom{+}0.55\phantom{0}$ & 40.13 & 42.42\\
-$\phantom{+}0.65\phantom{0}$ & 42.56 & 46.33\\
-$\phantom{+}0.75\phantom{0}$ & 46.37 & 50.89\\
-$\phantom{+}0.85\phantom{0}$ & 49.28 & 56.10\\
-$\phantom{+}0.925$ & 55.70 & 60.44\\
-\hline
-\end{tabular}
-\end{center}
-
-The coefficient of determination $R^2$ measures how well predicted values fit the data.
-\begin{equation*}
-R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.87
-\end{equation*}
-
-The result indicates that the model $d\sigma$ explains 87\% of the variance in the data.
-
-\subsubsection*{Electroweak model}
-
-The following differential cross section formula from electroweak
-theory results in a better fit to the
-data.\footnote
-{See {\it Quantum Field Theory Revised Edition} by Mandl and Shaw, p.~316.}
-
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=F(s)\bigl(1+\cos^2\theta\bigr)+G(s)\cos\theta
-\end{equation*}
-
-where
-\begin{align*}
-F(s)&=\frac{\alpha^2}{4s}
-\left(
-1+\frac{g_V^2}{\sqrt{2}\pi}\left(\frac{m_Z^2}{s-m_Z^2}\right)\left(\frac{sG}{\alpha}\right)
-+\frac{(g_A^2+g_V^2)^2}{8\pi^2}\left(\frac{m_Z^2}{s-m_Z^2}\right)^2\left(\frac{sG}{\alpha}\right)^2
-\right)
-\\
-G(s)&=\frac{\alpha^2}{4s}
-\left(
-\frac{\sqrt{2}g_A^2}{\pi}\left(\frac{m_Z^2}{s-m_Z^2}\right)\left(\frac{sG}{\alpha}\right)
-+\frac{g_A^2g_V^2}{\pi^2}\left(\frac{m_Z^2}{s-m_Z^2}\right)^2\left(\frac{sG}{\alpha}\right)^2
-\right)
-\end{align*}
-
-and
-\begin{align*}
-g_A&=-0.5
-\\
-g_V&=-0.0348
-\\
-m_Z&=91.17\,\text{GeV}
-\\
-G&=1.166\times10^{-5}\,\text{GeV}^{-2}
-\end{align*}
-
-The corresponding formula for $\hat{y}$ is
-\begin{equation*}
-\hat{y}=2\pi\left[F(s)(1+x^2)+G(s)x\right]\times(\hbar c)^2\times10^{37}
-\end{equation*}
-
-where $\sqrt{s}=29\,\text{GeV}$ is the center of mass collision energy.
-Here are the predicted values $\hat{y}$ based on the above formula.
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-$x$ & $y$ & $\hat{y}$ \\
-\hline
-$-0.925$ & 67.08 & 65.59\\
-$-0.85\phantom{0}$ & 58.67 & 60.84\\
-$-0.75\phantom{0}$ & 54.66 & 55.07\\
-$-0.65\phantom{0}$ & 51.72 & 49.96\\
-$-0.55\phantom{0}$ & 43.70 & 45.49\\
-$-0.45\phantom{0}$ & 41.12 & 41.69\\
-$-0.35\phantom{0}$ & 39.71 & 38.53\\
-$-0.25\phantom{0}$ & 35.34 & 36.02\\
-$-0.15\phantom{0}$ & 33.35 & 34.17\\
-$-0.05\phantom{0}$ & 34.69 & 32.97\\
-$\phantom{+}0.05\phantom{0}$ & 34.05 & 32.42\\
-$\phantom{+}0.15\phantom{0}$ & 34.48 & 32.53\\
-$\phantom{+}0.25\phantom{0}$ & 34.66 & 33.28\\
-$\phantom{+}0.35\phantom{0}$ & 35.23 & 34.69\\
-$\phantom{+}0.45\phantom{0}$ & 35.60 & 36.75\\
-$\phantom{+}0.55\phantom{0}$ & 40.13 & 39.47\\
-$\phantom{+}0.65\phantom{0}$ & 42.56 & 42.83\\
-$\phantom{+}0.75\phantom{0}$ & 46.37 & 46.85\\
-$\phantom{+}0.85\phantom{0}$ & 49.28 & 51.52\\
-$\phantom{+}0.925$ & 55.70 & 55.45\\
-\hline
-\end{tabular}
-\end{center}
-
-The coefficient of determination $R^2$ is
-\begin{equation*}
-R^2=1-\frac{\sum(y-\hat{y})^2}{\sum(y-\bar{y})^2}=0.98
-\end{equation*}
-
-The result indicates that electroweak theory explains 98\% of the variance in the data.
-
-\fi
 
 \end{document}
