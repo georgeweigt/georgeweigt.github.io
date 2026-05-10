@@ -112,8 +112,6 @@ is the sum over all scattering densities divided by the number of inbound states
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{abcd}\left|\mathcal{M}_{abcd}\right|^2
-%=\frac{e^4}{64E^4}\sum_{abcd}
-%\left|(\bar{u}_{3c}\gamma^\mu v_{4d})(\bar{v}_{2b}\gamma_\mu u_{1a})\right|^2
 \end{equation*}
 
 The Casimir trick uses matrix arithmetic to sum over densities.
@@ -128,22 +126,21 @@ The result is
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =e^4\left(1+\cos^2\theta+\frac{m^2+M^2}{E^2}\sin^2\theta+\frac{m^2M^2}{E^4}\cos^2\theta\right)
-\tag{1}
+\end{equation*}
+
+For high energy experiments where $E\gg M$ we use the following approximation.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
 \end{equation*}
 
 The cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{(\alpha\hbar c)^2}{e^4}
-\frac{\langle|\mathcal{M}|^2\rangle}{16E^2}
+=\frac{(\alpha\hbar c)^2}{16E^2}\,
+\frac{\langle|\mathcal{M}|^2\rangle}{e^4}
 \end{equation*}
 
-For high collision energies such that $E\gg M$ we use the following approximation of (1).
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=e^4\left(1+\cos^2\theta\right)
-\end{equation*}
-
-Hence
+Hence for $E\gg M$
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{(\alpha\hbar c)^2}{16E^2}\left(1+\cos^2\theta\right)
 \end{equation*}
