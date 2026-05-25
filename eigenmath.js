@@ -9484,9 +9484,14 @@ magfunc_nib()
 
 	p1 = pop();
 
-	if (isnum(p1)) {
+	if (isnegativenumber(p1)) {
 		push(p1);
-		absfunc();
+		negate();
+		return;
+	}
+
+	if (!iscons(p1)) {
+		push(p1);
 		return;
 	}
 
@@ -9550,8 +9555,6 @@ magfunc_nib()
 		sqrtfunc();
 		return;
 	}
-
-	// real
 
 	push(p1);
 }
