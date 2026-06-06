@@ -2,14 +2,24 @@
 
 \section*{Atomic transitions 2}
 
-For electric field
+Let $\mathbf E$ be the electric field
 \begin{equation*}
 \mathbf E=E_0\sin(\mathbf k\cdot\mathbf r-\omega t)\boldsymbol{\epsilon}
 \end{equation*}
 
-the interaction Hamiltonian is
+Then the magnetic vector potential $\mathbf A$ is
 \begin{equation*}
-H_1(\mathbf r,t)=-\frac{eE_0}{m\omega}
+\mathbf A=-\frac{E_0}{\omega}\cos(\mathbf k\cdot\mathbf r-\omega t)\boldsymbol{\epsilon}
+\end{equation*}
+
+so that in SI units%\footnote{In CGS units$$\mathbf E=-\frac{1}{c}\frac{\partial}{\partial t}\mathbf A$$}
+\begin{equation*}
+\mathbf E=-\frac{\partial}{\partial t}\mathbf A
+\end{equation*}
+
+The interaction Hamiltonian is
+\begin{equation*}
+H_1(\mathbf r,t)=\frac{e}{m}\mathbf A=-\frac{eE_0}{m\omega}
 \cos(\mathbf k\cdot\mathbf r-\omega t)
 \boldsymbol{\epsilon}\cdot\mathbf p
 \end{equation*}
@@ -29,7 +39,7 @@ c_b(t)=-\frac{i}{\hbar}\int_0^t
 \omega_0=\frac{E_b-E_a}{\hbar}
 \end{equation*}
 
-Factor the integrand.
+Hence
 \begin{multline*}
 c_b(t)
 =\frac{ieE_0}{2m\hbar\omega}
