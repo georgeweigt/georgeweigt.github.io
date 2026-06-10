@@ -1,0 +1,314 @@
+\input{preamble}
+
+\section*{Photoelectric effect}
+
+Let $\psi_a(\mathbf r)$ be the ground state for hydrogen.
+\begin{equation*}
+\psi_a(\mathbf r)=\frac{1}{\sqrt{\pi a^3}}\exp(-r/a)
+\end{equation*}
+
+Let $\psi_b(\mathbf r)$ be the wave function for a free electron.
+\begin{equation*}
+\psi_b(\mathbf r)=\frac{1}{\sqrt{l^3}}\exp(i\mathbf k\cdot\mathbf r)
+=\frac{1}{\sqrt{l^3}}\exp(ikr\cos\theta)
+\end{equation*}
+
+Find the transition rate $R_{a\rightarrow b}$ using Fermi's golden rule
+\begin{equation*}
+R_{a\rightarrow b}=\frac{2\pi}{\hbar}\left|\langle\psi_b|H_1|\psi_a\rangle\right|^2\rho(E_b)
+\end{equation*}
+
+\subsubsection*{\S1}
+
+Start by finding the perturbing Hamiltonian $H_1$.
+
+\bigskip
+We have for a particle with charge $q$
+\begin{equation*}
+H=\frac{1}{2m}(\mathbf p-q\mathbf A)\cdot(\mathbf p-q\mathbf A)
+\end{equation*}
+
+Expand the inner product.
+\begin{equation*}
+H=\frac{1}{2m}(\mathbf p^2-\mathbf p\cdot q\mathbf A-q\mathbf A\cdot\mathbf p+q^2\mathbf A^2)
+\end{equation*}
+
+Hence the first-order perturbation is
+\begin{equation*}
+H_1=-\frac{q}{2m}(\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p)
+\end{equation*}
+
+For an electron we have $q=-e$.
+\begin{equation*}
+H_1=\frac{e}{2m}(\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p)
+\end{equation*}
+
+For any wave function $\psi(\mathbf r,t)$
+\begin{equation*}
+(\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p)\psi(\mathbf r,t)
+=2\mathbf A\cdot\mathbf p\psi(\mathbf r,t)-i\hbar\psi(\mathbf r,t)\nabla\cdot\mathbf A
+\tag{1}
+\end{equation*}
+
+Hence for the Coulomb gauge $\nabla\cdot\mathbf A=0$ we have the identity
+\begin{equation*}
+\mathbf p\cdot\mathbf A+\mathbf A\cdot\mathbf p=2\mathbf A\cdot\mathbf p
+\end{equation*}
+
+Hence
+\begin{equation*}
+H_1=\frac{e}{m}\mathbf A\cdot\mathbf p
+\end{equation*}
+
+\subsubsection*{\S2}
+
+Let $\mathbf E$ be the electric field
+\begin{equation*}
+\mathbf E=E_0\sin(\mathbf k\cdot\mathbf r-\omega t)\,\boldsymbol\epsilon
+\end{equation*}
+
+where $\boldsymbol\epsilon$ is a polarization vector such that $|\boldsymbol\epsilon|=1$
+and $\mathbf k\cdot\boldsymbol\epsilon=0$.
+
+\bigskip
+Then the magnetic vector potential $\mathbf A$ is
+\begin{equation*}
+\mathbf A=-\frac{E_0}{\omega}\cos(\mathbf k\cdot\mathbf r-\omega t)\,\boldsymbol{\epsilon}
+\end{equation*}
+
+so that in SI units
+\begin{equation*}
+\mathbf E=-\frac{\partial}{\partial t}\mathbf A
+\tag{2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+H_1=\frac{e}{m}\mathbf A\cdot\mathbf p=-\frac{eE_0}{m\omega}
+\cos(\mathbf k\cdot\mathbf r-\omega t)
+\,\boldsymbol{\epsilon}\cdot\mathbf p
+\end{equation*}
+
+In exponential form
+\begin{equation*}
+H_1=
+-\frac{eE_0}{2m\omega}\exp(i\mathbf k\cdot\mathbf r-i\omega t)
+\,\boldsymbol{\epsilon}\cdot\mathbf p
+-\frac{eE_0}{2m\omega}\exp(-i\mathbf k\cdot\mathbf r+i\omega t)
+\,\boldsymbol{\epsilon}\cdot\mathbf p
+\end{equation*}
+
+Use the dipole approximation $\exp(i\mathbf k\cdot\mathbf r)\approx1$.
+\begin{equation*}
+H_1=
+-\frac{eE_0}{2m\omega}\exp(-i\omega t)
+\,\boldsymbol{\epsilon}\cdot\mathbf p
+-\frac{eE_0}{2m\omega}\exp(i\omega t)
+\,\boldsymbol{\epsilon}\cdot\mathbf p
+\end{equation*}
+
+Go back to cosine form.
+\begin{equation*}
+H_1=-\frac{eE_0}{m\omega}\cos(\omega t)\,\boldsymbol{\epsilon}\cdot\mathbf p
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\mathbf p=\frac{im}{\hbar}(H_0\mathbf r-\mathbf rH_0)
+\end{equation*}
+
+we have
+\begin{equation*}
+\langle\psi_b|\mathbf p|\psi_a\rangle
+=\frac{im}{\hbar}(E_b-E_a)\langle\psi_b|\mathbf r|\psi_a\rangle
+\end{equation*}
+
+Hence
+\begin{equation*}
+H_1=-ieE_0\frac{\omega_0}{\omega}\cos(\omega t)\,\boldsymbol\epsilon\cdot\mathbf r
+\end{equation*}
+
+where
+\begin{equation*}
+\omega_0=\frac{E_b-E_a}{\hbar}
+\end{equation*}
+
+For the photoelectric effect we have $\omega_0=\omega$ hence
+\begin{equation*}
+H_1=-ieE_0\cos(\omega t)\,\boldsymbol\epsilon\cdot\mathbf r
+\end{equation*}
+
+Rotate the lab frame so that $\boldsymbol\epsilon\cdot\mathbf r=z$.
+\begin{equation*}
+H_1=-ieE_0\cos(\omega t)\,z
+\end{equation*}
+
+\subsubsection*{\S3}
+
+For perturbing Hamiltonians of the form
+\begin{equation*}
+H_1=V(\mathbf r)\cos(\omega t)
+\end{equation*}
+
+we have
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=\frac{1}{2}\int\psi_b^*V(\mathbf r)\psi_a\,d\mathbf r
+\end{equation*}
+
+Hence for
+\begin{equation*}
+V(\mathbf r)=-ieE_0z
+\end{equation*}
+
+we have in polar coordinates
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-\frac{ieE_0}{2}
+\frac{1}{\sqrt{\pi a^3l^3}}
+\int_0^\infty\int_0^\pi\int_0^{2\pi}
+\exp(ikr\cos\theta-r/a)\,zr^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$ (multiply by $2\pi$).
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-i\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}
+\int_0^\infty\int_0^\pi
+\exp(ikr\cos\theta-r/a)\,zr^2\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Change of variable $u=\cos\theta$.
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-i\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}
+\int_0^\infty\int_{-1}^1
+\exp(ikru-r/a)\,zr^2\,dr\,du
+\end{equation*}
+
+Solve the integral over $u$.
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-i\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}
+\int_0^\infty
+\frac{1}{ikr}
+\left[\exp(ikr-r/a)-\exp(-ikr-r/a)\right]
+zr^2\,dr
+\tag{3}
+\end{equation*}
+
+Cancel $i$ and $r$.
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}\frac{1}{k}
+\int_0^\infty
+\left[\exp(ikr-r/a)-\exp(-ikr-r/a)\right]
+zr\,dr
+\end{equation*}
+
+Substitute $z=r\cos\theta$.
+This $\theta$ is different from $\theta$ in $\mathbf k\cdot\mathbf r=kr\cos\theta$.
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}\frac{\cos\theta}{k}
+\int_0^\infty
+\left[\exp(ikr-r/a)-\exp(-ikr-r/a)\right]
+r^2\,dr
+\end{equation*}
+
+Solve the integral.
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}\frac{\cos\theta}{k}
+\left[-\frac{2}{(ik-1/a)^3}+\frac{2}{(-ik-1/a)^3}\right]
+\tag{4}
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\langle\psi_b|H_1|\psi_a\rangle
+=-\pi eE_0
+\frac{1}{\sqrt{\pi a^3l^3}}\cos\theta\,
+ia^4\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]
+\tag{5}
+\end{equation*}
+
+\subsubsection*{\S4}
+
+For the transition density we have
+\begin{equation*}
+|\langle\psi_b|H_1|\psi_a\rangle|^2=\pi e^2E_0^2
+\frac{a^5}{l^3}\cos^2\theta
+\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
+\tag{6}
+\end{equation*}
+
+Hence
+\begin{align*}
+R_{a\rightarrow b}&=\frac{2\pi}{\hbar}\left|\langle\psi_b|H_1|\psi_a\rangle\right|^2\rho(E_b)
+\\[1ex]
+&=\frac{2\pi^2}{\hbar}e^2E_0^2
+\frac{a^5}{l^3}\cos^2\theta
+\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
+\rho(E_b)
+\end{align*}
+
+The density of states for a free electron is
+\begin{equation*}
+\rho(E_b)
+=\left(\frac{l}{2\pi}\right)^3
+\frac{\sqrt{2m^3E_b}}{\hbar^3}\,d\Omega
+=\left(\frac{l}{2\pi}\right)^3
+\frac{mk}{\hbar^2}\,d\Omega
+\end{equation*}
+
+Hence
+\begin{equation*}
+R_{a\rightarrow b}
+=\frac{1}{4\pi\hbar}
+e^2E_0^2a^5
+\cos^2\theta
+\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
+\frac{mk}{\hbar^2}\,d\Omega
+\tag{7}
+\end{equation*}
+
+\subsubsection*{\S5}
+
+Verify dimensions.
+\begin{align*}
+a&=[\text{m}]
+\\
+k&=[\text{m}^{-1}]
+\\
+m&=[\text{kg}]
+\\
+\omega&=[\text{s}^{-1}]
+\\
+e&=[\text{C}]
+\\
+E_0&=[\text{N}\,\text{C}^{-1}]
+\\
+\hbar&=[\text{J}\,\text{s}]=[\text{kg}\,\text{m}^2\,\text{s}^{-1}]
+\end{align*}
+
+Hence
+\begin{equation*}
+\frac{mk}{\hbar^2}
+=\frac{[\text{kg}]\,[\text{m}^{-1}]}{[\text{J}\,\text{s}]^2}
+=\frac{1}{[\text{J}]\,[\text{m}^3]}
+\end{equation*}
+
+and
+\begin{equation*}
+R_{a\rightarrow b}=\frac{1}{[\text{J}\,\text{s}]}\,[\text{N}]^2\,[\text{m}]^5
+\,\frac{1}{[\text{J}]\,[\text{m}^3]}=[\text{s}^{-1}]
+\end{equation*}
+
+\end{document}
