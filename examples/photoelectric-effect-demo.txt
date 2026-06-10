@@ -37,14 +37,19 @@ check(M conj(M) == pi a^5 / l^3)
 "ok"
 
 "Verify equation (7)"
-R = 2 pi / hbar M conj(M) rho
-rho = (l / (2 pi))^3 m k / hbar^2
-check(R == 1 / (4 pi hbar) a^5 m k / hbar^2)
+Eb = hbar^2 k^2 / (2 m)
+m = hbar / (alpha a c)
+check(sqrt(2 m^3 Eb) / hbar^3 == k / (alpha a hbar c))
 "ok"
 
-"Verify dimensions"
+"Verify equation (8)"
+R = 2 pi / hbar M conj(M) rho
+rho = (l / (2 pi))^3 k / (alpha a hbar c)
+check(R == k / (4 pi alpha hbar^2 c) a^4)
+"ok"
+
+"Verify equation (9)"
 joule = kilogram meter^2 / second^2
 newton = kilogram meter / second^2
-check(kilogram / meter / (joule second)^2 == 1 / (joule meter^3))
-check(1/(joule second) newton^2 meter^5 / (joule meter^3) == 1/second)
+check(1 / (meter (joule second)^2 meter/second) newton^2 meter^4 == 1/second)
 "ok"

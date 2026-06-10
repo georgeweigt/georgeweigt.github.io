@@ -263,26 +263,28 @@ The density of states for a free electron is
 \begin{equation*}
 \rho(E_b)
 =\left(\frac{l}{2\pi}\right)^3
-\frac{\sqrt{2m^3E_b}}{\hbar^3}\,d\Omega
+\frac{\sqrt{2m^3E_b}}{\hbar^3}
 =\left(\frac{l}{2\pi}\right)^3
-\frac{mk}{\hbar^2}\,d\Omega
+\frac{k}{\alpha a\hbar c}
+\tag{7}
 \end{equation*}
 
 Hence
 \begin{equation*}
 R_{a\rightarrow b}
-=\frac{1}{4\pi\hbar}
-e^2E_0^2a^5
+=\frac{k}{4\pi\alpha\hbar^2c}
+e^2E_0^2a^4
 \cos^2\theta
 \left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
-\frac{mk}{\hbar^2}\,d\Omega
-\tag{7}
+\tag{8}
 \end{equation*}
 
 \subsubsection*{\S5}
 
 Verify dimensions.
 \begin{align*}
+\alpha&=[1]
+\\
 a&=[\text{m}]
 \\
 k&=[\text{m}^{-1}]
@@ -300,15 +302,17 @@ E_0&=[\text{N}\,\text{C}^{-1}]
 
 Hence
 \begin{equation*}
-\frac{mk}{\hbar^2}
-=\frac{[\text{kg}]\,[\text{m}^{-1}]}{[\text{J}\,\text{s}]^2}
+\frac{k}{\alpha a\hbar c}
+=\frac{[\text{m}^{-1}]}{[1]\,[\text{m}]\,[\text{J}\,\text{s}]\,[\text{m}\,\text{s}^{-1}]}
 =\frac{1}{[\text{J}]\,[\text{m}^3]}
 \end{equation*}
 
 and
 \begin{equation*}
-R_{a\rightarrow b}=\frac{1}{[\text{J}\,\text{s}]}\,[\text{N}]^2\,[\text{m}]^5
-\,\frac{1}{[\text{J}]\,[\text{m}^3]}=[\text{s}^{-1}]
+R_{a\rightarrow b}=\frac{[\text{m}^{-1}]}{[\text{J}\,\text{s}]^2\,[\text{m}\,\text{s}^{-1}]}
+\,[\text{N}]^2\,[\text{m}]^4
+=[\text{s}^{-1}]
+\tag{9}
 \end{equation*}
 
 \end{document}
