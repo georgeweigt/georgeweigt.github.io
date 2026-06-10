@@ -265,19 +265,32 @@ The density of states for a free electron is
 =\left(\frac{l}{2\pi}\right)^3
 \frac{\sqrt{2m^3E_b}}{\hbar^3}
 =\left(\frac{l}{2\pi}\right)^3
-\frac{k}{\alpha a\hbar c}
+\frac{k}{a\alpha\hbar c}
 \tag{7}
 \end{equation*}
 
 Hence
 \begin{equation*}
 R_{a\rightarrow b}
-=\frac{k}{4\pi\alpha\hbar^2c}
-e^2E_0^2a^4
+=\frac{ka^4}{4\pi\alpha\hbar^2c}
+e^2E_0^2
 \cos^2\theta
 \left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
 \tag{8}
 \end{equation*}
+
+\iffalse
+
+Substitute $e^2=4\pi\varepsilon_0\alpha\hbar c$ to obtain
+\begin{equation*}
+R_{a\rightarrow b}
+=\frac{k}{\hbar}
+\varepsilon_0E_0^2a^4
+\cos^2\theta
+\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
+\end{equation*}
+
+\fi
 
 \subsubsection*{\S5}
 
@@ -289,30 +302,24 @@ a&=[\text{m}]
 \\
 k&=[\text{m}^{-1}]
 \\
-m&=[\text{kg}]
-\\
 \omega&=[\text{s}^{-1}]
 \\
 e&=[\text{C}]
 \\
-E_0&=[\text{N}\,\text{C}^{-1}]
+E_0&=[\text{N}\,\text{C}^{-1}]=[\text{kg}\,\text{m}\,\text{s}^{-2}\,\text{C}^{-1}]
 \\
 \hbar&=[\text{J}\,\text{s}]=[\text{kg}\,\text{m}^2\,\text{s}^{-1}]
-\end{align*}
-
-Hence
-\begin{equation*}
-\frac{k}{\alpha a\hbar c}
-=\frac{[\text{m}^{-1}]}{[1]\,[\text{m}]\,[\text{J}\,\text{s}]\,[\text{m}\,\text{s}^{-1}]}
+\\[1ex]
+\frac{k}{a\alpha\hbar c}
+&=\frac{[\text{m}^{-1}]}{[\text{m}]\,[\text{J}\,\text{s}]\,[\text{m}\,\text{s}^{-1}]}
 =\frac{1}{[\text{J}]\,[\text{m}^3]}
-\end{equation*}
-
-and
-\begin{equation*}
-R_{a\rightarrow b}=\frac{[\text{m}^{-1}]}{[\text{J}\,\text{s}]^2\,[\text{m}\,\text{s}^{-1}]}
-\,[\text{N}]^2\,[\text{m}]^4
+\\[1ex]
+R_{a\rightarrow b}
+&=\frac{[\text{m}^{-1}]\,[\text{m}]^4}{[\text{J}\,\text{s}]^2
+\,[\text{m}\,\text{s}^{-1}]}
+\,[\text{N}]^2
 =[\text{s}^{-1}]
 \tag{9}
-\end{equation*}
+\end{align*}
 
 \end{document}
