@@ -7,7 +7,7 @@ Find the transition rate $\Gamma_{1\rightarrow2}$ for the perturbing Hamiltonian
 H_1(x,t)=2V(x)\cos(\omega t+\phi)
 \end{equation*}
 
-Let $\Psi(x,t)$ be the following linear combination of two eigenstates.
+Let $\Psi(x,t)$ be the following linear combination of the two eigenstates.
 \begin{equation*}
 \Psi(x,t)=c_1(t)\psi_1(x)\exp(-i\omega_1t)+c_2(t)\psi_2(x)\exp(-i\omega_2t)
 \end{equation*}
@@ -16,12 +16,19 @@ We need to solve for $c_2(t)$ to find the transition rate $\Gamma_{1\rightarrow2
 
 \bigskip
 
-From the time-dependent Schrodinger equation we have
+Applying the Schrodinger equation we have
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
 \end{equation*}
 
-Expand the left-hand side.
+where
+\begin{equation*}
+H_0(\mathbf r)\Psi(\mathbf r,t)
+=E_1c_1(t)\psi_1(x)\exp(-i\omega_1t)
++E_2c_2(t)\psi_2(x)\exp(-i\omega_2t)
+\end{equation*}
+
+Expand the time derivative.
 \begin{multline*}
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)
 =i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
@@ -29,6 +36,8 @@ i\hbar\frac{\partial}{\partial t}\Psi(x,t)
 \\
 {}+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
 +\boxed{\hbar\omega_2c_2(t)\psi_2(x)\exp(-i\omega_2t)}
+\\
+{}=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
 \end{multline*}
 
 Noting that $\hbar\omega_1=E_1$ and $\hbar\omega_2=E_2$,
@@ -39,7 +48,7 @@ i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
 =H_1(x,t)\Psi(x,t)
 \end{equation*}
 
-Substitute for $H_1(x)\Psi(x,t)$.
+Substitute for $H_1(x)$ and $\Psi(x,t)$.
 \begin{multline*}
 i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
 +i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
