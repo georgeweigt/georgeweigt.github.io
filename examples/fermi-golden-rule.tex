@@ -2,7 +2,7 @@
 
 \section*{Fermi's golden rule}
 
-Find $\Gamma_{1\rightarrow2}$ for the perturbing Hamiltonian
+Find the transition rate $\Gamma_{1\rightarrow2}$ for the perturbing Hamiltonian
 \begin{equation*}
 H_1(x,t)=2V(x)\cos(\omega t+\phi)
 \end{equation*}
@@ -72,7 +72,7 @@ Multiply both sides by $\exp(i\omega_2t)$.
 i\hbar\frac{\partial c_2(t)}{\partial t}
 =2\cos(\omega t+\phi)
 \biggl[
-c_1(t)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)+c_2(t)M_{22}
+c_1(t)M_{21}\exp[i(\omega_2-\omega_1)t]+c_2(t)M_{22}
 \biggr]
 \end{equation*}
 
@@ -84,50 +84,94 @@ c_1(0)=1,\quad c_2(0)=0
 For time $t$ near the origin use the approximations $c_1(t)=1$ and $c_2(t)=0$ to obtain
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}
-=2\cos(\omega t+\phi)M_{21}\exp\bigl(i(\omega_2-\omega_1)t\bigr)
+=2\cos(\omega t+\phi)M_{21}\exp[i(\omega_2-\omega_1)t]
 \end{equation*}
 
 Solve for $c_2(t)$ by integrating.
 \begin{equation*}
 c_2(t)=\frac{2M_{21}}{i\hbar}
-\int_0^t\cos(\omega t'+\phi)\exp\bigl(i(\omega_2-\omega_1)t'\bigr)\,dt'
+\int_0^t\cos(\omega t'+\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
 \end{equation*}
+
+In exponential form
+\begin{multline*}
+c_2(t)=\frac{M_{21}}{i\hbar}
+\int_0^t
+\exp(i\omega t'+\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
+\\
+{}+\frac{M_{21}}{i\hbar}
+\int_0^t
+\exp(-i\omega t'-\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
+\end{multline*}
 
 The solution is
 \begin{multline*}
 c_2(t)
 =-\frac{M_{21}}{\hbar}
-\left(
-\frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
-\right)\exp(-i\phi)
+\,
+\frac{\exp[i(\omega_2-\omega_1+\omega) t]-1}{\omega_2-\omega_1+\omega}
+\,
+\exp(i\phi)
 \\{}-\frac{M_{21}}{\hbar}
-\left(
-\frac{\exp\bigl(i(\omega_2-\omega_1+\omega) t\bigr)-1}{\omega_2-\omega_1+\omega}
-\right)\exp(+i\phi)
+\,
+\frac{\exp[i(\omega_2-\omega_1-\omega) t]-1}{\omega_2-\omega_1-\omega}
+\,
+\exp(-i\phi)
 \tag{1}
 \end{multline*}
 
-For $\omega$ such that $\omega\approx\omega_2-\omega_1$ the first term
-dominates so discard the second term and write
+For $\omega$ such that $\omega\approx\omega_2-\omega_1$ the second term
+dominates so discard the first term.
 \begin{equation*}
 c_2(t)=-\frac{M_{21}}{\hbar}
-\left(
-\frac{\exp\bigl(i(\omega_2-\omega_1-\omega) t\bigr)-1}{\omega_2-\omega_1-\omega}
-\right)\exp(-i\phi)
+\,
+\frac{\exp[i(\omega_2-\omega_1-\omega) t]-1}{\omega_2-\omega_1-\omega}
+\,
+\exp(-i\phi)
 \end{equation*}
 
-Rewrite using a sinc function.
+By the identity
 \begin{equation*}
-c_2(t)=-\frac{it}{\hbar}\,M_{21}
-\exp\left(i\,\frac{\omega_2-\omega_1-\omega}{2}\,t-i\phi\right)
-\operatorname{sinc}\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\exp(ix)-1=2i\sin\biggl(\frac{x}{2}\biggr)\exp\biggl(\frac{ix}{2}\biggr)
+\end{equation*}
+
+we have
+\begin{equation*}
+c_2(t)=-\frac{2iM_{21}}{\hbar}
+\,
+\frac{
+\sin\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
+}{\omega_2-\omega_1-\omega}
+\,
+\exp(-i\phi)
+\end{equation*}
+
+Multiply numerator and denominator by $t/2$.
+\begin{equation*}
+c_2(t)=-\frac{itM_{21}}{\hbar}
+\,
+\frac{
+\sin\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
+}{\frac{1}{2}(\omega_2-\omega_1-\omega)t}
+\,
+\exp(-i\phi)
+\end{equation*}
+
+Substitute $\operatorname{sinc}(x)$ for $\sin(x)/x$.
+\begin{equation*}
+c_2(t)=-\frac{itM_{21}}{\hbar}
+\operatorname{sinc}\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
+\exp(-i\phi)
 \tag{2}
 \end{equation*}
 
 Hence the transition probability is
 \begin{equation*}
 P(1\rightarrow2)=|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
-\operatorname{sinc}^2\left(\frac{\omega_2-\omega_1-\omega}{2}\,t\right)
+\operatorname{sinc}^2\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
 \tag{3}
 \end{equation*}
 
