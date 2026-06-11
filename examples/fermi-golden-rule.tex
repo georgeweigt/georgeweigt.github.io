@@ -2,7 +2,7 @@
 
 \section*{Fermi's golden rule}
 
-Find the transition rate $\Gamma_{1\rightarrow2}$ for the perturbing Hamiltonian
+Find the transition rate $R_{1\rightarrow2}$ for the perturbing Hamiltonian
 \begin{equation*}
 H_1(\mathbf r,t)=2V(\mathbf r)\cos(\omega t+\phi)
 \end{equation*}
@@ -14,7 +14,7 @@ Let $\Psi(\mathbf r,t)$ be the following linear combination of the two eigenstat
 \Psi(\mathbf r,t)=c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)+c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
 \end{equation*}
 
-We need to solve for $c_2(t)$ to find the transition rate $\Gamma_{1\rightarrow2}$.
+We need to solve for $c_2(t)$ to find the transition rate $R_{1\rightarrow2}$.
 
 \bigskip
 
@@ -252,8 +252,27 @@ P_{tot}=\frac{2\pi t}{\hbar}|M_{21}|^2\rho(\hbar\omega)
 
 The transition rate is the derivative of $P_{tot}$.
 \begin{equation*}
-\Gamma_{1\rightarrow2}
+R_{1\rightarrow2}
 =\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2\rho(\hbar\omega)
+\tag{4}
+\end{equation*}
+
+\subsubsection*{\S3}
+
+We started with
+\begin{equation*}
+H_1(\mathbf r,t)=2V(\mathbf r)\cos(\omega t+\phi)
+\end{equation*}
+
+to obtain Fermi's golden rule (4).
+Consequently for
+\begin{equation*}
+H_1(\mathbf r,t)=V(\mathbf r)\cos(\omega t+\phi)
+\end{equation*}
+
+we would have
+\begin{equation*}
+R_{1\rightarrow2}=\frac{2\pi}{\hbar}\left|\frac{M_{21}}{2}\right|^2\rho(\hbar\omega)
 \end{equation*}
 
 \end{document}
