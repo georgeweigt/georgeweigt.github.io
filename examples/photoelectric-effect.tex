@@ -152,8 +152,12 @@ H_1=V(\mathbf r)\cos(\omega t)
 
 we have
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=\frac{1}{2}\int\psi_b^*V(\mathbf r)\psi_a\,d\mathbf r
+|\langle\psi_b|H_1|\psi_a\rangle|^2=|H_{ba}|^2
+\end{equation*}
+
+where $H_{ba}$ is the transition amplitude
+\begin{equation*}
+H_{ba}=\frac{1}{2}\int\psi_b^*V(\mathbf r)\psi_a\,d\mathbf r
 \end{equation*}
 
 Hence for
@@ -163,8 +167,7 @@ V(\mathbf r)=-ieE_0z
 
 we have in polar coordinates
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-\frac{ieE_0}{2}
+H_{ba}=-\frac{ieE_0}{2}
 \frac{1}{\sqrt{\pi a^3l^3}}
 \int_0^\infty\int_0^\pi\int_0^{2\pi}
 \exp(ikr\cos\theta-r/a)\,zr^2\sin\theta\,dr\,d\theta\,d\phi
@@ -172,8 +175,7 @@ we have in polar coordinates
 
 Integrate over $\phi$ (multiply by $2\pi$).
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-i\pi eE_0
+H_{ba}=-i\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}
 \int_0^\infty\int_0^\pi
 \exp(ikr\cos\theta-r/a)\,zr^2\sin\theta\,dr\,d\theta
@@ -181,8 +183,7 @@ Integrate over $\phi$ (multiply by $2\pi$).
 
 Change of variable $u=\cos\theta$.
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-i\pi eE_0
+H_{ba}=-i\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}
 \int_0^\infty\int_{-1}^1
 \exp(ikru-r/a)\,zr^2\,dr\,du
@@ -190,8 +191,7 @@ Change of variable $u=\cos\theta$.
 
 Solve the integral over $u$.
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-i\pi eE_0
+H_{ba}=-i\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}
 \int_0^\infty
 \frac{1}{ikr}
@@ -202,8 +202,7 @@ zr^2\,dr
 
 Cancel $i$ and $r$.
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-\pi eE_0
+H_{ba}=-\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}\frac{1}{k}
 \int_0^\infty
 \left[\exp(ikr-r/a)-\exp(-ikr-r/a)\right]
@@ -213,8 +212,7 @@ zr\,dr
 Substitute $z=r\cos\theta$.
 This $\theta$ is different from $\theta$ in $\mathbf k\cdot\mathbf r=kr\cos\theta$.
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-\pi eE_0
+H_{ba}=-\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}\frac{\cos\theta}{k}
 \int_0^\infty
 \left[\exp(ikr-r/a)-\exp(-ikr-r/a)\right]
@@ -223,8 +221,7 @@ r^2\,dr
 
 Solve the integral.
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-\pi eE_0
+H_{ba}=-\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}\frac{\cos\theta}{k}
 \left[-\frac{2}{(ik-1/a)^3}+\frac{2}{(-ik-1/a)^3}\right]
 \tag{4}
@@ -232,8 +229,7 @@ Solve the integral.
 
 Rewrite as
 \begin{equation*}
-\langle\psi_b|H_1|\psi_a\rangle
-=-\pi eE_0
+H_{ba}=-\pi eE_0
 \frac{1}{\sqrt{\pi a^3l^3}}\cos\theta\,
 ia^4\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]
 \tag{5}
@@ -243,13 +239,14 @@ ia^4\left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]
 
 For the transition density we have
 \begin{equation*}
-|\langle\psi_b|H_1|\psi_a\rangle|^2=\pi e^2E_0^2
+|\langle\psi_b|H_1|\psi_a\rangle|^2=|H_{ba}|^2
+=\pi e^2E_0^2
 \frac{a^5}{l^3}\cos^2\theta
 \left[\frac{16}{(a^2k^2+1)^3}-\frac{4}{(a^2k^2+1)^2}\right]^2
 \tag{6}
 \end{equation*}
 
-Hence
+Hence by Fermi's golden rule
 \begin{align*}
 R_{a\rightarrow b}&=\frac{2\pi}{\hbar}\left|\langle\psi_b|H_1|\psi_a\rangle\right|^2\rho(E_b)
 \\[1ex]
