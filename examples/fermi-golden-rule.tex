@@ -73,9 +73,9 @@ c_2(t)M_{22}\exp(-i\omega_2t)
 
 where $M_{21}$ and $M_{22}$ are the matrix elements
 \begin{align*}
-M_{21}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_1(\mathbf r)\,dx
+M_{21}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_1(\mathbf r)\,d\mathbf r
 \\
-M_{22}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_2(\mathbf r)\,dx
+M_{22}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_2(\mathbf r)\,d\mathbf r
 \end{align*}
 
 Multiply both sides by $\exp(i\omega_2t)$.
@@ -196,7 +196,8 @@ P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2
 \rho(E')\,dE'
 \end{equation*}
 
-where $E=\hbar(\omega_2-\omega_1)$ and $\rho$ is density of states.
+where $E\pm\epsilon=\hbar(\omega_2-\omega_1)\pm\epsilon$
+and $\rho$ is density of states.
 
 \bigskip
 
