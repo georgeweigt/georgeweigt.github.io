@@ -4,62 +4,64 @@
 
 Find the transition rate $\Gamma_{1\rightarrow2}$ for the perturbing Hamiltonian
 \begin{equation*}
-H_1(x,t)=2V(x)\cos(\omega t+\phi)
+H_1(\mathbf r,t)=2V(\mathbf r)\cos(\omega t+\phi)
 \end{equation*}
 
-Let $\Psi(x,t)$ be the following linear combination of the two eigenstates.
+\subsubsection*{\S1}
+
+Let $\Psi(\mathbf r,t)$ be the following linear combination of the two eigenstates.
 \begin{equation*}
-\Psi(x,t)=c_1(t)\psi_1(x)\exp(-i\omega_1t)+c_2(t)\psi_2(x)\exp(-i\omega_2t)
+\Psi(\mathbf r,t)=c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)+c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
 \end{equation*}
 
 We need to solve for $c_2(t)$ to find the transition rate $\Gamma_{1\rightarrow2}$.
 
 \bigskip
 
-Applying the Schrodinger equation we have
+Start with the Schrodinger equation
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)=H_0(\mathbf r)\Psi(\mathbf r,t)+H_1(\mathbf r,t)\Psi(\mathbf r,t)
 \end{equation*}
 
 where
 \begin{equation*}
 H_0(\mathbf r)\Psi(\mathbf r,t)
-=E_1c_1(t)\psi_1(x)\exp(-i\omega_1t)
-+E_2c_2(t)\psi_2(x)\exp(-i\omega_2t)
+=E_1c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)
++E_2c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
 \end{equation*}
 
-Expand the time derivative.
+Evaluate the time derivative.
 \begin{multline*}
-i\hbar\frac{\partial}{\partial t}\Psi(x,t)
-=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
-+\boxed{\hbar\omega_1c_1(t)\psi_1(x)\exp(-i\omega_1t)}
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)
+=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
++\boxed{\hbar\omega_1c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)}
 \\
-{}+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
-+\boxed{\hbar\omega_2c_2(t)\psi_2(x)\exp(-i\omega_2t)}
+{}+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
++\boxed{\hbar\omega_2c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)}
 \\
-{}=H_0(x)\Psi(x,t)+H_1(x,t)\Psi(x,t)
+{}=H_0(\mathbf r)\Psi(\mathbf r,t)+H_1(\mathbf r,t)\Psi(\mathbf r,t)
 \end{multline*}
 
 Noting that $\hbar\omega_1=E_1$ and $\hbar\omega_2=E_2$,
-the boxed terms cancel with $H_0(x)\Psi(x,t)$ leaving
+the boxed terms cancel with $H_0(\mathbf r)\Psi(\mathbf r,t)$ leaving
 \begin{equation*}
-i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
-+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
-=H_1(x,t)\Psi(x,t)
+i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
++i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
+=H_1(\mathbf r,t)\Psi(\mathbf r,t)
 \end{equation*}
 
-Substitute for $H_1(x)$ and $\Psi(x,t)$.
+Substitute for $H_1(\mathbf r)$ and $\Psi(\mathbf r,t)$.
 \begin{multline*}
-i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(x)\exp(-i\omega_1t)
-+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(x)\exp(-i\omega_2t)
+i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
++i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
 \\
-{}=2\cos(\omega t+\phi)
+{}=2V(\mathbf r)\cos(\omega t+\phi)
 \biggl[
-c_1(t)V(x)\psi_1(x)\exp(-i\omega_1t)+c_2(t)V(x)\psi_2(x)\exp(-i\omega_2t)
+c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)+c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
 \biggr]
 \end{multline*}
 
-Take the inner product of $\psi_2^*(x)$ with both sides to obtain
+Take the inner product of $\psi_2^*(\mathbf r)$ with both sides to obtain
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}\exp(-i\omega_2t)
 =2\cos(\omega t+\phi)
@@ -69,11 +71,11 @@ c_2(t)M_{22}\exp(-i\omega_2t)
 \biggr]
 \end{equation*}
 
-Symbols $M_{21}$ and $M_{22}$ are the following matrix elements.
+where $M_{21}$ and $M_{22}$ are the matrix elements
 \begin{align*}
-M_{21}&=\int\psi_2^*(x)V(x)\psi_1(x)\,dx
+M_{21}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_1(\mathbf r)\,dx
 \\
-M_{22}&=\int\psi_2^*(x)V(x)\psi_2(x)\,dx
+M_{22}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_2(\mathbf r)\,dx
 \end{align*}
 
 Multiply both sides by $\exp(i\omega_2t)$.
@@ -85,12 +87,12 @@ c_1(t)M_{21}\exp[i(\omega_2-\omega_1)t]+c_2(t)M_{22}
 \biggr]
 \end{equation*}
 
-Let the initial state be $\Psi(x,0)=\psi_1(x)$ hence the initial conditions are
+Let the initial state be $\Psi(\mathbf r,0)=\psi_1(\mathbf r)$ hence the initial conditions are
 \begin{equation*}
 c_1(0)=1,\quad c_2(0)=0
 \end{equation*}
 
-For time $t$ near the origin use the approximations $c_1(t)=1$ and $c_2(t)=0$ to obtain
+For time $t$ near the origin use $c_1(t)\approx1$ and $c_2(t)\approx0$ to obtain
 \begin{equation*}
 i\hbar\frac{\partial c_2(t)}{\partial t}
 =2\cos(\omega t+\phi)M_{21}\exp[i(\omega_2-\omega_1)t]
@@ -177,39 +179,35 @@ c_2(t)=-\frac{itM_{21}}{\hbar}
 \tag{2}
 \end{equation*}
 
-Hence the transition probability is
+\subsubsection*{\S2}
+
+Transition density $P$ is squared magnitude of $c_2(t)$.
 \begin{equation*}
-P(1\rightarrow2)=|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
+P=|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
 \operatorname{sinc}^2\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
 \tag{3}
 \end{equation*}
 
-Integrate $P(1\rightarrow2)$ to obtain the total transition probability
-$P_{tot}(1\rightarrow2)$.
+Total density $P_{tot}$ is
 \begin{equation*}
-P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2
+P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2
 \int_{E-\epsilon}^{E+\epsilon}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)
-g(E')\,dE'
+\rho(E')\,dE'
 \end{equation*}
-%
-where
-\begin{equation*}
-E=\hbar(\omega_2-\omega_1)
-\end{equation*}
-%
-and $g(E')$ is the density of photon states for energy $E'$.
+
+where $E=\hbar(\omega_2-\omega_1)$ and $\rho$ is density of states.
 
 \bigskip
 
-Use the approximation $g(E')\approx g(\hbar\omega)$ to obtain
+Use the approximation $\rho(E')\approx\rho(\hbar\omega)$ to obtain
 \begin{equation*}
-P_{tot}(1\rightarrow2)=\frac{t^2}{\hbar^2}|M_{21}|^2g(\hbar\omega)
+P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2\rho(\hbar\omega)
 \int_{E-\epsilon}^{E+\epsilon}
 \operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)\,dE'
 \end{equation*}
 
-Let
+Change variable to $y$ where
 \begin{equation*}
 y=\frac{E'/\hbar-\omega}{2}\,t
 \end{equation*}
@@ -218,7 +216,7 @@ It follows that
 \begin{equation*}
 E'=\frac{2\hbar y}{t}+\hbar\omega
 \end{equation*}
-%
+
 and
 \begin{equation*}
 dE'=\frac{2\hbar}{t}\,dy
@@ -229,15 +227,13 @@ The integration limits transform as
 E\pm\epsilon
 \rightarrow
 \frac{(E\pm\epsilon)/\hbar-\omega}{2}\,t
-=\frac{Et}{2\hbar}-\frac{\omega t}{2}
-\pm\frac{\epsilon t}{2\hbar}
-\approx
-\pm\frac{\epsilon t}{2\hbar}
+=\frac{Et}{2\hbar}-\frac{\omega t}{2}\pm\frac{\epsilon t}{2\hbar}
+=\pm\frac{\epsilon t}{2\hbar}
 \end{equation*}
 
 Hence
 \begin{equation*}
-P_{tot}(1\rightarrow2)=\frac{2t}{\hbar}|M_{21}|^2g(\hbar\omega)
+P_{tot}=\frac{2t}{\hbar}|M_{21}|^2\rho(\hbar\omega)
 \int_{-\epsilon t/2\hbar}^{\epsilon t/2\hbar}
 \operatorname{sinc}^2y\,dy
 \end{equation*}
@@ -248,16 +244,16 @@ Use the approximation
 \approx
 \int_{-\infty}^\infty\operatorname{sinc}^2 y\,dy=\pi
 \end{equation*}
-%
+
 to obtain
 \begin{equation*}
-P_{tot}(1\rightarrow2)=\frac{2\pi t}{\hbar}|M_{21}|^2g(\hbar\omega)
+P_{tot}=\frac{2\pi t}{\hbar}|M_{21}|^2\rho(\hbar\omega)
 \end{equation*}
 
-The transition rate is the derivative of $P_{tot}(1\rightarrow2)$.
+The transition rate is the derivative of $P_{tot}$.
 \begin{equation*}
 \Gamma_{1\rightarrow2}
-=\frac{d}{dt}P_{tot}(1\rightarrow2)=\frac{2\pi}{\hbar}|M_{21}|^2g(\hbar\omega)
+=\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2\rho(\hbar\omega)
 \end{equation*}
 
 \end{document}
