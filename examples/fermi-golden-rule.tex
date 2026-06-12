@@ -178,23 +178,23 @@ c_b(t)=-\frac{itM_{21}}{\hbar}
 
 \subsubsection*{\S2}
 
-Transition density $P$ is squared magnitude of $c_b(t)$.
+Transition density $P$ is the squared magnitude of $c_b(t)$.
 \begin{equation*}
 P=|c_b(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
 \operatorname{sinc}^2\left[\frac{1}{2}(\omega_b-\omega_a-\omega)t\right]
 \tag{5}
 \end{equation*}
 
-Total density $P_{tot}$ is
+Total density $P_{tot}$ is the integral of $P$ over a small energy band.
 \begin{equation*}
 P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2
 \int_{E-\epsilon}^{E+\epsilon}
-\operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)
+\operatorname{sinc}^2\left[\frac{1}{2}(E'/\hbar-\omega)t\right]
 \rho(E')\,dE'
 \end{equation*}
 
-where $E\pm\epsilon=\hbar(\omega_b-\omega_a)\pm\epsilon$
-and $\rho$ is density of states.
+The center of the energy band is $E=\hbar(\omega_b-\omega_a)$.
+Symbol $\rho$ is density of states.
 
 \bigskip
 
@@ -202,12 +202,12 @@ Use the approximation $\rho(E')\approx\rho(\hbar\omega)$ to obtain
 \begin{equation*}
 P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2\rho(\hbar\omega)
 \int_{E-\epsilon}^{E+\epsilon}
-\operatorname{sinc}^2\left(\frac{E'/\hbar-\omega}{2}\,t\right)\,dE'
+\operatorname{sinc}^2\left[\frac{1}{2}(E'/\hbar-\omega)t\right]\,dE'
 \end{equation*}
 
-Change variable to $y$ where
+Change to variable $y$ where
 \begin{equation*}
-y=\frac{E'/\hbar-\omega}{2}\,t
+y=\frac{1}{2}(E'/\hbar-\omega)t
 \end{equation*}
 
 It follows that
@@ -220,11 +220,11 @@ and
 dE'=\frac{2\hbar}{t}\,dy
 \end{equation*}
 
-The integration limits transform as
+The limits of the integral transform as
 \begin{equation*}
 E\pm\epsilon
 \rightarrow
-\frac{(E\pm\epsilon)/\hbar-\omega}{2}\,t
+\frac{1}{2}[(E\pm\epsilon)/\hbar-\omega]t
 =\frac{Et}{2\hbar}-\frac{\omega t}{2}\pm\frac{\epsilon t}{2\hbar}
 =\pm\frac{\epsilon t}{2\hbar}
 \end{equation*}
