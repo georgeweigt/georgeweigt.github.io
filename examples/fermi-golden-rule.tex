@@ -2,19 +2,19 @@
 
 \section*{Fermi's golden rule}
 
-Find the transition rate $R_{1\rightarrow2}$ for the perturbing Hamiltonian
+Find the transition rate $R_{a\rightarrow b}$ for the perturbing Hamiltonian
 \begin{equation*}
 H_1(\mathbf r,t)=2V(\mathbf r)\cos(\omega t+\phi)
 \end{equation*}
 
 \subsubsection*{\S1}
 
-Let $\Psi(\mathbf r,t)$ be the following linear combination of the two eigenstates.
+Let $\Psi(\mathbf r,t)$ be the following linear combination of two eigenstates.
 \begin{equation*}
-\Psi(\mathbf r,t)=c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)+c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
+\Psi(\mathbf r,t)=c_a(t)\psi_a(\mathbf r)\exp(-i\omega_at)+c_b(t)\psi_b(\mathbf r)\exp(-i\omega_bt)
 \end{equation*}
 
-We need to solve for $c_2(t)$ to find the transition rate $R_{1\rightarrow2}$.
+We need to solve for $c_b(t)$ to find the transition rate $R_{a\rightarrow b}$.
 
 \bigskip
 
@@ -26,117 +26,118 @@ i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)=H_0(\mathbf r)\Psi(\mathbf r,
 where
 \begin{equation*}
 H_0(\mathbf r)\Psi(\mathbf r,t)
-=E_1c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)
-+E_2c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
+=E_ac_a(t)\psi_a(\mathbf r)\exp(-i\omega_at)
++E_bc_b(t)\psi_b(\mathbf r)\exp(-i\omega_bt)
 \end{equation*}
 
 Evaluate the time derivative.
 \begin{multline*}
 i\hbar\frac{\partial}{\partial t}\Psi(\mathbf r,t)
-=i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
-+\boxed{\hbar\omega_1c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)}
+=i\hbar\frac{\partial c_a(t)}{\partial t}\psi_a(\mathbf r)\exp(-i\omega_at)
++\boxed{\hbar\omega_ac_a(t)\psi_a(\mathbf r)\exp(-i\omega_at)}
 \\
-{}+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
-+\boxed{\hbar\omega_2c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)}
+{}+i\hbar\frac{\partial c_b(t)}{\partial t}\psi_b(\mathbf r)\exp(-i\omega_bt)
++\boxed{\hbar\omega_bc_b(t)\psi_b(\mathbf r)\exp(-i\omega_bt)}
 \\
 {}=H_0(\mathbf r)\Psi(\mathbf r,t)+H_1(\mathbf r,t)\Psi(\mathbf r,t)
+\tag{1}
 \end{multline*}
 
-Noting that $\hbar\omega_1=E_1$ and $\hbar\omega_2=E_2$,
-the boxed terms cancel with $H_0(\mathbf r)\Psi(\mathbf r,t)$ leaving
+We have $\hbar\omega_a=E_a$ and $\hbar\omega_b=E_b$
+hence the boxed terms cancel with $H_0(\mathbf r)\Psi(\mathbf r,t)$ leaving
 \begin{equation*}
-i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
-+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
+i\hbar\frac{\partial c_a(t)}{\partial t}\psi_a(\mathbf r)\exp(-i\omega_at)
++i\hbar\frac{\partial c_b(t)}{\partial t}\psi_b(\mathbf r)\exp(-i\omega_bt)
 =H_1(\mathbf r,t)\Psi(\mathbf r,t)
 \end{equation*}
 
 Substitute for $H_1(\mathbf r)$ and $\Psi(\mathbf r,t)$.
 \begin{multline*}
-i\hbar\frac{\partial c_1(t)}{\partial t}\psi_1(\mathbf r)\exp(-i\omega_1t)
-+i\hbar\frac{\partial c_2(t)}{\partial t}\psi_2(\mathbf r)\exp(-i\omega_2t)
+i\hbar\frac{\partial c_a(t)}{\partial t}\psi_a(\mathbf r)\exp(-i\omega_at)
++i\hbar\frac{\partial c_b(t)}{\partial t}\psi_b(\mathbf r)\exp(-i\omega_bt)
 \\
 {}=2V(\mathbf r)\cos(\omega t+\phi)
 \biggl[
-c_1(t)\psi_1(\mathbf r)\exp(-i\omega_1t)+c_2(t)\psi_2(\mathbf r)\exp(-i\omega_2t)
+c_a(t)\psi_a(\mathbf r)\exp(-i\omega_at)+c_b(t)\psi_b(\mathbf r)\exp(-i\omega_bt)
 \biggr]
 \end{multline*}
 
-Take the inner product of $\psi_2^*(\mathbf r)$ with both sides to obtain
+Apply an inner product with $\psi_b^*(\mathbf r)$ to eliminate wave functions.
 \begin{equation*}
-i\hbar\frac{\partial c_2(t)}{\partial t}\exp(-i\omega_2t)
+i\hbar\frac{\partial c_b(t)}{\partial t}\exp(-i\omega_bt)
 =2\cos(\omega t+\phi)
 \biggl[
-c_1(t)M_{21}\exp(-i\omega_1t)+
-c_2(t)M_{22}\exp(-i\omega_2t)
+c_a(t)M_{21}\exp(-i\omega_at)+
+c_b(t)M_{22}\exp(-i\omega_bt)
 \biggr]
 \end{equation*}
 
-where $M_{21}$ and $M_{22}$ are the matrix elements
+Symbols $M_{21}$ and $M_{22}$ are the matrix elements
 \begin{align*}
-M_{21}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_1(\mathbf r)\,d\mathbf r
+M_{21}&=\int\psi_b^*(\mathbf r)V(\mathbf r)\psi_a(\mathbf r)\,d\mathbf r
 \\
-M_{22}&=\int\psi_2^*(\mathbf r)V(\mathbf r)\psi_2(\mathbf r)\,d\mathbf r
+M_{22}&=\int\psi_b^*(\mathbf r)V(\mathbf r)\psi_b(\mathbf r)\,d\mathbf r
 \end{align*}
 
-Multiply both sides by $\exp(i\omega_2t)$.
+Multiply both sides by $\exp(i\omega_bt)$.
 \begin{equation*}
-i\hbar\frac{\partial c_2(t)}{\partial t}
+i\hbar\frac{\partial c_b(t)}{\partial t}
 =2\cos(\omega t+\phi)
 \biggl[
-c_1(t)M_{21}\exp[i(\omega_2-\omega_1)t]+c_2(t)M_{22}
+c_a(t)M_{21}\exp[i(\omega_b-\omega_a)t]+c_b(t)M_{22}
 \biggr]
 \end{equation*}
 
-Let the initial state be $\Psi(\mathbf r,0)=\psi_1(\mathbf r)$ hence the initial conditions are
+Let the initial state be $\Psi(\mathbf r,0)=\psi_a(\mathbf r)$ hence the initial conditions are
 \begin{equation*}
-c_1(0)=1,\quad c_2(0)=0
+c_a(0)=1,\quad c_b(0)=0
 \end{equation*}
 
-For time $t$ near the origin use $c_1(t)\approx1$ and $c_2(t)\approx0$ to obtain
+For time $t$ near the origin use $c_a(t)\approx1$ and $c_b(t)\approx0$ to obtain
 \begin{equation*}
-i\hbar\frac{\partial c_2(t)}{\partial t}
-=2\cos(\omega t+\phi)M_{21}\exp[i(\omega_2-\omega_1)t]
+i\hbar\frac{\partial c_b(t)}{\partial t}
+=2\cos(\omega t+\phi)M_{21}\exp[i(\omega_b-\omega_a)t]
 \end{equation*}
 
-Solve for $c_2(t)$ by integrating.
+Solve for $c_b(t)$ by integrating.
 \begin{equation*}
-c_2(t)=\frac{2M_{21}}{i\hbar}
-\int_0^t\cos(\omega t'+\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
+c_b(t)=\frac{2M_{21}}{i\hbar}
+\int_0^t\cos(\omega t'+\phi)\exp[i(\omega_b-\omega_a)t']\,dt'
 \end{equation*}
 
 In exponential form
 \begin{multline*}
-c_2(t)=\frac{M_{21}}{i\hbar}
+c_b(t)=\frac{M_{21}}{i\hbar}
 \int_0^t
-\exp(i\omega t'+\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
+\exp(i\omega t'+\phi)\exp[i(\omega_b-\omega_a)t']\,dt'
 \\
 {}+\frac{M_{21}}{i\hbar}
 \int_0^t
-\exp(-i\omega t'-\phi)\exp[i(\omega_2-\omega_1)t']\,dt'
+\exp(-i\omega t'-\phi)\exp[i(\omega_b-\omega_a)t']\,dt'
 \end{multline*}
 
 The solution is
 \begin{multline*}
-c_2(t)
+c_b(t)
 =-\frac{M_{21}}{\hbar}
 \,
-\frac{\exp[i(\omega_2-\omega_1+\omega) t]-1}{\omega_2-\omega_1+\omega}
+\frac{\exp[i(\omega_b-\omega_a+\omega) t]-1}{\omega_b-\omega_a+\omega}
 \,
 \exp(i\phi)
 \\{}-\frac{M_{21}}{\hbar}
 \,
-\frac{\exp[i(\omega_2-\omega_1-\omega) t]-1}{\omega_2-\omega_1-\omega}
+\frac{\exp[i(\omega_b-\omega_a-\omega) t]-1}{\omega_b-\omega_a-\omega}
 \,
 \exp(-i\phi)
-\tag{1}
+\tag{2}
 \end{multline*}
 
-For $\omega$ such that $\omega\approx\omega_2-\omega_1$ the second term
+For $\omega$ such that $\omega\approx\omega_b-\omega_a$ the second term
 dominates so discard the first term.
 \begin{equation*}
-c_2(t)=-\frac{M_{21}}{\hbar}
+c_b(t)=-\frac{M_{21}}{\hbar}
 \,
-\frac{\exp[i(\omega_2-\omega_1-\omega) t]-1}{\omega_2-\omega_1-\omega}
+\frac{\exp[i(\omega_b-\omega_a-\omega) t]-1}{\omega_b-\omega_a-\omega}
 \,
 \exp(-i\phi)
 \end{equation*}
@@ -144,48 +145,49 @@ c_2(t)=-\frac{M_{21}}{\hbar}
 By the identity
 \begin{equation*}
 \exp(ix)-1=2i\sin\biggl(\frac{x}{2}\biggr)\exp\biggl(\frac{ix}{2}\biggr)
+\tag{3}
 \end{equation*}
 
 we have
 \begin{equation*}
-c_2(t)=-\frac{2iM_{21}}{\hbar}
+c_b(t)=-\frac{2iM_{21}}{\hbar}
 \,
 \frac{
-\sin\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
-\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
-}{\omega_2-\omega_1-\omega}
+\sin\left[\frac{1}{2}(\omega_b-\omega_a-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_b-\omega_a-\omega)t\right]
+}{\omega_b-\omega_a-\omega}
 \,
 \exp(-i\phi)
 \end{equation*}
 
 Multiply numerator and denominator by $t/2$.
 \begin{equation*}
-c_2(t)=-\frac{itM_{21}}{\hbar}
+c_b(t)=-\frac{itM_{21}}{\hbar}
 \,
 \frac{
-\sin\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
-\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
-}{\frac{1}{2}(\omega_2-\omega_1-\omega)t}
+\sin\left[\frac{1}{2}(\omega_b-\omega_a-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_b-\omega_a-\omega)t\right]
+}{\frac{1}{2}(\omega_b-\omega_a-\omega)t}
 \,
 \exp(-i\phi)
 \end{equation*}
 
 Substitute $\operatorname{sinc}(x)$ for $\sin(x)/x$.
 \begin{equation*}
-c_2(t)=-\frac{itM_{21}}{\hbar}
-\operatorname{sinc}\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
-\exp\left[\frac{1}{2}i(\omega_2-\omega_1-\omega)t\right]
+c_b(t)=-\frac{itM_{21}}{\hbar}
+\operatorname{sinc}\left[\frac{1}{2}(\omega_b-\omega_a-\omega)t\right]
+\exp\left[\frac{1}{2}i(\omega_b-\omega_a-\omega)t\right]
 \exp(-i\phi)
-\tag{2}
+\tag{4}
 \end{equation*}
 
 \subsubsection*{\S2}
 
-Transition density $P$ is squared magnitude of $c_2(t)$.
+Transition density $P$ is squared magnitude of $c_b(t)$.
 \begin{equation*}
-P=|c_2(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
-\operatorname{sinc}^2\left[\frac{1}{2}(\omega_2-\omega_1-\omega)t\right]
-\tag{3}
+P=|c_b(t)|^2=\frac{t^2}{\hbar^2}\,|M_{21}|^2
+\operatorname{sinc}^2\left[\frac{1}{2}(\omega_b-\omega_a-\omega)t\right]
+\tag{5}
 \end{equation*}
 
 Total density $P_{tot}$ is
@@ -196,7 +198,7 @@ P_{tot}=\frac{t^2}{\hbar^2}|M_{21}|^2
 \rho(E')\,dE'
 \end{equation*}
 
-where $E\pm\epsilon=\hbar(\omega_2-\omega_1)\pm\epsilon$
+where $E\pm\epsilon=\hbar(\omega_b-\omega_a)\pm\epsilon$
 and $\rho$ is density of states.
 
 \bigskip
@@ -253,9 +255,9 @@ P_{tot}=\frac{2\pi t}{\hbar}|M_{21}|^2\rho(\hbar\omega)
 
 The transition rate is the derivative of $P_{tot}$.
 \begin{equation*}
-R_{1\rightarrow2}
+R_{a\rightarrow b}
 =\frac{d}{dt}P_{tot}=\frac{2\pi}{\hbar}|M_{21}|^2\rho(\hbar\omega)
-\tag{4}
+\tag{6}
 \end{equation*}
 
 \subsubsection*{\S3}
@@ -265,7 +267,7 @@ We started with
 H_1(\mathbf r,t)=2V(\mathbf r)\cos(\omega t+\phi)
 \end{equation*}
 
-and obtained Fermi's golden rule (4).
+and obtained Fermi's golden rule (6).
 Consequently for $H_1(\mathbf r,t)$ such that
 \begin{equation*}
 H_1(\mathbf r,t)=V(\mathbf r)\cos(\omega t+\phi)
@@ -273,7 +275,7 @@ H_1(\mathbf r,t)=V(\mathbf r)\cos(\omega t+\phi)
 
 we would have
 \begin{equation*}
-R_{1\rightarrow2}=\frac{2\pi}{\hbar}\left|\frac{M_{21}}{2}\right|^2\rho(\hbar\omega)
+R_{a\rightarrow b}=\frac{2\pi}{\hbar}\left|\frac{M_{21}}{2}\right|^2\rho(\hbar\omega)
 \end{equation*}
 
 \end{document}
