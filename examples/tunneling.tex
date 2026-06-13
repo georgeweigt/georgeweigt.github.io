@@ -2,9 +2,9 @@
 
 % https://physicspages.com/pdf/Quantum%20mechanics/Finite%20square%20barrier%20-%20scattering.pdf
 
-\section*{Barrier potential}
+\section*{Tunneling}
 
-Let $V(x)$ be the following barrier potential.
+Let $V(x)$ be the barrier potential
 \begin{equation*}
 V(x)=\begin{cases}
 0 & x<-a
@@ -17,7 +17,8 @@ V_0 & -a\le x\le a
 
 Find tunneling probability $T$ for a particle with mass $m$ and energy $E<V_0$.
 
-\bigskip
+\subsubsection*{\S1}
+
 We have the following Schrodinger equations, one for each region of $V(x)$.
 \begin{align*}
 -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}&\psi_1=E\psi_1 & x&\le-a
@@ -107,6 +108,8 @@ Hence
 A=\frac{(k+\kappa)C\exp(ika-i\kappa a)}{2k}+\frac{(k-\kappa)D\exp(ika+i\kappa a)}{2k}
 \end{equation*}
 
+\iffalse
+
 Add minus $ik$ times (3) to (4) to obtain
 \begin{equation*}
 -2ikB\exp(ika)=(-ik+i\kappa)C\exp(-i\kappa a)+(-ik-i\kappa)D\exp(i\kappa a)
@@ -117,23 +120,36 @@ Hence
 B=\frac{(k-\kappa)C\exp(-ika-i\kappa a)}{2k}+\frac{(k+\kappa)D\exp(-ika+i\kappa a)}{2k}
 \end{equation*}
 
-We now have $A$ as linear in $C$ and $D$, and $C$ and $D$ as linear in $F$.
-Hence $A$ is linear in $F$.
+\fi
 
-\bigskip
-Tunneling probability $T$ is
+Substitute for $C$ and $D$.
+\begin{equation*}
+A=\frac{(k+\kappa)^2F\exp[2ia(k-\kappa)]}{4k\kappa}
+-\frac{(k-\kappa)^2F\exp[2ia(k+\kappa)]}{4k\kappa}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{A}{F}=\frac{(k+\kappa)^2\exp[2ia(k-\kappa)]}{4k\kappa}
+-\frac{(k-\kappa)^2\exp[2ia(k+\kappa)]}{4k\kappa}
+\tag{5}
+\end{equation*}
+
+\subsubsection*{\S2}
+
+Substituting for $k$ and $\kappa$ we have for tunneling probability $T$
 \begin{equation*}
 T^{-1}=\frac{A}{F}\left(\frac{A}{F}\right)^*
 =1+\frac{1}{8}\left(\frac{E}{V_0-E}+\frac{V_0}{E}+1\right)
 \left[\cos\left(\frac{4a}{\hbar}\sqrt{2m(E-V_0)}\right)-1\right]
-\tag{5}
+\tag{6}
 \end{equation*}
 
 Transform cos to sinh.
 \begin{equation*}
 T^{-1}=1+\frac{1}{4}\left(\frac{E}{V_0-E}+\frac{V_0}{E}+1\right)
 \sinh^2\left(\frac{2ia}{\hbar}\sqrt{2m(E-V_0)}\right)
-\tag{6}
+\tag{7}
 \end{equation*}
 
 Cancel the imaginary unit by swapping $E$ and $V_0$.
@@ -145,21 +161,20 @@ T^{-1}=1+\frac{1}{4}\left(\frac{E}{V_0-E}+\frac{V_0}{E}+1\right)
 Equivalently
 \begin{equation*}
 T^{-1}=1+\frac{V_0^2}{4E(V_0-E)}\sinh^2\left(\frac{2a}{\hbar}\sqrt{2m(V_0-E)}\right)
-\tag{7}
+\tag{8}
 \end{equation*}
 
-\href{https://georgeweigt.github.io/examples/barrier-potential-demo.html}{Eigenmath script}
+\subsubsection*{\S3}
 
-\end{document}
-
-\subsubsection*{Notes}
-\begin{enumerate}
-\item
 Check dimensions.
 \begin{equation*}
 \frac{2a}{\hbar}\sqrt{2m(V_0-E)}=\frac{[\text{m}]}{[\text{J}\,\text{s}]}
 \sqrt{[\text{kg}]\,[\text{J}]}=[1]
+\tag{9}
 \end{equation*}
-\end{enumerate}
+
+\subsubsection*{\S4}
+
+\href{https://georgeweigt.github.io/examples/tunneling-demo.html}{Eigenmath script}
 
 \end{document}
