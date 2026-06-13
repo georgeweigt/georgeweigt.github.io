@@ -26,10 +26,10 @@ check(A / F ==
 (k - kappa)^2 exp(2 i a (k + kappa)) / (4 k kappa))
 "ok"
 
-T1 = A/F conj(A/F)
-
 k = sqrt(2 m E) / hbar
 kappa = sqrt(2 m (E - V0)) / hbar
+
+T1 = A/F conj(A/F)
 
 K = E / (V0 - E) + V0 / E + 1
 
