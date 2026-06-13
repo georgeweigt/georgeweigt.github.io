@@ -32,7 +32,7 @@ The solutions are
 \begin{align*}
 \psi_1(x)&=A\exp(ikx)+B\exp(-ikx)
 \\
-\psi_2(x)&=C\exp(i\kappa x)+D\exp(-i\kappa x)
+\psi_2(x)&=C\exp(i\beta x)+D\exp(-i\beta x)
 \\
 \psi_3(x)&=F\exp(ikx)
 \end{align*}
@@ -41,7 +41,7 @@ where
 \begin{equation*}
 k=\frac{\sqrt{2mE}}{\hbar}
 \qquad
-\kappa=\frac{\sqrt{2m(E-V_0)}}{\hbar}
+\beta=\frac{\sqrt{2m(E-V_0)}}{\hbar}
 \end{equation*}
 
 Boundary conditions at $x=-a$.
@@ -60,84 +60,84 @@ Boundary conditions at $x=a$.
 
 From boundary conditions for $\psi_2$ and $\psi_3$ we have
 \begin{equation*}
-C\exp(i\kappa a)+D\exp(-i\kappa a)=F\exp(ikx)\tag{1}
+C\exp(i\beta a)+D\exp(-i\beta a)=F\exp(ikx)\tag{1}
 \end{equation*}
 
 and
 \begin{equation*}
-i\kappa C\exp(i\kappa a)-i\kappa D\exp(-i\kappa a)=ikF\exp(ikx)\tag{2}
+i\beta C\exp(i\beta a)-i\beta D\exp(-i\beta a)=ikF\exp(ikx)\tag{2}
 \end{equation*}
 
-Add $i\kappa$ times (1) to (2) to obtain
+Add $i\beta$ times (1) to (2) to obtain
 \begin{equation*}
-2i\kappa C\exp(i\kappa a)=(i\kappa+ik)F\exp(ika)
-\end{equation*}
-
-Hence
-\begin{equation*}
-C=\frac{(\kappa+k)F\exp(ika-i\kappa a)}{2\kappa}
-\end{equation*}
-
-Add minus $i\kappa$ times (1) to (2) to obtain
-\begin{equation*}
--2i\kappa D\exp(-i\kappa a)=(-i\kappa+ik)F\exp(ika)
+2i\beta C\exp(i\beta a)=(i\beta+ik)F\exp(ika)
 \end{equation*}
 
 Hence
 \begin{equation*}
-D=\frac{(\kappa-k)F\exp(ika+i\kappa a)}{2\kappa}
+C=\frac{(\beta+k)F\exp(ika-i\beta a)}{2\beta}
+\end{equation*}
+
+Add minus $i\beta$ times (1) to (2) to obtain
+\begin{equation*}
+-2i\beta D\exp(-i\beta a)=(-i\beta+ik)F\exp(ika)
+\end{equation*}
+
+Hence
+\begin{equation*}
+D=\frac{(\beta-k)F\exp(ika+i\beta a)}{2\beta}
 \end{equation*}
 
 From boundary conditions for $\psi_1$ and $\psi_2$ we have
 \begin{equation*}
-A\exp(-ika)+B\exp(ika)=C\exp(-i\kappa a)+D\exp(i\kappa a)\tag{3}
+A\exp(-ika)+B\exp(ika)=C\exp(-i\beta a)+D\exp(i\beta a)\tag{3}
 \end{equation*}
 
 and
 \begin{equation*}
-ikA\exp(-ika)-ikB\exp(ika)=i\kappa C\exp(-i\kappa a)-i\kappa D\exp(i\kappa a)\tag{4}
+ikA\exp(-ika)-ikB\exp(ika)=i\beta C\exp(-i\beta a)-i\beta D\exp(i\beta a)\tag{4}
 \end{equation*}
 
 Add $ik$ times (3) to (4) to obtain
 \begin{equation*}
-2ikA\exp(-ika)=(ik+i\kappa)C\exp(-i\kappa a)+(ik-i\kappa)D\exp(i\kappa a)
+2ikA\exp(-ika)=(ik+i\beta)C\exp(-i\beta a)+(ik-i\beta)D\exp(i\beta a)
 \end{equation*}
 
 Hence
 \begin{equation*}
-A=\frac{(k+\kappa)C\exp(ika-i\kappa a)}{2k}+\frac{(k-\kappa)D\exp(ika+i\kappa a)}{2k}
+A=\frac{(k+\beta)C\exp(ika-i\beta a)}{2k}+\frac{(k-\beta)D\exp(ika+i\beta a)}{2k}
 \end{equation*}
 
 \iffalse
 
 Add minus $ik$ times (3) to (4) to obtain
 \begin{equation*}
--2ikB\exp(ika)=(-ik+i\kappa)C\exp(-i\kappa a)+(-ik-i\kappa)D\exp(i\kappa a)
+-2ikB\exp(ika)=(-ik+i\beta)C\exp(-i\beta a)+(-ik-i\beta)D\exp(i\beta a)
 \end{equation*}
 
 Hence
 \begin{equation*}
-B=\frac{(k-\kappa)C\exp(-ika-i\kappa a)}{2k}+\frac{(k+\kappa)D\exp(-ika+i\kappa a)}{2k}
+B=\frac{(k-\beta)C\exp(-ika-i\beta a)}{2k}+\frac{(k+\beta)D\exp(-ika+i\beta a)}{2k}
 \end{equation*}
 
 \fi
 
 Substitute for $C$ and $D$.
 \begin{equation*}
-A=\frac{(k+\kappa)^2F\exp[2ia(k-\kappa)]}{4k\kappa}
--\frac{(k-\kappa)^2F\exp[2ia(k+\kappa)]}{4k\kappa}
+A=\frac{(k+\beta)^2F\exp[2ia(k-\beta)]}{4k\beta}
+-\frac{(k-\beta)^2F\exp[2ia(k+\beta)]}{4k\beta}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\frac{A}{F}=\frac{(k+\kappa)^2\exp[2ia(k-\kappa)]}{4k\kappa}
--\frac{(k-\kappa)^2\exp[2ia(k+\kappa)]}{4k\kappa}
+\frac{A}{F}=\frac{(k+\beta)^2\exp[2ia(k-\beta)]}{4k\beta}
+-\frac{(k-\beta)^2\exp[2ia(k+\beta)]}{4k\beta}
 \tag{5}
 \end{equation*}
 
 \subsubsection*{\S2}
 
-Substituting for $k$ and $\kappa$ we have for tunneling probability $T$
+Substituting for $k$ and $\beta$ we have for tunneling probability $T$
 \begin{equation*}
 T^{-1}=\frac{A}{F}\left(\frac{A}{F}\right)^*
 =1+\frac{1}{8}\left(\frac{E}{V_0-E}+\frac{V_0}{E}+1\right)
