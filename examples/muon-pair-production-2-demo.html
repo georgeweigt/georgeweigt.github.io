@@ -45,11 +45,9 @@ y = (
 42.56,
 46.37,
 49.28,
-55.7) "nanobarn" "GeV"^2
+55.7)
 
-"Observed cross section per bin"
-
-y
+y = y "nanobarn" "GeV"^2
 
 alpha = 7.2973525693 10^(-3)
 c = 299792458.0 meter / second
@@ -57,13 +55,13 @@ h = 6.62607015 10^(-34) joule second
 hbar = h / float(2 pi)
 eV = 1.602176634 10^(-19) joule
 
--- conversion factor
-
 C = (10^37 "nanobarn" / meter^2) / (10^9 eV / "GeV")^2
-
-"Predicted cross section"
-
 yhat = 1/2 float(pi) (alpha hbar c)^2 (1 + x^2) C
+
+"Observed cross section per bin"
+y
+
+"Predicted cross section per bin"
 yhat
 
 "Coefficient of determination (R squared)"
