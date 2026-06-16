@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Yukawa potential"
+
+"Verify equation (1)"
+check((-1 / (i k - e) - 1 / (i k + e)) / (i k) == 2 / (k^2 + e^2))
+"ok"
+
+"Verify equation (2)"
+f = m Z e^2 / (4 pi epsilon0 hbar^2) / (i k) *
+    (exp(i k r - epsilon r) - exp(-i k r - epsilon r))
+I = integral(f,r)
+f = 0 - eval(I,r,0)
+check(f == m Z e^2 / (2 pi epsilon0 hbar^2 (k^2 + epsilon^2)))
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

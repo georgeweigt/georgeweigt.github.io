@@ -1,0 +1,159 @@
+\input{preamble}
+
+\section*{Yukawa potential}
+
+Find $d\sigma/d\Omega$ for the Yukawa potential
+\begin{equation*}
+V(r)=-\frac{Ze^2}{4\pi\varepsilon_0r}\exp(-\epsilon r)
+\end{equation*}
+
+\subsubsection*{\S1}
+
+Start with the Born approximation
+\begin{equation*}
+f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
+\int\exp(i\mathbf k\cdot\mathbf r)V(\mathbf r)\,d\mathbf r
+\end{equation*}
+
+where $\mathbf k$ is momentum transfer
+\begin{equation*}
+\mathbf k=\mathbf k_i-\mathbf k_f
+\end{equation*}
+
+and
+\begin{equation*}
+k^2=|\mathbf k|^2=\frac{4mE(1-\cos\theta)}{\hbar^2}
+\end{equation*}
+
+Convert to polar coordinates.
+\begin{equation*}
+f(\theta,\phi)
+=-\frac{m}{2\pi\hbar^2}
+\int_0^\infty
+\int_0^\pi
+\int_0^{2\pi}
+\exp(ikr\cos\theta)V(r,\theta,\phi)
+\,r^2\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Substitute
+\begin{equation*}
+V(r,\theta,\phi)=-\frac{Ze^2}{4\pi\varepsilon_0r}\exp(-\epsilon r)
+\end{equation*}
+
+to obtain
+\begin{equation*}
+f(\theta,\phi)
+=\frac{mZe^2}{8\pi^2\varepsilon_0\hbar^2}
+\int_0^\infty
+\int_0^\pi
+\int_0^{2\pi}
+\exp(ikr\cos\theta-\epsilon r)
+\,r\sin\theta\,dr\,d\theta\,d\phi
+\end{equation*}
+
+Integrate over $\phi$ (multiply by $2\pi$).
+\begin{equation*}
+f(\theta,\phi)
+=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
+\int_0^\infty
+\int_0^\pi
+\exp(ikr\cos\theta-\epsilon r)
+\,r\sin\theta\,dr\,d\theta
+\end{equation*}
+
+Let $y=\cos\theta$ and $dy=-\sin\theta\,d\theta$.
+The minus sign in $dy$ is canceled by interchanging integration limits
+$\cos(0)=1$ and $\cos(\pi)=-1$.
+\begin{equation*}
+f(\theta,\phi)
+=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
+\int_0^\infty
+\int_{-1}^1
+\exp(ikry-\epsilon r)
+\,r\,dr\,dy
+\end{equation*}
+
+Solve the integral over $y$.
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
+\int_0^\infty
+\left[\frac{1}{ikr}\exp(ikry-\epsilon r)\right]_{y=-1}^{y=1}
+r\,dr
+\end{equation*}
+
+Cancel $r$ and evaluate the limits.
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}\frac{1}{ik}
+\int_0^\infty
+[\exp(ikr-\epsilon r)-\exp(-ikr-\epsilon r)]
+\,dr
+\end{equation*}
+
+Solve the integral over $r$.
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
+\frac{1}{ik}
+\left[
+\frac{1}{ik-\epsilon}
+\exp(ikr-\epsilon r)
++\frac{1}{ik+\epsilon}
+\exp(-ikr-\epsilon r)
+\right]_{r=0}^{r=\infty}
+\end{equation*}
+
+Evaluate the limits. The exponentials vanish at the upper limit.
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{4\pi\varepsilon_0\hbar^2}
+\frac{1}{ik}
+\left[
+-\frac{1}{ik-\epsilon}
+-\frac{1}{ik+\epsilon}
+\right]
+\end{equation*}
+
+By the identity
+\begin{equation*}
+\frac{1}{ik}
+\left[
+-\frac{1}{ik-\epsilon}
+-\frac{1}{ik+\epsilon}
+\right]
+=\frac{2}{k^2+\epsilon^2}
+\tag{1}
+\end{equation*}
+
+we have
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{2\pi\varepsilon_0\hbar^2(k^2+\epsilon^2)}
+\tag{2}
+\end{equation*}
+
+Substitute for $k^2$.
+\begin{equation*}
+f(\theta,\phi)=\frac{mZe^2}{2\pi\varepsilon_0[4mE(1-\cos\theta)+\epsilon^2\hbar^2]}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=|f(\theta,\phi)|^2
+\end{equation*}
+
+\subsubsection*{\S2}
+For $\epsilon=0$ the scattering amplitude simplifies as
+\begin{equation*}
+f(\theta,\phi)=\frac{Ze^2}{8\pi\varepsilon_0E(1-\cos\theta)}
+\end{equation*}
+
+Substitute $e^2=4\pi\varepsilon_0\alpha\hbar c$ to obtain
+\begin{equation*}
+f(\theta,\phi)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+which is the amplitude for Rutherford scattering.
+
+\bigskip
+\href{https://georgeweigt.github.io/examples/yukawa-potential.html}{Eigenmath script}
+
+\end{document}
