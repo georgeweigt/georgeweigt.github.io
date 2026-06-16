@@ -1,0 +1,47 @@
+\input{preamble}
+
+\section*{Geiger and Marsden scattering data}
+
+Data from Geiger and Marsden's 1913 paper
+``The Laws of Deflexion of $\alpha$ Particles through Large Angles.''
+\begin{equation*}
+\begin{matrix}
+\theta & \text{Silver} & \text{Gold}
+\\[1ex]
+150 & 22.2 & 33.1\\
+135 & 27.4 & 43.0\\
+120 & 33.0 & 51.9\\
+105 & 47.3 & 69.5\\
+75 & 136 & 211\\\
+60 & 320 & 477\\
+45 & 989 & 1435\\
+37.5 & 1760 & 3300\\
+30 & 5260 & 7800\\
+22.5 & 20300 & 27300\\
+15 & 105400 & 132000
+\end{matrix}
+\end{equation*}
+
+The predicted values are
+\begin{equation*}
+\hat y=\frac{d\sigma}{d\Omega}=\frac{\beta}{(1-\cos\theta)^2}
+\end{equation*}
+
+By fitting $\beta$ values using ordinary least squares we obtain
+\begin{equation*}
+\begin{matrix}
+& \text{Silver} & \text{Gold}
+\\[1ex]
+\beta & 122 & 153\\
+R^2 & 0.999 & 0.999
+\end{matrix}
+\end{equation*}
+
+where $R^2$ is the coefficient of determination
+\begin{equation*}
+R^2=1-\frac{\sum(y-\hat y)^2}{(y-\bar y)^2}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/geiger-and-marsden-scattering-data-demo.html}{Eigenmath script}
+
+\end{document}
