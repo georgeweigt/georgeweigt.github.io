@@ -21,8 +21,7 @@ let ${\bf F}=(y,z,x)$ and let $S$ be the part of the paraboloid
 $z=4-x^2-y^2$
 that is above the $xy$ plane.
 The perimeter of the paraboloid is the circle $x^2+y^2=2$.
-The following script computes both the surface and line integrals.
-Polar coordinates are used for the line integral so that \verb$defint$ can succeed.
+The following script computes both surface and line integrals.
 
 {\color{blue}
 \begin{verbatim}
@@ -49,9 +48,6 @@ defint(f, t, 0, 2 pi)
 \end{verbatim}
 }
 
-The result is $-4\pi$.
-
-\bigskip
 \href{https://georgeweigt.github.io/examples/stokes-theorem-demo.html}{Eigenmath script}
 
 \end{document}
