@@ -46,13 +46,12 @@ E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 Verify that $\psi_1$ et cetera are solutions to the Dirac equation
 \begin{equation*}
 i\hbar\left(
-\frac{1}{c}
 \gamma^0\frac{\partial}{\partial t}+
-\gamma^1\frac{\partial}{\partial x}+
-\gamma^2\frac{\partial}{\partial y}+
-\gamma^3\frac{\partial}{\partial z}
+c\gamma^1\frac{\partial}{\partial x}+
+c\gamma^2\frac{\partial}{\partial y}+
+c\gamma^3\frac{\partial}{\partial z}
 \right)\psi
-=mc\psi
+=mc^2\psi
 \end{equation*}
 
 and that the solutions are normalized as
@@ -124,20 +123,20 @@ For the spatial derivatives
 
 Hence
 \begin{equation*}
-\frac{\hbar}{c}\frac{\partial\psi}{\partial t}
-\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\hbar\frac{\partial\psi}{\partial t}
+\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
 \times\text{joule}^{1/2}
 \end{equation*}
 
 and
 \begin{equation*}
-\hbar\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\hbar c\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
 \times\text{joule}^{1/2}
 \end{equation*}
 
 The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
-mc\psi\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+mc^2\psi\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
 \times\text{joule}^{1/2}
 \end{equation*}
 

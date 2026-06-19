@@ -27,26 +27,21 @@ w^4(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
 
 Verify that $\psi^r$ are solutions to the Dirac equation
 \begin{equation*}
-i\hbar\gamma^\mu\partial_\mu\psi=mc\psi
+i\hbar\gamma^\mu\partial_\mu\psi=mc^2\psi
 \end{equation*}
 
-and that the solutions are normalized as
-\begin{equation*}
-|\psi|^2=\frac{E}{mc^2}
-\end{equation*}
-
-Note that
-\begin{equation*}
-\partial_0=\frac{\partial}{\partial(ct)}=\frac{1}{c}\frac{\partial}{\partial t}
-\end{equation*}
-
-The gradient $\partial_\mu$ is a covariant vector hence
+where
 \begin{equation*}
 \gamma^\mu\partial_\mu
-=\frac{1}{c}\gamma^0\frac{\partial}{\partial t}
-+\gamma^1\frac{\partial}{\partial x}
-+\gamma^2\frac{\partial}{\partial y}
-+\gamma^3\frac{\partial}{\partial z}
+=\gamma^0\frac{\partial}{\partial t}
++c\gamma^1\frac{\partial}{\partial x}
++c\gamma^2\frac{\partial}{\partial y}
++c\gamma^3\frac{\partial}{\partial z}
+\end{equation*}
+
+Verify that the wave functions are normalized as
+\begin{equation*}
+|\psi|^2=\frac{E}{mc^2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/dirac-equation-1-demo.html}{Eigenmath script}
