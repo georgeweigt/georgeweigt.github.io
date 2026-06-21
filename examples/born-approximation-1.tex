@@ -4,18 +4,13 @@
 
 Derive the Born approximation
 \begin{equation*}
-\psi(r,\theta,\phi)=\frac{e^{ikr}}{r}f(\theta,\phi)
+\psi(r,\theta,\phi)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
 where
 \begin{equation*}
 k=\frac{\sqrt{2mE}}{\hbar}
-\end{equation*}
-
-and $f(\theta,\phi)$ is the scattering amplitude
-\begin{equation*}
-f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
-\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
 Vector $\mathbf p$ is momentum transfer such that
@@ -139,6 +134,18 @@ V(\mathbf y)\,d\mathbf y
 \end{equation*}
 
 \subsubsection*{\S2}
+
+Noting that
+\begin{equation*}
+|\psi(r,\theta,\phi)|^2=\frac{1}{r^2}\left|-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x\right|^2
+\end{equation*}
+
+we define $f(\theta,\phi)$ to be the scattering amplitude
+\begin{equation*}
+f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
+\end{equation*}
 
 Cross sections are completely determined by the scattering amplitude.
 \begin{equation*}
