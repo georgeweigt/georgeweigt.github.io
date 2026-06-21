@@ -2,7 +2,7 @@
 
 \section*{Born approximation 1}
 
-Let $\psi(r,\theta,\phi)$ be the Born approximation
+Derive the Born approximation
 \begin{equation*}
 \psi(r,\theta,\phi)=\frac{e^{ikr}}{r}f(\theta,\phi)
 \end{equation*}
@@ -28,29 +28,9 @@ and
 p^2=|\mathbf p|^2=4mE(1-\cos\theta)
 \end{equation*}
 
-Born approximation density is
-\begin{equation*}
-|\psi(r,\theta,\phi)|^2=\frac{|f(\theta,\phi)|^2}{r^2}
-\end{equation*}
+\subsubsection*{\S1}
 
-Cross sections are completely determined by the scattering amplitude.
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\left|\psi(r,\theta,\phi)\right|^2r^2=|f(\theta,\phi)|^2
-\end{equation*}
-
-For example, for Coulomb potentials we have
-\begin{equation*}
-f(\theta,\phi)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
-\end{equation*}
-
-Hence the Rutherford cross section
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=|f(\theta,\phi)|^2
-=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
-\end{equation*}
-
-Let us derive the Born approximation starting with the Schrodinger equation
+Start with the Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
 \end{equation*}
@@ -88,7 +68,7 @@ Then by substitution
 \int\left(\nabla^2+k^2\right)G(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
 \end{equation*}
 
-By linearity
+By linearity the integral can be factored as
 \begin{equation*}
 \left(\nabla^2+k^2\right)\psi(\mathbf x)=\left(\nabla^2+k^2\right)\frac{2m}{\hbar^2}
 \int G(\mathbf x-\mathbf y)V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
@@ -125,7 +105,7 @@ Hence
 V(\mathbf y)\psi(\mathbf y)\,d\mathbf y
 \end{equation*}
 
-For a first approximation we substitute a plane wave for $\psi(\mathbf y)$.
+For a first-order approximation we substitute a plane wave for $\psi(\mathbf y)$.
 \begin{equation*}
 \psi(\mathbf y)=\exp\left(\frac{ik\mathbf x'\cdot\mathbf y}{|\mathbf x'|}\right)
 \end{equation*}
@@ -149,6 +129,32 @@ Then by substitution
 \psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
 V(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+In polar coordinates
+\begin{equation*}
+\psi(r,\theta,\phi)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
+V(\mathbf y)\,d\mathbf y
+\end{equation*}
+
+\subsubsection*{\S2}
+
+Cross sections are completely determined by the scattering amplitude.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\left|\psi(r,\theta,\phi)\right|^2r^2=|f(\theta,\phi)|^2
+\end{equation*}
+
+For example, for Coulomb potentials we have
+\begin{equation*}
+f(\theta,\phi)=\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}
+\end{equation*}
+
+Hence the Rutherford cross section
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=|f(\theta,\phi)|^2
+=\left[\frac{Z\alpha\hbar c}{2E(1-\cos\theta)}\right]^2
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/born-approximation-1-demo.html}{Eigenmath script}
