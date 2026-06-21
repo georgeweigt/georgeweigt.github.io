@@ -141,20 +141,31 @@ V(\mathbf y)\,d\mathbf y
 
 \subsubsection*{\S2}
 
-Noting that
+We now consider the differential cross section $d\sigma$ such that
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=|\psi(r,\theta,\phi)|^2\,r^2
-=\left|-\frac{m}{2\pi\hbar^2}
+d\sigma=|\psi|^2\,r^2\,d\Omega
+\end{equation*}
+
+For the Born approximation of $\psi$ we have
+\begin{equation*}
+|\psi|^2=\left|-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x\right|^2
 \end{equation*}
 
-we define $f(\theta,\phi)$ to be the scattering amplitude
+The factor $|\exp(ikr)/r|^2=1/r^2$ cancels with $r^2$ in $d\sigma$ hence
+\begin{equation*}
+d\sigma=\left|-\frac{m}{2\pi\hbar^2}
+\int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x\right|^2
+\,d\Omega
+\end{equation*}
+
+Let $f(\theta,\phi)$ be the scattering amplitude
 \begin{equation*}
 f(\theta,\phi)=-\frac{m}{2\pi\hbar^2}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
-so that
+so that for the Born approximation
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=|f(\theta,\phi)|^2
 \end{equation*}
