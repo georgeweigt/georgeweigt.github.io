@@ -20,7 +20,7 @@ L_z\psi&=-i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\
 & S_z\chi&=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}\chi
 \end{align*}
 
-Let $\Psi$ be the product of wave function $\psi$ and vector $\chi$.
+Let $\Psi$ be the product of wave function $\psi$ and spin vector $\chi$.
 \begin{equation*}
 \Psi=\psi\chi
 \end{equation*}
@@ -38,13 +38,17 @@ J^2=\mathbf J\cdot\mathbf J=J_x^2+J_y^2+J_z^2
 Operator $J^2$ can be decomposed as
 \begin{equation*}
 J^2=(\mathbf L+\mathbf S)\cdot(\mathbf L+\mathbf S)=L^2+S^2+2\mathbf L\cdot\mathbf S
+\tag{1}
 \end{equation*}
+
+\iffalse
 
 In Eigenmath code
 \begin{equation*}
 \mathbf L\cdot\mathbf S\Psi=\text{\tt contract(L(S(Psi)))}
-\tag{1}
 \end{equation*}
+
+\fi
 
 Verify $J^2$ commutes with $L^2$ and $S^2$.
 \begin{equation*}
