@@ -36,10 +36,9 @@ JXJ(f) = (Jy(Jz(f)) - Jz(Jy(f)),
 
 # theta and phi are the spin direction
 
-chi = (c1(theta,phi),
-       c2(theta,phi))
+chi = (chi1(theta,phi,t),chi2(theta,phi,t))
 
-Psi = psi(x,y,z) chi
+Psi = psi(x,y,z,t) chi
 
 check(LXL(Psi) == i hbar L(Psi))
 check(SXS(Psi) == i hbar S(Psi))
