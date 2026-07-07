@@ -2,7 +2,7 @@
 
 \section*{Dirac equation 3}
 
-From the previous section we have wavefunctions
+Let
 \begin{align*}
 \psi_1&=\underset{\text{wavefunction for fermion spin up}}
 {
@@ -43,67 +43,103 @@ and
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-Spinors $u$ and $v$ are equivalent to $\psi$ with the exponentials canceled out.
-\begin{align*}
-u_1=\psi_1e^{i\xi/\hbar}&=\underset{\text{spinor for fermion spin up}}
-{
-\sqrt{E+mc^2}
-\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
-}
-&
-u_2=\psi_2e^{i\xi/\hbar}&=\underset{\text{spinor for fermion spin down}}
-{
-\sqrt{E+mc^2}
-\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
-}
-\\[1ex]
-v_1=\psi_3e^{-i\xi/\hbar}&=\underset{\text{spinor for antifermion spin up}}
-{
-\sqrt{E+mc^2}
-\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
-}
-&
-v_2=\psi_4e^{-i\xi/\hbar}&=\underset{\text{spinor for antifermion spin down}}
-{
-\sqrt{E+mc^2}
-\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
-}
-\end{align*}
-
-Spinors are solutions to the momentum-space Dirac equations
-\begin{align*}
-\slashed pu&=mcu
-\\
-\slashed pv&=-mcv
-\end{align*}
-
-where
+Verify $\psi_1$ et cetera are solutions to the Dirac equation
 \begin{equation*}
-\slashed p=p^\mu g_{\mu\nu}\gamma^\nu
+i\hbar\left(
+\gamma^0\frac{\partial}{\partial t}+
+c\gamma^1\frac{\partial}{\partial x}+
+c\gamma^2\frac{\partial}{\partial y}+
+c\gamma^3\frac{\partial}{\partial z}
+\right)\psi
+=mc^2\psi
+\end{equation*}
+
+and that the solutions are normalized as
+\begin{equation*}
+|\psi|^2=2E
+\end{equation*}
+
+Gamma matrices for the ``Dirac representation'' are
+\begin{align*}
+\gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
+&
+\gamma^1&=\begin{pmatrix}0&0&0&1\\0&0&1&0\\0&-1&0&0\\-1&0&0&0\end{pmatrix}
+\\[1ex]
+\gamma^2&=\begin{pmatrix}0&0&0&-i\\0&0&i&0\\0&i&0&0\\-i&0&0&0\end{pmatrix}
+&
+\gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
+\end{align*}
+
+Let us check physical dimensions.
+
+\bigskip
+For the $Et$ term in $\xi$ we have
+\begin{equation*}
+Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
+=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+The momenta $p_x$, $p_y$, and $p_z$ have units of
+\begin{equation*}
+\frac{\text{kilogram}\,\text{meter}}{\text{second}}
+\end{equation*}
+
+Hence
+\begin{equation*}
+-p_xx-p_yy-p_zz\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}\times\text{meter}
+=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+We have for the reduced Planck constant
+\begin{equation*}
+\hbar\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\end{equation*}
+
+Hence $\xi/\hbar$ is dimensionless as required by the exponential function:
+\begin{equation*}
+\frac{Et-p_xx-p_yy-p_zz}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
+\times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
+\end{equation*}
+
+From the normalization property we have
+\begin{equation*}
+\psi\propto\text{joule}^{1/2}
+\end{equation*}
+
+The derivatives introduce inverse units.
+
+\bigskip
+For the time derivative
+\begin{equation*}
+\frac{\partial\psi}{\partial t}\propto\frac{1}{\text{second}}
+\times\text{joule}^{1/2}
+\end{equation*}
+
+For the spatial derivatives
+\begin{equation*}
+\frac{\partial\psi}{\partial x}\propto\frac{1}{\text{meter}}
+\times\text{joule}^{1/2}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\hbar\frac{\partial\psi}{\partial t}
+\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
 and
 \begin{equation*}
-p^\mu=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
+\hbar c\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
-Spinors have the following ``completeness property.''
-\begin{align*}
-u_1\bar u_1+u_2\bar u_2&=\slashed pc+mc^2
-\\
-v_1\bar v_1+v_2\bar v_2&=\slashed pc-mc^2
-\end{align*}
-
-Adjoints of spinors are formed as
+The resulting units match the right-hand side of the Dirac equation.
 \begin{equation*}
-\bar u=u^\dag\gamma^0,
-\quad
-\bar v=v^\dag\gamma^0
+mc^2\psi\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
+\times\text{joule}^{1/2}
 \end{equation*}
 
-Vector products $uu^\dag$ and $vv^\dag$ are outer products that form $4\times4$ matrices.
-
-\bigskip
 \href{https://georgeweigt.github.io/examples/dirac-equation-3-demo.html}{Eigenmath script}
 
 \end{document}

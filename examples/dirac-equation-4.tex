@@ -1,0 +1,109 @@
+\input{preamble}
+
+\section*{Dirac equation 4}
+
+From the previous section we have wavefunctions
+\begin{align*}
+\psi_1&=\underset{\text{wavefunction for fermion spin up}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
+e^{-i\xi/\hbar}
+}
+&
+\psi_2&=\underset{\text{wavefunction for fermion spin down}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
+e^{-i\xi/\hbar}
+}
+\\[1ex]
+\psi_3&=\underset{\text{wavefunction for antifermion spin up}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
+e^{i\xi/\hbar}
+}
+&
+\psi_4&=\underset{\text{wavefunction for antifermion spin down}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
+e^{i\xi/\hbar}
+}
+\end{align*}
+
+where
+\begin{equation*}
+\xi=p_\mu x^\mu=Et-p_xx-p_yy-p_zz
+\end{equation*}
+
+and
+\begin{equation*}
+E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
+\end{equation*}
+
+Spinors $u$ and $v$ are equivalent to $\psi$ with the exponentials canceled out.
+\begin{align*}
+u_1=\psi_1e^{i\xi/\hbar}&=\underset{\text{spinor for fermion spin up}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
+}
+&
+u_2=\psi_2e^{i\xi/\hbar}&=\underset{\text{spinor for fermion spin down}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
+}
+\\[1ex]
+v_1=\psi_3e^{-i\xi/\hbar}&=\underset{\text{spinor for antifermion spin up}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
+}
+&
+v_2=\psi_4e^{-i\xi/\hbar}&=\underset{\text{spinor for antifermion spin down}}
+{
+\sqrt{E+mc^2}
+\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
+}
+\end{align*}
+
+Spinors are solutions to the momentum-space Dirac equations
+\begin{align*}
+\slashed pu&=mcu
+\\
+\slashed pv&=-mcv
+\end{align*}
+
+where
+\begin{equation*}
+\slashed p=p^\mu g_{\mu\nu}\gamma^\nu
+\end{equation*}
+
+and
+\begin{equation*}
+p^\mu=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}\quad
+\end{equation*}
+
+Spinors have the following ``completeness property.''
+\begin{align*}
+u_1\bar u_1+u_2\bar u_2&=\slashed pc+mc^2
+\\
+v_1\bar v_1+v_2\bar v_2&=\slashed pc-mc^2
+\end{align*}
+
+Adjoints of spinors are formed as
+\begin{equation*}
+\bar u=u^\dag\gamma^0,
+\quad
+\bar v=v^\dag\gamma^0
+\end{equation*}
+
+Vector products $uu^\dag$ and $vv^\dag$ are outer products that form $4\times4$ matrices.
+
+\bigskip
+\href{https://georgeweigt.github.io/examples/dirac-equation-4-demo.html}{Eigenmath script}
+
+\end{document}

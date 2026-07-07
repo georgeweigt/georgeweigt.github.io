@@ -1,0 +1,59 @@
+"Dirac equation 4"
+
+u1 = sqrt(E + m c^2) *
+     (1, 0, c pz / (E + m c^2), (px + i py) c / (E + m c^2))
+
+u2 = sqrt(E + m c^2) *
+     (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2))
+
+v1 = sqrt(E + m c^2) *
+     (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0)
+
+v2 = sqrt(E + m c^2) *
+     ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1)
+
+E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+p = (E/c, px, py, pz)
+
+pslash = dot(p,gmunu,gamma)
+
+"Verify spinors"
+
+check(dot(pslash,u1) == m c u1)
+check(dot(pslash,u2) == m c u2)
+
+check(dot(pslash,v1) == -m c v1)
+check(dot(pslash,v2) == -m c v2)
+
+"ok"
+
+"Verify normalization"
+
+check(dot(u1,conj(u1)) == 2 E)
+check(dot(u2,conj(u2)) == 2 E)
+
+check(dot(v1,conj(v1)) == 2 E)
+check(dot(v2,conj(v2)) == 2 E)
+
+"ok"
+
+"Verify completeness"
+
+adjoint(u) = dot(conj(u),gamma0)
+
+check(outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == pslash c + m c^2 I)
+check(outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == pslash c - m c^2 I)
+
+"ok"

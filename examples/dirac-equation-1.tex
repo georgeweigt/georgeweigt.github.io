@@ -2,48 +2,118 @@
 
 \section*{Dirac equation 1}
 
-From Fitzpatrick problem 11.11.
-
-\bigskip
-Let
+Consider the Schrodinger equation
 \begin{equation*}
-\psi^r=\exp\left(-\frac{i}{\hbar}\epsilon_rp_\mu x^\mu\right)w^r(\mathbf p)
+i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)=H\psi(\mathbf x,t)
 \end{equation*}
 
-where $\epsilon=(1,1,-1,-1)$ and
+The Dirac equation has for the Hamiltonian $H$
+\begin{equation*}
+H=\alpha_xp_xc+\alpha_yp_yc+\alpha_zp_zc+\beta mc^2
+\end{equation*}
+
+where $\alpha$ and $\beta$ are $4\times4$ matrices
+\begin{equation*}
+\alpha_x=\begin{pmatrix}
+0&0&0&1\\
+0&0&1&0\\
+0&1&0&0\\
+1&0&0&0
+\end{pmatrix}
+\qquad
+\alpha_y=\begin{pmatrix}
+0&0&0&-i\\
+0&0&i&0\\
+0&-i&0&0\\
+i&0&0&0
+\end{pmatrix}
+\qquad
+\alpha_z=\begin{pmatrix}
+0&0&1&0\\
+0&0&0&-1\\
+1&0&0&0\\
+0&-1&0&0
+\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+\beta=\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&-1&0\\
+0&0&0&-1
+\end{pmatrix}
+\end{equation*}
+
+Substitute $H$ into the Schrodinger equation to obtain
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)
+=\left(\alpha_xp_xc+\alpha_yp_yc+\alpha_zp_zc+\beta mc^2\right)\psi(\mathbf x,t)
+\end{equation*}
+
+Rearrange as
+\begin{equation*}
+\left(i\hbar\frac{\partial }{\partial t}-\alpha_xp_xc-\alpha_yp_yc-\alpha_zp_zc\right)\psi(\mathbf x,t)
+=\beta mc^2\psi(\mathbf x,t)
+\end{equation*}
+
+Left-multiply by $\beta$.
+\begin{equation*}
+\left(i\hbar\beta\frac{\partial}{\partial t}
+-\beta\alpha_xp_xc-\beta\alpha_yp_yc
+-\beta\alpha_zp_xc\right)\psi(\mathbf x,t)
+=mc^2\psi(\mathbf x,t)
+\end{equation*}
+
+Define $\gamma$ matrices
+\begin{equation*}
+\gamma_t=\beta\qquad
+\gamma_x=\beta\alpha_x\qquad
+\gamma_y=\beta\alpha_y\qquad
+\gamma_z=\beta\alpha_z
+\end{equation*}
+
+and write
+\begin{equation*}
+\left(i\hbar\gamma_t\frac{\partial}{\partial t}
+-\gamma_xp_xc-\gamma_yp_yc
+-\gamma_zp_xc\right)\psi(\mathbf x,t)
+=mc^2\psi(\mathbf x,t)
+\end{equation*}
+
+Substitute $\mathbf p=-i\hbar\nabla$ for the momentum operators to obtain
+\begin{equation*}
+i\hbar\left(
+\gamma_t\frac{\partial}{\partial t}
++c\gamma_x\frac{\partial}{\partial x}
++c\gamma_y\frac{\partial}{\partial y}
++c\gamma_z\frac{\partial}{\partial z}
+\right)\psi(\mathbf x,t)
+=mc^2\psi(\mathbf x,t)
+\end{equation*}
+
+In spacetime notation
+\begin{equation*}
+i\hbar\left(
+\gamma^0\frac{\partial}{\partial x^0}
++c\gamma^1\frac{\partial}{\partial x^1}
++c\gamma^2\frac{\partial}{\partial x^2}
++c\gamma^3\frac{\partial}{\partial x^3}
+\right)\psi(x^\mu)
+=mc^2\psi(x^\mu)
+\end{equation*}
+
+Verify dimensions.
 \begin{align*}
-w^1(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
-\begin{pmatrix}1\\0\\\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\end{pmatrix}
-&
-w^2(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
-\begin{pmatrix}0\\1\\\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\end{pmatrix}
+\hbar\frac{\partial}{\partial t}&=[\text{J}\,\text{s}]\,[\text{s}^{-1}]=[\text{J}]
 \\[1ex]
-w^3(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
-\begin{pmatrix}\frac{p_zc}{E+mc^2}\\\frac{(p_x+ip_y)c}{E+mc^2}\\1\\0\end{pmatrix}
-&
-w^4(\mathbf p)&=\sqrt{\frac{E+mc^2}{2mc^2}}
-\begin{pmatrix}\frac{(p_x-ip_y)c}{E+mc^2}\\\frac{-p_zc}{E+mc^2}\\0\\1\end{pmatrix}
+\hbar c\frac{\partial}{\partial x}
+&=[\text{J}\,\text{s}]\,[\text{m}\,\text{s}^{-1}]\,[\text{m}^{-1}]=[\text{J}]
+\\[1ex]
+mc^2&=[\text{J}]
 \end{align*}
 
-Verify $\psi^r$ are solutions to the Dirac equation
-\begin{equation*}
-i\hbar\gamma^\mu\partial_\mu\psi=mc^2\psi
-\end{equation*}
-
-where
-\begin{equation*}
-\gamma^\mu\partial_\mu
-=\gamma^0\frac{\partial}{\partial t}
-+c\gamma^1\frac{\partial}{\partial x}
-+c\gamma^2\frac{\partial}{\partial y}
-+c\gamma^3\frac{\partial}{\partial z}
-\end{equation*}
-
-Verify $\psi^r$ are normalized as
-\begin{equation*}
-|\psi|^2=\frac{E}{mc^2}
-\end{equation*}
-
-\href{https://georgeweigt.github.io/examples/dirac-equation-1-demo.html}{Eigenmath script}
+\href{https://georgeweigt.github.io/examples/dirac-equation-1.html}{Eigenmath script}
 
 \end{document}

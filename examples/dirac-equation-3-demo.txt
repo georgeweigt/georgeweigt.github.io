@@ -1,59 +1,53 @@
 "Dirac equation 3"
 
-u1 = sqrt(E + m c^2) *
-     (1, 0, c pz / (E + m c^2), (px + i py) c / (E + m c^2))
+psi1 = sqrt(E + m c^2) *
+       (1, 0, c pz / (E + m c^2), (px + i py) c / (E + m c^2)) *
+       exp(-i xi / hbar)
 
-u2 = sqrt(E + m c^2) *
-     (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2))
+psi2 = sqrt(E + m c^2) *
+       (0, 1, (px - i py) c / (E + m c^2), -pz c / (E + m c^2)) *
+       exp(-i xi / hbar)
 
-v1 = sqrt(E + m c^2) *
-     (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0)
+psi3 = sqrt(E + m c^2) *
+       (pz c / (E + m c^2), (px + i py) c / (E + m c^2), 1, 0) *
+       exp(i xi / hbar)
 
-v2 = sqrt(E + m c^2) *
-     ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1)
+psi4 = sqrt(E + m c^2) *
+       ((px - i py) c / (E + m c^2), -pz c / (E + m c^2), 0, 1) *
+       exp(i xi / hbar)
 
+xi = E t - px x - py y - pz z
 E = sqrt(px^2 c^2 + py^2 c^2 + pz^2 c^2 + m^2 c^4)
-
-I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
-
-gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 
 gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
 gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
 gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
 gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 
-gamma = (gamma0,gamma1,gamma2,gamma3)
+D(psi) = dot(gamma0,d(psi,t)) +
+         c dot(gamma1,d(psi,x)) +
+         c dot(gamma2,d(psi,y)) +
+         c dot(gamma3,d(psi,z))
 
-p = (E/c, px, py, pz)
+"Verify wavefunctions"
 
-pslash = dot(p,gmunu,gamma)
+check(i hbar D(psi1) == m c^2 psi1)
+check(i hbar D(psi2) == m c^2 psi2)
+check(i hbar D(psi3) == m c^2 psi3)
+check(i hbar D(psi4) == m c^2 psi4)
 
-"Verify spinors"
-
-check(dot(pslash,u1) == m c u1)
-check(dot(pslash,u2) == m c u2)
-
-check(dot(pslash,v1) == -m c v1)
-check(dot(pslash,v2) == -m c v2)
+check(i hbar d(psi1,t) == E psi1)
+check(i hbar d(psi2,t) == E psi2)
+check(i hbar d(psi3,t) == -E psi3)
+check(i hbar d(psi4,t) == -E psi4)
 
 "ok"
 
 "Verify normalization"
 
-check(dot(u1,conj(u1)) == 2 E)
-check(dot(u2,conj(u2)) == 2 E)
-
-check(dot(v1,conj(v1)) == 2 E)
-check(dot(v2,conj(v2)) == 2 E)
-
-"ok"
-
-"Verify completeness"
-
-adjoint(u) = dot(conj(u),gamma0)
-
-check(outer(u1,adjoint(u1)) + outer(u2,adjoint(u2)) == pslash c + m c^2 I)
-check(outer(v1,adjoint(v1)) + outer(v2,adjoint(v2)) == pslash c - m c^2 I)
+check(dot(psi1,conj(psi1)) == 2 E)
+check(dot(psi2,conj(psi2)) == 2 E)
+check(dot(psi3,conj(psi3)) == 2 E)
+check(dot(psi4,conj(psi4)) == 2 E)
 
 "ok"
