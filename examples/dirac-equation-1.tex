@@ -7,12 +7,13 @@ Consider the Schrodinger equation
 i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)=H\psi(\mathbf x,t)
 \end{equation*}
 
-The Dirac equation has for the Hamiltonian $H$
+The Hamiltonian $H$ for the Dirac equation is
 \begin{equation*}
-H=\alpha_xp_xc+\alpha_yp_yc+\alpha_zp_zc+\beta mc^2
+H=c\boldsymbol\alpha\cdot\mathbf p+\beta mc^2
 \end{equation*}
 
-where $\alpha$ and $\beta$ are $4\times4$ matrices
+where $\boldsymbol\alpha=(\alpha_x,\alpha_y,\alpha_z)$.
+The components of $\boldsymbol\alpha$ are the matrices
 \begin{equation*}
 \alpha_x=\begin{pmatrix}
 0&0&0&1\\
@@ -20,14 +21,14 @@ where $\alpha$ and $\beta$ are $4\times4$ matrices
 0&1&0&0\\
 1&0&0&0
 \end{pmatrix}
-\qquad
+\quad
 \alpha_y=\begin{pmatrix}
 0&0&0&-i\\
 0&0&i&0\\
 0&-i&0&0\\
 i&0&0&0
 \end{pmatrix}
-\qquad
+\quad
 \alpha_z=\begin{pmatrix}
 0&0&1&0\\
 0&0&0&-1\\
@@ -36,7 +37,7 @@ i&0&0&0
 \end{pmatrix}
 \end{equation*}
 
-and
+and $\beta$ is the matrix
 \begin{equation*}
 \beta=\begin{pmatrix}
 1&0&0&0\\
@@ -46,43 +47,48 @@ and
 \end{pmatrix}
 \end{equation*}
 
-Substitute $H$ into the Schrodinger equation to obtain
+Substitute $H$ into the Schrodinger equation.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)
-=\left(\alpha_xp_xc+\alpha_yp_yc+\alpha_zp_zc+\beta mc^2\right)\psi(\mathbf x,t)
+=(c\boldsymbol\alpha\cdot\mathbf p+\beta mc^2)\psi(\mathbf x,t)
 \end{equation*}
 
 Rearrange as
 \begin{equation*}
-\left(i\hbar\frac{\partial }{\partial t}-\alpha_xp_xc-\alpha_yp_yc-\alpha_zp_zc\right)\psi(\mathbf x,t)
+\left(i\hbar\frac{\partial }{\partial t}
+-c\boldsymbol\alpha\cdot\mathbf p\right)\psi(\mathbf x,t)
+=\beta mc^2\psi(\mathbf x,t)
+\end{equation*}
+
+Substitute $\mathbf p=-i\hbar\nabla$ for the momentum operator.
+\begin{equation*}
+i\hbar\left(\frac{\partial }{\partial t}
++c\alpha_x\frac{\partial}{\partial x}
++c\alpha_y\frac{\partial}{\partial y}
++c\alpha_z\frac{\partial}{\partial z}
+\right)\psi(\mathbf x,t)
 =\beta mc^2\psi(\mathbf x,t)
 \end{equation*}
 
 Left-multiply by $\beta$.
 \begin{equation*}
-\left(i\hbar\beta\frac{\partial}{\partial t}
--\beta\alpha_xp_xc-\beta\alpha_yp_yc
--\beta\alpha_zp_xc\right)\psi(\mathbf x,t)
+i\hbar\left(\beta\frac{\partial}{\partial t}
++c\beta\alpha_x\frac{\partial}{\partial x}
++c\beta\alpha_y\frac{\partial}{\partial y}
++c\beta\alpha_z\frac{\partial}{\partial z}
+\right)\psi(\mathbf x,t)
 =mc^2\psi(\mathbf x,t)
 \end{equation*}
 
 Define $\gamma$ matrices
 \begin{equation*}
-\gamma_t=\beta\qquad
-\gamma_x=\beta\alpha_x\qquad
-\gamma_y=\beta\alpha_y\qquad
+\gamma_t=\beta\quad
+\gamma_x=\beta\alpha_x\quad
+\gamma_y=\beta\alpha_y\quad
 \gamma_z=\beta\alpha_z
 \end{equation*}
 
-and write
-\begin{equation*}
-\left(i\hbar\gamma_t\frac{\partial}{\partial t}
--\gamma_xp_xc-\gamma_yp_yc
--\gamma_zp_xc\right)\psi(\mathbf x,t)
-=mc^2\psi(\mathbf x,t)
-\end{equation*}
-
-Substitute $\mathbf p=-i\hbar\nabla$ for the momentum operators to obtain
+and write the Dirac equation
 \begin{equation*}
 i\hbar\left(
 \gamma_t\frac{\partial}{\partial t}
