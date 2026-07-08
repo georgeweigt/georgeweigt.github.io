@@ -43,7 +43,7 @@ and
 E=\sqrt{p_x^2c^2+p_y^2c^2+p_z^2c^2+m^2c^4}
 \end{equation*}
 
-Verify $\psi_1$ et cetera are solutions to the Dirac equation
+Verify the wavefunctions solve the Dirac equation
 \begin{equation*}
 i\hbar\left(
 \gamma^0\frac{\partial}{\partial t}+
@@ -54,11 +54,12 @@ c\gamma^3\frac{\partial}{\partial z}
 =mc^2\psi
 \end{equation*}
 
-and that the solutions are normalized as
+and are normalized as
 \begin{equation*}
 |\psi|^2=2E
 \end{equation*}
 
+\iffalse
 Gamma matrices for the ``Dirac representation'' are
 \begin{align*}
 \gamma^0&=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1\end{pmatrix}
@@ -69,76 +70,22 @@ Gamma matrices for the ``Dirac representation'' are
 &
 \gamma^3&=\begin{pmatrix}0&0&1&0\\0&0&0&-1\\-1&0&0&0\\0&1&0&0\end{pmatrix}
 \end{align*}
+\fi
 
-Let us check physical dimensions.
-
-\bigskip
-For the $Et$ term in $\xi$ we have
-\begin{equation*}
-Et\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}\times\text{second}
-=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
-\end{equation*}
-
-The momenta $p_x$, $p_y$, and $p_z$ have units of
-\begin{equation*}
-\frac{\text{kilogram}\,\text{meter}}{\text{second}}
-\end{equation*}
-
-Hence
-\begin{equation*}
--p_xx-p_yy-p_zz\propto\frac{\text{kilogram}\,\text{meter}}{\text{second}}\times\text{meter}
-=\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
-\end{equation*}
-
-We have for the reduced Planck constant
-\begin{equation*}
-\hbar\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
-\end{equation*}
-
-Hence $\xi/\hbar$ is dimensionless as required by the exponential function:
-\begin{equation*}
-\frac{Et-p_xx-p_yy-p_zz}{\hbar}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}}
-\times\frac{\text{second}}{\text{kilogram}\,\text{meter}^2}=1
-\end{equation*}
-
-From the normalization property we have
-\begin{equation*}
-\psi\propto\text{joule}^{1/2}
-\end{equation*}
-
-The derivatives introduce inverse units.
-
-\bigskip
-For the time derivative
-\begin{equation*}
-\frac{\partial\psi}{\partial t}\propto\frac{1}{\text{second}}
-\times\text{joule}^{1/2}
-\end{equation*}
-
-For the spatial derivatives
-\begin{equation*}
-\frac{\partial\psi}{\partial x}\propto\frac{1}{\text{meter}}
-\times\text{joule}^{1/2}
-\end{equation*}
-
-Hence
-\begin{equation*}
-\hbar\frac{\partial\psi}{\partial t}
-\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
-\times\text{joule}^{1/2}
-\end{equation*}
-
-and
-\begin{equation*}
-\hbar c\frac{\partial\psi}{\partial x}\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
-\times\text{joule}^{1/2}
-\end{equation*}
-
-The resulting units match the right-hand side of the Dirac equation.
-\begin{equation*}
-mc^2\psi\propto\frac{\text{kilogram}\,\text{meter}^2}{\text{second}^2}
-\times\text{joule}^{1/2}
-\end{equation*}
+Verify dimensions.
+\begin{align*}
+\frac{Et}{\hbar}
+&=\frac{[\text{J}]\,[\text{s}]}{[\text{J}\,\text{s}]}=[1]
+\\[1ex]
+\frac{p_xx}{\hbar}
+&=\frac{[\text{kg}\,\text{m}\,\text{s}^{-1}]\,[\text{m}]}{[\text{J}\,\text{s}]}=[1]
+\\[1ex]
+\hbar\frac{\partial}{\partial t}
+&=[\text{J}\,\text{s}]\,[\text{s}^{-1}]=[\text{J}]
+\\[1ex]
+\hbar c\frac{\partial}{\partial x}
+&=[\text{J}\,\text{s}]\,[\text{m}\,\text{s}^{-1}]\,[\text{m}^{-1}]=[\text{J}]
+\end{align*}
 
 \href{https://georgeweigt.github.io/examples/dirac-equation-3-demo.html}{Eigenmath script}
 
