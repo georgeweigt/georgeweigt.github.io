@@ -9,7 +9,7 @@ i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)=H\psi(\mathbf x,t)
 
 The Hamiltonian $H$ for the Dirac equation is
 \begin{equation*}
-H=c\boldsymbol\alpha\cdot\mathbf p+\beta mc^2
+H=\boldsymbol\alpha\cdot\mathbf pc+\beta mc^2
 \end{equation*}
 
 where $\boldsymbol\alpha=(\alpha_x,\alpha_y,\alpha_z)$.
@@ -50,17 +50,18 @@ and $\beta$ is the matrix
 Substitute $H$ into the Schrodinger equation.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\psi(\mathbf x,t)
-=(c\boldsymbol\alpha\cdot\mathbf p+\beta mc^2)\psi(\mathbf x,t)
+=(\boldsymbol\alpha\cdot\mathbf pc+\beta mc^2)\psi(\mathbf x,t)
 \end{equation*}
 
 Rearrange as
 \begin{equation*}
 \left(i\hbar\frac{\partial }{\partial t}
--c\boldsymbol\alpha\cdot\mathbf p\right)\psi(\mathbf x,t)
+-\boldsymbol\alpha\cdot\mathbf pc\right)\psi(\mathbf x,t)
 =\beta mc^2\psi(\mathbf x,t)
 \end{equation*}
 
-Substitute $\mathbf p=-i\hbar\nabla$ for the momentum operator.
+Substitute $\mathbf p=-i\hbar\nabla$ for the momentum operator
+and move $c$ out of the way.
 \begin{equation*}
 i\hbar\left(\frac{\partial }{\partial t}
 +c\alpha_x\frac{\partial}{\partial x}
@@ -80,7 +81,7 @@ i\hbar\left(\beta\frac{\partial}{\partial t}
 =mc^2\psi(\mathbf x,t)
 \end{equation*}
 
-Define $\gamma$ matrices
+Substitute $\gamma$ matrices
 \begin{equation*}
 \gamma_t=\beta\quad
 \gamma_x=\beta\alpha_x\quad
@@ -88,7 +89,7 @@ Define $\gamma$ matrices
 \gamma_z=\beta\alpha_z
 \end{equation*}
 
-and write the Dirac equation
+to obtain the Dirac equation
 \begin{equation*}
 i\hbar\left(
 \gamma_t\frac{\partial}{\partial t}
