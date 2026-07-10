@@ -2,15 +2,14 @@
 
 \section*{Harmonic oscillator 1}
 
-Let $V(x)$ be the potential energy for a harmonic oscillator.
+Let $H$ be the harmonic oscillator Hamiltonian.
 \begin{equation*}
-V(x)=\frac{1}{2}m\omega^2 x^2
+H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}m\omega^2x^2
 \end{equation*}
 
 We seek $\psi(x,t)$ that solves the Schrodinger equation
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)
-=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)+V(x)\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t)
 \end{equation*}
 
 The solution for $n=0,1,2,\ldots$ is
@@ -39,14 +38,12 @@ i\hbar\frac{\partial}{\partial t}\psi_n(x,t)=E_n\psi_n(x,t)
 
 Hence by the Schrodinger equation
 \begin{equation*}
-E_n\psi_n(x,t)=
--\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi_n(x,t)+V(x)\psi_n(x,t)
+E_n\psi_n(x,t)=H\psi_n(x,t)
 \end{equation*}
 
-Noting that the factor $\exp(-iE_nt/\hbar)$ cancels we also have
+Noting that the wavefunction factor $\exp(-iE_nt/\hbar)$ cancels we also have
 \begin{equation*}
-E_n\phi_n(x)=
--\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\phi_n(x)+V(x)\phi_n(x)
+E_n\phi_n(x)=H\phi_n(x)
 \end{equation*}
 
 where
