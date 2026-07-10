@@ -1,0 +1,65 @@
+\input{preamble}
+
+\section*{Time-independent Schrodinger equation}
+
+Consider the Schrodinger equation
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t)
+\end{equation*}
+
+Let $\psi(x,t)$ be separable as
+\begin{equation*}
+\psi(x,t)=\phi(t)\varphi(x)
+\end{equation*}
+
+Let it be the case that for the time derivative we have
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\phi(t)=E\phi(t)
+\end{equation*}
+
+where $E$ is a constant. Then
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=E\phi(t)\varphi(x)=E\psi(x,t)
+\end{equation*}
+
+Hence $\psi(x,t)$ is a solution to the time-independent
+Schrodinger equation
+\begin{equation*}
+E\psi(x,t)=H\psi(x,t)
+\end{equation*}
+
+If $H$ is independent of $t$ then we also have
+\begin{equation*}
+E\varphi(x)=H\varphi(x)
+\end{equation*}
+
+For example, the Hamiltonian for the harmonic oscillator is
+\begin{equation*}
+H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}m\omega^2x^2
+\end{equation*}
+
+The wavefunctions are
+\begin{equation*}
+\psi_n(x,t)=C_n\exp\left(-\frac{iE_nt}{\hbar}\right)
+\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\end{equation*}
+
+where $C_n$ is a normalization constant and
+\begin{equation*}
+E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
+\end{equation*}
+
+Taking the time derivative of $\psi_n(x,t)$ we find
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=E_n\psi(x,t)
+\end{equation*}
+
+Hence $\psi(x,t)$ is a solution to the time-independent Schrodinger equation
+\begin{equation*}
+E_n\psi(x,t)=H\psi(x,t)
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
+
+\end{document}
