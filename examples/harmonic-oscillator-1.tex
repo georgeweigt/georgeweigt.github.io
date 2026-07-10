@@ -2,11 +2,9 @@
 
 \section*{Harmonic oscillator 1}
 
-% {\it Anything quadratic is called harmonic.} ---A.~Zee
-
 Let $V(x)$ be the potential energy for a harmonic oscillator.
 \begin{equation*}
-V(x)=\frac{m\omega^2 x^2}{2}
+V(x)=\frac{1}{2}m\omega^2 x^2
 \end{equation*}
 
 We seek $\psi(x,t)$ that solves the Schrodinger equation
@@ -15,39 +13,51 @@ i\hbar\frac{\partial}{\partial t}\psi(x,t)
 =-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)+V(x)\psi(x,t)
 \end{equation*}
 
-The solution is
+The solution for $n=0,1,2,\ldots$ is
 \begin{equation*}
-\psi_n(x,t)=C_n\exp\left[\frac{m\omega x^2}{2\hbar}-i\omega t\left(n+\tfrac{1}{2}\right)\right]
+\psi_n(x,t)=C_n\exp\left(-\frac{iE_nt}{\hbar}\right)
+\exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
-where $n=0,1,2,\ldots$ and $C_n$ is the normalization constant
+where $C_n$ is the normalization constant
 \begin{equation*}
 C_n=\frac{(-1)^n}{\sqrt{2^nn!}}
 \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
 \left(\frac{\hbar}{m\omega}\right)^{n/2}
 \end{equation*}
 
-Evaluate the time derivative of $\psi(x,t)$ to obtain
-\begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=\hbar\omega\left(n+\tfrac{1}{2}\right)\psi(x,t)
-\end{equation*}
-
-Hence $\psi(x,t)$ also solves the time-independent Schrodinger equation
-\begin{equation*}
--\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)+V(x)\psi(x,t)=E_n\psi(x,t)
-\tag{1}
-\end{equation*}
-
-where
+and $E_n$ is the energy level
 \begin{equation*}
 E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
 \end{equation*}
 
-The exponential of $t$ cancels in (1) hence $\psi_n(x)$ is also a solution where
+Taking the time derivative of $\psi_n(x,t)$ we find
 \begin{equation*}
-\psi_n(x)=C_n\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+i\hbar\frac{\partial}{\partial t}\psi_n(x,t)=E_n\psi_n(x,t)
+\end{equation*}
+
+Hence by the Schrodinger equation
+\begin{equation*}
+E_n\psi_n(x,t)=
+-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi_n(x,t)+V(x)\psi_n(x,t)
+\end{equation*}
+
+Noting that the factor $\exp(-iE_nt/\hbar)$ cancels we also have
+\begin{equation*}
+E_n\phi_n(x)=
+-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\phi_n(x)+V(x)\phi_n(x)
+\end{equation*}
+
+where
+\begin{equation*}
+\phi_n(x)=C_n\exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\end{equation*}
+
+and
+\begin{equation*}
+\psi_n(x,t)=\exp\left(-\frac{iE_nt}{\hbar}\right)\phi_n(x)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/harmonic-oscillator-1-demo.html}{Eigenmath script}
