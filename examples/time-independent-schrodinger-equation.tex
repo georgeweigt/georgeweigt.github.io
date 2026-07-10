@@ -9,28 +9,28 @@ i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t)
 
 Let $\psi(x,t)$ be separable as
 \begin{equation*}
-\psi(x,t)=\phi(t)\varphi(x)
+\psi(x,t)=\varphi(t)\phi(x)
 \end{equation*}
 
 Let it be the case that for the time derivative we have
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\phi(t)=E\phi(t)
+i\hbar\frac{\partial}{\partial t}\varphi(t)=E\varphi(t)
 \end{equation*}
 
 where $E$ is a constant. Then
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=E\phi(t)\varphi(x)=E\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=E\varphi(t)\phi(x)=E\psi(x,t)
 \end{equation*}
 
-Hence $\psi(x,t)$ is a solution to the time-independent
-Schrodinger equation
+Hence by the Schrodinger equation
 \begin{equation*}
 E\psi(x,t)=H\psi(x,t)
 \end{equation*}
 
-If $H$ is independent of $t$ then we also have
+If $H$ is independent of $t$ then $\varphi(t)$ cancels and
+we have the time-independent Schrodinger equation
 \begin{equation*}
-E\varphi(x)=H\varphi(x)
+E\phi(x)=H\phi(x)
 \end{equation*}
 
 For example, the Hamiltonian for the harmonic oscillator is
@@ -52,12 +52,24 @@ E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
 
 Taking the time derivative of $\psi_n(x,t)$ we find
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=E_n\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\psi_n(x,t)=E_n\psi_n(x,t)
 \end{equation*}
 
-Hence $\psi(x,t)$ is a solution to the time-independent Schrodinger equation
+Hence
 \begin{equation*}
-E_n\psi(x,t)=H\psi(x,t)
+E_n\psi_n(x,t)=H_n\psi_n(x,t)
+\end{equation*}
+
+Since $H$ is independent of $t$ we have
+\begin{equation*}
+E_n\phi_n(x)=H\phi_n(x)
+\end{equation*}
+
+where
+\begin{equation*}
+\phi_n(x)=C_n
+\exp\left(\frac{m\omega x^2}{2\hbar}\right)
+\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
