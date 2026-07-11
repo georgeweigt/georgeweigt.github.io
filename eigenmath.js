@@ -6390,7 +6390,7 @@ eval_eval(p1)
 	}
 }
 
-// arithmetic subst
+// arithmetic subst (different from classic textual subst)
 
 function
 asubst()
@@ -6427,6 +6427,17 @@ asubst()
 
 	if (!iscons(p1)) {
 		push(p1);
+		return;
+	}
+
+	// leave unevaluated if target is derivative or integral
+
+	if ((car(p1) == symbol(DERIVATIVE) || car(p1) == symbol(INTEGRAL)) && findf(p1, p2)) {
+		push(symbol(EVAL));
+		push(p1);
+		push(p2);
+		push(p3);
+		list(4);
 		return;
 	}
 
@@ -6471,6 +6482,8 @@ asubst()
 
 	push(p1);
 }
+
+// so that eval(a+b+c,b+c,d) -> a+d
 
 function
 addcmp(p1, p2)
@@ -13294,8 +13307,7 @@ eval_taylor(p1)
 	push(F);	// f(a)
 	push(X);
 	push(A);
-	subst();
-	evalf();
+	asubst();
 
 	push_integer(1);
 	C = pop();
@@ -13307,12 +13319,6 @@ eval_taylor(p1)
 		derivative();
 		F = pop();
 
-		if (findf(F, symbol(DERIVATIVE)))
-			stopf("taylor: derivative err");
-
-		if (iseqzero(F))
-			break;
-
 		push(C);	// c = c * (x - a)
 		push(X);
 		push(A);
@@ -13323,8 +13329,7 @@ eval_taylor(p1)
 		push(F);	// f(a)
 		push(X);
 		push(A);
-		subst();
-		evalf();
+		asubst();
 
 		push(C);
 		multiply();
@@ -17714,7 +17719,7 @@ scan_nib(s, k)
 	scan_stmt();
 
 	if (token != T_NEWLINE && token != T_END)
-		scan_error("expected newline");
+		scan_error("syntax");
 
 	return scan_index;
 }
@@ -17887,7 +17892,7 @@ scan_factor()
 		break;
 
 	default:
-		scan_error("expected operand");
+		scan_error("syntax");
 		break;
 	}
 
