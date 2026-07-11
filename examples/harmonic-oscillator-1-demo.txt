@@ -38,6 +38,18 @@ check(E2 psi2 == H(psi2))
 check(E3 psi3 == H(psi3))
 check(E4 psi4 == H(psi4))
 
+-- integral of |f|^2 from minus infinity to plus infinity
+
+I(f) = 2 eval(integral(conj(f) f, x),
+       exp(-m omega x^2 / hbar), 0,
+       erf(sqrt(m omega / hbar) x), 1)
+
+check(I(psi0) == 1)
+check(I(psi1) == 1)
+check(I(psi2) == 1)
+check(I(psi3) == 1)
+check(I(psi4) == 1)
+
 -- time-independent wavefunctions
 
 phi(n) = C(n) exp(m omega x^2 / (2 hbar)) *
