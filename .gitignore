@@ -6,8 +6,6 @@
 *.out
 *.synctex.gz
 *.toc
-a.out
-diffs
 unify
 unified.*
 demotest
