@@ -7,80 +7,40 @@ Consider the Schrodinger equation
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H\Psi(x,t)
 \end{equation*}
 
-Let it be the case that
+Let $\Psi(x,t)$ be formed as
 \begin{equation*}
-\Psi(x,t)=\sum_ke^{-iE_kt/\hbar}\phi_k(x)
-\end{equation*}
-
-Then for all $k$
-\begin{equation*}
-i\hbar\frac{d}{dt}e^{-iE_kt/\hbar}\phi_k(x)
-=E_ke^{-iE_kt/\hbar}\phi_k(x)
-\end{equation*}
-
-and by the Schrodinger equation we have
-\begin{equation*}
-E_ke^{-iE_kt/\hbar}\phi_k(x)=H\left[e^{-iE_kt/\hbar}\phi_k(x)\right]
-\end{equation*}
-
-If $H$ is independent of $t$ then we can rearrange as
-\begin{equation*}
-E_ke^{-iE_kt/\hbar}\phi_k(x)=e^{-iE_kt/\hbar}H\phi_k(x)
-\end{equation*}
-
-The $e^{-iE_kt/\hbar}$ cancel leaving
-the time-independent Schrodinger equation
-\begin{equation*}
-E_k\phi_k(x)=H\phi_k(x)
-\end{equation*}
-
-By linearity of $H$ we also have
-\begin{equation*}
-\sum_kE_k\phi_k(x)=H\sum_k\phi_k(x)
-\end{equation*}
-
-\iffalse
-
-For example, the Hamiltonian for the harmonic oscillator is
-\begin{equation*}
-H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}m\omega^2x^2
-\end{equation*}
-
-The wavefunctions are
-\begin{equation*}
-\psi_n(x,t)=C_n\exp\left(-\frac{iE_nt}{\hbar}\right)
-\exp\left(\frac{m\omega x^2}{2\hbar}\right)
-\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
-\end{equation*}
-
-where $C_n$ is a normalization constant and
-\begin{equation*}
-E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
-\end{equation*}
-
-Taking the time derivative of $\psi_n(x,t)$ we find
-\begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi_n(x,t)=E_n\psi_n(x,t)
-\end{equation*}
-
-Hence
-\begin{equation*}
-E_n\psi_n(x,t)=H_n\psi_n(x,t)
-\end{equation*}
-
-Since $H$ is independent of $t$ we have
-\begin{equation*}
-E_n\phi_n(x)=H\phi_n(x)
+\Psi(x,t)=\sum_k\xi_k(t)\psi_k(x)
 \end{equation*}
 
 where
 \begin{equation*}
-\phi_n(x)=C_n
-\exp\left(\frac{m\omega x^2}{2\hbar}\right)
-\frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
+\xi_k(t)=\exp\left(-\frac{i}{\hbar}E_kt\right)
 \end{equation*}
 
-\fi
+Then for all $k$
+\begin{equation*}
+i\hbar\frac{d}{dt}\xi_k(t)\psi_k(x)=E_k\xi_k(t)\psi_k(x)
+\end{equation*}
+
+and by the Schrodinger equation we have
+\begin{equation*}
+E_k\xi_k(t)\psi_k(x)=H\left[\xi_k(t)\psi_k(x)\right]
+\end{equation*}
+
+If $H$ is independent of $t$ then we can rearrange as
+\begin{equation*}
+E_k\xi_k(t)\psi_k(x)=\xi_k(t)H\psi_k(x)
+\end{equation*}
+
+The $\xi_k(t)$ cancel leaving the time-independent Schrodinger equation
+\begin{equation*}
+E_k\psi_k(x)=H\psi_k(x)
+\end{equation*}
+
+By linearity of $H$ we also have
+\begin{equation*}
+\sum_kE_k\psi_k(x)=H\sum_k\psi_k(x)
+\end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
 
