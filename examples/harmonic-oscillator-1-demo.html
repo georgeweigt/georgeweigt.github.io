@@ -53,20 +53,17 @@ check(I(psi4) == 1)
 
 -- time-independent wavefunctions
 
-phi(n) = C(n) exp(m omega x^2 / (2 hbar)) *
-         d(exp(-m omega x^2 / hbar), x, n)
+psi0 = psi0 / exp(-i E0 t / hbar)
+psi1 = psi1 / exp(-i E1 t / hbar)
+psi2 = psi2 / exp(-i E2 t / hbar)
+psi3 = psi3 / exp(-i E3 t / hbar)
+psi4 = psi4 / exp(-i E4 t / hbar)
 
-phi0 = phi(0)
-phi1 = phi(1)
-phi2 = phi(2)
-phi3 = phi(3)
-phi4 = phi(4)
-
-check(E0 phi0 == H(phi0))
-check(E1 phi1 == H(phi1))
-check(E2 phi2 == H(phi2))
-check(E3 phi3 == H(phi3))
-check(E4 phi4 == H(phi4))
+check(E0 psi0 == H(psi0))
+check(E1 psi1 == H(psi1))
+check(E2 psi2 == H(psi2))
+check(E3 psi3 == H(psi3))
+check(E4 psi4 == H(psi4))
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
