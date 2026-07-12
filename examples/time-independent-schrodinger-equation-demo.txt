@@ -24,19 +24,9 @@ E2 = E(2)
 E3 = E(3)
 E4 = E(4)
 
-"Verify wavefunctions"
+Psi = (psi2 + psi3) / sqrt(2)
 
-check(i hbar d(psi0,t) == H(psi0))
-check(i hbar d(psi1,t) == H(psi1))
-check(i hbar d(psi2,t) == H(psi2))
-check(i hbar d(psi3,t) == H(psi3))
-check(i hbar d(psi4,t) == H(psi4))
-
-check(E0 psi0 == H(psi0))
-check(E1 psi1 == H(psi1))
-check(E2 psi2 == H(psi2))
-check(E3 psi3 == H(psi3))
-check(E4 psi4 == H(psi4))
+check(i hbar d(Psi,t) == H(Psi))
 
 -- integral of |f|^2 from minus infinity to plus infinity
 
@@ -44,11 +34,7 @@ I(f) = 2 eval(integral(conj(f) f, x),
        exp(-m omega x^2 / hbar), 0,
        erf(sqrt(m omega / hbar) x), 1)
 
-check(I(psi0) == 1)
-check(I(psi1) == 1)
-check(I(psi2) == 1)
-check(I(psi3) == 1)
-check(I(psi4) == 1)
+check(I(Psi) == 1)
 
 -- time-independent wavefunctions
 
@@ -61,10 +47,6 @@ phi2 = phi(2)
 phi3 = phi(3)
 phi4 = phi(4)
 
-check(E0 phi0 == H(phi0))
-check(E1 phi1 == H(phi1))
-check(E2 phi2 == H(phi2))
-check(E3 phi3 == H(phi3))
-check(E4 phi4 == H(phi4))
+check((E2 phi2 + E3 phi3) / sqrt(2) == H((phi2 + phi3) / sqrt(2)))
 
 "ok"

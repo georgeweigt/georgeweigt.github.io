@@ -4,48 +4,36 @@
 
 Consider the Schrodinger equation
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H\Psi(x,t)
 \end{equation*}
 
-Let $\psi(x,t)$ be separable as
+Let $\Psi(x,t)$ be separable as
 \begin{equation*}
-\psi(x,t)=\varphi(t)\phi(x)
+\Psi(x,t)=\sum_k\varphi_k(t)\phi_k(x)
 \end{equation*}
 
-Let it be the case that for the time derivative we have
+Let it be the case that for all $k$
 \begin{equation*}
-i\hbar\frac{d}{dt}\varphi(t)=E\varphi(t)
+i\hbar\frac{d}{dt}\varphi_k(t)\phi_k(x)=E_k\varphi_k(t)\phi_k(x)
 \end{equation*}
 
-where $E$ is a constant. Then
+where all $E_k$ are constant.
+Then by the Schrodinger equation we have
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=E\varphi(t)\phi(x)=E\psi(x,t)
+E_k\varphi_k(t)\phi_k(x)=H[\varphi_k(t)\phi_k(x)]
 \end{equation*}
 
-Hence by the Schrodinger equation
+If $H$ is independent of $t$ then $\phi_k(t)$ cancels and we have
 \begin{equation*}
-E\psi(x,t)=H\psi(x,t)
+E_k\phi_k(x)=H\phi_k(x)
 \end{equation*}
 
-If $H$ is independent of $t$ then $\varphi(t)$ cancels and
-we have the time-independent Schrodinger equation
+Hence $\sum_k\phi_k(x)$ solves the time-independent Schrodinger equation
 \begin{equation*}
-E\phi(x)=H\phi(x)
+\sum_kE_k\phi_k(x)=H\sum_k\phi_k(x)
 \end{equation*}
 
-Summarizing, let $\psi(x,t)$ be a wavefunction such that
-\begin{enumerate}
-\item $\psi(x,t)$ solves the Schrodinger equation
-\item $\psi(x,t)$ is separable as $\varphi(t)\phi(x)$
-\item The time derivative of $\varphi(t)$ satisfies
-$i\hbar\,d\varphi(t)/dt=E\varphi(t)$ where $E$ is a constant
-\item $H$ is independent of $t$
-\end{enumerate}
-
-Then $\phi(x)$ solves the time-independent Schrodinger equation
-\begin{equation*}
-E\phi(x)=H\phi(x)
-\end{equation*}
+\iffalse
 
 For example, the Hamiltonian for the harmonic oscillator is
 \begin{equation*}
@@ -85,6 +73,8 @@ where
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
+
+\fi
 
 \href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
 
