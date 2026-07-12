@@ -7,23 +7,29 @@ Consider the Schrodinger equation
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H\Psi(x,t)
 \end{equation*}
 
-Let $\Psi(x,t)$ be separable as
+Let it be the case that
 \begin{equation*}
-\Psi(x,t)=\sum_k\varphi_k(t)\phi_k(x)
+\Psi(x,t)=\sum_ke^{-iE_kt/\hbar}\phi_k(x)
 \end{equation*}
 
-Let it be the case that for all $k$
+Then for all $k$
 \begin{equation*}
-i\hbar\frac{d}{dt}\varphi_k(t)\phi_k(x)=E_k\varphi_k(t)\phi_k(x)
+i\hbar\frac{d}{dt}e^{-iE_kt/\hbar}\phi_k(x)
+=E_ke^{-iE_kt/\hbar}\phi_k(x)
 \end{equation*}
 
-where $E_k$ is constant.
-Then by the Schrodinger equation we have
+and by the Schrodinger equation we have
 \begin{equation*}
-E_k\varphi_k(t)\phi_k(x)=H[\varphi_k(t)\phi_k(x)]
+E_ke^{-iE_kt/\hbar}\phi_k(x)=H\left[e^{-iE_kt/\hbar}\phi_k(x)\right]
 \end{equation*}
 
-If $H$ is independent of $t$ then $\varphi_k(t)$ cancels, hence the time-independent Schrodinger equation
+If $H$ is independent of $t$ then we can rearrange as
+\begin{equation*}
+E_ke^{-iE_kt/\hbar}\phi_k(x)=e^{-iE_kt/\hbar}H\phi_k(x)
+\end{equation*}
+
+The $e^{-iE_kt/\hbar}$ cancel leaving
+the time-independent Schrodinger equation
 \begin{equation*}
 E_k\phi_k(x)=H\phi_k(x)
 \end{equation*}
