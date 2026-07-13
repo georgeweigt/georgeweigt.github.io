@@ -41,6 +41,10 @@ E3 = E(3)
 
 "Verify eigenfunctions"
 
+-- n = 1, 2, 3, ...
+-- l = 0, 1, ..., n - 1
+-- m = -l, ..., 0, ..., l
+
 f = psi(1,0,0)
 check(H(f) == E1 f)
 
