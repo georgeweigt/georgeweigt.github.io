@@ -9,7 +9,7 @@ Consider the ground state wavefunction
 
 The cumulative distribution function is
 \begin{equation*}
-\Pr(r<a)
+\Pr(r\le a)
 =\int_0^a\int_{\Omega}|\psi(r)|^2\,dr\,d\Omega
 =\frac{1}{\pi a_0^3}
 \int_0^a\int_0^\pi\int_0^{2\pi}\exp\left(-\frac{2r}{a_0}\right)
@@ -18,13 +18,13 @@ r^2\sin\theta\,dr\,d\theta\,d\phi
 
 Integrate over $\theta$ and $\phi$ (multiply by $4\pi$).
 \begin{equation*}
-\Pr(r<a)=\frac{4}{a_0^3}
+\Pr(r\le a)=\frac{4}{a_0^3}
 \int_0^a\exp\left(-\frac{2r}{a_0}\right)r^2\,dr
 \end{equation*}
 
 Integrate over $r$.
 \begin{equation*}
-\Pr(r<a)=\frac{4}{a_0^3}
+\Pr(r\le a)=\frac{4}{a_0^3}
 \exp\left(-\frac{2r}{a_0}\right)
 \left.
 \left(-\frac{1}{2}a_0r^2-\frac{1}{2}a_0^2r-\frac{1}{4}a_0^3\right)
@@ -33,13 +33,13 @@ Integrate over $r$.
 
 Hence
 \begin{equation*}
-\Pr(r<a)=1-\left(\frac{2a^2}{a_0^2}+\frac{2a}{a_0}+1\right)
+\Pr(r\le a)=1-\left(\frac{2a^2}{a_0^2}+\frac{2a}{a_0}+1\right)
 \exp\left(-\frac{2a}{a_0}\right)
 \end{equation*}
 
 For $a=a_0$ we have
 \begin{equation*}
-\Pr(r<a_0)=0.32
+\Pr(r\le a_0)=0.32
 \end{equation*}
 
 Hence the probability that the electron is inside the Bohr radius is 32\%.
