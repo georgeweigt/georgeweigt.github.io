@@ -16,8 +16,6 @@ check(defint(f,r,0,a) == Pr)
 
 "ok"
 
-"Pr(a < a0)"
-
 float(eval(Pr, a, a0))
 
 check(infixform(last) == "0.323324")
