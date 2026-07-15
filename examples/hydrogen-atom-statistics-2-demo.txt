@@ -1,4 +1,4 @@
-"Verify hydrogen radius"
+"Hydrogen atom statistics 2"
 
 psi(n,l,m) = R(n,l) Y(l,m)
  
