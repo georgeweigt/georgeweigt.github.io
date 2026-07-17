@@ -1,0 +1,23 @@
+"Spin part 4"
+
+"Verify equation (1)"
+
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+Sx = 1/2 hbar ((0,1),(1,0))
+Sy = 1/2 hbar ((0,-i),(i,0))
+Sz = 1/2 hbar ((1,0),(0,-1))
+
+x = 2 / hbar dot(conj(s),Sx,s)
+y = 2 / hbar dot(conj(s),Sy,s)
+z = 2 / hbar dot(conj(s),Sz,s)
+
+s1 = sqrt((1 + z) / 2)
+s2 = sqrt((1 - z) / 2) (x + i y) / sqrt(x^2 + y^2)
+
+-- square to compare
+
+check(s[1]^2 == s1^2)
+check(s[2]^2 == s2^2)
+
+"ok"

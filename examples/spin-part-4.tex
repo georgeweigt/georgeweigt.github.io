@@ -1,0 +1,63 @@
+\input{preamble}
+
+\section*{Spin part 4}
+
+We seek to construct spin state $|s\rangle$ from spin measurements
+$\langle S_x\rangle$, $\langle S_y\rangle$, and $\langle S_z\rangle$.
+
+\bigskip
+Let
+\begin{align*}
+x&=\frac{2}{\hbar}\langle S_x\rangle
+\\[1ex]
+y&=\frac{2}{\hbar}\langle S_y\rangle
+\\[1ex]
+z&=\frac{2}{\hbar}\langle S_z\rangle
+\end{align*}
+
+In polar coordinates
+\begin{align*}
+x&=\sin\theta\cos\phi
+\\[1ex]
+y&=\sin\theta\sin\phi
+\\[1ex]
+z&=\cos\theta
+\end{align*}
+
+By half-angle identities
+\begin{align*}
+\cos(\theta/2)&=\sqrt{\frac{1+\cos\theta}{2}}=\sqrt{\frac{1+z}{2}}
+\\[1ex]
+\sin(\theta/2)&=\sqrt{\frac{1-\cos\theta}{2}}=\sqrt{\frac{1-z}{2}}
+\end{align*}
+
+Recalling that
+\begin{align*}
+\cos\phi&=\frac{x}{\sqrt{x^2+y^2}}
+\\[1ex]
+\sin\phi&=\frac{y}{\sqrt{x^2+y^2}}
+\end{align*}
+
+we have
+\begin{equation*}
+\exp(i\phi)=\cos\phi+i\sin\phi=\frac{x+iy}{\sqrt{x^2+y^2}}
+\end{equation*}
+
+Hence
+\begin{equation*}
+|s\rangle=\begin{pmatrix}
+\cos(\theta/2)
+\\[1ex]
+\sin(\theta/2)\exp(i\phi)
+\end{pmatrix}
+=\begin{pmatrix}
+\sqrt{\frac{1+z}{2}}
+\\[2ex]
+\sqrt{\frac{1-z}{2}}\frac{x+iy}{\sqrt{x^2+y^2}}
+\end{pmatrix}
+\tag{1}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/spin-part-4-demo.html}{Eigenmath script}
+
+\end{document}
