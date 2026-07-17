@@ -10,7 +10,7 @@
 	echo '</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>' >> $@
 
 default:
-	for file in $$(basename -a -s .tex *.tex | sed "s/unified//") ; do make $$file.pdf ; done
+	for file in $$(basename -a -s .tex *.tex) ; do make $$file.pdf ; done
 	for file in $$(basename -a -s .txt *.txt) ; do make $$file.html ; done
 
 clean:
