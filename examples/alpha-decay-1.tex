@@ -46,14 +46,17 @@ Factor out $\sqrt E$ to obtain
 \end{align*}
 
 Apply change of variable from $r$ to $u$ where
-\begin{equation*}
-r=r_2\sin^2u
-\end{equation*}
-
-and
-\begin{equation*}
-dr=2r_2\sin u\cos u
-\end{equation*}
+\begin{align*}
+r&=r_2\sin^2u
+\\
+dr&=2r_2\sin u\cos u
+\\
+u(r)&=\arcsin\sqrt{r/r_2}
+\\
+u_1&=u(r_1)=\arcsin\sqrt{r_1/r_2}
+\\
+u_2&=u(r_2)=\arcsin 1=\frac{\pi}{2}
+\end{align*}
 
 Hence
 \begin{align*}
@@ -65,27 +68,22 @@ Hence
 &=\frac{\sqrt{2mE}}{\hbar}\,2r_2\int_{u_1}^{u_2}\cos^2u\,du
 \end{align*}
 
-where
+Solve the integral.
 \begin{equation*}
-u_1=\arcsin\sqrt{r_1/r_2}
-\qquad
-u_2=\frac{\pi}{2}
-\end{equation*}
-
-Solve the integral to obtain
-\begin{equation*}
-\gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2\left[\frac{u}{2}+\frac{\sin(2u)}{4}\right]_{u_1}^{u_2}
+\gamma=\left.
+\frac{\sqrt{2mE}}{\hbar}\,2r_2\left(\frac{u}{2}+\frac{\sin(2u)}{4}\right)
+\right|_{u=u_1}^{u=u_2}
 \tag{1}
 \end{equation*}
 
 Evaluate the limits.
 \begin{equation*}
 \gamma=\frac{\sqrt{2mE}}{\hbar}\,2r_2
-\left[
+\left(
 \frac{\pi}{4}
 -\frac{1}{2}\arcsin\sqrt{r_1/r_2}
 -\frac{1}{4}\sin\left(2\arcsin\sqrt{r_1/r_2}\,\right)
-\right]
+\right)
 \tag{2}
 \end{equation*}
 
