@@ -45,14 +45,17 @@ Factor out $\sqrt E$ to obtain
 &=\frac{\sqrt{2mE}}{\hbar}\int_{r_1}^{r_2}\sqrt{\frac{r_2}{r}-1}\,dr
 \end{align*}
 
-Use the substitution
+Apply change of variable from $r$ to $u$ where
 \begin{equation*}
 r=r_2\sin^2u
-\qquad
+\end{equation*}
+
+and
+\begin{equation*}
 dr=2r_2\sin u\cos u
 \end{equation*}
 
-to obtain
+Hence
 \begin{align*}
 \gamma&=\frac{\sqrt{2mE}}{\hbar}\,2r_2\int_{u_1}^{u_2}
 \sqrt{\frac{1}{\sin^2u}-1}\,\sin u\cos u\,du
