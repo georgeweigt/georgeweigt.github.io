@@ -1,39 +1,41 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Alpha decay 2"
 
-M238 = 238.0507876
-M234 = 234.0435998
-M4 = 4.00260325413
+joule = kilogram meter^2 / second^2
 
-E = (M238 - M234 - M4) 931.49410372
-E
-
--- convert MeV to joules
-E = 1.602176634 10^(-19) 1000000 E
+alpha = 7.2973525643 10^(-3)
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+hbar = h / float(2 pi)
 
 -- mass of alpha particle
-m = 6.6446573450 * 10^(-27)
-
--- fine structure constant
-alpha = 7.2973525643 * 10^(-3)
-
--- speed of light
-c = 299792458.0
-
--- reduced Planck constant
-hbar = 6.62607015 * 10^(-34) / float(2 pi)
-
--- fermi radius
-r0 = 1.2 10^(-15)
+m = 6.6446573450 * 10^(-27) kilogram
 
 C1 = sqrt(2 m) float(pi) alpha c
-C2 = 4 * sqrt(m alpha c / hbar)
+C2 = 4 sqrt(m alpha c / hbar)
+
+M1 = 238.0507876 -- U238
+M2 = 234.0435998 -- Th234
+M3 = 4.002603254 -- helium (electron masses cancel)
+
+E = (M1 - M2 - M3) 931.49410372 "MeV"
+E
+
+-- E in joules
+u = 1.66053906892 10^(-27) kilogram
+E = (M1 - M2 - M3) u c^2
+
+-- fermi radius
+r0 = 1.2 10^(-15) meter
+
+r1 = r0 A^(1/3)
+
 beta = -10.1
 
 A = 238.0
 Z = 90.0
 
-gamma = C1 Z / sqrt(E) - C2 sqrt(Z r0 A^(1/3))
+gamma = C1 Z / sqrt(E) - C2 sqrt(Z r1)
 tau = 2 gamma + beta log(A) + log(log(2.0))
 tau
 
