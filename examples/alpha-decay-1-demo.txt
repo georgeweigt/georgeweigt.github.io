@@ -61,20 +61,17 @@ C2 = 4 sqrt(m alpha c / hbar)
 C1
 C2
 
-u = 1.66053906892 10^(-27) kilogram
+M1 = 238.0507876 -- U238
+M2 = 234.0435998 -- Th234
+M3 = 4.002603254 -- helium (electron masses cancel)
 
-M238 = 238.0507884 u
-M234 = 234.0435998 u
-M4 = 4.00260325413 u
-
--- electron masses cancel
-
-E = (M238 - M234 - M4) 931.49410372 "MeV" / u
+-- energy of alpha particle in MeV
+E = (M1 - M2 - M3) 931.49410372 "MeV"
 E
 
--- E in joules
-
-E = (M238 - M234 - M4) c^2
+-- energy of alpha particle in joules
+u = 1.66053906892 10^(-27) kilogram
+E = (M1 - M2 - M3) u c^2
 
 A = 238.0
 Z = 90.0

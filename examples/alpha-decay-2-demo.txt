@@ -17,10 +17,11 @@ M1 = 238.0507876 -- U238
 M2 = 234.0435998 -- Th234
 M3 = 4.002603254 -- helium (electron masses cancel)
 
+-- energy of alpha particle in MeV
 E = (M1 - M2 - M3) 931.49410372 "MeV"
 E
 
--- E in joules
+-- energy of alpha particle in joules
 u = 1.66053906892 10^(-27) kilogram
 E = (M1 - M2 - M3) u c^2
 
