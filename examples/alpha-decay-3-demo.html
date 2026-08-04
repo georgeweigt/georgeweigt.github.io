@@ -90,10 +90,10 @@ X = log(A)
 
 -- ordinary least squares
 
-C3 = dot(inv(dot(X,transpose(X))),X,Y)
-C3
+beta = dot(inv(dot(X,transpose(X))),X,Y)
+beta
 
-Yhat = 2 gamma + C3 log(A) + log(log(2.0))
+Yhat = 2 gamma + beta log(A) + log(log(2.0))
 Yhat
 
 "Coefficient of determination (R squared)"

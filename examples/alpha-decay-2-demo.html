@@ -28,13 +28,13 @@ r0 = 1.2 10^(-15)
 
 C1 = sqrt(2 m) float(pi) alpha c
 C2 = 4 * sqrt(m alpha c / hbar)
-C3 = -10.1
+beta = -10.1
 
 A = 238.0
 Z = 90.0
 
 gamma = C1 Z / sqrt(E) - C2 sqrt(Z r0 A^(1/3))
-tau = 2 gamma + C3 log(A) + log(log(2.0))
+tau = 2 gamma + beta log(A) + log(log(2.0))
 tau
 
 exp(tau) "s"

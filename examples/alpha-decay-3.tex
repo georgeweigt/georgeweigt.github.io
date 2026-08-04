@@ -4,7 +4,17 @@
 
 \section*{Alpha decay 3}
 
-In this section we derive $C_3$ from the following half-life data.
+From the previous section we have
+\begin{equation*}
+\log\tau_{1/2}=2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)+\beta\log A+\log(\log2)
+\end{equation*}
+
+Hence the regression model
+\begin{equation*}
+\log\tau_{1/2}-2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)-\log(\log2)=\beta\log A
+\end{equation*}
+
+We will now estimate $\beta$ from the following half-life data.
 Rows with $Z=90$ are uranium and $Z=88$ are thorium.
 Recall that $Z$ is atomic number minus two.
 \begin{equation*}
@@ -33,19 +43,9 @@ Recall that $Z$ is atomic number minus two.
 \end{matrix}
 \end{equation*}
 
-From the previous section we have
-\begin{equation*}
-\log\tau_{1/2}=2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)+C_3\log A+\log(\log2)
-\end{equation*}
-
-Hence the regression model
-\begin{equation*}
-\log\tau_{1/2}-2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)-\log(\log2)=C_3\log A
-\end{equation*}
-
 By ordinary least squares we obtain
 \begin{equation*}
-C_3=-10.1
+\beta=-10.1
 \end{equation*}
 
 The regression formula yields the following predicted values.
