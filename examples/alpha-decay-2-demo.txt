@@ -34,10 +34,10 @@ r0 = 1.2 10^(-15) meter
 A = 238.0
 Z = 90.0
 
-beta = 843
 r1 = r0 A^(1/3)
+r1
 gamma = C1 Z / sqrt(E) - C2 sqrt(Z r1)
-tau = 2 log(2.0) / beta r1 / sqrt(E/m) exp(2 gamma)
+tau = 2 log(2.0) / 843 r1 / sqrt(E/m) exp(2 gamma)
 tau
 
 tau = tau / (365.25 24 60 60) "yr" / second

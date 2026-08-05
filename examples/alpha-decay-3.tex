@@ -6,15 +6,10 @@
 
 From the previous section we have
 \begin{equation*}
-\log\tau_{1/2}=2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)+\beta\log A+\log(\log2)
+\tau_{1/2}=\frac{2\log2}{\beta}\frac{r_1}{\sqrt{E/m}}e^{2\gamma}
 \end{equation*}
 
-Hence the regression model
-\begin{equation*}
-\log\tau_{1/2}-2\left(C_1\frac{Z}{\sqrt E}-C_2\sqrt{Zr_1}\right)-\log(\log2)=\beta\log A
-\end{equation*}
-
-We will now estimate $\beta$ from the following half-life data.
+We can estimate $\beta$ from the following half-life data.
 Rows with $Z=90$ are uranium and $Z=88$ are thorium.
 Recall that $Z$ is atomic number minus two.
 \begin{equation*}
@@ -43,37 +38,62 @@ Recall that $Z$ is atomic number minus two.
 \end{matrix}
 \end{equation*}
 
-By ordinary least squares we obtain
+Take the log of both sides.
 \begin{equation*}
-\beta=-10.1
+\log\tau_{1/2}=-\log\beta+\log\left(2\log2\frac{r_1}{\sqrt{E/m}}\right)+2\gamma
 \end{equation*}
 
-The regression formula yields the following predicted values.
+Rearrange as
+\begin{equation*}
+\log\beta=-\log\tau_{1/2}+\log\left(2\log2\frac{r_1}{\sqrt{E/m}}\right)+2\gamma
+\end{equation*}
+
+Let $y$ be the residuals
+\begin{equation*}
+y=-\log\tau_{1/2}+\log\left(2\log2\frac{r_1}{\sqrt{E/m}}\right)+2\gamma
+\end{equation*}
+
+The ordinary least squares estimate of $\log\beta$ is the average of the residuals.
+\begin{equation*}
+\log\beta=\bar y
+\end{equation*}
+
+From the data we obtain
+\begin{equation*}
+\bar y=6.737
+\end{equation*}
+
+Hence
+\begin{equation*}
+\beta=\exp(\bar y)=843
+\end{equation*}
+
+The predicted values are
 \begin{equation*}
 \begin{matrix}
 & \text{Predicted}
 \\
 \log\tau_{1/2} & \log\tau_{1/2}
 \\[1ex]
-6.30 & 5.31
+6.30 & 5.02
 \\
-14.4 & 14.0
+14.4 & 13.9
 \\
 21.5 & 21.4
 \\
-29.7 & 29.7
+29.7 & 29.9
 \\
-34.2 & 34.5
+34.2 & 34.8
 \\
-39.5 & 40.1
+39.5 & 40.5
 \\
-7.52 & 6.87
+7.52 & 6.52
 \\
-17.9 & 17.8
+17.9 & 17.6
 \\
 28.5 & 28.8
 \\
-40.6 & 41.6
+40.6 & 41.7
 \end{matrix}
 \end{equation*}
 

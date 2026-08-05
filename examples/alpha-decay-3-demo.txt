@@ -79,19 +79,18 @@ E = (M1 - M2 - M3) u c^2
 r0 = 1.2 10^(-15) meter
 
 r1 = r0 A^(1/3)
-
 gamma = C1 Z / sqrt(E) - C2 sqrt(Z r1)
+t = 2 log(2.0) r1 / sqrt(E / m) / second
 
-Y = log(tau) - 2 gamma - log(log(2.0))
+y = -log(tau) + log(t) + 2 gamma
 
-X = log(A)
+ybar = sum(y) / dim(y)
+ybar
 
--- ordinary least squares
-
-beta = dot(inv(dot(X,transpose(X))),X,Y)
+beta = exp(ybar)
 beta
 
-Yhat = 2 gamma + beta log(A) + log(log(2.0))
+Yhat = log(t / beta) + 2 gamma
 Yhat
 
 "Coefficient of determination (R squared)"
