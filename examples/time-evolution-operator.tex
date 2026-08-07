@@ -41,11 +41,11 @@ i\hbar\frac{\partial}{\partial t}U(t,t_0)
 =H(t)U(t,t_0)
 \end{equation*}
 
-Rewrite as
-\begin{equation*}
-\frac{\partial}{\partial t}U(t,t_0)
-=-\frac{i}{\hbar}H(t)U(t,t_0)
-\end{equation*}
+%Rewrite as
+%\begin{equation*}
+%\frac{\partial}{\partial t}U(t,t_0)
+%=-\frac{i}{\hbar}H(t)U(t,t_0)
+%\end{equation*}
 
 Rearrange as
 \begin{equation*}
@@ -72,6 +72,12 @@ Hence
 \begin{equation*}
 U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right)
 \tag{1}
+\end{equation*}
+
+For time-independent $H$ the integral can be replaced with $(t-t_0)H$.
+\begin{equation*}
+U(t,t_0)=\exp\left(-\frac{i}{\hbar}H\int_{t_0}^td\tau\right)
+=\exp\left(-\frac{i}{\hbar}(t-t_0)H\right)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-evolution-operator-demo.html}{Eigenmath script}
