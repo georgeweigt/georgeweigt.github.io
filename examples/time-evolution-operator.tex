@@ -15,7 +15,13 @@ i\hbar\frac{\partial}{\partial t}\psi(x,t)=H(t)\psi(x,t)
 Substitute for $\psi(x,t)$.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]=H(t)U(t,t_0)\psi(x,t_0)
-\tag{1}
+\end{equation*}
+
+Expand the left-hand side by the product rule.
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
++i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)
+=H(t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
 Noting that
@@ -25,14 +31,7 @@ Noting that
 
 we have
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]
-=i\hbar\left[\frac{\partial}{\partial t}U(t,t_0)\right]\psi(x,t_0)
-\tag{2}
-\end{equation*}
-
-By the equivalence of (1) and (2)
-\begin{equation*}
-i\hbar\left[\frac{\partial}{\partial t}U(t,t_0)\right]\psi(x,t_0)
+i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
 =H(t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
@@ -63,7 +62,7 @@ Solve the first integral.
 \log U(t,t_0)-\log U(t_0,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
 
-By $U(t_0,t_0)=1$ the second log drops out.
+By $U(t_0,t_0)=1$ the second log vanishes.
 \begin{equation*}
 \log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
@@ -71,7 +70,7 @@ By $U(t_0,t_0)=1$ the second log drops out.
 Hence
 \begin{equation*}
 U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right)
-\tag{3}
+\tag{1}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-evolution-operator-demo.html}{Eigenmath script}

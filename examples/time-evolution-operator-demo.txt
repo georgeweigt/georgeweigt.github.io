@@ -5,6 +5,6 @@ U = exp(-i / hbar integral(H(t),t))
 i hbar d(U,t)
 H(t) U
 
-"Verify equation (3)"
+"Verify equation (1)"
 check(i hbar d(U,t) == H(t) U)
 "ok"
