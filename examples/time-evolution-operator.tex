@@ -20,16 +20,11 @@ i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]=H(t)U(t,t_0)\ps
 Expand the left-hand side by the product rule.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
-+\underset{\substack{\\\mathrm x}}{i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)}
++\boxed{i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)}
 =H(t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
-Noting that
-\begin{equation*}
-\frac{\partial}{\partial t}\psi(x,t_0)=0
-\end{equation*}
-
-the x term drops out.
+The boxed term drops out due to $\partial\psi(x,t_0)/\partial t=0$.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
 =H(t)U(t,t_0)\psi(x,t_0)
@@ -40,12 +35,6 @@ By operator equivalence
 i\hbar\frac{\partial}{\partial t}U(t,t_0)
 =H(t)U(t,t_0)
 \end{equation*}
-
-%Rewrite as
-%\begin{equation*}
-%\frac{\partial}{\partial t}U(t,t_0)
-%=-\frac{i}{\hbar}H(t)U(t,t_0)
-%\end{equation*}
 
 Rearrange as
 \begin{equation*}
@@ -59,16 +48,16 @@ Integrate both sides.
 
 Solve the first integral.
 \begin{equation*}
-\log U(t,t_0)-\underset{\substack{\\\mathrm x}}{\log U(t_0,t_0)}
+\log U(t,t_0)-\boxed{\log U(t_0,t_0)}
 =-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
 
-By $U(t_0,t_0)=1$ the x term vanishes.
+By $U(t_0,t_0)=1$ the boxed term vanishes.
 \begin{equation*}
 \log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
 
-Hence
+Exponential of both sides.
 \begin{equation*}
 U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right)
 \tag{1}
