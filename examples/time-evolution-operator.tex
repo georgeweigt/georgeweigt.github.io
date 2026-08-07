@@ -20,7 +20,7 @@ i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]=H(t)U(t,t_0)\ps
 Expand the left-hand side by the product rule.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
-+i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)
++\underset{\substack{\\\mathrm x}}{i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)}
 =H(t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
@@ -29,7 +29,7 @@ Noting that
 \frac{\partial}{\partial t}\psi(x,t_0)=0
 \end{equation*}
 
-we have
+the x term drops out.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
 =H(t)U(t,t_0)\psi(x,t_0)
@@ -59,10 +59,11 @@ Integrate both sides.
 
 Solve the first integral.
 \begin{equation*}
-\log U(t,t_0)-\log U(t_0,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\log U(t,t_0)-\underset{\substack{\\\mathrm x}}{\log U(t_0,t_0)}
+=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
 
-By $U(t_0,t_0)=1$ the second log vanishes.
+By $U(t_0,t_0)=1$ the x term vanishes.
 \begin{equation*}
 \log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
 \end{equation*}
