@@ -1,0 +1,10 @@
+"Time evolution operator"
+
+U = exp(-i / hbar integral(H(t),t))
+
+i hbar d(U,t)
+H(t) U
+
+"Verify equation (3)"
+check(i hbar d(U,t) == H(t) U)
+"ok"

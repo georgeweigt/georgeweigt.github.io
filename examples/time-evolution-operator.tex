@@ -1,0 +1,79 @@
+\input{preamble}
+
+\section*{Time evolution operator}
+
+We seek an operator $U(t,t_0)$ such that
+\begin{equation*}
+\psi(x,t)=U(t,t_0)\psi(x,t_0)
+\end{equation*}
+
+By the Schrodinger equation
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=H(t)\psi(x,t)
+\end{equation*}
+
+Substitute for $\psi(x,t)$.
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\bigl[U(t,t_0)\psi(x,t_0)\bigr]=H(t)U(t,t_0)\psi(x,t_0)
+\tag{1}
+\end{equation*}
+
+Noting that
+\begin{equation*}
+\frac{\partial}{\partial t}\psi(x,t_0)=0
+\end{equation*}
+
+we have
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\bigl[U(t,t_0)\psi(x,t_0)\bigr]
+=i\hbar\left[\frac{\partial}{\partial t}U(t,t_0)\right]\psi(x,t_0)
+\tag{2}
+\end{equation*}
+
+By the equivalence of (1) and (2)
+\begin{equation*}
+i\hbar\left[\frac{\partial}{\partial t}U(t,t_0)\right]\psi(x,t_0)
+=H(t)U(t,t_0)\psi(x,t_0)
+\end{equation*}
+
+By operator equivalence
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}U(t,t_0)
+=H(t)U(t,t_0)
+\end{equation*}
+
+Rewrite as
+\begin{equation*}
+\frac{\partial}{\partial t}U(t,t_0)
+=-\frac{i}{\hbar}H(t)U(t,t_0)
+\end{equation*}
+
+Rearrange as
+\begin{equation*}
+\frac{1}{U(t,t_0)}\,\partial U(t,t_0)=-\frac{i}{\hbar}H(t)\,\partial t
+\end{equation*}
+
+Integrate both sides.
+\begin{equation*}
+\int_{t_0}^t\frac{1}{U(\tau,t_0)}\,dU(\tau,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\end{equation*}
+
+Solve the first integral.
+\begin{equation*}
+\log U(t,t_0)-\log U(t_0,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\end{equation*}
+
+By $U(t_0,t_0)=1$ the second log drops out.
+\begin{equation*}
+\log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\end{equation*}
+
+Hence
+\begin{equation*}
+U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right)
+\tag{3}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/time-evolution-operator-demo.html}{Eigenmath script}
+
+\end{document}
