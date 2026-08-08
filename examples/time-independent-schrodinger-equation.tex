@@ -2,45 +2,42 @@
 
 \section*{Time-independent Schrodinger equation}
 
-Consider the Schrodinger equation
+Let $\Psi(x,t)$ be the wave function
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H\Psi(x,t)
+\Psi(x,t)=\psi(x)\exp\left(-\frac{i}{\hbar}Et\right)
 \end{equation*}
 
-Let $\Psi(x,t)$ be the wavefunction
+For the time derivative we have
 \begin{equation*}
-\Psi(x,t)=\sum_k\xi_k(t)\psi_k(x)
+i\hbar\frac{d}{dt}\Psi(x,t)=E\Psi(x,t)
+\tag{1}
 \end{equation*}
 
-where
+Recall the Schrodinger equation
 \begin{equation*}
-\xi_k(t)=\exp\left(-\frac{i}{\hbar}E_kt\right)
+i\hbar\frac{d}{dt}\Psi(x,t)=H\Psi(x,t)
+\tag{2}
 \end{equation*}
 
-Then for all $k$ we have for the time derivative
+By the equivalence of (1) and (2)
 \begin{equation*}
-i\hbar\frac{d}{dt}\xi_k(t)\psi_k(x)=E_k\xi_k(t)\psi_k(x)
-\end{equation*}
-
-By the Schrodinger equation the time derivative connects to the Hamiltonian as
-\begin{equation*}
-E_k\xi_k(t)\psi_k(x)=H\left[\xi_k(t)\psi_k(x)\right]
+E\Psi(x,t)=H\Psi(x,t)
 \end{equation*}
 
 Let $H$ be independent of $t$.
-Then by linearity of $H$ the Hamiltonian factors as
+Then by linearity of $H$
 \begin{equation*}
-E_k\xi_k(t)\psi_k(x)=\xi_k(t)H\psi_k(x)
+H\Psi(x,t)=H\psi(x)\exp\left(-\frac{i}{\hbar}Et\right)
 \end{equation*}
 
-The $\xi_k(t)$ cancel leaving the time-independent Schrodinger equation
+Hence
 \begin{equation*}
-E_k\psi_k(x)=H\psi_k(x)
+E\Psi(x,t)=H\psi(x)\exp\left(-\frac{i}{\hbar}Et\right)
 \end{equation*}
 
-By linearity of $H$ we also have
+Cancel exponentials to obtain the time-independent Schrodinger equation
 \begin{equation*}
-\sum_kE_k\psi_k(x)=H\sum_k\psi_k(x)
+E\psi(x)=H\psi(x)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
