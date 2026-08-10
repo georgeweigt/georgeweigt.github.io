@@ -9,6 +9,12 @@ Hence the time-independent Schrodinger equation
 H(x)\psi(x)=E\psi(x)
 \end{equation*}
 
+Clearly $\psi(x)$ cannot solve the ordinary Schrodinger equation because
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\psi(x)=0
+\end{equation*}
+
+Let us construct $\Psi(x,t)$ that is a solution.
 Recall time-evolution operator $U(t,t_0)$.
 \begin{equation*}
 U(t,t_0)=\exp\left(-\frac{i}{\hbar}(t-t_0)H(x)\right)
@@ -19,15 +25,20 @@ Let $\Psi(x,t)$ be the function
 \Psi(x,t)=U(t,0)\psi(x)=\exp\left(-\frac{i}{\hbar}tH(x)\right)\psi(x)
 \end{equation*}
 
-By hypothesis
+Substitute $E$ for $H(x)$.
 \begin{equation*}
 \Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)\psi(x)
 \end{equation*}
 
+Now show $\Psi(x,t)$ solves the ordinary Schrodinger equation.
 By linearity of $H(x)$
 \begin{equation*}
 H(x)\Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)H(x)\psi(x)
-=\exp\left(-\frac{i}{\hbar}Et\right)E\psi(x)
+\end{equation*}
+
+Substitute $E$ for $H(x)$.
+\begin{equation*}
+H(x)\Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)E\psi(x)
 \tag{1}
 \end{equation*}
 
@@ -37,12 +48,29 @@ i\hbar\frac{\partial}{\partial t}\Psi(x,t)
 =E\exp\left(-\frac{i}{\hbar}Et\right)\psi(x)
 \end{equation*}
 
-Hence by (1)
+Then by equation (1) we have the Schrodinger equation
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H(x)\Psi(x,t)
 \end{equation*}
 
-\end{document}
+Hence given the time-independent Schrodinger equation
+\begin{equation*}
+H(x)\psi(x)=E\psi(x)
+\end{equation*}
+
+we have
+\begin{equation*}
+\Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)\psi(x)
+\end{equation*}
+
+solves the ordinary Schrodinger equation.
+
+\bigskip
+\href{https://georgeweigt.github.io/examples/time-independent-schrodinger-equation-demo.html}{Eigenmath script}
+
+\end{document}a %%%%%
+
+
 
 Let $\Psi(x,t)$ be the wave function
 \begin{equation*}
