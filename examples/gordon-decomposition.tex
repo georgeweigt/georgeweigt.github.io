@@ -64,17 +64,17 @@ T^{\mu\alpha\nu}{}_\beta
 
 In Eigenmath code (transpose to interchange $\nu$ and $\rho$ of $\gamma^{\nu\rho}{}_\beta$)
 \begin{equation*}
-\text{\tt T}=\text{\tt dot(gamma,transpose(gamma))}
+\text{\ttfamily T}=\text{\ttfamily dot(gamma,transpose(gamma))}
 \end{equation*}
 
 Calculate $\sigma^{\mu\nu}$ (transpose to interchange $\mu$ and $\nu$ of $T^{\mu\alpha\nu}{}_\beta$).
 \begin{equation*}
-\text{\tt sigmamunu}=\text{\tt i/2 (T - transpose(T,1,3))}
+\text{\ttfamily sigmamunu}=\text{\ttfamily i/2 (T - transpose(T,1,3))}
 \end{equation*}
 
 Transpose $\sigma^{\mu\alpha\nu}{}_\beta$ to $\sigma^{\mu\alpha}{}_\beta{}^\nu$.
 \begin{equation*}
-\text{\tt sigmamunu}=\text{\tt transpose(sigmamunu,3,4)}
+\text{\ttfamily sigmamunu}=\text{\ttfamily transpose(sigmamunu,3,4)}
 \end{equation*}
 
 In component notation
@@ -85,7 +85,7 @@ In component notation
 
 In Eigenmath code
 \begin{equation*}
-\text{\tt dot(sigmamunu, gmunu, p2 - p1)}
+\text{\ttfamily dot(sigmamunu, gmunu, p2 - p1)}
 \end{equation*}
 
 \end{document}
