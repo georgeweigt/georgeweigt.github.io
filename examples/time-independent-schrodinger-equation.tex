@@ -2,6 +2,47 @@
 
 \section*{Time-independent Schrodinger equation}
 
+Let $H(x)$ be a time-independent Hamiltonian.
+Let $\psi(x)$ be a function such that $H(x)\psi(x)$ has eigenvalue $E$.
+\begin{equation*}
+H(x)\psi(x)=E\psi(x)
+\end{equation*}
+
+Recall time-evolution operator $U(t,t_0)$.
+\begin{equation*}
+U(t,t_0)=\exp\left(-\frac{i}{\hbar}(t-t_0)H(x)\right)
+\end{equation*}
+
+Let $\Psi(x,t)$ be the function
+\begin{equation*}
+\Psi(x,t)=U(t,0)\psi(x)=\exp\left(-\frac{i}{\hbar}tH(x)\right)\psi(x)
+\end{equation*}
+
+By hypothesis
+\begin{equation*}
+\Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)\psi(x)
+\end{equation*}
+
+By linearity of $H(x)$
+\begin{equation*}
+H(x)\Psi(x,t)=\exp\left(-\frac{i}{\hbar}Et\right)H(x)\psi(x)
+=\exp\left(-\frac{i}{\hbar}Et\right)E\psi(x)
+\tag{1}
+\end{equation*}
+
+Evaluate the Schrodinger equation time derivative.
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\Psi(x,t)
+=E\exp\left(-\frac{i}{\hbar}Et\right)\psi(x)
+\end{equation*}
+
+Hence by (1)
+\begin{equation*}
+i\hbar\frac{\partial}{\partial t}\Psi(x,t)=H(x)\Psi(x,t)
+\end{equation*}
+
+\end{document}
+
 Let $\Psi(x,t)$ be the wave function
 \begin{equation*}
 \Psi(x,t)=\psi(x)\exp\left(-\frac{i}{\hbar}Et\right)
