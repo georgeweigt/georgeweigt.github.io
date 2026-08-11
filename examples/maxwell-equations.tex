@@ -1,0 +1,35 @@
+\input{preamble}
+
+\section*{Maxwell equations}
+
+Let
+\begin{equation*}
+\mathbf E=
+\begin{pmatrix}
+A_0\sin(kz-\omega t)\\0\\0
+\end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+\mathbf B=
+\begin{pmatrix}
+0\\A_0\sin(kz-\omega t)\\0
+\end{pmatrix}
+\end{equation*}
+
+where $k=\omega/c$.
+Verify $\mathbf E$ and $\mathbf B$ are solutions to the free-field Maxwell equations
+\begin{align*}
+\nabla\cdot\mathbf E&=0
+\\
+\nabla\cdot\mathbf B&=0
+\\[1ex]
+\nabla\times\mathbf E+\frac{1}{c}\frac{\partial}{\partial t}{\mathbf B}&=0
+\\[1ex]
+\nabla\times\mathbf B-\frac{1}{c}\frac{\partial}{\partial t}{\mathbf E}&=0
+\end{align*}
+
+\href{https://georgeweigt.github.io/examples/maxwell-equations-demo.html}{Eigenmath script}
+
+\end{document}
