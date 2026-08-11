@@ -10,64 +10,64 @@ from time $t_0$ to time $t$.
 
 Start with the Schrodinger equation.
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\psi(x,t)=H(t)\psi(x,t)
+i\hbar\frac{\partial}{\partial t}\psi(x,t)=H(x,t)\psi(x,t)
 \end{equation*}
 
 Substitute for $\psi(x,t)$.
 \begin{equation*}
-i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]=H(t)U(t,t_0)\psi(x,t_0)
+i\hbar\frac{\partial}{\partial t}\Bigl[U(t,t_0)\psi(x,t_0)\Bigr]=H(x,t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
 Expand the left-hand side by the product rule.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
 +\boxed{i\hbar U(t,t_0)\frac{\partial}{\partial t}\psi(x,t_0)}
-=H(t)U(t,t_0)\psi(x,t_0)
+=H(x,t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
 The boxed term drops out due to $\partial\psi(x,t_0)/\partial t=0$.
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)\psi(x,t_0)
-=H(t)U(t,t_0)\psi(x,t_0)
+=H(x,t)U(t,t_0)\psi(x,t_0)
 \end{equation*}
 
 By operator equivalence
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}U(t,t_0)
-=H(t)U(t,t_0)
+=H(x,t)U(t,t_0)
 \end{equation*}
 
 Rearrange as
 \begin{equation*}
-\frac{1}{U(t,t_0)}\,\partial U(t,t_0)=-\frac{i}{\hbar}H(t)\,\partial t
+\frac{1}{U(t,t_0)}\,\partial U(t,t_0)=-\frac{i}{\hbar}H(x,t)\,\partial t
 \end{equation*}
 
 Integrate both sides.
 \begin{equation*}
-\int_{t_0}^t\frac{1}{U(\tau,t_0)}\,dU(\tau,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\int_{t_0}^t\frac{1}{U(\tau,t_0)}\,dU(\tau,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(x,\tau)\,d\tau
 \end{equation*}
 
 Solve the first integral.
 \begin{equation*}
 \log U(t,t_0)-\boxed{\log U(t_0,t_0)}
-=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+=-\frac{i}{\hbar}\int_{t_0}^t H(x,\tau)\,d\tau
 \end{equation*}
 
 By $U(t_0,t_0)=1$ the boxed term vanishes.
 \begin{equation*}
-\log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau
+\log U(t,t_0)=-\frac{i}{\hbar}\int_{t_0}^t H(x,\tau)\,d\tau
 \end{equation*}
 
 Exponential of both sides.
 \begin{equation*}
-U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right)
+U(t,t_0)=\exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(x,\tau)\,d\tau\right)
 \tag{1}
 \end{equation*}
 
-For time-independent $H$ the integral can be replaced with $(t-t_0)H$.
+If $H$ is time-independent then the integral can be replaced by $(t-t_0)H(x)$.
 \begin{equation*}
-U(t,t_0)=\exp\left(-\frac{i}{\hbar}H\int_{t_0}^td\tau\right)
-=\exp\left(-\frac{i}{\hbar}(t-t_0)H\right)
+U(t,t_0)=\exp\left(-\frac{i}{\hbar}H(x)\int_{t_0}^td\tau\right)
+=\exp\left(-\frac{i}{\hbar}(t-t_0)H(x)\right)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/time-evolution-operator-demo.html}{Eigenmath script}
