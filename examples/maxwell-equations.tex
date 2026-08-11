@@ -4,17 +4,17 @@
 
 Let $\mathbf E$ be the electric field
 \begin{equation*}
-\mathbf E=
+\mathbf E=E_0
 \begin{pmatrix}
-A_0\sin(kz-\omega t)\\0\\0
+\sin(kz-\omega t)\\0\\0
 \end{pmatrix}
 \end{equation*}
 
 and $\mathbf B$ the magnetic field
 \begin{equation*}
-\mathbf B=
+\mathbf B=\frac{E_0}{c}
 \begin{pmatrix}
-0\\A_0\sin(kz-\omega t)\\0
+0\\\sin(kz-\omega t)\\0
 \end{pmatrix}
 \end{equation*}
 
@@ -25,10 +25,20 @@ Verify $\mathbf E$ and $\mathbf B$ are solutions to the free-field Maxwell equat
 \\
 \nabla\cdot\mathbf B&=0
 \\[1ex]
-\nabla\times\mathbf E&=-\frac{1}{c}\frac{\partial}{\partial t}{\mathbf B}
+\nabla\times\mathbf E&=-\frac{\partial}{\partial t}{\mathbf B}
 \\[1ex]
-\nabla\times\mathbf B&=\frac{1}{c}\frac{\partial}{\partial t}{\mathbf E}
+\nabla\times\mathbf B&=\frac{1}{c^2}\frac{\partial}{\partial t}{\mathbf E}
 \end{align*}
+
+Electric field $\mathbf E$ is measured in Newtons per Coulomb.
+\begin{equation*}
+E_0=\frac{[\text{N}]}{\text{[C]}}
+\end{equation*}
+
+Magnetic field $\mathbf B$ is measured in Tesla.
+\begin{equation*}
+\frac{E_0}{c}=\frac{[\text{N}]}{\text{[C]}}\frac{[\text{s}]}{[\text{m}]}=[\text{T}]
+\end{equation*}
 
 \href{https://georgeweigt.github.io/examples/maxwell-equations-demo.html}{Eigenmath script}
 

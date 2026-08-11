@@ -1,13 +1,13 @@
 "Maxwell equations"
 
-E = (A0 sin(k z - omega t), 0, 0)
-B = (0, A0 sin(k z - omega t), 0)
+E = E0 (sin(k z - omega t), 0, 0)
+B = E0/c (0, sin(k z - omega t), 0)
 k = omega/c
 
 check(div(E) == 0)
 check(div(B) == 0)
 
-check(curl(E) == -1/c d(B,t))
-check(curl(B) == 1/c d(E,t))
+check(curl(E) == -d(B,t))
+check(curl(B) == 1/c^2 d(E,t))
 
 "ok"
