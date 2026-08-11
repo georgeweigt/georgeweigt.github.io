@@ -10,4 +10,9 @@ check(div(B) == 0)
 check(curl(E) == -d(B,t))
 check(curl(B) == 1/c^2 d(E,t))
 
+A = -E0/omega (cos(k z - omega t), 0, 0)
+
+check(E == -d(A,t))
+check(B == curl(A))
+
 "ok"

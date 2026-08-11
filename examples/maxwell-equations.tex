@@ -24,7 +24,7 @@ Verify $\mathbf E$ and $\mathbf B$ are solutions to the free-field Maxwell equat
 \nabla\cdot\mathbf E&=0
 \\
 \nabla\cdot\mathbf B&=0
-\\[1ex]
+\\
 \nabla\times\mathbf E&=-\frac{\partial}{\partial t}{\mathbf B}
 \\[1ex]
 \nabla\times\mathbf B&=\frac{1}{c^2}\frac{\partial}{\partial t}{\mathbf E}
@@ -38,6 +38,26 @@ E_0=\frac{[\text{N}]}{\text{[C]}}
 Magnetic field $\mathbf B$ is measured in Tesla.
 \begin{equation*}
 \frac{E_0}{c}=\frac{[\text{N}]}{\text{[C]}}\frac{[\text{s}]}{[\text{m}]}=[\text{T}]
+\end{equation*}
+
+Let $\mathbf A$ be the magnetic vector potential
+\begin{equation*}
+\mathbf A=-\frac{E_0}{\omega}
+\begin{pmatrix}
+\cos(kz-\omega t)\\0\\0
+\end{pmatrix}
+\end{equation*}
+
+Verify
+\begin{align*}
+\mathbf E&=-\frac{\partial}{\partial t}\mathbf A
+\\
+\mathbf B&=\nabla\times\mathbf A
+\end{align*}
+
+Magnetic vector potential $\mathbf A$ is measured in Tesla meters.
+\begin{equation*}
+\frac{E_0}{\omega}=\frac{[\text{N}]}{\text{[C]}}[\text{s}]=[\text{T}\,\text{m}]
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/maxwell-equations-demo.html}{Eigenmath script}
