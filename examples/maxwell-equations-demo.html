@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Maxwell equations"
 
-E = E0 (sin(k z - omega t), 0, 0)
-B = E0/c (0, sin(k z - omega t), 0)
+E = E0 sin(k z - omega t) (1,0,0)
+B = E0/c sin(k z - omega t) (0,1,0)
 k = omega/c
 
 check(div(E) == 0)
@@ -11,7 +11,7 @@ check(div(B) == 0)
 check(curl(E) == -d(B,t))
 check(curl(B) == 1/c^2 d(E,t))
 
-A = -E0/omega (cos(k z - omega t), 0, 0)
+A = -E0/omega cos(k z - omega t) (1,0,0)
 
 check(E == -d(A,t))
 check(B == curl(A))
