@@ -7,7 +7,7 @@ k = omega/c
 check(div(E) == 0)
 check(div(B) == 0)
 
-check(curl(E) + 1/c d(B,t) == 0)
-check(curl(B) - 1/c d(E,t) == 0)
+check(curl(E) == -1/c d(B,t))
+check(curl(B) == 1/c d(E,t))
 
 "ok"
