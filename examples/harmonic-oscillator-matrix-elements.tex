@@ -18,11 +18,13 @@ x\psi_j&=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{j+1}\psi_{j+1}+\sqrt j\psi_{j-
 p\psi_j&=i\sqrt{\frac{m\hbar\omega}{2}}\left(\sqrt{j+1}\psi_{j+1}-\sqrt j\psi_{j-1}\right)
 \end{align*}
 
-By orthogonality of $\psi_k$ and $\psi_j$ we have for $X_{kj}$ and $P_{kj}$
+By orthogonality of $\psi_k$ and $\psi_j$ we have
 \begin{align*}
-X_{kj}&=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{j+1}\delta_{k,j+1}+\sqrt j\delta_{k,j-1}\right)
+X_{kj}&=\int_{-\infty}^\infty \psi_k^*x\psi_j\,dx
+=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{j+1}\delta_{k,j+1}+\sqrt j\delta_{k,j-1}\right)
 \\[1ex]
-P_{kj}&=i\sqrt{\frac{m\hbar\omega}{2}}\left(\sqrt{j+1}\delta_{k,j+1}-\sqrt j\delta_{k,j-1}\right)
+P_{kj}&=\int_{-\infty}^\infty \psi_k^*p\psi_j\,dx
+=i\sqrt{\frac{m\hbar\omega}{2}}\left(\sqrt{j+1}\delta_{k,j+1}-\sqrt j\delta_{k,j-1}\right)
 \end{align*}
 
 For $4\times4$ matrices
@@ -68,7 +70,7 @@ H=\begin{pmatrix}
 \end{pmatrix}
 \end{equation*}
 
-The last element of $H$ is incorrect due to finite matrix size.
+The boxed value is incorrect due to finite matrix size.
 The correct value is $\tfrac{7}{2}\hbar\omega$.
 \begin{equation*}
 H=\begin{pmatrix}
