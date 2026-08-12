@@ -1,0 +1,135 @@
+\input{preamble}
+
+% https://physicspages.com/pdf/Quantum%20mechanics/Harmonic%20oscillator%20-%20matrix%20elements.pdf
+
+\section*{Harmonic oscillator 4}
+
+Let $X_{kj}$ and $P_{kj}$ be the matrix elements
+\begin{align*}
+X_{kj}&=\int_{-\infty}^\infty \psi_k^*x\psi_j\,dx
+\\[1ex]
+P_{kj}&=\int_{-\infty}^\infty \psi_k^*p\psi_j\,dx
+\end{align*}
+
+From the previous section we have
+\begin{align*}
+x\psi_j&=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{j+1}\psi_{j+1}+\sqrt j\psi_{j-1}\right)
+\\[1ex]
+p\psi_j&=i\sqrt{\frac{m\hbar\omega}{2}}\left(\sqrt{j+1}\psi_{j+1}-\sqrt j\psi_{j-1}\right)
+\end{align*}
+
+By orthogonality of $\psi_k$ and $\psi_j$ we have
+\begin{align*}
+X_{kj}&=\int_{-\infty}^\infty \psi_k^*x\psi_j\,dx
+=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{j+1}\delta_{k,j+1}+\sqrt j\delta_{k,j-1}\right)
+\\[1ex]
+P_{kj}&=\int_{-\infty}^\infty \psi_k^*p\psi_j\,dx
+=i\sqrt{\frac{m\hbar\omega}{2}}\left(\sqrt{j+1}\delta_{k,j+1}-\sqrt j\delta_{k,j-1}\right)
+\end{align*}
+
+For $4\times4$ matrices
+\begin{align*}
+X&=\sqrt{\frac{\hbar}{2m\omega}}
+\begin{pmatrix}
+0 & 1 & 0 & 0
+\\
+1 & 0 & \sqrt{2} & 0
+\\
+0 & \sqrt{2} & 0 & \sqrt{3}
+\\
+0 & 0 & \sqrt{3} & 0
+\end{pmatrix}
+\\[1ex]
+P&=i\sqrt{\frac{m\hbar\omega}{2}}
+\begin{pmatrix}
+0 & -1 & 0 & 0
+\\
+1 & 0 & -\sqrt{2} & 0
+\\
+0 & \sqrt{2} & 0 & -\sqrt{3}
+\\
+0 & 0 & \sqrt{3} & 0
+\end{pmatrix}
+\end{align*}
+
+Let $H$ be the harmonic oscillator Hamiltonian.
+\begin{equation*}
+H=\frac{P^2}{2m}+\frac{1}{2}m\omega^2 X^2
+\end{equation*}
+
+The result is
+\begin{equation*}
+H=\begin{pmatrix}
+\tfrac{1}{2}\hbar\omega & 0 & 0 & 0
+\\
+0 & \tfrac{3}{2}\hbar\omega & 0 & 0
+\\
+0 & 0 & \tfrac{5}{2}\hbar\omega & 0
+\\
+0 & 0 & 0 & \boxed{\tfrac{3}{2}\hbar\omega}
+\end{pmatrix}
+\end{equation*}
+
+The boxed value is incorrect due to finite matrix size.
+The correct value is $\tfrac{7}{2}\hbar\omega$.
+\begin{equation*}
+H=\begin{pmatrix}
+\tfrac{1}{2}\hbar\omega & 0 & 0 & 0
+\\
+0 & \tfrac{3}{2}\hbar\omega & 0 & 0
+\\
+0 & 0 & \tfrac{5}{2}\hbar\omega & 0
+\\
+0 & 0 & 0 & \tfrac{7}{2}\hbar\omega
+\end{pmatrix}
+\end{equation*}
+
+Hence
+\begin{equation*}
+H_{nn}=\left(n+\tfrac{1}{2}\right)\hbar\omega
+\end{equation*}
+
+Let $\Psi$ be the normalized state
+\begin{equation*}
+\Psi=c_0\psi_0+c_1\psi_1+c_2\psi_2+\cdots
+\end{equation*}
+
+Let us compute the expected value of $x$ for state $\Psi$.
+\begin{equation*}
+\langle x\rangle=\int_{-\infty}^\infty \Psi^*x\Psi\,dx
+\end{equation*}
+
+Expand the integrand.
+\begin{equation*}
+\langle x\rangle
+=\int_{-\infty}^\infty
+\left(\sum_kc_k^*\psi_k^*\right) x \left(\sum_j c_j\psi_j\right)\,dx
+\end{equation*}
+
+Hence
+\begin{align*}
+\langle x\rangle&=\sum_k\sum_jc_k^*c_j\int_{-\infty}^\infty\psi_k^*x\psi_j\,dx
+\\
+&=\sum_k\sum_jc_k^*c_j X_{kj}
+\end{align*}
+
+For example, let $C$ be the coefficient vector
+\begin{equation*}
+C=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\\0\\0\end{pmatrix}
+\end{equation*}
+
+such that
+\begin{equation*}
+C^\dag C=1
+\end{equation*}
+
+Then
+\begin{equation*}
+\langle x\rangle=
+C^\dag XC=\sqrt{\frac{\hbar}{2m\omega}}
+\tag{1}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/harmonic-oscillator-4-demo.html}{Eigenmath script}
+
+\end{document}
