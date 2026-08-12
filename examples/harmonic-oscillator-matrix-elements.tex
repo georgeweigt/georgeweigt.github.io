@@ -50,7 +50,7 @@ P&=i\sqrt{\frac{m\hbar\omega}{2}}
 \end{pmatrix}
 \end{align*}
 
-Let $H$ be the harmonic oscillator Hamiltonian
+Let $H$ be the harmonic oscillator Hamiltonian.
 \begin{equation*}
 H=\frac{P^2}{2m}+\frac{1}{2}m\omega^2 X^2
 \end{equation*}
@@ -87,9 +87,9 @@ Hence
 H_{nn}=\left(n+\tfrac{1}{2}\right)\hbar\omega
 \end{equation*}
 
-Let $\Psi$ be the state
+Let $\Psi$ be the normalized state
 \begin{equation*}
-\Psi=\sum_i c_i\psi_i
+\Psi=c_0\psi_0+c_1\psi_1+c_2\psi_2+\cdots
 \end{equation*}
 
 Let us compute the expected value of $x$ for state $\Psi$.
@@ -98,19 +98,27 @@ Let us compute the expected value of $x$ for state $\Psi$.
 \end{equation*}
 
 Expand the integrand.
-\begin{align*}
+\begin{equation*}
 \langle x\rangle
-&=\int_{-\infty}^\infty
+=\int_{-\infty}^\infty
 \left(\sum_kc_k^*\psi_k^*\right) x \left(\sum_j c_j\psi_j\right)\,dx
-\\
-&=\sum_k\sum_jc_k^*c_j\int_{-\infty}^\infty\psi_k^*x\psi_j\,dx
+\end{equation*}
+
+Hence
+\begin{align*}
+\langle x\rangle&=\sum_k\sum_jc_k^*c_j\int_{-\infty}^\infty\psi_k^*x\psi_j\,dx
 \\
 &=\sum_k\sum_jc_k^*c_j X_{kj}
 \end{align*}
 
-For example, let
+For example, let $C$ be the coefficient vector
 \begin{equation*}
 C=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\\0\\0\end{pmatrix}
+\end{equation*}
+
+such that
+\begin{equation*}
+C^\dag C=1
 \end{equation*}
 
 Then
