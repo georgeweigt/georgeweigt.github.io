@@ -7,28 +7,28 @@ Let $H$ be the Hamiltonian for a harmonic oscillator defined by $m$ and $\omega$
 H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}m\omega^2x^2
 \end{equation*}
 
-We seek wavefunction $\psi(x,t)$ that solves the Schrodinger equation
+We seek $\psi(x,t)$ that solves the Schrodinger equation
 \begin{equation*}
 i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t)
 \end{equation*}
 
-The solution for $n=0,1,2,\ldots$ is
+The solution is
 \begin{equation*}
 \psi_n(x,t)=C_n\exp\left(-\frac{iE_nt}{\hbar}\right)
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
-where $C_n$ is the normalization constant
+where $n=0,1,2,\ldots$ and $C_n$ is the normalization constant
 \begin{equation*}
 C_n=\frac{(-1)^n}{\sqrt{2^nn!}}
 \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
 \left(\frac{\hbar}{m\omega}\right)^{n/2}
 \end{equation*}
 
-and $E_n$ is the energy level
+$E_n$ is the energy level
 \begin{equation*}
-E_n=\hbar\omega\left(n+\tfrac{1}{2}\right)
+E_n=\left(n+\tfrac{1}{2}\right)\hbar\omega
 \end{equation*}
 
 Taking the time derivative of $\psi_n(x,t)$ we find
@@ -36,7 +36,7 @@ Taking the time derivative of $\psi_n(x,t)$ we find
 i\hbar\frac{\partial}{\partial t}\psi_n(x,t)=E_n\psi_n(x,t)
 \end{equation*}
 
-Hence by the Schrodinger equation we have
+Hence by the Schrodinger equation
 \begin{equation*}
 E_n\psi_n(x,t)=H\psi_n(x,t)
 \end{equation*}
