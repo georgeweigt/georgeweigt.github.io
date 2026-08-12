@@ -1,4 +1,4 @@
-"Harmonic oscillator matrix elements"
+"Harmonic oscillator 3"
 
 N = 4
 
