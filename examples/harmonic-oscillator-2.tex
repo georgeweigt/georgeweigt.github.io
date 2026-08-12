@@ -2,9 +2,9 @@
 
 \section*{Harmonic oscillator 2}
 
-From the previous section we have for $n=0,1,2,\ldots$
+From the previous section we have
 \begin{equation*}
-\psi_n(x)=C_n
+\psi_n=C_n
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^n}{dx^n}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
@@ -16,66 +16,73 @@ C_n=\frac{(-1)^n}{\sqrt{2^nn!}}
 \left(\frac{\hbar}{m\omega}\right)^{n/2}
 \end{equation*}
 
-Take the derivative of $\psi_n(x)$ to obtain
+Evaluate the derivative of $\psi_n$. By the product rule
 \begin{equation*}
-\frac{d}{dx}\psi_n(x)
-=\frac{m\omega x}{\hbar}\psi_n(x)
+\frac{d}{dx}\psi_n
+=\frac{m\omega x}{\hbar}\psi_n
 +C_n
 \exp\left(\frac{m\omega x^2}{2\hbar}\right)
 \frac{d^{n+1}}{dx^{n+1}}\exp\left(-\frac{m\omega x^2}{\hbar}\right)
 \end{equation*}
 
-Substitute $\psi_{n+1}(x)$ for the right-hand side to obtain
+Substitute $\psi_{n+1}$ for the right-hand side.
 \begin{equation*}
-\frac{d}{dx}\psi_n(x)
-=\frac{m\omega x}{\hbar}\psi_n(x)
-+\frac{C_n}{C_{n+1}}\psi_{n+1}(x)
+\frac{d}{dx}\psi_n
+=\frac{m\omega x}{\hbar}\psi_n
++\frac{C_n}{C_{n+1}}\psi_{n+1}
 \end{equation*}
 
-where
+We have
 \begin{equation*}
 \frac{C_n}{C_{n+1}}
-=\frac{\sqrt{2\,(n+1)}}{(-1)}\left(\frac{\hbar}{m\omega}\right)^{-1/2}
-=-\left(\frac{2m\omega}{\hbar}\right)^{1/2}\sqrt{n+1}
+%=\frac{\sqrt{2(n+1)}}{(-1)}\left(\frac{\hbar}{m\omega}\right)^{-1/2}
+=-\sqrt{\frac{2m\omega}{\hbar}}\sqrt{n+1}
 \end{equation*}
 
 Hence
 \begin{equation*}
-\left(\frac{\hbar}{2m\omega}\right)^{1/2}
-\left[\frac{m\omega x}{\hbar}\psi_n(x)-\frac{d}{dx}\psi_n(x)\right]
-=\sqrt{n+1}\,\psi_{n+1}(x)
+\frac{d}{dx}\psi_n
+=\frac{m\omega x}{\hbar}\psi_n
+-\sqrt{\frac{2m\omega}{\hbar}}\sqrt{n+1}\psi_{n+1}
 \end{equation*}
 
-By inspection we define step-up operator $\hat a^\dag$ as
+Rearrange as
 \begin{equation*}
-\hat a^\dag=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
-\left[\frac{m\omega x}{\hbar}-\frac{d}{dx}\right]
+\sqrt{\frac{\hbar}{2m\omega}}
+\left(\frac{m\omega x}{\hbar}-\frac{d}{dx}\right)\psi_n
+=\sqrt{n+1}\psi_{n+1}
+\end{equation*}
+
+Let $a_+$ be the operator
+\begin{equation*}
+a_+=\sqrt{\frac{\hbar}{2m\omega}}
+\left(\frac{m\omega x}{\hbar}-\frac{d}{dx}\right)
+\end{equation*}
+
+Hence $a_+$ is the step-up operator
+\begin{equation*}
+a_+\psi_n=\sqrt{n+1}\psi_{n+1}
+\end{equation*}
+
+Let $a_-$ be the operator (needs explanation)
+\begin{equation*}
+a_-=\sqrt{\frac{\hbar}{2m\omega}}
+\left(\frac{m\omega x}{\hbar}+\frac{d}{dx}\right)
+\end{equation*}
+
+Hence $a_-$ is the step-down operator
+\begin{equation*}
+a_-\psi_n=\sqrt{n}\psi_{n-1}
+\end{equation*}
+
+Let $N$ be the number operator
+\begin{equation*}
+N=a_+a_-
 \end{equation*}
 
 Hence
 \begin{equation*}
-\hat a^\dag\psi_n(x)=\sqrt{n+1}\,\psi_{n+1}(x)
-\end{equation*}
-
-Let $\hat a$ be the step-down operator
-\begin{equation*}
-\hat a=\left(\frac{\hbar}{2m\omega}\right)^{1/2}
-\left[\frac{m\omega x}{\hbar}+\frac{d}{dx}\right]
-\end{equation*}
-
-Hence (how to prove?)
-\begin{equation*}
-\hat a\psi_n(x)=\sqrt{n}\,\psi_{n-1}(x)
-\end{equation*}
-
-Let $\hat N$ be the number operator
-\begin{equation*}
-\hat N=\hat a^\dag\hat a
-\end{equation*}
-
-Hence
-\begin{equation*}
-\hat N\psi_n=\hat a^\dag\hat a\psi_n=\hat a^\dag\left(\sqrt n\psi_{n-1}\right)=n\psi_n
+N\psi_n=a_+a_-\psi_n=a_+\left(\sqrt n\psi_{n-1}\right)=n\psi_n
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/harmonic-oscillator-2-demo.html}{Eigenmath script}

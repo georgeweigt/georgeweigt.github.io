@@ -16,29 +16,29 @@ psi4 = psi(4)
 
 "Verify step-up operator"
 
-ahat1(f) = sqrt(hbar / (2 m omega)) (f m omega x / hbar - d(f,x))
+aplus(f) = sqrt(hbar / (2 m omega)) (f m omega x / hbar - d(f,x))
 
-check(ahat1(psi0) == sqrt(1) psi1)
-check(ahat1(psi1) == sqrt(2) psi2)
-check(ahat1(psi2) == sqrt(3) psi3)
-check(ahat1(psi3) == sqrt(4) psi4)
+check(aplus(psi0) == sqrt(1) psi1)
+check(aplus(psi1) == sqrt(2) psi2)
+check(aplus(psi2) == sqrt(3) psi3)
+check(aplus(psi3) == sqrt(4) psi4)
 
 "ok"
 
 "Verify step-down operator"
 
-ahat(f) = sqrt(hbar / (2 m omega)) (f m omega x / hbar + d(f,x))
+aminus(f) = sqrt(hbar / (2 m omega)) (f m omega x / hbar + d(f,x))
 
-check(ahat(psi1) == sqrt(1) psi0)
-check(ahat(psi2) == sqrt(2) psi1)
-check(ahat(psi3) == sqrt(3) psi2)
-check(ahat(psi4) == sqrt(4) psi3)
+check(aminus(psi1) == sqrt(1) psi0)
+check(aminus(psi2) == sqrt(2) psi1)
+check(aminus(psi3) == sqrt(3) psi2)
+check(aminus(psi4) == sqrt(4) psi3)
 
 "ok"
 
 "Verify number operator"
 
-N(f) = ahat1(ahat(f))
+N(f) = aplus(aminus(f))
 
 check(N(psi0) == 0 psi0)
 check(N(psi1) == 1 psi1)
