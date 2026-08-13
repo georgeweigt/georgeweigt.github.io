@@ -585,7 +585,7 @@ sort()
 			x = b[i].innerHTML.toLowerCase();
 			y = b[i + 1].innerHTML.toLowerCase();
 			if (x > y) {
-				//alert(b[i].innerHTML);
+				// alert(b[i].innerHTML); return;
 				// b[i+1] is moved to just before b[i]
 				b[0].parentNode.insertBefore(b[i + 1], b[i]);
 				b = a.getElementsByTagName("li");
