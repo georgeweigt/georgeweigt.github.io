@@ -2,7 +2,7 @@
 
 \section*{Green's function}
 
-In this section we will find the Green's function $G(\mathbf x)$ such that
+We seek a Green's function $G(\mathbf x)$ such that
 \begin{equation*}
 \left(\nabla^2+k^2\right)G(\mathbf x)=\delta^3(\mathbf x)
 \tag{1}
@@ -111,18 +111,16 @@ and
 
 Hence
 \begin{equation*}
-\boxed{G(\mathbf x)=-\frac{\exp(ikx)}{4\pi x}}
+G(\mathbf x)=-\frac{e^{ikx}}{4\pi x}
+\end{equation*}
+
+Substitute $\mathbf r$ for $\mathbf x$.
+\begin{equation*}
+G(\mathbf r)=-\frac{e^{ikr}}{4\pi r}
 \tag{4}
 \end{equation*}
 
-where
-\begin{equation*}
-x=|\mathbf x|
-\end{equation*}
-
-Verify that (4) satisfies (1).
-
-\bigskip
+Let us verify $G(\mathbf r)$ in (4) satisfies equation (1).
 We will need the following formula from Griffiths and Schroeter problem 10.8.
 \begin{equation*}
 \nabla^2(1/r)=-4\pi\delta^3(\mathbf r)
@@ -135,7 +133,7 @@ $f$ and $g$ we have
 \nabla\cdot(f\nabla g)=\nabla f\cdot\nabla g+f\nabla^2g
 \end{equation*}
 
-Substituting $\mathbf r$ for $\mathbf x$ in (4) we have for the Laplacian of $G(\mathbf r)$
+Hence we have for the Laplacian of $G(\mathbf r)$
 \begin{align*}
 \nabla^2G(\mathbf r)
 &=\nabla\cdot\nabla\left(-\frac{e^{ikr}}{4\pi r}\right)
