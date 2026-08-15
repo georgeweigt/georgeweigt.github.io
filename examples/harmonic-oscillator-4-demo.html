@@ -14,10 +14,11 @@ for(k,0,N-1,for(j,0,N-1,
 X = sqrt(hbar / (2 m omega)) (a1 + a2)
 P = i sqrt(m hbar omega / 2) (a1 - a2)
 
-H = dot(P,P) / (2 m) + 1/2 m omega^2 dot(X,X)
+"Commutator"
+dot(X,P) - dot(P,X)
 
-H[N,N] = (N - 1 + 1/2) hbar omega -- correction
-H
+"Hamiltonian"
+dot(P,P) / (2 m) + 1/2 m omega^2 dot(X,X)
 
 C = 1/sqrt(2) (1,1,0,0)
 

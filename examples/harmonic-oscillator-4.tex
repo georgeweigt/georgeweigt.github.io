@@ -52,6 +52,23 @@ P&=i\sqrt{\frac{m\hbar\omega}{2}}
 \end{pmatrix}
 \end{align*}
 
+For the commutator $[X,P]$ we obtain
+\begin{equation*}
+XP-PX=\begin{pmatrix}
+i\hbar & 0 & 0 & 0
+\\
+0 & i\hbar & 0 & 0
+\\
+0 & 0 & i\hbar & 0
+\\
+0 & 0 & 0 & \boxed{-3i\hbar}
+\end{pmatrix}
+=i\hbar
+\end{equation*}
+
+The boxed value is incorrect due to finite matrix size.
+
+\bigskip
 Let $H$ be the harmonic oscillator Hamiltonian.
 \begin{equation*}
 H=\frac{P^2}{2m}+\frac{1}{2}m\omega^2 X^2
@@ -68,27 +85,12 @@ H=\begin{pmatrix}
 \\
 0 & 0 & 0 & \boxed{\tfrac{3}{2}\hbar\omega}
 \end{pmatrix}
+=\left(n+\tfrac{1}{2}\right)\hbar\omega
 \end{equation*}
 
 The boxed value is incorrect due to finite matrix size.
-The correct value is $\tfrac{7}{2}\hbar\omega$.
-\begin{equation*}
-H=\begin{pmatrix}
-\tfrac{1}{2}\hbar\omega & 0 & 0 & 0
-\\
-0 & \tfrac{3}{2}\hbar\omega & 0 & 0
-\\
-0 & 0 & \tfrac{5}{2}\hbar\omega & 0
-\\
-0 & 0 & 0 & \tfrac{7}{2}\hbar\omega
-\end{pmatrix}
-\end{equation*}
 
-Hence
-\begin{equation*}
-H_{nn}=\left(n+\tfrac{1}{2}\right)\hbar\omega
-\end{equation*}
-
+\bigskip
 Let $\Psi$ be the normalized state
 \begin{equation*}
 \Psi=c_0\psi_0+c_1\psi_1+c_2\psi_2+\cdots
