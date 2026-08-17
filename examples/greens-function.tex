@@ -8,24 +8,24 @@ We seek a Green's function $G(\mathbf x)$ such that
 \tag{1}
 \end{equation*}
 
-Let $g(\mathbf y)$ be the Fourier transform of $G(\mathbf x)$ such that
+Let $g(\mathbf y)$ be the Fourier transform of $G(\mathbf x)$.
 \begin{equation*}
 G(\mathbf x)=\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
 \tag{2}
 \end{equation*}
 
-Substitute (2) into (1) to obtain
+Substitute (2) into (1).
 \begin{equation*}
 \left(\nabla^2+k^2\right)
-\left[\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y\right]
-=\delta(\mathbf x)
+\left(\frac{1}{(2\pi)^\frac{3}{2}}\int\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y\right)
+=\delta^3(\mathbf x)
 \end{equation*}
 
-By linearity of differentiation the $(\nabla^2+k^2)$ term can be moved inside the integral.
+By linearity of differentiation, $(\nabla^2+k^2)$ can be moved inside the integral.
 \begin{equation*}
 \frac{1}{(2\pi)^\frac{3}{2}}
 \int\left(\nabla^2+k^2\right)\exp(i\mathbf x\cdot\mathbf y)g(\mathbf y)\,d\mathbf y
-=\delta(\mathbf x)
+=\delta^3(\mathbf x)
 \tag{3}
 \end{equation*}
 
@@ -36,7 +36,7 @@ Noting that
 
 and
 \begin{equation*}
-\delta(\mathbf x)=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
+\delta^3(\mathbf x)=\frac{1}{(2\pi)^3}\int\exp(i\mathbf x\cdot\mathbf y)\,d\mathbf y
 \end{equation*}
 
 we have by substitution into (3)
