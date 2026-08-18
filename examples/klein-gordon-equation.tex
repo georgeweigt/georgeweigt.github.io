@@ -1,0 +1,65 @@
+\input{preamble}
+
+\section*{Klein-Gordon equation}
+
+Start with
+\begin{equation*}
+E=\sqrt{p^2c^2+m^2c^4}
+\end{equation*}
+
+Square both sides.
+\begin{equation*}
+E^2=p^2c^2+m^2c^4
+\end{equation*}
+
+Substitute $i\hbar\partial/\partial t$ for $E$ and $-i\hbar\nabla$ for $p$.
+\begin{equation*}
+\left(i\hbar\frac{\partial}{\partial t}\right)^2
+=\left(-i\hbar\nabla\right)^2c^2+m^2c^4
+\end{equation*}
+
+Hence
+\begin{equation*}
+-\hbar^2\frac{\partial^2}{\partial t^2}=-\hbar^2c^2\nabla^2+m^2c^4
+\end{equation*}
+
+Rearrange as
+\begin{equation*}
+\hbar^2\left(-\frac{\partial^2}{\partial t^2}
++c^2\frac{\partial^2}{\partial x^2}
++c^2\frac{\partial^2}{\partial y^2}
++c^2\frac{\partial^2}{\partial z^2}\right)=m^2c^4
+\end{equation*}
+
+We seek $\psi$ such that
+\begin{equation*}
+\hbar^2\left(-\frac{\partial^2}{\partial t^2}
++c^2\frac{\partial^2}{\partial x^2}
++c^2\frac{\partial^2}{\partial y^2}
++c^2\frac{\partial^2}{\partial z^2}\right)\psi=m^2c^4\psi
+\end{equation*}
+
+Let $P$ be the momentum vector
+\begin{equation*}
+P=\begin{pmatrix}E/c\\p_x\\p_y\\p_z\end{pmatrix}
+\end{equation*}
+
+Let $X$ be the position vector
+\begin{equation*}
+X=\begin{pmatrix}ct\\x\\y\\z\end{pmatrix}
+\end{equation*}
+
+Show that
+\begin{equation*}
+\psi=A\exp\left(-\frac{i}{\hbar}P\cdot X\right)
++B\exp\left(\frac{i}{\hbar}P\cdot X\right)
+\end{equation*}
+
+is a solution where
+\begin{equation*}
+P\cdot X=P^\mu g_{\mu\nu}X^\nu=Et-p_xx-p_yy-p_zz
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/klein-gordon-equation-demo.html}{Eigenmath script}
+
+\end{document}

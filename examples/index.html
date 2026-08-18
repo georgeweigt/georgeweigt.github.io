@@ -293,6 +293,10 @@ a {
 <a href="hydrogen-energy-four-ways.pdf">Hydrogen energy four ways</a>
 [<a href="hydrogen-energy-four-ways-demo.html">demo</a>]
 
+<li><!-- klein gordon equation -->
+<a href="klein-gordon-equation.pdf">Klein-Gordon equation</a>
+[<a href="klein-gordon-equation-demo.html">demo</a>]
+
 <li><!-- klein nishina formula -->
 <a href="klein-nishina-formula.pdf">Klein-Nishina formula</a>
 [<a href="klein-nishina-formula-demo.html">demo</a>]
@@ -581,7 +585,7 @@ sort()
 			x = b[i].innerHTML.toLowerCase();
 			y = b[i + 1].innerHTML.toLowerCase();
 			if (x > y) {
-				// alert(b[i].innerHTML); return;
+				alert(b[i].innerHTML); return;
 				// b[i+1] is moved to just before b[i]
 				b[0].parentNode.insertBefore(b[i + 1], b[i]);
 				b = a.getElementsByTagName("li");
