@@ -18,7 +18,7 @@ Substitute $i\hbar\partial/\partial t$ for $E$ and $-i\hbar\nabla$ for $p$.
 =\left(-i\hbar\nabla\right)^2c^2+m^2c^4
 \end{equation*}
 
-Hence
+By $i^2=-1$
 \begin{equation*}
 -\hbar^2\frac{\partial^2}{\partial t^2}=-\hbar^2c^2\nabla^2+m^2c^4
 \end{equation*}
@@ -31,7 +31,7 @@ Rearrange as
 +c^2\frac{\partial^2}{\partial z^2}\right)=m^2c^4
 \end{equation*}
 
-We seek $\psi$ such that
+We seek $\psi$ that solves the Klein-Gordon equation
 \begin{equation*}
 \hbar^2\left(-\frac{\partial^2}{\partial t^2}
 +c^2\frac{\partial^2}{\partial x^2}
@@ -49,17 +49,20 @@ Let $X$ be the position vector
 X=\begin{pmatrix}ct\\x\\y\\z\end{pmatrix}
 \end{equation*}
 
-Show that
+Let $\psi$ be the scalar function
 \begin{equation*}
 \psi=A\exp\left(-\frac{i}{\hbar}P\cdot X\right)
 +B\exp\left(\frac{i}{\hbar}P\cdot X\right)
 \end{equation*}
 
-is a solution where
+where
 \begin{equation*}
 P\cdot X=P^\mu g_{\mu\nu}X^\nu=Et-p_xx-p_yy-p_zz
 \end{equation*}
 
+Show that $\psi$ solves the Klein-Gordon equation.
+
+\bigskip
 \href{https://georgeweigt.github.io/examples/klein-gordon-equation-demo.html}{Eigenmath script}
 
 \end{document}
