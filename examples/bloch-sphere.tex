@@ -11,7 +11,28 @@ Let $|s\rangle$ be the spin state
 \end{pmatrix}
 \end{equation*}
 
-Spin $|s\rangle$ can be visualized as a point on a unit sphere.
+The expectation values for $|s\rangle$ are
+\begin{align*}
+\langle S_x\rangle&=\langle s|S_x|s\rangle=\frac{\hbar}{2}\sin\theta\cos\phi
+\\[1ex]
+\langle S_y\rangle&=\langle s|S_y|s\rangle=\frac{\hbar}{2}\sin\theta\sin\phi
+\\[1ex]
+\langle S_z\rangle&=\langle s|S_z|s\rangle=\frac{\hbar}{2}\cos\theta
+\end{align*}
+
+In vector form
+\begin{equation*}
+\langle\mathbf S\rangle=\langle s|\mathbf S|s\rangle
+=\frac{\hbar}{2}\begin{pmatrix}
+\sin\theta\cos\phi
+\\
+\sin\theta\sin\phi
+\\
+\cos\theta
+\end{pmatrix}
+\end{equation*}
+
+Hence $\langle\mathbf S\rangle$ is a point on a sphere of radius $\hbar/2$.
 % https://diagrams.janosh.dev/bloch-sphere
 \begin{center}
 \begin{tikzpicture}
@@ -21,7 +42,7 @@ Spin $|s\rangle$ can be visualized as a point on a unit sphere.
 
   % Bloch vector
   % \draw (0, 0) node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2) node[circle, fill, inner sep=0.7, label=above:$\vec{a}$] (a) {};
-  \draw (0, 0) node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2) node[circle, fill, inner sep=0.7, label=above:$|s\rangle$] (a) {};
+  \draw (0, 0) node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2) node[circle, fill, inner sep=0.7, label=above:$\langle\mathbf S\rangle$] (a) {};
   \draw[dashed] (orig) -- (\r/3, -\r/5) node (phi) {} -- (a);
 
   % Sphere
@@ -29,9 +50,9 @@ Spin $|s\rangle$ can be visualized as a point on a unit sphere.
   \draw[dashed] (orig) ellipse (\r{} and \r/3);
 
   % Axes
-  \draw[->] (orig) -- ++(-\r/5, -\r/3) node[below] (x1) {$x_1$};
-  \draw[->] (orig) -- ++(\r, 0) node[right] (x2) {$x_2$};
-  \draw[->] (orig) -- ++(0, \r) node[above] (x3) {$x_3$};
+  \draw[->] (orig) -- ++(-\r/5, -\r/3) node[below] (x1) {$x$};
+  \draw[->] (orig) -- ++(\r, 0) node[right] (x2) {$y$};
+  \draw[->] (orig) -- ++(0, \r) node[above] (x3) {$z$};
 
   % Angles
   %\pic [draw=gray, text=gray, ->, "$\phi$"] {angle = x1--orig--phi};
@@ -46,7 +67,8 @@ Spin $|s\rangle$ can be visualized as a point on a unit sphere.
 \end{tikzpicture}
 \end{center}
 
-Start with an arbitrary complex vector $|\chi\rangle$ such that $\langle\chi|\chi\rangle=1$.
+To show completeness, start with an arbitrary complex vector
+$|\chi\rangle$ such that $\langle\chi|\chi\rangle=1$.
 \begin{equation*}
 |\chi\rangle
 =\begin{pmatrix}
@@ -56,37 +78,31 @@ A\exp(i\phi_1)
 \end{pmatrix}
 \end{equation*}
 
-Let $|s\rangle$ be the spin
+Substitute $\cos(\theta/2)$ for $A$ and $\sin(\theta/2)$ for $\sqrt{1-A^2}$.
 \begin{equation*}
-|s\rangle=\exp(-i\phi_1)|\chi\rangle
-=\begin{pmatrix}
-A
+|\chi\rangle=\begin{pmatrix}
+\cos(\theta/2)\exp(i\phi_1)
 \\
-\sqrt{1-A^2}\exp[i(\phi_2-\phi_1)]
+\sin(\theta/2)\exp(i\phi_2)
 \end{pmatrix}
 \end{equation*}
 
-Substitute $\cos(\theta/2)$ for $A$ and $\sin(\theta/2)$ for $\sqrt{1-A^2}$.
+Let $|s\rangle$ be the following phase of $|\chi\rangle$.
 \begin{equation*}
-|s\rangle=\begin{pmatrix}
+|s\rangle=\exp(-i\phi_1)|\chi\rangle
+=\begin{pmatrix}
 \cos(\theta/2)
 \\
 \sin(\theta/2)\exp[i(\phi_2-\phi_1)]
 \end{pmatrix}
 \end{equation*}
 
-By equality of expectation values $|\chi\rangle$ and $|s\rangle$ are representations of the same spin.
-\begin{align*}
-\langle S_x\rangle=\langle\chi|S_x|\chi\rangle&=\langle s|S_x|s\rangle
-\\
-\langle S_y\rangle=\langle\chi|S_y|\chi\rangle&=\langle s|S_y|s\rangle
-\\
-\langle S_z\rangle=\langle\chi|S_z|\chi\rangle&=\langle s|S_z|s\rangle
-\end{align*}
+By equality of expectation every $|\chi\rangle$ such that
+$\langle\chi|\chi\rangle=1$ has a place on the Bloch sphere.
+\begin{equation*}
+\langle\mathbf S\rangle=\langle\chi|\mathbf S|\chi\rangle=\langle s|\mathbf S|s\rangle
+\end{equation*}
 
-Hence every $|\chi\rangle$ has a place on the Bloch sphere.
-
-\bigskip
 \href{https://georgeweigt.github.io/examples/bloch-sphere-demo.html}{Eigenmath script}
 
 \end{document}

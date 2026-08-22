@@ -1,17 +1,19 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Bloch sphere"
 
-chi = (A exp(i phi1), sqrt(1 - A^2) exp(i phi2))
-
-check(dot(conj(chi),chi) == 1)
-
-s = exp(-i phi1) chi
-
-check(dot(conj(s),s) == 1)
+s = (cos(theta/2), sin(theta/2) exp(i phi))
 
 Sx = 1/2 hbar ((0,1),(1,0))
 Sy = 1/2 hbar ((0,-i),(i,0))
 Sz = 1/2 hbar ((1,0),(0,-1))
+
+check(dot(conj(s),Sx,s) == 1/2 hbar sin(theta) cos(phi))
+check(dot(conj(s),Sy,s) == 1/2 hbar sin(theta) sin(phi))
+check(dot(conj(s),Sz,s) == 1/2 hbar cos(theta))
+
+chi = (cos(theta/2) exp(i phi1), sin(theta/2) exp(i phi2))
+
+s = exp(-i phi1) chi
 
 check(dot(conj(chi),Sx,chi) == dot(conj(s),Sx,s))
 check(dot(conj(chi),Sy,chi) == dot(conj(s),Sy,s))
