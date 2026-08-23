@@ -1,0 +1,9 @@
+"Dirac spinor normalization"
+
+E = sqrt(px^2 + py^2 + pz^2 + m^2)
+
+u = sqrt(E + m) (1, 0, pz / (E + m), (px + i py) / (E + m))
+
+"Verify equation (1)"
+check(dot(conj(u),u) == 2 E)
+"ok"
