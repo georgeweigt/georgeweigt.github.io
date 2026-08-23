@@ -23,24 +23,41 @@ u=\sqrt{E+m}\begin{pmatrix}
 \\[3ex]
 {\displaystyle\frac{p_x+ip_y}{E+m}}
 \end{pmatrix}
-\qquad
+\qquad\qquad
 u^\dag u=2E
 \tag{1}
 \end{equation*}
 
-For $\vec p=0$ we have $\sqrt{E+m}=\sqrt{2m}$ hence
+To demonstrate Lorentz invariance, let $\vec p=0$.
+We have $\sqrt{E+m}=\sqrt{2m}$ hence
 \begin{equation*}
 u=\sqrt{2m}\begin{pmatrix}
-1
-\\
-0
-\\
-0
-\\
-0
+1\\0\\0\\0
 \end{pmatrix}
-\qquad
+\qquad\qquad
 u^\dag u=2m=2E
+\end{equation*}
+
+It is instructive to see what happens when $u$ is not normalized.
+\begin{equation*}
+u=\begin{pmatrix}
+1
+\\[2ex]
+0
+\\[2ex]
+{\displaystyle\frac{p_z}{E+m}}
+\\[3ex]
+{\displaystyle\frac{p_x+ip_y}{E+m}}
+\end{pmatrix}
+\qquad\qquad
+u^\dag u=\frac{\vec p\cdot\vec p}{(E+m)^2}+1
+\tag{2}
+\end{equation*}
+
+The issue is $u^\dag u$ is not Lorentz invariant.
+For example, in the rest frame $\vec p=0$ we obtain
+\begin{equation*}
+u^\dag u=1
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/dirac-spinor-normalization-demo.html}{Eigenmath script}
