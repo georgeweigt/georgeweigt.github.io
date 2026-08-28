@@ -2,17 +2,19 @@
 
 \section*{Ehrenfest theorem}
 
-Show that
+The Ehrenfest theorem tells us expectation values obey the laws of classical mechanics.
+For example, by the classical momentum formula $p=mv^2$ we have
 \begin{equation*}
 \langle p\rangle=m\frac{d}{dt}\langle x\rangle
+\tag{1}
 \end{equation*}
 
-Start with
+To verify (1), start with momentum expectation value $\langle p\rangle$.
 \begin{equation*}
 \langle p\rangle=\int\psi^*p\psi\,dx
 \end{equation*}
 
-By the identity
+By the substitution
 \begin{equation*}
 p=\frac{im}{\hbar}[H,x]
 \end{equation*}
@@ -43,7 +45,7 @@ Hence
 -\frac{im}{\hbar}\int\psi^*xi\hbar\frac{d}{dt}\psi\,dx
 \end{equation*}
 
-Cancel $h$.
+Cancel $\hbar$.
 \begin{equation*}
 \langle p\rangle=m\int\frac{d}{dt}\psi^*x\psi\,dx+m\int\psi^*x\frac{d}{dt}\psi\,dx
 \end{equation*}
@@ -56,7 +58,6 @@ By the product rule for differentiation
 Hence
 \begin{equation*}
 \langle p\rangle=m\frac{d}{dt}\langle x\rangle
-\tag{1}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/ehrenfest-theorem-demo.html}{Eigenmath script}
