@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Compton scattering 2"
+
+c = 299792458.0 meter / second
+h = 6.62607015 10^(-34) joule second
+me = 9.1093837139 10^(-31) kilogram
+
+joule = kilogram meter^2 / second^2
+
+-- Compton data
+
+theta = (45,90,135)
+
+-- convert to radians
+
+theta = theta 2 float(pi) / 360
+
+-- Compton equation
+
+yhat = h / (me c) (1 - cos(theta)) 10^10 "angstrom" / meter
+yhat
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
