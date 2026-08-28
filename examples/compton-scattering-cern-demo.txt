@@ -47,7 +47,7 @@ eV = 1.602176634 10^(-19) joule
 s = (40.0 10^9 eV)^2
 
 C1 = float(pi) alpha^2 / s
-C2 = (h c)^2 -- should be hbar instead of h, error in arxiv paper?
+C2 = (h c)^2 -- why h and not hbar?
 C3 = 10^40 "picobarn" / meter^2 -- convert square meters to picobarns
 
 yhat = C1 ((x + 1) / 2 + 2 / (x + 1)) C2 C3
