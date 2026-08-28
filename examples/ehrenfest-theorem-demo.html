@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Ehrenfest theorem"
+
+-- harmonic oscillator
+
+psi(n) = C(n) exp(-i E(n) t / hbar) *
+         exp(m omega x^2 / (2 hbar)) *
+         d(exp(-m omega x^2 / hbar), x, n)
+
+C(n) = (-1)^n / sqrt(2^n n!) *
+       (m omega / (pi hbar))^(1/4) *
+       (hbar / (m omega))^(n/2)
+
+E(n) = hbar omega (n + 1/2)
+
+-- Psi has nonzero expectation for p and x
+
+Psi = (psi(1) + psi(2)) / sqrt(2)
+
+EXP = exp(-m omega x^2 / hbar)
+ERF = erf(sqrt(m omega / hbar) x)
+
+-- check normalization of Psi
+
+I = integral(conj(Psi) Psi, x)
+-- evaluate I from minus infinity to plus infinity
+check(eval(I, EXP, 0, ERF, 1) - eval(I, EXP, 0, ERF, -1) == 1)
+
+I = integral(conj(Psi) x Psi, x)
+-- evaluate I from minus infinity to plus infinity
+xbar = eval(I, EXP, 0, ERF, 1) - eval(I, EXP, 0, ERF, -1)
+xbar
+
+I = integral(conj(Psi) (-i hbar) d(Psi,x), x)
+-- evaluate I from minus infinity to plus infinity
+pbar = eval(I, EXP, 0, ERF, 1) - eval(I, EXP, 0, ERF, -1)
+pbar
+
+"Verify equation (1)"
+check(pbar == m d(xbar,t))
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

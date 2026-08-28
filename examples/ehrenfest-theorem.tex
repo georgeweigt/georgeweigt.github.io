@@ -1,0 +1,64 @@
+\input{preamble}
+
+\section*{Ehrenfest theorem}
+
+Show that
+\begin{equation*}
+\langle p\rangle=m\frac{d}{dt}\langle x\rangle
+\end{equation*}
+
+Start with
+\begin{equation*}
+\langle p\rangle=\int\psi^*p\psi\,dx
+\end{equation*}
+
+By the identity
+\begin{equation*}
+p=\frac{im}{\hbar}[H,x]
+\end{equation*}
+
+we have
+\begin{equation*}
+\langle p\rangle=\frac{im}{\hbar}\int\psi^*[H,x]\psi\,dx
+\end{equation*}
+
+Expand the commutator.
+\begin{equation*}
+\langle p\rangle=\frac{im}{\hbar}\int\psi^*Hx\psi\,dx-\frac{im}{\hbar}\int\psi^*xH\psi\,dx
+\end{equation*}
+
+By the Schrodinger equation we have the substitutions
+\begin{equation*}
+H\psi=i\hbar\frac{d}{dt}\psi
+\end{equation*}
+
+and
+\begin{equation*}
+\psi^*H=(H\psi)^*=-i\hbar\frac{d}{dt}\psi^*
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle p\rangle=\frac{im}{\hbar}\int-i\hbar\frac{d}{dt}\psi^*x\psi\,dx
+-\frac{im}{\hbar}\int\psi^*xi\hbar\frac{d}{dt}\psi\,dx
+\end{equation*}
+
+Cancel $h$.
+\begin{equation*}
+\langle p\rangle=m\int\frac{d}{dt}\psi^*x\psi\,dx+m\int\psi^*x\frac{d}{dt}\psi\,dx
+\end{equation*}
+
+By the product rule for differentiation
+\begin{equation*}
+\langle p\rangle=m\frac{d}{dt}\int\psi^*x\psi\,dx
+\end{equation*}
+
+Hence
+\begin{equation*}
+\langle p\rangle=m\frac{d}{dt}\langle x\rangle
+\tag{1}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/ehrenfest-theorem-demo.html}{Eigenmath script}
+
+\end{document}
