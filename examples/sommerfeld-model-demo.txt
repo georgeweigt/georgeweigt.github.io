@@ -1,0 +1,15 @@
+"Sommerfeld model"
+
+E = m c^2 (1 + (alpha Z / (n - k + sqrt(k^2 - alpha^2 Z^2)))^2)^(-1/2)
+E = taylor(E,alpha,4)
+E
+
+"Verify equation (1)"
+check(E == m c^2 (1 - alpha^2 Z^2 / (2 n^2) - alpha^4 Z^4 / (2 k n^3) + 3 alpha^4 Z^4 / (8 n^4)))
+"ok"
+
+E = E - m c^2
+
+"Verify equation (2)"
+check(E == -alpha^2 Z^2 m c^2 / (2 n^2) (1 + alpha^2 Z^2 / n (1 / k - 3 / (4 n))))
+"ok"

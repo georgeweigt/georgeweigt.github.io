@@ -1,0 +1,52 @@
+\input{preamble}
+
+\section*{Sommerfeld model}
+
+Sommerfeld in 1916 derived energy levels $E_{nk}$ to model fine structure in atomic spectra.
+\begin{equation*}
+E_{nk}=mc^2\left[1+\left(
+\frac{\alpha Z}{n-k+\sqrt{k^2-\alpha^2Z^2}}\right)^2\right]^{-1/2}
+\end{equation*}
+
+Parameters $n$ and $k$ are the quantum numbers
+\begin{align*}
+n&=1,2,3,\ldots
+\\
+k&=1,2,\ldots,n
+\end{align*}
+
+Expand $E_{nk}$ as a Taylor series in $\alpha$.
+\begin{equation*}
+E_{nk}=mc^2\left[1-\frac{\alpha^2Z^2}{2n^2}-\frac{\alpha^4Z^4}{2kn^3}+\frac{3\alpha^4Z^4}{8n^4}
++\mathcal O(\alpha^6)\right]
+\tag{1}
+\end{equation*}
+
+Rest mass energy term $mc^2$ can be discarded as unobservable in atomic spectra.
+$\mathcal O(\alpha^6)$ is also discarded to obtain
+\begin{equation*}
+E_{nk}=mc^2\left[-\frac{\alpha^2Z^2}{2n^2}-\frac{\alpha^4Z^4}{2kn^3}+\frac{3\alpha^4Z^4}{8n^4}\right]
+\end{equation*}
+
+Typically this is written as
+\begin{equation*}
+E_{nk}=-\frac{\alpha^2Z^2mc^2}{2n^2}
+\left[1+\frac{\alpha^2Z^2}{n}\left(\frac{1}{k}-\frac{3}{4n}\right)\right]
+\tag{2}
+\end{equation*}
+
+By the substitution
+\begin{equation*}
+\alpha^2=\frac{e^4}{(4\pi\varepsilon_0\hbar c)^2}
+\end{equation*}
+
+we also have
+\begin{equation*}
+E_{nk}=-\frac{e^4}{(4\pi\varepsilon_0\hbar)^2}
+\frac{Z^2m}{2n^2}
+\left[1+\frac{\alpha^2Z^2}{n}\left(\frac{1}{k}-\frac{3}{4n}\right)\right]
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/sommerfeld-model-demo.html}{Eigenmath script}
+
+\end{document}
