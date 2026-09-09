@@ -1,0 +1,13 @@
+"Relativistic energy"
+
+E = sqrt((m c^2)^2 + (p c)^2)
+p = m v
+E = taylor(E,v,8)
+E
+
+E = sqrt((m c^2)^2 + (p c)^2)
+E = taylor(E,v,2)
+E
+check(E == m c^2 + 1/2 m v^2)
+
+"ok"
