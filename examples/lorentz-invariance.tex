@@ -1,0 +1,60 @@
+\input{preamble}
+
+\section*{Lorentz invariance}
+
+Let $X$ be a space-like vector.
+There is a $\Lambda$ such that the
+time component of $\Lambda X$ vanishes.
+
+\bigskip
+For example, let $X$ be the space-like vector
+\begin{equation*}
+X=\begin{pmatrix}1\\0\\0\\2\end{pmatrix}
+\end{equation*}
+
+Verify $X$ is space-like.
+\begin{equation*}
+X^\mu X_\mu=-3
+\end{equation*}
+
+We seek $\Lambda$ such that
+\begin{equation*}
+\Lambda X=\begin{pmatrix}
+\cosh\eta & 0 & 0 & \sinh\eta
+\\
+0 & 1 & 0 & 0
+\\
+0 & 0 & 1 & 0
+\\
+\sinh\eta & 0 & 0 & \cosh\eta
+\end{pmatrix}
+\begin{pmatrix}1\\0\\0\\2\end{pmatrix}
+=\begin{pmatrix}0\\0\\0\\z\end{pmatrix}
+\end{equation*}
+
+This reduces to finding $\eta$ such that
+\begin{equation*}
+\cosh\eta+2\sinh\eta=0
+\end{equation*}
+
+Solve numerically to obtain
+\begin{equation*}
+\eta=-0.549306
+\end{equation*}
+
+Hence
+\begin{equation*}
+\Lambda=\begin{pmatrix}
+1.1547 & 0 & 0 & -0.57735
+\\
+0 & 1 & 0 & 0
+\\
+0 & 0 & 1 & 0
+\\
+-0.57735 & 0 & 0 & 1.1547
+\end{pmatrix}
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/lorentz-invariance-demo.html}{Eigenmath script}
+
+\end{document}

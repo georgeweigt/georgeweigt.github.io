@@ -1,0 +1,23 @@
+"Lorentz invariance"
+
+g = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+X = (1,0,0,2)
+
+check(dot(X,g,X) < 0)
+
+a = -1.0
+b = 1.0
+for(k,1,100,
+  eta = (a + b) / 2,
+  y = X[1] cosh(eta) + X[4] sinh(eta),
+  test(y == 0, break, y < 0, a = eta, b = eta)
+)
+
+eta
+
+Lambda = ((cosh(eta),0,0,sinh(eta)),(0,1,0,0),(0,0,1,0),(sinh(eta),0,0,cosh(eta)))
+Lambda
+
+"Transformed vector"
+dot(Lambda,X)
