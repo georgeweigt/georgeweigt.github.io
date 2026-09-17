@@ -6,8 +6,11 @@ X = (1,0,0,2)
 
 check(dot(X,g,X) < 0)
 
-a = -1.0
-b = 1.0
+-- floating point cosh(20) == sinh(20) so make the search interval -20 to +20
+
+a = -20.0
+b = 20.0
+
 for(k,1,100,
   eta = (a + b) / 2,
   y = X[1] cosh(eta) + X[4] sinh(eta),
