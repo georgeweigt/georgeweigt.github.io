@@ -20,39 +20,49 @@ X^\mu X_\mu=-3
 We seek $\Lambda$ such that
 \begin{equation*}
 X'=\Lambda X=\begin{pmatrix}
-\cosh\eta & 0 & 0 & \sinh\eta
+\gamma & 0 & 0 & -\beta\gamma
 \\
 0 & 1 & 0 & 0
 \\
 0 & 0 & 1 & 0
 \\
-\sinh\eta & 0 & 0 & \cosh\eta
+-\beta\gamma & 0 & 0 & \gamma
 \end{pmatrix}
 \begin{pmatrix}1\\0\\0\\2\end{pmatrix}
 =\begin{pmatrix}0\\0\\0\\z'\end{pmatrix}
 \end{equation*}
 
-This reduces to finding $\eta$ such that
+where $0\le\beta<1$ and
 \begin{equation*}
-\cosh\eta+2\sinh\eta=0
+\gamma=\frac{1}{\sqrt{1-\beta^2}}
 \end{equation*}
 
-Solve numerically to obtain
+This reduces to finding $\beta$ such that
 \begin{equation*}
-\eta=-0.549306
+\gamma-2\beta\gamma=0
+\end{equation*}
+
+Solve for $\beta$.
+\begin{equation*}
+\beta=\frac{1}{2}
 \end{equation*}
 
 Hence
 \begin{equation*}
 \Lambda=\begin{pmatrix}
-1.1547 & 0 & 0 & -0.57735
+2/\sqrt3 & 0 & 0 & -1/\sqrt3
 \\
 0 & 1 & 0 & 0
 \\
 0 & 0 & 1 & 0
 \\
--0.57735 & 0 & 0 & 1.1547
+-1/\sqrt3 & 0 & 0 & 2/\sqrt3
 \end{pmatrix}
+\end{equation*}
+
+and
+\begin{equation*}
+X'=\Lambda X=\begin{pmatrix}0\\0\\0\\\sqrt3\end{pmatrix}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/lorentz-invariance-demo.html}{Eigenmath script}

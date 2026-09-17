@@ -1,25 +1,17 @@
 "Lorentz invariance"
 
-g = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
-
 X = (1,0,0,2)
+
+g = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
 
 check(dot(X,g,X) < 0)
 
--- floating point cosh(20) == sinh(20) so make the search interval -20 to +20
+beta = X[1] / X[4]
+gamma = 1 / sqrt(1 - beta^2)
 
-a = -20.0
-b = 20.0
+beta
 
-for(k,1,100,
-  eta = (a + b) / 2,
-  t = X[1] cosh(eta) + X[4] sinh(eta),
-  test(t == 0, break, t < 0, a = eta, b = eta)
-)
-
-eta
-
-Lambda = ((cosh(eta),0,0,sinh(eta)),(0,1,0,0),(0,0,1,0),(sinh(eta),0,0,cosh(eta)))
+Lambda = ((gamma,0,0,-beta gamma),(0,1,0,0),(0,0,1,0),(-beta gamma,0,0,gamma))
 Lambda
 
 "Transformed vector"
