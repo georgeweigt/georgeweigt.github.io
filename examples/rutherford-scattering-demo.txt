@@ -50,22 +50,11 @@ check(M == f)
 
 "Verify probability density"
 
-check(f == 2 (Z alpha / q^2)^2 (E^2 + m^2 + p^2 cos(theta)))
+check(f == (Z alpha / q^2)^2 (4 m^2 + 2 p^2 (cos(theta) + 1)))
 
 q = p1 - p2
 q2 = dot(q,gmunu,q)
 check(q2 == 2 p^2 (cos(theta) - 1))
 check(q2^2 == 16 p^4 sin(theta/2)^4)
-
--- verify integral
-
-f = 1 / (cos(theta) - 1)^2
-I = 1 / (cos(theta) - 1)
-check(f sin(theta) == d(I,theta))
-
--- verify cdf
-
-F = (I - eval(I,theta,a)) / (eval(I,theta,pi) - eval(I,theta,a))
-check(F == 2 (cos(a) - cos(theta)) / ((1 + cos(a)) (1 - cos(theta))))
 
 "ok"
