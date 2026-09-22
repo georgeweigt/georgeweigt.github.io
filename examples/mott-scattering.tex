@@ -71,23 +71,23 @@ For the Coulomb potential
 V(\mathbf r)=-\frac{Ze^2}{4\pi\epsilon_0r}=-\frac{Z\alpha}{r}
 \end{equation*}
 
-we have the matrix elements
+we have the transition amplitudes
 \begin{align*}
 M_1&=-Z\alpha
 \int\frac{1}{r}\psi_{21}^\dag(\mathbf r)\psi_{11}(\mathbf r)\,d^3\mathbf r
-%& &\text{up}^\dag\text{up}
+& &\text{up $\leftarrow$ up}
 \\[1ex]
 M_2&=-Z\alpha
 \int\frac{1}{r}\psi_{21}^\dag(\mathbf r)\psi_{12}(\mathbf r)\,d^3\mathbf r
-%& &\text{up}^\dag\text{down}
+& &\text{up $\leftarrow$ down}
 \\[1ex]
 M_3&=-Z\alpha
 \int\frac{1}{r}\psi_{22}^\dag(\mathbf r)\psi_{11}(\mathbf r)\,d^3\mathbf r
-%& &\text{down}^\dag\text{up}
+& &\text{down $\leftarrow$ up}
 \\[1ex]
 M_4&=-Z\alpha
 \int\frac{1}{r}\psi_{22}^\dag(\mathbf r)\psi_{12}(\mathbf r)\,d^3\mathbf r
-%& &\text{down}^\dag\text{down}
+& &\text{down $\leftarrow$ down}
 \end{align*}
 
 Substitute for the wave functions.
@@ -132,12 +132,13 @@ M_4&=-\frac{1}{2EV}u_{22}^\dag u_{12}
 \frac{Z\alpha\pi\hbar^2}{p^2\sin^2(\theta/2)}
 \end{align*}
 
-Expected probability density $\langle|M|^2\rangle$.
+Expected density $\langle|M|^2\rangle$ is the average density.
+(There are two inbound states hence the divisor is 2.)
 \begin{equation*}
 \langle|M|^2\rangle=\frac{1}{2}\left(|M_1|^2+|M_2|^2+|M_3|^2+|M_4|^2\right)
 \end{equation*}
 
-Hence
+Rearrange as
 \begin{equation*}
 \langle|M|^2\rangle
 =\left(\frac{1}{2EV}
@@ -175,7 +176,7 @@ Hence
 \tag{3}
 \end{equation*}
 
-Factor $4m^2$ to obtain
+Factor the $4m^2$ to obtain
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\left(\frac{Z\alpha m}{2p^2\sin^2(\theta/2)}\right)^2
