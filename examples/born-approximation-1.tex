@@ -2,9 +2,10 @@
 
 \section*{Born approximation 1}
 
-Derive the Born approximation
+The Born approximation takes potential energy $V(\mathbf x)$
+and gives back wave function $\psi(\mathbf x)$ as
 \begin{equation*}
-\psi(r,\theta,\phi)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
+\psi(\mathbf x)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ik|\mathbf x|)}{|\mathbf x|}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf x}{\hbar}\right)V(\mathbf x)\,d\mathbf x
 \end{equation*}
 
@@ -13,18 +14,12 @@ where
 k=\frac{\sqrt{2mE}}{\hbar}
 \end{equation*}
 
-Vector $\mathbf p$ is momentum transfer such that
+Vector $\mathbf p$ is momentum transfer
 \begin{equation*}
 \mathbf p=\mathbf p_i-\mathbf p_f
 \end{equation*}
 
-and
-\begin{equation*}
-p^2=|\mathbf p|^2=4mE(1-\cos\theta)
-\end{equation*}
-
-\subsubsection*{\S1}
-
+Let us derive the Born approximation.
 Start with the Schrodinger equation
 \begin{equation*}
 -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf x)+V(\mathbf x)\psi(\mathbf x)=E\psi(\mathbf x)
@@ -134,12 +129,10 @@ V(\mathbf y)\,d\mathbf y
 
 In polar coordinates
 \begin{equation*}
-\psi(r,\theta,\phi)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
+\psi(\mathbf r)=-\frac{m}{2\pi\hbar^2}\frac{\exp(ikr)}{r}
 \int\exp\left(\frac{i\mathbf p\cdot\mathbf y}{\hbar}\right)
 V(\mathbf y)\,d\mathbf y
 \end{equation*}
-
-\subsubsection*{\S2}
 
 We now consider the differential cross section $d\sigma$ such that
 \begin{equation*}
