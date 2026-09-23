@@ -2,7 +2,7 @@
 
 \section*{Mott scattering}
 
-Mott scattering is relativistic Rutherford scattering.
+Mott scattering is the result of kinetic electrons $e^-$ crossing atomic nuclei $Z$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -14,7 +14,7 @@ Mott scattering is relativistic Rutherford scattering.
 \end{tikzpicture}
 \end{center}
 
-Momentum vectors where $E=\sqrt{p^2+m^2}$.
+Momentum vectors where $p$ is electron momentum and $E$ is relativistic energy $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
 p_1=(E,\mathbf p_1)
 =\underset{\substack{\text{inbound}\\ \text{electron}}}
@@ -53,7 +53,7 @@ u_{22}=\frac{1}{\sqrt{E+m}}
 \end{equation*}
 
 Inbound wave functions.
-All $\psi$ are normalized as $\langle\psi|\psi\rangle=1$ over finite volume $V$.
+All wave functions are normalized as $\langle\psi|\psi\rangle=1$ over volume $V$.
 \begin{align*}
 \psi_{11}(\mathbf r)&=\frac{1}{\sqrt{2EV}}u_{11}\exp\left(\frac{i}{\hbar}\mathbf p_1\cdot\mathbf r\right)
 \\[1ex]
@@ -72,7 +72,7 @@ For the Coulomb potential
 V(\mathbf r)=-\frac{Ze^2}{4\pi\epsilon_0r}=-\frac{Z\alpha}{r}
 \end{equation*}
 
-we have the transition amplitudes
+we have the following transition amplitudes.
 \begin{align*}
 M_1&=-Z\alpha
 \int\frac{1}{r}\psi_{21}^\dag(\mathbf r)\psi_{11}(\mathbf r)\,d^3\mathbf r
@@ -152,7 +152,7 @@ By computer algebra
 \begin{equation*}
 \frac{1}{2}
 \left(|u_{21}^\dag u_{11}|^2+|u_{21}^\dag u_{12}|^2+|u_{22}^\dag u_{11}|^2+|u_{22}^\dag u_{12}|^2\right)
-=\left(4m^2+4p^2\cos^2(\theta/2)\right)
+=4m^2+4p^2\cos^2(\theta/2)
 \tag{2}
 \end{equation*}
 
