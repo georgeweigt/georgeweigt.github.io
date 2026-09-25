@@ -177,7 +177,7 @@ Hence
 \tag{3}
 \end{equation*}
 
-Factor the $4m^2$ to obtain
+Factor the $4m^2$ and substitute $v=p/m$ to obtain
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\left(\frac{Z\alpha m}{2p^2\sin^2(\theta/2)}\right)^2
@@ -185,18 +185,31 @@ Factor the $4m^2$ to obtain
 \tag{4}
 \end{equation*}
 
-where $v=p/m$.
+To restore $\hbar$ and $c$ to physical units,
+change $\alpha$ to $\alpha\hbar c$ and
+make the substitution
+\begin{equation*}
+v=\frac{p}{m}\rightarrow\frac{pc}{mc^2}=\frac{v}{c}=\beta
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\left(\frac{Zm\alpha\hbar c}{2p^2\sin^2(\theta/2)}\right)^2
+\left(1+\beta^2\cos^2(\theta/2)\right)
+\end{equation*}
+
 Noting that
 \begin{equation*}
 \underset{\text{Rutherford}}{\frac{d\sigma}{d\Omega}}
-=\left(\frac{Z\alpha m}{2p^2\sin^2(\theta/2)}\right)^2
+=\left(\frac{Zm\alpha\hbar c}{2p^2\sin^2(\theta/2)}\right)^2
 \end{equation*}
 
 we have
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\underset{\text{Rutherford}}{\frac{d\sigma}{d\Omega}}
-\left(1+v^2\cos^2(\theta/2)\right)
+\left(1+\beta^2\cos^2(\theta/2)\right)
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/mott-scattering-demo.html}{Eigenmath script}
