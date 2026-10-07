@@ -2,9 +2,9 @@
 
 \section*{Moller scattering 2}
 
-For transition amplitudes $M_t$ we have
+For transition amplitudes $\mathcal M_t$ we have
 \begin{equation*}
-M_t=\iint
+\mathcal M_t=\iint
 \bar\psi_4(y)\underset{\text{vertex}}{(-ie\gamma^\mu)}\psi_2(y)
 \underset{\substack{\text{photon}\\\text{propagator}}}{G(x,y)}
 \bar\psi_3(x)\underset{\text{vertex}}{(-ie\gamma_\mu)}\psi_1(x)
@@ -38,9 +38,9 @@ For clarity we abbreviate as
 \psi_4(x)=\sqrt{2EV}u_4\exp(-ip_4x)
 \end{align*}
 
-Substitute for the wave functions in $M_t$ and factor the spinors.
+Substitute for the wave functions in $\mathcal M_t$ and factor the spinors.
 \begin{multline*}
-M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 {}\times
 \iint
@@ -52,7 +52,7 @@ G(x,y)
 
 Substitute for $G(x,y)$.
 \begin{multline*}
-M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 {}\times\frac{1}{(2\pi)^4}
 \iiint
@@ -64,7 +64,7 @@ M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 
 Combine exponentials.
 \begin{multline*}
-M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 {}\times\frac{1}{(2\pi)^4}
 \iiint
@@ -81,7 +81,7 @@ The integrals over $x$ and $y$ are solved as
 
 Hence
 \begin{equation*}
-M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_4-p_2+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
 \,d^4p
@@ -94,8 +94,44 @@ p=p_3-p_1=p_2-p_4
 
 Hence
 \begin{equation*}
-M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
+\end{equation*}
+
+For momentum vectors
+\begin{equation*}
+p_1=\underset{e^- \, \longrightarrow}
+{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
+\qquad
+p_2=\underset{\longleftarrow \, e^-}
+{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
+\qquad
+p_3=\underset{\substack{\phantom{e^-} \, \nearrow\\e^- \, \phantom{\nearrow}}}
+{\begin{pmatrix}
+E\\
+p\sin\theta\cos\phi\\
+p\sin\theta\sin\phi\\
+p\cos\theta
+\end{pmatrix}}
+\qquad
+p_4=\underset{\substack{\phantom{\swarrow} \, e^-\\\swarrow \, \phantom{e^-}}}
+{\begin{pmatrix}
+E\\
+-p\sin\theta\cos\phi\\
+-p\sin\theta\sin\phi\\
+-p\cos\theta
+\end{pmatrix}}
+\end{equation*}
+
+we have $\delta^4(p_4+p_3-p_2-p_1)=\delta^4(0)=1$ hence
+\begin{equation*}
+\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\frac{(2\pi)^4}{t}
+\end{equation*}
+
+where $t$ is the Mandelstam variable
+\begin{equation*}
+t=(p_1-p_3)^2
 \end{equation*}
 
 \end{document}
