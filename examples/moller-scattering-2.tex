@@ -13,43 +13,32 @@ For transition amplitudes $\mathcal M_t$ we have
 
 where $G(x,y)$ is the photon propagator
 \begin{equation*}
-G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip^\mu g_{\mu\nu}(x-y)^\nu)}{p^2+i\epsilon}\,d^4p
+G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}\,d^4p
 \end{equation*}
 
 The wave functions are
 \begin{align*}
-\psi_1(x)=\sqrt{2EV}u_1\exp(-ip_1^\mu g_{\mu\nu}x^\nu)
+\psi_1(x)=\sqrt{2EV}u_1\exp(-ip_1\cdot x)
 \\
-\psi_2(x)=\sqrt{2EV}u_2\exp(-ip_2^\mu g_{\mu\nu}x^\nu)
+\psi_2(x)=\sqrt{2EV}u_2\exp(-ip_2\cdot x)
 \\
-\psi_3(x)=\sqrt{2EV}u_3\exp(-ip_3^\mu g_{\mu\nu}x^\nu)
+\psi_3(x)=\sqrt{2EV}u_3\exp(-ip_3\cdot x)
 \\
-\psi_4(x)=\sqrt{2EV}u_4\exp(-ip_4^\mu g_{\mu\nu}x^\nu)
+\psi_4(x)=\sqrt{2EV}u_4\exp(-ip_4\cdot x)
 \end{align*}
 
 where $V$ is a normalization volume.
-For overall clarity let us write the exponentials more compactly as
-\begin{align*}
-\psi_1(x)=\sqrt{2EV}u_1\exp(-ip_1x)
-\\
-\psi_2(x)=\sqrt{2EV}u_2\exp(-ip_2x)
-\\
-\psi_3(x)=\sqrt{2EV}u_3\exp(-ip_3x)
-\\
-\psi_4(x)=\sqrt{2EV}u_4\exp(-ip_4x)
-\end{align*}
 
-Substitute for the wave functions in $\mathcal M_t$ and factor the spinors.
-\begin{multline*}
+\bigskip
+Substitute for the wave functions in $\mathcal M_t$ and factor the spinor products.
+\begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
-\\
-{}\times
 \iint
-\exp(ip_4y)\exp(-ip_2y)
-G(x,y)
-\exp(ip_3x)\exp(-ip_1x)
+{\exp(i(p_4-p_2)\cdot y)}
+\,G(x,y)\,
+{\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y
-\end{multline*}
+\end{equation*}
 
 Substitute for $G(x,y)$.
 \begin{multline*}
@@ -57,9 +46,9 @@ Substitute for $G(x,y)$.
 \\
 {}\times\frac{1}{(2\pi)^4}
 \iiint
-\exp(ip_4y)\exp(-ip_2y)
-{\frac{\exp(-ip(x-y))}{p^2+i\epsilon}}
-\exp(ip_3x)\exp(-ip_1x)
+{\exp(i(p_4-p_2)\cdot y)}
+\,{\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}}\,
+{\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y\,d^4p
 \end{multline*}
 
@@ -69,15 +58,15 @@ Combine exponentials.
 \\
 {}\times\frac{1}{(2\pi)^4}
 \iiint
-\frac{\exp(i(p_4-p_2+p)y)\exp(i(p_3-p_1-p)x)}{p^2+i\epsilon}
+\frac{\exp(i(p_4-p_2+p)\cdot y)\exp(i(p_3-p_1-p)\cdot x)}{p^2+i\epsilon}
 \,d^4x\,d^4y\,d^4p
 \end{multline*}
 
 The integrals over $x$ and $y$ are solved as
 \begin{align*}
-\int\exp(i(p_3-p_1-p)x)\,d^4x=(2\pi)^4\delta^4(p_3-p_1-p)
+\int\exp(i(p_3-p_1-p)\cdot x)\,d^4x=(2\pi)^4\delta^4(p_3-p_1-p)
 \\
-\int\exp(i(p_4-p_2+p)y)\,d^4y=(2\pi)^4\delta^4(p_4-p_2+p)
+\int\exp(i(p_4-p_2+p)\cdot y)\,d^4y=(2\pi)^4\delta^4(p_4-p_2+p)
 \end{align*}
 
 Hence
@@ -96,7 +85,7 @@ p=p_3-p_1=p_2-p_4
 Hence
 \begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
-(2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
+(2\pi)^4\,\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
 \end{equation*}
 
 For momentum vectors
