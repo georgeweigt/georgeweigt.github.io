@@ -13,21 +13,22 @@ For transition amplitudes $\mathcal M_t$ we have
 
 where $G(x,y)$ is the photon propagator
 \begin{equation*}
-G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip(x-y))}{p^2+i\epsilon}\,d^4p
+G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip^\mu g_{\mu\nu}(x-y)^\nu)}{p^2+i\epsilon}\,d^4p
 \end{equation*}
 
-Moller scattering wave functions normalized as $\langle\psi|\psi\rangle=1$ over volume $V$.
+The wave functions are
 \begin{align*}
-\psi_1(x^\mu)=\sqrt{2EV}u_1\exp(-ip_1^\mu g_{\mu\nu}x^\nu)
+\psi_1(x)=\sqrt{2EV}u_1\exp(-ip_1^\mu g_{\mu\nu}x^\nu)
 \\
-\psi_2(x^\mu)=\sqrt{2EV}u_2\exp(-ip_2^\mu g_{\mu\nu}x^\nu)
+\psi_2(x)=\sqrt{2EV}u_2\exp(-ip_2^\mu g_{\mu\nu}x^\nu)
 \\
-\psi_3(x^\mu)=\sqrt{2EV}u_3\exp(-ip_3^\mu g_{\mu\nu}x^\nu)
+\psi_3(x)=\sqrt{2EV}u_3\exp(-ip_3^\mu g_{\mu\nu}x^\nu)
 \\
-\psi_4(x^\mu)=\sqrt{2EV}u_4\exp(-ip_4^\mu g_{\mu\nu}x^\nu)
+\psi_4(x)=\sqrt{2EV}u_4\exp(-ip_4^\mu g_{\mu\nu}x^\nu)
 \end{align*}
 
-For clarity we abbreviate as
+where $V$ is a normalization volume.
+For overall clarity let us write the exponentials more compactly as
 \begin{align*}
 \psi_1(x)=\sqrt{2EV}u_1\exp(-ip_1x)
 \\
