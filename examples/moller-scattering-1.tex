@@ -98,15 +98,6 @@ where
 (\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \end{equation*}
 
-\iffalse
-Symbols $t$ and $u$ are Mandelstam variables.
-\begin{align*}
-t&=(p_1-p_3)^2
-\\
-u&=(p_1-p_4)^2
-\end{align*}
-\fi
-
 The expected density $\langle|\mathcal M|^2\rangle$ is the average over spin states.
 \begin{equation*}
 \langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{abcd}|\mathcal M|^2
@@ -161,9 +152,7 @@ Then $\langle|\mathcal{M}|^2\rangle$ can be written more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4}
-\left(
-\frac{f_{11}}{t^2}-\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
-\right)
+\left(\frac{f_{11}}{t^2}-\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}\right)
 \end{equation*}
 
 For $E\gg m$ a useful approximation is to set $m=0$ and obtain
@@ -177,9 +166,7 @@ Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =2e^4
-\left(
-\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
-\right)
+\left(\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}\right)
 \end{equation*}
 
 For $m=0$ the Mandelstam variables are
@@ -195,13 +182,13 @@ Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =2e^4\biggl(
-\underset{\text{no electron interchange}}
+\underset{\text{$t$-channel}}
 {\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}
 +
 \underset{\text{interference}}
 {\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}}
 +
-\underset{\text{electron interchange}}
+\underset{\text{$u$-channel}}
 {\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
 \biggr)
 \end{equation*}
