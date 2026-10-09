@@ -21,9 +21,9 @@ p12 = dot(p1,gmunu,p2)
 p13 = dot(p1,gmunu,p3)
 p14 = dot(p1,gmunu,p4)
 
-f11 = 32 p12^2 + 32 p14^2 - 64 p12 m^2 + 64 p14 m^2
-f12 = -32 p12^2 + 64 p12 m^2
-f22 = 32 p12^2 + 32 p13^2 - 64 p12 m^2 + 64 p13 m^2
+f11 = 32 p12^2 + 32 p14^2 - 64 m^2 p12 + 64 m^2 p14
+f12 = -32 p12^2 + 64 m^2 p12
+f22 = 32 p12^2 + 32 p13^2 - 64 m^2 p12 + 64 m^2 p13
 
 "Verify formulas"
 
@@ -34,5 +34,11 @@ u = dot(p1 - p4, gmunu, p1 - p4)
 check(f11 == 8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4)
 check(f12 == -8 s (s - 8 m^2) - 96 m^4)
 check(f22 == 8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4)
+
+m = 0
+
+check(f11 == 8 s^2 + 8 u^2)
+check(f12 == -8 s^2)
+check(f22 == 8 s^2 + 8 t^2)
 
 "ok"
