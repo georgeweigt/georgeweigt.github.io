@@ -1,0 +1,38 @@
+\input{preamble}
+
+\section*{Moller scattering 3}
+
+The Casimir trick uses matrix arithmetic to sum over spin states.
+\begin{align*}
+\sum_{abcd}\mathcal M_t\mathcal M_t^*&=\frac{e^4}{t^2}
+\operatorname{Tr}\left(
+(\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
+\right)
+\operatorname{Tr}\left(
+(\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
+\right)
+\\
+\sum_{abcd}\mathcal M_t\mathcal M_u^*&=\frac{e^4}{tu}
+\operatorname{Tr}\left(
+(\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
+(\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
+\right)
+\\
+\sum_{abcd}\mathcal M_u\mathcal M_u^*&=\frac{e^4}{u^2}
+\operatorname{Tr}\left(
+(\slashed p_3+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
+\right)
+\operatorname{Tr}\left(
+(\slashed p_4+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
+\right)
+\end{align*}
+
+Recall that slash matrices are formed as
+\begin{equation*}
+\slashed p=p^\mu g_{\mu\nu}\gamma^\nu
+=p^0\gamma^0-p^1\gamma^1-p^2\gamma^2-p^3\gamma^3
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/moller-scattering-3-demo.html}{Eigenmath script}
+
+\end{document}

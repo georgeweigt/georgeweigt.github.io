@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Moller scattering 3"
+
+E = sqrt(p^2 + m^2)
+
+p1 = (E, 0, 0, p)
+p2 = (E, 0, 0, -p)
+
+p3 = (E,
+      p sin(theta) cos(phi),
+      p sin(theta) sin(phi),
+      p cos(theta))
+
+p4 = (E,
+      -p sin(theta) cos(phi),
+      -p sin(theta) sin(phi),
+      -p cos(theta))
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+pslash1 = dot(p1,gmunu,gamma)
+pslash2 = dot(p2,gmunu,gamma)
+pslash3 = dot(p3,gmunu,gamma)
+pslash4 = dot(p4,gmunu,gamma)
+
+X1 = pslash1 + m I
+X2 = pslash2 + m I
+X3 = pslash3 + m I
+X4 = pslash4 + m I
+
+"Verify Casimir trick"
+
+T1 = contract(dot(X4,gammaT,X2,gammaT),1,4)
+T2 = contract(dot(X3,gammaL,X1,gammaL),1,4)
+M1 = contract(dot(T1,transpose(T2)))
+
+T = contract(dot(X4,gammaT,X2,gammaT,X3,gammaL,X1,gammaL),1,6)
+M2 = contract(contract(T,1,3))
+
+T = contract(dot(X3,gammaT,X2,gammaT,X4,gammaL,X1,gammaL),1,6)
+M3 = contract(contract(T,1,3))
+
+T1 = contract(dot(X3,gammaT,X2,gammaT),1,4)
+T2 = contract(dot(X4,gammaL,X1,gammaL),1,4)
+M4 = contract(dot(T1,transpose(T2)))
+
+s = dot(p1 + p2, gmunu, p1 + p2)
+t = dot(p1 - p3, gmunu, p1 - p3)
+u = dot(p1 - p4, gmunu, p1 - p4)
+
+check(M1 == 8 s^2 + 8 u^2 + 64 m^2 t - 64 m^4)
+check(M2 == -8 s^2 + 64 m^2 s - 96 m^4)
+check(M3 == -8 s^2 + 64 m^2 s - 96 m^4)
+check(M4 == 8 s^2 + 8 t^2 + 64 m^2 u - 64 m^4)
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
