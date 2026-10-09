@@ -3,53 +3,50 @@
 \section*{Moller scattering 3}
 
 The Casimir trick uses matrix arithmetic to sum over spin states.
+
+\bigskip
+Let
 \begin{align*}
-\sum_{abcd}\mathcal M_t\mathcal M_t^*&=\frac{e^4}{t^2}
-\operatorname{Tr}\left(
-(\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
-\right)
-\operatorname{Tr}\left(
-(\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
-\right)
+f_{11}&=8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4
 \\
-\sum_{abcd}\mathcal M_t\mathcal M_u^*&=\frac{e^4}{tu}
-\operatorname{Tr}\left(
-(\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
-(\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
-\right)
+f_{12}&=-8 s (s - 8 m^2) - 96 m^4
 \\
-\sum_{abcd}\mathcal M_u\mathcal M_u^*&=\frac{e^4}{u^2}
-\operatorname{Tr}\left(
-(\slashed p_3+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
-\right)
-\operatorname{Tr}\left(
-(\slashed p_4+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
-\right)
+f_{22}&=8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4
 \end{align*}
 
-In Mandelstam variables
+such that
 \begin{align*}
-&\operatorname{Tr}\left(
+\sum_{abcd}\mathcal M_t\mathcal M_t^*&=\frac{e^4}{t^2}f_{11}
+\\
+\sum_{abcd}\mathcal M_t\mathcal M_u^*&=\frac{e^4}{tu}f_{12}
+\\
+\sum_{abcd}\mathcal M_u\mathcal M_u^*&=\frac{e^4}{u^2}f_{22}
+\end{align*}
+
+By the Casimir trick we have
+
+\begin{align*}
+f_{11}&=
+\operatorname{Tr}\left(
 (\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 \right)
 \operatorname{Tr}\left(
 (\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
 \right)
-& &=8 s^2 + 8 u^2 + 64 m^2 t - 64 m^4
 \\
-&\operatorname{Tr}\left(
+f_{12}&=
+\operatorname{Tr}\left(
 (\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 (\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
 \right)
-& &=-8 s^2 + 64 m^2 s - 96 m^4
 \\
-&\operatorname{Tr}\left(
+f_{13}&=
+\operatorname{Tr}\left(
 (\slashed p_3+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 \right)
 \operatorname{Tr}\left(
 (\slashed p_4+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
 \right)
-& &=8 s^2 + 8 t^2 + 64 m^2 u - 64 m^4
 \end{align*}
 
 Recall that slash matrices are formed as
