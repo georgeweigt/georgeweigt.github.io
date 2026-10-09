@@ -84,136 +84,94 @@ u_{42}=\frac{1}{\sqrt{E+m}}
 {\begin{pmatrix}0\\E+m\\p_{4x}-ip_{4y}\\-p_{4z}\end{pmatrix}}
 \end{equation*}
 
-The scattering amplitude $\mathcal M_{abcd}$ for spin state $abcd$ is
+The scattering amplitude $\mathcal M$ is
 \begin{equation*}
-\mathcal M_{abcd}=\mathcal M_{1abcd}+\mathcal M_{2abcd}
+\mathcal M=\mathcal M_t-\mathcal M_u
 \end{equation*}
 
 where
 \begin{equation*}
-\mathcal M_{1abcd}=\frac{e^2}{t}
-\underset{\text{no electron interchange}}
-{(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})},
-\quad
-\mathcal M_{2abcd}=-\frac{e^2}{u}
-\underset{\text{electron interchange}}
-{(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})}
+\mathcal M_t=\frac{e^2}{t}
+(\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})
+\qquad
+\mathcal M_u=\frac{e^2}{u}
+(\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \end{equation*}
 
+\iffalse
 Symbols $t$ and $u$ are Mandelstam variables.
 \begin{align*}
 t&=(p_1-p_3)^2
 \\
 u&=(p_1-p_4)^2
 \end{align*}
+\fi
 
-The expected probability density $\langle|\mathcal M|^2\rangle$
-is the sum over squared amplitudes divided by the number of inbound states.
+The expected density $\langle|\mathcal M|^2\rangle$ is the average over spin states.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{abcd}|\mathcal M_{abcd}|^2
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{abcd}|\mathcal M|^2
 \end{equation*}
 
-Expand the summand and label the terms.
-By positivity $\boxed{\scriptstyle2}=\boxed{\scriptstyle3}$.
+Expand the summand.
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{1}{4}
 \sum_{abcd}
-\bigl(
-\underset{\boxed{\scriptstyle1}}
-{\mathcal M_{1abcd}\mathcal M_{1abcd}^*}+
-\underset{\boxed{\scriptstyle2}}
-{\mathcal M_{1abcd}\mathcal M_{2abcd}^*}+
-\underset{\boxed{\scriptstyle3}}
-{\mathcal M_{2abcd}\mathcal M_{1abcd}^*}+
-\underset{\boxed{\scriptstyle4}}
-{\mathcal M_{2abcd}\mathcal M_{2abcd}^*}
-\bigr)
+\left(
+\mathcal M_t\mathcal M_t^*-
+\mathcal M_t\mathcal M_u^*-
+\mathcal M_u\mathcal M_t^*+
+\mathcal M_u\mathcal M_u^*
+\right)
 \end{equation*}
 
-The following Casimir trick uses matrix arithmetic to sum over spin states.
+The results are
 \begin{align*}
-\sum_{abcd}\boxed{\scriptstyle1}&=\frac{e^4}{t^2}
-\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-\right]
-\operatorname{Tr}\left[
-(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
+\frac{1}{4}\sum_{abcd}
+\mathcal M_t\mathcal M_t^*&=\frac{e^4}{4t^2}
+\left(8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4\right)
 \\
-\sum_{abcd}\boxed{\scriptstyle2}&=-\frac{e^4}{tu}
-\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
+\frac{1}{4}\sum_{abcd}
+\mathcal M_t\mathcal M_u^*&=\frac{e^4}{4tu}
+\left(-8 s (s - 8 m^2) - 96 m^4\right)
 \\
-\sum_{abcd}\boxed{\scriptstyle4}&=\frac{e^4}{u^2}
-\operatorname{Tr}\left[
-(\slashed p_4+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-\right]
-\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
+\frac{1}{4}\sum_{abcd}
+\mathcal M_t\mathcal M_t^*&=\frac{e^4}{4u^2}
+\left(8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4\right)
 \end{align*}
 
-Probability density $\langle|\mathcal{M}|^2\rangle$ can be reformulated as
+For clarity define
+\begin{align*}
+f_{11}&=8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4
+\\
+f_{12}&=-8 s (s - 8 m^2) - 96 m^4
+\\
+f_{22}&=8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4
+\end{align*}
+
+Then $\langle|\mathcal{M}|^2\rangle$ can be written more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{e^4}{4}
 \left(
-\frac{f_{11}}{t^2}+\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
+\frac{f_{11}}{t^2}-\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
 \right)
 \end{equation*}
-
-with Casimir trick terms
-\begin{align*}
-f_{11}&=
-\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-\right]
-\operatorname{Tr}\left[
-(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
-\\
-f_{12}&=
--\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-(\slashed p_4+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
-\\
-f_{22}&=
-\operatorname{Tr}\left[
-(\slashed p_4+m)\gamma^\mu(\slashed p_1+m)\gamma^\nu
-\right]
-\operatorname{Tr}\left[
-(\slashed p_3+m)\gamma_\mu(\slashed p_2+m)\gamma_\nu
-\right]
-\end{align*}
-
-The following formulas are equivalent to the Casimir trick.
-(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
-\begin{align*}
-f_{11}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_4)^2 - 64 (p_1\cdot p_2) m^2 + 64 (p_1\cdot p_4) m^2
-\\
-f_{12}&=32 (p_1\cdot p_2)^2 - 64 (p_1\cdot p_2) m^2
-\\
-f_{22}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_3)^2 - 64 (p_1\cdot p_2) m^2 + 64 (p_1\cdot p_3) m^2
-\end{align*}
-
-In Mandelstam variables
-\begin{align*}
-f_{11} &= 8 s^2 + 8 u^2 - 64 s m^2 - 64 u m^2 + 192 m^4
-\\
-f_{12} &= 8 s^2 - 64 s m^2 + 96 m^4
-\\
-f_{22} &= 8 s^2 + 8 t^2 - 64 s m^2 - 64 t m^2 + 192 m^4
-\end{align*}
 
 For $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&=8s^2+8u^2\\
-f_{12}&=8s^2\\
+f_{12}&=-8s^2\\
 f_{22}&=8s^2+8t^2
 \end{align*}
+
+Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4
+\left(
+\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
+\right)
+\end{equation*}
 
 For $m=0$ the Mandelstam variables are
 \begin{align*}
@@ -225,19 +183,9 @@ u&=-2E^2(1+\cos\theta)
 \end{align*}
 
 Hence
-\begin{align*}
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{t^2}+\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}
-\right)
-\\
-&=2e^4
-\left(
-\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}
-\right)
-\\
-&=2e^4\biggl(
+=2e^4\biggl(
 \underset{\text{no electron interchange}}
 {\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}
 +
@@ -247,104 +195,30 @@ Hence
 \underset{\text{electron interchange}}
 {\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
 \biggr)
-\end{align*}
+\end{equation*}
 
-The expected probability density can be written more compactly as
+This can be written more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=4e^4\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
-
-\subsubsection*{Cross section}
 
 The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
+\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4s}
+=\frac{e^4}{s}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-where
-\begin{equation*}
-s=(p_1+p_2)^2=4E^2
-\end{equation*}
-
-For high energy experiments we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=4e^4\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
-\end{equation*}
-
-Hence
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{e^4}{(4\pi\varepsilon_0)^2s}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
-\end{equation*}
-
-Noting that
-\begin{equation*}
-e^2=4\pi\varepsilon_0\alpha\hbar c
-\end{equation*}
-
-we have
+To convert from natural units to physical units, change $e^4$ to $\alpha^2(\hbar c)^2$.
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{s}
 \frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-Noting that
-\begin{equation*}
-d\Omega=\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-we also have
-\begin{equation*}
-d\sigma=\frac{\alpha^2(\hbar c)^2}{s}
-\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
-\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
-\begin{equation*}
-S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
-\end{equation*}
-
-The solution is
-\begin{equation*}
-S(\theta_1,\theta_2)=\frac{2\pi\alpha^2(\hbar c)^2}{s}[I(\theta_2)-I(\theta_1)]
-\end{equation*}
-
-where
-\begin{equation*}
-I(\theta)=-\frac{8\cos\theta}{\sin^2\theta}-\cos\theta
-\end{equation*}
-
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)
-=\frac{S(a,\theta)}{S(a,\pi-a)}
-=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
-\quad
-a\le\theta\le\pi-a
-\end{equation*}
-
-Angular support is reduced by an arbitrary angle $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
-
-\bigskip
-The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
-\begin{equation*}
-P(\theta_1<\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
-\end{equation*}
-
-The probability density function is
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{1}{I(\pi-a)-I(a)}
-\frac{\left(\cos^2\theta+3\right)^2}{\sin^4\theta}\sin\theta
-\end{equation*}
-
-\subsubsection*{Note}
-
 A.~Zee page 134 has the cross section
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\left(\frac{e^2}{4\pi}\right)^2\frac{1}{8E^2}f(\theta)
 \end{equation*}
-where $f(\theta)$ is the probability density function
+where $f(\theta)$ is the function
 \begin{equation*}
 f(\theta)=
 \frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
@@ -352,14 +226,19 @@ f(\theta)=
 +\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
 \end{equation*}
 
-The probability density function is equivalent to
+Function $f(\theta)$ is equivalent to
 \begin{equation*}
-f(\theta)=\frac{2(\cos^2\theta+3)^2}{\sin^4\theta}
+f(\theta)=2\,\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-Hence for natural units $\varepsilon_0=\hbar=c=1$ and $e^2=4\pi\alpha$ the above cross section is equivalent to
+Noting that in natural units $e^2=4\pi\alpha$ we have
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{4E^2}
+\left(\frac{e^2}{4\pi}\right)^2=\alpha^2
+\end{equation*}
+
+Hence
+\begin{equation*}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}
 \frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
