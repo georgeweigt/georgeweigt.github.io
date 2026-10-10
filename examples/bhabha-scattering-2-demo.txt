@@ -1,0 +1,20 @@
+"Bhabha scattering 2"
+
+E = sqrt(p^2 + m^2)
+
+p1 = (E, 0, 0, p)
+p2 = (E, 0, 0, -p)
+
+p3 = (E,
+      p sin(theta) cos(phi),
+      p sin(theta) sin(phi),
+      p cos(theta))
+
+p4 = (E,
+      -p sin(theta) cos(phi),
+      -p sin(theta) sin(phi),
+      -p cos(theta))
+
+check(p4 + p3 - p2 - p1 == 0)
+
+"ok"

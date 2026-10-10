@@ -1,4 +1,4 @@
--- Verify formulas for Bhabha scattering
+"Bhabha scattering 1"
 
 E = sqrt(p^2 + m^2)
 
