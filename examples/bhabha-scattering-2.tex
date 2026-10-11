@@ -2,7 +2,7 @@
 
 \section*{Bhabha scattering 2}
 
-For $t$-channel scattering amplitudes $\mathcal M_t$ we have
+For $t$-channel scattering amplitude $\mathcal M_t$ we have
 \begin{equation*}
 \mathcal M_t=\iint
 \bar\psi_2(y)
@@ -84,7 +84,7 @@ Hence
 \,d^4p
 \end{equation*}
 
-The integral over $p$ vanishes except for
+The integrand vanishes except for
 \begin{equation*}
 p=p_2-p_4=p_3-p_1
 \end{equation*}
@@ -92,18 +92,20 @@ p=p_2-p_4=p_3-p_1
 Hence
 \begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
-(2\pi)^4\,\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
+(2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
 \end{equation*}
+
+\iffalse
 
 For momentum vectors
 \begin{equation*}
 p_1=\underset{e^- \, \longrightarrow}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
 \qquad
-p_2=\underset{\longleftarrow \, e^+}
+p_2=\underset{\longrightarrow \, e^+}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{\substack{\phantom{e^-} \, \nearrow\\e^- \, \phantom{\nearrow}}}
+p_3=\underset{\substack{\phantom{\nearrow} \, e^-\\\nearrow \, \phantom{e^-}}}
 {\begin{pmatrix}
 E\\
 p\sin\theta\cos\phi\\
@@ -111,7 +113,7 @@ p\sin\theta\sin\phi\\
 p\cos\theta
 \end{pmatrix}}
 \qquad
-p_4=\underset{\substack{\phantom{\swarrow} \, e^+\\\swarrow \, \phantom{e^+}}}
+p_4=\underset{\substack{\phantom{e^+} \, \nearrow\\e^+ \, \phantom{\nearrow}}}
 {\begin{pmatrix}
 E\\
 -p\sin\theta\cos\phi\\
@@ -123,18 +125,15 @@ E\\
 we have $\delta^4(p_4+p_3-p_2-p_1)=\delta^4(0)=1$ hence
 \begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
-\frac{(2\pi)^4}{t}
+\frac{(2\pi)^4}{(p_3-p_1)^2}
 \end{equation*}
 
-where $t$ is the Mandelstam variable
-\begin{equation*}
-t=(p_1-p_3)^2
-\end{equation*}
+\fi
 
-The $s$-channel scattering amplitudes $\mathcal M_s$
-have $\psi_2$ and $\psi_3$ interchanged relative to $\mathcal M_t$.
+The $s$-channel scattering amplitude $\mathcal M_s$
+has $\psi_2$ and $\psi_3$ interchanged relative to $\mathcal M_t$.
 \begin{equation*}
-\mathcal M_t=\iint
+\mathcal M_s=\iint
 \bar\psi_3(y)
 (-ie\gamma^\mu)
 \psi_4(y)
@@ -147,26 +146,21 @@ G(x,y)
 
 It follows that
 \begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
+\mathcal M_s=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_3+p_4+p)\delta^4(-p_2-p_1-p)}{p^2+i\epsilon}
 \,d^4p
 \end{equation*}
 
-The integral over $p$ vanishes except for
+The integrand vanishes except for
 \begin{equation*}
-p=-p_3-p_4=p_1+p_2
+p=-p_3-p_4=-p_1-p_2
 \end{equation*}
 
 Hence
 \begin{equation*}
 \mathcal M_s=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
-\frac{(2\pi)^4}{s}
-\end{equation*}
-
-where $s$ is the Mandelstam variable
-\begin{equation*}
-s=(p_1+p_2)^2
+(2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_1+p_2)^2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/bhabha-scattering-2-demo.html}{Eigenmath script}
