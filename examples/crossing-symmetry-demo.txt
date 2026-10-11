@@ -1,0 +1,13 @@
+"Verify crossing symmetry"
+
+M1 = (s^2 + u^2) / t^2 + 2 u^2 / (s t) + (t^2 + u^2) / s^2
+
+M2 = (s^2 + u^2) / t^2 + 2 s^2 / (t u) + (s^2 + t^2) / u^2
+
+X1 = eval(M1, s,S, u,s, S,u)
+X2 = eval(M2, s,S, u,s, S,u)
+
+check(M1 == X2)
+check(M2 == X1)
+
+"ok"
