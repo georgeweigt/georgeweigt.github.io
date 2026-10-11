@@ -38,7 +38,7 @@ Substitute for the wave functions in $\mathcal M_t$ and factor the spinor produc
 \begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 \iint
-{\exp(i(p_4-p_2)\cdot y)}
+{\exp(i(-p_2+p_4)\cdot y)}
 \,G(x,y)\,
 {\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y
@@ -50,7 +50,7 @@ Substitute for $G(x,y)$.
 \\
 \frac{1}{(2\pi)^4}
 \iiint
-{\exp(i(p_4-p_2)\cdot y)}
+{\exp(i(-p_2+p_4)\cdot y)}
 \,{\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}}\,
 {\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y\,d^4p
@@ -62,28 +62,31 @@ Combine exponentials.
 \\
 \frac{1}{(2\pi)^4}
 \iiint
-\frac{\exp(i(p_4-p_2+p)\cdot y)\exp(i(p_3-p_1-p)\cdot x)}{p^2+i\epsilon}
+\frac{\exp(i(-p_2+p_4+p)\cdot y)\exp(i(p_3-p_1-p)\cdot x)}{p^2+i\epsilon}
 \,d^4x\,d^4y\,d^4p
 \end{multline*}
 
-Solve the integrals over $x$ and $y$.
-\begin{align*}
+Solve the integral over $x$.
+\begin{equation*}
 \int\exp(i(p_3-p_1-p)\cdot x)\,d^4x=(2\pi)^4\delta^4(p_3-p_1-p)
-\\
-\int\exp(i(p_4-p_2+p)\cdot y)\,d^4y=(2\pi)^4\delta^4(p_4-p_2+p)
-\end{align*}
+\end{equation*}
+
+Solve the integral over $y$.
+\begin{equation*}
+\int\exp(i(-p_2+p_4+p)\cdot y)\,d^4y=(2\pi)^4\delta^4(-p_2+p_4+p)
+\end{equation*}
 
 Hence
 \begin{equation*}
 \mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\int
-\frac{\delta^4(p_4-p_2+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
+\frac{\delta^4(-p_2+p_4+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
 \,d^4p
 \end{equation*}
 
 The integral over $p$ vanishes except for
 \begin{equation*}
-p=p_3-p_1=p_2-p_4
+p=p_2-p_4=p_3-p_1
 \end{equation*}
 
 Hence
@@ -152,7 +155,7 @@ It follows that
 
 The integral over $p$ vanishes except for
 \begin{equation*}
-p=-p_3-p_4=-p_2-p_1
+p=-p_3-p_4=p_1+p_2
 \end{equation*}
 
 Hence

@@ -86,15 +86,18 @@ u_{42}=\frac{1}{\sqrt{E+m}}
 
 The scattering amplitude $\mathcal M$ is
 \begin{equation*}
-\mathcal M=\mathcal M_t-\mathcal M_u
+\mathcal M=\mathcal M_1-\mathcal M_2
 \end{equation*}
 
-where
+where $\mathcal M_1$ is the amplitude
 \begin{equation*}
-\mathcal M_t=\frac{e^2}{t}
+\mathcal M_1=\frac{\alpha}{t}
 (\bar{u}_{3c}\gamma^\mu u_{1a})(\bar{u}_{4d}\gamma_\mu u_{2b})
-\qquad
-\mathcal M_u=\frac{e^2}{u}
+\end{equation*}
+
+and $\mathcal M_2$ is the amplitude
+\begin{equation*}
+\mathcal M_2=\frac{\alpha}{u}
 (\bar{u}_{4d}\gamma^\nu u_{1a})(\bar{u}_{3c}\gamma_\nu u_{2b})
 \end{equation*}
 
@@ -108,25 +111,25 @@ Expand the summand.
 \langle|\mathcal{M}|^2\rangle=\frac{1}{4}
 \sum_{abcd}
 \left(
-\mathcal M_t\mathcal M_t^*-
-\mathcal M_t\mathcal M_u^*-
-\mathcal M_u\mathcal M_t^*+
-\mathcal M_u\mathcal M_u^*
+\mathcal M_1\mathcal M_1^*-
+\mathcal M_1\mathcal M_2^*-
+\mathcal M_2\mathcal M_1^*+
+\mathcal M_2\mathcal M_2^*
 \right)
 \end{equation*}
 
 The summation results are
 \begin{align*}
 \sum_{abcd}
-\mathcal M_t\mathcal M_t^*&=\frac{e^4}{t^2}
+\mathcal M_1\mathcal M_1^*&=\frac{\alpha^2}{t^2}
 \left(8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4\right)
 \\
 \sum_{abcd}
-\mathcal M_t\mathcal M_u^*&=\frac{e^4}{tu}
+\mathcal M_1\mathcal M_2^*&=\frac{\alpha^2}{tu}
 \left(-8 s (s - 8 m^2) - 96 m^4\right)
 \\
 \sum_{abcd}
-\mathcal M_t\mathcal M_t^*&=\frac{e^4}{u^2}
+\mathcal M_2\mathcal M_2^*&=\frac{\alpha^2}{u^2}
 \left(8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4\right)
 \end{align*}
 
@@ -151,7 +154,7 @@ f_{22}&=8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4
 Now write $\langle|\mathcal{M}|^2\rangle$ more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4}
+=\frac{\alpha^2}{4}
 \left(\frac{f_{11}}{t^2}-\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}\right)
 \end{equation*}
 
@@ -165,7 +168,7 @@ f_{22}&=8s^2+8t^2
 Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=2e^4
+=2\alpha^2
 \left(\frac{s^2+u^2}{t^2}+\frac{2s^2}{tu}+\frac{s^2+t^2}{u^2}\right)
 \end{equation*}
 
@@ -181,33 +184,28 @@ u&=-2E^2(1+\cos\theta)
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=2e^4\biggl(
-\underset{\text{$t$-channel}}
-{\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}}
-+
-\underset{\text{interference}}
-{\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}}
-+
-\underset{\text{$u$-channel}}
-{\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}}
-\biggr)
+=2\alpha^2\left(
+\frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
++\frac{2}{\sin^2(\theta/2)\cos^2(\theta/2)}
++\frac{1+\sin^4(\theta/2)}{\cos^4(\theta/2)}
+\right)
 \end{equation*}
 
 This can be written more compactly as
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=4e^4\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+\langle|\mathcal{M}|^2\rangle=4\alpha^2\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
 The differential cross section is
 \begin{equation*}
 \frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4s}
-=\frac{e^4}{s}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+=\frac{\alpha^2}{4E^2}\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
 \end{equation*}
 
-To convert from natural units to physical units, change $e^4$ to $\alpha^2(\hbar c)^2$.
+Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2(\hbar c)^2}{s}
-\frac{(\cos^2\theta+3)^2}{\sin^4\theta}
+\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{4E^2}
+\frac{(\cos^2\theta+3)^2}{\sin^4\theta}(\hbar c)^2
 \end{equation*}
 
 Zee p.~134 has the cross section formula
