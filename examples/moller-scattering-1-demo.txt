@@ -79,9 +79,9 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-f11 = 8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4
-f12 = -8 s (s - 8 m^2) - 96 m^4
-f22 = 8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4
+f11 = 8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4
+f12 = -8 s^2 + 64 m^2 s - 96 m^4
+f22 = 8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4
 
 "Verify formulas"
 
@@ -105,9 +105,13 @@ a = (s^2 + u^2) / t^2
 b = 2 s^2 / (t u)
 c = (s^2 + t^2) / u^2
 
-check(a == (1 + cos(theta/2)^4) / sin(theta/2)^4)
-check(b == 2 / (sin(theta/2)^2 cos(theta/2)^2))
-check(c == (1 + sin(theta/2)^4) / cos(theta/2)^4)
+a = (1 + cos(theta/2)^4) / sin(theta/2)^4
+b = 2 / (sin(theta/2)^2 cos(theta/2)^2)
+c = (1 + sin(theta/2)^4) / cos(theta/2)^4
+
+check(a == (s^2 + u^2) / t^2)
+check(b == 2 s^2 / (t u))
+check(c == (s^2 + t^2) / u^2)
 
 check(1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2) == 2 (a + b + c))
 
