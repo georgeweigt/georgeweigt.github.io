@@ -2,9 +2,9 @@
 
 \section*{Moller scattering 2}
 
-For $t$-channel scattering amplitudes $\mathcal M_t$ we have
+Let $\mathcal M_1$ be the amplitude for $1\rightarrow3$, $2\rightarrow4$.
 \begin{equation*}
-\mathcal M_t=\iint
+\mathcal M_1=\iint
 \bar\psi_4(y)
 (-ie\gamma^\mu)
 \psi_2(y)
@@ -15,7 +15,7 @@ G(x,y)
 \,d^4x\,d^4y
 \end{equation*}
 
-where $G(x,y)$ is the photon propagator
+Function $G(x,y)$ is the photon propagator
 \begin{equation*}
 G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}\,d^4p
 \end{equation*}
@@ -34,19 +34,20 @@ The wave functions are
 where $V$ is a normalization volume.
 
 \bigskip
-Substitute for the wave functions in $\mathcal M_t$ and factor the spinor products.
-\begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+Substitute for the wave functions in $\mathcal M_1$ and factor the spinor products.
+\begin{multline*}
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\\
 \iint
 {\exp(i(p_4-p_2)\cdot y)}
 \,G(x,y)\,
 {\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y
-\end{equation*}
+\end{multline*}
 
 Substitute for $G(x,y)$.
 \begin{multline*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 \frac{1}{(2\pi)^4}
 \iiint
@@ -58,7 +59,7 @@ Substitute for $G(x,y)$.
 
 Combine exponentials.
 \begin{multline*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 \frac{1}{(2\pi)^4}
 \iiint
@@ -66,87 +67,61 @@ Combine exponentials.
 \,d^4x\,d^4y\,d^4p
 \end{multline*}
 
-Solve the integrals over $x$ and $y$.
-\begin{align*}
+Solve the integral over $x$.
+\begin{equation*}
 \int\exp(i(p_3-p_1-p)\cdot x)\,d^4x=(2\pi)^4\delta^4(p_3-p_1-p)
-\\
+\end{equation*}
+
+Solve the integral over $y$.
+\begin{equation*}
 \int\exp(i(p_4-p_2+p)\cdot y)\,d^4y=(2\pi)^4\delta^4(p_4-p_2+p)
-\end{align*}
+\end{equation*}
 
 Hence
 \begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_4-p_2+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
 \,d^4p
 \end{equation*}
 
-The integral over $p$ vanishes except for
+The integrand vanishes except for
 \begin{equation*}
-p=p_3-p_1=p_2-p_4
+p=-p_4+p_2=p_3-p_1
 \end{equation*}
 
 Hence
 \begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
-(2\pi)^4\,\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+(2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
 \end{equation*}
 
-For momentum vectors
+Let $\mathcal M_2$ be the amplitude for $1\rightarrow4$, $2\rightarrow3$.
 \begin{equation*}
-p_1=\underset{e^- \, \longrightarrow}
-{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-\qquad
-p_2=\underset{\longleftarrow \, e^-}
-{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-\qquad
-p_3=\underset{\substack{\phantom{e^-} \, \nearrow\\e^- \, \phantom{\nearrow}}}
-{\begin{pmatrix}
-E\\
-p\sin\theta\cos\phi\\
-p\sin\theta\sin\phi\\
-p\cos\theta
-\end{pmatrix}}
-\qquad
-p_4=\underset{\substack{\phantom{\swarrow} \, e^-\\\swarrow \, \phantom{e^-}}}
-{\begin{pmatrix}
-E\\
--p\sin\theta\cos\phi\\
--p\sin\theta\sin\phi\\
--p\cos\theta
-\end{pmatrix}}
-\end{equation*}
-
-we have $\delta^4(p_4+p_3-p_2-p_1)=\delta^4(0)=1$ hence
-\begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
-\frac{(2\pi)^4}{t}
-\end{equation*}
-
-where $t$ is the Mandelstam variable
-\begin{equation*}
-t=(p_1-p_3)^2
-\end{equation*}
-
-The $u$-channel scattering amplitudes $\mathcal M_u$ have $\psi_3$ and $\psi_4$ interchanged
-relative to $\mathcal M_t$.
-\begin{equation*}
-\mathcal M_u=\iint
+\mathcal M_2=\iint
 \bar\psi_3(y)(-ie\gamma^\mu)\psi_2(y)
 G(x,y)
 \bar\psi_4(x)(-ie\gamma_\mu)\psi_1(x)
 \,d^4x\,d^4y
 \end{equation*}
 
-Hence for $\mathcal M_u$ we have
+It follows that
 \begin{equation*}
-\mathcal M_u=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
-\frac{(2\pi)^4}{u}
+\mathcal M_2=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
+(2\pi)^4\int
+\frac{\delta^4(p_3-p_2+p)\delta^4(p_4-p_1-p)}{p^2+i\epsilon}
+\,d^4p
 \end{equation*}
 
-where $u$ is the Mandelstam variable
+The integrand vanishes except for
 \begin{equation*}
-u=(p_1-p_4)^2
+p=-p_3+p_2=p_4-p_1
+\end{equation*}
+
+Hence
+\begin{equation*}
+\mathcal M_2=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
+(2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_4-p_1)^2}
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/moller-scattering-2-demo.html}{Eigenmath script}

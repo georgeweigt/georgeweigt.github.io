@@ -40,8 +40,6 @@ X2 = pslash2 + m I
 X3 = pslash3 + m I
 X4 = pslash4 + m I
 
-"Verify Casimir trick"
-
 T1 = contract(dot(X4,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X3,gammaL,X1,gammaL),1,4)
 f11 = contract(dot(T1,transpose(T2)))
@@ -53,13 +51,15 @@ T1 = contract(dot(X3,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X1,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
 
+"Verify Casimir trick"
+
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-check(f11 == 8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4)
-check(f12 == -8 s (s - 8 m^2) - 96 m^4)
-check(f22 == 8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4)
+check(f11 == 8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4)
+check(f12 == -8 s^2 + 64 m^2 s - 96 m^4)
+check(f22 == 8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>

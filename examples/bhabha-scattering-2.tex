@@ -2,9 +2,9 @@
 
 \section*{Bhabha scattering 2}
 
-For $t$-channel scattering amplitude $\mathcal M_t$ we have
+Let $\mathcal M_1$ be the amplitude for $1\rightarrow3$, $4\rightarrow2$.
 \begin{equation*}
-\mathcal M_t=\iint
+\mathcal M_1=\iint
 \bar\psi_2(y)
 (-ie\gamma^\mu)
 \psi_4(y)
@@ -15,7 +15,7 @@ G(x,y)
 \,d^4x\,d^4y
 \end{equation*}
 
-where $G(x,y)$ is the photon propagator
+Function $G(x,y)$ is the photon propagator
 \begin{equation*}
 G(x,y)=\frac{1}{(2\pi)^4}\int\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}\,d^4p
 \end{equation*}
@@ -34,19 +34,20 @@ The wave functions are
 where $V$ is a normalization volume.
 
 \bigskip
-Substitute for the wave functions in $\mathcal M_t$ and factor the spinor products.
-\begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+Substitute for the wave functions in $\mathcal M_1$ and factor the spinor products.
+\begin{multline*}
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+\\
 \iint
 {\exp(i(-p_2+p_4)\cdot y)}
 \,G(x,y)\,
 {\exp(i(p_3-p_1)\cdot x)}
 \,d^4x\,d^4y
-\end{equation*}
+\end{multline*}
 
 Substitute for $G(x,y)$.
 \begin{multline*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 \\
 \frac{1}{(2\pi)^4}
 \iiint
@@ -58,7 +59,7 @@ Substitute for $G(x,y)$.
 
 Combine exponentials.
 \begin{multline*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 \\
 \frac{1}{(2\pi)^4}
 \iiint
@@ -78,7 +79,7 @@ Solve the integral over $y$.
 
 Hence
 \begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(-p_2+p_4+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
 \,d^4p
@@ -91,49 +92,13 @@ p=p_2-p_4=p_3-p_1
 
 Hence
 \begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
 \end{equation*}
 
-\iffalse
-
-For momentum vectors
+Let $\mathcal M_2$ be the amplitude for $1\rightarrow2$, $4\rightarrow3$.
 \begin{equation*}
-p_1=\underset{e^- \, \longrightarrow}
-{\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
-\qquad
-p_2=\underset{\longrightarrow \, e^+}
-{\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
-\qquad
-p_3=\underset{\substack{\phantom{\nearrow} \, e^-\\\nearrow \, \phantom{e^-}}}
-{\begin{pmatrix}
-E\\
-p\sin\theta\cos\phi\\
-p\sin\theta\sin\phi\\
-p\cos\theta
-\end{pmatrix}}
-\qquad
-p_4=\underset{\substack{\phantom{e^+} \, \nearrow\\e^+ \, \phantom{\nearrow}}}
-{\begin{pmatrix}
-E\\
--p\sin\theta\cos\phi\\
--p\sin\theta\sin\phi\\
--p\cos\theta
-\end{pmatrix}}
-\end{equation*}
-
-we have $\delta^4(p_4+p_3-p_2-p_1)=\delta^4(0)=1$ hence
-\begin{equation*}
-\mathcal M_t=-\frac{e^2}{(2EV)^2}(\bar v_2\gamma^\mu v_4)(\bar u_3\gamma_\mu u_1)
-\frac{(2\pi)^4}{(p_3-p_1)^2}
-\end{equation*}
-
-\fi
-
-The $s$-channel scattering amplitude $\mathcal M_s$
-has $\psi_2$ and $\psi_3$ interchanged relative to $\mathcal M_t$.
-\begin{equation*}
-\mathcal M_s=\iint
+\mathcal M_2=\iint
 \bar\psi_3(y)
 (-ie\gamma^\mu)
 \psi_4(y)
@@ -146,7 +111,7 @@ G(x,y)
 
 It follows that
 \begin{equation*}
-\mathcal M_s=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
+\mathcal M_2=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_3+p_4+p)\delta^4(-p_2-p_1-p)}{p^2+i\epsilon}
 \,d^4p
@@ -159,7 +124,7 @@ p=-p_3-p_4=-p_1-p_2
 
 Hence
 \begin{equation*}
-\mathcal M_s=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
+\mathcal M_2=-\frac{e^2}{(2EV)^2}(\bar u_3\gamma^\mu v_4)(\bar v_2\gamma_\mu u_1)
 (2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_1+p_2)^2}
 \end{equation*}
 
