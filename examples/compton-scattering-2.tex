@@ -108,16 +108,16 @@ Lab scattering angle $\theta_L$ is given by the Compton equation
 \end{equation*}
 
 Hence
-\begin{align*}
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-&=2e^4\left(
-\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}+\cos^2\theta_L-1
-\right)
-\\
-&=2e^4\left(
-\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}-\sin^2\theta_L
-\right)
-\end{align*}
+=2e^4\left(\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}+\cos^2\theta_L-1\right)
+\end{equation*}
+
+Substitute $-\sin^2\theta_L$ for $\cos^2\theta_L-1$.
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=2e^4\left(\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}-\sin^2\theta_L\right)
+\end{equation*}
 
 For simplicity let us drop the $L$ subscript from lab variables.
 From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame variables.
@@ -131,16 +131,6 @@ The differential cross section is
 \frac{\langle|\mathcal{M}|^2\rangle}{4s}
 \end{equation*}
 
-where
-\begin{equation*}
-s=m^2+2m\omega=(mc^2)^2+2(mc^2)(\hbar\omega)
-\end{equation*}
-
-and $\omega'$ is given by the Compton equation
-\begin{equation*}
-\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
-\end{equation*}
-
 For the lab frame we have
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
@@ -149,7 +139,7 @@ For the lab frame we have
 \right)
 \end{equation*}
 
-Hence in the lab frame
+Hence
 \begin{equation*}
 \frac{d\sigma}{d\Omega}
 =\frac{\alpha^2}{2s}
@@ -158,6 +148,8 @@ Hence in the lab frame
 \frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
 \right)
 \end{equation*}
+
+\iffalse
 
 Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
 \begin{equation*}
@@ -170,28 +162,17 @@ Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
 (\hbar c)^2
 \end{equation*}
 
-\iffalse
-
-\subsubsection*{Thomson scattering}
-
-For $\hbar\omega\ll mc^2$ we have
-\begin{equation*}
-\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}\,(1-\cos\theta)}\approx\omega
-\end{equation*}
-
-Hence we can use the approximations
-\begin{equation*}
-\omega=\omega'\quad\text{and}\quad s=(mc^2)^2
-\end{equation*}
-
-to obtain
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2\hbar^2}{2m^2c^2}\left(1+\cos^2\theta\right)
-\end{equation*}
-
-which is the formula for Thomson scattering.
-
 \fi
+
+For $\omega\ll m$ we can use the approximation $s=m^2$ and obtain the Klein-Nishina formula
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{2m^2}
+\left(\frac{\omega'}{\omega}\right)^2
+\left(
+\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
+\right)
+\end{equation*}
 
 \href{https://georgeweigt.github.io/examples/compton-scattering-2-demo.html}{Eigenmath script}
 
