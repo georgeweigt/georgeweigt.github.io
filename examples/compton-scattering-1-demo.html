@@ -37,18 +37,14 @@ gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
 gamma = (gamma0,gamma1,gamma2,gamma3)
 
 gammaT = transpose(gamma)
-gammaL = transpose(dot(gmunu,gamma))
 
-q1 = p1 + p2
-q2 = p4 - p1
-
-qslash1 = dot(q1,gmunu,gamma)
-qslash2 = dot(q2,gmunu,gamma)
+q1 = dot(p1 + p2, gmunu, gamma) + m I
+q2 = dot(p4 - p1, gmunu, gamma) + m I
 
 u4bar = dot(conj(u4),gamma0)
 
-M1(a,b) = dot(u4bar[b], -i e gammaT, qslash1 + m I, -i e gammaT, u2[a])
-M2(a,b) = dot(u4bar[b], -i e gammaT, qslash2 + m I, -i e gammaT, u2[a])
+M1(a,b) = dot(u4bar[b], -i e gammaT, q1, -i e gammaT, u2[a])
+M2(a,b) = dot(u4bar[b], -i e gammaT, q2, -i e gammaT, u2[a])
 
 MM11 = sum(a,1,2,sum(b,1,2,
  contract(dot(M1(a,b), gmunu, transpose(conj(M1(a,b))), gmunu))

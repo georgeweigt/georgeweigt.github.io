@@ -97,37 +97,18 @@ and
 \mathcal M_2=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
 \end{equation*}
 
-Matrices $\slashed q_1$ and $\slashed q_2$ represent momentum transfer.
+Matrices $\slashed q_1$ and $\slashed q_2$ are momentum transfer.
 \begin{align*}
-\slashed q_1&=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta
+\slashed q_1&=(p_1+p_2)^\mu g_{\mu\nu}\gamma^\nu
 \\
-\slashed q_2&=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
+\slashed q_2&=(p_4-p_1)^\mu g_{\mu\nu}\gamma^\nu
 \end{align*}
-
-\iffalse
-
-In component form
-\begin{align*}
-\mathcal M_{1ab}{}^{\mu\nu}&=\frac{
-(\bar{u}_{4b})_\alpha
-(-ie\gamma^{\mu\alpha}{}_\beta)
-(\slashed{q}_1+m)^\beta{}_\rho
-(-ie\gamma^{\nu\rho}{}_\sigma)
-(u_{2a})^\sigma}{s-m^2}
-\\
-\mathcal M_{2ab}{}^{\nu\nu}&=\frac{
-(\bar{u}_{4b})_\alpha
-(-ie\gamma^{\nu\alpha}{}_\beta)
-(\slashed{q}_2+m)^\beta{}_\rho
-(-ie\gamma^{\mu\rho}{}_\sigma)
-(u_{2a})^\sigma}{u-m^2}
-\end{align*}
-
-\fi
 
 Expected density $\langle|\mathcal M|^2\rangle$ is the average density.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{ab}|\mathcal M|^2
+\langle|\mathcal M|^2\rangle
+=\frac{1}{4}\sum_{ab}|\mathcal M|^2
+=\frac{1}{4}\sum_{ab}(\mathcal M_1+\mathcal M_2)(\mathcal M_1+\mathcal M_2)^*
 \end{equation*}
 
 Expand the summand.
@@ -136,13 +117,9 @@ Expand the summand.
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{ab}
 \left(
-%\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
 \mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
-%+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
 +\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{2\nu\mu}
-%+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
 +\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{1\mu\nu}
-%+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
 +\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
 \right)
 \end{equation*}
@@ -230,7 +207,7 @@ Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
 =\frac{\alpha^2}{8E^2}\left(\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}\right)(\hbar c)^2
 \end{equation*}
 
-We also have
+Alternate form of $d\sigma$.
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
 =\frac{\pi\alpha^2}{s}
