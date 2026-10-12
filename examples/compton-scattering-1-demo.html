@@ -38,13 +38,16 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 
 gammaT = transpose(gamma)
 
-q1 = dot(p1 + p2, gmunu, gamma) + m I
-q2 = dot(p4 - p1, gmunu, gamma) + m I
+q1 = dot(p1 + p2, gmunu, gamma)
+q2 = dot(p4 - p1, gmunu, gamma)
+
+K1 = dot(-i e gammaT, q1 + m I, -i e gammaT)
+K2 = dot(-i e gammaT, q2 + m I, -i e gammaT)
 
 u4bar = dot(conj(u4),gamma0)
 
-M1(a,b) = dot(u4bar[b], -i e gammaT, q1, -i e gammaT, u2[a])
-M2(a,b) = dot(u4bar[b], -i e gammaT, q2, -i e gammaT, u2[a])
+M1(a,b) = dot(u4bar[b], K1, u2[a])
+M2(a,b) = dot(u4bar[b], K2, u2[a])
 
 MM11 = sum(a,1,2,sum(b,1,2,
  contract(dot(M1(a,b), gmunu, transpose(conj(M1(a,b))), gmunu))
@@ -91,6 +94,8 @@ check(f22 == -8 s u)
 MM = 1/4 e^4 (f11 / s^2 + 2 f12 / (s u) + f22 / u^2)
 
 check(MM == -2 e^4 (u / s + s / u))
+
+m = quote(m)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
