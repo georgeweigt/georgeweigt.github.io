@@ -82,22 +82,19 @@ p_{4x}-ip_{4y}\\
 \end{pmatrix}}
 \end{equation*}
 
-The scattering amplitude $\mathcal M_{ab}{}^{\mu\nu}$
-for spin $ab$ and polarization $\mu\nu$ is
+The scattering amplitude $\mathcal M$ is
 \begin{equation*}
-\mathcal M_{ab}{}^{\mu\nu}=\mathcal M_{1ab}{}^{\mu\nu}+\mathcal M_{2ab}{}^{\nu\mu}
+\mathcal M=\mathcal M_1+\mathcal M_2
 \end{equation*}
 
 where
 \begin{equation*}
-\mathcal M_{1ab}{}^{\mu\nu}
-=\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2}
+\mathcal M_1=\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2}
 \end{equation*}
 
 and
 \begin{equation*}
-\mathcal M_{2ab}{}^{\nu\mu}
-=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
+\mathcal M_2=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
 \end{equation*}
 
 Matrices $\slashed q_1$ and $\slashed q_2$ represent momentum transfer.
@@ -130,42 +127,37 @@ In component form
 
 Expected density $\langle|\mathcal M|^2\rangle$ is the average density.
 \begin{equation*}
-\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{ab}\sum_{\mu\nu}\bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
-\end{equation*}
-
-Summing over $\mu\nu$ requires $g_{\mu\nu}$ to lower indices.
-\begin{equation*}
-\langle|\mathcal M|^2\rangle
-=\frac{1}{4}\sum_{ab}\mathcal M_{ab}{}^{\mu\nu}
-\left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+\langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{ab}|\mathcal M|^2
 \end{equation*}
 
 Expand the summand.
-\begin{multline*}
+(Note indices $\mu$ and $\nu$ of $\mathcal M_2$ are interchanged relative to $\mathcal M_1$.)
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
 =\frac{1}{4}\sum_{ab}
 \left(
-\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
-\right.
-\\
-\left.
-{}+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+%\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
+%+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
++\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{2\nu\mu}
+%+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
++\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{1\mu\nu}
+%+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
++\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
 \right)
-\end{multline*}
+\end{equation*}
 
 The summation results are
 \begin{align*}
-\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+\sum_{ab}\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
 &=\frac{e^4}{(s-m^2)^2}
 \left(-8 s u + 24 m^2 s + 8 m^2 u + 8 m^4\right)
 \\
-\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+\sum_{ab}\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{2\nu\mu}
 &=\frac{e^4}{(s-m^2)(u-m^2)}
 \left(8 m^2 s + 8 m^2 u + 16 m^4\right)
 \\
-\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+\sum_{ab}\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
 &=\frac{e^4}{(u-m^2)^2}
 \left(-8 s u + 8 m^2 s + 24 m^2 u + 8 m^4\right)
 \end{align*}
