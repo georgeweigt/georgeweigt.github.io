@@ -60,19 +60,19 @@ M2(a,b,c,d) = dot(
  dot(u4bar[d],gammaL,u1[a])
 )
 
-M11 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
+MM11 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
  M1(a,b,c,d) conj(M1(a,b,c,d))
 ))))
 
-M12 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
+MM12 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
  M1(a,b,c,d) conj(M2(a,b,c,d))
 ))))
 
-M21 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
+MM21 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
  M2(a,b,c,d) conj(M1(a,b,c,d))
 ))))
 
-M22 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
+MM22 = sum(a,1,2,sum(b,1,2,sum(c,1,2,sum(d,1,2,
  M2(a,b,c,d) conj(M2(a,b,c,d))
 ))))
 
@@ -86,11 +86,11 @@ f22 = 8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4
 
 "Verify formulas"
 
-check(M11 == f11)
-check(M12 == f12)
-check(M22 == f22)
+check(MM11 == f11)
+check(MM12 == f12)
+check(MM22 == f22)
 
-check(M11 - M12 - M21 + M22 == f11 - 2 f12 + f22)
+check(MM11 - MM12 - MM21 + MM22 == f11 - 2 f12 + f22)
 
 m = 0
 

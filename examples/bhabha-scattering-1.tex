@@ -83,13 +83,13 @@ The scattering amplitude $\mathcal M$ is
 
 where $\mathcal M_1$ is the $1\rightarrow3$, $4\rightarrow2$ amplitude
 \begin{equation*}
-\mathcal M_1=\frac{\alpha}{t}
+\mathcal M_1=\frac{e^2}{t}
 (\bar v_{2b}\gamma^\mu v_{4d})(\bar u_{3c}\gamma_\mu u_{1a})
 \end{equation*}
 
 and $\mathcal M_2$ is the $1\rightarrow2$, $4\rightarrow3$ amplitude
 \begin{equation*}
-\mathcal M_2=\frac{\alpha}{s}
+\mathcal M_2=\frac{e^2}{s}
 (\bar u_{3c}\gamma^\mu v_{4d})(\bar v_{2b}\gamma_\mu u_{1a})
 \end{equation*}
 
@@ -113,19 +113,19 @@ Expand the summand.
 The summation results are
 \begin{align*}
 \sum_{abcd}
-\mathcal M_1\mathcal M_1^*&=\frac{\alpha^2}{t^2}
+\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}
 \left(8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4\right)
 \\
 \sum_{abcd}
-\mathcal M_1\mathcal M_2^*&=\frac{\alpha^2}{st}
+\mathcal M_1\mathcal M_2^*&=\frac{e^4}{st}
 \left(-8 u^2 + 64 m^2 u - 96 m^4\right)
 \\
 \sum_{abcd}
-\mathcal M_2\mathcal M_2^*&=\frac{\alpha^2}{s^2}
+\mathcal M_2\mathcal M_2^*&=\frac{e^4}{s^2}
 \left(8 t^2 + 8 u^2 - 64 m^2 t - 64 m^2 u + 192 m^4\right)
 \end{align*}
 
-where $s$, $t$, and $u$ are the Mandelstam variables
+where $s$, $t$, and $u$ are Mandelstam variables
 \begin{align*}
 s&=(p_1+p_2)^2
 \\
@@ -145,7 +145,7 @@ f_{22}&=8 t^2 + 8 u^2 - 64 m^2 t - 64 m^2 u + 192 m^4
 
 and write $\langle|\mathcal{M}|^2\rangle$ more compactly as
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\frac{\alpha^2}{4}
+\langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
 \left(\frac{f_{11}}{t^2}-\frac{2f_{12}}{st}+\frac{f_{22}}{s^2}\right)
 \end{equation*}
 
@@ -160,8 +160,8 @@ f_{22}&=8t^2+8u^2
 
 Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=2\alpha^2
-\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
+\langle|\mathcal{M}|^2\rangle
+=2e^4\left(\frac{s^2+u^2}{t^2}+\frac{2u^2}{st}+\frac{t^2+u^2}{s^2}\right)
 \end{equation*}
 
 For $m=0$ the Mandelstam variables are
@@ -176,7 +176,7 @@ u&=-2E^2(1+\cos\theta)
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=2\alpha^2\left(
+=2e^4\left(
 \frac{1+\cos^4(\theta/2)}{\sin^4(\theta/2)}
 -\frac{2\cos^4(\theta/2)}{\sin^2(\theta/2)}
 +\frac{1+\cos^2\theta}{2}
@@ -185,12 +185,13 @@ Hence
 
 This can be written more compactly as
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle=\alpha^2\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
+\langle|\mathcal{M}|^2\rangle=e^4\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
 The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4s}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{e^4}\frac{\langle|\mathcal{M}|^2\rangle}{4s}
 =\frac{\alpha^2}{16E^2}\left(\frac{\cos^2\theta+3}{\cos\theta-1}\right)^2
 \end{equation*}
 
