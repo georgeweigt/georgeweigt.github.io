@@ -15,7 +15,7 @@ Compton scattering is the process $\gamma+e^-\rightarrow\gamma+e^-$.
 \end{tikzpicture}
 \end{center}
 
-The following center-of-mass momentum vectors have $E=\sqrt{\omega^2+m^2}$.
+Momentum vectors where $E=\sqrt{\omega^2+m^2}$.
 \begin{equation*}
 p_1=\underset{\gamma \, \longrightarrow}
 {\begin{pmatrix}\omega\\0\\0\\ \omega\end{pmatrix}}
@@ -85,30 +85,26 @@ p_{4x}-ip_{4y}\\
 The scattering amplitude $\mathcal M_{ab}{}^{\mu\nu}$
 for spin $ab$ and polarization $\mu\nu$ is
 \begin{equation*}
-\mathcal M_{ba}{}^{\mu\nu}=\mathcal M_{1ab}{}^{\mu\nu}+\mathcal M_{2ab}{}^{\nu\mu}
+\mathcal M_{ab}{}^{\mu\nu}=\mathcal M_{1ab}{}^{\mu\nu}+\mathcal M_{2ab}{}^{\nu\mu}
 \end{equation*}
 
 where
-\begin{align*}
+\begin{equation*}
 \mathcal M_{1ab}{}^{\mu\nu}
-&=\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2}
-\\
+=\frac{\bar{u}_{4b}(-ie\gamma^\mu)(\slashed{q}_1+m)(-ie\gamma^\nu)u_{2a}}{s-m^2}
+\end{equation*}
+
+and
+\begin{equation*}
 \mathcal M_{2ab}{}^{\nu\mu}
-&=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
-\end{align*}
+=\frac{\bar{u}_{4b}(-ie\gamma^\nu)(\slashed{q}_2+m)(-ie\gamma^\mu)u_{2a}}{u-m^2}
+\end{equation*}
 
 Matrices $\slashed q_1$ and $\slashed q_2$ represent momentum transfer.
 \begin{align*}
 \slashed q_1&=(p_1+p_2)^\alpha g_{\alpha\beta}\gamma^\beta
 \\
 \slashed q_2&=(p_4-p_1)^\alpha g_{\alpha\beta}\gamma^\beta
-\end{align*}
-
-Scalars $s$ and $u$ are Mandelstam variables.
-\begin{align*}
-s&=(p_1+p_2)^2
-\\
-u&=(p_1-p_4)^2
 \end{align*}
 
 In component form
@@ -128,8 +124,7 @@ In component form
 (u_{2a})^\sigma}{u-m^2}
 \end{align*}
 
-Expected probability density $\langle|\mathcal M|^2\rangle$
-is the sum over squared amplitudes divided by the number of inbound states.
+Expected density $\langle|\mathcal M|^2\rangle$ is the average density.
 \begin{equation*}
 \langle|\mathcal M|^2\rangle=\frac{1}{4}\sum_{ab}\sum_{\mu\nu}\bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
 \end{equation*}
@@ -141,315 +136,61 @@ Summing over $\mu\nu$ requires $g_{\mu\nu}$ to lower indices.
 \left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
 \end{equation*}
 
-Expand the summand and label the terms.
-By positivity $\boxed{\scriptstyle2}=\boxed{\scriptstyle3}$.
+Expand the summand.
 \begin{multline*}
 \langle|\mathcal{M}|^2\rangle
-=\frac{1}{4}\sum_{ab}\Bigl[
-\underset{\boxed{\scriptstyle1}}
-{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
-+
-\underset{\boxed{\scriptstyle2}}
-{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
+=\frac{1}{4}\sum_{ab}
+\left(
+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
++\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+\right.
 \\
-+
-\underset{\boxed{\scriptstyle3}}
-{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
-+
-\underset{\boxed{\scriptstyle4}}
-{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
-\Bigr]
+\left.
+{}+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
++\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+\right)
 \end{multline*}
 
-The Casimir trick uses matrix arithmetic to sum over spin and polarization states.
+The summation results are
 \begin{align*}
-\sum_{ab}{\boxed{\scriptstyle1}}&=\frac{e^4}{(s-m^2)^2}\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
-\right]
+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
+&=\frac{e^4}{(s-m^2)^2}
+\left(-8 s u + 24 m^2 s + 8 m^2 u + 8 m^4\right)
 \\
-\sum_{ab}{\boxed{\scriptstyle2}}&=\frac{e^4}{(s-m^2)(u-m^2)}\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
-\right]
+\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+&=\frac{e^4}{(s-m^2)(u-m^2)}
+\left(8 m^2 s + 8 m^2 u + 16 m^4\right)
 \\
-\sum_{ab}{\boxed{\scriptstyle4}}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
-\right]
+\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*
+&=\frac{e^4}{(u-m^2)^2}
+\left(-8 s u + 8 m^2 s + 24 m^2 u + 8 m^4\right)
 \end{align*}
 
-Probability density $\langle|\mathcal{M}|^2\rangle$ can be reformulated as
+where $s$, $t$, and $u$ are Mandelstam variables
+\begin{align*}
+s&=(p_1+p_2)^2
+\\
+t&=(p_1-p_3)^2
+\\
+u&=(p_1-p_4)^2
+\end{align*}
+
+For clarity define
+\begin{align*}
+f_{11}&=-8 s u + 24 m^2 s + 8 m^2 u + 8 m^4
+\\
+f_{12}&=8 m^2 s + 8 m^2 u + 16 m^4
+\\
+f_{22}&=-8 s u + 8 m^2 s + 24 m^2 u + 8 m^4
+\end{align*}
+
+and write $\langle|\mathcal{M}|^2\rangle$ more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
-\left[
-\frac{f_{11}}{(s-m^2)^2}+\frac{2f_{12}}{(s-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}
-\right]
-\tag{1}
+\left(\frac{f_{11}}{(s-m^2)^2}+\frac{2f_{12}}{(s-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}\right)
 \end{equation*}
 
-with Casimir trick terms
-\begin{align*}
-f_{11}&=\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
-\right]
-\\
-f_{12}&=\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
-\right]
-\\
-f_{22}&=\operatorname{Tr}
-\left[
-(\slashed p_2+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_4+m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
-\right]
-\end{align*}
-
-The following formulas are equivalent to the Casimir trick.
-(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
-\begin{align*}
-f_{11}&=32 (p_1\cdot p_2) (p_1\cdot p_4) + 32 (p_1\cdot p_2) m^2 + 32 m^4
-\\
-f_{12}&=16 (p_1\cdot p_2) m^2 - 16 (p_1\cdot p_4) m^2 + 32 m^4
-\\
-f_{22}&=32 (p_1\cdot p_2) (p_1\cdot p_4) - 32 (p_1\cdot p_4) m^2 + 32 m^4
-\end{align*}
-
-In Mandelstam variables
-\begin{equation*}
-\begin{aligned}
-f_{11}&=-8 s u + 24 s m^2 + 8 u m^2 + 8 m^4
-\\
-f_{12}&=8 s m^2 + 8 u m^2 + 16 m^4
-\\
-f_{22}&=-8 s u + 8 s m^2 + 24 u m^2 + 8 m^4
-\end{aligned}
-\tag{2}
-\end{equation*}
-
-Compton scattering experiments are typically done in the lab frame where the electron is at rest.
-Define Lorentz boost $\Lambda$ for transforming momentum vectors to the lab frame.
-\begin{equation*}
-\Lambda=
-\begin{pmatrix}
-E/m & 0 & 0 & \omega/m\\
-0 & 1 & 0 & 0\\
-0 & 0 & 1 & 0\\
-\omega/m & 0 & 0 & E/m
-\end{pmatrix}
-\end{equation*}
-
-The electron is at rest in the lab frame.
-\begin{equation*}
-\Lambda p_2=\begin{pmatrix}m\\0\\0\\0\end{pmatrix}
-\end{equation*}
-
-Mandelstam variables are invariant under a boost.
-\begin{equation*}
-\begin{aligned}
-s&=(p_1+p_2)^2=(\Lambda p_1+\Lambda p_2)^2
-\\
-t&=(p_1-p_3)^2=(\Lambda p_1-\Lambda p_3)^2
-\\
-u&=(p_1-p_4)^2=(\Lambda p_1-\Lambda p_4)^2
-\end{aligned}
-\end{equation*}
-
-In the lab frame, let $\omega_L$ be the angular frequency of the incident photon
-and let $\omega_L'$ be the angular frequency of the scattered photon.
-\begin{equation*}
-\begin{aligned}
-\omega_L&=\Lambda p_1\cdot
-\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
-=\frac{\omega^2}{m}+\frac{\omega E}{m}
-\\[1ex]
-\omega_L'&=\Lambda p_3\cdot
-\begin{pmatrix}1\\0\\0\\0\end{pmatrix}
-=\frac{\omega^2\cos\theta}{m}+\frac{\omega E}{m}
-\end{aligned}
-\end{equation*}
-
-It can be shown that
-\begin{equation*}
-\begin{aligned}
-s&=m^2+2m\omega_L
-\\
-t&=2m(\omega_L' - \omega_L)
-\\
-u&=m^2-2 m \omega_L'
-\end{aligned}
-\tag{3}
-\end{equation*}
-
-Then by (1), (2), and (3) we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=2e^4
-\left[
-\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}
-+\left(\frac{m}{\omega_L}-\frac{m}{\omega_L'}+1\right)^2-1
-\right]
-\end{equation*}
-
-Lab scattering angle $\theta_L$ is given by the Compton equation
-\begin{equation*}
-\cos\theta_L=\frac{m}{\omega_L}-\frac{m}{\omega_L'}+1
-\end{equation*}
-
-Hence
-\begin{align*}
-\langle|\mathcal{M}|^2\rangle
-&=2e^4\left(
-\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}+\cos^2\theta_L-1
-\right)
-\\
-&=2e^4\left(
-\frac{\omega_L}{\omega_L'}+\frac{\omega_L'}{\omega_L}-\sin^2\theta_L
-\right)
-\end{align*}
-
-\subsubsection*{Cross section}
-
-Now that we have derived $\langle|\mathcal{M}|^2\rangle$
-we can investigate the angular distribution of scattered photons.
-For simplicity let us drop the $L$ subscript from lab variables.
-From now on the symbols $\omega$, $\omega'$, and $\theta$ will be lab frame variables.
-
-\bigskip
-The differential cross section is
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{1}{4(4\pi\varepsilon_0)^2s}
-\left(\frac{\omega'}{\omega}\right)^2\langle|\mathcal{M}|^2\rangle
-\end{equation*}
-
-where
-\begin{equation*}
-s=m^2+2m\omega=(mc^2)^2+2(mc^2)(\hbar\omega)
-\end{equation*}
-
-and $\omega'$ is given by the Compton equation
-\begin{equation*}
-\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}(1-\cos\theta)}
-\end{equation*}
-
-For the lab frame we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=2e^4\left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
-\right)
-\end{equation*}
-
-Hence in the lab frame
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{e^4}{2(4\pi\varepsilon_0)^2s}
-\left(\frac{\omega'}{\omega}\right)^2
-\left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
-\right)
-\end{equation*}
-
-Noting that
-\begin{equation*}
-e^2=4\pi\varepsilon_0\alpha\hbar c
-\end{equation*}
-
-we have
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=\frac{\alpha^2(\hbar c)^2}{2s}
-\left(\frac{\omega'}{\omega}\right)^2
-\left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
-\right)
-\end{equation*}
-
-Noting that
-\begin{equation*}
-d\Omega=\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-we also have
-\begin{equation*}
-d\sigma
-=\frac{\alpha^2(\hbar c)^2}{2s}
-\left(\frac{\omega'}{\omega}\right)^2
-\left(
-\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta
-\right)
-\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
-\begin{equation*}
-S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
-\end{equation*}
-
-The solution is
-\begin{equation*}
-S(\theta_1,\theta_2)=\frac{\pi\alpha^2(\hbar c)^2}{s}[I(\theta_2)-I(\theta_1)]
-\end{equation*}
-
-where
-\begin{multline*}
-I(\theta)=-\frac{\cos\theta}{R^2}
-+\log\bigl(1+R(1-\cos\theta)\bigr)\left(\frac{1}{R}-\frac{2}{R^2}-\frac{2}{R^3}\right)
-\\
-{}-\frac{1}{2R\bigl(1+R(1-\cos\theta)\bigr)^2}
-+\frac{1}{1+R(1-\cos\theta)}\left(-\frac{2}{R^2}-\frac{1}{R^3}\right)
-\end{multline*}
-
-and
-\begin{equation*}
-R=\frac{\hbar\omega}{mc^2}
-\end{equation*}
-
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)
-=\frac{S(0,\theta)}{S(0,\pi)}
-=\frac{I(\theta)-I(0)}{I(\pi)-I(0)},
-\quad
-0\le\theta\le\pi
-\end{equation*}
-
-The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
-\begin{equation*}
-P(\theta_1<\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
-\end{equation*}
-
-The probability density function is
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{1}{I(\pi)-I(0)}
-\left(\frac{\omega'}{\omega}\right)^2
-\left(\frac{\omega}{\omega'}+\frac{\omega'}{\omega}-\sin^2\theta\right)
-\sin\theta
-\end{equation*}
-
-\subsubsection*{Thomson scattering}
-
-For $\hbar\omega\ll mc^2$ we have
-\begin{equation*}
-\omega'=\frac{\omega}{1+\frac{\hbar\omega}{mc^2}\,(1-\cos\theta)}\approx\omega
-\end{equation*}
-
-Hence we can use the approximations
-\begin{equation*}
-\omega=\omega'\quad\text{and}\quad s=(mc^2)^2
-\end{equation*}
-
-to obtain
-\begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2\hbar^2}{2m^2c^2}\left(1+\cos^2\theta\right)
-\end{equation*}
-
-which is the formula for Thomson scattering.
-
-\subsubsection*{High energy approximation}
-
-For $\omega\gg m$ a useful approximation is to set $m=0$ and obtain
+For $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
 f_{11}&=-8su
 \\
@@ -458,51 +199,49 @@ f_{12}&=0
 f_{22}&=-8su
 \end{align*}
 
-Hence
+Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
+\left(-\frac{8su}{s^2}-\frac{8su}{u^2}\right)
+=-2e^4\left(\frac{u}{s}+\frac{s}{u}\right)
+\end{equation*}
+
+For $m=0$ the Mandelstam variables are
 \begin{align*}
-\langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
-\left(\frac{-8su}{s^2}+\frac{-8su}{u^2}\right)
+s&=4E^2
 \\
-&=2e^4
-\left(-\frac{u}{s}-\frac{s}{u}\right)
+t&=-2E^2(1-\cos\theta)
+\\
+u&=-2E^2(1+\cos\theta)
 \end{align*}
 
-The Mandelstam variables for $m=0$ are
-\begin{align*}
-s&=4\omega^2
-\\
-u&=-2\omega^2(\cos\theta+1)
-\end{align*}
-
 Hence
 \begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=2e^4\left(
-\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}
-\right)
+\langle|\mathcal{M}|^2\rangle=2e^4
+\left(\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}\right)
 \end{equation*}
 
-In the center of mass frame
+The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4s(4\pi\epsilon_o)^2}
-=\frac{e^4}{2s(4\pi\epsilon_o)^2}\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{e^4}\frac{\langle|\mathcal{M}|^2\rangle}{4s}
+=\frac{\alpha^2}{8E^2}\left(\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}\right)
 \end{equation*}
 
-Substitute $e^4=(4\pi\varepsilon_0\alpha\hbar c)^2$ to obtain
+Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\alpha^2}{2s}
-\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)\times(\hbar c)^2
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{8E^2}\left(\frac{1+\cos\theta}{2}+\frac{2}{1+\cos\theta}\right)(\hbar c)^2
 \end{equation*}
 
-It follows that
+We also have
 \begin{equation*}
 \frac{d\sigma}{d\cos\theta}=2\pi\frac{d\sigma}{d\Omega}
 =\frac{\pi\alpha^2}{s}
-\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)\times(\hbar c)^2
+\left(\frac{\cos\theta+1}{2}+\frac{2}{\cos\theta+1}\right)(\hbar c)^2
 \end{equation*}
 
-Cf.~equation (1) of arxiv.org/pdf/hep-ex/0504012.
+See equation (1) of arxiv.org/pdf/hep-ex/0504012.
 
 \bigskip
 \href{https://georgeweigt.github.io/examples/compton-scattering-1-demo.html}{Eigenmath script}
