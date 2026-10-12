@@ -2,27 +2,27 @@
 
 E = sqrt(omega^2 + m^2)
 
-p1 = (omega, 0, 0, omega)
-p2 = (E, 0, 0, -omega)
+p1 = (E, 0, 0, omega)
+p2 = (omega, 0, 0, -omega)
 
-p3 = (omega,
+p3 = (E,
       omega sin(theta) cos(phi),
       omega sin(theta) sin(phi),
       omega cos(theta))
 
-p4 = (E,
+p4 = (omega,
       -omega sin(theta) cos(phi),
       -omega sin(theta) sin(phi),
       -omega cos(theta))
 
-u21 = (E + m, 0, p2[4], p2[2] + i p2[3]) / sqrt(E + m)
-u22 = (0, E + m, p2[2] - i p2[3], -p2[4]) / sqrt(E + m)
+u11 = (E + m, 0, p1[4], p1[2] + i p1[3]) / sqrt(E + m)
+u12 = (0, E + m, p1[2] - i p1[3], -p1[4]) / sqrt(E + m)
 
-u41 = (E + m, 0, p4[4], p4[2] + i p4[3]) / sqrt(E + m)
-u42 = (0, E + m, p4[2] - i p4[3], -p4[4]) / sqrt(E + m)
+u31 = (E + m, 0, p3[4], p3[2] + i p3[3]) / sqrt(E + m)
+u32 = (0, E + m, p3[2] - i p3[3], -p3[4]) / sqrt(E + m)
 
-u2 = (u21,u22)
-u4 = (u41,u42)
+u1 = (u11,u12)
+u3 = (u31,u32)
 
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
@@ -38,15 +38,15 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 
 q1 = dot(p1 + p2, gmunu, gamma)
-q2 = dot(p4 - p1, gmunu, gamma)
+q2 = dot(p1 - p4, gmunu, gamma)
 
 K1 = dot(-i e gammaT, q1 + m I, -i e gammaT)
 K2 = dot(-i e gammaT, q2 + m I, -i e gammaT)
 
-u4bar = dot(conj(u4),gamma0)
+u3bar = dot(conj(u3),gamma0)
 
-M1(a,b) = dot(u4bar[b], K1, u2[a])
-M2(a,b) = dot(u4bar[b], K2, u2[a])
+M1(a,b) = dot(u3bar[b], K1, u1[a])
+M2(a,b) = dot(u3bar[b], K2, u1[a])
 
 MM11 = sum(a,1,2,sum(b,1,2,
  contract(dot(M1(a,b), gmunu, transpose(conj(M1(a,b))), gmunu))
