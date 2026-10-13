@@ -2,8 +2,25 @@
 
 \section*{Moller scattering 4}
 
-Here is another way to compute expected density.
-Let
+From the first section we have
+\begin{align*}
+\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}f_{11}
+\\
+\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{tu}f_{12}
+\\
+\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{u^2}f_{22}
+\end{align*}
+
+where
+\begin{align*}
+f_{11}&=8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4
+\\
+f_{12}&=-8 s^2 + 64 m^2 s - 96 m^4
+\\
+f_{22}&=8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4
+\end{align*}
+
+Densities can also be formed as
 \begin{align*}
 f_{11}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_4)^2 - 64 m^2 (p_1\cdot p_2) + 64 m^2 (p_1\cdot p_4)
 \\
@@ -12,20 +29,13 @@ f_{12}&=-32 (p_1\cdot p_2)^2 + 64 m^2 (p_1\cdot p_2)
 f_{22}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_3)^2 - 64 m^2 (p_1\cdot p_2) + 64 m^2 (p_1\cdot p_3)
 \end{align*}
 
-Then
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{e^4}{4}
-\left(\frac{f_{11}}{t^2}-\frac{2f_{12}}{tu}+\frac{f_{22}}{u^2}\right)
-\end{equation*}
-
-For $m=0$ we have
+For $m=0$
 \begin{align*}
-f_{11}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_4)^2 & &=8s^2+8u^2
+32(p_1\cdot p_2)^2&=8 s^2
 \\
-f_{12}&=-32 (p_1\cdot p_2)^2 & &=-8s^2
+32(p_1\cdot p_3)^2&=8 t^2
 \\
-f_{22}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_3)^2 & &=8s^2+8t^2
+32(p_1\cdot p_4)^2&=8 u^2
 \end{align*}
 
 \href{https://georgeweigt.github.io/examples/moller-scattering-4-demo.html}{Eigenmath script}

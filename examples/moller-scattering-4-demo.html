@@ -32,15 +32,17 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-check(f11 == 8 s (s - 8 m^2) + 8 u (u - 8 m^2) + 192 m^4)
-check(f12 == -8 s (s - 8 m^2) - 96 m^4)
-check(f22 == 8 s (s - 8 m^2) + 8 t (t - 8 m^2) + 192 m^4)
+check(f11 == 8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4)
+check(f12 == -8 s^2 + 64 m^2 s - 96 m^4)
+check(f22 == 8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4)
 
 m = 0
 
-check(f11 == 8 s^2 + 8 u^2)
-check(f12 == -8 s^2)
-check(f22 == 8 s^2 + 8 t^2)
+check(32 p12^2 == 8 s^2)
+check(32 p13^2 == 8 t^2)
+check(32 p14^2 == 8 u^2)
+
+m = quote(m)
 
 "ok"
 </textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
