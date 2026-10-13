@@ -24,20 +24,20 @@ Function $G(x,y)$ is the photon propagator
 G(x,y)=\frac{i}{(2\pi)^4}\int\frac{\exp(-ip\cdot(x-y))}{p^2+i\epsilon}\,d^4p
 \end{equation*}
 
-The normalized wave functions are
+The normalized wave functions are ($V$ is volume)
 \begin{align*}
-\psi_1(x)&=\sqrt{2E}u_1\exp(-ip_1\cdot x)
+\psi_1(x)&=\sqrt{2EV}u_1\exp(-ip_1\cdot x)
 \\
-\psi_2(x)&=\sqrt{2E}u_2\exp(-ip_2\cdot x)
+\psi_2(x)&=\sqrt{2EV}u_2\exp(-ip_2\cdot x)
 \\
-\psi_3(x)&=\sqrt{2E}u_3\exp(-ip_3\cdot x)
+\psi_3(x)&=\sqrt{2EV}u_3\exp(-ip_3\cdot x)
 \\
-\psi_4(x)&=\sqrt{2E}u_4\exp(-ip_4\cdot x)
+\psi_4(x)&=\sqrt{2EV}u_4\exp(-ip_4\cdot x)
 \end{align*}
 
 Substitute for the wave functions in $\mathcal M_1$ and factor the spinor products.
 \begin{multline*}
-\mathcal M_1=-\frac{e^2}{4E^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=-\frac{e^2}{4E^2V^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\
 i \iint
 {\exp(i(p_4-p_2)\cdot y)}
@@ -48,7 +48,7 @@ i \iint
 
 Substitute for $G(x,y)$.
 \begin{multline*}
-\mathcal M_1=\frac{e^2}{4E^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=\frac{e^2}{4E^2V^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \frac{1}{(2\pi)^4}
 \\
 \iiint
@@ -60,7 +60,7 @@ Substitute for $G(x,y)$.
 
 Combine exponentials.
 \begin{multline*}
-\mathcal M_1=\frac{e^2}{4E^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=\frac{e^2}{4E^2V^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \frac{1}{(2\pi)^4}
 \\
 \iiint
@@ -80,7 +80,7 @@ Solve the integral over $y$.
 
 Hence
 \begin{equation*}
-\mathcal M_1=\frac{e^2}{4E^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=\frac{e^2}{4E^2V^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_4-p_2+p)\delta^4(p_3-p_1-p)}{p^2+i\epsilon}
 \,d^4p
@@ -93,7 +93,7 @@ p=-p_4+p_2=p_3-p_1
 
 Hence
 \begin{equation*}
-\mathcal M_1=\frac{e^2}{4E^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\mathcal M_1=\frac{e^2}{4E^2V^2}(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 (2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_3-p_1)^2}
 \end{equation*}
 
@@ -108,7 +108,7 @@ G(x,y)
 
 It follows that
 \begin{equation*}
-\mathcal M_2=\frac{e^2}{4E^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
+\mathcal M_2=\frac{e^2}{4E^2V^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
 (2\pi)^4\int
 \frac{\delta^4(p_3-p_2+p)\delta^4(p_4-p_1-p)}{p^2+i\epsilon}
 \,d^4p
@@ -121,7 +121,7 @@ p=-p_3+p_2=p_4-p_1
 
 Hence
 \begin{equation*}
-\mathcal M_2=\frac{e^2}{4E^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
+\mathcal M_2=\frac{e^2}{4E^2V^2}(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
 (2\pi)^4\frac{\delta^4(p_4+p_3-p_2-p_1)}{(p_4-p_1)^2}
 \end{equation*}
 
@@ -132,11 +132,25 @@ For the momentum vectors given in the previous section we have
 
 Hence
 \begin{align*}
-\mathcal M_1&=\frac{e^2}{4E^2}
-\frac{(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)}{(p_3-p_1)^2}(2\pi)^4
+\mathcal M_1&=\frac{(2\pi)^4}{4E^2V^2}
+\frac{e^2}{(p_3-p_1)^2}
+(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
 \\[1ex]
-\mathcal M_2&=\frac{e^2}{4E^2}
-\frac{(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)}{(p_4-p_1)^2}(2\pi)^4
+\mathcal M_2&=\frac{(2\pi)^4}{4E^2V^2}
+\frac{e^2}{(p_4-p_1)^2}
+(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
+\end{align*}
+
+In practice the leading coefficient is absorbed in the calculation of $d\sigma$
+hence we use the formulas
+\begin{align*}
+\mathcal M_1&=
+\frac{e^2}{(p_3-p_1)^2}
+(\bar u_4\gamma^\mu u_2)(\bar u_3\gamma_\mu u_1)
+\\[1ex]
+\mathcal M_2&=
+\frac{e^2}{(p_4-p_1)^2}
+(\bar u_3\gamma^\mu u_2)(\bar u_4\gamma_\mu u_1)
 \end{align*}
 
 \href{https://georgeweigt.github.io/examples/moller-scattering-2-demo.html}{Eigenmath script}
