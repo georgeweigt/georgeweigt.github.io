@@ -2,30 +2,21 @@
 
 \section*{Moller scattering 3}
 
-The Casimir trick uses matrix arithmetic to sum over spin states.
-
-\bigskip
 From the first section we have
 \begin{align*}
-\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}f_{11}
+\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}
+\left(8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4\right)
 \\
-\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{tu}f_{12}
+\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{tu}
+\left(-8 s^2 + 64 m^2 s - 96 m^4\right)
 \\
-\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{u^2}f_{22}
+\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{u^2}
+\left(8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4\right)
 \end{align*}
 
-where
+We also have by the Casimir trick
 \begin{align*}
-f_{11}&=8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4
-\\
-f_{12}&=-8 s^2 + 64 m^2 s - 96 m^4
-\\
-f_{22}&=8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4
-\end{align*}
-
-By the Casimir trick we also have
-\begin{align*}
-f_{11}&=
+\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}
 \operatorname{Tr}\left(
 (\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 \right)
@@ -33,13 +24,13 @@ f_{11}&=
 (\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
 \right)
 \\
-f_{12}&=
+\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{tu}
 \operatorname{Tr}\left(
 (\slashed p_4+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 (\slashed p_3+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
 \right)
 \\
-f_{22}&=
+\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{u^2}
 \operatorname{Tr}\left(
 (\slashed p_3+m)\gamma^\mu(\slashed p_2+m)\gamma^\nu
 \right)

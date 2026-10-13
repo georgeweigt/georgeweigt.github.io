@@ -4,29 +4,26 @@
 
 From the first section we have
 \begin{align*}
-\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}f_{11}
+\sum_{abcd}\mathcal M_1\mathcal M_1^*
+&=\frac{e^4}{t^2}\left(8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4\right)
 \\
-\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{st}f_{12}
+\sum_{abcd}\mathcal M_1\mathcal M_2^*
+&=\frac{e^4}{st}\left(-8 u^2 + 64 m^2 u - 96 m^4\right)
 \\
-\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{s^2}f_{22}
+\sum_{abcd}\mathcal M_2\mathcal M_2^*
+&=\frac{e^4}{s^2}\left(8 t^2 + 8 u^2 - 64 m^2 t - 64 m^2 u + 192 m^4\right)
 \end{align*}
 
-where
+We also have by computer algebra
 \begin{align*}
-f_{11}&=8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4
+\sum_{abcd}\mathcal M_1\mathcal M_1^*&=\frac{e^4}{t^2}
+\left(32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_4)^2 - 64 m^2 (p_1\cdot p_2) + 64 m^2 (p_1\cdot p_4)\right)
 \\
-f_{12}&=-8 u^2 + 64 m^2 u - 96 m^4
+\sum_{abcd}\mathcal M_1\mathcal M_2^*&=\frac{e^4}{st}
+\left(-32 (p_1\cdot p_4)^2 - 64 m^2 (p_1\cdot p_4)\right)
 \\
-f_{22}&=8 t^2 + 8 u^2 - 64 m^2 t - 64 m^2 u + 192 m^4
-\end{align*}
-
-Densities can also be formed as
-\begin{align*}
-f_{11}&=32 (p_1\cdot p_2)^2 + 32 (p_1\cdot p_4)^2 - 64 m^2 (p_1\cdot p_2) + 64 m^2 (p_1\cdot p_4)
-\\
-f_{12}&=-32 (p_1\cdot p_4)^2 - 64 m^2 (p_1\cdot p_4)
-\\
-f_{22}&=32 (p_1\cdot p_3)^2 + 32 (p_1\cdot p_4)^2 + 64 m^2 (p_1\cdot p_3) + 64 m^2 (p_1\cdot p_4)
+\sum_{abcd}\mathcal M_2\mathcal M_2^*&=\frac{e^4}{s^2}
+\left(32 (p_1\cdot p_3)^2 + 32 (p_1\cdot p_4)^2 + 64 m^2 (p_1\cdot p_3) + 64 m^2 (p_1\cdot p_4)\right)
 \end{align*}
 
 For $m=0$
