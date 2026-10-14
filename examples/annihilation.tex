@@ -15,7 +15,7 @@ Annihilation is the process $e^-+e^+\rightarrow\gamma+\gamma$.
 \end{tikzpicture}
 \end{center}
 
-The following center-of-mass momentum vectors have $E=\sqrt{p^2+m^2}$.
+Momentum vectors where $E=\sqrt{p^2+m^2}$.
 \begin{equation*}
 p_1=\underset{e^- \, \longrightarrow}
 {\begin{pmatrix}E\\0\\0\\p\end{pmatrix}}
@@ -23,10 +23,10 @@ p_1=\underset{e^- \, \longrightarrow}
 p_2=\underset{\longleftarrow \, e^+}
 {\begin{pmatrix}E\\0\\0\\-p\end{pmatrix}}
 \qquad
-p_3=\underset{\substack{\phantom{\gamma} \, \nearrow\\\gamma \, \phantom{\nearrow}}}
+p_3=\underset{\substack{\phantom{\nearrow} \, \gamma\\\nearrow \, \phantom{\gamma}}}
 {\begin{pmatrix}E\\ E\sin\theta\cos\phi\\ E\sin\theta\sin\phi\\ E\cos\theta\end{pmatrix}}
 \qquad
-p_4=\underset{\substack{\phantom{\swarrow} \, \gamma\\\swarrow \, \phantom{\gamma}}}
+p_4=\underset{\substack{\phantom{\gamma} \, \swarrow\\\gamma \, \phantom{\swarrow}}}
 {\begin{pmatrix}E\\ -E\sin\theta\cos\phi\\ -E\sin\theta\sin\phi\\ -E\cos\theta\end{pmatrix}}
 \end{equation*}
 
@@ -52,148 +52,87 @@ v_{22}=\frac{1}{\sqrt{E+m}}
 {\begin{pmatrix}0\\p\\0\\E+m\end{pmatrix}}
 \end{equation*}
 
-The scattering amplitude $\mathcal M_{ab}{}^{\mu\nu}$
-for spin $ab$ and polarization $\mu\nu$ is
+The scattering amplitude $\mathcal M$ is
 \begin{equation*}
-\mathcal M_{ab}{}^{\mu\nu}=\mathcal M_{1ab}{}^{\mu\nu}+\mathcal M_{2ab}{}^{\nu\mu}
+\mathcal M=\mathcal M_1+\mathcal M_2
 \end{equation*}
 
-where
-\begin{align*}
-\mathcal M_{1ab}{}^{\mu\nu}
-&=\frac{\bar v_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2}
-\\
-\mathcal M_{2ab}{}^{\nu\mu}
-&=\frac{\bar v_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
-\end{align*}
+where $\mathcal M_1$ is the $t$-channel amplitude
+\begin{equation*}
+\mathcal M_1=\frac{\bar v_{2b}(-ie\gamma^\mu)(\slashed q_1+m)(-ie\gamma^\nu)u_{1a}}{t-m^2}
+\end{equation*}
 
-Matrices $\slashed q_1$ and $\slashed q_2$ represent momentum transfer.
+and $\mathcal M_2$ is the $u$-channel amplitude
+\begin{equation*}
+\mathcal M_2=\frac{\bar v_{2b}(-ie\gamma^\nu)(\slashed q_2+m)(-ie\gamma^\mu)u_{1a}}{u-m^2}
+\end{equation*}
+
+Matrices $\slashed q_1$ and $\slashed q_2$ are momentum transfer.
 \begin{align*}
 \slashed q_1&=(p_1-p_3)^\alpha g_{\alpha\beta}\gamma^\beta
 \\
 \slashed q_2&=(p_1-p_4)^\alpha g_{\alpha\beta}\gamma^\beta
 \end{align*}
 
-Scalars $t$ and $u$ are Mandelstam variables.
+Expected density $\langle|\mathcal M|^2\rangle$ is the average density.
+\begin{equation*}
+\langle|\mathcal M|^2\rangle
+=\frac{1}{4}\sum_{ab}|\mathcal M|^2
+\end{equation*}
+
+Expand the summand.
+(Note indices $\mu$ and $\nu$ of $\mathcal M_2$ are interchanged relative to $\mathcal M_1$.)
+\begin{equation*}
+\langle|\mathcal{M}|^2\rangle
+=\frac{1}{4}\sum_{ab}
+\left(
+\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
++\mathcal M_{1}{}^{\mu\nu}\mathcal M^*_{2\nu\mu}
++\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{1\mu\nu}
++\mathcal M_{2}{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
+\right)
+\end{equation*}
+
+The summation results are
 \begin{align*}
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
+&=\frac{e^4}{(t-m^2)^2}
+\left(8 t u - 24 m^2 t - 8 m^2 u - 8 m^4\right)
+\\
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{1\nu\mu}
+&=\frac{e^4}{(t-m^2)(u-m^2)}
+\left(8 m^2 s - 32 m^4\right)
+\\
+\sum_{ab}\mathcal M_2{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
+&=\frac{e^4}{(u-m^2)^2}
+\left(8 t u - 8 m^2 t - 24 m^2 u - 8 m^4\right)
+\end{align*}
+
+where $s$, $t$, and $u$ are Mandelstam variables
+\begin{align*}
+s&=(p_1+p_2)^2
+\\
 t&=(p_1-p_3)^2
 \\
 u&=(p_1-p_4)^2
 \end{align*}
 
-In component form
+For clarity define
 \begin{align*}
-\mathcal M_{1ab}{}^{\mu\nu}&=\frac{
-(\bar v_{2b})_\alpha
-(-ie\gamma^{\mu\alpha}{}_\beta)
-(\slashed q_1+m)^\beta{}_\rho
-(-ie\gamma^{\nu\rho}{}_\sigma)
-(u_{1a})^\sigma}{t-m^2}
+f_{11}&=8 t u - 24 m^2 t - 8 m^2 u - 8 m^4
 \\
-\mathcal M_{2ab}{}^{\nu\mu}&=\frac{
-(\bar v_{2b})_\alpha
-(-ie\gamma^{\nu\alpha}{}_\beta)
-(\slashed q_2+m)^\beta{}_\rho
-(-ie\gamma^{\mu\rho}{}_\sigma)
-(u_{1a})^\sigma}{u-m^2}
+f_{12}&=8 m^2 s - 32 m^4
+\\
+f_{22}&=8 t u - 8 m^2 t - 24 m^2 u - 8 m^4
 \end{align*}
 
-Expected probability density $\langle|\mathcal M|^2\rangle$
-is the sum over squared amplitudes divided by the number of inbound states.
-\begin{equation*}
-\langle|\mathcal M|^2\rangle
-=\frac{1}{4}\sum_{ab}\sum_{\mu\nu}\bigl|\mathcal M_{ab}{}^{\mu\nu}\bigr|^2
-\end{equation*}
-
-Summing over $\mu\nu$ requires $g_{\mu\nu}$ to lower indices.
-\begin{equation*}
-\langle|\mathcal M|^2\rangle
-=\frac{1}{4}\sum_{ab}\mathcal M_{ab}{}^{\mu\nu}
-\left(g_{\mu\alpha}\mathcal M_{ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*
-\end{equation*}
-
-Expand the summand and label the terms.
-By positivity $\boxed{\scriptstyle2}=\boxed{\scriptstyle3}$.
-\begin{multline*}
-\langle|\mathcal{M}|^2\rangle
-=\frac{1}{4}\sum_{ab}\Bigl[
-\underset{\boxed{\scriptstyle1}}
-{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
-+
-\underset{\boxed{\scriptstyle2}}
-{\mathcal M_{1ab}{}^{\mu\nu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
-\\
-+
-\underset{\boxed{\scriptstyle3}}
-{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\mu\alpha}\mathcal M_{1ab}{}^{\alpha\beta}g_{\beta\nu}\right)^*}
-+
-\underset{\boxed{\scriptstyle4}}
-{\mathcal M_{2ab}{}^{\nu\mu}\left(g_{\nu\alpha}\mathcal M_{2ab}{}^{\alpha\beta}g_{\beta\mu}\right)^*}
-\Bigr]
-\end{multline*}
-
-The following Casimir trick uses matrix arithmetic to sum over spin and polarization states.
-\begin{align*}
-\sum_{ab}{\boxed{\scriptstyle1}}&=\frac{e^4}{(t-m^2)^2}\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
-\right]
-\\
-\sum_{ab}{\boxed{\scriptstyle2}}&=\frac{e^4}{(t-m^2)(u-m^2)}\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
-\right]
-\\
-\sum_{ab}{\boxed{\scriptstyle4}}&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
-\right]
-\end{align*}
-
-Probability density $\langle|\mathcal{M}|^2\rangle$ can be reformulated as
+and write $\langle|\mathcal{M}|^2\rangle$ more compactly as
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle=\frac{e^4}{4}
-\left[
+\left(
 \frac{f_{11}}{(t-m^2)^2}+\frac{2f_{12}}{(t-m^2)(u-m^2)}+\frac{f_{22}}{(u-m^2)^2}
-\right]
+\right)
 \end{equation*}
-
-with Casimir trick terms
-\begin{align*}
-f_{11}&=\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
-\right]
-\\
-f_{12}&=\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
-\right]
-\\
-f_{22}&=\operatorname{Tr}
-\left[
-(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
-\right]
-\end{align*}
-
-The following formulas are equivalent to the Casimir trick.
-(Recall that $a\cdot b=a^\mu g_{\mu\nu}b^\nu$)
-\begin{align*}
-f_{11}&=32 (p_1\cdot p_3) (p_1\cdot p_4) + 32 (p_1\cdot p_3) m^2 - 32 m^4
-\\
-f_{12}&=16 (p_1\cdot p_2) m^2 - 16 m^4
-\\
-f_{22}&=32 (p_1\cdot p_3) (p_1\cdot p_4) + 32 (p_1\cdot p_4) m^2 - 32 m^4
-\end{align*}
-
-In Mandelstam variables
-\begin{align*}
-f_{11}&=8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
-\\
-f_{12}&=8 s m^2 - 32 m^4
-\\
-f_{22}&=8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
-\end{align*}
 
 For $E\gg m$ a useful approximation is to set $m=0$ and obtain
 \begin{align*}
@@ -204,31 +143,17 @@ f_{12}&=0
 f_{22}&=8tu
 \end{align*}
 
-Hence
-\begin{align*}
+Then $\langle|\mathcal{M}|^2\rangle$ simplifies as
+\begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-&=\frac{e^4}{4}
-\left(
-\frac{f_{11}}{(t-m^2)^2}
-+\frac{2f_{12}}{(t-m^2)(u-m^2)}
-+\frac{f_{22}}{(u-m^2)^2}
-\right)
-\\
-&=\frac{e^4}{4}
-\left(
-\frac{8tu}{t^2}
-+\frac{8tu}{u^2}
-\right)
-\\
-&=2e^4
-\left(
-\frac{u}{t}
-+\frac{t}{u}
-\right)
-\end{align*}
+=\frac{e^4}{4}\left(\frac{8tu}{t^2}+\frac{8tu}{u^2}\right)
+=2e^4\left(\frac{u}{t}+\frac{t}{u}\right)
+\end{equation*}
 
 For $m=0$ the Mandelstam variables are
 \begin{align*}
+s&=4E^2
+\\
 t&=-2E^2(1-\cos\theta)
 \\
 u&=-2E^2(1+\cos\theta)
@@ -237,108 +162,23 @@ u&=-2E^2(1+\cos\theta)
 Hence
 \begin{equation*}
 \langle|\mathcal{M}|^2\rangle
-=2e^4\left(
-\frac{1+\cos\theta}{1-\cos\theta}+
-\frac{1-\cos\theta}{1+\cos\theta}
-\right)
+=2e^4\left(\frac{1+\cos\theta}{1-\cos\theta}+\frac{1-\cos\theta}{1+\cos\theta}\right)
 \end{equation*}
-
-\subsubsection*{Cross section}
 
 The differential cross section is
 \begin{equation*}
-\frac{d\sigma}{d\Omega}=\frac{\langle|\mathcal{M}|^2\rangle}{4(4\pi\varepsilon_0)^2s}
-\end{equation*}
-
-where
-\begin{equation*}
-s=(p_1+p_2)^2=4E^2
-\end{equation*}
-
-For high energy experiments we have
-\begin{equation*}
-\langle|\mathcal{M}|^2\rangle=2e^4\left(
-\frac{1+\cos\theta}{1-\cos\theta}+
-\frac{1-\cos\theta}{1+\cos\theta}
-\right)
-\end{equation*}
-
-Hence
-\begin{equation*}
 \frac{d\sigma}{d\Omega}
-=\frac{e^4}{2(4\pi\varepsilon_0)^2s}\left(\frac{1+\cos\theta}{1-\cos\theta}+\frac{1-\cos\theta}{1+\cos\theta}\right)
-\end{equation*}
-
-Noting that
-\begin{equation*}
-e^2=4\pi\varepsilon_0\alpha\hbar c
-\end{equation*}
-
-we have
-\begin{equation*}
-\frac{d\sigma}{d\Omega}
-=
-\frac{\alpha^2(\hbar c)^2}{2s}
-\left(
-\frac{1+\cos\theta}{1-\cos\theta}+
-\frac{1-\cos\theta}{1+\cos\theta}
-\right)
-\end{equation*}
-
-Noting that
-\begin{equation*}
-d\Omega=\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-we also have
-\begin{equation*}
-d\sigma=
-\frac{\alpha^2(\hbar c)^2}{2s}
-\left(
-\frac{1+\cos\theta}{1-\cos\theta}+
-\frac{1-\cos\theta}{1+\cos\theta}
-\right)\sin\theta\,d\theta\,d\phi
-\end{equation*}
-
-Let $S(\theta_1,\theta_2)$ be the following integral of $d\sigma$.
-\begin{equation*}
-S(\theta_1,\theta_2)=\int_0^{2\pi}\int_{\theta_1}^{\theta_2}d\sigma
-\end{equation*}
-
-The solution is
-\begin{equation*}
-S(\theta_1,\theta_2)=\frac{\pi\alpha^2(\hbar c)^2}{s}
-[I(\theta_2)-I(\theta_1)]
-\end{equation*}
-
-where
-\begin{equation*}
-I(\theta)=2\cos\theta+2\log(1-\cos\theta)-2\log(1+\cos\theta)
-\end{equation*}
-
-The cumulative distribution function is
-\begin{equation*}
-F(\theta)
-=\frac{S(a,\theta)}{S(a,\pi-a)}
-=\frac{I(\theta)-I(a)}{I(\pi-a)-I(a)},
-\quad
-a\le\theta\le\pi-a
-\end{equation*}
-
-Angular support is reduced by an arbitrary angle $a>0$ because $I(0)$ and $I(\pi)$ are undefined.
-
-\bigskip
-The probability of observing scattering events in the interval $\theta_1$ to $\theta_2$ is
-\begin{equation*}
-P(\theta_1<\theta\le\theta_2)=F(\theta_2)-F(\theta_1)
-\end{equation*}
-
-The probability density function is
-\begin{equation*}
-f(\theta)=\frac{dF(\theta)}{d\theta}
-=\frac{1}{I(\pi-a)-I(a)}
+=\frac{\alpha^2}{e^4}\frac{\langle|\mathcal{M}|^2\rangle}{4s}
+=\frac{\alpha^2}{8E^2}
 \left(\frac{1+\cos\theta}{1-\cos\theta}+\frac{1-\cos\theta}{1+\cos\theta}\right)
-\sin\theta
+\end{equation*}
+
+Multiply by $(\hbar c)^2$ to convert from natural units to physical units.
+\begin{equation*}
+\frac{d\sigma}{d\Omega}
+=\frac{\alpha^2}{8E^2}
+\left(\frac{1+\cos\theta}{1-\cos\theta}+\frac{1-\cos\theta}{1+\cos\theta}\right)
+(\hbar c)^2
 \end{equation*}
 
 \href{https://georgeweigt.github.io/examples/annihilation-demo.html}{Eigenmath script}

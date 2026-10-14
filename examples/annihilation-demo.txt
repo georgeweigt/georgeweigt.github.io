@@ -1,4 +1,4 @@
--- Verify formulas for electron-positron annihilation
+"Annihilation"
 
 E = sqrt(p^2 + m^2)
 
@@ -21,6 +21,9 @@ u12 = (0, E + m, p1[2] - i p1[3], -p1[4]) / sqrt(E + m)
 v21 = (p2[4], p2[2] + i p2[3], E + m, 0) / sqrt(E + m)
 v22 = (p2[2] - i p2[3], -p2[4], 0, E + m) / sqrt(E + m)
 
+u1 = (u11,u12)
+v2 = (v21,v22)
+
 I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
 
 gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
@@ -38,110 +41,48 @@ gammaL = transpose(dot(gmunu,gamma))
 q1 = p1 - p3
 q2 = p1 - p4
 
-qslash1 = dot(q1,gmunu,gamma)
-qslash2 = dot(q2,gmunu,gamma)
+q1 = dot(q1,gmunu,gamma)
+q2 = dot(q2,gmunu,gamma)
 
-"Verify Casimir trick"
+K1 = dot(-i e gammaT, q1 + m I, -i e gammaT)
+K2 = dot(-i e gammaT, q2 + m I, -i e gammaT)
 
-v21bar = dot(conj(v21),gamma0) -- adjoint of v21
-v22bar = dot(conj(v22),gamma0) -- adjoint of v22
+v2bar = dot(conj(v2),gamma0)
 
-M111 = dot(v21bar, -i e gammaT, qslash1 + m I, -i e gammaT, u11)
-M112 = dot(v21bar, -i e gammaT, qslash1 + m I, -i e gammaT, u12)
-M121 = dot(v22bar, -i e gammaT, qslash1 + m I, -i e gammaT, u11)
-M122 = dot(v22bar, -i e gammaT, qslash1 + m I, -i e gammaT, u12)
+M1(a,b) = dot(v2bar[b], K1, u1[a])
+M2(a,b) = dot(v2bar[b], K2, u1[a])
 
-M211 = dot(v21bar, -i e gammaT, qslash2 + m I, -i e gammaT, u11)
-M212 = dot(v21bar, -i e gammaT, qslash2 + m I, -i e gammaT, u12)
-M221 = dot(v22bar, -i e gammaT, qslash2 + m I, -i e gammaT, u11)
-M222 = dot(v22bar, -i e gammaT, qslash2 + m I, -i e gammaT, u12)
+MM11 = sum(a,1,2,sum(b,1,2,
+ contract(dot(M1(a,b), gmunu, transpose(conj(M1(a,b))), gmunu))
+))
 
-P1111 = contract(dot(M111, gmunu, transpose(conj(M111)), gmunu))
-P1112 = contract(dot(M112, gmunu, transpose(conj(M112)), gmunu))
-P1121 = contract(dot(M121, gmunu, transpose(conj(M121)), gmunu))
-P1122 = contract(dot(M122, gmunu, transpose(conj(M122)), gmunu))
+MM12 = sum(a,1,2,sum(b,1,2,
+ contract(dot(M1(a,b), gmunu, conj(M2(a,b)), gmunu))
+))
 
-P1211 = contract(dot(M111, gmunu, conj(M211), gmunu))
-P1212 = contract(dot(M112, gmunu, conj(M212), gmunu))
-P1221 = contract(dot(M121, gmunu, conj(M221), gmunu))
-P1222 = contract(dot(M122, gmunu, conj(M222), gmunu))
+MM21 = sum(a,1,2,sum(b,1,2,
+ contract(dot(M2(a,b), gmunu, conj(M1(a,b)), gmunu))
+))
 
-P2111 = contract(dot(M211, gmunu, conj(M111), gmunu))
-P2112 = contract(dot(M212, gmunu, conj(M112), gmunu))
-P2121 = contract(dot(M221, gmunu, conj(M121), gmunu))
-P2122 = contract(dot(M222, gmunu, conj(M122), gmunu))
-
-P2211 = contract(dot(M211, gmunu, transpose(conj(M211)), gmunu))
-P2212 = contract(dot(M212, gmunu, transpose(conj(M212)), gmunu))
-P2221 = contract(dot(M221, gmunu, transpose(conj(M221)), gmunu))
-P2222 = contract(dot(M222, gmunu, transpose(conj(M222)), gmunu))
-
-pslash1 = dot(p1,gmunu,gamma)
-pslash2 = dot(p2,gmunu,gamma)
-
-P1 = pslash1 + m I
-P2 = pslash2 - m I
-
-Q1 = qslash1 + m I
-Q2 = qslash2 + m I
-
-T = dot(P1,gammaT,Q1,gammaT,P2,gammaL,Q1,gammaL)
-f11 = contract(T,3,4,2,3,1,2)
-
-T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q1,gammaL)
-f12 = contract(T,3,5,2,3,1,2)
-
-T = dot(P1,gammaT,Q2,gammaT,P2,gammaL,Q2,gammaL)
-f22 = contract(T,3,4,2,3,1,2)
-
-check(e^4 f11 == P1111 + P1112 + P1121 + P1122)
-check(e^4 f12 == P1211 + P1212 + P1221 + P1222)
-check(e^4 f12 == P2111 + P2112 + P2121 + P2122)
-check(e^4 f22 == P2211 + P2212 + P2221 + P2222)
-
-"ok"
-
-"Verify probability density"
-
-p12 = dot(p1,gmunu,p2)
-p13 = dot(p1,gmunu,p3)
-p14 = dot(p1,gmunu,p4)
-
-check(f11 == 32 p13 p14 + 32 p13 m^2 - 32 m^4)
-check(f12 == 16 p12 m^2 - 16 m^4)
-check(f22 == 32 p13 p14 + 32 p14 m^2 - 32 m^4)
+MM22 = sum(a,1,2,sum(b,1,2,
+ contract(dot(M2(a,b), gmunu, transpose(conj(M2(a,b))), gmunu))
+))
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-check(s == 4 p^2 + 4 m^2)
-check(t == 2 E p cos(theta) - 2 p^2 - m^2)
-check(u == -2 E p cos(theta) - 2 p^2 - m^2)
+f11 = 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
+f12 = 8 s m^2 - 32 m^4
+f22 = 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
 
-check(f11 == 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4)
-check(f12 == 8 s m^2 - 32 m^4)
-check(f22 == 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4)
+"Verify formulas"
 
--- save these relations for future use
+check(MM11 == e^4 f11)
+check(MM12 == e^4 f12)
+check(MM22 == e^4 f22)
 
-check(s == 2 p12 + 2 m^2)
-check(t == -2 p13 + m^2)
-check(u == -2 p14 + m^2)
-
-check(p12 == 1/2 s - m^2)
-check(p13 == -1/2 (t - m^2))
-check(p14 == -1/2 (u - m^2))
-
--- f is the expected probability density function
-
-d11 = (t - m^2)^2
-d12 = (t - m^2) (u - m^2)
-d22 = (u - m^2)^2
-
-f = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
-
--- high energy approximation
+check(MM11 + MM12 + MM21 + MM22 == e^4 (f11 + 2 f12 + f22))
 
 m = 0
 
@@ -149,42 +90,14 @@ check(s == 4 E^2)
 check(t == -2 E^2 (1 - cos(theta)))
 check(u == -2 E^2 (1 + cos(theta)))
 
-a = 1 + cos(theta)
-b = 1 - cos(theta)
+check(f11 == 8 t u)
+check(f12 == 0)
+check(f22 == 8 t u)
 
-check(f == 2 e^4 (a/b + b/a))
+MM = 1/4 e^4 (f11 / t^2 + 2 f12 / (t u) + f22 / u^2)
+
+check(MM == 2 e^4 (u / t + t / u))
 
 m = quote(m)
-
--- verify integral
-
-a = 1 + cos(theta)
-b = 1 - cos(theta)
-f = a/b + b/a
-I = 2 cos(theta) + 2 log(1 - cos(theta)) - 2 log(1 + cos(theta))
-check(f sin(theta) == d(I,theta))
-
-"ok"
-
-"Verify another way"
-
-P = P1111 + P1112 + P1121 + P1122 +
-    P1211 + P1212 + P1221 + P1222 +
-    P2111 + P2112 + P2121 + P2122 +
-    P2211 + P2212 + P2221 + P2222
-
-M11 = M111 + transpose(M211)
-M12 = M112 + transpose(M212)
-M21 = M121 + transpose(M221)
-M22 = M122 + transpose(M222)
-
--- sum over mu and nu
-
-P11 = contract(dot(M11,gmunu,transpose(conj(M11)),gmunu))
-P12 = contract(dot(M12,gmunu,transpose(conj(M12)),gmunu))
-P21 = contract(dot(M21,gmunu,transpose(conj(M21)),gmunu))
-P22 = contract(dot(M22,gmunu,transpose(conj(M22)),gmunu))
-
-check(P == P11 + P12 + P21 + P22)
 
 "ok"
