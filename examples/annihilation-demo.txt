@@ -72,9 +72,9 @@ s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
 u = dot(p1 - p4, gmunu, p1 - p4)
 
-f11 = 8 t u - 24 t m^2 - 8 u m^2 - 8 m^4
-f12 = 8 s m^2 - 32 m^4
-f22 = 8 t u - 8 t m^2 - 24 u m^2 - 8 m^4
+f11 = 8 t u - 24 m^2 t - 8 m^2 u - 8 m^4
+f12 = 8 m^2 s - 32 m^4
+f22 = 8 t u - 8 m^2 t - 24 m^2 u - 8 m^4
 
 "Verify formulas"
 
