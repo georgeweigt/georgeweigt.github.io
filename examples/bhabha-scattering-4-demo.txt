@@ -1,5 +1,7 @@
 "Bhabha scattering 4"
 
+"Verify formulas"
+
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -24,8 +26,6 @@ p14 = dot(p1,gmunu,p4)
 f11 = 32 p12^2 + 32 p14^2 - 64 m^2 p12 + 64 m^2 p14
 f12 = -32 p14^2 - 64 m^2 p14
 f22 = 32 p13^2 + 32 p14^2 + 64 m^2 p13 + 64 m^2 p14
-
-"Verify formulas"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
