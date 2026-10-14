@@ -1,4 +1,6 @@
-"Annihilation"
+"Annihilation 1"
+
+"Verify formulas"
 
 E = sqrt(p^2 + m^2)
 
@@ -75,8 +77,6 @@ u = dot(p1 - p4, gmunu, p1 - p4)
 f11 = 8 t u - 24 m^2 t - 8 m^2 u - 8 m^4
 f12 = 8 m^2 s - 32 m^4
 f22 = 8 t u - 8 m^2 t - 24 m^2 u - 8 m^4
-
-"Verify formulas"
 
 check(MM11 == e^4 f11)
 check(MM12 == e^4 f12)

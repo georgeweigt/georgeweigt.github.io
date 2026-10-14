@@ -1,0 +1,53 @@
+\input{preamble}
+
+\section*{Annihilation 2}
+
+From the first section we have
+\begin{align*}
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
+&=\frac{e^4}{(t-m^2)^2}
+\left(8 t u - 24 m^2 t - 8 m^2 u - 8 m^4\right)
+\\
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{1\nu\mu}
+&=\frac{e^4}{(t-m^2)(u-m^2)}
+\left(8 m^2 s - 32 m^4\right)
+\\
+\sum_{ab}\mathcal M_2{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
+&=\frac{e^4}{(u-m^2)^2}
+\left(8 t u - 8 m^2 t - 24 m^2 u - 8 m^4\right)
+\end{align*}
+
+We also have by the Casimir trick
+\begin{align*}
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{1\mu\nu}
+&=\frac{e^4}{(t-m^2)^2}\operatorname{Tr}
+\left(
+%(\slashed p_1+m)\gamma^\mu(\slashed q_1+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_1+m)\gamma_\mu
+(\slashed q_1+m)\gamma^\mu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma^\nu(\slashed p_1+m)\gamma_\nu
+\right)
+\\
+\sum_{ab}\mathcal M_1{}^{\mu\nu}\mathcal M^*_{2\nu\mu}
+&=\frac{e^4}{(t-m^2)(u-m^2)}\operatorname{Tr}
+\left(
+%(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\mu(\slashed q_1+m)\gamma_\nu
+(\slashed q_2+m)\gamma^\mu(\slashed p_2-m)\gamma^\nu(\slashed q_1+m)\gamma_\mu(\slashed p_1+m)\gamma_\nu
+\right)
+\\
+\sum_{ab}\mathcal M_2{}^{\nu\mu}\mathcal M^*_{2\nu\mu}
+&=\frac{e^4}{(u-m^2)^2}\operatorname{Tr}
+\left(
+%(\slashed p_1+m)\gamma^\mu(\slashed q_2+m)\gamma^\nu(\slashed p_2-m)\gamma_\nu(\slashed q_2+m)\gamma_\mu
+(\slashed q_2+m)\gamma^\mu(\slashed p_2-m)\gamma_\mu(\slashed q_2+m)\gamma^\nu(\slashed p_1+m)\gamma_\nu
+\right)
+\end{align*}
+
+The trace operator Tr contracts (sums over) the first and last index.
+Slash matrices are formed as
+\begin{equation*}
+\slashed p=p^\mu g_{\mu\nu}\gamma^\nu
+=p^0\gamma^0-p^1\gamma^1-p^2\gamma^2-p^3\gamma^3
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/annihilation-2-demo.html}{Eigenmath script}
+
+\end{document}

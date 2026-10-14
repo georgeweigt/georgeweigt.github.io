@@ -1,0 +1,57 @@
+"Annihilation 2"
+
+"Verify Casimir trick"
+
+E = sqrt(p^2 + m^2)
+
+p1 = (E, 0, 0, p)
+p2 = (E, 0, 0, -p)
+
+p3 = (E,
+      E sin(theta) cos(phi),
+      E sin(theta) sin(phi),
+      E cos(theta))
+
+p4 = (E,
+      -E sin(theta) cos(phi),
+      -E sin(theta) sin(phi),
+      -E cos(theta))
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+P1 = dot(p1, gmunu, gamma) + m I
+P2 = dot(p2, gmunu, gamma) - m I
+
+Q1 = dot(p1 - p3, gmunu, gamma) + m I
+Q2 = dot(p1 - p4, gmunu, gamma) + m I
+
+T = dot(Q1,gammaT,P2,gammaL,Q1,gammaT,P1,gammaL)
+f11 = contract(T,1,6,1,2,1,2)
+
+T = dot(Q2,gammaT,P2,gammaT,Q1,gammaL,P1,gammaL)
+f12 = contract(T,1,6,1,3,1,2)
+
+T = dot(Q2,gammaT,P2,gammaL,Q2,gammaT,P1,gammaL)
+f22 = contract(T,1,6,1,2,1,2)
+
+s = dot(p1 + p2, gmunu, p1 + p2)
+t = dot(p1 - p3, gmunu, p1 - p3)
+u = dot(p1 - p4, gmunu, p1 - p4)
+
+check(f11 == 8 t u - 24 m^2 t - 8 m^2 u - 8 m^4)
+check(f12 == 8 m^2 s - 32 m^4)
+check(f22 == 8 t u - 8 m^2 t - 24 m^2 u - 8 m^4)
+
+"ok"
