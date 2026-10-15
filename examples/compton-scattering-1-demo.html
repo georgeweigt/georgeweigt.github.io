@@ -89,13 +89,13 @@ MM = 1/4 e^4 (f11 / d11 + 2 f12 / d12 + f22 / d22)
 
 m = 0
 
-check(s == 4 E^2)
-check(t == -2 E^2 (1 - cos(theta)))
-check(u == -2 E^2 (1 + cos(theta)))
-
 check(f11 == -8 s u)
 check(f12 == 0)
 check(f22 == -8 s u)
+
+check(s == 4 E^2)
+check(t == -2 E^2 (1 - cos(theta)))
+check(u == -2 E^2 (1 + cos(theta)))
 
 check(MM == -2 e^4 (u / s + s / u))
 
