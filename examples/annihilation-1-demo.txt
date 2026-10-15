@@ -84,6 +84,12 @@ check(MM22 == e^4 f22)
 
 check(MM11 + MM12 + MM21 + MM22 == e^4 (f11 + 2 f12 + f22))
 
+d11 = (t - m^2)^2
+d12 = (t - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
+MM = 1/4 e^4 (f11 / d11 + 2 f12 / d12 + f22 / d22)
+
 m = 0
 
 check(s == 4 E^2)
@@ -93,8 +99,6 @@ check(u == -2 E^2 (1 + cos(theta)))
 check(f11 == 8 t u)
 check(f12 == 0)
 check(f22 == 8 t u)
-
-MM = 1/4 e^4 (f11 / t^2 + 2 f12 / (t u) + f22 / u^2)
 
 check(MM == 2 e^4 (u / t + t / u))
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
 "Compton scattering 2"
 
+"Verify formulas"
+
 E = sqrt(omega^2 + m^2)
 
 p1 = (E, 0, 0, omega)
@@ -26,7 +28,11 @@ f11 = -8 s u + 24 m^2 s + 8 m^2 u + 8 m^4
 f12 = 8 m^2 s + 8 m^2 u + 16 m^4
 f22 = -8 s u + 8 m^2 s + 24 m^2 u + 8 m^4
 
-"Verify formulas"
+d11 = (s - m^2)^2
+d12 = (s - m^2) (u - m^2)
+d22 = (u - m^2)^2
+
+MM = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 Lambda = ((E/m,0,0,-omega/m),(0,1,0,0),(0,0,1,0),(omega/m,0,0,-E/m))
 
@@ -41,28 +47,12 @@ check(s == dot(p1 + p2, gmunu, p1 + p2))
 check(t == dot(p1 - p3, gmunu, p1 - p3))
 check(u == dot(p1 - p4, gmunu, p1 - p4))
 
-p12 = dot(p1,gmunu,p2)
-p13 = dot(p1,gmunu,p3)
-p14 = dot(p1,gmunu,p4)
-
-check(f11 == 32 p12 p14 + 32 p12 m^2 + 32 m^4)
-check(f12 == 16 p12 m^2 - 16 p14 m^2 + 32 m^4)
-check(f22 == 32 p12 p14 - 32 p14 m^2 + 32 m^4)
-
--- verify s, t, and u in the lab frame
-
 omegaL = dot(p2,(1,0,0,0))
 omegaLp = dot(p4,(1,0,0,0))
 
 check(s == m^2 + 2 m omegaL)
 check(t == 2 m (omegaLp - omegaL))
 check(u == m^2 - 2 m omegaLp)
-
-d11 = (s - m^2)^2
-d12 = (s - m^2) (u - m^2)
-d22 = (u - m^2)^2
-
-MM = 1/4 e^4 (f11/d11 + 2 f12/d12 + f22/d22)
 
 check(MM == 2 e^4 (omegaL/omegaLp + omegaLp/omegaL + (m/omegaL - m/omegaLp + 1)^2 - 1))
 
