@@ -1,5 +1,7 @@
 "Moller scattering 1"
 
+"Verify formulas"
+
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -83,13 +85,13 @@ f11 = 8 s^2 + 8 u^2 - 64 m^2 s - 64 m^2 u + 192 m^4
 f12 = -8 s^2 + 64 m^2 s - 96 m^4
 f22 = 8 s^2 + 8 t^2 - 64 m^2 s - 64 m^2 t + 192 m^4
 
-"Verify formulas"
-
 check(MM11 == f11)
 check(MM12 == f12)
 check(MM22 == f22)
 
 check(MM11 - MM12 - MM21 + MM22 == f11 - 2 f12 + f22)
+
+MM = 1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2)
 
 m = 0
 
@@ -109,8 +111,10 @@ check(a == (s^2 + u^2) / t^2)
 check(b == 2 s^2 / (t u))
 check(c == (s^2 + t^2) / u^2)
 
-check(1/4 (f11 / t^2 - 2 f12 / (t u) + f22 / u^2) == 2 (a + b + c))
+check(MM == 2 (a + b + c))
 
 check(2 (a + b + c) == 4 (cos(theta)^2 + 3)^2 / sin(theta)^4)
+
+m = quote(m)
 
 "ok"
