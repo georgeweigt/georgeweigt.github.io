@@ -31,8 +31,8 @@ gamma = (gamma0,gamma1,gamma2,gamma3)
 gammaT = transpose(gamma)
 gammaL = transpose(dot(gmunu,gamma))
 
-P1 = dot(p1, gmunu, gamma) + m I
-P2 = dot(p2, gmunu, gamma) - m I
+P1 = dot(p1,gmunu,gamma) + m I
+P2 = dot(p2,gmunu,gamma) - m I
 
 Q1 = dot(p1 - p3, gmunu, gamma) + m I
 Q2 = dot(p1 - p4, gmunu, gamma) + m I
