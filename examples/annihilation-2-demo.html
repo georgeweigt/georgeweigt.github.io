@@ -42,8 +42,8 @@ T1 = contract(dot(Q1,gammaT,P2,gammaL),2,3)
 T2 = contract(dot(Q1,gammaT,P1,gammaL),2,3)
 f11 = contract(dot(T1,T2))
 
-T = dot(Q2,gammaT,P2,gammaT,Q1,gammaL,P1,gammaL)
-f12 = contract(T,1,6,1,3,1,2)
+T = contract(dot(Q2,gammaT,P2,gammaT,Q1,gammaL),2,4)
+f12 = contract(dot(T,P1,gammaL),2,3,1,2)
 
 T1 = contract(dot(Q2,gammaT,P2,gammaL),2,3)
 T2 = contract(dot(Q2,gammaT,P1,gammaL),2,3)
