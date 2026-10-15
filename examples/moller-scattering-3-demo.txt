@@ -1,5 +1,7 @@
 "Moller scattering 3"
 
+"Verify Casimir trick"
+
 E = sqrt(p^2 + m^2)
 
 p1 = (E, 0, 0, p)
@@ -49,8 +51,6 @@ f12 = contract(T,1,3,1,2)
 T1 = contract(dot(X3,gammaT,X2,gammaT),1,4)
 T2 = contract(dot(X4,gammaL,X1,gammaL),1,4)
 f22 = contract(dot(T1,transpose(T2)))
-
-"Verify Casimir trick"
 
 s = dot(p1 + p2, gmunu, p1 + p2)
 t = dot(p1 - p3, gmunu, p1 - p3)
