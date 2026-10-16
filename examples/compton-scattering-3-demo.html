@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><body><script src="https://georgeweigt.github.io/eigenmath.js"></script><textarea id="stdin" rows="24" cols="80" style="font-family:courier;font-size:1em">
+"Compton scattering 3"
+
+"Verify Casimir trick"
+
+E = sqrt(omega^2 + m^2)
+
+p1 = (E, 0, 0, omega)
+p2 = (omega, 0, 0, -omega)
+
+p3 = (E,
+      omega sin(theta) cos(phi),
+      omega sin(theta) sin(phi),
+      omega cos(theta))
+
+p4 = (omega,
+      -omega sin(theta) cos(phi),
+      -omega sin(theta) sin(phi),
+      -omega cos(theta))
+
+I = ((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))
+
+gmunu = ((1,0,0,0),(0,-1,0,0),(0,0,-1,0),(0,0,0,-1))
+
+gamma0 = ((1,0,0,0),(0,1,0,0),(0,0,-1,0),(0,0,0,-1))
+gamma1 = ((0,0,0,1),(0,0,1,0),(0,-1,0,0),(-1,0,0,0))
+gamma2 = ((0,0,0,-i),(0,0,i,0),(0,i,0,0),(-i,0,0,0))
+gamma3 = ((0,0,1,0),(0,0,0,-1),(-1,0,0,0),(0,1,0,0))
+
+gamma = (gamma0,gamma1,gamma2,gamma3)
+
+gammaT = transpose(gamma)
+gammaL = transpose(dot(gmunu,gamma))
+
+P1 = dot(p1,gmunu,gamma) + m I
+P3 = dot(p3,gmunu,gamma) + m I
+
+Q1 = dot(p1 + p2, gmunu, gamma) + m I
+Q2 = dot(p1 - p4, gmunu, gamma) + m I
+
+T1 = contract(dot(Q1,gammaT,P3,gammaL),2,3)
+T2 = contract(dot(Q1,gammaT,P1,gammaL),2,3)
+f11 = contract(dot(T1,T2))
+
+T = contract(dot(Q2,gammaT,P3,gammaT,Q1,gammaL),2,4)
+f12 = contract(dot(T,P1,gammaL),2,3,1,2)
+
+T1 = contract(dot(Q2,gammaT,P3,gammaL),2,3)
+T2 = contract(dot(Q2,gammaT,P1,gammaL),2,3)
+f22 = contract(dot(T1,T2))
+
+s = dot(p1 + p2, gmunu, p1 + p2)
+t = dot(p1 - p3, gmunu, p1 - p3)
+u = dot(p1 - p4, gmunu, p1 - p4)
+
+check(f11 == -8 s u + 24 m^2 s + 8 m^2 u + 8 m^4)
+check(f12 == 8 m^2 s + 8 m^2 u + 16 m^4)
+check(f22 == -8 s u + 8 m^2 s + 24 m^2 u + 8 m^4)
+
+"ok"
+</textarea> <button onclick="run()">Run</button><br><div id="stdout"></div></body></html>
