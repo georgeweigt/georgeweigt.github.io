@@ -19,7 +19,7 @@ i\hbar\frac{\partial}{\partial t}\psi(x,t)
 
 For $V(x)=0$ we have the solution
 \begin{equation*}
-\psi(x,t)=[A\sin(kx)+B\cos(kx)]\exp(-i\omega t)
+\psi(x,t)=\left(A\sin(kx)+B\cos(kx)\right)\exp(-i\omega t)
 \end{equation*}
 
 where
@@ -32,12 +32,27 @@ By the boundary condition $\psi(0,t)=0$ we have
 B=0
 \end{equation*}
 
-By the boundary condition $\psi(a,t)=0$ we have for integer $n$
+By the boundary condition $\psi(a,t)=0$ we have $\sin(ka)=0$ hence
 \begin{equation*}
-kx=\frac{n\pi x}{a}
+ka=n\pi
 \end{equation*}
 
-We seek $A$ that normalizes probability density $|\psi|^2$.
+Solve for $k$.
+\begin{equation*}
+k=\frac{n\pi}{a}
+\end{equation*}
+
+Hence
+\begin{equation*}
+\omega=\frac{k^2\hbar}{2m}=\frac{n^2\pi^2\hbar}{2ma^2}
+\end{equation*}
+
+Then by $E=\hbar\omega$ we have
+\begin{equation*}
+E=\hbar\omega=\frac{n^2\pi^2\hbar^2}{2ma^2}
+\end{equation*}
+
+We seek $A$ that normalizes the probability density $|\psi|^2$.
 \begin{equation*}
 \int_0^a|\psi|^2\,dx=\frac{a}{2}\,|A|^2=1
 \end{equation*}
@@ -47,12 +62,13 @@ Hence
 |A|=\sqrt{\frac{2}{a}}
 \end{equation*}
 
-Let $E_n$ be particle energy $\hbar\omega$.
+Put everything together and write
 \begin{equation*}
-E_n=\hbar\omega=\frac{n^2\pi^2\hbar^2}{2ma^2}
+\psi(x,t)=\sqrt{\frac{2}{a}}\sin\biggl(\frac{n\pi x}{a}\biggr)
+\exp\left(-\frac{iEt}{\hbar}\right)
 \end{equation*}
 
-Put everything together and write
+Add subscript $n$ to remind us that the energy levels are quantized.
 \begin{equation*}
 \psi_n(x,t)=\sqrt{\frac{2}{a}}\sin\biggl(\frac{n\pi x}{a}\biggr)
 \exp\left(-\frac{iE_nt}{\hbar}\right)
