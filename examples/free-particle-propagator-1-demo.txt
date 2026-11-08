@@ -1,4 +1,4 @@
-"Verify equation (3)"
+"Verify equation (1)"
 
 a = i (tb - ta) / (2 m hbar)
 b = i (xb - xa) / hbar
