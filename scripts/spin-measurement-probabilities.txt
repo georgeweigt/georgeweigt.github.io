@@ -1,0 +1,25 @@
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+"x direction"
+
+u = (1,1) / sqrt(2)
+d = (1,-1) / sqrt(2)
+
+simplify(mag(dot(conj(u),s))^2)
+simplify(mag(dot(conj(d),s))^2)
+
+"y direction"
+
+u = (1,i) / sqrt(2)
+d = (1,-i) / sqrt(2)
+
+simplify(mag(dot(conj(u),s))^2)
+simplify(mag(dot(conj(d),s))^2)
+
+"z direction"
+
+u = (1,0)
+d = (0,1)
+
+mag(dot(conj(u),s))^2
+mag(dot(conj(d),s))^2
