@@ -1,25 +1,26 @@
 s = (cos(theta/2), sin(theta/2) exp(i phi))
 
-"x direction"
+xp = (1,1) / sqrt(2)
+xm = (1,-1) / sqrt(2)
 
-u = (1,1) / sqrt(2)
-d = (1,-1) / sqrt(2)
+yp = (1,i) / sqrt(2)
+ym = (1,-i) / sqrt(2)
 
-simplify(mag(dot(conj(u),s))^2)
-simplify(mag(dot(conj(d),s))^2)
+zp = (1,0)
+zm = (0,1)
 
-"y direction"
+"Verify probabilities"
 
-u = (1,i) / sqrt(2)
-d = (1,-i) / sqrt(2)
+check(mag(dot(conj(xp),s))^2 == 1/2 + 1/2 sin(theta) cos(phi))
+check(mag(dot(conj(xm),s))^2 == 1/2 - 1/2 sin(theta) cos(phi))
 
-simplify(mag(dot(conj(u),s))^2)
-simplify(mag(dot(conj(d),s))^2)
+check(mag(dot(conj(yp),s))^2 == 1/2 + 1/2 sin(theta) sin(phi))
+check(mag(dot(conj(ym),s))^2 == 1/2 - 1/2 sin(theta) sin(phi))
 
-"z direction"
+check(mag(dot(conj(zp),s))^2 == 1/2 + 1/2 cos(theta))
+check(mag(dot(conj(zm),s))^2 == 1/2 - 1/2 cos(theta))
 
-u = (1,0)
-d = (0,1)
+check(mag(dot(conj(zp),s))^2 == cos(theta/2)^2)
+check(mag(dot(conj(zm),s))^2 == sin(theta/2)^2)
 
-mag(dot(conj(u),s))^2
-mag(dot(conj(d),s))^2
+"ok"
