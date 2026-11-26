@@ -1,0 +1,25 @@
+"Bloch sphere 1"
+
+"Verify formulas"
+
+s = (cos(theta/2), sin(theta/2) exp(i phi))
+
+Sx = 1/2 hbar ((0,1),(1,0))
+Sy = 1/2 hbar ((0,-i),(i,0))
+Sz = 1/2 hbar ((1,0),(0,-1))
+
+x = dot(conj(s),Sx,s)
+y = dot(conj(s),Sy,s)
+z = dot(conj(s),Sz,s)
+
+check(x == 1/2 hbar sin(theta) cos(phi))
+check(y == 1/2 hbar sin(theta) sin(phi))
+check(z == 1/2 hbar cos(theta))
+
+r = sqrt(simplify(x^2 + y^2 + z^2))
+
+check(r == 1/2 hbar)
+check(simplify(z/r) == cos(theta))
+check(simplify(y/x) == tan(phi))
+
+"ok"

@@ -1,24 +1,46 @@
 \input{preamble}
 
-\section*{Bloch sphere}
+\section*{Bloch sphere 1}
 
-Let $|s\rangle$ be the spin state
+Let $s$ be the spin state
 \begin{equation*}
-|s\rangle=\begin{pmatrix}
-\cos(\theta/2)
-\\
-\sin(\theta/2)\exp(i\phi)
+s=\begin{pmatrix}
+\cos\frac{\theta}{2}
+\\[1ex]
+\sin\frac{\theta}{2}\,e^{i\phi}
 \end{pmatrix}
 \end{equation*}
 
-The expectation values for $|s\rangle$ are
+The expectation values for $s$ are
 \begin{align*}
-\langle S_x\rangle&=\langle s|S_x|s\rangle=\frac{\hbar}{2}\sin\theta\cos\phi
+\langle S_x\rangle&=s^\dagger S_xs=\frac{\hbar}{2}\sin\theta\cos\phi
 \\[1ex]
-\langle S_y\rangle&=\langle s|S_y|s\rangle=\frac{\hbar}{2}\sin\theta\sin\phi
+\langle S_y\rangle&=s^\dagger S_ys=\frac{\hbar}{2}\sin\theta\sin\phi
 \\[1ex]
-\langle S_z\rangle&=\langle s|S_z|s\rangle=\frac{\hbar}{2}\cos\theta
+\langle S_z\rangle&=s^\dagger S_zs=\frac{\hbar}{2}\cos\theta
 \end{align*}
+
+In spherical coordinates
+\begin{align*}
+\langle r\rangle&=\sqrt{\langle S_x\rangle^2+\langle S_y\rangle^2+\langle S_z\rangle^2}=\frac{\hbar}{2}
+\\
+\langle\theta\rangle&=\arccos\frac{\langle S_z\rangle}{\langle r\rangle}=\theta
+\\
+\langle\phi\rangle&=\arctan\frac{\langle S_y\rangle}{\langle S_z\rangle}=\phi
+\end{align*}
+
+Hence the expectation of $s$ is a point on a Bloch sphere.
+\begin{equation*}
+\langle\mathbf S\rangle
+=\langle r\rangle\mathbf e_r
++\langle\theta\rangle\mathbf e_\theta
++\langle\phi\rangle\mathbf e_\phi
+=\frac{\hbar}{2}\mathbf e_r
++\theta\mathbf e_\theta
++\phi\mathbf e_\phi
+\end{equation*}
+
+\iffalse
 
 In vector form
 \begin{equation*}
@@ -31,6 +53,11 @@ In vector form
 \cos\theta
 \end{pmatrix}
 \end{equation*}
+
+In spherical coordinates
+\begin{align*}
+\langle r\rangle&=\sqrt{\langle S_x\rangle^2+\langle S_y\rangle^2+\langle S_z\rangle^2}=\frac{\hbar}{2}
+\end{align*}
 
 In spherical coordinates $\langle\mathbf S\rangle=(\hbar/2,\theta,\phi)$.
 Hence $\langle\mathbf S\rangle$ is a point on a sphere of radius $\hbar/2$.
@@ -107,6 +134,8 @@ By equality of expectation every $|\chi\rangle$ has a place on the Bloch sphere.
 \langle\mathbf S\rangle=\langle\chi|\mathbf S|\chi\rangle=\langle s|\mathbf S|s\rangle
 \end{equation*}
 
-\href{https://georgeweigt.github.io/examples/bloch-sphere-demo.html}{Eigenmath script}
+\fi
+
+\href{https://georgeweigt.github.io/examples/bloch-sphere-1-demo.html}{Eigenmath script}
 
 \end{document}

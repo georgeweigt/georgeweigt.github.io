@@ -1,0 +1,79 @@
+\input{preamble}
+
+\section*{Bloch sphere 2}
+
+Let $s$ be the general spin state
+\begin{equation*}
+s=\begin{pmatrix}
+A_1e^{i\phi_1}
+\\
+A_2e^{i\phi_2}
+\end{pmatrix}
+\end{equation*}
+
+Without loss of generality the $A$ coefficients can be made positive
+with the overall signs determined by the phases.
+\begin{equation*}
+0\le A_1,\quad 0\le A_2
+\end{equation*}
+
+By unitarity of spin states
+\begin{equation*}
+s^\dagger s={A_1}^2+{A_2}^2=1
+\end{equation*}
+
+and
+\begin{equation*}
+|A_1|\le1,\quad|A_2|\le1
+\end{equation*}
+
+Hence there exists a $\theta$ such that
+\begin{equation*}
+s=\begin{pmatrix}
+\cos\frac{\theta}{2}\,e^{i\phi_1}
+\\[1ex]
+\sin\frac{\theta}{2}\,e^{i\phi_2}
+\end{pmatrix}
+\end{equation*}
+
+where
+\begin{equation*}
+0\le\theta\le\pi
+\end{equation*}
+
+Factor out the exponential $e^{i\phi_1}$.
+\begin{equation*}
+s=e^{i\phi_1}\begin{pmatrix}
+\cos\frac{\theta}{2}
+\\[1ex]
+\sin\frac{\theta}{2}\,e^{i(\phi_2-\phi_1)}
+\end{pmatrix}
+\end{equation*}
+
+By phase invariance $e^{i\phi_1}$ can be discarded.
+\begin{equation*}
+s=\begin{pmatrix}
+\cos\frac{\theta}{2}
+\\[1ex]
+\sin\frac{\theta}{2}\,e^{i(\phi_2-\phi_1)}
+\end{pmatrix}
+\end{equation*}
+
+Substitute $\phi$ for $\phi_2-\phi_1$.
+\begin{equation*}
+s=\begin{pmatrix}
+\cos\frac{\theta}{2}
+\\[1ex]
+\sin\frac{\theta}{2}\,e^{i\phi}
+\end{pmatrix}
+\end{equation*}
+
+By the above derivation, every spin can be represented by a $\theta$ and a $\phi$ as in $s$.
+Hence every spin has a Bloch sphere axis.
+\begin{equation*}
+\langle\mathbf S\rangle=\frac{\hbar}{2}\mathbf e_r+\theta\mathbf e_\theta+\phi\mathbf e_\phi
+\end{equation*}
+
+\href{https://georgeweigt.github.io/examples/bloch-sphere-2-demo.html}{Eigenmath script}
+
+\end{document}

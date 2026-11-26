@@ -1,0 +1,21 @@
+"Bloch sphere 2"
+
+"Verify phase invariance"
+
+Sx = 1/2 hbar ((0,1),(1,0))
+Sy = 1/2 hbar ((0,-i),(i,0))
+Sz = 1/2 hbar ((1,0),(0,-1))
+
+s = (cos(theta/2) exp(i phi1), sin(theta/2) exp(i phi2))
+
+x = dot(conj(s),Sx,s)
+y = dot(conj(s),Sy,s)
+z = dot(conj(s),Sz,s)
+
+s = (cos(theta/2), sin(theta/2) exp(i (phi2 - phi1)))
+
+check(x == dot(conj(s),Sx,s))
+check(y == dot(conj(s),Sy,s))
+check(z == dot(conj(s),Sz,s))
+
+"ok"
