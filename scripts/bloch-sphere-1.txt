@@ -1,4 +1,4 @@
-"Verify Bloch sphere formulas"
+"Verify formulas"
 
 s = (cos(theta/2), sin(theta/2) exp(i phi))
 
